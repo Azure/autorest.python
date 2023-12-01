@@ -1210,12 +1210,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_and.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1226,12 +1226,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AndModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.AndModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_and.
 
-        :param body: Is one of the following types: AndModel, JSON, IO Required.
-        :type body: ~specialwords.models.AndModel or JSON or IO
+        :param body: Is one of the following types: AndModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.AndModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1318,12 +1318,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_as.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1334,12 +1334,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AsModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.AsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_as.
 
-        :param body: Is one of the following types: AsModel, JSON, IO Required.
-        :type body: ~specialwords.models.AsModel or JSON or IO
+        :param body: Is one of the following types: AsModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.AsModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1426,12 +1426,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_assert.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1442,12 +1442,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AssertModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.AssertModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_assert.
 
-        :param body: Is one of the following types: AssertModel, JSON, IO Required.
-        :type body: ~specialwords.models.AssertModel or JSON or IO
+        :param body: Is one of the following types: AssertModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.AssertModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1534,12 +1534,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_async.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1550,12 +1550,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AsyncModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.AsyncModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_async.
 
-        :param body: Is one of the following types: AsyncModel, JSON, IO Required.
-        :type body: ~specialwords.models.AsyncModel or JSON or IO
+        :param body: Is one of the following types: AsyncModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.AsyncModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1642,12 +1642,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_await.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1658,12 +1658,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AwaitModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.AwaitModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_await.
 
-        :param body: Is one of the following types: AwaitModel, JSON, IO Required.
-        :type body: ~specialwords.models.AwaitModel or JSON or IO
+        :param body: Is one of the following types: AwaitModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.AwaitModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1750,12 +1750,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_break.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1766,12 +1766,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BreakModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BreakModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_break.
 
-        :param body: Is one of the following types: BreakModel, JSON, IO Required.
-        :type body: ~specialwords.models.BreakModel or JSON or IO
+        :param body: Is one of the following types: BreakModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.BreakModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1858,12 +1858,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_class.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1874,12 +1874,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClassModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ClassModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_class.
 
-        :param body: Is one of the following types: ClassModel, JSON, IO Required.
-        :type body: ~specialwords.models.ClassModel or JSON or IO
+        :param body: Is one of the following types: ClassModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ClassModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1966,12 +1966,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_constructor.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1982,12 +1982,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Constructor, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Constructor, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_constructor.
 
-        :param body: Is one of the following types: Constructor, JSON, IO Required.
-        :type body: ~specialwords.models.Constructor or JSON or IO
+        :param body: Is one of the following types: Constructor, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.Constructor or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2074,12 +2074,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_continue.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2090,12 +2090,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ContinueModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ContinueModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_continue.
 
-        :param body: Is one of the following types: ContinueModel, JSON, IO Required.
-        :type body: ~specialwords.models.ContinueModel or JSON or IO
+        :param body: Is one of the following types: ContinueModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ContinueModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2182,12 +2182,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_def.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2198,12 +2198,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DefModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_def.
 
-        :param body: Is one of the following types: DefModel, JSON, IO Required.
-        :type body: ~specialwords.models.DefModel or JSON or IO
+        :param body: Is one of the following types: DefModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.DefModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2290,12 +2290,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_del.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2306,12 +2306,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DelModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DelModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_del.
 
-        :param body: Is one of the following types: DelModel, JSON, IO Required.
-        :type body: ~specialwords.models.DelModel or JSON or IO
+        :param body: Is one of the following types: DelModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.DelModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2398,12 +2398,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_elif.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2414,12 +2414,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ElifModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ElifModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_elif.
 
-        :param body: Is one of the following types: ElifModel, JSON, IO Required.
-        :type body: ~specialwords.models.ElifModel or JSON or IO
+        :param body: Is one of the following types: ElifModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ElifModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2506,12 +2506,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_else.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2522,12 +2522,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ElseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ElseModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_else.
 
-        :param body: Is one of the following types: ElseModel, JSON, IO Required.
-        :type body: ~specialwords.models.ElseModel or JSON or IO
+        :param body: Is one of the following types: ElseModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ElseModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2614,12 +2614,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_except.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2630,12 +2630,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExceptModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExceptModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_except.
 
-        :param body: Is one of the following types: ExceptModel, JSON, IO Required.
-        :type body: ~specialwords.models.ExceptModel or JSON or IO
+        :param body: Is one of the following types: ExceptModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ExceptModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2722,12 +2722,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_exec.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2738,12 +2738,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExecModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExecModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_exec.
 
-        :param body: Is one of the following types: ExecModel, JSON, IO Required.
-        :type body: ~specialwords.models.ExecModel or JSON or IO
+        :param body: Is one of the following types: ExecModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ExecModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2830,12 +2830,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_finally.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2846,12 +2846,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FinallyModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FinallyModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_finally.
 
-        :param body: Is one of the following types: FinallyModel, JSON, IO Required.
-        :type body: ~specialwords.models.FinallyModel or JSON or IO
+        :param body: Is one of the following types: FinallyModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.FinallyModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2938,12 +2938,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_for.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2954,12 +2954,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ForModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ForModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_for.
 
-        :param body: Is one of the following types: ForModel, JSON, IO Required.
-        :type body: ~specialwords.models.ForModel or JSON or IO
+        :param body: Is one of the following types: ForModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ForModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3046,12 +3046,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_from.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3062,12 +3062,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FromModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FromModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_from.
 
-        :param body: Is one of the following types: FromModel, JSON, IO Required.
-        :type body: ~specialwords.models.FromModel or JSON or IO
+        :param body: Is one of the following types: FromModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.FromModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3154,12 +3154,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_global.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3170,12 +3170,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.GlobalModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.GlobalModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_global.
 
-        :param body: Is one of the following types: GlobalModel, JSON, IO Required.
-        :type body: ~specialwords.models.GlobalModel or JSON or IO
+        :param body: Is one of the following types: GlobalModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.GlobalModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3262,12 +3262,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_if.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3278,12 +3278,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IfModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IfModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_if.
 
-        :param body: Is one of the following types: IfModel, JSON, IO Required.
-        :type body: ~specialwords.models.IfModel or JSON or IO
+        :param body: Is one of the following types: IfModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.IfModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3370,12 +3370,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_import.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3386,12 +3386,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ImportModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ImportModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_import.
 
-        :param body: Is one of the following types: ImportModel, JSON, IO Required.
-        :type body: ~specialwords.models.ImportModel or JSON or IO
+        :param body: Is one of the following types: ImportModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ImportModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3478,12 +3478,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_in.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3494,12 +3494,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.InModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_in.
 
-        :param body: Is one of the following types: InModel, JSON, IO Required.
-        :type body: ~specialwords.models.InModel or JSON or IO
+        :param body: Is one of the following types: InModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.InModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3586,12 +3586,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_is.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3602,12 +3602,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_is.
 
-        :param body: Is one of the following types: IsModel, JSON, IO Required.
-        :type body: ~specialwords.models.IsModel or JSON or IO
+        :param body: Is one of the following types: IsModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.IsModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3694,12 +3694,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_lambda.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3710,12 +3710,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.LambdaModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.LambdaModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_lambda.
 
-        :param body: Is one of the following types: LambdaModel, JSON, IO Required.
-        :type body: ~specialwords.models.LambdaModel or JSON or IO
+        :param body: Is one of the following types: LambdaModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.LambdaModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3802,12 +3802,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_not.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3818,12 +3818,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NotModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.NotModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_not.
 
-        :param body: Is one of the following types: NotModel, JSON, IO Required.
-        :type body: ~specialwords.models.NotModel or JSON or IO
+        :param body: Is one of the following types: NotModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.NotModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3910,12 +3910,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_or.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3926,12 +3926,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.OrModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.OrModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_or.
 
-        :param body: Is one of the following types: OrModel, JSON, IO Required.
-        :type body: ~specialwords.models.OrModel or JSON or IO
+        :param body: Is one of the following types: OrModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.OrModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4018,12 +4018,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_pass.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4034,12 +4034,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PassModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.PassModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_pass.
 
-        :param body: Is one of the following types: PassModel, JSON, IO Required.
-        :type body: ~specialwords.models.PassModel or JSON or IO
+        :param body: Is one of the following types: PassModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.PassModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4126,12 +4126,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_raise.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4142,12 +4142,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RaiseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.RaiseModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_raise.
 
-        :param body: Is one of the following types: RaiseModel, JSON, IO Required.
-        :type body: ~specialwords.models.RaiseModel or JSON or IO
+        :param body: Is one of the following types: RaiseModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.RaiseModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4234,12 +4234,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_return.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4250,12 +4250,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ReturnModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ReturnModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_return.
 
-        :param body: Is one of the following types: ReturnModel, JSON, IO Required.
-        :type body: ~specialwords.models.ReturnModel or JSON or IO
+        :param body: Is one of the following types: ReturnModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.ReturnModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4342,12 +4342,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_try.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4358,12 +4358,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.TryModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.TryModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_try.
 
-        :param body: Is one of the following types: TryModel, JSON, IO Required.
-        :type body: ~specialwords.models.TryModel or JSON or IO
+        :param body: Is one of the following types: TryModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.TryModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4450,12 +4450,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_while.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4466,12 +4466,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.WhileModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.WhileModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_while.
 
-        :param body: Is one of the following types: WhileModel, JSON, IO Required.
-        :type body: ~specialwords.models.WhileModel or JSON or IO
+        :param body: Is one of the following types: WhileModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.WhileModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4558,12 +4558,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_with.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4574,12 +4574,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.WithModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.WithModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_with.
 
-        :param body: Is one of the following types: WithModel, JSON, IO Required.
-        :type body: ~specialwords.models.WithModel or JSON or IO
+        :param body: Is one of the following types: WithModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.WithModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4666,12 +4666,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_yield.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4682,12 +4682,12 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.YieldModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.YieldModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_yield.
 
-        :param body: Is one of the following types: YieldModel, JSON, IO Required.
-        :type body: ~specialwords.models.YieldModel or JSON or IO
+        :param body: Is one of the following types: YieldModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.YieldModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4792,12 +4792,12 @@ class ModelPropertiesOperations:
 
     @overload
     def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """same_as_model.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4808,12 +4808,12 @@ class ModelPropertiesOperations:
 
     @distributed_trace
     def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SameAsModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.SameAsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """same_as_model.
 
-        :param body: Is one of the following types: SameAsModel, JSON, IO Required.
-        :type body: ~specialwords.models.SameAsModel or JSON or IO
+        :param body: Is one of the following types: SameAsModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.SameAsModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

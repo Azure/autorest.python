@@ -77,12 +77,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_empty.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -93,12 +93,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.EmptyInput, JSON, IO], **kwargs: Any
+        self, input: Union[_models.EmptyInput, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put_empty.
 
-        :param input: Is one of the following types: EmptyInput, JSON, IO Required.
-        :type input: ~typetest.model.empty.models.EmptyInput or JSON or IO
+        :param input: Is one of the following types: EmptyInput, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.empty.models.EmptyInput or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -241,12 +241,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
     async def post_round_trip_empty(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.EmptyInputOutput:
         """post_round_trip_empty.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -259,12 +259,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @distributed_trace_async
     async def post_round_trip_empty(
-        self, body: Union[_models.EmptyInputOutput, JSON, IO], **kwargs: Any
+        self, body: Union[_models.EmptyInputOutput, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.EmptyInputOutput:
         """post_round_trip_empty.
 
-        :param body: Is one of the following types: EmptyInputOutput, JSON, IO Required.
-        :type body: ~typetest.model.empty.models.EmptyInputOutput or JSON or IO
+        :param body: Is one of the following types: EmptyInputOutput, JSON, IO[bytes] Required.
+        :type body: ~typetest.model.empty.models.EmptyInputOutput or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

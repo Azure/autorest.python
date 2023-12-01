@@ -365,12 +365,12 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -382,12 +382,12 @@ class PropertyOperations:
         """
 
     async def default(
-        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -487,12 +487,12 @@ class PropertyOperations:
 
     @overload
     async def rfc3339(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -504,12 +504,12 @@ class PropertyOperations:
         """
 
     async def rfc3339(
-        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
-        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -609,12 +609,12 @@ class PropertyOperations:
 
     @overload
     async def rfc7231(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -626,12 +626,12 @@ class PropertyOperations:
         """
 
     async def rfc7231(
-        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
-        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -733,12 +733,12 @@ class PropertyOperations:
 
     @overload
     async def unix_timestamp(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -751,12 +751,13 @@ class PropertyOperations:
         """
 
     async def unix_timestamp(
-        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
-        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO
+        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -859,12 +860,12 @@ class PropertyOperations:
 
     @overload
     async def unix_timestamp_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -877,13 +878,13 @@ class PropertyOperations:
         """
 
     async def unix_timestamp_array(
-        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
-        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO
+        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO
+        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

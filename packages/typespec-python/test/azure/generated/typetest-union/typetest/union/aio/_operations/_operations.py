@@ -82,12 +82,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -98,12 +98,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace_async
     async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """send_int.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO[bytes]
+         Required.
+        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -190,12 +191,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int_array.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -206,12 +207,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace_async
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """send_int_array.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO[bytes]
+         Required.
+        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -298,12 +300,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -314,12 +316,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace_async
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO[bytes]
+         Required.
+        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -406,12 +409,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -422,12 +425,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace_async
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO[bytes]
+         Required.
+        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

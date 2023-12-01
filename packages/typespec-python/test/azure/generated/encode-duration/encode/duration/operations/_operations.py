@@ -555,12 +555,12 @@ class PropertyOperations:
 
     @overload
     def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultDurationProperty:
         """default.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -573,12 +573,12 @@ class PropertyOperations:
 
     @distributed_trace
     def default(
-        self, body: Union[_models.DefaultDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultDurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.DefaultDurationProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultDurationProperty, JSON, IO Required.
-        :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO
+        :param body: Is one of the following types: DefaultDurationProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -678,12 +678,12 @@ class PropertyOperations:
 
     @overload
     def iso8601(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ISO8601DurationProperty:
         """iso8601.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -696,12 +696,12 @@ class PropertyOperations:
 
     @distributed_trace
     def iso8601(
-        self, body: Union[_models.ISO8601DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ISO8601DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.ISO8601DurationProperty:
         """iso8601.
 
-        :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO Required.
-        :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO
+        :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -803,12 +803,12 @@ class PropertyOperations:
 
     @overload
     def int32_seconds(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Int32SecondsDurationProperty:
         """int32_seconds.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -822,12 +822,13 @@ class PropertyOperations:
 
     @distributed_trace
     def int32_seconds(
-        self, body: Union[_models.Int32SecondsDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Int32SecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Int32SecondsDurationProperty:
         """int32_seconds.
 
-        :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO Required.
-        :type body: ~encode.duration.models.Int32SecondsDurationProperty or JSON or IO
+        :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.models.Int32SecondsDurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -930,12 +931,12 @@ class PropertyOperations:
 
     @overload
     def float_seconds(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.FloatSecondsDurationProperty:
         """float_seconds.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -949,12 +950,13 @@ class PropertyOperations:
 
     @distributed_trace
     def float_seconds(
-        self, body: Union[_models.FloatSecondsDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatSecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.FloatSecondsDurationProperty:
         """float_seconds.
 
-        :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationProperty or JSON or IO
+        :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.models.FloatSecondsDurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1057,12 +1059,12 @@ class PropertyOperations:
 
     @overload
     def float_seconds_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1076,13 +1078,13 @@ class PropertyOperations:
 
     @distributed_trace
     def float_seconds_array(
-        self, body: Union[_models.FloatSecondsDurationArrayProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatSecondsDurationArrayProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
-        :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO
+        :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty or JSON or IO
+        :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

@@ -115,12 +115,12 @@ class OperationGroupTwoOperations:
 
     @overload
     def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
          'image/tiff'. Default value is None.
@@ -133,12 +133,13 @@ class OperationGroupTwoOperations:
 
     @distributed_trace
     def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
-        :type input: ~multiapiwithsubmodule.submodule.v3.models.SourcePath or IO
+        :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
+         is None.
+        :type input: ~multiapiwithsubmodule.submodule.v3.models.SourcePath or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str

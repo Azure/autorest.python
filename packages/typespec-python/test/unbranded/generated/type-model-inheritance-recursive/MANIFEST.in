@@ -1,8 +1,0 @@
-include *.md
-include LICENSE
-include type/model/inheritance/recursive/py.typed
-recursive-include tests *.py
-recursive-include samples *.py *.md
-include type/__init__.py
-include type/model/__init__.py
-include type/model/inheritance/__init__.py
