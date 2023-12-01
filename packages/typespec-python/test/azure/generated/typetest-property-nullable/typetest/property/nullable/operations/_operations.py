@@ -531,12 +531,12 @@ class StringOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -547,12 +547,12 @@ class StringOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -638,12 +638,12 @@ class StringOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -654,12 +654,12 @@ class StringOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -867,12 +867,12 @@ class BytesOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -883,12 +883,12 @@ class BytesOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -974,12 +974,12 @@ class BytesOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -990,12 +990,12 @@ class BytesOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1203,12 +1203,12 @@ class DatetimeOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1219,12 +1219,12 @@ class DatetimeOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1310,12 +1310,12 @@ class DatetimeOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1326,12 +1326,12 @@ class DatetimeOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1539,12 +1539,12 @@ class DurationOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1555,12 +1555,12 @@ class DurationOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1646,12 +1646,12 @@ class DurationOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1662,12 +1662,12 @@ class DurationOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1879,12 +1879,12 @@ class CollectionsByteOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1895,12 +1895,12 @@ class CollectionsByteOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -1990,12 +1990,12 @@ class CollectionsByteOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -2006,12 +2006,12 @@ class CollectionsByteOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -2225,12 +2225,12 @@ class CollectionsModelOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -2241,12 +2241,12 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
@@ -2336,12 +2336,12 @@ class CollectionsModelOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -2352,12 +2352,12 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None

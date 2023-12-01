@@ -321,7 +321,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[IO] = None,
+        body: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -334,7 +334,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -374,7 +374,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
@@ -383,8 +383,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -632,12 +632,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -679,11 +679,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str

@@ -121,12 +121,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -137,12 +137,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """input.
 
-        :param input: Is one of the following types: InputRecord, JSON, IO Required.
-        :type input: ~typetest.model.usage.models.InputRecord or JSON or IO
+        :param input: Is one of the following types: InputRecord, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.usage.models.InputRecord or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -285,12 +285,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
     def input_and_output(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -303,12 +303,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
-        :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
-        :type body: ~typetest.model.usage.models.InputOutputRecord or JSON or IO
+        :param body: Is one of the following types: InputOutputRecord, JSON, IO[bytes] Required.
+        :type body: ~typetest.model.usage.models.InputOutputRecord or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

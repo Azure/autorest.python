@@ -34,7 +34,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 _SERIALIZER = Serializer()
 
 
-def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
+def build_put_optional_binary_body_request(*, content: Optional[IO[bytes]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -51,7 +51,7 @@ def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kw
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_required_binary_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_put_required_binary_body_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -472,12 +472,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -525,12 +525,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, **kwargs: Any
+        self, body_parameter: IO[bytes], **kwargs: Any
     ) -> None:
         """Test explicitly required body parameter.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1238,13 +1238,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1256,13 +1256,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[_models.Product, IO], **kwargs: Any
+        self, body_parameter: Union[_models.Product, IO[bytes]], **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter: Is either a Product type or a IO type. Required.
-        :type body_parameter: ~requiredoptional.models.Product or IO
+        :param body_parameter: Is either a Product type or a IO[bytes] type. Required.
+        :type body_parameter: ~requiredoptional.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1337,12 +1337,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1354,12 +1354,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter: Is either a Product type or a IO type. Default value is None.
-        :type body_parameter: ~requiredoptional.models.Product or IO
+        :param body_parameter: Is either a Product type or a IO[bytes] type. Default value is None.
+        :type body_parameter: ~requiredoptional.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1550,13 +1550,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1568,13 +1568,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[List[str], IO], **kwargs: Any
+        self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter: Is either a [str] type or a IO type. Required.
-        :type body_parameter: list[str] or IO
+        :param body_parameter: Is either a [str] type or a IO[bytes] type. Required.
+        :type body_parameter: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1649,12 +1649,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1666,12 +1666,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[List[str], IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[List[str], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter: Is either a [str] type or a IO type. Default value is None.
-        :type body_parameter: list[str] or IO
+        :param body_parameter: Is either a [str] type or a IO[bytes] type. Default value is None.
+        :type body_parameter: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

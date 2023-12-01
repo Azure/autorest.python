@@ -319,12 +319,12 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultBytesProperty:
         """default.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -337,12 +337,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def default(
-        self, body: Union[_models.DefaultBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.DefaultBytesProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO
+        :param body: Is one of the following types: DefaultBytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -442,12 +442,12 @@ class PropertyOperations:
 
     @overload
     async def base64(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64BytesProperty:
         """base64.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -460,12 +460,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64(
-        self, body: Union[_models.Base64BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Base64BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64BytesProperty:
         """base64.
 
-        :param body: Is one of the following types: Base64BytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -565,12 +565,12 @@ class PropertyOperations:
 
     @overload
     async def base64url(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
         """base64url.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -583,12 +583,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64url(
-        self, body: Union[_models.Base64urlBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Base64urlBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
         """base64url.
 
-        :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -690,12 +690,12 @@ class PropertyOperations:
 
     @overload
     async def base64url_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
         """base64url_array.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -709,12 +709,13 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64url_array(
-        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
         """base64url_array.
 
-        :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

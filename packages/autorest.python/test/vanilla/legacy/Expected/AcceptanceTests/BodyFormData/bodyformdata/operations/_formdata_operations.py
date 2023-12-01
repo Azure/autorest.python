@@ -50,7 +50,7 @@ def build_upload_file_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_upload_file_via_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_upload_file_via_body_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -104,11 +104,11 @@ class FormdataOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> Iterator[bytes]:
+    def upload_file(self, file_content: IO[bytes], file_name: str, **kwargs: Any) -> Iterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
          Required.
         :type file_name: str
@@ -166,11 +166,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> Iterator[bytes]:
+    def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> Iterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Iterator of the response bytes or the result of cls(response)
         :rtype: Iterator[bytes]
@@ -221,11 +221,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def upload_files(self, file_content: List[IO], **kwargs: Any) -> Iterator[bytes]:
+    def upload_files(self, file_content: List[IO[bytes]], **kwargs: Any) -> Iterator[bytes]:
         """Upload multiple files.
 
         :param file_content: Files to upload. Required.
-        :type file_content: list[IO]
+        :type file_content: list[IO[bytes]]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Iterator of the response bytes or the result of cls(response)
         :rtype: Iterator[bytes]

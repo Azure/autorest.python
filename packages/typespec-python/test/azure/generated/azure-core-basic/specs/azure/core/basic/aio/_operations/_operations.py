@@ -100,7 +100,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_update(
-        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or updates a user's fields.
 
@@ -109,7 +109,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -121,15 +121,18 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -245,7 +248,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_replace(
-        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
@@ -254,7 +257,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -266,15 +269,18 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -636,7 +642,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
     def list_with_parameters(
         self,
-        body_input: IO,
+        body_input: IO[bytes],
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
@@ -645,7 +651,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
-        :type body_input: IO
+        :type body_input: IO[bytes]
         :keyword another: Another query parameter. Known values are: "First" and "Second". Default
          value is None.
         :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
@@ -660,7 +666,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @distributed_trace
     def list_with_parameters(
         self,
-        body_input: Union[_models.ListItemInputBody, JSON, IO],
+        body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         **kwargs: Any
@@ -668,8 +674,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Is one of the following types: ListItemInputBody,
-         JSON, IO Required.
-        :type body_input: ~specs.azure.core.basic.models.ListItemInputBody or JSON or IO
+         JSON, IO[bytes] Required.
+        :type body_input: ~specs.azure.core.basic.models.ListItemInputBody or JSON or IO[bytes]
         :keyword another: Another query parameter. Known values are: "First" and "Second". Default
          value is None.
         :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum

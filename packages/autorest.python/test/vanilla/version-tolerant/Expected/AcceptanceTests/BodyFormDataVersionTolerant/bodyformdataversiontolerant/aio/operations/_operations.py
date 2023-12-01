@@ -53,11 +53,11 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         )
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :return: Async iterator of the response bytes
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:

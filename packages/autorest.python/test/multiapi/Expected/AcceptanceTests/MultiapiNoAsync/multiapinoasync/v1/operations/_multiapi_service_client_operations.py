@@ -184,7 +184,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -268,12 +268,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @overload
     def begin_test_lro(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -292,12 +292,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @distributed_trace
     def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~multiapinoasync.v1.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~multiapinoasync.v1.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

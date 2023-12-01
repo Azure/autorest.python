@@ -46,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
     async def _create_or_replace_initial(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -170,7 +170,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @overload
     async def begin_create_or_replace(
-        self, name: str, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, name: str, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -179,7 +179,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :param name: The name of user. Required.
         :type name: str
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -198,7 +198,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @distributed_trace_async
     async def begin_create_or_replace(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -206,8 +206,9 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         :param name: The name of user. Required.
         :type name: str
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
