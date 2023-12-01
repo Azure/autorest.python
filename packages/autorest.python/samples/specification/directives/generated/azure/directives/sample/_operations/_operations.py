@@ -10,6 +10,8 @@ from io import IOBase
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
+from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,7 +25,6 @@ from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
-from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .._serialization import Serializer
 from .._vendor import PollingPagingExampleMixinABC
@@ -72,7 +73,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
-    def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
+    def _basic_polling_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -98,18 +99,18 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             else:
                 _json = None
 
-        request = build_polling_paging_example_basic_polling_request(
+        _request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -128,9 +129,9 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def begin_basic_polling(
@@ -176,12 +177,12 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @overload
     def begin_basic_polling(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -209,11 +210,14 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         """
 
     @distributed_trace
-    def begin_basic_polling(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
+    def begin_basic_polling(
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -283,13 +287,13 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return CustomPoller.from_continuation_token(
+            return CustomPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return CustomPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return CustomPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace
     def basic_paging(self, **kwargs: Any) -> Iterable[JSON]:
@@ -326,17 +330,17 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_polling_paging_example_basic_paging_request(
+                _request = build_polling_paging_example_basic_paging_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -346,11 +350,11 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

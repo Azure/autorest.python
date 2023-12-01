@@ -95,16 +95,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -117,9 +117,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -143,16 +143,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_request(
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -165,9 +165,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -191,16 +191,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_overflow_request(
+        _request = build_get_overflow_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -213,9 +213,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -239,16 +239,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_underflow_request(
+        _request = build_get_underflow_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -261,9 +261,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -294,18 +294,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_utc_max_date_time_request(
+        _request = build_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -316,7 +316,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
@@ -350,18 +350,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_utc_max_date_time7_digits_request(
+        _request = build_put_utc_max_date_time7_digits_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -372,7 +372,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -396,16 +396,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_utc_lowercase_max_date_time_request(
+        _request = build_get_utc_lowercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -418,9 +418,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -444,16 +444,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_utc_uppercase_max_date_time_request(
+        _request = build_get_utc_uppercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -466,9 +466,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
@@ -495,16 +495,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_utc_uppercase_max_date_time7_digits_request(
+        _request = build_get_utc_uppercase_max_date_time7_digits_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -517,9 +517,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -550,18 +550,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_local_positive_offset_max_date_time_request(
+        _request = build_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -572,7 +572,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -598,16 +598,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_positive_offset_lowercase_max_date_time_request(
+        _request = build_get_local_positive_offset_lowercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -620,9 +620,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -648,16 +648,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_positive_offset_uppercase_max_date_time_request(
+        _request = build_get_local_positive_offset_uppercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -670,9 +670,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -703,18 +703,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_local_negative_offset_max_date_time_request(
+        _request = build_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -725,7 +725,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -751,16 +751,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_negative_offset_uppercase_max_date_time_request(
+        _request = build_get_local_negative_offset_uppercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -773,9 +773,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -801,16 +801,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_negative_offset_lowercase_max_date_time_request(
+        _request = build_get_local_negative_offset_lowercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -823,9 +823,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -856,18 +856,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_utc_min_date_time_request(
+        _request = build_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -878,7 +878,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -902,16 +902,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_utc_min_date_time_request(
+        _request = build_get_utc_min_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -924,9 +924,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -957,18 +957,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_local_positive_offset_min_date_time_request(
+        _request = build_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -979,7 +979,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1003,16 +1003,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_positive_offset_min_date_time_request(
+        _request = build_get_local_positive_offset_min_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1025,9 +1025,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1058,18 +1058,18 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(datetime_body, "iso-8601")
 
-        request = build_put_local_negative_offset_min_date_time_request(
+        _request = build_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1080,7 +1080,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1104,16 +1104,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_negative_offset_min_date_time_request(
+        _request = build_get_local_negative_offset_min_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1126,9 +1126,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1152,16 +1152,16 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_local_no_offset_min_date_time_request(
+        _request = build_get_local_no_offset_min_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1174,6 +1174,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

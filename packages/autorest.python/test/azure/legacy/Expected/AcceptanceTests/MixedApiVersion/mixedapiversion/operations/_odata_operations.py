@@ -108,19 +108,19 @@ class OdataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_with_filter_request(
+        _request = build_get_with_filter_request(
             filter=filter,
             top=top,
             orderby=orderby,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -131,4 +131,4 @@ class OdataOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

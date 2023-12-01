@@ -39,7 +39,7 @@ class BodyParam(_serialization.Model):
 class CustomParameterGroup(_serialization.Model):
     """Parameter group.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar api_version: Sets the api version to use. Required.
     :vartype api_version: str
@@ -179,7 +179,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
 class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
     """Parameter group.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int

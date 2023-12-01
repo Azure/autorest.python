@@ -10,7 +10,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
-class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
+class MultiapiCustomBaseUrlServiceClientConfiguration:
     """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -41,12 +40,12 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
             raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.endpoint = endpoint
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(

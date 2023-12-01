@@ -204,16 +204,16 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_head_no_params_request(
+        _request = build_params_head_no_params_request(
             new_parameter=new_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -230,9 +230,9 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
@@ -261,17 +261,17 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_get_required_request(
+        _request = build_params_get_required_request(
             parameter=parameter,
             new_parameter=new_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -288,9 +288,9 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def put_required_optional(
@@ -327,18 +327,18 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_put_required_optional_request(
+        _request = build_params_put_required_optional_request(
             required_param=required_param,
             optional_param=optional_param,
             new_parameter=new_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -355,9 +355,9 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
@@ -383,12 +383,12 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: IO, *, content_type: str, **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: IO[bytes], *, content_type: str, **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: IO
+        :type parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'image/jpeg'. Required.
         :paramtype content_type: str
@@ -398,12 +398,12 @@ class ParamsOperations:
         """
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO type. Required.
-        :type parameter: JSON or IO
+         url: "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO[bytes] type. Required.
+        :type parameter: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'image/jpeg'. Default value is None.
         :paramtype content_type: str
@@ -446,18 +446,18 @@ class ParamsOperations:
             _json = parameter
             content_type = content_type or "application/json"
 
-        request = build_params_post_parameters_request(
+        _request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -474,9 +474,9 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -501,15 +501,15 @@ class ParamsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_params_delete_parameters_request(
+        _request = build_params_delete_parameters_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -521,7 +521,7 @@ class ParamsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_optional(
@@ -552,17 +552,17 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_get_optional_request(
+        _request = build_params_get_optional_request(
             optional_param=optional_param,
             new_parameter=new_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -579,9 +579,9 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def get_new_operation(self, **kwargs: Any) -> JSON:
@@ -606,15 +606,15 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_get_new_operation_request(
+        _request = build_params_get_new_operation_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -631,6 +631,6 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

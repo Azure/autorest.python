@@ -86,16 +86,16 @@ class PetOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_pet_get_by_pet_id_request(
+        _request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -112,9 +112,9 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def add_pet(
@@ -155,12 +155,12 @@ class PetOperations:
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
-        :type pet_param: IO
+        :type pet_param: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -182,11 +182,11 @@ class PetOperations:
         """
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def add_pet(self, pet_param: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Is either a JSON type or a IO type. Default value is None.
-        :type pet_param: JSON or IO
+        :param pet_param: pet param. Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type pet_param: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -240,18 +240,18 @@ class PetOperations:
             else:
                 _json = None
 
-        request = build_pet_add_pet_request(
+        _request = build_pet_add_pet_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -268,6 +268,6 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

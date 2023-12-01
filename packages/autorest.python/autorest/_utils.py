@@ -3,9 +3,22 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Tuple, List
 import re
 import argparse
+
+
+def update_enum_value(
+    name: str, value: Any, description: str, enum_type: Dict[str, Any]
+) -> Dict[str, Any]:
+    return {
+        "name": name,
+        "type": "enumvalue",
+        "value": value,
+        "description": description,
+        "enumType": enum_type,
+        "valueType": enum_type["valueType"],
+    }
 
 
 def to_snake_case(name: str) -> str:
@@ -105,3 +118,41 @@ KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
 }
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
+
+
+def build_policies(
+    is_arm: bool, async_mode: bool, unbranded: bool = False, tracing: bool = True
+) -> List[str]:
+    if not unbranded:
+        # for Azure
+        async_prefix = "Async" if async_mode else ""
+        policies = [
+            "policies.RequestIdPolicy(**kwargs)",
+            "self._config.headers_policy",
+            "self._config.user_agent_policy",
+            "self._config.proxy_policy",
+            "policies.ContentDecodePolicy(**kwargs)",
+            f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()"
+            if is_arm
+            else None,
+            "self._config.redirect_policy",
+            "self._config.retry_policy",
+            "self._config.authentication_policy",
+            "self._config.custom_hook_policy",
+            "self._config.logging_policy",
+            "policies.DistributedTracingPolicy(**kwargs)" if tracing else None,
+            "policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None",
+            "self._config.http_logging_policy",
+        ]
+    else:
+        # for non-Azure
+        policies = [
+            "self._config.headers_policy",
+            "self._config.user_agent_policy",
+            "self._config.proxy_policy",
+            "policies.ContentDecodePolicy(**kwargs)",
+            "self._config.retry_policy",
+            "self._config.authentication_policy",
+            "self._config.logging_policy",
+        ]
+    return [p for p in policies if p]

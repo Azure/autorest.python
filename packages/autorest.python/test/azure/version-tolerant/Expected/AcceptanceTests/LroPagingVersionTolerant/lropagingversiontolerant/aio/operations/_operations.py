@@ -184,6 +184,7 @@ class QuestionAnsweringProjectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -197,16 +198,17 @@ class QuestionAnsweringProjectsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_question_answering_projects_get_qnas_request(
+                _request = build_question_answering_projects_get_qnas_request(
                     project_name=project_name,
                     source=source,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -218,12 +220,12 @@ class QuestionAnsweringProjectsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -233,11 +235,11 @@ class QuestionAnsweringProjectsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -252,7 +254,7 @@ class QuestionAnsweringProjectsOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     async def _update_qnas_initial(
-        self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any
+        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -276,7 +278,7 @@ class QuestionAnsweringProjectsOperations:
         else:
             _json = body
 
-        request = build_question_answering_projects_update_qnas_request(
+        _request = build_question_answering_projects_update_qnas_request(
             project_name=project_name,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -285,11 +287,11 @@ class QuestionAnsweringProjectsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -314,9 +316,9 @@ class QuestionAnsweringProjectsOperations:
             )
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_update_qnas(
@@ -501,7 +503,7 @@ class QuestionAnsweringProjectsOperations:
 
     @overload
     async def begin_update_qnas(
-        self, project_name: str, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, project_name: str, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
         """Updates the QnAs of a project.
 
@@ -510,7 +512,7 @@ class QuestionAnsweringProjectsOperations:
         :param project_name: The name of the project to use. Required.
         :type project_name: str
         :param body: Update QnAs parameters of a project. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -622,7 +624,7 @@ class QuestionAnsweringProjectsOperations:
 
     @distributed_trace_async
     async def begin_update_qnas(
-        self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any
+        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
         """Updates the QnAs of a project.
 
@@ -630,9 +632,9 @@ class QuestionAnsweringProjectsOperations:
 
         :param project_name: The name of the project to use. Required.
         :type project_name: str
-        :param body: Update QnAs parameters of a project. Is either a [JSON] type or a IO type.
+        :param body: Update QnAs parameters of a project. Is either a [JSON] type or a IO[bytes] type.
          Required.
-        :type body: list[JSON] or IO
+        :type body: list[JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -766,7 +768,7 @@ class QuestionAnsweringProjectsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_question_answering_projects_update_qnas_request(
+                _request = build_question_answering_projects_update_qnas_request(
                     project_name=project_name,
                     content_type=content_type,
                     api_version=self._config.api_version,
@@ -775,7 +777,7 @@ class QuestionAnsweringProjectsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -787,12 +789,12 @@ class QuestionAnsweringProjectsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -802,11 +804,11 @@ class QuestionAnsweringProjectsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -848,10 +850,12 @@ class QuestionAnsweringProjectsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[AsyncIterable[JSON]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[AsyncIterable[JSON]](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )

@@ -43,7 +43,9 @@ class CombinedType(BaseType):
         If list: '[str]'
         If dict: '{str}'
         """
-        raise ValueError("Shouldn't get serialization type of a combinedtype")
+        if not all(t for t in self.types if t.type == "constant"):
+            raise ValueError("Shouldn't get serialization type of a combinedtype")
+        return self.types[0].serialization_type
 
     @property
     def client_default_value(self) -> Any:
@@ -101,7 +103,7 @@ class CombinedType(BaseType):
         raise ValueError("You shouldn't do instance checks on a multiple type")
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.name and not kwargs.get("is_types_file"):
             file_import.add_submodule_import(
                 kwargs.pop("relative_path"),

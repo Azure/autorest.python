@@ -142,16 +142,16 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_multi_null_request(
+        _request = build_queries_array_string_multi_null_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -163,7 +163,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
@@ -191,16 +191,16 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_multi_empty_request(
+        _request = build_queries_array_string_multi_empty_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -212,7 +212,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
@@ -241,16 +241,16 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_multi_valid_request(
+        _request = build_queries_array_string_multi_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -262,4 +262,4 @@ class QueriesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -93,12 +93,12 @@ class PetsOperations:
 
     @overload
     async def create_ap_true(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -118,11 +118,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_true(self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -169,18 +169,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_ap_true_request(
+        _request = build_pets_create_ap_true_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -197,9 +197,9 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def create_cat_ap_true(
@@ -238,12 +238,12 @@ class PetsOperations:
 
     @overload
     async def create_cat_ap_true(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -264,11 +264,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_cat_ap_true(self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -317,18 +317,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_cat_ap_true_request(
+        _request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -345,9 +345,9 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def create_ap_object(
@@ -384,12 +384,12 @@ class PetsOperations:
 
     @overload
     async def create_ap_object(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -409,11 +409,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_object(self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -460,18 +460,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_ap_object_request(
+        _request = build_pets_create_ap_object_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -488,9 +488,9 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def create_ap_string(
@@ -527,12 +527,12 @@ class PetsOperations:
 
     @overload
     async def create_ap_string(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -552,11 +552,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_string(self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -603,18 +603,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_ap_string_request(
+        _request = build_pets_create_ap_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -631,9 +631,9 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def create_ap_in_properties(
@@ -670,12 +670,12 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -695,11 +695,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_in_properties(self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -746,18 +746,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_ap_in_properties_request(
+        _request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -774,9 +774,9 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def create_ap_in_properties_with_ap_string(
@@ -821,12 +821,12 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -850,11 +850,13 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_in_properties_with_ap_string(
+        self, create_parameters: Union[JSON, IO[bytes]], **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
-        :type create_parameters: JSON or IO
+        :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
+        :type create_parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -909,18 +911,18 @@ class PetsOperations:
         else:
             _json = create_parameters
 
-        request = build_pets_create_ap_in_properties_with_ap_string_request(
+        _request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -937,6 +939,6 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

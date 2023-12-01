@@ -3,14 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, cast
+from typing import List
 from abc import ABC, abstractmethod
 
-from jinja2 import Environment
-from ..models import ModelType, CodeModel, Property
+from ..models import ModelType, Property, ConstantType, EnumValue
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
-from ..models.constant_type import ConstantType
+from .base_serializer import BaseSerializer
 
 
 def _documentation_string(
@@ -29,11 +28,7 @@ def _documentation_string(
     return retval
 
 
-class _ModelSerializer(ABC):
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
-        self.env = env
-
+class _ModelSerializer(BaseSerializer, ABC):
     @abstractmethod
     def imports(self) -> FileImport:
         ...
@@ -134,9 +129,11 @@ class _ModelSerializer(ABC):
 
 class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_msrest_import(
-            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+            relative_path="..",
+            msrest_import_type=MsrestImportType.Module,
+            typing_section=TypingSection.REGULAR,
         )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
@@ -201,7 +198,7 @@ class MsrestModelSerializer(_ModelSerializer):
 
 class DpgModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "..",
             "_model_base",
@@ -260,14 +257,14 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
-        if hasattr(prop.type, "format") and prop.type.format:  # type: ignore
-            args.append(f'format="{prop.type.format}"')  # type: ignore
+        if hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
+            args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = (
             prop.is_discriminator
-            and prop.is_discriminator
-            and cast(ConstantType, prop.type).value
+            and isinstance(prop.type, (ConstantType, EnumValue))
+            and prop.type.value
         )
         return (
             f"{prop.client_name}: {prop.type_annotation()} ="
@@ -280,7 +277,7 @@ class DpgModelSerializer(_ModelSerializer):
             if prop.constant or prop.is_discriminator:
                 init_args.append(
                     f"self.{prop.client_name}: {prop.type_annotation()} = "
-                    f"{cast(ConstantType, prop.type).get_declaration()}"
+                    f"{prop.get_declaration()}"
                 )
         return init_args
 

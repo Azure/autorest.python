@@ -214,16 +214,16 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[_models.Horse] = kwargs.pop("cls", None)
 
-        request = build_get_horse_request(
+        _request = build_get_horse_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -236,9 +236,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("Horse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_horse(self, horse: _models.Horse, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -256,11 +256,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_horse(self, horse: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_horse(self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
-        :type horse: IO
+        :type horse: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -271,12 +271,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace
-    def put_horse(self, horse: Union[_models.Horse, IO], **kwargs: Any) -> str:
+    def put_horse(self, horse: Union[_models.Horse, IO[bytes]], **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a Horse type or
-         a IO type. Required.
-        :type horse: ~multipleinheritance.models.Horse or IO
+         a IO[bytes] type. Required.
+        :type horse: ~multipleinheritance.models.Horse or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -307,19 +307,19 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = self._serialize.body(horse, "Horse")
 
-        request = build_put_horse_request(
+        _request = build_put_horse_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -331,9 +331,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_pet(self, **kwargs: Any) -> _models.Pet:
@@ -357,16 +357,16 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
-        request = build_get_pet_request(
+        _request = build_get_pet_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -379,9 +379,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_pet(self, name: str, **kwargs: Any) -> str:
@@ -411,18 +411,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _pet = _models.Pet(name=name)
         _json = self._serialize.body(_pet, "Pet")
 
-        request = build_put_pet_request(
+        _request = build_put_pet_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -434,9 +434,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_feline(self, **kwargs: Any) -> _models.Feline:
@@ -460,16 +460,16 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[_models.Feline] = kwargs.pop("cls", None)
 
-        request = build_get_feline_request(
+        _request = build_get_feline_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -482,9 +482,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("Feline", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_feline(self, feline: _models.Feline, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -502,11 +502,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_feline(self, feline: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_feline(self, feline: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
-        :type feline: IO
+        :type feline: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -517,12 +517,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace
-    def put_feline(self, feline: Union[_models.Feline, IO], **kwargs: Any) -> str:
+    def put_feline(self, feline: Union[_models.Feline, IO[bytes]], **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow. Is either a Feline type or a IO type.
-         Required.
-        :type feline: ~multipleinheritance.models.Feline or IO
+        :param feline: Put a feline who hisses and doesn't meow. Is either a Feline type or a IO[bytes]
+         type. Required.
+        :type feline: ~multipleinheritance.models.Feline or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -553,19 +553,19 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = self._serialize.body(feline, "Feline")
 
-        request = build_put_feline_request(
+        _request = build_put_feline_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -577,9 +577,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_cat(self, **kwargs: Any) -> _models.Cat:
@@ -603,16 +603,16 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[_models.Cat] = kwargs.pop("cls", None)
 
-        request = build_get_cat_request(
+        _request = build_get_cat_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -625,9 +625,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("Cat", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_cat(self, cat: _models.Cat, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -646,12 +646,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_cat(self, cat: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_cat(self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
          Required.
-        :type cat: IO
+        :type cat: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -662,12 +662,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace
-    def put_cat(self, cat: Union[_models.Cat, IO], **kwargs: Any) -> str:
+    def put_cat(self, cat: Union[_models.Cat, IO[bytes]], **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
-         either a Cat type or a IO type. Required.
-        :type cat: ~multipleinheritance.models.Cat or IO
+         either a Cat type or a IO[bytes] type. Required.
+        :type cat: ~multipleinheritance.models.Cat or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -698,19 +698,19 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = self._serialize.body(cat, "Cat")
 
-        request = build_put_cat_request(
+        _request = build_put_cat_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -722,9 +722,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_kitten(self, **kwargs: Any) -> _models.Kitten:
@@ -749,16 +749,16 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[_models.Kitten] = kwargs.pop("cls", None)
 
-        request = build_get_kitten_request(
+        _request = build_get_kitten_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -771,9 +771,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("Kitten", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_kitten(self, kitten: _models.Kitten, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -793,13 +793,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_kitten(self, kitten: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
-        :type kitten: IO
+        :type kitten: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -810,13 +810,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace
-    def put_kitten(self, kitten: Union[_models.Kitten, IO], **kwargs: Any) -> str:
+    def put_kitten(self, kitten: Union[_models.Kitten, IO[bytes]], **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true. Is either a Kitten type or a IO type. Required.
-        :type kitten: ~multipleinheritance.models.Kitten or IO
+         eatsMiceYet is true. Is either a Kitten type or a IO[bytes] type. Required.
+        :type kitten: ~multipleinheritance.models.Kitten or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -847,19 +847,19 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = self._serialize.body(kitten, "Kitten")
 
-        request = build_put_kitten_request(
+        _request = build_put_kitten_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -871,6 +871,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

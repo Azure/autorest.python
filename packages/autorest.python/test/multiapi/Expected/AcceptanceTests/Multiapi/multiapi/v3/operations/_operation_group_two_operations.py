@@ -115,12 +115,12 @@ class OperationGroupTwoOperations:
 
     @overload
     def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
          'image/tiff'. Default value is None.
@@ -133,12 +133,13 @@ class OperationGroupTwoOperations:
 
     @distributed_trace
     def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
-        :type input: ~multiapi.v3.models.SourcePath or IO
+        :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
+         is None.
+        :type input: ~multiapi.v3.models.SourcePath or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
@@ -173,7 +174,7 @@ class OperationGroupTwoOperations:
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_test_four_request(
+        _request = build_test_four_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
@@ -181,12 +182,12 @@ class OperationGroupTwoOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -197,7 +198,7 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -222,17 +223,17 @@ class OperationGroupTwoOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "3.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_five_request(
+        _request = build_test_five_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -243,4 +244,4 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

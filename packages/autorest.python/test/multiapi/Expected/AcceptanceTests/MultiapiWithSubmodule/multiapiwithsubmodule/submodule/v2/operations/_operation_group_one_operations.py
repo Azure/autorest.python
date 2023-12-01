@@ -115,12 +115,12 @@ class OperationGroupOneOperations:
 
     @overload
     def test_two(
-        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, parameter_one: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter. Default value is None.
-        :type parameter_one: IO
+        :type parameter_one: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -131,12 +131,14 @@ class OperationGroupOneOperations:
         """
 
     @distributed_trace
-    def test_two(self, parameter_one: Optional[Union[_models.ModelTwo, IO]] = None, **kwargs: Any) -> _models.ModelTwo:
+    def test_two(
+        self, parameter_one: Optional[Union[_models.ModelTwo, IO[bytes]]] = None, **kwargs: Any
+    ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO type. Default
-         value is None.
-        :type parameter_one: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo or IO
+        :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO[bytes] type.
+         Default value is None.
+        :type parameter_one: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -171,7 +173,7 @@ class OperationGroupOneOperations:
             else:
                 _json = None
 
-        request = build_test_two_request(
+        _request = build_test_two_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
@@ -179,12 +181,12 @@ class OperationGroupOneOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -197,9 +199,9 @@ class OperationGroupOneOperations:
         deserialized = self._deserialize("ModelTwo", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -224,17 +226,17 @@ class OperationGroupOneOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_three_request(
+        _request = build_test_three_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -245,4 +247,4 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
