@@ -21,7 +21,6 @@ class AutoRestResourceFlatteningTestServiceConfiguration:  # pylint: disable=too
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "autorestresourceflatteningtestservice/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

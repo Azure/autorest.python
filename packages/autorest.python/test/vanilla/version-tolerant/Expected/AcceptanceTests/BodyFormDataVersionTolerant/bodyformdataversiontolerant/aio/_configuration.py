@@ -21,7 +21,6 @@ class AutoRestSwaggerBATFormDataServiceConfiguration:  # pylint: disable=too-man
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "autorestswaggerbatformdataservice/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

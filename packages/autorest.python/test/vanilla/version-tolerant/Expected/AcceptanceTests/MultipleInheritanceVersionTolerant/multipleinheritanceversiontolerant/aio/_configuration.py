@@ -21,7 +21,6 @@ class MultipleInheritanceServiceClientConfiguration:  # pylint: disable=too-many
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "multipleinheritanceserviceclient/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

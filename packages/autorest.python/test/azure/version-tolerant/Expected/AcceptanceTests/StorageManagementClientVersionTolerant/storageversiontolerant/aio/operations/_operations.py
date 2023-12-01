@@ -1466,7 +1466,6 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -1615,7 +1614,6 @@ class StorageAccountsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,

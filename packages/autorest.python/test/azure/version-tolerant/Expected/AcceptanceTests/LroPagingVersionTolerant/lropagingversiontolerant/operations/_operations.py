@@ -265,7 +265,6 @@ class QuestionAnsweringProjectsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_question_answering_projects_get_qnas_request(
                     project_name=project_name,
                     source=source,
@@ -835,7 +834,6 @@ class QuestionAnsweringProjectsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_question_answering_projects_update_qnas_request(
                     project_name=project_name,
                     content_type=content_type,

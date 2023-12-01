@@ -459,7 +459,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_request(
                     top=top,
                     skip=skip,
@@ -540,7 +539,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_with_page_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -708,7 +706,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_with_parameters_request(
                     another=another,
                     content_type=content_type,
@@ -785,7 +782,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_with_custom_page_model_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -970,7 +966,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_first_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -1045,7 +1040,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_basic_list_second_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,

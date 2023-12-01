@@ -68,7 +68,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_test_paging_request(
                     headers=_headers,
                     params=_params,

@@ -21,7 +21,6 @@ class AutoRestRFC1123DateTimeTestServiceConfiguration:  # pylint: disable=too-ma
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "autorestrfc1123datetimetestservice/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

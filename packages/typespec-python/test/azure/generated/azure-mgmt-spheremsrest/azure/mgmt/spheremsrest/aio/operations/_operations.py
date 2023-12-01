@@ -120,7 +120,6 @@ class Operations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -634,7 +633,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
@@ -711,7 +709,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_by_subscription_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -872,7 +869,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_device_insights_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -975,7 +971,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_devices_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -1078,7 +1073,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_deployments_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -1268,7 +1262,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_catalogs_list_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -1459,7 +1452,6 @@ class ImagesOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_images_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -1813,7 +1805,6 @@ class DeviceGroupsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_device_groups_list_by_product_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -2722,7 +2713,6 @@ class CertificatesOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_certificates_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -3158,7 +3148,6 @@ class DeploymentsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_deployments_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -3808,7 +3797,6 @@ class DevicesOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_devices_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -4359,7 +4347,6 @@ class ProductsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_products_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
@@ -4910,7 +4897,6 @@ class ProductsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_products_generate_default_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,

@@ -234,7 +234,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,

@@ -21,7 +21,6 @@ class NullableClientConfiguration:  # pylint: disable=too-many-instance-attribut
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "typetest-property-nullable/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

@@ -76,7 +76,6 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_pageable_list_request(
                     maxpagesize=maxpagesize,
                     headers=_headers,

@@ -21,7 +21,6 @@ class SingleDiscriminatorClientConfiguration:  # pylint: disable=too-many-instan
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "typetest-model-singlediscriminator/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

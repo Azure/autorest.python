@@ -21,7 +21,6 @@ class ExtensibleClientConfiguration:  # pylint: disable=too-many-instance-attrib
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "typetest-enum-extensible/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

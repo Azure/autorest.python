@@ -274,7 +274,6 @@ class OperationGroupOneOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_operation_group_one_test_operation_group_paging_request(
                     headers=_headers,
                     params=_params,
@@ -1102,7 +1101,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 _request = build_multiapi_service_test_paging_request(
                     headers=_headers,
                     params=_params,

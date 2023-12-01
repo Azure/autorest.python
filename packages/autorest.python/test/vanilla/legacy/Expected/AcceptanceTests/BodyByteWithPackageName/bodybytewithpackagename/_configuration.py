@@ -21,7 +21,6 @@ class ClassNameConfiguration:  # pylint: disable=too-many-instance-attributes
     """
 
     def __init__(self, **kwargs: Any) -> None:
-
         kwargs.setdefault("sdk_moniker", "packagename/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
