@@ -213,16 +213,16 @@ class PolymorphismOperations:
 
         cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -235,9 +235,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Fish", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -290,7 +290,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -327,7 +327,7 @@ class PolymorphismOperations:
                    }
                  ]
                };. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -339,7 +339,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -375,8 +375,8 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a Fish type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+               };. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -407,19 +407,19 @@ class PolymorphismOperations:
         else:
             _json = self._serialize.body(complex_body, "Fish")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -430,7 +430,7 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
@@ -454,16 +454,16 @@ class PolymorphismOperations:
 
         cls: ClsType[_models.DotFish] = kwargs.pop("cls", None)
 
-        request = build_get_dot_syntax_request(
+        _request = build_get_dot_syntax_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -476,9 +476,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFish", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -504,16 +504,16 @@ class PolymorphismOperations:
 
         cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
-        request = build_get_composed_with_discriminator_request(
+        _request = build_get_composed_with_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -526,9 +526,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFishMarket", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -554,16 +554,16 @@ class PolymorphismOperations:
 
         cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
-        request = build_get_composed_without_discriminator_request(
+        _request = build_get_composed_without_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -576,9 +576,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFishMarket", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_complicated(self, **kwargs: Any) -> _models.Salmon:
@@ -603,16 +603,16 @@ class PolymorphismOperations:
 
         cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
-        request = build_get_complicated_request(
+        _request = build_get_complicated_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -625,9 +625,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Salmon", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -649,13 +649,13 @@ class PolymorphismOperations:
 
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
         :param complex_body: Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -667,13 +667,13 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Salmon, IO], **kwargs: Any
+        self, complex_body: Union[_models.Salmon, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a Salmon type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Salmon or IO
+        :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -704,19 +704,19 @@ class PolymorphismOperations:
         else:
             _json = self._serialize.body(complex_body, "Salmon")
 
-        request = build_put_complicated_request(
+        _request = build_put_complicated_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -727,7 +727,7 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def put_missing_discriminator(
@@ -748,12 +748,12 @@ class PolymorphismOperations:
 
     @overload
     def put_missing_discriminator(
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body: Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -764,11 +764,13 @@ class PolymorphismOperations:
         """
 
     @distributed_trace
-    def put_missing_discriminator(self, complex_body: Union[_models.Salmon, IO], **kwargs: Any) -> _models.Salmon:
+    def put_missing_discriminator(
+        self, complex_body: Union[_models.Salmon, IO[bytes]], **kwargs: Any
+    ) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a Salmon type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Salmon or IO
+        :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -799,19 +801,19 @@ class PolymorphismOperations:
         else:
             _json = self._serialize.body(complex_body, "Salmon")
 
-        request = build_put_missing_discriminator_request(
+        _request = build_put_missing_discriminator_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -824,9 +826,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Salmon", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -874,7 +876,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -906,7 +908,7 @@ class PolymorphismOperations:
                  }
              ]
          }. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -918,7 +920,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -949,8 +951,8 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a Fish type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+         }. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -981,19 +983,19 @@ class PolymorphismOperations:
         else:
             _json = self._serialize.body(complex_body, "Fish")
 
-        request = build_put_valid_missing_required_request(
+        _request = build_put_valid_missing_required_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1004,4 +1006,4 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -54,11 +54,11 @@ class FormdataOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file(self, file_content: IO[bytes], file_name: str, **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
          Required.
         :type file_name: str
@@ -87,18 +87,18 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        _request = build_upload_file_request(
             content_type=content_type,
             files=_files,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request, _files)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -116,11 +116,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
@@ -142,18 +142,18 @@ class FormdataOperations:
 
         _content = file_content
 
-        request = build_upload_file_via_body_request(
+        _request = build_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -171,11 +171,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_files(self, file_content: List[IO[bytes]], **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload multiple files.
 
         :param file_content: Files to upload. Required.
-        :type file_content: list[IO]
+        :type file_content: list[IO[bytes]]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
@@ -200,18 +200,18 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        _request = build_upload_files_request(
             content_type=content_type,
             files=_files,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request, _files)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

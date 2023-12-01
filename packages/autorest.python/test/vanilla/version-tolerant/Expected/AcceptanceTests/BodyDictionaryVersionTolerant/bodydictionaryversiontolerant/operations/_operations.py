@@ -1039,15 +1039,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_null_request(
+        _request = build_dictionary_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1064,9 +1064,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> Dict[str, int]:
@@ -1097,15 +1097,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_empty_request(
+        _request = build_dictionary_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1122,9 +1122,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -1152,12 +1152,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1168,12 +1168,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, str], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {}.
 
-        :param array_body: Is either a {str: str} type or a IO type. Required.
-        :type array_body: dict[str, str] or IO
+        :param array_body: Is either a {str: str} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1203,18 +1203,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_empty_request(
+        _request = build_dictionary_put_empty_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1226,7 +1226,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_null_value(self, **kwargs: Any) -> Dict[str, str]:
@@ -1257,15 +1257,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_null_value_request(
+        _request = build_dictionary_get_null_value_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1282,9 +1282,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_null_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -1315,15 +1315,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_null_key_request(
+        _request = build_dictionary_get_null_key_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1340,9 +1340,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_empty_string_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -1373,15 +1373,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_empty_string_key_request(
+        _request = build_dictionary_get_empty_string_key_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1398,9 +1398,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -1431,15 +1431,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_invalid_request(
+        _request = build_dictionary_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1456,9 +1456,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_boolean_tfft(self, **kwargs: Any) -> Dict[str, bool]:
@@ -1489,15 +1489,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bool]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_boolean_tfft_request(
+        _request = build_dictionary_get_boolean_tfft_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1514,9 +1514,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bool], deserialized)
+        return cast(Dict[str, bool], deserialized)  # type: ignore
 
     @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1544,12 +1544,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1560,12 +1560,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, bool], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
-        :param array_body: Is either a {str: bool} type or a IO type. Required.
-        :type array_body: dict[str, bool] or IO
+        :param array_body: Is either a {str: bool} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, bool] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1595,18 +1595,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_boolean_tfft_request(
+        _request = build_dictionary_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1618,7 +1618,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_null(self, **kwargs: Any) -> Dict[str, bool]:
@@ -1649,15 +1649,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bool]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_boolean_invalid_null_request(
+        _request = build_dictionary_get_boolean_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1674,9 +1674,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bool], deserialized)
+        return cast(Dict[str, bool], deserialized)  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_string(self, **kwargs: Any) -> Dict[str, bool]:
@@ -1707,15 +1707,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bool]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_boolean_invalid_string_request(
+        _request = build_dictionary_get_boolean_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1732,9 +1732,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bool], deserialized)
+        return cast(Dict[str, bool], deserialized)  # type: ignore
 
     @distributed_trace
     def get_integer_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -1765,15 +1765,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_integer_valid_request(
+        _request = build_dictionary_get_integer_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1790,9 +1790,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -1820,12 +1820,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1836,12 +1836,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, int], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :param array_body: Is either a {str: int} type or a IO type. Required.
-        :type array_body: dict[str, int] or IO
+        :param array_body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, int] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1871,18 +1871,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_integer_valid_request(
+        _request = build_dictionary_put_integer_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1894,7 +1894,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_int_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
@@ -1925,15 +1925,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_int_invalid_null_request(
+        _request = build_dictionary_get_int_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1950,9 +1950,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_int_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -1983,15 +1983,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_int_invalid_string_request(
+        _request = build_dictionary_get_int_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2008,9 +2008,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_long_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -2041,15 +2041,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_long_valid_request(
+        _request = build_dictionary_get_long_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2066,9 +2066,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -2096,12 +2096,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2112,12 +2112,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, int], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        :param array_body: Is either a {str: int} type or a IO type. Required.
-        :type array_body: dict[str, int] or IO
+        :param array_body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, int] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2147,18 +2147,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_long_valid_request(
+        _request = build_dictionary_put_long_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2170,7 +2170,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_long_invalid_null(self, **kwargs: Any) -> Dict[str, int]:
@@ -2201,15 +2201,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_long_invalid_null_request(
+        _request = build_dictionary_get_long_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2226,9 +2226,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_long_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -2259,15 +2259,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_long_invalid_string_request(
+        _request = build_dictionary_get_long_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2284,9 +2284,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_float_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -2317,15 +2317,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_float_valid_request(
+        _request = build_dictionary_get_float_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2342,9 +2342,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -2372,12 +2372,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2388,12 +2388,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, float], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :param array_body: Is either a {str: float} type or a IO type. Required.
-        :type array_body: dict[str, float] or IO
+        :param array_body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, float] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2423,18 +2423,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_float_valid_request(
+        _request = build_dictionary_put_float_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2446,7 +2446,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_float_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
@@ -2477,15 +2477,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_float_invalid_null_request(
+        _request = build_dictionary_get_float_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2502,9 +2502,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_float_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -2535,15 +2535,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_float_invalid_string_request(
+        _request = build_dictionary_get_float_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2560,9 +2560,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_double_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -2593,15 +2593,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_double_valid_request(
+        _request = build_dictionary_get_double_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2618,9 +2618,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -2648,12 +2648,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2664,12 +2664,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, float], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        :param array_body: Is either a {str: float} type or a IO type. Required.
-        :type array_body: dict[str, float] or IO
+        :param array_body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, float] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2699,18 +2699,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_double_valid_request(
+        _request = build_dictionary_put_double_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2722,7 +2722,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_double_invalid_null(self, **kwargs: Any) -> Dict[str, float]:
@@ -2753,15 +2753,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_double_invalid_null_request(
+        _request = build_dictionary_get_double_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2778,9 +2778,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_double_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -2811,15 +2811,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_double_invalid_string_request(
+        _request = build_dictionary_get_double_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2836,9 +2836,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, float], deserialized)
+        return cast(Dict[str, float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_string_valid(self, **kwargs: Any) -> Dict[str, str]:
@@ -2869,15 +2869,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_string_valid_request(
+        _request = build_dictionary_get_string_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2894,9 +2894,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -2924,12 +2924,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2940,12 +2940,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, str], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
-        :param array_body: Is either a {str: str} type or a IO type. Required.
-        :type array_body: dict[str, str] or IO
+        :param array_body: Is either a {str: str} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2975,18 +2975,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_string_valid_request(
+        _request = build_dictionary_put_string_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2998,7 +2998,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_string_with_null(self, **kwargs: Any) -> Dict[str, str]:
@@ -3029,15 +3029,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_string_with_null_request(
+        _request = build_dictionary_get_string_with_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3054,9 +3054,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_string_with_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -3087,15 +3087,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_string_with_invalid_request(
+        _request = build_dictionary_get_string_with_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3112,9 +3112,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, str], deserialized)
+        return cast(Dict[str, str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_valid(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -3145,15 +3145,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_valid_request(
+        _request = build_dictionary_get_date_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3170,9 +3170,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.date], deserialized)
+        return cast(Dict[str, datetime.date], deserialized)  # type: ignore
 
     @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -3200,12 +3200,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3216,12 +3216,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, datetime.date], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, datetime.date], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
-        :param array_body: Is either a {str: datetime.date} type or a IO type. Required.
-        :type array_body: dict[str, ~datetime.date] or IO
+        :param array_body: Is either a {str: datetime.date} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, ~datetime.date] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3251,18 +3251,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_date_valid_request(
+        _request = build_dictionary_put_date_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3274,7 +3274,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_date_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -3305,15 +3305,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_invalid_null_request(
+        _request = build_dictionary_get_date_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3330,9 +3330,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.date], deserialized)
+        return cast(Dict[str, datetime.date], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -3363,15 +3363,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_invalid_chars_request(
+        _request = build_dictionary_get_date_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3388,9 +3388,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.date], deserialized)
+        return cast(Dict[str, datetime.date], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -3422,15 +3422,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_time_valid_request(
+        _request = build_dictionary_get_date_time_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3447,9 +3447,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.datetime], deserialized)
+        return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -3478,13 +3478,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
         "1492-10-12T10:15:01-08:00"}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3495,13 +3495,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
         "1492-10-12T10:15:01-08:00"}.
 
-        :param array_body: Is either a {str: datetime.datetime} type or a IO type. Required.
-        :type array_body: dict[str, ~datetime.datetime] or IO
+        :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3531,18 +3531,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_date_time_valid_request(
+        _request = build_dictionary_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3554,7 +3554,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_null(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -3585,15 +3585,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_time_invalid_null_request(
+        _request = build_dictionary_get_date_time_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3610,9 +3610,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.datetime], deserialized)
+        return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -3643,15 +3643,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_time_invalid_chars_request(
+        _request = build_dictionary_get_date_time_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3668,9 +3668,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.datetime], deserialized)
+        return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -3702,15 +3702,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_date_time_rfc1123_valid_request(
+        _request = build_dictionary_get_date_time_rfc1123_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3727,9 +3727,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.datetime], deserialized)
+        return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -3758,13 +3758,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3775,13 +3775,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
-        :param array_body: Is either a {str: datetime.datetime} type or a IO type. Required.
-        :type array_body: dict[str, ~datetime.datetime] or IO
+        :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3811,18 +3811,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_date_time_rfc1123_valid_request(
+        _request = build_dictionary_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3834,7 +3834,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_duration_valid(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
@@ -3865,15 +3865,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, datetime.timedelta]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_duration_valid_request(
+        _request = build_dictionary_get_duration_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3890,9 +3890,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, datetime.timedelta], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, datetime.timedelta], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, datetime.timedelta], deserialized)
+        return cast(Dict[str, datetime.timedelta], deserialized)  # type: ignore
 
     @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -3920,12 +3920,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3936,12 +3936,12 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, datetime.timedelta], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
-        :param array_body: Is either a {str: datetime.timedelta} type or a IO type. Required.
-        :type array_body: dict[str, ~datetime.timedelta] or IO
+        :param array_body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, ~datetime.timedelta] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3971,18 +3971,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_duration_valid_request(
+        _request = build_dictionary_put_duration_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3994,7 +3994,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_byte_valid(self, **kwargs: Any) -> Dict[str, bytes]:
@@ -4026,15 +4026,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bytes]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_byte_valid_request(
+        _request = build_dictionary_get_byte_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4051,9 +4051,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bytes], deserialized)
+        return cast(Dict[str, bytes], deserialized)  # type: ignore
 
     @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -4082,13 +4082,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each elementencoded in base 64.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4099,13 +4099,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, bytes], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, bytes], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each elementencoded in base 64.
 
-        :param array_body: Is either a {str: bytes} type or a IO type. Required.
-        :type array_body: dict[str, bytes] or IO
+        :param array_body: Is either a {str: bytes} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, bytes] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4135,18 +4135,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_byte_valid_request(
+        _request = build_dictionary_put_byte_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4158,7 +4158,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_byte_invalid_null(self, **kwargs: Any) -> Dict[str, bytes]:
@@ -4190,15 +4190,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bytes]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_byte_invalid_null_request(
+        _request = build_dictionary_get_byte_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4215,9 +4215,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bytes], deserialized)
+        return cast(Dict[str, bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> Dict[str, bytes]:
@@ -4249,15 +4249,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, bytes]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_base64_url_request(
+        _request = build_dictionary_get_base64_url_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4274,9 +4274,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, bytes], deserialized)
+        return cast(Dict[str, bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSON]]:
@@ -4310,15 +4310,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[Dict[str, JSON]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_complex_null_request(
+        _request = build_dictionary_get_complex_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4335,9 +4335,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[Dict[str, JSON]], deserialized), {})
+            return cls(pipeline_response, cast(Optional[Dict[str, JSON]], deserialized), {})  # type: ignore
 
-        return cast(Optional[Dict[str, JSON]], deserialized)
+        return cast(Optional[Dict[str, JSON]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSON]:
@@ -4371,15 +4371,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_complex_empty_request(
+        _request = build_dictionary_get_complex_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4396,9 +4396,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)
+        return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSON]:
@@ -4433,15 +4433,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_complex_item_null_request(
+        _request = build_dictionary_get_complex_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4458,9 +4458,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)
+        return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSON]:
@@ -4495,15 +4495,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_complex_item_empty_request(
+        _request = build_dictionary_get_complex_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4520,9 +4520,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)
+        return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSON]:
@@ -4557,15 +4557,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_complex_valid_request(
+        _request = build_dictionary_get_complex_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4582,9 +4582,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)
+        return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -4616,13 +4616,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4633,13 +4633,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, JSON], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
-        :param array_body: Is either a {str: JSON} type or a IO type. Required.
-        :type array_body: dict[str, JSON] or IO
+        :param array_body: Is either a {str: JSON} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4669,18 +4669,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_complex_valid_request(
+        _request = build_dictionary_put_complex_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4692,7 +4692,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array_null(self, **kwargs: Any) -> Optional[Dict[str, List[str]]]:
@@ -4725,15 +4725,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[Dict[str, List[str]]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_array_null_request(
+        _request = build_dictionary_get_array_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4750,9 +4750,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[Dict[str, List[str]]], deserialized), {})
+            return cls(pipeline_response, cast(Optional[Dict[str, List[str]]], deserialized), {})  # type: ignore
 
-        return cast(Optional[Dict[str, List[str]]], deserialized)
+        return cast(Optional[Dict[str, List[str]]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -4785,15 +4785,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, List[str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_array_empty_request(
+        _request = build_dictionary_get_array_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4810,9 +4810,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, List[str]], deserialized)
+        return cast(Dict[str, List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_item_null(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -4845,15 +4845,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, List[str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_array_item_null_request(
+        _request = build_dictionary_get_array_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4870,9 +4870,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, List[str]], deserialized)
+        return cast(Dict[str, List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_item_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -4905,15 +4905,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, List[str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_array_item_empty_request(
+        _request = build_dictionary_get_array_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4930,9 +4930,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, List[str]], deserialized)
+        return cast(Dict[str, List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -4966,15 +4966,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, List[str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_array_valid_request(
+        _request = build_dictionary_get_array_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4991,9 +4991,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, List[str]], deserialized)
+        return cast(Dict[str, List[str]], deserialized)  # type: ignore
 
     @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -5024,13 +5024,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5041,13 +5041,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, List[str]], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, List[str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
-        :param array_body: Is either a {str: [str]} type or a IO type. Required.
-        :type array_body: dict[str, list[str]] or IO
+        :param array_body: Is either a {str: [str]} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, list[str]] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5077,18 +5077,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_array_valid_request(
+        _request = build_dictionary_put_array_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5100,7 +5100,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dictionary_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -5133,15 +5133,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_dictionary_null_request(
+        _request = build_dictionary_get_dictionary_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5158,9 +5158,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, Dict[str, str]], deserialized)
+        return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -5193,15 +5193,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_dictionary_empty_request(
+        _request = build_dictionary_get_dictionary_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5218,9 +5218,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, Dict[str, str]], deserialized)
+        return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -5254,15 +5254,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_dictionary_item_null_request(
+        _request = build_dictionary_get_dictionary_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5279,9 +5279,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, Dict[str, str]], deserialized)
+        return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -5315,15 +5315,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_dictionary_item_empty_request(
+        _request = build_dictionary_get_dictionary_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5340,9 +5340,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, Dict[str, str]], deserialized)
+        return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -5377,15 +5377,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Dict[str, Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_dictionary_get_dictionary_valid_request(
+        _request = build_dictionary_get_dictionary_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5402,9 +5402,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, Dict[str, str]], deserialized)
+        return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
@@ -5436,14 +5436,14 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5454,14 +5454,14 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[Dict[str, Dict[str, str]], IO], **kwargs: Any
+        self, array_body: Union[Dict[str, Dict[str, str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
         "eight", "9": "nine"}}.
 
-        :param array_body: Is either a {str: {str: str}} type or a IO type. Required.
-        :type array_body: dict[str, dict[str, str]] or IO
+        :param array_body: Is either a {str: {str: str}} type or a IO[bytes] type. Required.
+        :type array_body: dict[str, dict[str, str]] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5491,18 +5491,18 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_dictionary_put_dictionary_valid_request(
+        _request = build_dictionary_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5514,4 +5514,4 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

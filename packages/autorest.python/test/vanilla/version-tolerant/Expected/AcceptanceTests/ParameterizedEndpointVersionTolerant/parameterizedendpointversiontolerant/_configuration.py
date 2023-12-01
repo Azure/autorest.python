@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class ParmaterizedEndpointClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class ParmaterizedEndpointClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for ParmaterizedEndpointClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -27,12 +24,12 @@ class ParmaterizedEndpointClientConfiguration(  # pylint: disable=too-many-insta
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:
-        super(ParmaterizedEndpointClientConfiguration, self).__init__(**kwargs)
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
 
         self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "parmaterizedendpointclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -41,7 +38,7 @@ class ParmaterizedEndpointClientConfiguration(  # pylint: disable=too-many-insta
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

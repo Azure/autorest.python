@@ -53,16 +53,16 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head_request(
+        _request = build_head_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -72,5 +72,5 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299

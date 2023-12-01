@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class BaseProduct(_serialization.Model):
     """The product documentation.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
      longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -221,7 +221,7 @@ class FlattenedProduct(Resource):
 class FlattenParameterGroup(_serialization.Model):
     """Parameter group.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Product name with value 'groupproduct'. Required.
     :vartype name: str
@@ -412,7 +412,7 @@ class ResourceCollection(_serialization.Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
      longitude. For example, uberX in San Francisco will have a different product_id than uberX in

@@ -286,16 +286,16 @@ class IntOperations:
 
         cls: ClsType[Optional[int]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -308,9 +308,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> int:
@@ -334,16 +334,16 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_request(
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -356,9 +356,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_overflow_int32(self, **kwargs: Any) -> int:
@@ -382,16 +382,16 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_get_overflow_int32_request(
+        _request = build_get_overflow_int32_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -404,9 +404,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_underflow_int32(self, **kwargs: Any) -> int:
@@ -430,16 +430,16 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_get_underflow_int32_request(
+        _request = build_get_underflow_int32_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -452,9 +452,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_overflow_int64(self, **kwargs: Any) -> int:
@@ -478,16 +478,16 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_get_overflow_int64_request(
+        _request = build_get_overflow_int64_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -500,9 +500,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_underflow_int64(self, **kwargs: Any) -> int:
@@ -526,16 +526,16 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_get_underflow_int64_request(
+        _request = build_get_underflow_int64_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -548,9 +548,9 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -579,18 +579,18 @@ class IntOperations:
 
         _json = self._serialize.body(int_body, "int")
 
-        request = build_put_max32_request(
+        _request = build_put_max32_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -601,7 +601,7 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_max64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -630,18 +630,18 @@ class IntOperations:
 
         _json = self._serialize.body(int_body, "int")
 
-        request = build_put_max64_request(
+        _request = build_put_max64_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -652,7 +652,7 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_min32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -681,18 +681,18 @@ class IntOperations:
 
         _json = self._serialize.body(int_body, "int")
 
-        request = build_put_min32_request(
+        _request = build_put_min32_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -703,7 +703,7 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_min64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -732,18 +732,18 @@ class IntOperations:
 
         _json = self._serialize.body(int_body, "int")
 
-        request = build_put_min64_request(
+        _request = build_put_min64_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -754,7 +754,7 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -778,16 +778,16 @@ class IntOperations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_unix_time_request(
+        _request = build_get_unix_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -800,9 +800,9 @@ class IntOperations:
         deserialized = self._deserialize("unix-time", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
@@ -833,18 +833,18 @@ class IntOperations:
 
         _json = self._serialize.body(int_body, "unix-time")
 
-        request = build_put_unix_time_date_request(
+        _request = build_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -855,7 +855,7 @@ class IntOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -879,16 +879,16 @@ class IntOperations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_unix_time_request(
+        _request = build_get_invalid_unix_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -901,9 +901,9 @@ class IntOperations:
         deserialized = self._deserialize("unix-time", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
@@ -927,16 +927,16 @@ class IntOperations:
 
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_get_null_unix_time_request(
+        _request = build_get_null_unix_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -949,6 +949,6 @@ class IntOperations:
         deserialized = self._deserialize("unix-time", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

@@ -94,16 +94,16 @@ class HttpSuccessOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head200_request(
+        _request = build_head200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -113,7 +113,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -137,16 +137,16 @@ class HttpSuccessOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head204_request(
+        _request = build_head204_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -156,7 +156,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -180,16 +180,16 @@ class HttpSuccessOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head404_request(
+        _request = build_head404_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -199,4 +199,4 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

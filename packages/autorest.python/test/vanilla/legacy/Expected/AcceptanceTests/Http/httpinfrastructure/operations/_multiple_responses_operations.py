@@ -534,16 +534,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
-        request = build_get200_model204_no_model_default_error200_valid_request(
+        _request = build_get200_model204_no_model_default_error200_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -558,9 +558,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(  # pylint: disable=name-too-long
@@ -586,16 +586,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
-        request = build_get200_model204_no_model_default_error204_valid_request(
+        _request = build_get200_model204_no_model_default_error204_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -610,9 +610,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(  # pylint: disable=name-too-long
@@ -638,16 +638,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
-        request = build_get200_model204_no_model_default_error201_invalid_request(
+        _request = build_get200_model204_no_model_default_error201_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -662,9 +662,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error202_none(  # pylint: disable=name-too-long
@@ -690,16 +690,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
-        request = build_get200_model204_no_model_default_error202_none_request(
+        _request = build_get200_model204_no_model_default_error202_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -714,9 +714,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(  # pylint: disable=name-too-long
@@ -742,16 +742,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
-        request = build_get200_model204_no_model_default_error400_valid_request(
+        _request = build_get200_model204_no_model_default_error400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -766,9 +766,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error200_valid(  # pylint: disable=name-too-long
@@ -794,16 +794,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
-        request = build_get200_model201_model_default_error200_valid_request(
+        _request = build_get200_model201_model_default_error200_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -848,16 +848,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
-        request = build_get200_model201_model_default_error201_valid_request(
+        _request = build_get200_model201_model_default_error201_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -902,16 +902,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
-        request = build_get200_model201_model_default_error400_valid_request(
+        _request = build_get200_model201_model_default_error400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -957,16 +957,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
+        _request = build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1015,16 +1015,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
+        _request = build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1073,16 +1073,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
+        _request = build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1131,16 +1131,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
+        _request = build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1188,16 +1188,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_error202_none_request(
+        _request = build_get202_none204_none_default_error202_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1208,7 +1208,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1234,16 +1234,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_error204_none_request(
+        _request = build_get202_none204_none_default_error204_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1254,7 +1254,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1280,16 +1280,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_error400_valid_request(
+        _request = build_get202_none204_none_default_error400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1300,7 +1300,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1326,16 +1326,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_none202_invalid_request(
+        _request = build_get202_none204_none_default_none202_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1345,7 +1345,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
@@ -1371,16 +1371,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_none204_none_request(
+        _request = build_get202_none204_none_default_none204_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1390,7 +1390,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
@@ -1416,16 +1416,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_none400_none_request(
+        _request = build_get202_none204_none_default_none400_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1435,7 +1435,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1461,16 +1461,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get202_none204_none_default_none400_invalid_request(
+        _request = build_get202_none204_none_default_none400_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1480,7 +1480,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1504,16 +1504,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get_default_model_a200_valid_request(
+        _request = build_get_default_model_a200_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1525,9 +1525,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1551,16 +1551,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get_default_model_a200_none_request(
+        _request = build_get_default_model_a200_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1572,9 +1572,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1598,16 +1598,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_model_a400_valid_request(
+        _request = build_get_default_model_a400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1618,7 +1618,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1642,16 +1642,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_model_a400_none_request(
+        _request = build_get_default_model_a400_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1662,7 +1662,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none200_invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1686,16 +1686,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_none200_invalid_request(
+        _request = build_get_default_none200_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1705,7 +1705,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1729,16 +1729,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_none200_none_request(
+        _request = build_get_default_none200_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1748,7 +1748,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none400_invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1772,16 +1772,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_none400_invalid_request(
+        _request = build_get_default_none400_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1791,7 +1791,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1815,16 +1815,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_default_none400_none_request(
+        _request = build_get_default_none400_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1834,7 +1834,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get200_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1859,16 +1859,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a200_none_request(
+        _request = build_get200_model_a200_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1880,9 +1880,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1906,16 +1906,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a200_valid_request(
+        _request = build_get200_model_a200_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1927,9 +1927,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a200_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -1953,16 +1953,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a200_invalid_request(
+        _request = build_get200_model_a200_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1974,9 +1974,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_none(self, **kwargs: Any) -> _models.MyException:
@@ -2000,16 +2000,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a400_none_request(
+        _request = build_get200_model_a400_none_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2021,9 +2021,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_valid(self, **kwargs: Any) -> _models.MyException:
@@ -2047,16 +2047,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a400_valid_request(
+        _request = build_get200_model_a400_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2068,9 +2068,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -2094,16 +2094,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a400_invalid_request(
+        _request = build_get200_model_a400_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2115,9 +2115,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a202_valid(self, **kwargs: Any) -> _models.MyException:
@@ -2141,16 +2141,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
-        request = build_get200_model_a202_valid_request(
+        _request = build_get200_model_a202_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2162,6 +2162,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

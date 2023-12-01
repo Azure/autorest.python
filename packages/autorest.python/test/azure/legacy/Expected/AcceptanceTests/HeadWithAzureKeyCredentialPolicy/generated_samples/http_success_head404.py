@@ -9,6 +9,7 @@
 import os
 
 from azure.core.credentials import AzureKeyCredential
+
 from headwithazurekeycredentialpolicy import AutoRestHeadTestService
 
 """

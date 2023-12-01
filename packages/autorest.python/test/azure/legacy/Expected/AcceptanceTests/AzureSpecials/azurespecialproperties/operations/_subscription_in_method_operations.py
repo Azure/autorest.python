@@ -167,17 +167,17 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_method_local_valid_request(
+        _request = build_post_method_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -188,7 +188,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -218,17 +218,17 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_method_local_null_request(
+        _request = build_post_method_local_null_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -239,7 +239,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -269,17 +269,17 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_path_local_valid_request(
+        _request = build_post_path_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -290,7 +290,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -320,17 +320,17 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_swagger_local_valid_request(
+        _request = build_post_swagger_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -341,4 +341,4 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -32,3 +32,9 @@ steps:
     - template: generated-code-checks-template.yml
       parameters:
         package: "typespec-python"
+        folderName: "azure"
+
+    - template: generated-code-checks-template.yml
+      parameters:
+        package: "typespec-python"
+        folderName: "unbranded"

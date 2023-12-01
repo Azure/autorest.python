@@ -8,6 +8,7 @@ from typing import List
 from . import utils
 from ..models import Client, ParameterMethodLocation
 from .parameter_serializer import ParameterSerializer, PopKwargType
+from ..._utils import build_policies
 
 
 class ClientSerializer:
@@ -72,7 +73,7 @@ class ClientSerializer:
             retval.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type(async_mode=async_mode)}"
             )
-        if self.client.has_lro_operations:
+        if self.client.has_public_lro_operations:
             retval.append(
                 ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
                 "if no Retry-After header is present."
@@ -107,18 +108,36 @@ class ClientSerializer:
             if og.is_mixin and og.has_abstract_operations
         )
 
-    def initialize_pipeline_client(self, async_mode: bool) -> str:
+    def initialize_pipeline_client(self, async_mode: bool) -> List[str]:
+        result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
+        endpoint_name = (
+            "endpoint" if self.client.code_model.options["unbranded"] else "base_url"
+        )
         params = {
-            "base_url": self.host_variable_name,
-            "config": "self._config",
+            endpoint_name: self.host_variable_name,
+            "policies": "_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
-            params["request_id_header_name"] = f'"{self.client.request_id_header_name}"'
-        return (
-            f"self._client: {pipeline_client_name} = {pipeline_client_name}("
-            f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)"
+            result.append(
+                f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
+            )
+        policies = build_policies(
+            self.client.code_model.options["azure_arm"],
+            async_mode,
+            self.client.code_model.options["unbranded"],
+            self.client.code_model.options["tracing"],
         )
+        result.extend(
+            [
+                "_policies = kwargs.pop('policies', None)",
+                "if _policies is None:",
+                f'    _policies = [{",".join(policies)}]',
+                f"self._client: {pipeline_client_name} = {pipeline_client_name}("
+                f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
+            ]
+        )
+        return result
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
@@ -173,7 +192,7 @@ class ClientSerializer:
 
     def _send_request_signature(self) -> str:
         send_request_signature = [
-            "request: HttpRequest,"
+            "request: HttpRequest, *, stream: bool = False,"
         ] + self.client.parameters.method_signature_kwargs
         return self.parameter_serializer.serialize_method(
             function_def="def",
@@ -233,13 +252,16 @@ class ClientSerializer:
         return retval
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
-        retval = [">>> from azure.core.rest import HttpRequest"]
+        retval = [
+            f">>> from {self.client.code_model.core_library}.rest import HttpRequest"
+        ]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
         return retval
 
     def send_request_description(self, async_mode: bool) -> List[str]:
+        rest_library = f"{self.client.code_model.core_library}.rest"
         retval = ['"""Runs the network request through the client\'s chained policies.']
         retval.append("")
         if self.client.code_model.options["builders_visibility"] != "embedded":
@@ -252,7 +274,7 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(":type request: ~azure.core.rest.HttpRequest")
+        retval.append(f":type request: ~{rest_library}.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -260,7 +282,7 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~azure.core.rest.{http_response}")
+        retval.append(f":rtype: ~{rest_library}.{http_response}")
         retval.append('"""')
         return retval
 

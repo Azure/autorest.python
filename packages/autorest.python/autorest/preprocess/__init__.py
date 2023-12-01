@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from .._utils import to_snake_case
+from .._utils import to_snake_case, update_enum_value
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -18,30 +18,6 @@ from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
-
-
-def add_body_param_type(
-    code_model: Dict[str, Any],
-    body_parameter: Dict[str, Any],
-):
-    if (
-        body_parameter
-        and body_parameter["type"]["type"] in ("model", "dict", "list")
-        and any(
-            ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
-        )
-        and not body_parameter["type"].get("xmlMetadata")
-        and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
-    ):
-        origin_type = body_parameter["type"]["type"]
-        is_dpg_model = body_parameter["type"].get("base") == "dpg"
-        body_parameter["type"] = {
-            "type": "combined",
-            "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
-        }
-        if origin_type == "model" and is_dpg_model:
-            body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
-        code_model["types"].append(body_parameter["type"])
 
 
 def update_overload_section(
@@ -137,16 +113,6 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
-    # we don't expose maxpagesize for version tolerant generation
-    # users should be passing this into `by_page`
-    yaml_data["parameters"] = [
-        p
-        for p in yaml_data.get("parameters", [])
-        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
-    ]
-
-
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -170,10 +136,6 @@ def update_operation_group_class_name(
 
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     yaml_data["discriminator"] = "paging"
-    yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
-    yaml_data["pagerAsync"] = (
-        yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
-    )
 
 
 HEADERS_HIDE_IN_METHOD = (
@@ -194,7 +156,7 @@ HEADERS_CONVERT_IN_METHOD = {
         "wireName": "match-condition",
         "description": "The match condition to use upon the etag.",
         "type": {
-            "type": "azurecore",
+            "type": "sdkcore",
             "name": "MatchConditions",
         },
     },
@@ -230,6 +192,32 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def is_cadl(self) -> bool:
         return self.options.get("cadl_file", False)
 
+    def add_body_param_type(
+        self,
+        code_model: Dict[str, Any],
+        body_parameter: Dict[str, Any],
+    ):
+        if (
+            body_parameter
+            and body_parameter["type"]["type"] in ("model", "dict", "list")
+            and any(
+                ct
+                for ct in body_parameter.get("contentTypes", [])
+                if JSON_REGEXP.match(ct)
+            )
+            and not body_parameter["type"].get("xmlMetadata")
+            and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
+        ):
+            origin_type = body_parameter["type"]["type"]
+            is_dpg_model = body_parameter["type"].get("base") == "dpg"
+            body_parameter["type"] = {
+                "type": "combined",
+                "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+            }
+            if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":
+                body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
+            code_model["types"].append(body_parameter["type"])
+
     def pad_reserved_words(self, name: str, pad_type: PadType):
         # we want to pad hidden variables as well
         if not name:
@@ -259,7 +247,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 )
                 add_redefined_builtin_info(property["clientName"], property)
             if type.get("name"):
-                type["name"] = self.pad_reserved_words(type["name"], PadType.MODEL)
+                name = self.pad_reserved_words(type["name"], PadType.MODEL)
+                type["name"] = name[0].upper() + name[1:]
                 type["description"] = update_description(
                     type.get("description", ""), type["name"]
                 )
@@ -273,11 +262,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     ).upper()
                     if value["name"] != padded_name:
                         values_to_add.append(
-                            {
-                                "description": value["description"],
-                                "name": padded_name,
-                                "value": value["value"],
-                            }
+                            update_enum_value(
+                                name=padded_name,
+                                value=value["value"],
+                                description=value["description"],
+                                enum_type=value["enumType"],
+                            )
                         )
                 type["values"].extend(values_to_add)
 
@@ -291,7 +281,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["description"], default_description=yaml_data["name"]
         )
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-        for parameter in yaml_data["parameters"]:
+        parameters = yaml_data["parameters"]
+        for parameter in parameters:
             self.update_parameter(parameter)
             if parameter["clientName"] == "credential":
                 policy = parameter["type"].get("policy")
@@ -304,7 +295,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     policy["credentialScopes"] = [
                         "https://management.azure.com/.default"
                     ]
-
+        if (
+            (not self.version_tolerant or self.azure_arm)
+            and parameters
+            and parameters[-1]["clientName"] == "credential"
+        ):
+            # we need to move credential to the front in mgmt mode for backcompat reasons
+            yaml_data["parameters"] = [parameters[-1]] + parameters[:-1]
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
@@ -418,7 +415,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter)
+            self.add_body_param_type(code_model, body_parameter)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
@@ -490,17 +487,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         item_type: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
-        if not yaml_data.get("pagerSync"):
-            yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
-        if not yaml_data.get("pagerAsync"):
-            yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-        if self.version_tolerant:
-            # if we're in version tolerant, hide the paging model
-            _remove_paging_maxpagesize(yaml_data)
         item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
-            if self.version_tolerant:
-                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )

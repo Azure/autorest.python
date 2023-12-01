@@ -60,12 +60,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @overload
     async def analyze_body(
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
          'image/tiff'. Default value is None.
@@ -77,11 +77,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any) -> str:
+    async def analyze_body(self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
-        :type input: ~internaloperation.models.SourcePath or IO
+        :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
+         is None.
+        :type input: ~internaloperation.models.SourcePath or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
@@ -115,19 +116,19 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_request(
+        _request = build_analyze_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -139,9 +140,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
@@ -163,13 +164,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
          'image/tiff'. Default value is None.
@@ -182,13 +183,14 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @distributed_trace_async
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
-        :type input: ~internaloperation.models.SourcePath or IO
+        :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
+         is None.
+        :type input: ~internaloperation.models.SourcePath or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
@@ -222,19 +224,19 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_analyze_body_no_accept_header_request(
+        _request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -244,7 +246,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
@@ -276,18 +278,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         else:
             _content = None
 
-        request = build_content_type_with_encoding_request(
+        _request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -299,17 +301,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+    async def binary_body_with_two_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body. Required.
-        :type message: IO
+        :type message: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
@@ -331,18 +333,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_two_content_types_request(
+        _request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -354,18 +356,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
+    async def binary_body_with_three_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
         :param message: The payload body. Required.
-        :type message: IO
+        :type message: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
@@ -387,18 +389,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = message
 
-        request = build_binary_body_with_three_content_types_request(
+        _request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -410,9 +412,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def _body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -420,7 +422,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @overload
     async def _body_three_types(
-        self, message: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
+        self, message: IO[bytes], *, content_type: str = "application/octet-stream", **kwargs: Any
     ) -> str:
         ...
 
@@ -429,13 +431,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         ...
 
     @distributed_trace_async
-    async def _body_three_types(self, message: Union[Any, IO, str], **kwargs: Any) -> str:
+    async def _body_three_types(self, message: Union[Any, IO[bytes], str], **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
 
-        :param message: The payload body. Is one of the following types: Any, IO, str Required.
-        :type message: any or IO or str
+        :param message: The payload body. Is one of the following types: Any, IO[bytes], str Required.
+        :type message: any or IO[bytes] or str
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/octet-stream', 'text/plain'. Default value is None.
         :paramtype content_type: str
@@ -467,19 +469,19 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"
 
-        request = build_body_three_types_request(
+        _request = build_body_three_types_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -491,9 +493,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
@@ -522,18 +524,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _content = self._serialize.body(message, "str")
 
-        request = build_put_text_and_json_body_request(
+        _request = build_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -545,6 +547,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

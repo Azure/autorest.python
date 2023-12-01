@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AutoRestParameterizedCustomHostTestClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestParameterizedCustomHostTestClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestParameterizedCustomHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,7 +27,6 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(  # pylint: disable
     """
 
     def __init__(self, subscription_id: str, dns_suffix: str = "host", **kwargs: Any) -> None:
-        super(AutoRestParameterizedCustomHostTestClientConfiguration, self).__init__(**kwargs)
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if dns_suffix is None:
@@ -39,6 +35,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(  # pylint: disable
         self.subscription_id = subscription_id
         self.dns_suffix = dns_suffix
         kwargs.setdefault("sdk_moniker", "autorestparameterizedcustomhosttestclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -47,7 +44,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(  # pylint: disable
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

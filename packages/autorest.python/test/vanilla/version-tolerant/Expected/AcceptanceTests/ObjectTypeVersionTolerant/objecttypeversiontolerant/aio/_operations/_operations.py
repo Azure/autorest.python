@@ -57,15 +57,15 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_object_type_get_request(
+        _request = build_object_type_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -82,9 +82,9 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put(self, put_object: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -114,17 +114,17 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         _json = put_object
 
-        request = build_object_type_put_request(
+        _request = build_object_type_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -136,4 +136,4 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

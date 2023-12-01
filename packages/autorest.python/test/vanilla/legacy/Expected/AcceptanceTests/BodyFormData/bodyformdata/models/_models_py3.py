@@ -41,10 +41,10 @@ class Error(_serialization.Model):
 class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar file_content: File to upload. Required.
-    :vartype file_content: IO
+    :vartype file_content: IO[bytes]
     :ivar file_name: File name to upload. Name has to be spelled exactly as written here. Required.
     :vartype file_name: str
     """
@@ -59,10 +59,10 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         "file_name": {"key": "fileName", "type": "str"},
     }
 
-    def __init__(self, *, file_content: IO, file_name: str, **kwargs: Any) -> None:
+    def __init__(self, *, file_content: IO[bytes], file_name: str, **kwargs: Any) -> None:
         """
         :keyword file_content: File to upload. Required.
-        :paramtype file_content: IO
+        :paramtype file_content: IO[bytes]
         :keyword file_name: File name to upload. Name has to be spelled exactly as written here.
          Required.
         :paramtype file_name: str
@@ -75,10 +75,10 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar file_content: Files to upload. Required.
-    :vartype file_content: list[IO]
+    :vartype file_content: list[IO[bytes]]
     """
 
     _validation = {
@@ -89,10 +89,10 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
         "file_content": {"key": "fileContent", "type": "[IO]"},
     }
 
-    def __init__(self, *, file_content: List[IO], **kwargs: Any) -> None:
+    def __init__(self, *, file_content: List[IO[bytes]], **kwargs: Any) -> None:
         """
         :keyword file_content: Files to upload. Required.
-        :paramtype file_content: list[IO]
+        :paramtype file_content: list[IO[bytes]]
         """
         super().__init__(**kwargs)
         self.file_content = file_content

@@ -378,15 +378,15 @@ class StringOperations:
 
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_string_get_null_request(
+        _request = build_string_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -403,9 +403,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[str], deserialized), {})
+            return cls(pipeline_response, cast(Optional[str], deserialized), {})  # type: ignore
 
-        return cast(Optional[str], deserialized)
+        return cast(Optional[str], deserialized)  # type: ignore
 
     @distributed_trace
     def put_null(  # pylint: disable=inconsistent-return-statements
@@ -438,17 +438,17 @@ class StringOperations:
         else:
             _content = None
 
-        request = build_string_put_null_request(
+        _request = build_string_put_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -460,7 +460,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> str:
@@ -483,15 +483,15 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_string_get_empty_request(
+        _request = build_string_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -508,9 +508,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -540,17 +540,17 @@ class StringOperations:
 
         _json = string_body
 
-        request = build_string_put_empty_request(
+        _request = build_string_put_empty_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -562,7 +562,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_mbcs(self, **kwargs: Any) -> str:
@@ -585,15 +585,15 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_string_get_mbcs_request(
+        _request = build_string_get_mbcs_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -610,9 +610,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -645,17 +645,17 @@ class StringOperations:
 
         _json = string_body
 
-        request = build_string_put_mbcs_request(
+        _request = build_string_put_mbcs_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -667,7 +667,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_whitespace(self, **kwargs: Any) -> str:
@@ -692,15 +692,15 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_string_get_whitespace_request(
+        _request = build_string_get_whitespace_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -717,9 +717,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -754,17 +754,17 @@ class StringOperations:
 
         _json = string_body
 
-        request = build_string_put_whitespace_request(
+        _request = build_string_put_whitespace_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -776,7 +776,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> str:
@@ -799,15 +799,15 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_string_get_not_provided_request(
+        _request = build_string_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -824,9 +824,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get_base64_encoded(self, **kwargs: Any) -> bytes:
@@ -849,15 +849,15 @@ class StringOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_string_get_base64_encoded_request(
+        _request = build_string_get_base64_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -874,9 +874,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace
     def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
@@ -899,15 +899,15 @@ class StringOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_string_get_base64_url_encoded_request(
+        _request = build_string_get_base64_url_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -924,9 +924,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace
     def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
@@ -956,17 +956,17 @@ class StringOperations:
 
         _json = string_body
 
-        request = build_string_put_base64_url_encoded_request(
+        _request = build_string_put_base64_url_encoded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -978,7 +978,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
@@ -1001,15 +1001,15 @@ class StringOperations:
 
         cls: ClsType[Optional[bytes]] = kwargs.pop("cls", None)
 
-        request = build_string_get_null_base64_url_encoded_request(
+        _request = build_string_get_null_base64_url_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1026,9 +1026,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Optional[bytes], deserialized), {})  # type: ignore
 
-        return cast(Optional[bytes], deserialized)
+        return cast(Optional[bytes], deserialized)  # type: ignore
 
 
 class EnumOperations:
@@ -1069,15 +1069,15 @@ class EnumOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_enum_get_not_expandable_request(
+        _request = build_enum_get_not_expandable_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1094,9 +1094,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def put_not_expandable(  # pylint: disable=inconsistent-return-statements
@@ -1127,17 +1127,17 @@ class EnumOperations:
 
         _json = string_body
 
-        request = build_enum_put_not_expandable_request(
+        _request = build_enum_put_not_expandable_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1149,7 +1149,7 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_referenced(self, **kwargs: Any) -> str:
@@ -1172,15 +1172,15 @@ class EnumOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_enum_get_referenced_request(
+        _request = build_enum_get_referenced_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1197,9 +1197,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def put_referenced(  # pylint: disable=inconsistent-return-statements
@@ -1230,17 +1230,17 @@ class EnumOperations:
 
         _json = enum_string_body
 
-        request = build_enum_put_referenced_request(
+        _request = build_enum_put_referenced_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1252,7 +1252,7 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(self, **kwargs: Any) -> JSON:
@@ -1285,15 +1285,15 @@ class EnumOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_enum_get_referenced_constant_request(
+        _request = build_enum_get_referenced_constant_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1310,9 +1310,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
@@ -1342,12 +1342,12 @@ class EnumOperations:
 
     @overload
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, enum_string_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body. Required.
-        :type enum_string_body: IO
+        :type enum_string_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1358,12 +1358,12 @@ class EnumOperations:
 
     @distributed_trace
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[JSON, IO], **kwargs: Any
+        self, enum_string_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body. Is either a JSON type or a IO type. Required.
-        :type enum_string_body: JSON or IO
+        :param enum_string_body: enum string body. Is either a JSON type or a IO[bytes] type. Required.
+        :type enum_string_body: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1403,18 +1403,18 @@ class EnumOperations:
         else:
             _json = enum_string_body
 
-        request = build_enum_put_referenced_constant_request(
+        _request = build_enum_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1426,4 +1426,4 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -46,9 +46,14 @@ steps:
       displayName: Execute Autorest DPG Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
     - script: |
-          cd test
+          cd test/azure
           tox run -e ci
-      displayName: Execute Cadl Tests
+      displayName: Execute Typespec Azure Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
+    - script: |
+          cd test/unbranded
+          tox run -e ci
+      displayName: Execute Typespec Unbranded Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
     - script: |

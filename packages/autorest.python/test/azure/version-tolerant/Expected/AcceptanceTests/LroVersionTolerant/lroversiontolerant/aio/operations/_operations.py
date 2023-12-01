@@ -137,7 +137,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -164,18 +164,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put200_succeeded_request(
+        _request = build_lros_put200_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -194,9 +194,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_put200_succeeded(
@@ -261,13 +261,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -305,13 +305,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -399,16 +400,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -435,18 +436,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_patch200_succeeded_ignore_headers_request(
+        _request = build_lros_patch200_succeeded_ignore_headers_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -468,9 +469,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_patch200_succeeded_ignore_headers(
@@ -535,13 +536,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch200_succeeded_ignore_headers(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
         :param product: Product to patch. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -579,13 +580,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch200_succeeded_ignore_headers(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
-        :param product: Product to patch. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to patch. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -678,16 +680,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -714,18 +716,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_patch201_retry_with_async_header_request(
+        _request = build_lros_patch201_retry_with_async_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -820,12 +822,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch201_retry_with_async_header(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
         :param product: Product to patch. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -863,12 +865,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch201_retry_with_async_header(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
-        :param product: Product to patch. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to patch. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -959,16 +962,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -995,18 +998,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_patch202_retry_with_async_and_location_header_request(
+        _request = build_lros_patch202_retry_with_async_and_location_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1103,13 +1106,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
         :param product: Product to patch. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1147,13 +1150,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
-        :param product: Product to patch. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to patch. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1241,15 +1245,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put201_succeeded_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put201_succeeded_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1275,18 +1279,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put201_succeeded_request(
+        _request = build_lros_put201_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1303,9 +1307,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put201_succeeded(
@@ -1370,13 +1374,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1414,13 +1418,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1508,13 +1513,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_list_initial(self, **kwargs: Any) -> Optional[List[JSON]]:
         error_map = {
@@ -1530,15 +1535,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[List[JSON]]] = kwargs.pop("cls", None)
 
-        request = build_lros_post202_list_request(
+        _request = build_lros_post202_list_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1564,9 +1569,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List[JSON]]:
@@ -1636,16 +1641,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[List[JSON]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[List[JSON]](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     async def _put200_succeeded_no_state_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -1672,18 +1679,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put200_succeeded_no_state_request(
+        _request = build_lros_put200_succeeded_no_state_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1700,9 +1707,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put200_succeeded_no_state(
@@ -1767,13 +1774,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_succeeded_no_state(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1811,13 +1818,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1905,15 +1913,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put202_retry200_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put202_retry200_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1939,18 +1947,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put202_retry200_request(
+        _request = build_lros_put202_retry200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1967,9 +1975,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put202_retry200(
@@ -2035,14 +2043,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2080,14 +2088,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put202_retry200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2175,16 +2184,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -2211,18 +2220,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put201_creating_succeeded200_request(
+        _request = build_lros_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2314,14 +2323,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2359,14 +2368,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2454,16 +2464,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put200_updating_succeeded204_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -2490,18 +2500,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put200_updating_succeeded204_request(
+        _request = build_lros_put200_updating_succeeded204_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2518,9 +2528,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put200_updating_succeeded204(
@@ -2586,14 +2596,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_updating_succeeded204(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2631,14 +2641,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2726,16 +2737,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put201_creating_failed200_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -2762,18 +2773,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put201_creating_failed200_request(
+        _request = build_lros_put201_creating_failed200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2865,14 +2876,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_creating_failed200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2910,14 +2921,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3005,16 +3017,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put200_acceptedcanceled200_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -3041,18 +3053,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put200_acceptedcanceled200_request(
+        _request = build_lros_put200_acceptedcanceled200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3069,9 +3081,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put200_acceptedcanceled200(
@@ -3137,14 +3149,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3182,14 +3194,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3277,15 +3290,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_no_header_in_retry_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_no_header_in_retry_initial(
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3311,18 +3326,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_no_header_in_retry_request(
+        _request = build_lros_put_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3342,9 +3357,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_no_header_in_retry(
@@ -3409,13 +3424,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_no_header_in_retry(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3453,13 +3468,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3550,16 +3566,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -3586,18 +3602,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_retry_succeeded_request(
+        _request = build_lros_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3621,9 +3637,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_retry_succeeded(
@@ -3689,14 +3705,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3734,14 +3750,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3836,16 +3853,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_no_retry_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -3872,18 +3889,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_no_retry_succeeded_request(
+        _request = build_lros_put_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3906,9 +3923,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_no_retry_succeeded(
@@ -3974,14 +3991,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4019,14 +4036,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4120,15 +4138,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_retry_failed_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_async_retry_failed_initial(
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4154,18 +4174,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_retry_failed_request(
+        _request = build_lros_put_async_retry_failed_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4189,9 +4209,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_retry_failed(
@@ -4257,14 +4277,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_retry_failed(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4302,14 +4322,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4404,16 +4425,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_no_retrycanceled_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -4440,18 +4461,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_no_retrycanceled_request(
+        _request = build_lros_put_async_no_retrycanceled_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4474,9 +4495,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_no_retrycanceled(
@@ -4542,14 +4563,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4587,14 +4608,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4688,16 +4710,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_no_header_in_retry_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -4724,18 +4746,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_no_header_in_retry_request(
+        _request = build_lros_put_async_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4757,9 +4779,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_no_header_in_retry(
@@ -4825,14 +4847,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4870,14 +4892,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4970,15 +4993,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_non_resource_initial(self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_non_resource_initial(self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5004,18 +5027,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_non_resource_request(
+        _request = build_lros_put_non_resource_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5032,9 +5055,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_non_resource(
@@ -5076,12 +5099,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_resource(
-        self, sku: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, sku: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: sku to put. Default value is None.
-        :type sku: IO
+        :type sku: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5108,12 +5131,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_non_resource(
-        self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
-        :param sku: sku to put. Is either a JSON type or a IO type. Default value is None.
-        :type sku: JSON or IO
+        :param sku: sku to put. Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type sku: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5174,15 +5197,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_non_resource_initial(self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_async_non_resource_initial(
+        self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5208,18 +5233,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_non_resource_request(
+        _request = build_lros_put_async_non_resource_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5236,9 +5261,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_non_resource(
@@ -5280,12 +5305,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_non_resource(
-        self, sku: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, sku: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: Sku to put. Default value is None.
-        :type sku: IO
+        :type sku: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5312,12 +5337,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_non_resource(
-        self, sku: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
-        :param sku: Sku to put. Is either a JSON type or a IO type. Default value is None.
-        :type sku: JSON or IO
+        :param sku: Sku to put. Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type sku: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5378,15 +5403,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_sub_resource_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_sub_resource_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5412,18 +5437,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_sub_resource_request(
+        _request = build_lros_put_sub_resource_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5440,9 +5465,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_sub_resource(
@@ -5494,12 +5519,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_sub_resource(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5531,12 +5556,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_sub_resource(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Sub Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5612,15 +5638,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_sub_resource_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_async_sub_resource_initial(
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5646,18 +5674,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_put_async_sub_resource_request(
+        _request = build_lros_put_async_sub_resource_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5674,9 +5702,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_sub_resource(
@@ -5728,12 +5756,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_sub_resource(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5765,12 +5793,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Sub Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5846,13 +5875,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -5870,15 +5899,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_provisioning202_accepted200_succeeded_request(
+        _request = build_lros_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5979,13 +6008,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -6003,15 +6032,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_provisioning202_deleting_failed200_request(
+        _request = build_lros_delete_provisioning202_deleting_failed200_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6112,13 +6141,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -6136,15 +6165,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_provisioning202_deletingcanceled200_request(
+        _request = build_lros_delete_provisioning202_deletingcanceled200_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6245,13 +6274,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete204_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6269,15 +6298,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete204_succeeded_request(
+        _request = build_lros_delete204_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6289,7 +6318,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6321,7 +6350,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -6330,13 +6359,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[JSON]:
         error_map = {
@@ -6352,15 +6381,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        request = build_lros_delete202_retry200_request(
+        _request = build_lros_delete202_retry200_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6384,9 +6413,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
@@ -6454,13 +6483,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[JSON]:
         error_map = {
@@ -6476,15 +6505,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        request = build_lros_delete202_no_retry204_request(
+        _request = build_lros_delete202_no_retry204_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6508,9 +6537,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
@@ -6578,13 +6607,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6602,15 +6631,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_no_header_in_retry_request(
+        _request = build_lros_delete_no_header_in_retry_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6626,7 +6655,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6659,7 +6688,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -6668,13 +6697,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6692,15 +6721,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_async_no_header_in_retry_request(
+        _request = build_lros_delete_async_no_header_in_retry_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6716,7 +6745,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6749,7 +6778,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -6758,13 +6787,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6782,15 +6811,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_async_retry_succeeded_request(
+        _request = build_lros_delete_async_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6809,7 +6838,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6842,7 +6871,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -6851,13 +6880,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6875,15 +6904,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_async_no_retry_succeeded_request(
+        _request = build_lros_delete_async_no_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6902,7 +6931,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -6935,7 +6964,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -6944,13 +6973,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -6968,15 +6997,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_async_retry_failed_request(
+        _request = build_lros_delete_async_retry_failed_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6995,7 +7024,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7028,7 +7057,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -7037,13 +7066,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -7061,15 +7090,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lros_delete_async_retrycanceled_request(
+        _request = build_lros_delete_async_retrycanceled_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7088,7 +7117,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -7121,7 +7150,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -7130,13 +7159,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post200_with_payload_initial(self, **kwargs: Any) -> JSON:
         error_map = {
@@ -7152,15 +7181,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_post200_with_payload_request(
+        _request = build_lros_post200_with_payload_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7243,16 +7272,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -7279,18 +7308,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post202_retry200_request(
+        _request = build_lros_post202_retry200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7306,7 +7335,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_retry200(
@@ -7354,13 +7383,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -7378,13 +7407,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -7440,7 +7470,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -7449,15 +7479,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post202_no_retry204_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _post202_no_retry204_initial(
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7483,18 +7515,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post202_no_retry204_request(
+        _request = build_lros_post202_no_retry204_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7515,9 +7547,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_post202_no_retry204(
@@ -7582,13 +7614,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_no_retry204(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -7626,13 +7658,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_no_retry204(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -7724,13 +7757,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -7748,15 +7781,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_post_double_headers_final_location_get_request(
+        _request = build_lros_post_double_headers_final_location_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7773,9 +7806,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_location_get(  # pylint: disable=name-too-long
@@ -7848,13 +7881,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -7872,15 +7905,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_post_double_headers_final_azure_header_get_request(
+        _request = build_lros_post_double_headers_final_azure_header_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7897,9 +7930,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get(  # pylint: disable=name-too-long
@@ -7973,13 +8006,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -7997,15 +8030,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lros_post_double_headers_final_azure_header_get_default_request(
+        _request = build_lros_post_double_headers_final_azure_header_get_default_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8022,9 +8055,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(  # pylint: disable=name-too-long
@@ -8095,16 +8128,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_retry_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -8131,18 +8164,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post_async_retry_succeeded_request(
+        _request = build_lros_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8169,9 +8202,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_post_async_retry_succeeded(
@@ -8237,14 +8270,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -8282,14 +8315,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -8377,16 +8411,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_no_retry_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -8413,18 +8447,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post_async_no_retry_succeeded_request(
+        _request = build_lros_post_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8451,9 +8485,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_post_async_no_retry_succeeded(
@@ -8519,14 +8553,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -8564,14 +8598,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -8659,16 +8694,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -8695,18 +8730,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post_async_retry_failed_request(
+        _request = build_lros_post_async_retry_failed_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8725,7 +8760,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_retry_failed(
@@ -8774,14 +8809,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retry_failed(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -8799,14 +8834,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -8862,7 +8898,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -8871,16 +8907,16 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -8907,18 +8943,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lros_post_async_retrycanceled_request(
+        _request = build_lros_post_async_retrycanceled_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8937,7 +8973,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_retrycanceled(
@@ -8986,14 +9022,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retrycanceled(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -9011,14 +9047,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -9074,7 +9111,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -9083,13 +9120,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
 
 class LRORetrysOperations:
@@ -9110,7 +9147,7 @@ class LRORetrysOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -9137,18 +9174,18 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_lro_retrys_put201_creating_succeeded200_request(
+        _request = build_lro_retrys_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -9240,14 +9277,14 @@ class LRORetrysOperations:
 
     @overload
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -9285,14 +9322,15 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -9380,16 +9418,16 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -9416,18 +9454,18 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_lro_retrys_put_async_relative_retry_succeeded_request(
+        _request = build_lro_retrys_put_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -9451,9 +9489,9 @@ class LRORetrysOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry_succeeded(
@@ -9519,14 +9557,14 @@ class LRORetrysOperations:
 
     @overload
     async def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -9564,14 +9602,15 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -9666,13 +9705,13 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -9690,15 +9729,15 @@ class LRORetrysOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(
+        _request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -9799,13 +9838,13 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -9823,15 +9862,15 @@ class LRORetrysOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lro_retrys_delete202_retry200_request(
+        _request = build_lro_retrys_delete202_retry200_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -9847,7 +9886,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -9880,7 +9919,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -9889,13 +9928,13 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -9913,15 +9952,15 @@ class LRORetrysOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lro_retrys_delete_async_relative_retry_succeeded_request(
+        _request = build_lro_retrys_delete_async_relative_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -9940,7 +9979,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_succeeded(  # pylint: disable=name-too-long
@@ -9975,7 +10014,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -9984,16 +10023,16 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -10020,18 +10059,18 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_lro_retrys_post202_retry200_request(
+        _request = build_lro_retrys_post202_retry200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -10047,7 +10086,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_retry200(
@@ -10095,13 +10134,13 @@ class LRORetrysOperations:
 
     @overload
     async def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -10119,13 +10158,14 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -10181,7 +10221,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -10190,16 +10230,16 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -10226,18 +10266,18 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_lro_retrys_post_async_relative_retry_succeeded_request(
+        _request = build_lro_retrys_post_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -10256,7 +10296,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
@@ -10305,14 +10345,14 @@ class LRORetrysOperations:
 
     @overload
     async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -10330,14 +10370,15 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -10393,7 +10434,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -10402,13 +10443,13 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
 
 class LROSADsOperations:  # pylint: disable=too-many-public-methods
@@ -10428,7 +10469,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def _put_non_retry400_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def _put_non_retry400_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -10454,18 +10495,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_non_retry400_request(
+        _request = build_lrosads_put_non_retry400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -10555,12 +10596,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -10598,12 +10639,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_non_retry400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 400 to the initial request.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -10691,16 +10733,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_non_retry201_creating400_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -10727,18 +10769,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_non_retry201_creating400_request(
+        _request = build_lrosads_put_non_retry201_creating400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -10829,13 +10871,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry201_creating400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -10873,13 +10915,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -10967,16 +11010,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_non_retry201_creating400_invalid_json_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -11003,18 +11046,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_non_retry201_creating400_invalid_json_request(
+        _request = build_lrosads_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11105,13 +11148,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_retry201_creating400_invalid_json(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -11149,13 +11192,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400_invalid_json(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -11243,16 +11287,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry400_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -11279,18 +11323,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_async_relative_retry400_request(
+        _request = build_lrosads_put_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11314,9 +11358,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry400(
@@ -11381,13 +11425,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -11425,13 +11469,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_relative_retry400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -11526,13 +11571,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -11550,15 +11595,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete_non_retry400_request(
+        _request = build_lrosads_delete_non_retry400_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11574,7 +11619,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -11606,7 +11651,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -11615,13 +11660,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -11639,15 +11684,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete202_non_retry400_request(
+        _request = build_lrosads_delete202_non_retry400_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11663,7 +11708,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_non_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -11695,7 +11740,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -11704,13 +11749,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -11728,15 +11773,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete_async_relative_retry400_request(
+        _request = build_lrosads_delete_async_relative_retry400_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11755,7 +11800,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -11788,7 +11833,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -11797,16 +11842,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -11833,18 +11878,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post_non_retry400_request(
+        _request = build_lrosads_post_non_retry400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -11860,7 +11905,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_non_retry400(
@@ -11907,12 +11952,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -11930,12 +11975,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_non_retry400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -11991,7 +12037,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -12000,16 +12046,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -12036,18 +12082,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post202_non_retry400_request(
+        _request = build_lrosads_post202_non_retry400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -12063,7 +12109,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_non_retry400(
@@ -12110,12 +12156,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_non_retry400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -12133,12 +12179,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_non_retry400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -12194,7 +12241,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -12203,16 +12250,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -12239,18 +12286,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post_async_relative_retry400_request(
+        _request = build_lrosads_post_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -12269,7 +12316,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_relative_retry400(
@@ -12317,13 +12364,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry400(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -12341,13 +12388,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry400(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -12403,7 +12451,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -12412,16 +12460,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_error201_no_provisioning_state_payload_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -12448,18 +12496,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_error201_no_provisioning_state_payload_request(
+        _request = build_lrosads_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -12549,12 +12597,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_error201_no_provisioning_state_payload(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -12592,12 +12640,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_error201_no_provisioning_state_payload(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -12685,16 +12734,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry_no_status_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -12721,18 +12770,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_async_relative_retry_no_status_request(
+        _request = build_lrosads_put_async_relative_retry_no_status_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -12756,9 +12805,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry_no_status(
@@ -12824,14 +12873,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_no_status(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -12869,14 +12918,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -12971,16 +13021,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry_no_status_payload_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -13007,18 +13057,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_async_relative_retry_no_status_payload_request(
+        _request = build_lrosads_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13042,9 +13092,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
@@ -13110,14 +13160,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -13155,14 +13205,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -13257,13 +13308,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete204_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -13281,15 +13332,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete204_succeeded_request(
+        _request = build_lrosads_delete204_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13301,7 +13352,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -13333,7 +13384,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -13342,13 +13393,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -13366,15 +13417,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete_async_relative_retry_no_status_request(
+        _request = build_lrosads_delete_async_relative_retry_no_status_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13393,7 +13444,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_no_status(  # pylint: disable=name-too-long
@@ -13428,7 +13479,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -13437,16 +13488,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -13473,18 +13524,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post202_no_location_request(
+        _request = build_lrosads_post202_no_location_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13500,7 +13551,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_no_location(
@@ -13548,13 +13599,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_no_location(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -13572,13 +13623,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_no_location(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -13634,7 +13686,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -13643,16 +13695,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -13679,18 +13731,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post_async_relative_retry_no_payload_request(
+        _request = build_lrosads_post_async_relative_retry_no_payload_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13709,7 +13761,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
@@ -13758,14 +13810,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -13783,14 +13835,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -13846,7 +13899,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -13855,16 +13908,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put200_invalid_json_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -13891,18 +13944,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put200_invalid_json_request(
+        _request = build_lrosads_put200_invalid_json_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -13921,9 +13974,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_put200_invalid_json(
@@ -13988,13 +14041,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_invalid_json(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -14032,13 +14085,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_invalid_json(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -14126,16 +14180,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -14162,18 +14216,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_async_relative_retry_invalid_header_request(
+        _request = build_lrosads_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -14197,9 +14251,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
@@ -14265,14 +14319,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -14310,14 +14364,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -14412,16 +14467,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -14448,18 +14503,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_put_async_relative_retry_invalid_json_polling_request(
+        _request = build_lrosads_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -14483,9 +14538,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
@@ -14551,14 +14606,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -14596,14 +14651,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -14698,13 +14754,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -14722,15 +14778,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete202_retry_invalid_header_request(
+        _request = build_lrosads_delete202_retry_invalid_header_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -14746,7 +14802,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -14779,7 +14835,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -14788,13 +14844,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -14812,15 +14868,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete_async_relative_retry_invalid_header_request(
+        _request = build_lrosads_delete_async_relative_retry_invalid_header_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -14839,7 +14895,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
@@ -14874,7 +14930,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -14883,13 +14939,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -14907,15 +14963,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request(
+        _request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -14934,7 +14990,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
@@ -14969,7 +15025,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -14978,16 +15034,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -15014,18 +15070,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post202_retry_invalid_header_request(
+        _request = build_lrosads_post202_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -15041,7 +15097,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_retry_invalid_header(
@@ -15089,13 +15145,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_retry_invalid_header(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -15113,13 +15169,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_retry_invalid_header(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -15175,7 +15232,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -15184,16 +15241,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -15220,18 +15277,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post_async_relative_retry_invalid_header_request(
+        _request = build_lrosads_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -15250,7 +15307,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
@@ -15299,14 +15356,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -15324,14 +15381,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -15387,7 +15445,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -15396,16 +15454,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -15432,18 +15490,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_lrosads_post_async_relative_retry_invalid_json_polling_request(
+        _request = build_lrosads_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -15462,7 +15520,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
@@ -15511,14 +15569,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -15536,14 +15594,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -15599,7 +15658,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -15608,13 +15667,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
 
 class LROsCustomHeaderOperations:
@@ -15635,7 +15694,7 @@ class LROsCustomHeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -15662,18 +15721,18 @@ class LROsCustomHeaderOperations:
             else:
                 _json = None
 
-        request = build_lr_os_custom_header_put_async_retry_succeeded_request(
+        _request = build_lr_os_custom_header_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -15697,9 +15756,9 @@ class LROsCustomHeaderOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def begin_put_async_retry_succeeded(
@@ -15766,7 +15825,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -15774,7 +15833,7 @@ class LROsCustomHeaderOperations:
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -15812,15 +15871,16 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -15915,16 +15975,16 @@ class LROsCustomHeaderOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -15951,18 +16011,18 @@ class LROsCustomHeaderOperations:
             else:
                 _json = None
 
-        request = build_lr_os_custom_header_put201_creating_succeeded200_request(
+        _request = build_lr_os_custom_header_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -16055,7 +16115,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -16063,7 +16123,7 @@ class LROsCustomHeaderOperations:
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -16101,15 +16161,16 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -16197,16 +16258,16 @@ class LROsCustomHeaderOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -16233,18 +16294,18 @@ class LROsCustomHeaderOperations:
             else:
                 _json = None
 
-        request = build_lr_os_custom_header_post202_retry200_request(
+        _request = build_lr_os_custom_header_post202_retry200_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -16260,7 +16321,7 @@ class LROsCustomHeaderOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post202_retry200(
@@ -16309,14 +16370,14 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -16334,14 +16395,15 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -16397,7 +16459,7 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -16406,16 +16468,16 @@ class LROsCustomHeaderOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -16442,18 +16504,18 @@ class LROsCustomHeaderOperations:
             else:
                 _json = None
 
-        request = build_lr_os_custom_header_post_async_retry_succeeded_request(
+        _request = build_lr_os_custom_header_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -16472,7 +16534,7 @@ class LROsCustomHeaderOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_post_async_retry_succeeded(
@@ -16522,7 +16584,7 @@ class LROsCustomHeaderOperations:
 
     @overload
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
@@ -16530,7 +16592,7 @@ class LROsCustomHeaderOperations:
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -16548,15 +16610,16 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
+         None.
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -16612,7 +16675,7 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -16621,10 +16684,10 @@ class LROsCustomHeaderOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

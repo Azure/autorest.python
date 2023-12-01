@@ -66,21 +66,21 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version("test") or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_request(
+        _request = build_test_request(
             id=id,
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
+        _request = _convert_request(_request)
         path_format_arguments = {
             "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -91,4 +91,4 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

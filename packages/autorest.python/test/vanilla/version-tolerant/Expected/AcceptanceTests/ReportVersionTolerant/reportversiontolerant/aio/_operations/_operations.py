@@ -64,16 +64,16 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_report_service_get_report_request(
+        _request = build_auto_rest_report_service_get_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -90,9 +90,9 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_optional_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
@@ -127,16 +127,16 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_report_service_get_optional_report_request(
+        _request = build_auto_rest_report_service_get_optional_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -153,6 +153,6 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore

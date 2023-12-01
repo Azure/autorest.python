@@ -16,6 +16,7 @@ from .._utils import (
     KNOWN_TYPES,
     get_body_type_for_description,
     JSON_REGEXP,
+    update_enum_value,
 )
 from .. import YamlUpdatePluginAutorest
 
@@ -40,7 +41,7 @@ def get_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def get_azure_key_credential(key: str) -> Dict[str, Any]:
     retval = {
         "type": KEY_TYPE,
-        "policy": {"type": "AzureKeyCredentialPolicy", "key": key},
+        "policy": {"type": "KeyCredentialPolicy", "key": key},
     }
     update_type(retval)
     return retval
@@ -88,24 +89,25 @@ def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    return {
-        "name": yaml_data["language"]["default"]["name"],
-        "value": yaml_data["value"],
-        "description": yaml_data["language"]["default"]["description"],
-    }
-
-
 def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base = _update_type_base("enum", yaml_data)
     base.update(
         {
             "name": yaml_data["language"]["default"]["name"],
             "valueType": update_type(yaml_data["choiceType"]),
-            "values": [update_enum_value(v) for v in yaml_data["choices"]],
+            "values": [],
             "description": yaml_data["language"]["default"]["description"],
         }
     )
+    for v in yaml_data["choices"]:
+        base["values"].append(
+            update_enum_value(
+                name=v["language"]["default"]["name"],
+                value=v["value"],
+                description=v["language"]["default"]["description"],
+                enum_type=base,
+            )
+        )
     return base
 
 
@@ -232,11 +234,11 @@ def update_primitive(  # pylint: disable=too-many-return-statements
         return KNOWN_TYPES["binary"]
     if type_group == "date-time":
         base = _update_type_base("datetime", yaml_data)
-        base["format"] = yaml_data["format"]
+        base["encode"] = yaml_data["format"]
         return base
     if type_group == "byte-array":
         base = _update_type_base("bytes", yaml_data)
-        base["format"] = yaml_data["format"]
+        base["encode"] = yaml_data["format"]
         return base
     return _update_type_base(type_group, yaml_data)
 
@@ -1126,10 +1128,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.version_tolerant:
-            parameters.append(credential)
-        else:
-            parameters.insert(0, credential)
+        parameters.append(credential)
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         parameters = self.update_global_parameters(

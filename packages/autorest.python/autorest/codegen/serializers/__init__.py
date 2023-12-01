@@ -29,6 +29,7 @@ from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from .types_serializer import TypesSerializer
 from ..._utils import to_snake_case
+from .._utils import VALID_PACKAGE_MODE
 from .utils import (
     extract_sample_name,
     get_namespace_from_package_name,
@@ -216,7 +217,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def _serialize_and_write_package_files(self, namespace_path: Path) -> None:
         root_of_sdk = self._package_root_folder(namespace_path)
-        if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
+        if self.code_model.options["package_mode"] in VALID_PACKAGE_MODE:
             env = Environment(
                 loader=PackageLoader(
                     "autorest.codegen", "templates/packaging_templates"
@@ -237,8 +238,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         else:
             return
         serializer = GeneralSerializer(self.code_model, env, async_mode=False)
-        params = self.code_model.options["package_configuration"] or {}
+        params = self.code_model.options["packaging_files_config"] or {}
         for template_name in package_files:
+            if (
+                self.code_model.options["unbranded"]
+                and template_name == "dev_requirements.txt.jinja2"
+            ):
+                continue
             file = template_name.replace(".jinja2", "")
             output_name = root_of_sdk / file
             if not self.read_file(output_name) or file in _REGENERATE_FILES:

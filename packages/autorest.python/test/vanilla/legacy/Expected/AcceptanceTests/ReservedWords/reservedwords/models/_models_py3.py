@@ -17,7 +17,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 ):
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar data: Pass in 'hello'. Required.
     :vartype data: str
@@ -50,10 +50,10 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar files: Files to upload. Pass in list of input streams. Required.
-    :vartype files: IO
+    :vartype files: IO[bytes]
     :ivar file_name: File name to upload. Pass in 'my.txt'. Required.
     :vartype file_name: str
     """
@@ -68,10 +68,10 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
         "file_name": {"key": "fileName", "type": "str"},
     }
 
-    def __init__(self, *, files: IO, file_name: str, **kwargs: Any) -> None:
+    def __init__(self, *, files: IO[bytes], file_name: str, **kwargs: Any) -> None:
         """
         :keyword files: Files to upload. Pass in list of input streams. Required.
-        :paramtype files: IO
+        :paramtype files: IO[bytes]
         :keyword file_name: File name to upload. Pass in 'my.txt'. Required.
         :paramtype file_name: str
         """

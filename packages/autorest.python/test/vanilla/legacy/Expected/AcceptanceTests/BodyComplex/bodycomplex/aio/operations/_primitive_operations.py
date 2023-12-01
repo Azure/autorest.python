@@ -96,16 +96,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.IntWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_int_request(
+        _request = build_get_int_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -118,9 +118,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("IntWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
@@ -141,12 +141,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -158,12 +158,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.IntWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.IntWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.IntWrapper or IO
+        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO[bytes] type.
+         Required.
+        :type complex_body: ~bodycomplex.models.IntWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -194,19 +195,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "IntWrapper")
 
-        request = build_put_int_request(
+        _request = build_put_int_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -217,7 +218,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_long(self, **kwargs: Any) -> _models.LongWrapper:
@@ -241,16 +242,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.LongWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_long_request(
+        _request = build_get_long_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -263,9 +264,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("LongWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
@@ -286,12 +287,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -303,13 +304,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.LongWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.LongWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
-         or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.LongWrapper or IO
+         or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.LongWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -340,19 +341,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "LongWrapper")
 
-        request = build_put_long_request(
+        _request = build_put_long_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -363,7 +364,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
@@ -387,16 +388,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.FloatWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_float_request(
+        _request = build_get_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -409,9 +410,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("FloatWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
@@ -432,12 +433,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -449,13 +450,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.FloatWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.FloatWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO type.
-         Required.
-        :type complex_body: ~bodycomplex.models.FloatWrapper or IO
+        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO[bytes]
+         type. Required.
+        :type complex_body: ~bodycomplex.models.FloatWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -486,19 +487,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "FloatWrapper")
 
-        request = build_put_float_request(
+        _request = build_put_float_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -509,7 +510,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
@@ -533,16 +534,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DoubleWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_double_request(
+        _request = build_get_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -555,9 +556,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DoubleWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
@@ -579,13 +580,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -597,14 +598,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DoubleWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DoubleWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DoubleWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DoubleWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -635,19 +636,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DoubleWrapper")
 
-        request = build_put_double_request(
+        _request = build_put_double_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -658,7 +659,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
@@ -682,16 +683,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.BooleanWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_bool_request(
+        _request = build_get_bool_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -704,9 +705,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("BooleanWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -727,12 +728,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -744,13 +745,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.BooleanWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.BooleanWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO type.
-         Required.
-        :type complex_body: ~bodycomplex.models.BooleanWrapper or IO
+        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO[bytes]
+         type. Required.
+        :type complex_body: ~bodycomplex.models.BooleanWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -781,19 +782,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "BooleanWrapper")
 
-        request = build_put_bool_request(
+        _request = build_put_bool_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -804,7 +805,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> _models.StringWrapper:
@@ -828,16 +829,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.StringWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_string_request(
+        _request = build_get_string_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -850,9 +851,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("StringWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
@@ -873,12 +874,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -890,13 +891,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.StringWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.StringWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.StringWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.StringWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -927,19 +928,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "StringWrapper")
 
-        request = build_put_string_request(
+        _request = build_put_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -950,7 +951,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date(self, **kwargs: Any) -> _models.DateWrapper:
@@ -974,16 +975,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DateWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_request(
+        _request = build_get_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -996,9 +997,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DateWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1019,12 +1020,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1036,13 +1037,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DateWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DateWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DateWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DateWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1073,19 +1074,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DateWrapper")
 
-        request = build_put_date_request(
+        _request = build_put_date_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1096,7 +1097,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
@@ -1120,16 +1121,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DatetimeWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_time_request(
+        _request = build_get_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1142,9 +1143,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DatetimeWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1166,13 +1167,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
          Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1184,13 +1185,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DatetimeWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DatetimeWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a DatetimeWrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO
+         either a DatetimeWrapper type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1221,19 +1222,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DatetimeWrapper")
 
-        request = build_put_date_time_request(
+        _request = build_put_date_time_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1244,7 +1245,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
@@ -1268,16 +1269,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.Datetimerfc1123Wrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_time_rfc1123_request(
+        _request = build_get_date_time_rfc1123_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1290,9 +1291,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Datetimerfc1123Wrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1314,13 +1315,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1332,13 +1333,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a Datetimerfc1123Wrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO
+         GMT'. Is either a Datetimerfc1123Wrapper type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1369,19 +1370,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
-        request = build_put_date_time_rfc1123_request(
+        _request = build_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1392,7 +1393,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
@@ -1416,16 +1417,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DurationWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_duration_request(
+        _request = build_get_duration_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1438,9 +1439,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DurationWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -1472,18 +1473,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _complex_body = _models.DurationWrapper(field=field)
         _json = self._serialize.body(_complex_body, "DurationWrapper")
 
-        request = build_put_duration_request(
+        _request = build_put_duration_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1494,7 +1495,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
@@ -1518,16 +1519,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.ByteWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_byte_request(
+        _request = build_get_byte_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1540,9 +1541,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ByteWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -1574,18 +1575,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _complex_body = _models.ByteWrapper(field=field)
         _json = self._serialize.body(_complex_body, "ByteWrapper")
 
-        request = build_put_byte_request(
+        _request = build_put_byte_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1596,4 +1597,4 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

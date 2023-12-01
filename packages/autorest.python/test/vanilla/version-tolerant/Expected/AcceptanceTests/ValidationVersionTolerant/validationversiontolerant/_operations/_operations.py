@@ -201,7 +201,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_validation_test_validation_of_method_parameters_request(
+        _request = build_auto_rest_validation_test_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -209,11 +209,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -230,9 +230,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def validation_of_body(
@@ -321,7 +321,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[IO] = None,
+        body: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -334,7 +334,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -374,7 +374,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
@@ -383,8 +383,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -472,7 +472,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_auto_rest_validation_test_validation_of_body_request(
+        _request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -483,11 +483,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -504,9 +504,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -533,16 +533,16 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_validation_test_get_with_constant_in_path_request(
+        _request = build_auto_rest_validation_test_get_with_constant_in_path_request(
             constant_param=constant_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -554,7 +554,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_with_constant_in_body(
@@ -632,12 +632,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -679,11 +679,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
@@ -775,7 +775,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_auto_rest_validation_test_post_with_constant_in_body_request(
+        _request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
@@ -783,11 +783,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -804,6 +804,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

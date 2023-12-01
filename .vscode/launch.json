@@ -10,7 +10,7 @@
             "cwd": "${workspaceFolder}/packages/typespec-python",
             "args": [
                 "compile",
-                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/parameters/spread",
+                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/azure/core/basic",
                  "--emit",
                  "${workspaceFolder}/packages/typespec-python/dist/src/index.js",
                  "--option=@azure-tools/typespec-python.debug=true"
@@ -27,6 +27,29 @@
             "request": "attach",
             "port": 5678,
             "host": "localhost"
-          }
+          },
+          {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+          },
+          { 
+            "name": "alpha",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/packages/typespec-python",
+            "runtimeArgs": ["compile", "alpha/main.tsp", "--emit", "@azure-tools/typespec-python"],
+            "runtimeExecutable": "tsp",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node",
+            "outFiles": [
+              "${workspaceFolder}/packages/*/dist/**/*.js",
+              "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+              "${workspaceFolder}/core/packages/*/dist/**/*.js",
+              "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+            ]
+        }
     ]
 }

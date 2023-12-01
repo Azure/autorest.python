@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import datetime
+import decimal
 from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType
@@ -91,13 +92,13 @@ class BinaryType(PrimitiveType):
         return self.type
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return self.type
+        return f"{self.type}[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return self.docstring_type(**kwargs)
+        return f"{self.type}[bytes]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return "IO"
+        return f"{self.type}[bytes]"
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -107,7 +108,7 @@ class BinaryType(PrimitiveType):
         from .combined_type import CombinedType
         from .operation import OperationBase
 
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         operation = kwargs.get("operation")
         if (
@@ -145,7 +146,7 @@ class BinaryIteratorType(PrimitiveType):
         return self.get_declaration("Iterator[bytes]")
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         iterator = "AsyncIterator" if kwargs.get("async_mode") else "Iterator"
         file_import.add_submodule_import("typing", iterator, ImportType.STDLIB)
         return file_import
@@ -171,7 +172,7 @@ class AnyType(PrimitiveType):
         return self.get_declaration({})
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -204,7 +205,7 @@ class AnyObjectType(PrimitiveType):
         return "isinstance({}, MutableMapping)"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.define_mutable_mapping_type()
         return file_import
 
@@ -305,6 +306,37 @@ class FloatType(NumberType):
         return "isinstance({}, float)"
 
 
+class DecimalType(NumberType):
+    @property
+    def serialization_type(self) -> str:
+        return "decimal"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return "~" + self.type_annotation()
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return "decimal.Decimal"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.type_annotation()
+
+    def get_declaration(self, value: decimal.Decimal) -> str:
+        return str(value)
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport(self.code_model)
+        file_import.add_import("decimal", ImportType.STDLIB)
+        return file_import
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(decimal.Decimal("0.0"))
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, decimal.Decimal)"
+
+
 class StringType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
@@ -355,10 +387,10 @@ class StringType(PrimitiveType):
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = (
+        self.encode = (
             "rfc3339"
-            if yaml_data.get("format", "date-time") == "date-time"
-            or yaml_data.get("format", "date-time") == "rfc3339"
+            if yaml_data.get("encode", "date-time") == "date-time"
+            or yaml_data.get("encode", "date-time") == "rfc3339"
             else "rfc7231"
         )
 
@@ -368,7 +400,7 @@ class DatetimeType(PrimitiveType):
             "rfc3339": "iso-8601",
             "rfc7231": "rfc-1123",
         }
-        return formats_to_attribute_type[self.format]
+        return formats_to_attribute_type[self.encode]
 
     def docstring_type(self, **kwargs: Any) -> str:
         return "~" + self.type_annotation()
@@ -386,7 +418,7 @@ class DatetimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -398,9 +430,8 @@ class DatetimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.datetime)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DatetimeType, DatetimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -430,7 +461,7 @@ class TimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -442,9 +473,8 @@ class TimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(TimeType, TimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -455,7 +485,7 @@ class TimeType(PrimitiveType):
 
 class UnixTimeType(PrimitiveType):
     @property
-    def format(self) -> str:
+    def encode(self) -> str:
         return "unix-timestamp"
 
     @property
@@ -478,7 +508,7 @@ class UnixTimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -490,9 +520,8 @@ class UnixTimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(UnixTimeType, UnixTimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -522,7 +551,7 @@ class DateType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -534,9 +563,8 @@ class DateType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.date)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DateType, DateType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -566,7 +594,7 @@ class DurationType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -578,9 +606,8 @@ class DurationType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.timedelta)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DurationType, DurationType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -592,11 +619,11 @@ class DurationType(PrimitiveType):
 class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = yaml_data.get("format", "base64")
+        self.encode = yaml_data.get("encode", "base64")
 
     @property
     def serialization_type(self) -> str:
-        if self.format == "base64url":
+        if self.encode == "base64url":
             return "base64"
         return "bytearray"
 
@@ -611,20 +638,20 @@ class ByteArraySchema(PrimitiveType):
         return "isinstance({}, bytes)"
 
 
-class AzureCoreType(PrimitiveType):
+class SdkCoreType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = yaml_data.get("name", "")
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return "~azure.core." + self.type_annotation(**kwargs)
+        return f"~{self.code_model.core_library}.{self.type_annotation(**kwargs)}"
 
     def type_annotation(self, **kwargs: Any) -> str:
         return self.name
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
-        file_import.add_submodule_import("azure.core", self.name, ImportType.AZURECORE)
+        file_import = super().imports(**kwargs)
+        file_import.add_submodule_import("", self.name, ImportType.SDKCORE)
         return file_import
 
     @property

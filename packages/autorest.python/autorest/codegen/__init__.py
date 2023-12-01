@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, cast
+from typing import Dict, Any, Union, Optional
 from pathlib import Path
 import yaml
 
@@ -13,77 +13,262 @@ from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
-from ._utils import DEFAULT_HEADER_TEXT
+from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
 
 
 def _default_pprint(package_name: str) -> str:
     return " ".join([i.capitalize() for i in package_name.split("-")])
 
 
-def _validate_code_model_options(options: Dict[str, Any]) -> None:
-    if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
-        raise ValueError(
-            "The value of --builders-visibility must be either 'public', 'hidden', "
-            "or 'embedded'"
-        )
-
-    if options["models_mode"] not in ["msrest", "dpg", "none"]:
-        raise ValueError(
-            "--models-mode can only be 'msrest', 'dpg' or 'none'. "
-            "Pass in 'msrest' if you want msrest models, or "
-            "'none' if you don't want any."
-        )
-
-    if not options["show_operations"] and options["builders_visibility"] == "embedded":
-        raise ValueError(
-            "Can not embed builders without operations. "
-            "Either set --show-operations to True, or change the value of --builders-visibility "
-            "to 'public' or 'hidden'."
-        )
-
-    if options["basic_setup_py"] and not options["package_version"]:
-        raise ValueError("--basic-setup-py must be used with --package-version")
-
-    if options["package_mode"] and not options["package_version"]:
-        raise ValueError("--package-mode must be used with --package-version")
-
-    if not options["show_operations"] and options["combine_operation_files"]:
-        raise ValueError(
-            "Can not combine operation files if you are not showing operations. "
-            "If you want operation files, pass in flag --show-operations"
-        )
-
-    if options["package_mode"]:
-        if (
-            options["package_mode"] not in ("mgmtplane", "dataplane")
-            and not Path(options["package_mode"]).exists()
-        ):
-            raise ValueError(
-                "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
-            )
-
-    if options["multiapi"] and options["version_tolerant"]:
-        raise ValueError(
-            "Can not currently generate version tolerant multiapi SDKs. "
-            "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
-        )
-
-    if options["client_side_validation"] and options["version_tolerant"]:
-        raise ValueError(
-            "Can not generate version tolerant with --client-side-validation. "
-        )
-
-    if not (options["azure_arm"] or options["version_tolerant"]):
-        _LOGGER.warning(
-            "You are generating with options that would not allow the SDK to be shipped as an official Azure SDK. "
-            "Please read https://aka.ms/azsdk/dpcodegen for more details."
-        )
-
-
 _LOGGER = logging.getLogger(__name__)
 
 
+class OptionsRetriever:
+    OPTIONS_TO_DEFAULT = {
+        "azure-arm": False,
+        "unbranded": False,
+        "no-async": False,
+        "low-level-client": False,
+        "version-tolerant": True,
+        "keep-version-file": False,
+        "no-namespace-folders": False,
+        "basic-setup-py": False,
+        "client-side-validation": False,
+        "multiapi": False,
+        "polymorphic-examples": 5,
+        "generate-sample": False,
+        "from-typespec": False,
+    }
+
+    def __init__(self, options: Dict[str, Any]) -> None:
+        self.options = options
+
+    def __getattr__(self, prop: str) -> Any:
+        key = prop.replace("_", "-")
+        return self.options.get(key, self.OPTIONS_TO_DEFAULT.get(key))
+
+    @property
+    def company_name(self) -> str:
+        return self.options.get("company-name", "" if self.unbranded else "Microsoft")
+
+    @property
+    def license_header(self) -> str:
+        license_header = self.options.get(
+            "header-text",
+            ""
+            if self.unbranded and not self.company_name
+            else DEFAULT_HEADER_TEXT.format(company_name=self.company_name),
+        )
+        if license_header:
+            license_header = license_header.replace("\n", "\n# ")
+            license_header = (
+                "# --------------------------------------------------------------------------\n# "
+                + license_header
+            )
+            license_header += "\n# --------------------------------------------------------------------------"
+        return license_header
+
+    @property
+    def show_operations(self) -> bool:
+        return self.options.get("show-operations", not self.low_level_client)
+
+    @property
+    def _models_mode_default(self) -> str:
+        models_mode_default = (
+            "none" if self.low_level_client or self.version_tolerant else "msrest"
+        )
+        if self.options.get("cadl_file") is not None:
+            models_mode_default = "dpg"
+        return models_mode_default
+
+    @property
+    def original_models_mode(self) -> str:
+        return self.options.get("models-mode", self._models_mode_default)
+
+    @property
+    def models_mode(self) -> Union[str, bool]:
+        # switch to falsy value for easier code writing
+        return (
+            False if self.original_models_mode == "none" else self.original_models_mode
+        )
+
+    @property
+    def tracing(self) -> bool:
+        return self.options.get(
+            "tracing",
+            self.show_operations and not self.unbranded,
+        )
+
+    @property
+    def show_send_request(self) -> bool:
+        return self.options.get(
+            "show-send-request",
+            self._low_level_or_version_tolerant,
+        )
+
+    @property
+    def _low_level_or_version_tolerant(self) -> bool:
+        return self.low_level_client or self.version_tolerant
+
+    @property
+    def only_path_and_body_params_positional(self) -> bool:
+        return self.options.get(
+            "only-path-and-body-params-positional",
+            self._low_level_or_version_tolerant,
+        )
+
+    @property
+    def combine_operation_files(self) -> bool:
+        return self.options.get(
+            "combine-operation-files",
+            self.version_tolerant,
+        )
+
+    @property
+    def package_pprint_name(self) -> str:
+        return self.options.get("package-pprint-name") or _default_pprint(
+            str(self.package_name)
+        )
+
+    @property
+    def default_optional_constants_to_none(self) -> bool:
+        return self.options.get(
+            "default-optional-constants-to-none",
+            self._low_level_or_version_tolerant,
+        )
+
+    @property
+    def builders_visibility(self) -> str:
+        builders_visibility = self.options.get("builders-visibility")
+        if builders_visibility is None:
+            return "public" if self.low_level_client else "embedded"
+        return builders_visibility.lower()
+
+    @property
+    def head_as_boolean(self) -> bool:
+        head_as_boolean = self.options.get("head-as-boolean", True)
+        # Force some options in ARM MODE
+        return True if self.azure_arm else head_as_boolean
+
+    @property
+    def package_mode(self) -> str:
+        return self.options.get("packaging-files-dir") or self.options.get(
+            "package-mode", ""
+        )
+
+    @property
+    def packaging_files_config(self) -> Optional[Dict[str, Any]]:
+        packaging_files_config = self.options.get("packaging-files-config")
+        if packaging_files_config is None:
+            return None
+        # packaging-files-config is either a string or a dict
+        # if it's a string, we can split on the comma to get the dict
+        # otherwise we just return
+        try:
+            return {
+                k.strip(): v.strip()
+                for k, v in [i.split(":") for i in packaging_files_config.split("|")]
+            }
+        except AttributeError:
+            return packaging_files_config
+
+
 class CodeGenerator(Plugin):
+    def __init__(self, *args, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.options_retriever = OptionsRetriever(self.options)
+
+    def _validate_code_model_options(self) -> None:
+        if self.options_retriever.builders_visibility not in [
+            "public",
+            "hidden",
+            "embedded",
+        ]:
+            raise ValueError(
+                "The value of --builders-visibility must be either 'public', 'hidden', "
+                "or 'embedded'"
+            )
+
+        if self.options_retriever.original_models_mode not in ["msrest", "dpg", "none"]:
+            raise ValueError(
+                "--models-mode can only be 'msrest', 'dpg' or 'none'. "
+                "Pass in 'msrest' if you want msrest models, or "
+                "'none' if you don't want any."
+            )
+
+        if (
+            not self.options_retriever.show_operations
+            and self.options_retriever.builders_visibility == "embedded"
+        ):
+            raise ValueError(
+                "Can not embed builders without operations. "
+                "Either set --show-operations to True, or change the value of --builders-visibility "
+                "to 'public' or 'hidden'."
+            )
+
+        if (
+            self.options_retriever.basic_setup_py
+            and not self.options_retriever.package_version
+        ):
+            raise ValueError("--basic-setup-py must be used with --package-version")
+
+        if (
+            self.options_retriever.package_mode
+            and not self.options_retriever.package_version
+        ):
+            raise ValueError("--package-mode must be used with --package-version")
+
+        if (
+            not self.options_retriever.show_operations
+            and self.options_retriever.combine_operation_files
+        ):
+            raise ValueError(
+                "Can not combine operation files if you are not showing operations. "
+                "If you want operation files, pass in flag --show-operations"
+            )
+
+        if self.options_retriever.package_mode:
+            if (
+                (
+                    self.options_retriever.package_mode not in TYPESPEC_PACKAGE_MODE
+                    and self.options_retriever.from_typespec
+                )
+                or (
+                    self.options_retriever.package_mode not in VALID_PACKAGE_MODE
+                    and not self.options_retriever.from_typespec
+                )
+            ) and not Path(self.options_retriever.package_mode).exists():
+                raise ValueError(
+                    f"--package-mode can only be {' or '.join(TYPESPEC_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
+                )
+
+        if self.options_retriever.multiapi and self.options_retriever.version_tolerant:
+            raise ValueError(
+                "Can not currently generate version tolerant multiapi SDKs. "
+                "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
+            )
+
+        if (
+            self.options_retriever.client_side_validation
+            and self.options_retriever.version_tolerant
+        ):
+            raise ValueError(
+                "Can not generate version tolerant with --client-side-validation. "
+            )
+
+        if not (
+            self.options_retriever.azure_arm or self.options_retriever.version_tolerant
+        ):
+            _LOGGER.warning(
+                "You are generating with options that would not allow the SDK to be shipped as an official Azure SDK. "
+                "Please read https://aka.ms/azsdk/dpcodegen for more details."
+            )
+
+        if self.options_retriever.unbranded and self.options_retriever.tracing:
+            raise ValueError(
+                "Can not set --unbranded=true and --tracing=true at the same time."
+            )
+
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
         for client in yaml_data["clients"]:
@@ -110,85 +295,39 @@ class CodeGenerator(Plugin):
                     break
 
     def _build_code_model_options(self) -> Dict[str, Any]:
-        """Build en options dict from the user input while running autorest."""
-        azure_arm = self.options.get("azure-arm", False)
-        license_header = self.options.get("header-text", DEFAULT_HEADER_TEXT)
-        if license_header:
-            license_header = license_header.replace("\n", "\n# ")
-            license_header = (
-                "# --------------------------------------------------------------------------\n# "
-                + license_header
-            )
-            license_header += "\n# --------------------------------------------------------------------------"
-
-        low_level_client = cast(bool, self.options.get("low-level-client", False))
-        version_tolerant = cast(bool, self.options.get("version-tolerant", True))
-        show_operations = self.options.get("show-operations", not low_level_client)
-        models_mode_default = (
-            "none" if low_level_client or version_tolerant else "msrest"
-        )
-        if self.options.get("cadl_file") is not None:
-            models_mode_default = "dpg"
-
-        package_name = self.options.get("package-name")
-        options: Dict[str, Any] = {
-            "azure_arm": azure_arm,
-            "head_as_boolean": self.options.get("head-as-boolean", True),
-            "license_header": license_header,
-            "keep_version_file": self.options.get("keep-version-file", False),
-            "no_async": self.options.get("no-async", False),
-            "no_namespace_folders": self.options.get("no-namespace-folders", False),
-            "basic_setup_py": self.options.get("basic-setup-py", False),
-            "package_name": package_name,
-            "package_version": self.options.get("package-version"),
-            "client_side_validation": self.options.get("client-side-validation", False),
-            "tracing": self.options.get("tracing", show_operations),
-            "multiapi": self.options.get("multiapi", False),
-            "polymorphic_examples": self.options.get("polymorphic-examples", 5),
-            "models_mode": self.options.get("models-mode", models_mode_default).lower(),
-            "builders_visibility": self.options.get("builders-visibility"),
-            "show_operations": show_operations,
-            "show_send_request": self.options.get(
-                "show-send-request", low_level_client or version_tolerant
-            ),
-            "only_path_and_body_params_positional": self.options.get(
-                "only-path-and-body-params-positional",
-                low_level_client or version_tolerant,
-            ),
-            "version_tolerant": version_tolerant,
-            "low_level_client": low_level_client,
-            "combine_operation_files": self.options.get(
-                "combine-operation-files", version_tolerant
-            ),
-            "package_mode": self.options.get("package-mode"),
-            "package_pprint_name": self.options.get("package-pprint-name")
-            or _default_pprint(str(package_name)),
-            "package_configuration": self.options.get("package-configuration"),
-            "default_optional_constants_to_none": self.options.get(
-                "default-optional-constants-to-none",
-                low_level_client or version_tolerant,
-            ),
-            "generate_sample": self.options.get("generate-sample", False),
-            "default_api_version": self.options.get("default-api-version"),
-        }
-
-        if options["builders_visibility"] is None:
-            options["builders_visibility"] = (
-                "public" if low_level_client else "embedded"
-            )
-        else:
-            options["builders_visibility"] = options["builders_visibility"].lower()
-
-        _validate_code_model_options(options)
-
-        if options["models_mode"] == "none":
-            # switch to falsy value for easier code writing
-            options["models_mode"] = False
-
-        # Force some options in ARM MODE:
-        if azure_arm:
-            options["head_as_boolean"] = True
-        return options
+        flags = [
+            "azure_arm",
+            "head_as_boolean",
+            "license_header",
+            "keep_version_file",
+            "no_async",
+            "no_namespace_folders",
+            "basic_setup_py",
+            "package_name",
+            "package_version",
+            "client_side_validation",
+            "tracing",
+            "multiapi",
+            "polymorphic_examples",
+            "models_mode",
+            "builders_visibility",
+            "show_operations",
+            "show_send_request",
+            "only_path_and_body_params_positional",
+            "version_tolerant",
+            "low_level_client",
+            "combine_operation_files",
+            "package_mode",
+            "package_pprint_name",
+            "packaging_files_config",
+            "default_optional_constants_to_none",
+            "generate_sample",
+            "default_api_version",
+            "from_typespec",
+            "unbranded",
+            "company_name",
+        ]
+        return {f: getattr(self.options_retriever, f) for f in flags}
 
     def get_yaml(self) -> Dict[str, Any]:
         # cadl file doesn't have to be relative to output folder
@@ -200,14 +339,18 @@ class CodeGenerator(Plugin):
 
     def process(self) -> bool:
         # List the input file, should be only one
-
+        self._validate_code_model_options()
         options = self._build_code_model_options()
         yaml_data = self.get_yaml()
 
-        if options["azure_arm"]:
+        if self.options_retriever.azure_arm:
             self.remove_cloud_errors(yaml_data)
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
+        if self.options_retriever.unbranded and any(
+            client.lro_operations for client in code_model.clients
+        ):
+            raise ValueError("Do not support LRO when --unbranded=true")
         serializer = self.get_serializer(code_model)
         serializer.serialize()
 
@@ -275,7 +418,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             ),
             "package-mode": self._autorestapi.get_value("package-mode"),
             "package-pprint-name": self._autorestapi.get_value("package-pprint-name"),
-            "package-configuration": self._autorestapi.get_value(
+            "packaging-files-config": self._autorestapi.get_value(
                 "package-configuration"
             ),
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
@@ -316,7 +459,9 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
 
 if __name__ == "__main__":
     # CADL pipeline will call this
-    args, unknown_args = parse_args()
+    parsed_args, unknown_args = parse_args()
     CodeGenerator(
-        output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args
+        output_folder=parsed_args.output_folder,
+        cadl_file=parsed_args.cadl_file,
+        **unknown_args,
     ).process()
