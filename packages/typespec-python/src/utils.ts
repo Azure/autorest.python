@@ -1,4 +1,4 @@
-import { SdkParameter } from "@azure-tools/typespec-client-generator-core";
+import { SdkHeaderParameter, SdkHttpParameter, SdkParameter, SdkQueryParameter, SdkServiceMethod, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
 
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
@@ -16,7 +16,28 @@ export function removeUnderscoresFromNamespace(name?: string): string {
     return (name || "").replace(/_/g, "");
 }
 
-export function getImplementation(parameter: SdkParameter): "client" | "method" {
+export function getImplementation(parameter: SdkParameter | SdkHttpParameter): "client" | "method" {
     if (parameter.onClient) return "client";
     return "method";
+}
+
+export function isAbstract<TServiceOperation extends SdkServiceOperation>(method: SdkServiceMethod<TServiceOperation>): boolean {
+    return method.operation.bodyParams[0]?.contentTypes.length > 1;
+}
+
+export function getDelimeterAndExplode(parameter: SdkQueryParameter | SdkHeaderParameter): [string | undefined, boolean] {
+    let delimiter: string | undefined = undefined;
+    let explode = false;
+    if (parameter.collectionFormat === "csv") {
+        delimiter = "comma"
+    } else if (parameter.collectionFormat === "ssv") {
+        delimiter = "space"
+    } else if (parameter.collectionFormat === "tsv") {
+        delimiter = "tab";
+    } else if (parameter.collectionFormat === "pipes") {
+        delimiter = "pipe"
+    } else {
+        explode = true;
+    }
+    return [delimiter, explode]
 }

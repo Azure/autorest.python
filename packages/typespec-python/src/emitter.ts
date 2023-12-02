@@ -5,7 +5,6 @@ import {
     ignoreDiagnostics,
     isErrorModel,
     ModelProperty,
-    Namespace,
     Operation,
     EmitContext,
     listServices,
@@ -13,24 +12,16 @@ import {
     getNamespaceFullName,
 } from "@typespec/compiler";
 import {
-    getAuthentication,
     getHttpOperation,
-    getServers,
     HttpOperationParameter,
     HttpOperationResponse,
-    HttpServer,
     HttpOperation,
     HttpStatusCodeRange,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
-    SdkClient,
-    listClients,
-    listOperationGroups,
-    listOperationsInOperationGroup,
     isApiVersion,
     getDefaultApiVersion,
-    getClientNamespaceString,
     createSdkContext,
     SdkContext,
     getLibraryName,

@@ -1,16 +1,24 @@
 import {
+    SdkBodyParameter,
     SdkClientType,
     SdkContext,
     SdkCredentialParameter,
     SdkEndpointParameter,
+    SdkHeaderParameter,
+    SdkHttpOperation,
+    SdkHttpParameter,
+    SdkHttpResponse,
     SdkMethod,
     SdkMethodParameter,
     SdkParameter,
+    SdkPathParameter,
+    SdkQueryParameter,
     SdkServiceMethod,
     SdkServiceOperation,
+    SdkServiceParameter,
 } from "@azure-tools/typespec-client-generator-core";
 import { getType } from "./types.js";
-import { camelToSnakeCase, getImplementation } from "./utils.js";
+import { camelToSnakeCase, getDelimeterAndExplode, getImplementation, isAbstract } from "./utils.js";
 import { emit } from "process";
 
 type ParamBase = {
@@ -20,9 +28,10 @@ type ParamBase = {
     clientName: string;
     inOverload: boolean;
     isApiVersion: boolean;
+    type: Record<string, any>;
 };
 
-function emitParamBase(parameter: SdkParameter): ParamBase {
+function emitParamBase<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): ParamBase {
     return {
         optional: parameter.optional,
         description: parameter.description || "",
@@ -30,15 +39,124 @@ function emitParamBase(parameter: SdkParameter): ParamBase {
         clientName: camelToSnakeCase(parameter.nameInClient),
         inOverload: false,
         isApiVersion: parameter.isApiVersionParam,
+        type: getType(context, parameter.type),
     };
 }
 
+function emitHttpPathParameter<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, parameter: SdkPathParameter){
+    const base = emitParamBase(context, parameter);
+    return {
+        ...base,
+        wireName: parameter.serializedName,
+        location: parameter.kind,
+        implementation: getImplementation(parameter),
+        clientDefaultValue: parameter.clientDefaultValue,
+        skipUrlEncoding: parameter.urlEncode === false,
+    }
+}
+function emitHttpHeaderParameter<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, parameter: SdkHeaderParameter): Record<string, any> {
+    const base = emitParamBase(context, parameter);
+    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    return {
+        ...base,
+        wireName: parameter.serializedName,
+        location: parameter.kind,
+        implementation: getImplementation(parameter),
+        delimiter,
+        explode,
+        clientDefaultValue: parameter.clientDefaultValue,
+    }
+
+} 
+
+function emitHttpQueryParameter<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, parameter: SdkQueryParameter): Record<string, any> {
+    const base = emitParamBase(context, parameter);
+    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    return {
+        ...base,
+        wireName: parameter.serializedName,
+        location: parameter.kind,
+        implementation: getImplementation(parameter),
+        delimiter,
+        explode,
+        clientDefaultValue: parameter.clientDefaultValue,
+    }
+}
+
+function emitHttpParameters<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, operation: SdkHttpOperation): Record<string, any>[] {
+    const parameters: Record<string, any>[] = [];
+    for (const queryParam of operation.queryParams) {
+        parameters.push(emitHttpQueryParameter(context, queryParam))
+    }
+    for (const headerParam of operation.headerParams) {
+        parameters.push(emitHttpHeaderParameter(context, headerParam))
+    }
+    for (const pathParam of operation.pathParams) {
+        parameters.push(emitHttpPathParameter(context, pathParam))
+    }
+    return parameters;
+}
+
+function emitHttpBodyParameter<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, bodyParams: SdkBodyParameter[]): Record<string, any> | undefined {
+    if (bodyParams.length === 0) return undefined;
+    const bodyParam = bodyParams[0];
+    return {
+        ...emitParamBase(context, bodyParam),
+        contentTypes: bodyParam.contentTypes,
+        location: bodyParam.kind,
+        wireName: bodyParam.nameInClient,
+        type: getType(context, bodyParam.type),
+        implementation: getImplementation(bodyParam),
+        clientDefaultValue: bodyParam.clientDefaultValue,
+        defaultContentType: bodyParam.defaultContentType,
+    }
+
+}
+
+function emitHttpResponse<TServiceOperation extends SdkServiceOperation>(context: SdkContext<TServiceOperation>, statusCodes: string, response?: SdkHttpResponse): Record<string, any> | undefined {
+    if (!response) return undefined;
+    return {
+        headers: response.headers.map(x => emitResponseHeader(context, x)),
+        statusCodes: statusCodes,
+        addedOn: "",
+        discriminator: "basic",
+        type: response.type ? getType(context, response.type) : undefined,
+        contentTypes: "",
+        
+    }
+}
+
+
 function emitBasicOperation<TServiceOperation extends SdkServiceOperation>(
     context: SdkContext<TServiceOperation>,
-    method: SdkMethod<TServiceOperation>,
+    method: SdkServiceMethod<TServiceOperation>,
     operationGroupName: string,
 ): Record<string, any>[] {
-    
+    const responses: Record<string, any>[] = [];
+    for (const [statusCodes, response] of Object.entries(method.operation.responses)) {
+        responses.push(emitHttpResponse(context, statusCodes, response));
+    }
+    return [{
+        name: camelToSnakeCase(method.name),
+        description: method.details ?? method.description,
+        summary: method.details ? method.description : undefined,
+        url: method.operation.path,
+        method: method.operation.verb.toUpperCase(),
+        parameters: emitHttpParameters(context, method.operation),
+        bodyParameter: emitHttpBodyParameter(context, method.operation.bodyParams),
+        responses,
+        exception: emitHttpResponse(context, "*", method.operation.exception),
+        groupName: operationGroupName,
+        addedOn: "",
+        discriminator: "basic",
+        isOverload: false,
+        overloads: [],
+        apiVersions: [],
+        wantTracing: true,
+        exposeStreamKeyword: true,
+        abstract: isAbstract(method),
+        internal: method.access === "internal",
+    }]
 }
 
 function emitMethodParameter(
@@ -46,7 +164,7 @@ function emitMethodParameter(
     parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
 ): Record<string, any> {
     const base = {
-        ...emitParamBase(parameter),
+        ...emitParamBase(context, parameter),
         implementation: getImplementation(parameter),
         type: getType(context, parameter.type),
         clientDefaultValue: parameter.clientDefaultValue,
