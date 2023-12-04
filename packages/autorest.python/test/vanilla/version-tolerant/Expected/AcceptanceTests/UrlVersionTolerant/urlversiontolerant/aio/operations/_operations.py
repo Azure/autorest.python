@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -142,16 +142,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         bool_path: Literal[True] = kwargs.pop("bool_path", True)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_boolean_true_request(
+        _request = build_paths_get_boolean_true_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -163,7 +163,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -190,16 +190,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         bool_path: Literal[False] = kwargs.pop("bool_path", False)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_boolean_false_request(
+        _request = build_paths_get_boolean_false_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -211,7 +211,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -238,16 +238,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         int_path: Literal[1000000] = kwargs.pop("int_path", 1000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_int_one_million_request(
+        _request = build_paths_get_int_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -259,7 +259,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
@@ -288,16 +288,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_int_negative_one_million_request(
+        _request = build_paths_get_int_negative_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -309,7 +309,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -336,16 +336,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         long_path: Literal[10000000000] = kwargs.pop("long_path", 10000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_ten_billion_request(
+        _request = build_paths_get_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -357,7 +357,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -384,16 +384,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         long_path: Literal[-10000000000] = kwargs.pop("long_path", -10000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_negative_ten_billion_request(
+        _request = build_paths_get_negative_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -405,7 +405,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -432,16 +432,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         float_path: float = kwargs.pop("float_path", 103400000000000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_float_scientific_positive_request(
+        _request = build_paths_float_scientific_positive_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -453,7 +453,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -480,16 +480,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         float_path: float = kwargs.pop("float_path", -1.034e-20)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_float_scientific_negative_request(
+        _request = build_paths_float_scientific_negative_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -501,7 +501,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -528,16 +528,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         double_path: float = kwargs.pop("double_path", 9999999.999)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_double_decimal_positive_request(
+        _request = build_paths_double_decimal_positive_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -549,7 +549,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -576,16 +576,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         double_path: float = kwargs.pop("double_path", -9999999.999)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_double_decimal_negative_request(
+        _request = build_paths_double_decimal_negative_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -597,7 +597,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -624,16 +624,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_string_unicode_request(
+        _request = build_paths_string_unicode_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -645,7 +645,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -673,16 +673,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_string_url_encoded_request(
+        _request = build_paths_string_url_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -694,7 +694,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_url_non_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -724,16 +724,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["begin!*'();:@&=+$,end"] = kwargs.pop("string_path", "begin!*'();:@&=+$,end")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_string_url_non_encoded_request(
+        _request = build_paths_string_url_non_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -745,7 +745,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -772,16 +772,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal[""] = kwargs.pop("string_path", "")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_string_empty_request(
+        _request = build_paths_string_empty_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -793,7 +793,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_null(  # pylint: disable=inconsistent-return-statements
@@ -820,16 +820,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_string_null_request(
+        _request = build_paths_string_null_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -841,7 +841,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def enum_valid(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -867,16 +867,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_enum_valid_request(
+        _request = build_paths_enum_valid_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -888,7 +888,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def enum_null(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -914,16 +914,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_enum_null_request(
+        _request = build_paths_enum_null_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -935,7 +935,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
@@ -962,16 +962,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_byte_multi_byte_request(
+        _request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -983,7 +983,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1010,16 +1010,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         byte_path: bytes = kwargs.pop("byte_path", bytes("", encoding="utf-8"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_byte_empty_request(
+        _request = build_paths_byte_empty_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1031,7 +1031,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
@@ -1058,16 +1058,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_byte_null_request(
+        _request = build_paths_byte_null_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1079,7 +1079,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1106,16 +1106,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         date_path: datetime.date = kwargs.pop("date_path", "2012-01-01")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_date_valid_request(
+        _request = build_paths_date_valid_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1127,7 +1127,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_null(  # pylint: disable=inconsistent-return-statements
@@ -1155,16 +1155,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_date_null_request(
+        _request = build_paths_date_null_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1176,7 +1176,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1204,16 +1204,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         date_time_path: datetime.datetime = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_date_time_valid_request(
+        _request = build_paths_date_time_valid_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1225,7 +1225,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_time_null(  # pylint: disable=inconsistent-return-statements
@@ -1252,16 +1252,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_date_time_null_request(
+        _request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1273,7 +1273,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def base64_url(  # pylint: disable=inconsistent-return-statements
@@ -1300,16 +1300,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_base64_url_request(
+        _request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1321,7 +1321,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
@@ -1350,16 +1350,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_array_csv_in_path_request(
+        _request = build_paths_array_csv_in_path_request(
             array_path=array_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1371,7 +1371,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def unix_time_url(  # pylint: disable=inconsistent-return-statements
@@ -1398,16 +1398,16 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_unix_time_url_request(
+        _request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1419,7 +1419,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class QueriesOperations:  # pylint: disable=too-many-public-methods
@@ -1464,16 +1464,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         bool_query: Literal[True] = kwargs.pop("bool_query", _params.pop("boolQuery", True))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_boolean_true_request(
+        _request = build_queries_get_boolean_true_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1485,7 +1485,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1512,16 +1512,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         bool_query: Literal[False] = kwargs.pop("bool_query", _params.pop("boolQuery", False))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_boolean_false_request(
+        _request = build_queries_get_boolean_false_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1533,7 +1533,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_boolean_null(  # pylint: disable=inconsistent-return-statements
@@ -1560,16 +1560,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_boolean_null_request(
+        _request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1581,7 +1581,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1608,16 +1608,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         int_query: Literal[1000000] = kwargs.pop("int_query", _params.pop("intQuery", 1000000))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_int_one_million_request(
+        _request = build_queries_get_int_one_million_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1629,7 +1629,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
@@ -1658,16 +1658,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         int_query: Literal[-1000000] = kwargs.pop("int_query", _params.pop("intQuery", -1000000))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_int_negative_one_million_request(
+        _request = build_queries_get_int_negative_one_million_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1679,7 +1679,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_int_null(  # pylint: disable=inconsistent-return-statements
@@ -1706,16 +1706,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_int_null_request(
+        _request = build_queries_get_int_null_request(
             int_query=int_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1727,7 +1727,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1754,16 +1754,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         long_query: Literal[10000000000] = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_ten_billion_request(
+        _request = build_queries_get_ten_billion_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1775,7 +1775,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1802,16 +1802,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         long_query: Literal[-10000000000] = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_negative_ten_billion_request(
+        _request = build_queries_get_negative_ten_billion_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1823,7 +1823,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_long_null(  # pylint: disable=inconsistent-return-statements
@@ -1850,16 +1850,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_get_long_null_request(
+        _request = build_queries_get_long_null_request(
             long_query=long_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1871,7 +1871,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1898,16 +1898,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_float_scientific_positive_request(
+        _request = build_queries_float_scientific_positive_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1919,7 +1919,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1946,16 +1946,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         float_query: float = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_float_scientific_negative_request(
+        _request = build_queries_float_scientific_negative_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1967,7 +1967,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def float_null(  # pylint: disable=inconsistent-return-statements
@@ -1994,16 +1994,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_float_null_request(
+        _request = build_queries_float_null_request(
             float_query=float_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2015,7 +2015,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2042,16 +2042,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_double_decimal_positive_request(
+        _request = build_queries_double_decimal_positive_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2063,7 +2063,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2090,16 +2090,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         double_query: float = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_double_decimal_negative_request(
+        _request = build_queries_double_decimal_negative_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2111,7 +2111,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def double_null(  # pylint: disable=inconsistent-return-statements
@@ -2138,16 +2138,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_double_null_request(
+        _request = build_queries_double_null_request(
             double_query=double_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2159,7 +2159,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2186,16 +2186,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_string_unicode_request(
+        _request = build_queries_string_unicode_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2207,7 +2207,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2237,16 +2237,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_string_url_encoded_request(
+        _request = build_queries_string_url_encoded_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2258,7 +2258,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2285,16 +2285,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         string_query: Literal[""] = kwargs.pop("string_query", _params.pop("stringQuery", ""))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_string_empty_request(
+        _request = build_queries_string_empty_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2306,7 +2306,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def string_null(  # pylint: disable=inconsistent-return-statements
@@ -2333,16 +2333,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_string_null_request(
+        _request = build_queries_string_null_request(
             string_query=string_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2354,7 +2354,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -2382,16 +2382,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_enum_valid_request(
+        _request = build_queries_enum_valid_request(
             enum_query=enum_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2403,7 +2403,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def enum_null(  # pylint: disable=inconsistent-return-statements
@@ -2431,16 +2431,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_enum_null_request(
+        _request = build_queries_enum_null_request(
             enum_query=enum_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2452,7 +2452,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
@@ -2480,16 +2480,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_byte_multi_byte_request(
+        _request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2501,7 +2501,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2528,16 +2528,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         byte_query: bytes = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_byte_empty_request(
+        _request = build_queries_byte_empty_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2549,7 +2549,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
@@ -2576,16 +2576,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_byte_null_request(
+        _request = build_queries_byte_null_request(
             byte_query=byte_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2597,7 +2597,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2624,16 +2624,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         date_query: datetime.date = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_date_valid_request(
+        _request = build_queries_date_valid_request(
             date_query=date_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2645,7 +2645,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_null(  # pylint: disable=inconsistent-return-statements
@@ -2672,16 +2672,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_date_null_request(
+        _request = build_queries_date_null_request(
             date_query=date_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2693,7 +2693,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2723,16 +2723,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_date_time_valid_request(
+        _request = build_queries_date_time_valid_request(
             date_time_query=date_time_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2744,7 +2744,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def date_time_null(  # pylint: disable=inconsistent-return-statements
@@ -2771,16 +2771,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_date_time_null_request(
+        _request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2792,7 +2792,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
@@ -2821,16 +2821,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_csv_valid_request(
+        _request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2842,7 +2842,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
@@ -2869,16 +2869,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_csv_null_request(
+        _request = build_queries_array_string_csv_null_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2890,7 +2890,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
@@ -2918,16 +2918,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_csv_empty_request(
+        _request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2939,7 +2939,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
@@ -2968,16 +2968,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_no_collection_format_empty_request(
+        _request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2989,7 +2989,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
@@ -3018,16 +3018,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_ssv_valid_request(
+        _request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3039,7 +3039,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
@@ -3068,16 +3068,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_tsv_valid_request(
+        _request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3089,7 +3089,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
@@ -3118,16 +3118,16 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_queries_array_string_pipes_valid_request(
+        _request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3139,7 +3139,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class PathItemsOperations:
@@ -3200,7 +3200,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_path_items_get_all_with_values_request(
+        _request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -3210,11 +3210,11 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3226,7 +3226,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_global_query_null(  # pylint: disable=inconsistent-return-statements
@@ -3269,7 +3269,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_path_items_get_global_query_null_request(
+        _request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -3279,11 +3279,11 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3295,7 +3295,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
@@ -3338,7 +3338,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_path_items_get_global_and_local_query_null_request(
+        _request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -3348,11 +3348,11 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3364,7 +3364,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
@@ -3406,7 +3406,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_path_items_get_local_path_item_query_null_request(
+        _request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -3416,11 +3416,11 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3432,4 +3432,4 @@ class PathItemsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

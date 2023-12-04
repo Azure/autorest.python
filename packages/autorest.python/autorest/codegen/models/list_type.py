@@ -26,8 +26,8 @@ class ListType(BaseType):
         self.unique_items: bool = yaml_data.get("uniqueItems", False)
 
     @property
-    def format(self) -> Optional[str]:
-        return self.element_type.format if hasattr(self.element_type, "format") else None  # type: ignore
+    def encode(self) -> Optional[str]:
+        return self.element_type.encode if hasattr(self.element_type, "encode") else None  # type: ignore
 
     @property
     def serialization_type(self) -> str:
@@ -146,7 +146,7 @@ class ListType(BaseType):
         )
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if not (
             self.code_model.options["version_tolerant"]
             and self.element_type.is_xml

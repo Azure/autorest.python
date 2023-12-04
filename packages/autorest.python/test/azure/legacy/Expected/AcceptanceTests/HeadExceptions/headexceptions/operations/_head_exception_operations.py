@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -92,17 +92,16 @@ class HeadExceptionOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head200_request(
-            template_url=self.head200.metadata["url"],
+        _request = build_head200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -112,10 +111,8 @@ class HeadExceptionOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
-
-    head200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace
     def head204(self, **kwargs: Any) -> bool:
@@ -139,17 +136,16 @@ class HeadExceptionOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head204_request(
-            template_url=self.head204.metadata["url"],
+        _request = build_head204_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -159,10 +155,8 @@ class HeadExceptionOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
-
-    head204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace
     def head404(self, **kwargs: Any) -> bool:
@@ -186,17 +180,16 @@ class HeadExceptionOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head404_request(
-            template_url=self.head404.metadata["url"],
+        _request = build_head404_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -206,7 +199,5 @@ class HeadExceptionOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
-
-    head404.metadata = {"url": "/http/success/404"}

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -608,15 +608,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.RootWithRefAndNoMeta] = kwargs.pop("cls", None)
 
-        request = build_xml_get_complex_type_ref_no_meta_request(
+        _request = build_xml_get_complex_type_ref_no_meta_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -630,9 +630,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("RootWithRefAndNoMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
@@ -662,17 +662,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
 
-        request = build_xml_put_complex_type_ref_no_meta_request(
+        _request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -684,7 +684,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
@@ -707,15 +707,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.RootWithRefAndMeta] = kwargs.pop("cls", None)
 
-        request = build_xml_get_complex_type_ref_with_meta_request(
+        _request = build_xml_get_complex_type_ref_with_meta_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -729,9 +729,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("RootWithRefAndMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
@@ -761,17 +761,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
 
-        request = build_xml_put_complex_type_ref_with_meta_request(
+        _request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -783,7 +783,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_simple(self, **kwargs: Any) -> _models.Slideshow:
@@ -806,15 +806,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
-        request = build_xml_get_simple_request(
+        _request = build_xml_get_simple_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -829,9 +829,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_simple(  # pylint: disable=inconsistent-return-statements
@@ -861,17 +861,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = build_xml_put_simple_request(
+        _request = build_xml_put_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -884,7 +884,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -907,15 +907,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
-        request = build_xml_get_wrapped_lists_request(
+        _request = build_xml_get_wrapped_lists_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -929,9 +929,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -961,17 +961,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
 
-        request = build_xml_put_wrapped_lists_request(
+        _request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -984,7 +984,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1007,15 +1007,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_xml_get_headers_request(
+        _request = build_xml_get_headers_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1030,7 +1030,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         response_headers["Custom-Header"] = self._deserialize("str", response.headers.get("Custom-Header"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
@@ -1053,15 +1053,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
-        request = build_xml_get_empty_list_request(
+        _request = build_xml_get_empty_list_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1075,9 +1075,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty_list(  # pylint: disable=inconsistent-return-statements
@@ -1107,17 +1107,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
 
-        request = build_xml_put_empty_list_request(
+        _request = build_xml_put_empty_list_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1129,7 +1129,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -1152,15 +1152,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
-        request = build_xml_get_empty_wrapped_lists_request(
+        _request = build_xml_get_empty_wrapped_lists_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1174,9 +1174,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -1206,17 +1206,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
 
-        request = build_xml_put_empty_wrapped_lists_request(
+        _request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1228,7 +1228,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1251,15 +1251,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
-        request = build_xml_get_root_list_request(
+        _request = build_xml_get_root_list_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1273,9 +1273,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1306,17 +1306,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = build_xml_put_root_list_request(
+        _request = build_xml_put_root_list_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1328,7 +1328,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1351,15 +1351,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
-        request = build_xml_get_root_list_single_item_request(
+        _request = build_xml_get_root_list_single_item_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1373,9 +1373,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
@@ -1406,17 +1406,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = build_xml_put_root_list_single_item_request(
+        _request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1428,7 +1428,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1451,15 +1451,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
-        request = build_xml_get_empty_root_list_request(
+        _request = build_xml_get_empty_root_list_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1473,9 +1473,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1506,17 +1506,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
         _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
-        request = build_xml_put_empty_root_list_request(
+        _request = build_xml_put_empty_root_list_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1528,7 +1528,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
@@ -1551,15 +1551,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.Banana] = kwargs.pop("cls", None)
 
-        request = build_xml_get_empty_child_element_request(
+        _request = build_xml_get_empty_child_element_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1573,9 +1573,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Banana", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
@@ -1605,17 +1605,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(banana, "Banana", is_xml=True)
 
-        request = build_xml_put_empty_child_element_request(
+        _request = build_xml_put_empty_child_element_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1627,7 +1627,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
@@ -1654,16 +1654,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         comp: Literal["list"] = kwargs.pop("comp", _params.pop("comp", "list"))
         cls: ClsType[_models.ListContainersResponse] = kwargs.pop("cls", None)
 
-        request = build_xml_list_containers_request(
+        _request = build_xml_list_containers_request(
             comp=comp,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1677,9 +1677,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ListContainersResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
@@ -1710,17 +1710,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         restype: Literal["service"] = kwargs.pop("restype", _params.pop("restype", "service"))
         cls: ClsType[_models.StorageServiceProperties] = kwargs.pop("cls", None)
 
-        request = build_xml_get_service_properties_request(
+        _request = build_xml_get_service_properties_request(
             comp=comp,
             restype=restype,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1734,9 +1734,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("StorageServiceProperties", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_service_properties(  # pylint: disable=inconsistent-return-statements
@@ -1774,7 +1774,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
 
-        request = build_xml_put_service_properties_request(
+        _request = build_xml_put_service_properties_request(
             comp=comp,
             restype=restype,
             content_type=content_type,
@@ -1782,11 +1782,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1798,7 +1798,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
@@ -1829,17 +1829,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
         cls: ClsType[List[_models.SignedIdentifier]] = kwargs.pop("cls", None)
 
-        request = build_xml_get_acls_request(
+        _request = build_xml_get_acls_request(
             comp=comp,
             restype=restype,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1853,9 +1853,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[SignedIdentifier]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
@@ -1896,7 +1896,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
         )
 
-        request = build_xml_put_acls_request(
+        _request = build_xml_put_acls_request(
             comp=comp,
             restype=restype,
             content_type=content_type,
@@ -1904,11 +1904,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1920,7 +1920,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
@@ -1951,17 +1951,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
         cls: ClsType[_models.ListBlobsResponse] = kwargs.pop("cls", None)
 
-        request = build_xml_list_blobs_request(
+        _request = build_xml_list_blobs_request(
             comp=comp,
             restype=restype,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1975,9 +1975,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ListBlobsResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def json_input(  # pylint: disable=inconsistent-return-statements
@@ -1998,13 +1998,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, properties: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2015,13 +2015,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
+        self, properties: Union[_models.JSONInput, IO[bytes]], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties: Is either a JSONInput type or a IO type. Required.
-        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
+        :param properties: Is either a JSONInput type or a IO[bytes] type. Required.
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2051,18 +2051,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(properties, "JSONInput")
 
-        request = build_xml_json_input_request(
+        _request = build_xml_json_input_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2074,7 +2074,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def json_output(self, **kwargs: Any) -> _models.JSONOutput:
@@ -2097,15 +2097,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.JSONOutput] = kwargs.pop("cls", None)
 
-        request = build_xml_json_output_request(
+        _request = build_xml_json_output_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2119,9 +2119,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("JSONOutput", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
@@ -2145,15 +2145,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.ObjectWithXMsTextProperty] = kwargs.pop("cls", None)
 
-        request = build_xml_get_xms_text_request(
+        _request = build_xml_get_xms_text_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2167,9 +2167,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ObjectWithXMsTextProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
@@ -2192,15 +2192,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.ModelWithByteProperty] = kwargs.pop("cls", None)
 
-        request = build_xml_get_bytes_request(
+        _request = build_xml_get_bytes_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2215,9 +2215,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ModelWithByteProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_binary(  # pylint: disable=inconsistent-return-statements
@@ -2247,17 +2247,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(slideshow, "ModelWithByteProperty", is_xml=True)
 
-        request = build_xml_put_binary_request(
+        _request = build_xml_put_binary_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2270,7 +2270,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
@@ -2293,15 +2293,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.ModelWithUrlProperty] = kwargs.pop("cls", None)
 
-        request = build_xml_get_uri_request(
+        _request = build_xml_get_uri_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2316,9 +2316,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ModelWithUrlProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_uri(  # pylint: disable=inconsistent-return-statements
@@ -2348,17 +2348,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(model, "ModelWithUrlProperty", is_xml=True)
 
-        request = build_xml_put_uri_request(
+        _request = build_xml_put_uri_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2371,4 +2371,4 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

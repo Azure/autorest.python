@@ -430,6 +430,7 @@ def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwarg
         c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
     if not swagger_name:
         regenerate_custom_poller_pager_version_tolerant(c, debug)
+        regenerate_lro_paging_version_tolerant(c, debug)
 
 
 @task
@@ -631,6 +632,13 @@ def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
     )
     _run_autorest([cmd], debug=debug)
 
+@task
+def regenerate_lro_paging_version_tolerant(c, debug=False):
+    cwd = os.getcwd()
+    cmd = (
+        f'autorest {M4_VERSION} test/azure/version-tolerant/specification/lropaging/README.md --use=. --python-sdks-folder={cwd}/test/'
+    )
+    _run_autorest([cmd], debug=debug)
 
 @task
 def regenerate_samples(c, debug=False):

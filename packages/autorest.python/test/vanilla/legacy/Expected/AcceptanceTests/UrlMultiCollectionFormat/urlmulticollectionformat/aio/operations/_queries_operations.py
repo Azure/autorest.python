@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -78,18 +78,17 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_array_string_multi_null_request(
+        _request = build_array_string_multi_null_request(
             array_query=array_query,
-            template_url=self.array_string_multi_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -100,9 +99,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
@@ -131,18 +128,17 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_array_string_multi_empty_request(
+        _request = build_array_string_multi_empty_request(
             array_query=array_query,
-            template_url=self.array_string_multi_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -153,9 +149,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
@@ -185,18 +179,17 @@ class QueriesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_array_string_multi_valid_request(
+        _request = build_array_string_multi_valid_request(
             array_query=array_query,
-            template_url=self.array_string_multi_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -207,6 +200,4 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}
+            return cls(pipeline_response, None, {})  # type: ignore

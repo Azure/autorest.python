@@ -15,6 +15,7 @@ from .request_builder import (
 from .imports import ImportType, FileImport, TypingSection
 from .parameter_list import ParameterList
 from .model_type import ModelType
+from .list_type import ListType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -59,15 +60,27 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             else None
         )
         self.override_success_response_to_200 = override_success_response_to_200
-        self.pager_sync: str = yaml_data["pagerSync"]
-        self.pager_async: str = yaml_data["pagerAsync"]
+        self.pager_sync: str = (
+            yaml_data.get("pagerSync")
+            or f"{self.code_model.core_library}.paging.ItemPaged"
+        )
+        self.pager_async: str = (
+            yaml_data.get("pagerAsync")
+            or f"{self.code_model.core_library}.paging.AsyncItemPaged"
+        )
 
     def _get_attr_name(self, wire_name: str) -> str:
-        response = self.responses[0]
+        response_type = self.responses[0].type
+        if not response_type:
+            raise ValueError(
+                f"Can't find a matching property in response for {wire_name}"
+            )
+        if response_type.type == "list":
+            response_type = cast(ListType, response_type).element_type
         try:
             return next(
                 p.client_name
-                for p in cast(ModelType, response.type).properties
+                for p in cast(ModelType, response_type).properties
                 if p.wire_name == wire_name
             )
         except StopIteration as exc:
@@ -137,14 +150,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return FileImport()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if self.next_request_builder:
             file_import.merge(
@@ -153,7 +166,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                "utils",
+                "case_insensitive_dict",
+                ImportType.SDKCORE,
             )
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."

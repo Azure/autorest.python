@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -444,17 +444,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[float]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -467,11 +466,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_null.metadata = {"url": "/number/null"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_float(self, **kwargs: Any) -> float:
@@ -495,17 +492,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata["url"],
+        _request = build_get_invalid_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -518,11 +514,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid_float.metadata = {"url": "/number/invalidfloat"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_double(self, **kwargs: Any) -> float:
@@ -546,17 +540,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata["url"],
+        _request = build_get_invalid_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -569,11 +562,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid_double.metadata = {"url": "/number/invaliddouble"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_decimal(self, **kwargs: Any) -> float:
@@ -597,17 +588,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata["url"],
+        _request = build_get_invalid_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -620,11 +610,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_float(  # pylint: disable=inconsistent-return-statements
@@ -655,19 +643,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_float_request(
+        _request = build_put_big_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -678,9 +665,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_float(self, **kwargs: Any) -> float:
@@ -704,17 +689,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_float_request(
-            template_url=self.get_big_float.metadata["url"],
+        _request = build_get_big_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -727,11 +711,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double(  # pylint: disable=inconsistent-return-statements
@@ -762,19 +744,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_request(
+        _request = build_put_big_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -785,9 +766,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double(self, **kwargs: Any) -> float:
@@ -811,17 +790,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_request(
-            template_url=self.get_big_double.metadata["url"],
+        _request = build_get_big_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -834,11 +812,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -869,19 +845,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_positive_decimal_request(
+        _request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -892,9 +867,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
@@ -918,17 +891,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata["url"],
+        _request = build_get_big_double_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -941,11 +913,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -976,19 +946,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_negative_decimal_request(
+        _request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -999,9 +968,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
@@ -1025,17 +992,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata["url"],
+        _request = build_get_big_double_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1048,11 +1014,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1083,19 +1047,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_request(
+        _request = build_put_big_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1106,9 +1069,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal(self, **kwargs: Any) -> float:
@@ -1132,17 +1093,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata["url"],
+        _request = build_get_big_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1155,11 +1115,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1190,19 +1148,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_positive_decimal_request(
+        _request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1213,9 +1170,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
@@ -1239,17 +1194,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
+        _request = build_get_big_decimal_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1262,11 +1216,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1297,19 +1249,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_negative_decimal_request(
+        _request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1320,9 +1271,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
@@ -1346,17 +1295,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
+        _request = build_get_big_decimal_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1369,11 +1317,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_float(  # pylint: disable=inconsistent-return-statements
@@ -1404,19 +1350,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_float_request(
+        _request = build_put_small_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1427,9 +1372,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_float(self, **kwargs: Any) -> float:
@@ -1453,17 +1396,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_float_request(
-            template_url=self.get_small_float.metadata["url"],
+        _request = build_get_small_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1476,11 +1418,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_double(  # pylint: disable=inconsistent-return-statements
@@ -1511,19 +1451,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_double_request(
+        _request = build_put_small_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1534,9 +1473,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_double(self, **kwargs: Any) -> float:
@@ -1560,17 +1497,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_double_request(
-            template_url=self.get_small_double.metadata["url"],
+        _request = build_get_small_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1583,11 +1519,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1618,19 +1552,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_decimal_request(
+        _request = build_put_small_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1641,9 +1574,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_decimal(self, **kwargs: Any) -> float:
@@ -1667,17 +1598,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata["url"],
+        _request = build_get_small_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1690,8 +1620,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}
+        return deserialized  # type: ignore

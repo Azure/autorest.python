@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -88,16 +88,16 @@ class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_report_service_for_azure_get_report_request(
+        _request = build_auto_rest_report_service_for_azure_get_report_request(
             qualifier=qualifier,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -114,6 +114,6 @@ class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore

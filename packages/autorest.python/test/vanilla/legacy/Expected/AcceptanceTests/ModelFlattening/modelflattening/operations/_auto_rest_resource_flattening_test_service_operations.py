@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -250,7 +250,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -258,7 +258,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: IO
+        :type resource_array: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -270,7 +270,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[_models.Resource], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[_models.Resource], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -278,8 +278,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
-         IO type. Default value is None.
-        :type resource_array: list[~modelflattening.models.Resource] or IO
+         IO[bytes] type. Default value is None.
+        :type resource_array: list[~modelflattening.models.Resource] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -313,20 +313,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_array_request(
+        _request = build_put_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -337,9 +336,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/model-flatten/array"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
@@ -366,17 +363,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[List[_models.FlattenedProduct]] = kwargs.pop("cls", None)
 
-        request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
+        _request = build_get_array_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -389,11 +385,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[FlattenedProduct]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_array.metadata = {"url": "/model-flatten/array"}
+        return deserialized  # type: ignore
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -422,7 +416,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -431,7 +425,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: IO
+        :type resource_array: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -443,7 +437,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -452,8 +446,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
-         or a IO type. Default value is None.
-        :type resource_array: list[~modelflattening.models.WrappedProduct] or IO
+         or a IO[bytes] type. Default value is None.
+        :type resource_array: list[~modelflattening.models.WrappedProduct] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -487,20 +481,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_wrapped_array_request(
+        _request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_wrapped_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -511,9 +504,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
@@ -541,17 +532,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[List[_models.ProductWrapper]] = kwargs.pop("cls", None)
 
-        request = build_get_wrapped_array_request(
-            template_url=self.get_wrapped_array.metadata["url"],
+        _request = build_get_wrapped_array_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -564,11 +554,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[ProductWrapper]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
+        return deserialized  # type: ignore
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -596,7 +584,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_dictionary: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -604,7 +592,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
-        :type resource_dictionary: IO
+        :type resource_dictionary: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -616,7 +604,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -624,8 +612,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
-         FlattenedProduct} type or a IO type. Default value is None.
-        :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO
+         FlattenedProduct} type or a IO[bytes] type. Default value is None.
+        :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -659,20 +647,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_dictionary_request(
+        _request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_dictionary.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -683,9 +670,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
@@ -712,17 +697,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[Dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
 
-        request = build_get_dictionary_request(
-            template_url=self.get_dictionary.metadata["url"],
+        _request = build_get_dictionary_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -735,11 +719,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("{FlattenedProduct}", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}
+        return deserialized  # type: ignore
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -768,7 +750,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_complex_object: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -777,7 +763,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
-        :type resource_complex_object: IO
+        :type resource_complex_object: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -789,7 +775,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO]] = None, **kwargs: Any
+        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -797,8 +783,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         ResourceCollection type or a IO type. Default value is None.
-        :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO
+         ResourceCollection type or a IO[bytes] type. Default value is None.
+        :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -832,20 +818,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_resource_collection_request(
+        _request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_resource_collection.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -856,9 +841,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
@@ -885,17 +868,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[_models.ResourceCollection] = kwargs.pop("cls", None)
 
-        request = build_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"],
+        _request = build_get_resource_collection_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -908,11 +890,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("ResourceCollection", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
+        return deserialized  # type: ignore
 
     @overload
     def put_simple_product(
@@ -940,7 +920,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
@@ -948,7 +928,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
-        :type simple_body_product: IO
+        :type simple_body_product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -960,16 +940,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_simple_product(
-        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO]] = None, **kwargs: Any
+        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a IO
-         type. Default value is None.
-        :type simple_body_product: ~modelflattening.models.SimpleProduct or IO
+        :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a
+         IO[bytes] type. Default value is None.
+        :type simple_body_product: ~modelflattening.models.SimpleProduct or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1003,20 +983,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_simple_product_request(
+        _request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_simple_product.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1029,11 +1008,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def post_flattened_simple_product(
@@ -1098,19 +1075,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         else:
             _json = None
 
-        request = build_post_flattened_simple_product_request(
+        _request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_flattened_simple_product.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1123,11 +1099,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_simple_product_with_grouping(
@@ -1189,20 +1163,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         else:
             _json = None
 
-        request = build_put_simple_product_with_grouping_request(
+        _request = build_put_simple_product_with_grouping_request(
             name=_name,
             content_type=content_type,
             json=_json,
-            template_url=self.put_simple_product_with_grouping.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1215,8 +1188,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}
+        return deserialized  # type: ignore

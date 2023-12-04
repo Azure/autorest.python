@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -78,17 +78,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -101,11 +100,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -137,19 +134,18 @@ class DictionaryOperations:
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -160,9 +156,7 @@ class DictionaryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -186,17 +180,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,11 +202,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -245,19 +236,18 @@ class DictionaryOperations:
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = build_put_empty_request(
+        _request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -268,9 +258,7 @@ class DictionaryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -294,17 +282,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -317,11 +304,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_null.metadata = {"url": "/complex/dictionary/typed/null"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -345,17 +330,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -368,8 +352,6 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/dictionary/typed/notprovided"}
+        return deserialized  # type: ignore

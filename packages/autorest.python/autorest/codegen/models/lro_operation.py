@@ -46,7 +46,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
             exceptions=exceptions,
             overloads=overloads,
         )
-        self.name = "begin_" + self.name
+        if not self.name.lstrip("_").startswith("begin"):
+            self.name = ("_begin" if self.internal else "begin_") + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
         self._initial_operation: Optional["OperationType"] = None
 
@@ -103,6 +104,9 @@ class LROOperationBase(OperationBase[LROResponseType]):
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
+    def get_poller_with_response_type(self, async_mode: bool) -> str:
+        return self.response_type_annotation(async_mode=async_mode)
+
     def get_poller(self, async_mode: bool) -> str:
         return self.responses[0].get_poller(async_mode)
 
@@ -122,11 +126,11 @@ class LROOperationBase(OperationBase[LROResponseType]):
         file_import = super().imports(async_mode, **kwargs)
         if self.abstract:
             return file_import
-        if async_mode:
+        if async_mode and self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator_async",
                 "distributed_trace_async",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if (
             self.code_model.options["models_mode"] == "dpg"
@@ -145,10 +149,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         )
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
-
-    @classmethod
-    def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
-        return client.lookup_request_builder(id(yaml_data["initialOperation"]))
 
 
 class LROOperation(LROOperationBase[LROResponse]):

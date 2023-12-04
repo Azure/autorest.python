@@ -57,7 +57,7 @@ setup(
     ),
     include_package_data=True,
     package_data={
-        "pytyped": ["py.typed"],
+        "internaloperation": ["py.typed"],
     },
     install_requires=[
         "msrest>=0.7.1",

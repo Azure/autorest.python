@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -169,7 +169,7 @@ class LRORetrysOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def _put201_creating_succeeded200_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -196,20 +196,19 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_put201_creating_succeeded200_request(
+        _request = build_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -228,8 +227,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}
 
     @overload
     def begin_put201_creating_succeeded200(
@@ -259,14 +256,14 @@ class LRORetrysOperations:
 
     @overload
     def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -285,14 +282,15 @@ class LRORetrysOperations:
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~lro.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~lro.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -330,7 +328,7 @@ class LRORetrysOperations:
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
@@ -340,18 +338,18 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[_models.Product].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}
+        return LROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -378,20 +376,19 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_put_async_relative_retry_succeeded_request(
+        _request = build_put_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -410,11 +407,9 @@ class LRORetrysOperations:
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
-
-    _put_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}
+        return deserialized  # type: ignore
 
     @overload
     def begin_put_async_relative_retry_succeeded(
@@ -444,14 +439,14 @@ class LRORetrysOperations:
 
     @overload
     def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -470,14 +465,15 @@ class LRORetrysOperations:
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~lro.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~lro.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -523,7 +519,7 @@ class LRORetrysOperations:
 
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
         if polling is True:
@@ -533,15 +529,15 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[_models.Product].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}
+        return LROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -559,17 +555,16 @@ class LRORetrysOperations:
 
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        request = build_delete_provisioning202_accepted200_succeeded_request(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
+        _request = build_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -592,10 +587,6 @@ class LRORetrysOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {
-        "url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
-    }
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
@@ -633,7 +624,7 @@ class LRORetrysOperations:
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
@@ -643,17 +634,15 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[_models.Product].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_delete_provisioning202_accepted200_succeeded.metadata = {
-        "url": "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
-    }
+        return LROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     def _delete202_retry200_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
@@ -669,17 +658,16 @@ class LRORetrysOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_delete202_retry200_request(
-            template_url=self._delete202_retry200_initial.metadata["url"],
+        _request = build_delete202_retry200_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -693,9 +681,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    _delete202_retry200_initial.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[None]:
@@ -729,7 +715,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -738,15 +724,13 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}
+        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -764,17 +748,16 @@ class LRORetrysOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_delete_async_relative_retry_succeeded_request(
-            template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
+        _request = build_delete_async_relative_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -791,9 +774,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_succeeded(  # pylint: disable=name-too-long
@@ -829,7 +810,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -838,18 +819,16 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_delete_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}
+        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -876,20 +855,19 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_post202_retry200_request(
+        _request = build_post202_retry200_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -903,9 +881,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/retryerror/post/202/retry/200"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     def begin_post202_retry200(
@@ -934,13 +910,13 @@ class LRORetrysOperations:
 
     @overload
     def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -959,13 +935,14 @@ class LRORetrysOperations:
 
     @distributed_trace
     def begin_post202_retry200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~lro.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~lro.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1002,7 +979,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -1011,18 +988,16 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}
+        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -1049,20 +1024,19 @@ class LRORetrysOperations:
             else:
                 _json = None
 
-        request = build_post_async_relative_retry_succeeded_request(
+        _request = build_post_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1079,9 +1053,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
@@ -1111,14 +1083,14 @@ class LRORetrysOperations:
 
     @overload
     def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1137,14 +1109,15 @@ class LRORetrysOperations:
 
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~lro.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~lro.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1181,7 +1154,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
@@ -1190,12 +1163,10 @@ class LRORetrysOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_post_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}
+        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

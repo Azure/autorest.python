@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -261,23 +261,22 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_all_with_values_request(
+        _request = build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_all_with_values.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -288,11 +287,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get_all_with_values.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_global_query_null(  # pylint: disable=inconsistent-return-statements
@@ -335,23 +330,22 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_global_query_null_request(
+        _request = build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_global_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -362,11 +356,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get_global_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
@@ -409,23 +399,22 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_global_and_local_query_null_request(
+        _request = build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_global_and_local_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -436,11 +425,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get_global_and_local_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
@@ -482,23 +467,22 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_local_path_item_query_null_request(
+        _request = build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_local_path_item_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -509,8 +493,4 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get_local_path_item_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore

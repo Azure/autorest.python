@@ -1,5 +1,7 @@
 {# actual template starts here #}
-
+{% import "macros.jinja2" as macros %}
+{% set initialize_properties = serializer.initialize_properties(model) %}
+{% set exist_constant = (model.properties | selectattr('constant') | first) is defined %}
 
 {{ serializer.declare_model(model) }}
     """{{ model.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
@@ -13,19 +15,20 @@
     {% endif %}
     {% if (model.properties | selectattr('optional', "equalto", false) | first) is defined %}
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
     {% endif %}
 
     {% if model.properties != None %}
         {% for p in model.properties %}
             {% for line in serializer.variable_documentation_string(p) %}
                 {% for doc_string in line.replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
+    {{ macros.wrap_model_string(doc_string, '\n     ') -}}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
     {% endif %}
     """
+{% if initialize_properties or exist_constant %}
     {% if (model.properties | selectattr('validation') ) | first %}
 
     _validation = {
@@ -53,7 +56,7 @@
         {{ model.xml_map_content }}
     }
     {% endif %}
-    {% if (model.properties | selectattr('constant') | first) is defined %}
+    {% if exist_constant %}
 
         {% for p in model.properties | selectattr('constant')%}
     {{ p.client_name }} = {{ p.type.get_declaration() }}
@@ -73,7 +76,7 @@
             {% if p.is_input %}
                 {% for line in serializer.input_documentation_string(p) %}
                     {% for doc_string in line.replace('\n', '\n ').split('\n') %}
-        {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n         ') }}
+        {{ macros.wrap_model_string(doc_string, '\n         ') -}}
                     {% endfor %}
                 {% endfor %}
             {% endif %}
@@ -81,6 +84,7 @@
     {% endif %}
         """
         {{ serializer.super_call(model) }}
-    {% for initialize_property in serializer.initialize_properties(model) %}
+    {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
     {% endfor %}
+{% endif %}

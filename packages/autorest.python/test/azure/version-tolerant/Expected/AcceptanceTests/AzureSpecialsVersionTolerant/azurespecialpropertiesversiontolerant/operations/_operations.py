@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -680,15 +680,15 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_xms_client_request_id_get_request(
+        _request = build_xms_client_request_id_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -700,7 +700,7 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def param_get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -724,15 +724,15 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_xms_client_request_id_param_get_request(
+        _request = build_xms_client_request_id_param_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -744,7 +744,7 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class SubscriptionInCredentialsOperations:
@@ -786,16 +786,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_valid_request(
+        _request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -807,7 +807,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_global_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -831,16 +831,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_null_request(
+        _request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -852,7 +852,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -878,17 +878,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
+        _request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -900,7 +900,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -924,16 +924,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_path_global_valid_request(
+        _request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -945,7 +945,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -969,16 +969,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_swagger_global_valid_request(
+        _request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -990,7 +990,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class SubscriptionInMethodOperations:
@@ -1037,16 +1037,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_method_local_valid_request(
+        _request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1058,7 +1058,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -1087,16 +1087,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_method_local_null_request(
+        _request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1108,7 +1108,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -1137,16 +1137,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_path_local_valid_request(
+        _request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1158,7 +1158,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -1187,16 +1187,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_swagger_local_valid_request(
+        _request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1208,7 +1208,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ApiVersionDefaultOperations:
@@ -1249,16 +1249,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_method_global_valid_request(
+        _request = build_api_version_default_get_method_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1270,7 +1270,7 @@ class ApiVersionDefaultOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -1295,16 +1295,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_method_global_not_provided_valid_request(
+        _request = build_api_version_default_get_method_global_not_provided_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1316,7 +1316,7 @@ class ApiVersionDefaultOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1339,16 +1339,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_path_global_valid_request(
+        _request = build_api_version_default_get_path_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1360,7 +1360,7 @@ class ApiVersionDefaultOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1383,16 +1383,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_swagger_global_valid_request(
+        _request = build_api_version_default_get_swagger_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1404,7 +1404,7 @@ class ApiVersionDefaultOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ApiVersionLocalOperations:
@@ -1449,16 +1449,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_method_local_valid_request(
+        _request = build_api_version_local_get_method_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1470,7 +1470,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -1498,16 +1498,16 @@ class ApiVersionLocalOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_method_local_null_request(
+        _request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1519,7 +1519,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1546,16 +1546,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_path_local_valid_request(
+        _request = build_api_version_local_get_path_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1567,7 +1567,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1595,16 +1595,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_swagger_local_valid_request(
+        _request = build_api_version_local_get_swagger_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1616,7 +1616,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class SkipUrlEncodingOperations:
@@ -1661,16 +1661,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_path_valid_request(
+        _request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1682,7 +1682,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -1709,16 +1709,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_path_valid_request(
+        _request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1730,7 +1730,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1758,16 +1758,16 @@ class SkipUrlEncodingOperations:
         unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_swagger_path_valid_request(
+        _request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1779,7 +1779,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_method_query_valid(  # pylint: disable=inconsistent-return-statements
@@ -1806,16 +1806,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_query_valid_request(
+        _request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1827,7 +1827,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_method_query_null(  # pylint: disable=inconsistent-return-statements
@@ -1854,16 +1854,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_query_null_request(
+        _request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1875,7 +1875,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_path_query_valid(self, *, q1: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1900,16 +1900,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_path_query_valid_request(
+        _request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1921,7 +1921,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1949,16 +1949,16 @@ class SkipUrlEncodingOperations:
         q1: Literal["value1&q2=value2&q3=value3"] = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_swagger_query_valid_request(
+        _request = build_skip_url_encoding_get_swagger_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1970,7 +1970,7 @@ class SkipUrlEncodingOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class OdataOperations:
@@ -2020,18 +2020,18 @@ class OdataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_odata_get_with_filter_request(
+        _request = build_odata_get_with_filter_request(
             filter=filter,
             top=top,
             orderby=orderby,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2043,7 +2043,7 @@ class OdataOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class HeaderOperations:
@@ -2088,16 +2088,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_request(
+        _request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2112,7 +2112,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -2140,16 +2140,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_param_grouping_request(
+        _request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2164,7 +2164,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_head(self, *, foo_client_request_id: str, **kwargs: Any) -> bool:
@@ -2189,16 +2189,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_head_request(
+        _request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2214,5 +2214,5 @@ class HeaderOperations:
             response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
         return 200 <= response.status_code <= 299

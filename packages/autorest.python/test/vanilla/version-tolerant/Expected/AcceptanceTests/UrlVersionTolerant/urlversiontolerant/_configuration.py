@@ -8,13 +8,12 @@
 
 from typing import Any, Optional
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class AutoRestUrlTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestUrlTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,13 +27,13 @@ class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too
     """
 
     def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, **kwargs: Any) -> None:
-        super(AutoRestUrlTestServiceConfiguration, self).__init__(**kwargs)
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
 
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
         kwargs.setdefault("sdk_moniker", "autoresturltestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -43,7 +42,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -171,17 +171,16 @@ class BoolOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_true_request(
-            template_url=self.get_true.metadata["url"],
+        _request = build_get_true_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -194,11 +193,9 @@ class BoolOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_true.metadata = {"url": "/bool/true"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -229,19 +226,18 @@ class BoolOperations:
 
         _json = self._serialize.body(bool_body, "bool")
 
-        request = build_put_true_request(
+        _request = build_put_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -252,9 +248,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_true.metadata = {"url": "/bool/true"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_false(self, **kwargs: Any) -> bool:
@@ -278,17 +272,16 @@ class BoolOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_false_request(
-            template_url=self.get_false.metadata["url"],
+        _request = build_get_false_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -301,11 +294,9 @@ class BoolOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_false.metadata = {"url": "/bool/false"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -336,19 +327,18 @@ class BoolOperations:
 
         _json = self._serialize.body(bool_body, "bool")
 
-        request = build_put_false_request(
+        _request = build_put_false_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -359,9 +349,7 @@ class BoolOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_false.metadata = {"url": "/bool/false"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> Optional[bool]:
@@ -385,17 +373,16 @@ class BoolOperations:
 
         cls: ClsType[Optional[bool]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -408,11 +395,9 @@ class BoolOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_null.metadata = {"url": "/bool/null"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> bool:
@@ -436,17 +421,16 @@ class BoolOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -459,8 +443,6 @@ class BoolOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid.metadata = {"url": "/bool/invalid"}
+        return deserialized  # type: ignore

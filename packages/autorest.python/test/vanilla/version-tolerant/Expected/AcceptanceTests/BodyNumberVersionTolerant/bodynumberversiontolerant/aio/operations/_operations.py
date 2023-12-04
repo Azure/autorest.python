@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -90,15 +90,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[float]] = kwargs.pop("cls", None)
 
-        request = build_number_get_null_request(
+        _request = build_number_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -115,9 +115,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[float], deserialized), {})
+            return cls(pipeline_response, cast(Optional[float], deserialized), {})  # type: ignore
 
-        return cast(Optional[float], deserialized)
+        return cast(Optional[float], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_float(self, **kwargs: Any) -> float:
@@ -140,15 +140,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_invalid_float_request(
+        _request = build_number_get_invalid_float_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -165,9 +165,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_double(self, **kwargs: Any) -> float:
@@ -190,15 +190,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_invalid_double_request(
+        _request = build_number_get_invalid_double_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -215,9 +215,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_decimal(self, **kwargs: Any) -> float:
@@ -240,15 +240,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_invalid_decimal_request(
+        _request = build_number_get_invalid_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -265,9 +265,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_float(  # pylint: disable=inconsistent-return-statements
@@ -297,17 +297,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_float_request(
+        _request = build_number_put_big_float_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -319,7 +319,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_float(self, **kwargs: Any) -> float:
@@ -342,15 +342,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_float_request(
+        _request = build_number_get_big_float_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -367,9 +367,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_double(  # pylint: disable=inconsistent-return-statements
@@ -399,17 +399,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_double_request(
+        _request = build_number_put_big_double_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -421,7 +421,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_double(self, **kwargs: Any) -> float:
@@ -444,15 +444,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_double_request(
+        _request = build_number_get_big_double_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -469,9 +469,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
@@ -503,17 +503,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_double_positive_decimal_request(
+        _request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -525,7 +525,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
@@ -548,15 +548,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_double_positive_decimal_request(
+        _request = build_number_get_big_double_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -573,9 +573,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
@@ -607,17 +607,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_double_negative_decimal_request(
+        _request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -629,7 +629,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
@@ -652,15 +652,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_double_negative_decimal_request(
+        _request = build_number_get_big_double_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -677,9 +677,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal(  # pylint: disable=inconsistent-return-statements
@@ -709,17 +709,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_decimal_request(
+        _request = build_number_put_big_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -731,7 +731,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal(self, **kwargs: Any) -> float:
@@ -754,15 +754,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_decimal_request(
+        _request = build_number_get_big_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -779,9 +779,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
@@ -813,17 +813,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_decimal_positive_decimal_request(
+        _request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -835,7 +835,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
@@ -858,15 +858,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_decimal_positive_decimal_request(
+        _request = build_number_get_big_decimal_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -883,9 +883,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
@@ -917,17 +917,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_big_decimal_negative_decimal_request(
+        _request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -939,7 +939,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
@@ -962,15 +962,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_big_decimal_negative_decimal_request(
+        _request = build_number_get_big_decimal_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -987,9 +987,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_small_float(  # pylint: disable=inconsistent-return-statements
@@ -1019,17 +1019,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_small_float_request(
+        _request = build_number_put_small_float_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1041,7 +1041,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_small_float(self, **kwargs: Any) -> float:
@@ -1064,15 +1064,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_small_float_request(
+        _request = build_number_get_small_float_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1089,9 +1089,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_small_double(  # pylint: disable=inconsistent-return-statements
@@ -1121,17 +1121,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_small_double_request(
+        _request = build_number_put_small_double_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1143,7 +1143,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_small_double(self, **kwargs: Any) -> float:
@@ -1166,15 +1166,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_small_double_request(
+        _request = build_number_get_small_double_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1191,9 +1191,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_small_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1223,17 +1223,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = number_body
 
-        request = build_number_put_small_decimal_request(
+        _request = build_number_put_small_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1245,7 +1245,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_small_decimal(self, **kwargs: Any) -> float:
@@ -1268,15 +1268,15 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_number_get_small_decimal_request(
+        _request = build_number_get_small_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1293,6 +1293,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -324,17 +324,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head300_request(
-            template_url=self.head300.metadata["url"],
+        _request = build_head300_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -349,9 +348,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    head300.metadata = {"url": "/http/redirect/300"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get300(self, **kwargs: Any) -> Optional[List[str]]:
@@ -375,17 +372,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[Optional[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_get300_request(
-            template_url=self.get300.metadata["url"],
+        _request = build_get300_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -403,11 +399,9 @@ class HttpRedirectsOperations:
             deserialized = self._deserialize("[str]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
-
-    get300.metadata = {"url": "/http/redirect/300"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -431,17 +425,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head301_request(
-            template_url=self.head301.metadata["url"],
+        _request = build_head301_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -456,9 +449,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    head301.metadata = {"url": "/http/redirect/301"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -482,17 +473,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get301_request(
-            template_url=self.get301.metadata["url"],
+        _request = build_get301_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -507,9 +497,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    get301.metadata = {"url": "/http/redirect/301"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def put301(  # pylint: disable=inconsistent-return-statements
@@ -545,19 +533,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_put301_request(
+        _request = build_put301_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put301.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -571,9 +558,7 @@ class HttpRedirectsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    put301.metadata = {"url": "/http/redirect/301"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -597,17 +582,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head302_request(
-            template_url=self.head302.metadata["url"],
+        _request = build_head302_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -622,9 +606,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    head302.metadata = {"url": "/http/redirect/302"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -648,17 +630,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get302_request(
-            template_url=self.get302.metadata["url"],
+        _request = build_get302_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -673,9 +654,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    get302.metadata = {"url": "/http/redirect/302"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def patch302(  # pylint: disable=inconsistent-return-statements
@@ -711,19 +690,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_patch302_request(
+        _request = build_patch302_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch302.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -737,9 +715,7 @@ class HttpRedirectsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    patch302.metadata = {"url": "/http/redirect/302"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def post303(  # pylint: disable=inconsistent-return-statements
@@ -775,19 +751,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_post303_request(
+        _request = build_post303_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post303.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -802,9 +777,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    post303.metadata = {"url": "/http/redirect/303"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -828,17 +801,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head307_request(
-            template_url=self.head307.metadata["url"],
+        _request = build_head307_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -853,9 +825,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    head307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -879,17 +849,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get307_request(
-            template_url=self.get307.metadata["url"],
+        _request = build_get307_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -904,9 +873,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    get307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -930,17 +897,16 @@ class HttpRedirectsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_options307_request(
-            template_url=self.options307.metadata["url"],
+        _request = build_options307_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -955,9 +921,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    options307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def put307(  # pylint: disable=inconsistent-return-statements
@@ -992,19 +956,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_put307_request(
+        _request = build_put307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put307.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1019,9 +982,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    put307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def patch307(  # pylint: disable=inconsistent-return-statements
@@ -1056,19 +1017,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_patch307_request(
+        _request = build_patch307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch307.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1083,9 +1043,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    patch307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def post307(  # pylint: disable=inconsistent-return-statements
@@ -1120,19 +1078,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_post307_request(
+        _request = build_post307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post307.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1147,9 +1104,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    post307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def delete307(  # pylint: disable=inconsistent-return-statements
@@ -1184,19 +1139,18 @@ class HttpRedirectsOperations:
         else:
             _json = None
 
-        request = build_delete307_request(
+        _request = build_delete307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete307.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1211,6 +1165,4 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    delete307.metadata = {"url": "/http/redirect/307"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore

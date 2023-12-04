@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -191,18 +191,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_method_global_valid_request(
+        _request = build_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -213,11 +212,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_method_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_global_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -242,18 +237,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_method_global_null_request(
+        _request = build_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -264,11 +258,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_method_global_null.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -296,19 +286,18 @@ class SubscriptionInCredentialsOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_method_global_not_provided_valid_request(
+        _request = build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.post_method_global_not_provided_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -319,11 +308,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_method_global_not_provided_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -348,18 +333,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_path_global_valid_request(
+        _request = build_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_path_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -370,11 +354,7 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_path_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -399,18 +379,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_swagger_global_valid_request(
+        _request = build_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_swagger_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -421,8 +400,4 @@ class SubscriptionInCredentialsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_swagger_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }
+            return cls(pipeline_response, None, {})  # type: ignore

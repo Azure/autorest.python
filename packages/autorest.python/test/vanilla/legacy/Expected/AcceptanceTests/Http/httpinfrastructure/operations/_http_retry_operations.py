@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -223,17 +223,16 @@ class HttpRetryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_head408_request(
-            template_url=self.head408.metadata["url"],
+        _request = build_head408_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -244,9 +243,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    head408.metadata = {"url": "/http/retry/408"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
@@ -281,19 +278,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_put500_request(
+        _request = build_put500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put500.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -304,9 +300,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put500.metadata = {"url": "/http/retry/500"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
@@ -341,19 +335,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_patch500_request(
+        _request = build_patch500_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch500.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -364,9 +357,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    patch500.metadata = {"url": "/http/retry/500"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get502(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -390,17 +381,16 @@ class HttpRetryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get502_request(
-            template_url=self.get502.metadata["url"],
+        _request = build_get502_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -411,9 +401,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get502.metadata = {"url": "/http/retry/502"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def options502(self, **kwargs: Any) -> bool:
@@ -437,17 +425,16 @@ class HttpRetryOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_options502_request(
-            template_url=self.options502.metadata["url"],
+        _request = build_options502_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -460,11 +447,9 @@ class HttpRetryOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    options502.metadata = {"url": "/http/retry/502"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
@@ -499,19 +484,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_post503_request(
+        _request = build_post503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post503.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -522,9 +506,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post503.metadata = {"url": "/http/retry/503"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
@@ -559,19 +541,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_delete503_request(
+        _request = build_delete503_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete503.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -582,9 +563,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    delete503.metadata = {"url": "/http/retry/503"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
@@ -619,19 +598,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_put504_request(
+        _request = build_put504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put504.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -642,9 +620,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put504.metadata = {"url": "/http/retry/504"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
@@ -679,19 +655,18 @@ class HttpRetryOperations:
         else:
             _json = None
 
-        request = build_patch504_request(
+        _request = build_patch504_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch504.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -702,6 +677,4 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    patch504.metadata = {"url": "/http/retry/504"}
+            return cls(pipeline_response, None, {})  # type: ignore

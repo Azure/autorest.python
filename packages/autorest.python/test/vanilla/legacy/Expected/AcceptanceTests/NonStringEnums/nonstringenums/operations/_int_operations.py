@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -112,19 +112,18 @@ class IntOperations:
         else:
             _json = None
 
-        request = build_put_request(
+        _request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -136,11 +135,9 @@ class IntOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    put.metadata = {"url": "/nonStringEnums/int/put"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get(self, **kwargs: Any) -> Union[int, _models.IntEnum]:
@@ -164,17 +161,16 @@ class IntOperations:
 
         cls: ClsType[Union[int, _models.IntEnum]] = kwargs.pop("cls", None)
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
+        _request = build_get_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -186,8 +182,6 @@ class IntOperations:
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/int/get"}
+        return deserialized  # type: ignore

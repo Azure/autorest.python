@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -79,16 +79,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_dpg_get_model_request(
+        _request = build_dpg_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -105,9 +105,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def post_model(
@@ -144,7 +144,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @overload
-    async def post_model(self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    async def post_model(
+        self, mode: str, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -153,7 +155,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          before returning to users. Required.
         :type mode: str
         :param input: Please put {'hello': 'world!'}. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -171,7 +173,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @distributed_trace_async
-    async def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def post_model(self, mode: str, input: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -179,8 +181,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO type. Required.
-        :type input: JSON or IO
+        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO[bytes] type.
+         Required.
+        :type input: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -223,7 +226,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             _json = input
 
-        request = build_dpg_post_model_request(
+        _request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
@@ -231,11 +234,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -252,9 +255,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable[JSON]:
@@ -293,18 +296,18 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_dpg_get_pages_request(
+                _request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -314,11 +317,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -346,16 +349,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_dpg_lro_request(
+        _request = build_dpg_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -372,9 +375,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[JSON]:
@@ -435,10 +438,10 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

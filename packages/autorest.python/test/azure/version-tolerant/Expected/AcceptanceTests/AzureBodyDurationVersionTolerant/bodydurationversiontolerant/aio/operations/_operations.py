@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -71,15 +71,15 @@ class DurationOperations:
 
         cls: ClsType[Optional[datetime.timedelta]] = kwargs.pop("cls", None)
 
-        request = build_duration_get_null_request(
+        _request = build_duration_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -96,9 +96,9 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[datetime.timedelta], deserialized), {})
+            return cls(pipeline_response, cast(Optional[datetime.timedelta], deserialized), {})  # type: ignore
 
-        return cast(Optional[datetime.timedelta], deserialized)
+        return cast(Optional[datetime.timedelta], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_positive_duration(  # pylint: disable=inconsistent-return-statements
@@ -128,17 +128,17 @@ class DurationOperations:
 
         _json = duration_body
 
-        request = build_duration_put_positive_duration_request(
+        _request = build_duration_put_positive_duration_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -150,7 +150,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
@@ -173,15 +173,15 @@ class DurationOperations:
 
         cls: ClsType[datetime.timedelta] = kwargs.pop("cls", None)
 
-        request = build_duration_get_positive_duration_request(
+        _request = build_duration_get_positive_duration_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -198,9 +198,9 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})  # type: ignore
 
-        return cast(datetime.timedelta, deserialized)
+        return cast(datetime.timedelta, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
@@ -223,15 +223,15 @@ class DurationOperations:
 
         cls: ClsType[datetime.timedelta] = kwargs.pop("cls", None)
 
-        request = build_duration_get_invalid_request(
+        _request = build_duration_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -248,6 +248,6 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})  # type: ignore
 
-        return cast(datetime.timedelta, deserialized)
+        return cast(datetime.timedelta, deserialized)  # type: ignore

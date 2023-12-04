@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -110,15 +110,15 @@ class FilesOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        request = build_files_get_file_request(
+        _request = build_files_get_file_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -132,9 +132,9 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_file_large(self, **kwargs: Any) -> Iterator[bytes]:
@@ -157,15 +157,15 @@ class FilesOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        request = build_files_get_file_large_request(
+        _request = build_files_get_file_large_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -179,9 +179,9 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_empty_file(self, **kwargs: Any) -> Iterator[bytes]:
@@ -204,15 +204,15 @@ class FilesOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        request = build_files_get_empty_file_request(
+        _request = build_files_get_empty_file_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -226,6 +226,6 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore

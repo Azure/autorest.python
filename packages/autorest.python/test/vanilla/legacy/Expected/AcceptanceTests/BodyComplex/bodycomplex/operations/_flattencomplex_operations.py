@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -88,17 +88,16 @@ class FlattencomplexOperations:
 
         cls: ClsType[_models.MyBaseType] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -110,8 +109,6 @@ class FlattencomplexOperations:
         deserialized = self._deserialize("MyBaseType", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/flatten/valid"}
+        return deserialized  # type: ignore

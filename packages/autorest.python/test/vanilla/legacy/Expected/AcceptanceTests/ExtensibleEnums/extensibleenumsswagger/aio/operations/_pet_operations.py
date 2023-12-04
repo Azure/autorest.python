@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -74,18 +74,17 @@ class PetOperations:
 
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
-        request = build_get_by_pet_id_request(
+        _request = build_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -97,11 +96,9 @@ class PetOperations:
         deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}
+        return deserialized  # type: ignore
 
     @overload
     async def add_pet(
@@ -122,12 +119,12 @@ class PetOperations:
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Pet:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
-        :type pet_param: IO
+        :type pet_param: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -138,11 +135,11 @@ class PetOperations:
         """
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO]] = None, **kwargs: Any) -> _models.Pet:
+    async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO[bytes]]] = None, **kwargs: Any) -> _models.Pet:
         """add pet.
 
-        :param pet_param: pet param. Is either a Pet type or a IO type. Default value is None.
-        :type pet_param: ~extensibleenumsswagger.models.Pet or IO
+        :param pet_param: pet param. Is either a Pet type or a IO[bytes] type. Default value is None.
+        :type pet_param: ~extensibleenumsswagger.models.Pet or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -176,20 +173,19 @@ class PetOperations:
             else:
                 _json = None
 
-        request = build_add_pet_request(
+        _request = build_add_pet_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.add_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -201,8 +197,6 @@ class PetOperations:
         deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}
+        return deserialized  # type: ignore

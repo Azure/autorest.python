@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -116,17 +116,16 @@ class HttpFailureOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"],
+        _request = build_get_empty_error_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -139,11 +138,9 @@ class HttpFailureOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_no_model_error(self, **kwargs: Any) -> bool:
@@ -167,17 +164,16 @@ class HttpFailureOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"],
+        _request = build_get_no_model_error_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -189,11 +185,9 @@ class HttpFailureOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_no_model_empty(self, **kwargs: Any) -> bool:
@@ -217,17 +211,16 @@ class HttpFailureOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        request = build_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"],
+        _request = build_get_no_model_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -239,8 +232,6 @@ class HttpFailureOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_no_model_empty.metadata = {"url": "/http/failure/nomodel/empty"}
+        return deserialized  # type: ignore

@@ -1,0 +1,6 @@
+include *.md
+include LICENSE
+include projection/projectedname/py.typed
+recursive-include tests *.py
+recursive-include samples *.py *.md
+include projection/__init__.py

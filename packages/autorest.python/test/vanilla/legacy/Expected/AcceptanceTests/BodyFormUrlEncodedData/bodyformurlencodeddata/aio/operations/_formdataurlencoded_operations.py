@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -116,20 +116,19 @@ class FormdataurlencodedOperations:
             "status": status,
         }
 
-        request = build_update_pet_with_form_request(
+        _request = build_update_pet_with_form_request(
             pet_id=pet_id,
             content_type=content_type,
             data=_data,
-            template_url=self.update_pet_with_form.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -139,9 +138,7 @@ class FormdataurlencodedOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
@@ -187,19 +184,18 @@ class FormdataurlencodedOperations:
             "access_token": access_token,
         }
 
-        request = build_partial_constant_body_request(
+        _request = build_partial_constant_body_request(
             content_type=content_type,
             data=_data,
-            template_url=self.partial_constant_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,6 +205,4 @@ class FormdataurlencodedOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}
+            return cls(pipeline_response, None, {})  # type: ignore

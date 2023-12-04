@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -56,17 +56,16 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[_models.SecretResponse] = kwargs.pop("cls", None)
 
-        request = build_create_secret_request(
-            template_url=self.create_secret.metadata["url"],
+        _request = build_create_secret_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -79,11 +78,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         deserialized = self._deserialize("SecretResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    create_secret.metadata = {"url": "/secrets/:create"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -107,17 +104,16 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_error_with_secrets_request(
-            template_url=self.get_error_with_secrets.metadata["url"],
+        _request = build_get_error_with_secrets_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -128,6 +124,4 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get_error_with_secrets.metadata = {"url": "/secrets/error"}
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -3,12 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import typing
 import contextlib
 import os
 import sys
 import logging
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
+from jsonrpc.jsonrpc2 import JSONRPC20Response
 
 from .stdstream import read_message, write_message
 
@@ -82,15 +84,15 @@ def main() -> None:
         "AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False
     ):
         try:
-            import ptvsd  # pylint: disable=import-outside-toplevel
+            import debugpy  # pylint: disable=import-outside-toplevel
         except ImportError as exc:
             raise SystemExit(
                 "Please pip install ptvsd in order to use VSCode debugging"
             ) from exc
 
         # 5678 is the default attach port in the VS Code debug configurations
-        ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
-        ptvsd.wait_for_attach()
+        debugpy.listen(("localhost", 5678))
+        debugpy.wait_for_client()
         breakpoint()  # pylint: disable=undefined-variable,forgotten-debug-statement
 
     _LOGGER.debug("Starting JSON RPC server")
@@ -99,7 +101,9 @@ def main() -> None:
         _LOGGER.debug("Trying to read")
         message = read_message()
 
-        response = JSONRPCResponseManager.handle(message, dispatcher).json
+        response = typing.cast(
+            JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)
+        ).json
         _LOGGER.debug("Produced: %s", response)
         write_message(response)
         _LOGGER.debug("Message processed")

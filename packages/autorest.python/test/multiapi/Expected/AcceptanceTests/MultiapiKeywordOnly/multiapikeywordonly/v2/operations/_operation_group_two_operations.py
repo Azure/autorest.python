@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -100,19 +100,18 @@ class OperationGroupTwoOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_four_request(
+        _request = build_test_four_request(
             parameter_one=parameter_one,
             api_version=api_version,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -123,6 +122,4 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}
+            return cls(pipeline_response, None, {})  # type: ignore

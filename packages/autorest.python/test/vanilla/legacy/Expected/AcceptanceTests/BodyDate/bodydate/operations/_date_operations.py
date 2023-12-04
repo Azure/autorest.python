@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -193,17 +193,16 @@ class DateOperations:
 
         cls: ClsType[Optional[datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -216,11 +215,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_null.metadata = {"url": "/date/null"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -244,17 +241,16 @@ class DateOperations:
 
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
+        _request = build_get_invalid_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -267,11 +263,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -295,17 +289,16 @@ class DateOperations:
 
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
-        request = build_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
+        _request = build_get_overflow_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -318,11 +311,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -346,17 +337,16 @@ class DateOperations:
 
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
-        request = build_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
+        _request = build_get_underflow_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -369,11 +359,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_max_date(  # pylint: disable=inconsistent-return-statements
@@ -404,19 +392,18 @@ class DateOperations:
 
         _json = self._serialize.body(date_body, "date")
 
-        request = build_put_max_date_request(
+        _request = build_put_max_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -427,9 +414,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_max_date.metadata = {"url": "/date/max"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_max_date(self, **kwargs: Any) -> datetime.date:
@@ -453,17 +438,16 @@ class DateOperations:
 
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
-        request = build_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
+        _request = build_get_max_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -476,11 +460,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_max_date.metadata = {"url": "/date/max"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_min_date(  # pylint: disable=inconsistent-return-statements
@@ -511,19 +493,18 @@ class DateOperations:
 
         _json = self._serialize.body(date_body, "date")
 
-        request = build_put_min_date_request(
+        _request = build_put_min_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -534,9 +515,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_min_date.metadata = {"url": "/date/min"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_min_date(self, **kwargs: Any) -> datetime.date:
@@ -560,17 +539,16 @@ class DateOperations:
 
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
-        request = build_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
+        _request = build_get_min_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -583,8 +561,6 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_min_date.metadata = {"url": "/date/min"}
+        return deserialized  # type: ignore

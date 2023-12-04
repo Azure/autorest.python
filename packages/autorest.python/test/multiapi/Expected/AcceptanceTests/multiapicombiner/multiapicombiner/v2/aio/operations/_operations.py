@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -75,20 +75,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
 
-        request = build_multiapi_service_test_one_request(
+        _request = build_multiapi_service_test_one_request(
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -101,11 +100,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         deserialized = self._deserialize("ModelTwo", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
@@ -138,20 +135,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_multiapi_service_test_different_calls_request(
+        _request = build_multiapi_service_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -162,9 +158,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class OperationGroupOneOperations:
@@ -206,12 +200,12 @@ class OperationGroupOneOperations:
 
     @overload
     async def test_two(
-        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, parameter_one: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter. Default value is None.
-        :type parameter_one: IO
+        :type parameter_one: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -223,13 +217,13 @@ class OperationGroupOneOperations:
 
     @distributed_trace_async
     async def test_two(
-        self, parameter_one: Optional[Union[_models.ModelTwo, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelTwo, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO type. Default
-         value is None.
-        :type parameter_one: ~multiapicombiner.v2.models.ModelTwo or IO
+        :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO[bytes] type.
+         Default value is None.
+        :type parameter_one: ~multiapicombiner.v2.models.ModelTwo or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -264,21 +258,20 @@ class OperationGroupOneOperations:
             else:
                 _json = None
 
-        request = build_operation_group_one_test_two_request(
+        _request = build_operation_group_one_test_two_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -291,11 +284,9 @@ class OperationGroupOneOperations:
         deserialized = self._deserialize("ModelTwo", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -320,18 +311,17 @@ class OperationGroupOneOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operation_group_one_test_three_request(
+        _request = build_operation_group_one_test_three_request(
             api_version=api_version,
-            template_url=self.test_three.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -342,9 +332,7 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    test_three.metadata = {"url": "/multiapi/one/testThreeEndpoint"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class OperationGroupTwoOperations:
@@ -394,19 +382,18 @@ class OperationGroupTwoOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operation_group_two_test_four_request(
+        _request = build_operation_group_two_test_four_request(
             parameter_one=parameter_one,
             api_version=api_version,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -417,6 +404,4 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}
+            return cls(pipeline_response, None, {})  # type: ignore

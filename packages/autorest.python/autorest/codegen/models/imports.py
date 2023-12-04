@@ -11,9 +11,13 @@ if TYPE_CHECKING:
 
 
 class ImportType(str, Enum):
+    """
+    Ordering of these enum matters. We order import groupings in a file based off of this ordering.
+    """
+
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
-    AZURECORE = "azurecore"
+    SDKCORE = "sdkcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
@@ -88,12 +92,26 @@ class TypeDefinition:
 
 
 class FileImport:
-    def __init__(self, imports: Optional[List[ImportModel]] = None) -> None:
-        self.imports = imports or []
+    def __init__(self, code_model: "CodeModel") -> None:
+        self.imports: List[ImportModel] = []
+        self.code_model = code_model
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}
+        self.core_library = self.code_model.core_library
 
     def _append_import(self, import_model: ImportModel) -> None:
+        if import_model.import_type == ImportType.SDKCORE:
+            mod_name = import_model.module_name
+            core_libraries = [
+                self.code_model.core_library,
+                "azure",
+                "msrest",
+            ]
+            if all(l not in mod_name for l in core_libraries):
+                # this is to make sure we don't tack on core libraries when we don't need to
+                import_model.module_name = (
+                    f"{self.code_model.core_library}{'.' if mod_name else ''}{mod_name}"
+                )
         if not any(
             i
             for i in self.imports
@@ -183,6 +201,23 @@ class FileImport:
         )
         self.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
+    def add_literal_import(self) -> None:
+        self.add_import("sys", ImportType.STDLIB)
+        self.add_submodule_import(
+            "typing_extensions",
+            "Literal",
+            ImportType.BYVERSION,
+            TypingSection.REGULAR,
+            None,
+            (
+                (
+                    (3, 8),
+                    "typing",
+                    "pylint: disable=no-name-in-module, ungrouped-imports",
+                ),
+            ),
+        )
+
     def to_dict(
         self,
     ) -> Dict[
@@ -255,15 +290,15 @@ class FileImport:
 
     def add_msrest_import(
         self,
-        code_model: "CodeModel",
+        *,
         relative_path: str,
         msrest_import_type: MsrestImportType,
         typing_section: TypingSection,
     ):
-        if code_model.options["client_side_validation"]:
+        if self.code_model.options["client_side_validation"]:
             if msrest_import_type == MsrestImportType.Module:
                 self.add_import(
-                    "msrest.serialization", ImportType.AZURECORE, typing_section
+                    "msrest.serialization", ImportType.SDKCORE, typing_section
                 )
             else:
                 self.add_submodule_import(
@@ -274,7 +309,7 @@ class FileImport:
                         "msrest", "Deserializer", ImportType.THIRDPARTY, typing_section
                     )
         else:
-            if code_model.options["multiapi"]:
+            if self.code_model.options["multiapi"]:
                 relative_path += "."
             if msrest_import_type == MsrestImportType.Module:
                 self.add_submodule_import(

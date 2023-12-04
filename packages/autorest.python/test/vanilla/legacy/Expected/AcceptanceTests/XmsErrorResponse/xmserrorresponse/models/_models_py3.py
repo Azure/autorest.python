@@ -58,7 +58,7 @@ class NotFoundErrorBase(BaseError):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     AnimalNotFound, LinkNotFound
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar some_base_prop:
     :vartype some_base_prop: str
@@ -95,7 +95,7 @@ class NotFoundErrorBase(BaseError):
 class AnimalNotFound(NotFoundErrorBase):
     """AnimalNotFound.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar some_base_prop:
     :vartype some_base_prop: str
@@ -142,7 +142,7 @@ class AnimalNotFound(NotFoundErrorBase):
 class LinkNotFound(NotFoundErrorBase):
     """LinkNotFound.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar some_base_prop:
     :vartype some_base_prop: str
@@ -241,7 +241,7 @@ class PetActionError(PetAction):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     PetSadError
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar action_response: action feedback.
     :vartype action_response: str
@@ -283,7 +283,7 @@ class PetSadError(PetActionError):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     PetHungryOrThirstyError
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar action_response: action feedback.
     :vartype action_response: str
@@ -332,7 +332,7 @@ class PetSadError(PetActionError):
 class PetHungryOrThirstyError(PetSadError):
     """PetHungryOrThirstyError.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar action_response: action feedback.
     :vartype action_response: str

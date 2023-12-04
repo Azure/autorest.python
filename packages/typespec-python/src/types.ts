@@ -18,9 +18,10 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
+import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
-export const simpleTypesMap = new Map<string, Record<string, any>>();
+export const simpleTypesMap = new Map<string | null, Record<string, any>>();
 
 export interface CredentialType {
     kind: "Credential";
@@ -58,6 +59,7 @@ function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
 export function getType(
     context: SdkContext,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
+    fromBody = false,
 ): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
@@ -68,7 +70,7 @@ export function getType(
 
     switch (type.kind) {
         case "model":
-            return emitModel(context, type);
+            return emitModel(context, type, fromBody);
         case "union":
             return emitUnion(context, type);
         case "enum":
@@ -81,6 +83,8 @@ export function getType(
         case "datetime":
         case "duration":
             return emitDurationOrDateType(type);
+        case "enumvalue":
+            return emitEnumMember(type, emitEnum(type.enumType));
         case "bytes":
         case "boolean":
         case "date":
@@ -89,6 +93,8 @@ export function getType(
         case "int64":
         case "float32":
         case "float64":
+        case "decimal":
+        case "decimal128":
         case "string":
         case "guid":
         case "url":
@@ -100,11 +106,10 @@ export function getType(
         case "etag":
             return emitBuiltInType(type);
         case "any":
-            return { type: "any" };
+            return KnownTypes.any;
         case "String":
         case "Number":
         case "Boolean":
-        case "Model":
         case "Intrinsic":
         case "Scalar":
         case "Enum":
@@ -112,6 +117,8 @@ export function getType(
         case "ModelProperty":
         case "UnionVariant":
             return getType(context, getClientType(context, type));
+        case "Model":
+            return getType(context, getClientType(context, type), fromBody);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -137,7 +144,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
         credential_type = {
             type: "Key",
             policy: {
-                type: "AzureKeyCredentialPolicy",
+                type: "KeyCredentialPolicy",
                 key: auth.name,
             },
         };
@@ -145,9 +152,9 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
         credential_type = {
             type: "Key",
             policy: {
-                type: "AzureKeyCredentialPolicy",
+                type: "KeyCredentialPolicy",
                 key: "Authorization",
-                scheme: auth.scheme,
+                scheme: auth.scheme[0].toUpperCase() + auth.scheme.slice(1),
             },
         };
     }
@@ -200,7 +207,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
     };
 }
 
-function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
+function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
             type: "any",
@@ -210,30 +217,32 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
-        name: type.name,
+        name: type.generatedName ?? type.name,
         description: type.description,
-        parents: type.baseModel ? [getType(context, type.baseModel)] : [],
+        parents: parents,
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" ? "json" : "dpg",
+        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
         internal: type.access === "internal",
     };
 
     typesMap.set(type, newValue);
+    newValue.parents = type.baseModel ? [getType(context, type.baseModel)] : newValue.parents;
     for (const property of type.properties.values()) {
         if (property.kind === "property") {
             newValue.properties.push(emitProperty(context, property));
-            if (
-                type.discriminatedSubtypes &&
-                property.discriminator &&
-                property.type.kind === "constant" &&
-                !property.type.value
-            ) {
+            // type for base discriminator returned by TCGC changes from constant to string while
+            // autorest treat all discriminator as constant type, so we need to change to constant type here
+            if (type.discriminatedSubtypes && property.discriminator) {
                 newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
+                if (property.type.kind === "string") {
+                    newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                }
             }
         }
     }
@@ -249,6 +258,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const values: Record<string, any>[] = [];
     const newValue = {
         name: type.name,
         snakeCaseName: camelToSnakeCase(type.name),
@@ -256,9 +266,12 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
-        values: type.values.map((x) => emitEnumMember(x)),
+        values,
         xmlMetadata: {},
     };
+    for (const value of type.values) {
+        newValue.values.push(emitEnumMember(value, newValue));
+    }
     typesMap.set(type, newValue);
     return newValue;
 }
@@ -270,11 +283,14 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
+function emitEnumMember(type: SdkEnumValueType, enumType: Record<string, any>): Record<string, any> {
     return {
         name: enumName(type.name),
         value: type.value,
         description: type.description,
+        enumType,
+        type: type.kind,
+        valueType: enumType["valueType"],
     };
 }
 
@@ -306,24 +322,34 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     int64: "integer",
     float32: "float",
     float64: "float",
+    decimal: "decimal",
+    decimal128: "decimal",
+    guid: "string",
+    url: "string",
+    uuid: "string",
+    password: "string",
+    armId: "string",
+    ipAddress: "string",
+    azureLocation: "string",
+    etag: "string",
 };
 
 function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
-            format: type.encode,
+            encode: type.encode,
         });
     }
     if (type.encode === "unixTimestamp") {
         return getSimpleTypeResult({
             type: "unixtime",
-            format: type.encode,
+            encode: type.encode,
         });
     }
     return getSimpleTypeResult({
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
-        format: type.encode,
+        encode: type.encode,
     });
 }
 
@@ -339,7 +365,7 @@ function emitUnion(context: SdkContext, type: SdkUnionType): Record<string, any>
     });
 }
 
-export function getConstantType(key: string): Record<string, any> {
+export function getConstantType(key: string | null): Record<string, any> {
     const cache = simpleTypesMap.get(key);
     if (cache) {
         return cache;
@@ -358,4 +384,5 @@ export function getConstantType(key: string): Record<string, any> {
 export const KnownTypes = {
     string: { type: "string" },
     anyObject: { type: "any-object" },
+    any: { type: "any" },
 };

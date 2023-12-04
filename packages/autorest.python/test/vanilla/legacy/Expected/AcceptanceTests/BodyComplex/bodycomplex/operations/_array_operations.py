@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -150,17 +150,16 @@ class ArrayOperations:
 
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -173,11 +172,9 @@ class ArrayOperations:
         deserialized = self._deserialize("ArrayWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/array/valid"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -209,19 +206,18 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _json = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -232,9 +228,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/array/valid"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> _models.ArrayWrapper:
@@ -258,17 +252,16 @@ class ArrayOperations:
 
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -281,11 +274,9 @@ class ArrayOperations:
         deserialized = self._deserialize("ArrayWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_empty.metadata = {"url": "/complex/array/empty"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -317,19 +308,18 @@ class ArrayOperations:
         _complex_body = _models.ArrayWrapper(array=array)
         _json = self._serialize.body(_complex_body, "ArrayWrapper")
 
-        request = build_put_empty_request(
+        _request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -340,9 +330,7 @@ class ArrayOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/array/empty"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> _models.ArrayWrapper:
@@ -366,17 +354,16 @@ class ArrayOperations:
 
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -389,8 +376,6 @@ class ArrayOperations:
         deserialized = self._deserialize("ArrayWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/array/notprovided"}
+        return deserialized  # type: ignore

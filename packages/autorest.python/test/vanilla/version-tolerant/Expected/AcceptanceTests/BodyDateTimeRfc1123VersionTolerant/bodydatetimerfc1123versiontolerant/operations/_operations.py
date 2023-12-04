@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -209,15 +209,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_null_request(
+        _request = build_datetimerfc1123_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -234,9 +234,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Optional[datetime.datetime], deserialized)
+        return cast(Optional[datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -259,15 +259,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_invalid_request(
+        _request = build_datetimerfc1123_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -284,9 +284,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -309,15 +309,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_overflow_request(
+        _request = build_datetimerfc1123_get_overflow_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -334,9 +334,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -359,15 +359,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_underflow_request(
+        _request = build_datetimerfc1123_get_underflow_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -384,9 +384,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -416,17 +416,17 @@ class Datetimerfc1123Operations:
 
         _json = datetime_body
 
-        request = build_datetimerfc1123_put_utc_max_date_time_request(
+        _request = build_datetimerfc1123_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -438,7 +438,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -461,15 +461,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
+        _request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -486,9 +486,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -511,15 +511,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
+        _request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -536,9 +536,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -568,17 +568,17 @@ class Datetimerfc1123Operations:
 
         _json = datetime_body
 
-        request = build_datetimerfc1123_put_utc_min_date_time_request(
+        _request = build_datetimerfc1123_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -590,7 +590,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -613,15 +613,15 @@ class Datetimerfc1123Operations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        request = build_datetimerfc1123_get_utc_min_date_time_request(
+        _request = build_datetimerfc1123_get_utc_min_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -638,6 +638,6 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore

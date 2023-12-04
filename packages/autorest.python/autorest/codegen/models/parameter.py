@@ -92,6 +92,13 @@ class _ParameterBase(
         )
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
+    def get_declaration(self, value: Any = None) -> Any:
+        return self.type.get_declaration(value)
+
+    @property
+    def hide_in_operation_signature(self) -> bool:
+        return False
+
     @property
     def constant(self) -> bool:
         """Returns whether a parameter is a constant or not.
@@ -111,7 +118,7 @@ class _ParameterBase(
         if self.optional and isinstance(self.type, ConstantType):
             base_description = add_to_description(
                 base_description,
-                f"Known values are {self.type.get_declaration()} and None.",
+                f"Known values are {self.get_declaration()} and None.",
             )
         if not (self.optional or self.client_default_value):
             base_description = add_to_description(base_description, "Required.")
@@ -137,7 +144,7 @@ class _ParameterBase(
         """Declaration of parameter's client default value"""
         if self.client_default_value is None:
             return None
-        return self.type.get_declaration(self.client_default_value)
+        return self.get_declaration(self.client_default_value)
 
     def type_annotation(self, **kwargs: Any) -> str:
         kwargs["is_operation_file"] = True
@@ -161,7 +168,7 @@ class _ParameterBase(
         return self.type.serialization_type
 
     def _imports_shared(self, async_mode: bool, **_: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.added_on:
@@ -342,6 +349,15 @@ class Parameter(_ParameterBase):
         self._default_to_unset_sentinel: bool = False
 
     @property
+    def hide_in_operation_signature(self) -> bool:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.client_name == "maxpagesize"
+        ):
+            return True
+        return False
+
+    @property
     def in_method_signature(self) -> bool:
         return not (self.wire_name == "Accept" or self.grouped_by or self.flattened)
 
@@ -406,9 +422,13 @@ class ClientParameter(Parameter):
     def method_location(self) -> ParameterMethodLocation:
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.is_host and (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
+        if (
+            self.is_host
+            and (
+                self.code_model.options["version_tolerant"]
+                or self.code_model.options["low_level_client"]
+            )
+            and not self.code_model.options["azure_arm"]
         ):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY

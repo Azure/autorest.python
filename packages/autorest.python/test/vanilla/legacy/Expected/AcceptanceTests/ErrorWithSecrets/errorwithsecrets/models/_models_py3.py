@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Error(_serialization.Model):
     """The error object.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -92,7 +92,7 @@ class Error(_serialization.Model):
 class ErrorResponse(_serialization.Model):
     """Error response.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -130,7 +130,7 @@ class InnerError(_serialization.Model):
     guidelines -
     https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -189,7 +189,7 @@ class InnerError(_serialization.Model):
 class SecretResponse(_serialization.Model):
     """A secret.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar key: The secret key. Required.
     :vartype key: str

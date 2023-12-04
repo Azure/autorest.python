@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -80,16 +80,16 @@ class ImportOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_import_operations_operation_one_request(
+        _request = build_import_operations_operation_one_request(
             parameter1=parameter1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -106,9 +106,9 @@ class ImportOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
@@ -122,11 +122,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         )
 
     @distributed_trace_async
-    async def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
+    async def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
-        :type content: IO
+        :type content: IO[bytes]
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -147,17 +147,17 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         _content = content
 
-        request = build_reserved_words_operation_with_content_param_request(
+        _request = build_reserved_words_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -174,9 +174,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -204,17 +204,17 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         _json = json
 
-        request = build_reserved_words_operation_with_json_param_request(
+        _request = build_reserved_words_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -231,9 +231,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def operation_with_url(
@@ -267,18 +267,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_reserved_words_operation_with_url_request(
+        _request = build_reserved_words_operation_with_url_request(
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -295,9 +295,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def reserved_enum(self, *, enum_parameter: str, **kwargs: Any) -> JSON:
@@ -323,16 +323,16 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_reserved_words_reserved_enum_request(
+        _request = build_reserved_words_reserved_enum_request(
             enum_parameter=enum_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -349,6 +349,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

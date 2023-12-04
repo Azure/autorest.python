@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Dict, Union
+from typing import Any, Dict, Union, Optional
 from .base import BaseModel
 from .base_builder import BaseBuilder, ParameterListType
 from .code_model import CodeModel
@@ -28,9 +28,10 @@ from .primitive_types import (
     BooleanType,
     AnyObjectType,
     UnixTimeType,
-    AzureCoreType,
+    SdkCoreType,
+    DecimalType,
 )
-from .enum_type import EnumType
+from .enum_type import EnumType, EnumValue
 from .base import BaseType
 from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
@@ -67,15 +68,15 @@ from .request_builder_parameter import (
 )
 from .credential_types import (
     TokenCredentialType,
-    AzureKeyCredentialType,
+    KeyCredentialType,
     ARMChallengeAuthenticationPolicyType,
     BearerTokenCredentialPolicyType,
-    AzureKeyCredentialPolicyType,
+    KeyCredentialPolicyType,
     CredentialType,
 )
 
 __all__ = [
-    "AzureKeyCredentialPolicyType",
+    "KeyCredentialPolicyType",
     "AnyType",
     "BaseModel",
     "BaseType",
@@ -86,6 +87,7 @@ __all__ = [
     "DictionaryType",
     "ListType",
     "EnumType",
+    "EnumValue",
     "FileImport",
     "ImportType",
     "TypingSection",
@@ -123,11 +125,13 @@ __all__ = [
 TYPE_TO_OBJECT = {
     "integer": IntegerType,
     "float": FloatType,
+    "decimal": DecimalType,
     "string": StringType,
     "list": ListType,
     "dict": DictionaryType,
     "constant": ConstantType,
     "enum": EnumType,
+    "enumvalue": EnumValue,
     "binary": BinaryType,
     "any": AnyType,
     "datetime": DatetimeType,
@@ -138,14 +142,14 @@ TYPE_TO_OBJECT = {
     "boolean": BooleanType,
     "combined": CombinedType,
     "OAuth2": TokenCredentialType,
-    "Key": AzureKeyCredentialType,
+    "Key": KeyCredentialType,
     "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
     "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
-    "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
+    "KeyCredentialPolicy": KeyCredentialPolicyType,
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
     "credential": StringType,
-    "azurecore": AzureCoreType,
+    "sdkcore": SdkCoreType,
 }
 _LOGGER = logging.getLogger(__name__)
 
@@ -157,6 +161,7 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
+    response: Optional[BaseType] = None
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
         if yaml_data["base"] == "json" or not code_model.options["models_mode"]:
@@ -168,6 +173,16 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         response = model_type(yaml_data, code_model)
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
+    elif yaml_data["type"] == "enum":
+        # avoid recursion because we add the parent enum type to the enum value
+        response = EnumType(
+            yaml_data,
+            code_model,
+            values=[],
+            value_type=build_type(yaml_data["valueType"], code_model),
+        )
+        code_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, code_model)
     else:
         object_type = yaml_data.get("type")
         if object_type not in TYPE_TO_OBJECT:
@@ -177,6 +192,8 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
             )
             object_type = "string"
         response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, code_model)  # type: ignore
+    if response is None:
+        raise ValueError("response can not be None")
     code_model.types_map[yaml_id] = response
     return response
 

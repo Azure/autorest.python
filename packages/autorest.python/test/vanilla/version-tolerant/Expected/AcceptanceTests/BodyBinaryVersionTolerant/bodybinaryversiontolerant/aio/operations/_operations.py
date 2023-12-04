@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -49,11 +49,13 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def file(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -74,17 +76,17 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_upload_file_request(
+        _request = build_upload_file_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -96,14 +98,16 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def binary(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -124,17 +128,17 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_upload_binary_request(
+        _request = build_upload_binary_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -146,7 +150,7 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DownloadOperations:
@@ -187,15 +191,15 @@ class DownloadOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        request = build_download_error_stream_request(
+        _request = build_download_error_stream_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,6 +213,6 @@ class DownloadOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(AsyncIterator[bytes], deserialized)
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore

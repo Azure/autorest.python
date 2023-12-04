@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -167,17 +167,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -190,11 +189,9 @@ class BasicOperations:
         deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/basic/valid"}
+        return deserialized  # type: ignore
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -215,12 +212,12 @@ class BasicOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -232,13 +229,13 @@ class BasicOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Basic, IO], **kwargs: Any
+        self, complex_body: Union[_models.Basic, IO[bytes]], **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a Basic type
-         or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Basic or IO
+         or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Basic or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -270,21 +267,20 @@ class BasicOperations:
         else:
             _json = self._serialize.body(complex_body, "Basic")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -295,9 +291,7 @@ class BasicOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/basic/valid"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> _models.Basic:
@@ -321,17 +315,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -344,11 +337,9 @@ class BasicOperations:
         deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_invalid.metadata = {"url": "/complex/basic/invalid"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> _models.Basic:
@@ -372,17 +363,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -395,11 +385,9 @@ class BasicOperations:
         deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_empty.metadata = {"url": "/complex/basic/empty"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> _models.Basic:
@@ -423,17 +411,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -446,11 +433,9 @@ class BasicOperations:
         deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_null.metadata = {"url": "/complex/basic/null"}
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> _models.Basic:
@@ -474,17 +459,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -497,8 +481,6 @@ class BasicOperations:
         deserialized = self._deserialize("Basic", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}
+        return deserialized  # type: ignore

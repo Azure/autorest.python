@@ -8,7 +8,6 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
@@ -16,7 +15,7 @@ from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuth
 VERSION = "unknown"
 
 
-class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,7 +29,6 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2.0.0")
 
         if credential is None:
@@ -39,6 +37,7 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
         self.credential = credential
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "multiapicredentialdefaultpolicy/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -47,9 +46,9 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or ARMHttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "api-key", **kwargs)

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -87,16 +87,16 @@ class PetOperations:
 
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        request = build_pet_get_pet_by_id_request(
+        _request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -115,9 +115,9 @@ class PetOperations:
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def do_something(self, what_action: str, **kwargs: Any) -> JSON:
@@ -151,16 +151,16 @@ class PetOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_pet_do_something_request(
+        _request = build_pet_do_something_request(
             what_action=what_action,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -177,9 +177,9 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
@@ -209,16 +209,16 @@ class PetOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_pet_has_models_param_request(
+        _request = build_pet_has_models_param_request(
             models=models,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -230,4 +230,4 @@ class PetOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

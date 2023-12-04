@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -32,7 +32,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_formdata_upload_file_via_body_request(  # pylint: disable=name-too-long
-    *, content: IO, **kwargs: Any
+    *, content: IO[bytes], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -75,11 +75,11 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         )
 
     @distributed_trace
-    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> Iterator[bytes]:
+    def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> Iterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :return: Iterator of the response bytes
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -100,17 +100,17 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
 
         _content = file_content
 
-        request = build_formdata_upload_file_via_body_request(
+        _request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -124,6 +124,6 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore

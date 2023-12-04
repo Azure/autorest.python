@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -97,17 +97,16 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_request(
-            template_url=self.get.metadata["url"],
+        _request = build_get_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -117,9 +116,7 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def param_get(  # pylint: disable=inconsistent-return-statements
@@ -149,18 +146,17 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_param_get_request(
+        _request = build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
-            template_url=self.param_get.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -171,6 +167,4 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    param_get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"}
+            return cls(pipeline_response, None, {})  # type: ignore

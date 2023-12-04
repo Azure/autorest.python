@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,7 +30,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_upload_file_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_upload_file_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -44,7 +44,7 @@ def build_upload_file_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_upload_binary_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_upload_binary_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -90,11 +90,11 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def file(self, file_param: IO[bytes], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -115,17 +115,17 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_upload_file_request(
+        _request = build_upload_file_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -137,14 +137,14 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def binary(self, file_param: IO[bytes], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -165,17 +165,17 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_upload_binary_request(
+        _request = build_upload_binary_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -187,7 +187,7 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DownloadOperations:
@@ -228,15 +228,15 @@ class DownloadOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        request = build_download_error_stream_request(
+        _request = build_download_error_stream_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -250,6 +250,6 @@ class DownloadOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore

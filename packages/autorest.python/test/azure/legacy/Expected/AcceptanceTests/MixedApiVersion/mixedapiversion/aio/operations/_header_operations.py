@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -78,18 +78,17 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_custom_named_request_id_request(
+        _request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -103,9 +102,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -141,18 +138,17 @@ class HeaderOperations:
         if header_custom_named_request_id_param_grouping_parameters is not None:
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
-        request = build_custom_named_request_id_param_grouping_request(
+        _request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -166,9 +162,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_head(  # pylint: disable=inconsistent-return-statements
@@ -196,18 +190,17 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_custom_named_request_id_head_request(
+        _request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -222,6 +215,4 @@ class HeaderOperations:
             response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}
+            return cls(pipeline_response, None, response_headers)  # type: ignore

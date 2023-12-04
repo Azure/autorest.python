@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -77,12 +77,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -104,19 +104,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = body_parameter
 
-        request = build_put_optional_binary_body_request(
+        _request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_optional_binary_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -127,18 +126,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_optional_binary_body.metadata = {"url": "/reqopt/explicit/optional/binary-body"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, **kwargs: Any
+        self, body_parameter: IO[bytes], **kwargs: Any
     ) -> None:
         """Test explicitly required body parameter.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -160,19 +157,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = body_parameter
 
-        request = build_put_required_binary_body_request(
+        _request = build_put_required_binary_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_required_binary_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -183,9 +179,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_required_binary_body.metadata = {"url": "/reqopt/explicit/required/binary-body"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -217,19 +211,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(body_parameter, "int")
 
-        request = build_post_required_integer_parameter_request(
+        _request = build_post_required_integer_parameter_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_integer_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -240,9 +233,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -276,19 +267,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_optional_integer_parameter_request(
+        _request = build_post_optional_integer_parameter_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_integer_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -299,9 +289,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -334,19 +322,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _body_parameter = _models.IntWrapper(value=value)
         _json = self._serialize.body(_body_parameter, "IntWrapper")
 
-        request = build_post_required_integer_property_request(
+        _request = build_post_required_integer_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_integer_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -357,9 +344,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -394,19 +379,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_optional_integer_property_request(
+        _request = build_post_optional_integer_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_integer_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -417,9 +401,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -448,18 +430,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_required_integer_header_request(
+        _request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_integer_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -470,9 +451,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -500,18 +479,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_optional_integer_header_request(
+        _request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_optional_integer_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -522,9 +500,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -556,19 +532,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = self._serialize.body(body_parameter, "str")
 
-        request = build_post_required_string_parameter_request(
+        _request = build_post_required_string_parameter_request(
             content_type=content_type,
             content=_content,
-            template_url=self.post_required_string_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -579,9 +554,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -615,19 +588,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = None
 
-        request = build_post_optional_string_parameter_request(
+        _request = build_post_optional_string_parameter_request(
             content_type=content_type,
             content=_content,
-            template_url=self.post_optional_string_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -638,9 +610,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
@@ -673,19 +643,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _body_parameter = _models.StringWrapper(value=value)
         _json = self._serialize.body(_body_parameter, "StringWrapper")
 
-        request = build_post_required_string_property_request(
+        _request = build_post_required_string_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_string_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -696,9 +665,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
@@ -733,19 +700,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_optional_string_property_request(
+        _request = build_post_optional_string_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_string_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -756,9 +722,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_header(  # pylint: disable=inconsistent-return-statements
@@ -787,18 +751,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_required_string_header_request(
+        _request = build_post_required_string_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_string_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -809,9 +772,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
@@ -839,18 +800,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_optional_string_header_request(
+        _request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
-            template_url=self.post_optional_string_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -861,9 +821,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -885,13 +843,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -903,13 +861,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[_models.Product, IO], **kwargs: Any
+        self, body_parameter: Union[_models.Product, IO[bytes]], **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter: Is either a Product type or a IO type. Required.
-        :type body_parameter: ~requiredoptional.models.Product or IO
+        :param body_parameter: Is either a Product type or a IO[bytes] type. Required.
+        :type body_parameter: ~requiredoptional.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -940,20 +898,19 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(body_parameter, "Product")
 
-        request = build_post_required_class_parameter_request(
+        _request = build_post_required_class_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_required_class_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -964,9 +921,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -987,12 +942,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1004,12 +959,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter: Is either a Product type or a IO type. Default value is None.
-        :type body_parameter: ~requiredoptional.models.Product or IO
+        :param body_parameter: Is either a Product type or a IO[bytes] type. Default value is None.
+        :type body_parameter: ~requiredoptional.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1043,20 +998,19 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_post_optional_class_parameter_request(
+        _request = build_post_optional_class_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_optional_class_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1067,9 +1021,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1102,19 +1054,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _body_parameter = _models.ClassWrapper(value=value)
         _json = self._serialize.body(_body_parameter, "ClassWrapper")
 
-        request = build_post_required_class_property_request(
+        _request = build_post_required_class_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_class_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1125,9 +1076,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1162,19 +1111,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_optional_class_property_request(
+        _request = build_post_optional_class_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_class_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1185,9 +1133,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1209,13 +1155,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
         :param body_parameter: Required.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1227,13 +1173,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[List[str], IO], **kwargs: Any
+        self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter: Is either a [str] type or a IO type. Required.
-        :type body_parameter: list[str] or IO
+        :param body_parameter: Is either a [str] type or a IO[bytes] type. Required.
+        :type body_parameter: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1264,20 +1210,19 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(body_parameter, "[str]")
 
-        request = build_post_required_array_parameter_request(
+        _request = build_post_required_array_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_required_array_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1288,9 +1233,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1311,12 +1254,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1328,12 +1271,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[List[str], IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[List[str], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter: Is either a [str] type or a IO type. Default value is None.
-        :type body_parameter: list[str] or IO
+        :param body_parameter: Is either a [str] type or a IO[bytes] type. Default value is None.
+        :type body_parameter: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1367,20 +1310,19 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_post_optional_array_parameter_request(
+        _request = build_post_optional_array_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_optional_array_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1391,9 +1333,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1426,19 +1366,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _body_parameter = _models.ArrayWrapper(value=value)
         _json = self._serialize.body(_body_parameter, "ArrayWrapper")
 
-        request = build_post_required_array_property_request(
+        _request = build_post_required_array_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_array_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1449,9 +1388,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1486,19 +1423,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_optional_array_property_request(
+        _request = build_post_optional_array_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_array_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1509,9 +1445,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1540,18 +1474,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_required_array_header_request(
+        _request = build_post_required_array_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_array_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1562,9 +1495,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1592,18 +1523,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_post_optional_array_header_request(
+        _request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_optional_array_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1614,6 +1544,4 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    post_optional_array_header.metadata = {"url": "/reqopt/optional/array/header"}
+            return cls(pipeline_response, None, {})  # type: ignore

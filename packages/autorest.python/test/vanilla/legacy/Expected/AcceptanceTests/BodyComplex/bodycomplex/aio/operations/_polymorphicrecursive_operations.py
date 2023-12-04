@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -72,17 +72,16 @@ class PolymorphicrecursiveOperations:
 
         cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -95,11 +94,9 @@ class PolymorphicrecursiveOperations:
         deserialized = self._deserialize("Fish", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}
+        return deserialized  # type: ignore
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -172,7 +169,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -229,7 +226,7 @@ class PolymorphicrecursiveOperations:
                  }
              ]
          }. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -241,7 +238,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -297,8 +294,8 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a Fish type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+         }. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -329,20 +326,19 @@ class PolymorphicrecursiveOperations:
         else:
             _json = self._serialize.body(complex_body, "Fish")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -353,6 +349,4 @@ class PolymorphicrecursiveOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}
+            return cls(pipeline_response, None, {})  # type: ignore

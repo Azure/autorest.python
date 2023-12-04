@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -50,11 +50,13 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def file(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -76,19 +78,18 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_file_request(
+        _request = build_file_request(
             content_type=content_type,
             content=_content,
-            template_url=self.file.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -98,16 +99,16 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    file.metadata = {"url": "/binary/file"}
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def binary(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -129,19 +130,18 @@ class UploadOperations:
 
         _content = file_param
 
-        request = build_binary_request(
+        _request = build_binary_request(
             content_type=content_type,
             content=_content,
-            template_url=self.binary.metadata["url"],
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -151,6 +151,4 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
-
-    binary.metadata = {"url": "/binary/octet"}
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AutoRestComplexTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestComplexTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestComplexTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,11 +25,11 @@ class AutoRestComplexTestServiceConfiguration(  # pylint: disable=too-many-insta
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2016-02-29")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestcomplextestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -41,7 +38,7 @@ class AutoRestComplexTestServiceConfiguration(  # pylint: disable=too-many-insta
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

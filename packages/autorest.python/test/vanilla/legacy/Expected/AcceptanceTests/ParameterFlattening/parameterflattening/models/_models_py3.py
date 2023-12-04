@@ -15,7 +15,7 @@ from .. import _serialization
 class AvailabilitySetUpdateParameters(_serialization.Model):
     """AvailabilitySetUpdateParameters.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar tags: A description about the set of tags. Required.
     :vartype tags: dict[str, str]
