@@ -4703,6 +4703,7 @@ class UnionStringLiteralOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -4764,6 +4765,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -4828,6 +4830,7 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4884,6 +4887,7 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4954,6 +4958,7 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -5010,6 +5015,7 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]

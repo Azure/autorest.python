@@ -92,6 +92,7 @@ def build_legacy_create_job_request(**kwargs: Any) -> HttpRequest:
 class LegacyClientOperationsMixin(LegacyClientMixinABC):
     @distributed_trace
     def get_job(self, job_id: str, **kwargs: Any) -> _models.JobResult:
+        # pylint: disable=line-too-long
         """Poll a Job.
 
         :param job_id: A processing job identifier. Required.

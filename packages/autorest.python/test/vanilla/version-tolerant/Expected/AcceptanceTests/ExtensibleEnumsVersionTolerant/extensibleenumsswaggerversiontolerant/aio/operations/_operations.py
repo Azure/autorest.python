@@ -53,6 +53,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """get pet by id.
 
         :param pet_id: Pet id. Required.
@@ -120,6 +121,7 @@ class PetOperations:
     async def add_pet(
         self, pet_param: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -157,6 +159,7 @@ class PetOperations:
     async def add_pet(
         self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -183,6 +186,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def add_pet(self, pet_param: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Is either a JSON type or a IO[bytes] type. Default value is None.

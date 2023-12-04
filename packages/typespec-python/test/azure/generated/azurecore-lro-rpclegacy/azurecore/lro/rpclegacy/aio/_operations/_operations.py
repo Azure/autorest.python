@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LegacyClientOperationsMixin(LegacyClientMixinABC):
     @distributed_trace_async
     async def get_job(self, job_id: str, **kwargs: Any) -> _models.JobResult:
+        # pylint: disable=line-too-long
         """Poll a Job.
 
         :param job_id: A processing job identifier. Required.

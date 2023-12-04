@@ -5207,6 +5207,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get call.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -5271,6 +5272,7 @@ class UnionStringLiteralOperations:
     async def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put operation.
 
         :param body: body. Required.
@@ -5328,6 +5330,7 @@ class UnionStringLiteralOperations:
     async def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put operation.
 
         :param body: body. Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
