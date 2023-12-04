@@ -61,13 +61,6 @@ export function getType(
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
     fromBody = false,
 ): Record<string, any> {
-    if (type.kind === "Credential") {
-        return emitCredential(type.scheme);
-    }
-    if (type.kind === "CredentialTypeUnion") {
-        return emitCredentialUnion(type);
-    }
-
     switch (type.kind) {
         case "model":
             return emitModel(context, type, fromBody);
@@ -150,18 +143,6 @@ function emitCredential(
         };
     }
     return getSimpleTypeResult(credential_type);
-}
-
-function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, any> {
-    const result: Record<string, any> = {};
-    // Export as CombinedType, which is already a Union Type in autorest codegen
-    result.type = "combined";
-    result.types = [];
-    for (const cred_type of cred_types.types) {
-        result.types.push(emitCredential(cred_type.scheme));
-    }
-
-    return getSimpleTypeResult(result);
 }
 
 function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
