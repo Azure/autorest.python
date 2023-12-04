@@ -80,6 +80,7 @@ function emitMethodParameter(
     implementation: getImplementation(parameter),
     type: getType(context, parameter.type),
     clientDefaultValue: parameter.clientDefaultValue,
+    location: parameter.kind,
   };
   if (parameter.kind === "endpoint") {
     return {
@@ -87,6 +88,7 @@ function emitMethodParameter(
       skipUrlEncoding: !parameter.urlEncode,
       wireName: parameter.serializedName,
       type: "endpointPath",
+      location: "endpointPath",
     };
   }
   return base;
@@ -119,10 +121,10 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
     if (method.kind === "clientaccessor") {
       // Also currently assume subclient is operationGroup to keep code changes minimal
       const operationGroup = method.response;
-      const operations: Record<string, any>[] = [];
+      let operations: Record<string, any>[] = [];
       for (const method of operationGroup.methods) {
         if (method.kind === "clientaccessor") continue; // skipping for now since we don't do sub-sub clients
-        operations.push(emitMethod(context, method, operationGroup.name));
+        operations = operations.concat(emitMethod(context, method, operationGroup.name));
       }
       operationGroups.push({
         className: operationGroup.name,
@@ -140,7 +142,7 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
         });
       }
       const og = clientOperations.get(groupName) as Record<string, any>;
-      og.operations.push(emittedOperation);
+      og.operations = og.operations.concat(emittedOperation);
     }
   }
   for (const value of clientOperations.values()) {

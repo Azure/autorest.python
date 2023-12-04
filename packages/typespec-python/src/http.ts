@@ -133,7 +133,7 @@ function emitHttpOperation(
     parameters: emitHttpParameters(context, operation),
     bodyParameter: emitHttpBodyParameter(context, operation.bodyParams),
     responses,
-    exception: emitHttpResponse(context, "*", operation.exception),
+    exceptions: [emitHttpResponse(context, "*", operation.exception)],
     groupName: operationGroupName,
     addedOn: "",
     discriminator: "basic",
