@@ -147,6 +147,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -195,6 +203,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -255,6 +271,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -303,6 +327,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -363,6 +395,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -412,6 +452,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -472,6 +520,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -522,6 +578,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
