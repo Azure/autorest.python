@@ -11,6 +11,8 @@ from ._operations import StringOperations
 from ._operations import BytesOperations
 from ._operations import IntOperations
 from ._operations import FloatOperations
+from ._operations import DecimalOperations
+from ._operations import Decimal128Operations
 from ._operations import DatetimeOperations
 from ._operations import DurationOperations
 from ._operations import EnumOperations
@@ -25,6 +27,13 @@ from ._operations import UnknownStringOperations
 from ._operations import UnknownIntOperations
 from ._operations import UnknownDictOperations
 from ._operations import UnknownArrayOperations
+from ._operations import StringLiteralOperations
+from ._operations import IntLiteralOperations
+from ._operations import FloatLiteralOperations
+from ._operations import BooleanLiteralOperations
+from ._operations import UnionStringLiteralOperations
+from ._operations import UnionIntLiteralOperations
+from ._operations import UnionFloatLiteralOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -36,6 +45,8 @@ __all__ = [
     "BytesOperations",
     "IntOperations",
     "FloatOperations",
+    "DecimalOperations",
+    "Decimal128Operations",
     "DatetimeOperations",
     "DurationOperations",
     "EnumOperations",
@@ -50,6 +61,13 @@ __all__ = [
     "UnknownIntOperations",
     "UnknownDictOperations",
     "UnknownArrayOperations",
+    "StringLiteralOperations",
+    "IntLiteralOperations",
+    "FloatLiteralOperations",
+    "BooleanLiteralOperations",
+    "UnionStringLiteralOperations",
+    "UnionIntLiteralOperations",
+    "UnionFloatLiteralOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

@@ -71,6 +71,9 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
     },
+    "type/model/inheritance/recursive": {
+        "package-name": "typetest-model-recursive",
+    },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
@@ -84,6 +87,9 @@ EMITTER_OPTIONS = {
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
+    },
+    "type/property/additional-properties": {
+        "package-name": "typetest-property-additionalproperties",
     },
     "type/scalar": {
         "package-name": "typetest-scalar",
@@ -223,11 +229,23 @@ def _regenerate(
     )
 
 
+def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
+    if "sphere" in str(s):
+        return False
+    invalid_folders = invalid_folders + ["type/union"]
+    return any(n in s.relative_to(CADL_RANCH_DIR).as_posix() for n in invalid_folders)
+
+
 @task
 def regenerate_azure(c, name=None, debug=False):
+    specs = [
+        s
+        for s in _all_specification_folders("azure")
+        if not is_invalid_folder(s)
+    ]
     _regenerate(
         c,
-        _all_specification_folders("azure"),
+        specs,
         "azure",
         name,
         debug
@@ -241,7 +259,7 @@ def regenerate_unbranded(c, name=None, debug=False):
     specs = [
         s
         for s in _all_specification_folders("unbranded")
-        if all(n not in str(s.relative_to(CADL_RANCH_DIR)) for n in ["azure", "client-request-id"])
+        if not is_invalid_folder(s, invalid_folders=["azure", "client-request-id"])
     ]
     special_flags = {"unbranded": "true", "company-name": "Unbranded"}
     _regenerate(

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -288,7 +288,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -301,7 +301,7 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -314,7 +314,7 @@ class CatalogsOperations:
 
     @distributed_trace_async
     async def create_or_update(
-        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO], **kwargs: Any
+        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO[bytes]], **kwargs: Any
     ) -> _models.Catalog:
         """Create a Catalog.
 
@@ -323,8 +323,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param resource: Resource create parameters. Is either a Catalog type or a IO type. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO
+        :param resource: Resource create parameters. Is either a Catalog type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -437,7 +438,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        properties: IO,
+        properties: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -450,7 +451,7 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -463,7 +464,11 @@ class CatalogsOperations:
 
     @distributed_trace_async
     async def update(
-        self, resource_group_name: str, catalog_name: str, properties: Union[_models.CatalogUpdate, IO], **kwargs: Any
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        properties: Union[_models.CatalogUpdate, IO[bytes]],
+        **kwargs: Any
     ) -> _models.Catalog:
         """Update a Catalog.
 
@@ -473,8 +478,8 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
-         IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO
+         IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1173,7 +1178,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        parameters: IO,
+        parameters: IO[bytes],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1189,7 +1194,7 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param parameters: List device groups for catalog. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1209,7 +1214,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        parameters: Union[_models.ListDeviceGroupsRequest, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, IO[bytes]],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1224,8 +1229,8 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param parameters: List device groups for catalog. Is either a ListDeviceGroupsRequest type or
-         a IO type. Required.
-        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
+         a IO[bytes] type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO[bytes]
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1551,7 +1556,7 @@ class ImagesOperations:
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1566,7 +1571,7 @@ class ImagesOperations:
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1583,7 +1588,7 @@ class ImagesOperations:
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
-        resource: Union[_models.Image, IO],
+        resource: Union[_models.Image, IO[bytes]],
         **kwargs: Any
     ) -> _models.Image:
         """Create a Image.
@@ -1595,8 +1600,9 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :param resource: Resource create parameters. Is either a Image type or a IO type. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Image or IO
+        :param resource: Resource create parameters. Is either a Image type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Image or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1981,7 +1987,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1999,7 +2005,7 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2017,7 +2023,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        resource: Union[_models.DeviceGroup, IO],
+        resource: Union[_models.DeviceGroup, IO[bytes]],
         **kwargs: Any
     ) -> _models.DeviceGroup:
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -2032,9 +2038,9 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO type.
+        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO[bytes] type.
          Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO
+        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2225,7 +2231,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: IO,
+        properties: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2243,7 +2249,7 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2261,7 +2267,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[_models.DeviceGroupUpdate, IO],
+        properties: Union[_models.DeviceGroupUpdate, IO[bytes]],
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -2277,8 +2283,8 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
-         a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO
+         a IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2468,7 +2474,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        claim_devices_request: IO,
+        claim_devices_request: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2486,7 +2492,7 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param claim_devices_request: Bulk claim devices request body. Required.
-        :type claim_devices_request: IO
+        :type claim_devices_request: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2502,7 +2508,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        claim_devices_request: Union[_models.ClaimDevicesRequest, IO],
+        claim_devices_request: Union[_models.ClaimDevicesRequest, IO[bytes]],
         **kwargs: Any
     ) -> None:
         """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
@@ -2518,8 +2524,8 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param claim_devices_request: Bulk claim devices request body. Is either a ClaimDevicesRequest
-         type or a IO type. Required.
-        :type claim_devices_request: ~azure.mgmt.spheremsrest.models.ClaimDevicesRequest or IO
+         type or a IO[bytes] type. Required.
+        :type claim_devices_request: ~azure.mgmt.spheremsrest.models.ClaimDevicesRequest or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2882,7 +2888,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        parameters: IO,
+        parameters: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2898,7 +2904,7 @@ class CertificatesOperations:
          certificate. Required.
         :type serial_number: str
         :param parameters: Proof of possession nonce request body. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2915,7 +2921,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        parameters: Union[_models.ProofOfPossessionNonceRequest, IO],
+        parameters: Union[_models.ProofOfPossessionNonceRequest, IO[bytes]],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
         """Gets the proof of possession nonce.
@@ -2929,8 +2935,8 @@ class CertificatesOperations:
          certificate. Required.
         :type serial_number: str
         :param parameters: Proof of possession nonce request body. Is either a
-         ProofOfPossessionNonceRequest type or a IO type. Required.
-        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO
+         ProofOfPossessionNonceRequest type or a IO[bytes] type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3261,7 +3267,7 @@ class DeploymentsOperations:
         product_name: str,
         device_group_name: str,
         deployment_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3282,7 +3288,7 @@ class DeploymentsOperations:
          current deployment for the associated device group. Required.
         :type deployment_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3301,7 +3307,7 @@ class DeploymentsOperations:
         product_name: str,
         device_group_name: str,
         deployment_name: str,
-        resource: Union[_models.Deployment, IO],
+        resource: Union[_models.Deployment, IO[bytes]],
         **kwargs: Any
     ) -> _models.Deployment:
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
@@ -3319,9 +3325,9 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :param resource: Resource create parameters. Is either a Deployment type or a IO type.
+        :param resource: Resource create parameters. Is either a Deployment type or a IO[bytes] type.
          Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO
+        :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3627,7 +3633,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3647,7 +3653,7 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3666,7 +3672,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        resource: Union[_models.Device, IO],
+        resource: Union[_models.Device, IO[bytes]],
         **kwargs: Any
     ) -> _models.Device:
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
@@ -3683,8 +3689,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param resource: Resource create parameters. Is either a Device type or a IO type. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Device or IO
+        :param resource: Resource create parameters. Is either a Device type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Device or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3980,7 +3987,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: IO,
+        properties: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4000,7 +4007,7 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4019,7 +4026,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[_models.DeviceUpdate, IO],
+        properties: Union[_models.DeviceUpdate, IO[bytes]],
         **kwargs: Any
     ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
@@ -4036,9 +4043,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a IO
-         type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO
+        :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a
+         IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4164,7 +4171,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        parameters: IO,
+        parameters: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4185,7 +4192,7 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param parameters: Generate capability image request body. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4204,7 +4211,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        parameters: Union[_models.GenerateCapabilityImageRequest, IO],
+        parameters: Union[_models.GenerateCapabilityImageRequest, IO[bytes]],
         **kwargs: Any
     ) -> Optional[_models.SignedCapabilityImageResponse]:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
@@ -4223,8 +4230,8 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param parameters: Generate capability image request body. Is either a
-         GenerateCapabilityImageRequest type or a IO type. Required.
-        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO
+         GenerateCapabilityImageRequest type or a IO[bytes] type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4514,7 +4521,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: IO,
+        resource: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4530,7 +4537,7 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4547,7 +4554,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: Union[_models.Product, IO],
+        resource: Union[_models.Product, IO[bytes]],
         **kwargs: Any
     ) -> _models.Product:
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -4560,8 +4567,9 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param resource: Resource create parameters. Is either a Product type or a IO type. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Product or IO
+        :param resource: Resource create parameters. Is either a Product type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Product or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4744,7 +4752,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: IO,
+        properties: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4760,7 +4768,7 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4777,7 +4785,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ProductUpdate, IO],
+        properties: Union[_models.ProductUpdate, IO[bytes]],
         **kwargs: Any
     ) -> Optional[_models.Product]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -4791,8 +4799,8 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
-         IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO
+         IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

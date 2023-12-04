@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -322,12 +322,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -338,12 +338,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], **kwargs: Any
+        self, array_body: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value empty [].
 
-        :param array_body: Is either a [str] type or a IO type. Required.
-        :type array_body: list[str] or IO
+        :param array_body: Is either a [str] type or a IO[bytes] type. Required.
+        :type array_body: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -482,12 +482,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -498,12 +498,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[bool], IO], **kwargs: Any
+        self, array_body: Union[List[bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
-        :param array_body: Is either a [bool] type or a IO type. Required.
-        :type array_body: list[bool] or IO
+        :param array_body: Is either a [bool] type or a IO[bytes] type. Required.
+        :type array_body: list[bool] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -758,12 +758,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -774,12 +774,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[int], IO], **kwargs: Any
+        self, array_body: Union[List[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
-        :param array_body: Is either a [int] type or a IO type. Required.
-        :type array_body: list[int] or IO
+        :param array_body: Is either a [int] type or a IO[bytes] type. Required.
+        :type array_body: list[int] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1034,12 +1034,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1050,12 +1050,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[int], IO], **kwargs: Any
+        self, array_body: Union[List[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
-        :param array_body: Is either a [int] type or a IO type. Required.
-        :type array_body: list[int] or IO
+        :param array_body: Is either a [int] type or a IO[bytes] type. Required.
+        :type array_body: list[int] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1310,12 +1310,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1326,12 +1326,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[float], IO], **kwargs: Any
+        self, array_body: Union[List[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
-        :param array_body: Is either a [float] type or a IO type. Required.
-        :type array_body: list[float] or IO
+        :param array_body: Is either a [float] type or a IO[bytes] type. Required.
+        :type array_body: list[float] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1586,12 +1586,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1602,12 +1602,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[float], IO], **kwargs: Any
+        self, array_body: Union[List[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
-        :param array_body: Is either a [float] type or a IO type. Required.
-        :type array_body: list[float] or IO
+        :param array_body: Is either a [float] type or a IO[bytes] type. Required.
+        :type array_body: list[float] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1862,12 +1862,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1878,12 +1878,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], **kwargs: Any
+        self, array_body: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [str] type or a IO type. Required.
-        :type array_body: list[str] or IO
+        :param array_body: Is either a [str] type or a IO[bytes] type. Required.
+        :type array_body: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2022,12 +2022,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2038,12 +2038,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], **kwargs: Any
+        self, array_body: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [str] type or a IO type. Required.
-        :type array_body: list[str] or IO
+        :param array_body: Is either a [str] type or a IO[bytes] type. Required.
+        :type array_body: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2182,12 +2182,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2198,12 +2198,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], **kwargs: Any
+        self, array_body: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [str] type or a IO type. Required.
-        :type array_body: list[str] or IO
+        :param array_body: Is either a [str] type or a IO[bytes] type. Required.
+        :type array_body: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2460,13 +2460,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2477,13 +2477,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], **kwargs: Any
+        self, array_body: Union[List[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :param array_body: Is either a [str] type or a IO type. Required.
-        :type array_body: list[str] or IO
+        :param array_body: Is either a [str] type or a IO[bytes] type. Required.
+        :type array_body: list[str] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2680,12 +2680,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2696,12 +2696,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.date], IO], **kwargs: Any
+        self, array_body: Union[List[datetime.date], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :param array_body: Is either a [datetime.date] type or a IO type. Required.
-        :type array_body: list[~datetime.date] or IO
+        :param array_body: Is either a [datetime.date] type or a IO[bytes] type. Required.
+        :type array_body: list[~datetime.date] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2958,13 +2958,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2975,13 +2975,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
+        self, array_body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
-        :param array_body: Is either a [datetime.datetime] type or a IO type. Required.
-        :type array_body: list[~datetime.datetime] or IO
+        :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
+        :type array_body: list[~datetime.datetime] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3238,13 +3238,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3255,13 +3255,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
+        self, array_body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
-        :param array_body: Is either a [datetime.datetime] type or a IO type. Required.
-        :type array_body: list[~datetime.datetime] or IO
+        :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
+        :type array_body: list[~datetime.datetime] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3400,12 +3400,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3416,12 +3416,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.timedelta], IO], **kwargs: Any
+        self, array_body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :param array_body: Is either a [datetime.timedelta] type or a IO type. Required.
-        :type array_body: list[~datetime.timedelta] or IO
+        :param array_body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
+        :type array_body: list[~datetime.timedelta] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3562,13 +3562,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3579,13 +3579,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[bytes], IO], **kwargs: Any
+        self, array_body: Union[List[bytes], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
-        :param array_body: Is either a [bytes] type or a IO type. Required.
-        :type array_body: list[bytes] or IO
+        :param array_body: Is either a [bytes] type or a IO[bytes] type. Required.
+        :type array_body: list[bytes] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4095,13 +4095,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4112,13 +4112,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[JSON], IO], **kwargs: Any
+        self, array_body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param array_body: Is either a [JSON] type or a IO type. Required.
-        :type array_body: list[JSON] or IO
+        :param array_body: Is either a [JSON] type or a IO[bytes] type. Required.
+        :type array_body: list[JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4501,12 +4501,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4517,12 +4517,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[List[str]], IO], **kwargs: Any
+        self, array_body: Union[List[List[str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-        :param array_body: Is either a [[str]] type or a IO type. Required.
-        :type array_body: list[list[str]] or IO
+        :param array_body: Is either a [[str]] type or a IO[bytes] type. Required.
+        :type array_body: list[list[str]] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4909,13 +4909,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body: Required.
-        :type array_body: IO
+        :type array_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4926,13 +4926,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Dict[str, str]], IO], **kwargs: Any
+        self, array_body: Union[List[Dict[str, str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param array_body: Is either a [{str: str}] type or a IO type. Required.
-        :type array_body: list[dict[str, str]] or IO
+        :param array_body: Is either a [{str: str}] type or a IO[bytes] type. Required.
+        :type array_body: list[dict[str, str]] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,9 +35,12 @@ from ..._operations._operations import (
     build_basic_delete_request,
     build_basic_export_request,
     build_basic_get_request,
+    build_basic_list_first_item_request,
     build_basic_list_request,
+    build_basic_list_second_item_request,
     build_basic_list_with_custom_page_model_request,
     build_basic_list_with_page_request,
+    build_basic_list_with_parameters_request,
 )
 from .._vendor import BasicClientMixinABC
 
@@ -71,6 +74,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -93,11 +127,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
     async def create_or_update(
-        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or updates a user's fields.
 
@@ -106,7 +157,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -115,18 +166,38 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @distributed_trace_async
-    async def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -134,6 +205,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -216,6 +318,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -238,11 +371,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
     async def create_or_replace(
-        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
@@ -251,7 +401,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -260,18 +410,38 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @distributed_trace_async
-    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -280,6 +450,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -355,6 +556,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -433,6 +651,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -515,6 +750,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -582,6 +834,255 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
+    @overload
+    def list_with_parameters(
+        self,
+        body_input: _models.ListItemInputBody,
+        *,
+        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.User"]:
+        """List with extensible enum parameter Azure.Core.Page<>.
+
+        :param body_input: The body of the input. Required.
+        :type body_input: ~specs.azure.core.basic.models.ListItemInputBody
+        :keyword another: Another query parameter. Known values are: "First" and "Second". Default
+         value is None.
+        :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of User
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_input = {
+                    "inputName": "str"  # The name of the input. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+        """
+
+    @overload
+    def list_with_parameters(
+        self,
+        body_input: JSON,
+        *,
+        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.User"]:
+        """List with extensible enum parameter Azure.Core.Page<>.
+
+        :param body_input: The body of the input. Required.
+        :type body_input: JSON
+        :keyword another: Another query parameter. Known values are: "First" and "Second". Default
+         value is None.
+        :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of User
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+        """
+
+    @overload
+    def list_with_parameters(
+        self,
+        body_input: IO[bytes],
+        *,
+        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.User"]:
+        """List with extensible enum parameter Azure.Core.Page<>.
+
+        :param body_input: The body of the input. Required.
+        :type body_input: IO[bytes]
+        :keyword another: Another query parameter. Known values are: "First" and "Second". Default
+         value is None.
+        :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of User
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+        """
+
+    @distributed_trace
+    def list_with_parameters(
+        self,
+        body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
+        *,
+        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.User"]:
+        """List with extensible enum parameter Azure.Core.Page<>.
+
+        :param body_input: The body of the input. Is one of the following types: ListItemInputBody,
+         JSON, IO[bytes] Required.
+        :type body_input: ~specs.azure.core.basic.models.ListItemInputBody or JSON or IO[bytes]
+        :keyword another: Another query parameter. Known values are: "First" and "Second". Default
+         value is None.
+        :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: An iterator like instance of User
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_input = {
+                    "inputName": "str"  # The name of the input. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body_input, (IOBase, bytes)):
+            _content = body_input
+        else:
+            _content = json.dumps(body_input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_basic_list_with_parameters_request(
+                    another=another,
+                    content_type=content_type,
+                    api_version=self._config.api_version,
+                    content=_content,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.User], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
     @distributed_trace
     def list_with_custom_page_model(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
         """List with custom page model.
@@ -589,6 +1090,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -720,6 +1238,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -765,3 +1300,169 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+
+    @distributed_trace
+    def list_first_item(self, **kwargs: Any) -> AsyncIterable["_models.FirstItem"]:
+        """Two operations with two different page item types should be successfully generated. Should
+        generate model for FirstItem.
+
+        :return: An iterator like instance of FirstItem
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.FirstItem]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0  # The id of the item. Required.
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[List[_models.FirstItem]] = kwargs.pop("cls", None)
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_basic_list_first_item_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.FirstItem], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def list_second_item(self, **kwargs: Any) -> AsyncIterable["_models.SecondItem"]:
+        """Two operations with two different page item types should be successfully generated. Should
+        generate model for SecondItem.
+
+        :return: An iterator like instance of SecondItem
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.SecondItem]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name of the item. Required.
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[List[_models.SecondItem]] = kwargs.pop("cls", None)
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_basic_list_second_item_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.SecondItem], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)

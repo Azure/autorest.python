@@ -745,7 +745,7 @@ class Serializer(object):
         :param str data_type: The type to be serialized from.
         :keyword bool skip_quote: Whether to skip quote the serialized result.
         Defaults to False.
-        :rtype: str
+        :rtype: str, list
         :raises: TypeError if serialization fails.
         :raises: ValueError if data is None
         """
@@ -1996,6 +1996,8 @@ class Deserializer(object):
         if isinstance(attr, ET.Element):
             attr = int(attr.text)  # type: ignore
         try:
+            if isinstance(attr, str):
+                attr = int(attr)
             date_obj = datetime.datetime.fromtimestamp(attr, TZ_UTC)
         except ValueError as err:
             msg = "Cannot deserialize to unix datetime object."

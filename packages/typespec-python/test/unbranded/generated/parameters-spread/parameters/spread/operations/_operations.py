@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -34,6 +34,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+_Unset: Any = object()
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -142,6 +143,14 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -162,12 +171,12 @@ class ModelOperations:
 
     @overload
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -177,18 +186,26 @@ class ModelOperations:
         """
 
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyParameter, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is one of the following types: BodyParameter, JSON, IO Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO
+        :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
+        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -255,22 +272,6 @@ class AliasOperations:
 
     @overload
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.GeneratedName1, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_as_request_body.
-
-        :param body: Required.
-        :type body: ~parameters.spread.models.GeneratedName1
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -283,16 +284,40 @@ class AliasOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, *, name: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_as_request_body.
+
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -302,18 +327,28 @@ class AliasOperations:
         """
 
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.GeneratedName1, JSON, IO], **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is one of the following types: GeneratedName1, JSON, IO Required.
-        :type body: ~parameters.spread.models.GeneratedName1 or JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -329,6 +364,11 @@ class AliasOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            body = {"name": name}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -362,32 +402,6 @@ class AliasOperations:
 
     @overload
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self,
-        id: str,
-        body: _models.GeneratedName2,
-        *,
-        x_ms_test_header: str,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """spread_as_request_parameter.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: ~parameters.spread.models.GeneratedName2
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -404,18 +418,46 @@ class AliasOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_as_request_parameter.
+
+        :param id: Required.
+        :type id: str
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
         :param id: Required.
         :type id: str
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -427,22 +469,38 @@ class AliasOperations:
         """
 
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: Union[_models.GeneratedName2, JSON, IO], *, x_ms_test_header: str, **kwargs: Any
+        self,
+        id: str,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        name: str = _Unset,
+        **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
         :param id: Required.
         :type id: str
-        :param body: Is one of the following types: GeneratedName2, JSON, IO Required.
-        :type body: ~parameters.spread.models.GeneratedName2 or JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -458,6 +516,11 @@ class AliasOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            body = {"name": name}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -493,32 +556,6 @@ class AliasOperations:
 
     @overload
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
-        self,
-        id: str,
-        body: _models.GeneratedName3,
-        *,
-        x_ms_test_header: str,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """spread_with_multiple_parameters.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: ~parameters.spread.models.GeneratedName3
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -535,18 +572,72 @@ class AliasOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prop1": "str",  # Required.
+                    "prop2": "str",  # Required.
+                    "prop3": "str",  # Required.
+                    "prop4": "str",  # Required.
+                    "prop5": "str",  # Required.
+                    "prop6": "str"  # Required.
+                }
         """
 
     @overload
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self,
+        id: str,
+        *,
+        x_ms_test_header: str,
+        prop1: str,
+        prop2: str,
+        prop3: str,
+        prop4: str,
+        prop5: str,
+        prop6: str,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """spread_with_multiple_parameters.
+
+        :param id: Required.
+        :type id: str
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword prop1: Required.
+        :paramtype prop1: str
+        :keyword prop2: Required.
+        :paramtype prop2: str
+        :keyword prop3: Required.
+        :paramtype prop3: str
+        :keyword prop4: Required.
+        :paramtype prop4: str
+        :keyword prop5: Required.
+        :paramtype prop5: str
+        :keyword prop6: Required.
+        :paramtype prop6: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
 
         :param id: Required.
         :type id: str
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -558,22 +649,58 @@ class AliasOperations:
         """
 
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: Union[_models.GeneratedName3, JSON, IO], *, x_ms_test_header: str, **kwargs: Any
+        self,
+        id: str,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        prop1: str = _Unset,
+        prop2: str = _Unset,
+        prop3: str = _Unset,
+        prop4: str = _Unset,
+        prop5: str = _Unset,
+        prop6: str = _Unset,
+        **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
 
         :param id: Required.
         :type id: str
-        :param body: Is one of the following types: GeneratedName3, JSON, IO Required.
-        :type body: ~parameters.spread.models.GeneratedName3 or JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
+        :keyword prop1: Required.
+        :paramtype prop1: str
+        :keyword prop2: Required.
+        :paramtype prop2: str
+        :keyword prop3: Required.
+        :paramtype prop3: str
+        :keyword prop4: Required.
+        :paramtype prop4: str
+        :keyword prop5: Required.
+        :paramtype prop5: str
+        :keyword prop6: Required.
+        :paramtype prop6: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prop1": "str",  # Required.
+                    "prop2": "str",  # Required.
+                    "prop3": "str",  # Required.
+                    "prop4": "str",  # Required.
+                    "prop5": "str",  # Required.
+                    "prop6": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -589,6 +716,21 @@ class AliasOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if prop1 is _Unset:
+                raise TypeError("missing required argument: prop1")
+            if prop2 is _Unset:
+                raise TypeError("missing required argument: prop2")
+            if prop3 is _Unset:
+                raise TypeError("missing required argument: prop3")
+            if prop4 is _Unset:
+                raise TypeError("missing required argument: prop4")
+            if prop5 is _Unset:
+                raise TypeError("missing required argument: prop5")
+            if prop6 is _Unset:
+                raise TypeError("missing required argument: prop6")
+            body = {"prop1": prop1, "prop2": prop2, "prop3": prop3, "prop4": prop4, "prop5": prop5, "prop6": prop6}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):

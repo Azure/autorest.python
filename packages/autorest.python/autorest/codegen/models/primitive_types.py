@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import datetime
+import decimal
 from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType
@@ -91,13 +92,13 @@ class BinaryType(PrimitiveType):
         return self.type
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return self.type
+        return f"{self.type}[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return self.docstring_type(**kwargs)
+        return f"{self.type}[bytes]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return "IO"
+        return f"{self.type}[bytes]"
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -303,6 +304,37 @@ class FloatType(NumberType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, float)"
+
+
+class DecimalType(NumberType):
+    @property
+    def serialization_type(self) -> str:
+        return "decimal"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return "~" + self.type_annotation()
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return "decimal.Decimal"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.type_annotation()
+
+    def get_declaration(self, value: decimal.Decimal) -> str:
+        return str(value)
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport(self.code_model)
+        file_import.add_import("decimal", ImportType.STDLIB)
+        return file_import
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(decimal.Decimal("0.0"))
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, decimal.Decimal)"
 
 
 class StringType(PrimitiveType):

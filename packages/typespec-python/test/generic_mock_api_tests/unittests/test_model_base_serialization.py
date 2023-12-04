@@ -3,6 +3,7 @@
 # Licensed under the MIT License.
 # ------------------------------------
 import copy
+import decimal
 import json
 import datetime
 from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, Tuple, Optional, overload, Union
@@ -3907,3 +3908,41 @@ def test_body_bytes_format():
                       format="base64") == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
     assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder,
                       format="base64url") == '{"a": "dGVzdA", "b": "dGVzdA"}'
+
+
+def test_decimal_deserialization():
+    class DecimalModel(Model):
+        decimal_value: decimal.Decimal = rest_field(name="decimalValue")
+
+        @overload
+        def __init__(self, *, decimal_value: decimal.Decimal):
+            ...
+
+        @overload
+        def __init__(self, mapping: Mapping[str, Any], /):
+            ...
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+    model = DecimalModel({"decimalValue": 0.33333})
+    assert model['decimalValue'] == 0.33333
+    assert model.decimal_value == decimal.Decimal("0.33333")
+
+    class BaseModel(Model):
+        my_prop: DecimalModel = rest_field(name="myProp")
+
+    model = BaseModel({"myProp": {"decimalValue": 0.33333}})
+    assert isinstance(model.my_prop, DecimalModel)
+    assert model.my_prop['decimalValue'] == model['myProp']['decimalValue'] == 0.33333
+    assert model.my_prop.decimal_value == decimal.Decimal("0.33333")
+
+
+def test_decimal_serialization():
+    assert json.dumps(decimal.Decimal("0.33333"), cls=SdkJSONEncoder) == '0.33333'
+    assert json.dumps([decimal.Decimal("0.33333"), decimal.Decimal("0.33333")],
+                      cls=SdkJSONEncoder) == '[0.33333, 0.33333]'
+    assert json.dumps({"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")},
+                      cls=SdkJSONEncoder) == '{"a": 0.33333, "b": 0.33333}'
+
+

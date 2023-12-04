@@ -227,13 +227,18 @@ function getBodyType(context: SdkContext, route: HttpOperation): Record<string, 
             }
         }
         if (resourceType && bodyModel.name === "") {
-            bodyModel = resourceType;
+            const effectivePayloadType = getEffectivePayloadType(context, bodyModel);
+            if (effectivePayloadType.name !== "") {
+                bodyModel = effectivePayloadType;
+            } else {
+                bodyModel = resourceType;
+            }
         }
     }
     if (bodyModel && bodyModel.kind === "Scalar") {
-        return getType(context, route.parameters.body!.parameter!);
+        return getType(context, route.parameters.body!.parameter!, true);
     }
-    return getType(context, bodyModel!);
+    return getType(context, bodyModel!, true);
 }
 
 function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {

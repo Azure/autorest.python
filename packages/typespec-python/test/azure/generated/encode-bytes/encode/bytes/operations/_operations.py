@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -579,6 +579,19 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -597,16 +610,24 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
     def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultBytesProperty:
         """default.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -615,16 +636,24 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
     def default(
-        self, body: Union[_models.DefaultBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.DefaultBytesProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO
+        :param body: Is one of the following types: DefaultBytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -633,6 +662,19 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -702,6 +744,19 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -720,14 +775,24 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
-    def base64(self, body: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.Base64BytesProperty:
+    def base64(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64BytesProperty:
         """base64.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -736,14 +801,24 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
-    def base64(self, body: Union[_models.Base64BytesProperty, JSON, IO], **kwargs: Any) -> _models.Base64BytesProperty:
+    def base64(
+        self, body: Union[_models.Base64BytesProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Base64BytesProperty:
         """base64.
 
-        :param body: Is one of the following types: Base64BytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -752,6 +827,19 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -821,6 +909,19 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -839,16 +940,24 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
     def base64url(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
         """base64url.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -857,16 +966,24 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
     def base64url(
-        self, body: Union[_models.Base64urlBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Base64urlBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
         """base64url.
 
-        :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -875,6 +992,19 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -945,6 +1075,23 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -964,16 +1111,26 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @overload
     def base64url_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
         """base64url_array.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -983,16 +1140,27 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @distributed_trace
     def base64url_array(
-        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
         """base64url_array.
 
-        :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO
+        :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1002,6 +1170,23 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

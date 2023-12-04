@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -90,6 +90,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -116,7 +124,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
     def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
 
@@ -127,7 +135,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
            }.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -138,7 +146,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.InputModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Expected body parameter:
 
@@ -148,14 +156,22 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
              "name": <any string>
            }.
 
-        :param body: Is one of the following types: InputModel, JSON, IO Required.
-        :type body: ~specs.azure.clientgenerator.core.usage.models.InputModel or JSON or IO
+        :param body: Is one of the following types: InputModel, JSON, IO[bytes] Required.
+        :type body: ~specs.azure.clientgenerator.core.usage.models.InputModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -217,6 +233,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

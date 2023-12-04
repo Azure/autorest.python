@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -67,6 +67,14 @@ class PublicOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -123,6 +131,14 @@ class PublicOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -199,6 +215,14 @@ class InternalOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -261,6 +285,14 @@ class InternalOperationOperations:
          with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.InternalDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -323,6 +355,14 @@ class InternalOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -396,6 +436,14 @@ class SharedModelInOperationOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -451,6 +499,14 @@ class SharedModelInOperationOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -537,6 +593,17 @@ class RelativeModelInOperationOperations:
         :return: OuterModel. The OuterModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.OuterModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "inner": {
+                        "name": "str"  # Required.
+                    },
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -602,6 +669,20 @@ class RelativeModelInOperationOperations:
         :return: AbstractModel. The AbstractModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.AbstractModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "real":
+                abstract_model = {
+                    "kind": "real",
+                    "name": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == abstract_model
         """
         error_map = {
             401: ClientAuthenticationError,

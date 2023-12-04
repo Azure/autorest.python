@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -147,6 +147,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -167,12 +175,12 @@ class PropertyOperations:
 
     @overload
     def json(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """json.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -183,18 +191,26 @@ class PropertyOperations:
 
     @distributed_trace
     def json(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonProjectedNameModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.JsonProjectedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """json.
 
-        :param body: Is one of the following types: JsonProjectedNameModel, JSON, IO Required.
-        :type body: ~projection.projectedname.models.JsonProjectedNameModel or JSON or IO
+        :param body: Is one of the following types: JsonProjectedNameModel, JSON, IO[bytes] Required.
+        :type body: ~projection.projectedname.models.JsonProjectedNameModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -255,6 +271,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -275,12 +299,12 @@ class PropertyOperations:
 
     @overload
     def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """client.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -291,18 +315,26 @@ class PropertyOperations:
 
     @distributed_trace
     def client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClientProjectedNameModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ClientProjectedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """client.
 
-        :param body: Is one of the following types: ClientProjectedNameModel, JSON, IO Required.
-        :type body: ~projection.projectedname.models.ClientProjectedNameModel or JSON or IO
+        :param body: Is one of the following types: ClientProjectedNameModel, JSON, IO[bytes] Required.
+        :type body: ~projection.projectedname.models.ClientProjectedNameModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -363,6 +395,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -383,12 +423,12 @@ class PropertyOperations:
 
     @overload
     def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -399,18 +439,27 @@ class PropertyOperations:
 
     @distributed_trace
     def language(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.LanguageProjectedNameModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.LanguageProjectedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """language.
 
-        :param body: Is one of the following types: LanguageProjectedNameModel, JSON, IO Required.
-        :type body: ~projection.projectedname.models.LanguageProjectedNameModel or JSON or IO
+        :param body: Is one of the following types: LanguageProjectedNameModel, JSON, IO[bytes]
+         Required.
+        :type body: ~projection.projectedname.models.LanguageProjectedNameModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "defaultName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -471,6 +520,14 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
 
     @overload
@@ -491,12 +548,12 @@ class PropertyOperations:
 
     @overload
     def json_and_client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """json_and_client.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -507,18 +564,28 @@ class PropertyOperations:
 
     @distributed_trace
     def json_and_client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonAndClientProjectedNameModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.JsonAndClientProjectedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """json_and_client.
 
-        :param body: Is one of the following types: JsonAndClientProjectedNameModel, JSON, IO Required.
-        :type body: ~projection.projectedname.models.JsonAndClientProjectedNameModel or JSON or IO
+        :param body: Is one of the following types: JsonAndClientProjectedNameModel, JSON, IO[bytes]
+         Required.
+        :type body: ~projection.projectedname.models.JsonAndClientProjectedNameModel or JSON or
+         IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "wireName": bool  # Pass in true. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
