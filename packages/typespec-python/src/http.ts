@@ -16,6 +16,7 @@ import {
   camelToSnakeCase,
   emitParamBase,
   getDelimeterAndExplode,
+  getDescriptionAndSummary,
   getImplementation,
   isAbstract,
   isAzureCoreModel,
@@ -33,8 +34,8 @@ export function emitBasicHttpMethod(
       abstract: isAbstract(method),
       internal: method.access === "internal",
       name: camelToSnakeCase(method.name),
-      description: method.details ?? method.description,
-      summary: method.details ? method.description : undefined,
+      description: getDescriptionAndSummary(method).description,
+      summary: getDescriptionAndSummary(method).summary,
     },
   ];
 }
@@ -56,6 +57,8 @@ function emitInitialLroHttpMethod(
         resp.type = KnownTypes.anyObject;
       }
     }),
+    description: getDescriptionAndSummary(method).description,
+    summary: getDescriptionAndSummary(method).summary,
   };
 }
 
@@ -66,9 +69,12 @@ function addLroInformation(
 ) {
   return {
     ...emitHttpOperation(context, method.operation, opreationGroupName),
+    name: method.name,
     discriminator: "lro",
     initialOperation: emitInitialLroHttpMethod(context, method, opreationGroupName),
     exposeStreamKeyword: false,
+    description: getDescriptionAndSummary(method).description,
+    summary: getDescriptionAndSummary(method).summary,
   };
 }
 
@@ -82,11 +88,14 @@ function addPagingInformation(
   }
   return {
     ...emitHttpOperation(context, method.operation, operationGroupName),
+    name: method.name,
     discriminator: "paging",
     exposeStreamKeyword: false,
     itemName: method.response.responsePath,
     continuationTokenName: method.nextLinkLogicalPath,
     itemType: getType(context, method.response.type!),
+    description: getDescriptionAndSummary(method).description,
+    summary: getDescriptionAndSummary(method).summary,
   };
 }
 

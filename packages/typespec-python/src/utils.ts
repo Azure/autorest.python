@@ -2,6 +2,7 @@ import {
   SdkContext,
   SdkHeaderParameter,
   SdkHttpParameter,
+  SdkMethod,
   SdkParameter,
   SdkQueryParameter,
   SdkServiceMethod,
@@ -88,4 +89,18 @@ export function isAzureCoreModel(t: Type | undefined): boolean {
     t.namespace !== undefined &&
     ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))
   );
+}
+
+export function getDescriptionAndSummary<TServiceOperation extends SdkServiceOperation>(
+  method: SdkMethod<TServiceOperation>,
+): {description?: string, summary?: string} {
+  if (method.details) {
+    return {
+      description: method.details,
+      summary: method.description,
+    }
+  }
+  return {
+    description: method.description,
+  }
 }

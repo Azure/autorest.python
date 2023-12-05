@@ -122,7 +122,7 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
       // Also currently assume subclient is operationGroup to keep code changes minimal
       const operationGroup = method.response;
       let operations: Record<string, any>[] = [];
-      for (const method of operationGroup.methods) {
+      for (const method of operationGroup.methods) { 
         if (method.kind === "clientaccessor") continue; // skipping for now since we don't do sub-sub clients
         operations = operations.concat(emitMethod(context, method, operationGroup.name));
       }
