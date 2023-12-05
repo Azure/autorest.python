@@ -38,6 +38,13 @@ class {{ operation_group.class_name }}: {{ operation_group.pylint_disable }}
         {% if code_model.options["multiapi"] %}
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
         {% endif %}
+
+        {% for og in operation_group.operation_groups %}
+        self.{{ og.property_name }} = {{ og.class_name }}(
+            self._client, self._config, self._serialize, self._deserialize{{ ", self._api_version" if code_model.options["multiapi"] else "" }}
+        )
+        {% endfor %}
+
 {{ check_abstract_methods() }}
 {% elif operation_group.has_abstract_operations %}
 

@@ -416,13 +416,17 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             )
         else:
             for client in self.code_model.clients:
-                for operation_group in client.operation_groups:
+                queue = client.operation_groups.copy()
+                while queue:
+                    operation_group = queue.pop(0)
                     self._serialize_and_write_operations_file(
                         env=env,
                         namespace_path=namespace_path,
                         operation_group=operation_group,
-                        clients=self.code_model.clients,
+                        clients=clients,
                     )
+                    if operation_group.get("operationGroups"):
+                        queue.extend(operation_group.operation_groups)
 
     def _serialize_and_write_version_file(
         self,

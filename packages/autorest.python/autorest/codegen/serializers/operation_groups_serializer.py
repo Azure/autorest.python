@@ -45,18 +45,25 @@ class OperationGroupsSerializer(BaseSerializer):
             for client in self.clients
             for r in client.request_builders
             if r.client.name == operation_group.client.name
-            and r.group_name == operation_group.property_name
+            and r.group_name == operation_group.identify_name
             and not r.is_overload
             and not r.abstract
             and not r.is_lro  # lro has already initial builder
         ]
 
     def serialize(self) -> str:
-        operation_groups = (
-            [self.operation_group]
-            if self.operation_group
-            else [og for client in self.clients for og in client.operation_groups]
-        )
+        if self.operation_group:
+            operation_groups = self.operation_group
+        else:
+            operation_groups = []
+            queue = []
+            for client in self.clients:
+                queue.extend(client.operation_groups)
+            while queue:
+                operation_groups.append(queue.pop(0))
+                if operation_groups[-1].operation_groups:
+                    queue.extend(operation_groups[-1].operation_groups)
+
         imports = FileImport(self.code_model)
         for operation_group in operation_groups:
             imports.merge(

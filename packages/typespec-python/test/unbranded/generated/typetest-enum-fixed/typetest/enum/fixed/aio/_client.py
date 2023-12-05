@@ -14,12 +14,14 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import FixedClientConfiguration
-from ._operations import FixedClientOperationsMixin
+from .operations import StringOperations
 
 
-class FixedClient(FixedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class FixedClient:  # pylint: disable=client-accepts-api-version-keyword
     """FixedClient.
 
+    :ivar string: StringOperations operations
+    :vartype string: typetest.enum.fixed.aio.operations.StringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -44,6 +46,7 @@ class FixedClient(FixedClientOperationsMixin):  # pylint: disable=client-accepts
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

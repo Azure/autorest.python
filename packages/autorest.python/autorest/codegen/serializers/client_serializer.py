@@ -48,9 +48,8 @@ class ClientSerializer:
     @property
     def class_definition(self) -> str:
         class_name = self.client.name
-        has_mixin_og = any(og for og in self.client.operation_groups if og.is_mixin)
         base_class = ""
-        if has_mixin_og:
+        if self.client.has_mixin:
             base_class = f"{class_name}OperationsMixin"
         pylint_disable = self.client.pylint_disable
         if base_class:

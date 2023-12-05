@@ -15,8 +15,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import ServiceClientConfiguration
-from ._operations import ServiceClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
 
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -31,6 +31,14 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     #. have two clients with operations come from different interfaces
     #. have two clients with a hierarchy relation.
 
+    :ivar baz: BazOperations operations
+    :vartype baz: client.structure.service.operations.BazOperations
+    :ivar qux: QuxOperations operations
+    :vartype qux: client.structure.service.operations.QuxOperations
+    :ivar foo: FooOperations operations
+    :vartype foo: client.structure.service.operations.FooOperations
+    :ivar bar: BarOperations operations
+    :vartype bar: client.structure.service.operations.BarOperations
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
@@ -66,6 +74,10 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.baz = BazOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.qux = QuxOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
