@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -341,6 +341,14 @@ class Int32ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -398,6 +406,14 @@ class Int32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0  # Optional.
+                ]
         """
 
     @overload
@@ -503,6 +519,14 @@ class Int64ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -560,6 +584,14 @@ class Int64ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0  # Optional.
+                ]
         """
 
     @overload
@@ -665,6 +697,14 @@ class BooleanValueOperations:
         :return: list of bool
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    bool  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -722,6 +762,14 @@ class BooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    bool  # Optional.
+                ]
         """
 
     @overload
@@ -827,6 +875,14 @@ class StringValueOperations:
         :return: list of str
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "str"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -884,6 +940,14 @@ class StringValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "str"  # Optional.
+                ]
         """
 
     @overload
@@ -989,6 +1053,14 @@ class Float32ValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0.0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1046,6 +1118,14 @@ class Float32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0.0  # Optional.
+                ]
         """
 
     @overload
@@ -1151,6 +1231,14 @@ class DatetimeValueOperations:
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "2020-02-20 00:00:00"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1208,6 +1296,14 @@ class DatetimeValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "2020-02-20 00:00:00"  # Optional.
+                ]
         """
 
     @overload
@@ -1313,6 +1409,14 @@ class DurationValueOperations:
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "1 day, 0:00:00"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1370,6 +1474,14 @@ class DurationValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "1 day, 0:00:00"  # Optional.
+                ]
         """
 
     @overload
@@ -1475,6 +1587,14 @@ class UnknownValueOperations:
         :return: list of any
         :rtype: list[any]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    {}  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1532,6 +1652,14 @@ class UnknownValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    {}  # Optional.
+                ]
         """
 
     @overload
@@ -1637,6 +1765,19 @@ class ModelValueOperations:
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    {
+                        "property": "str",  # Required string property. Required.
+                        "children": [
+                            ...
+                        ]
+                    }
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1694,6 +1835,19 @@ class ModelValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    {
+                        "property": "str",  # Required string property. Required.
+                        "children": [
+                            ...
+                        ]
+                    }
+                ]
         """
 
     @overload
@@ -1799,6 +1953,14 @@ class NullableFloatValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0.0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1856,6 +2018,14 @@ class NullableFloatValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0.0  # Optional.
+                ]
         """
 
     @overload

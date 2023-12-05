@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -121,6 +121,19 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prompt": "str"  # Prompt. Required.
+                }
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @overload
@@ -147,6 +160,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @overload
@@ -173,6 +194,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @distributed_trace_async
@@ -199,6 +228,19 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prompt": "str"  # Prompt. Required.
+                }
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

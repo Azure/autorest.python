@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -118,6 +118,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -169,6 +177,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -226,6 +242,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -273,6 +297,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -333,6 +365,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -380,6 +420,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -452,6 +500,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -503,6 +559,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -560,6 +624,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -607,6 +679,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -667,6 +747,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -714,6 +802,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -786,6 +882,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -837,6 +941,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -894,6 +1006,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -941,6 +1061,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1001,6 +1129,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1048,6 +1184,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1120,6 +1264,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1171,6 +1323,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1228,6 +1388,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1275,6 +1443,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1335,6 +1511,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1382,6 +1566,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1454,6 +1646,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1505,6 +1707,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1562,6 +1774,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -1609,6 +1831,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1669,6 +1901,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -1716,6 +1958,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1789,6 +2041,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1841,6 +2105,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1898,6 +2174,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -1945,6 +2233,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2005,6 +2305,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -2052,6 +2364,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2124,6 +2448,14 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2175,6 +2507,14 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2232,6 +2572,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
 
     @overload
@@ -2279,6 +2627,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2339,6 +2695,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
 
     @overload
@@ -2386,6 +2750,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2458,6 +2830,14 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2509,6 +2889,14 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2566,6 +2954,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
 
     @overload
@@ -2613,6 +3009,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2673,6 +3077,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
 
     @overload
@@ -2720,6 +3132,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2792,6 +3212,14 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2843,6 +3271,14 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2900,6 +3336,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
 
     @overload
@@ -2947,6 +3391,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3007,6 +3459,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
 
     @overload
@@ -3054,6 +3514,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3126,6 +3594,14 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3177,6 +3653,14 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3234,6 +3718,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
 
     @overload
@@ -3281,6 +3773,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3341,6 +3841,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
 
     @overload
@@ -3388,6 +3896,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3453,6 +3969,7 @@ class UnionStringLiteralOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -3461,6 +3978,15 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3505,6 +4031,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     async def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -3513,6 +4040,15 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3560,6 +4096,7 @@ class UnionStringLiteralOperations:
     async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3570,6 +4107,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
 
     @overload
@@ -3607,6 +4153,7 @@ class UnionStringLiteralOperations:
     async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -3618,6 +4165,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3668,6 +4224,7 @@ class UnionStringLiteralOperations:
     async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -3678,6 +4235,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
 
     @overload
@@ -3715,6 +4281,7 @@ class UnionStringLiteralOperations:
     async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -3726,6 +4293,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3798,6 +4374,15 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3849,6 +4434,15 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3906,6 +4500,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
 
     @overload
@@ -3953,6 +4556,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4013,6 +4625,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
 
     @overload
@@ -4060,6 +4681,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4133,6 +4763,15 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4185,6 +4824,15 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4242,6 +4890,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
 
     @overload
@@ -4290,6 +4947,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4350,6 +5016,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
 
     @overload
@@ -4398,6 +5073,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4471,6 +5155,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4523,6 +5216,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4580,6 +5282,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -4628,6 +5339,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4688,6 +5408,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -4736,6 +5465,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

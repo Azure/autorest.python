@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -47,6 +47,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -143,6 +144,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -225,6 +227,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -275,6 +278,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     async def validation_of_body(
         self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -459,6 +463,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     async def post_with_constant_in_body(
         self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
@@ -533,6 +538,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     async def post_with_constant_in_body(
         self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
@@ -579,6 +585,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace_async
     async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Is either a JSON type or a IO[bytes] type. Default value is None.

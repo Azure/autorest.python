@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -340,6 +340,7 @@ class StorageAccountsOperations:
     def check_name_availability(
         self, account_name: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -380,6 +381,7 @@ class StorageAccountsOperations:
     def check_name_availability(
         self, account_name: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -411,6 +413,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def check_name_availability(self, account_name: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -575,6 +578,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -700,6 +704,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -803,6 +808,7 @@ class StorageAccountsOperations:
     def begin_create(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> LROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -1022,6 +1028,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -1163,6 +1170,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1294,6 +1302,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1394,6 +1403,7 @@ class StorageAccountsOperations:
     def update(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1642,6 +1652,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable[JSON]:
+        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -1787,6 +1798,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable[JSON]:
+        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -2130,6 +2142,7 @@ class UsageOperations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :return: JSON object

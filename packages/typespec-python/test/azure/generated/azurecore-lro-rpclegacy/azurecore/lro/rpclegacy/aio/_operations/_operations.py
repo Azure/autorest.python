@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LegacyClientOperationsMixin(LegacyClientMixinABC):
     @distributed_trace_async
     async def get_job(self, job_id: str, **kwargs: Any) -> _models.JobResult:
+        # pylint: disable=line-too-long
         """Poll a Job.
 
         :param job_id: A processing job identifier. Required.
@@ -52,6 +53,40 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :return: JobResult. The JobResult is compatible with MutableMapping
         :rtype: ~azurecore.lro.rpclegacy.models.JobResult
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -172,6 +207,14 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "comment": "str"  # Comment. Required.
+                }
         """
 
     @overload
@@ -241,6 +284,14 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "comment": "str"  # Comment. Required.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

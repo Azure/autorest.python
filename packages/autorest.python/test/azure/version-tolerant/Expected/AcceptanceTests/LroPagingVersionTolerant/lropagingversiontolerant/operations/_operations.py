@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -137,6 +137,7 @@ class QuestionAnsweringProjectsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable[JSON]:
+        # pylint: disable=line-too-long
         """Gets all the QnAs of a project.
 
         Gets all the QnAs of a project.
@@ -391,6 +392,7 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -572,6 +574,7 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -693,6 +696,7 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.

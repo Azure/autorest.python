@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -52,6 +52,17 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "level": 0,  # Required.
+                    "extension": [
+                        ...
+                    ]
+                }
         """
 
     @overload
@@ -99,6 +110,17 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "level": 0,  # Required.
+                    "extension": [
+                        ...
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -153,6 +175,17 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: Extension. The Extension is compatible with MutableMapping
         :rtype: ~typetest.model.recursive.models.Extension
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "level": 0,  # Required.
+                    "extension": [
+                        ...
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

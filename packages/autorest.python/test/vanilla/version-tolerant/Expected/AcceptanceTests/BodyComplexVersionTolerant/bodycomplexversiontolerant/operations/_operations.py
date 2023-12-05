@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -906,6 +906,7 @@ class BasicOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :return: JSON object
@@ -970,6 +971,7 @@ class BasicOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
@@ -1014,6 +1016,7 @@ class BasicOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
@@ -1088,6 +1091,7 @@ class BasicOperations:
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get a basic complex type that is invalid for the local strong type.
 
         :return: JSON object
@@ -1150,6 +1154,7 @@ class BasicOperations:
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get a basic complex type that is empty.
 
         :return: JSON object
@@ -1212,6 +1217,7 @@ class BasicOperations:
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get a basic complex type whose properties are null.
 
         :return: JSON object
@@ -1274,6 +1280,7 @@ class BasicOperations:
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :return: JSON object
@@ -1869,6 +1876,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_double(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get complex types with double properties.
 
         :return: JSON object
@@ -1931,6 +1939,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1975,6 +1984,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -4416,6 +4426,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get complex types that are polymorphic.
 
         :return: JSON object
@@ -4529,6 +4540,7 @@ class PolymorphismOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -4687,6 +4699,7 @@ class PolymorphismOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -5496,6 +5509,7 @@ class PolymorphismOperations:
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -5644,6 +5658,7 @@ class PolymorphismOperations:
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -5811,6 +5826,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get complex types that are polymorphic and have recursive references.
 
         :return: JSON object
@@ -5924,6 +5940,7 @@ class PolymorphicrecursiveOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -6122,6 +6139,7 @@ class PolymorphicrecursiveOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:

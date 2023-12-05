@@ -29,3 +29,9 @@ def test_operation(client: ProjectedNameClient):
 
 def test_parameter(client: ProjectedNameClient):
     client.parameter(client_name="true")
+
+def test_model_client(client: ProjectedNameClient):
+    client.model.client(models.ClientModel(default_name=True))
+
+def test_model_language(client: ProjectedNameClient):
+    client.model.language(models.PythonModel(default_name=True))

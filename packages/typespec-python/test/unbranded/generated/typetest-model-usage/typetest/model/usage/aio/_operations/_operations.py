@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -56,6 +56,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -103,6 +111,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -157,6 +173,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputRecord. The OutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.OutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -216,6 +240,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -234,6 +271,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -252,6 +297,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     async def input_and_output(
@@ -269,6 +322,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

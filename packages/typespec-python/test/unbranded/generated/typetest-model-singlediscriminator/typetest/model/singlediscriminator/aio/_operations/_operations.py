@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -54,6 +54,45 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -111,6 +150,46 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = bird
         """
 
     @overload
@@ -158,6 +237,46 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -212,6 +331,45 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -269,6 +427,46 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = bird
         """
 
     @overload
@@ -316,6 +514,46 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -370,6 +608,45 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -421,6 +698,45 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "eagle":
+                bird = {
+                    "kind": "eagle",
+                    "wingspan": 0,  # Required.
+                    "friends": [
+                        bird
+                    ],
+                    "hate": {
+                        "str": bird
+                    },
+                    "partner": bird
+                }
+
+                # JSON input template for discriminator value "goose":
+                bird = {
+                    "kind": "goose",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "seagull":
+                bird = {
+                    "kind": "seagull",
+                    "wingspan": 0  # Required.
+                }
+
+                # JSON input template for discriminator value "sparrow":
+                bird = {
+                    "kind": "sparrow",
+                    "wingspan": 0  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == bird
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -472,6 +788,20 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Dinosaur. The Dinosaur is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Dinosaur
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "t-rex":
+                dinosaur = {
+                    "kind": "t-rex",
+                    "size": 0  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == dinosaur
         """
         error_map = {
             401: ClientAuthenticationError,

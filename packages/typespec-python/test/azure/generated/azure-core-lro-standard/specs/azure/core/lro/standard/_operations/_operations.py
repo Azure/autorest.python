@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -212,6 +212,21 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @overload
@@ -239,6 +254,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @overload
@@ -266,6 +290,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @distributed_trace
@@ -294,6 +327,21 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -507,6 +555,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "resourceUri": "str"  # The exported URI. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

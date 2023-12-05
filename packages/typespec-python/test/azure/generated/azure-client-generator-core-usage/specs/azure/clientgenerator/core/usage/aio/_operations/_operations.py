@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -62,6 +62,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -128,6 +136,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -189,6 +205,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

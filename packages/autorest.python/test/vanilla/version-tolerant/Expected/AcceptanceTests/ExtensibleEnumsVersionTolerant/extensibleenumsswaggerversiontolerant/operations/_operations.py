@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -92,6 +92,7 @@ class PetOperations:
 
     @distributed_trace
     def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """get pet by id.
 
         :param pet_id: Pet id. Required.
@@ -159,6 +160,7 @@ class PetOperations:
     def add_pet(
         self, pet_param: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -196,6 +198,7 @@ class PetOperations:
     def add_pet(
         self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -222,6 +225,7 @@ class PetOperations:
 
     @distributed_trace
     def add_pet(self, pet_param: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Is either a JSON type or a IO[bytes] type. Default value is None.
