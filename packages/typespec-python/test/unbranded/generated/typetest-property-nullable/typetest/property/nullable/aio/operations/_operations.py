@@ -86,6 +86,15 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -137,6 +146,15 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -194,6 +212,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -240,6 +267,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -300,6 +336,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -346,6 +391,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -418,6 +472,15 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -469,6 +532,15 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -526,6 +598,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -572,6 +653,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -632,6 +722,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -678,6 +777,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -750,6 +858,15 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -801,6 +918,15 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -858,6 +984,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -904,6 +1039,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -964,6 +1108,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1010,6 +1163,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1082,6 +1244,15 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1133,6 +1304,15 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1190,6 +1370,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1236,6 +1425,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1296,6 +1494,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1342,6 +1549,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1414,6 +1630,17 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1465,6 +1692,17 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1526,6 +1764,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1572,6 +1821,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1636,6 +1896,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1682,6 +1953,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1755,6 +2037,19 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1807,6 +2102,19 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1868,6 +2176,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1914,6 +2235,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1978,6 +2312,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -2024,6 +2371,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

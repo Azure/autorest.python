@@ -296,6 +296,14 @@ class DifferentBodyOperations:
         :return: PngImageAsJson. The PngImageAsJson is compatible with MutableMapping
         :rtype: ~payload.contentnegotiation.models.PngImageAsJson
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "content": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

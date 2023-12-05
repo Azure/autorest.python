@@ -561,6 +561,19 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -579,6 +592,14 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -597,6 +618,14 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     def default(
@@ -614,6 +643,19 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -683,6 +725,19 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -701,6 +756,14 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -719,6 +782,14 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     def rfc3339(
@@ -736,6 +807,19 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -805,6 +889,19 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -823,6 +920,14 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -841,6 +946,14 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     def rfc7231(
@@ -858,6 +971,19 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -928,6 +1054,19 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -947,6 +1086,14 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -966,6 +1113,14 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     def unix_timestamp(
@@ -985,6 +1140,19 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1055,6 +1223,23 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -1074,6 +1259,16 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -1093,6 +1288,16 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     def unix_timestamp_array(
@@ -1112,6 +1317,23 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

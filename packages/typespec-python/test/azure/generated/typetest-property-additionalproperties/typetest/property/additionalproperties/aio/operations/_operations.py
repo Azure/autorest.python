@@ -85,6 +85,14 @@ class ExtendsUnknownOperations:
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -142,6 +150,14 @@ class ExtendsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -192,6 +208,14 @@ class ExtendsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -266,6 +290,14 @@ class IsUnknownOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -323,6 +355,14 @@ class IsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -373,6 +413,14 @@ class IsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -447,6 +495,14 @@ class ExtendsStringOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -504,6 +560,14 @@ class ExtendsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -554,6 +618,14 @@ class ExtendsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -628,6 +700,14 @@ class IsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -685,6 +765,14 @@ class IsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -735,6 +823,14 @@ class IsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -809,6 +905,14 @@ class ExtendsFloatOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -866,6 +970,14 @@ class ExtendsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
 
     @overload
@@ -916,6 +1028,14 @@ class ExtendsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -990,6 +1110,14 @@ class IsFloatOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1047,6 +1175,14 @@ class IsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
 
     @overload
@@ -1097,6 +1233,14 @@ class IsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1228,6 +1372,12 @@ class ExtendsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1278,6 +1428,12 @@ class ExtendsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1409,6 +1565,12 @@ class IsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1459,6 +1621,12 @@ class IsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1595,6 +1763,12 @@ class ExtendsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1646,6 +1820,12 @@ class ExtendsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1777,6 +1957,12 @@ class IsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1827,6 +2013,12 @@ class IsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,

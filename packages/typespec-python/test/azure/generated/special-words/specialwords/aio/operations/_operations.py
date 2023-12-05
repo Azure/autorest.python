@@ -170,6 +170,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -218,6 +226,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -278,6 +294,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -326,6 +350,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -386,6 +418,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -434,6 +474,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -494,6 +542,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -542,6 +598,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -602,6 +666,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -650,6 +722,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -710,6 +790,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -758,6 +846,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -818,6 +914,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -866,6 +970,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -926,6 +1038,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -974,6 +1094,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1034,6 +1162,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1082,6 +1218,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1142,6 +1286,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1190,6 +1342,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1250,6 +1410,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1298,6 +1466,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1358,6 +1534,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1406,6 +1590,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1466,6 +1658,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1514,6 +1714,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1574,6 +1782,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1622,6 +1838,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1682,6 +1906,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1730,6 +1962,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1790,6 +2030,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1838,6 +2086,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1898,6 +2154,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -1946,6 +2210,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2006,6 +2278,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2054,6 +2334,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2114,6 +2402,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2162,6 +2458,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2222,6 +2526,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2270,6 +2582,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2330,6 +2650,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2378,6 +2706,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2438,6 +2774,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2486,6 +2830,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2546,6 +2898,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2594,6 +2954,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2654,6 +3022,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2702,6 +3078,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2762,6 +3146,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2810,6 +3202,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2870,6 +3270,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -2918,6 +3326,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2978,6 +3394,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3026,6 +3450,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3086,6 +3518,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3134,6 +3574,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3194,6 +3642,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3242,6 +3698,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3302,6 +3766,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3350,6 +3822,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3410,6 +3890,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3458,6 +3946,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3518,6 +4014,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3566,6 +4070,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3626,6 +4138,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
 
     @overload
@@ -3674,6 +4194,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3752,6 +4280,14 @@ class ModelPropertiesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "SameAsModel": "str"  # Required.
+                }
         """
 
     @overload
@@ -3800,6 +4336,14 @@ class ModelPropertiesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "SameAsModel": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

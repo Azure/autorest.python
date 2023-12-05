@@ -579,6 +579,19 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -597,6 +610,14 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -615,6 +636,14 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
@@ -633,6 +662,19 @@ class PropertyOperations:
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -702,6 +744,19 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -720,6 +775,14 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -738,6 +801,14 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
@@ -756,6 +827,19 @@ class PropertyOperations:
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -825,6 +909,19 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -843,6 +940,14 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @overload
@@ -861,6 +966,14 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
 
     @distributed_trace
@@ -879,6 +992,19 @@ class PropertyOperations:
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -949,6 +1075,23 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -968,6 +1111,16 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -987,6 +1140,16 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
 
     @distributed_trace
@@ -1007,6 +1170,23 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        bytes("bytes", encoding="utf-8")  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
