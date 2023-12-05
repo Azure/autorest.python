@@ -6,23 +6,21 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import ClientModel
-from ._models import ClientProjectedNameModel
-from ._models import JsonAndClientProjectedNameModel
-from ._models import JsonProjectedNameModel
-from ._models import LanguageProjectedNameModel
-from ._models import PythonModel
-from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._client import MultiPartClient
+from ._version import VERSION
+
+__version__ = VERSION
+
+try:
+    from ._patch import __all__ as _patch_all
+    from ._patch import *  # pylint: disable=unused-wildcard-import
+except ImportError:
+    _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ClientModel",
-    "ClientProjectedNameModel",
-    "JsonAndClientProjectedNameModel",
-    "JsonProjectedNameModel",
-    "LanguageProjectedNameModel",
-    "PythonModel",
+    "MultiPartClient",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
+
 _patch_sdk()

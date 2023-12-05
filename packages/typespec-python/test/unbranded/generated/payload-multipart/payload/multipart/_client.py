@@ -12,18 +12,14 @@ from typing import Any
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
-from ._configuration import ProjectedNameClientConfiguration
+from ._configuration import MultiPartClientConfiguration
+from ._operations import MultiPartClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import ModelOperations, ProjectedNameClientOperationsMixin, PropertyOperations
 
 
-class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Projection.
+class MultiPartClient(MultiPartClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Test for multipart.
 
-    :ivar property: PropertyOperations operations
-    :vartype property: projection.projectedname.operations.PropertyOperations
-    :ivar model: ModelOperations operations
-    :vartype model: projection.projectedname.operations.ModelOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -31,7 +27,7 @@ class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disabl
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = ProjectedNameClientConfiguration(**kwargs)
+        self._config = MultiPartClientConfiguration(**kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -48,8 +44,6 @@ class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disabl
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -76,7 +70,7 @@ class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disabl
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ProjectedNameClient":
+    def __enter__(self) -> "MultiPartClient":
         self._client.__enter__()
         return self
 
