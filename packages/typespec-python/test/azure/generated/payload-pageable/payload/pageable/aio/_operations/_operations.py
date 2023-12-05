@@ -38,6 +38,14 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # User name. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

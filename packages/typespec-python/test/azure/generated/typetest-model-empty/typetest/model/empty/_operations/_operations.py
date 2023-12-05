@@ -101,6 +101,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {}
         """
 
     @overload
@@ -149,6 +155,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -263,6 +275,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -317,6 +335,12 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,

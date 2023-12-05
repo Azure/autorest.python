@@ -49,3 +49,4 @@ corehttp==1.0.0b1
 -e ./generated/client-structure-twooperationgroup
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-pageable
+-e ./generated/payload-multipart

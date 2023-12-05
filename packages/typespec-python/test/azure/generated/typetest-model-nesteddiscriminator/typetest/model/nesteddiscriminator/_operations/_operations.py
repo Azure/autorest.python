@@ -143,6 +143,39 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -200,6 +233,40 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = fish
         """
 
     @overload
@@ -248,6 +315,40 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -303,6 +404,39 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -360,6 +494,40 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = fish
         """
 
     @overload
@@ -408,6 +576,40 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -463,6 +665,39 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -515,6 +750,39 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "salmon":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "salmon",
+                    "friends": [
+                        fish
+                    ],
+                    "hate": {
+                        "str": fish
+                    },
+                    "partner": fish
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "goblin"
+                }
+
+                # JSON input template for discriminator value "saw":
+                fish = {
+                    "age": 0,  # Required.
+                    "kind": "saw"
+                }
+
+                # response body for status code(s): 200
+                response == fish
         """
         error_map = {
             401: ClientAuthenticationError,

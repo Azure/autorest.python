@@ -175,6 +175,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[JSON]:
+        # pylint: disable=line-too-long
         """Get External Resource as an Array.
 
         .. seealso::
@@ -444,6 +445,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put External Resource as a Dictionary.
 
         .. seealso::
@@ -573,6 +575,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
+        # pylint: disable=line-too-long
         """Get External Resource as a Dictionary.
 
         .. seealso::
@@ -652,6 +655,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
@@ -765,6 +769,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
@@ -901,6 +906,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Get External Resource as a ResourceCollection.
 
         .. seealso::
@@ -1025,6 +1031,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1083,6 +1090,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1123,6 +1131,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1238,6 +1247,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1296,6 +1306,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1336,6 +1347,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1456,6 +1468,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1521,6 +1534,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1563,6 +1577,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product_with_grouping(
         self, name: str, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::

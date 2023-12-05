@@ -144,6 +144,39 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -162,6 +195,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -180,6 +231,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     def get_model(
@@ -197,6 +266,39 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -264,6 +366,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -305,6 +425,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -366,6 +504,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -413,6 +569,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -473,6 +647,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -520,6 +712,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -580,6 +790,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -627,6 +855,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -687,6 +933,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -734,6 +998,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
