@@ -338,6 +338,14 @@ class TwoModelsAsPageItemOperations:
         :return: An iterator like instance of FirstItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.FirstItem]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0  # The id of the item. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -413,6 +421,14 @@ class TwoModelsAsPageItemOperations:
         :return: An iterator like instance of SecondItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.SecondItem]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name of the item. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -502,6 +518,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -524,6 +571,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -546,6 +610,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @distributed_trace
@@ -566,6 +647,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -648,6 +760,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -670,6 +813,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -692,6 +852,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @distributed_trace
@@ -713,6 +890,37 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -788,6 +996,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -866,6 +1091,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -948,6 +1190,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1037,6 +1296,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_input = {
+                    "inputName": "str"  # The name of the input. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -1061,6 +1342,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -1085,6 +1383,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
 
     @distributed_trace
@@ -1109,6 +1424,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_input = {
+                    "inputName": "str"  # The name of the input. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1193,6 +1530,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1324,6 +1678,23 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "etag": "str",  # The entity tag for this resource. Required.
+                    "id": 0,  # The user's id. Required.
+                    "name": "str",  # The user's name. Required.
+                    "orders": [
+                        {
+                            "detail": "str",  # The user's order detail. Required.
+                            "id": 0,  # The user's id. Required.
+                            "userId": 0  # The user's id. Required.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
