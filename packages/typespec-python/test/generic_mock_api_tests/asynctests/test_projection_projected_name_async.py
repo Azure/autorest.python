@@ -35,3 +35,12 @@ async def test_operation(client: aio.ProjectedNameClient):
 @pytest.mark.asyncio
 async def test_parameter(client: aio.ProjectedNameClient):
     await client.parameter(client_name="true")
+
+
+@pytest.mark.asyncio
+async def test_model_client(client: ProjectedNameClient):
+    await client.model.client(models.ClientModel(default_name=True))
+
+@pytest.mark.asyncio
+async def test_model_language(client: ProjectedNameClient):
+    await client.model.language(models.PythonModel(default_name=True))
