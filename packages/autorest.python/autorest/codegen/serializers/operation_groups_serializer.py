@@ -7,6 +7,7 @@ from typing import Optional, List, Union
 import functools
 from jinja2 import Environment
 
+from .utils import get_all_operation_groups_recursively
 from ..models import (
     CodeModel,
     OperationGroup,
@@ -55,14 +56,7 @@ class OperationGroupsSerializer(BaseSerializer):
         if self.operation_group:
             operation_groups = self.operation_group
         else:
-            operation_groups = []
-            queue = []
-            for client in self.clients:
-                queue.extend(client.operation_groups)
-            while queue:
-                operation_groups.append(queue.pop(0))
-                if operation_groups[-1].operation_groups:
-                    queue.extend(operation_groups[-1].operation_groups)
+            operation_groups = get_all_operation_groups_recursively(self.clients)
 
         imports = FileImport(self.code_model)
         for operation_group in operation_groups:

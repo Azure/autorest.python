@@ -726,7 +726,10 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitOperationGroups(context: SdkContext, group: SdkClient | SdkOperationGroup): Record<string, any>[] | undefined {
+function emitOperationGroups(
+    context: SdkContext,
+    group: SdkClient | SdkOperationGroup,
+): Record<string, any>[] | undefined {
     const operationGroups: Record<string, any>[] = [];
 
     if (group.kind === "SdkClient") {
@@ -736,7 +739,9 @@ function emitOperationGroups(context: SdkContext, group: SdkClient | SdkOperatio
                 name: name,
                 className: name,
                 propertyName: name,
-                operations: listOperationsInOperationGroup(context, operationGroup).map(o => emitOperation(context, o, name)).reduce((a, b) => a.concat(...b), []),
+                operations: listOperationsInOperationGroup(context, operationGroup)
+                    .map((o) => emitOperation(context, o, name))
+                    .reduce((a, b) => a.concat(...b), []),
                 operationGroups: emitOperationGroups(context, operationGroup),
             });
         }
@@ -748,8 +753,10 @@ function emitOperationGroups(context: SdkContext, group: SdkClient | SdkOperatio
                 name: "",
                 className: "",
                 propertyName: "",
-                operations: listOperationsInOperationGroup(context, group).map(o => emitOperation(context, o, "")).reduce((a, b) => a.concat(b), []),
-            })
+                operations: listOperationsInOperationGroup(context, group)
+                    .map((o) => emitOperation(context, o, ""))
+                    .reduce((a, b) => a.concat(b), []),
+            });
         }
     } else {
         if (group.subOperationGroups === undefined) {
@@ -761,7 +768,9 @@ function emitOperationGroups(context: SdkContext, group: SdkClient | SdkOperatio
                 name: name,
                 className: name,
                 propertyName: operationGroup.type.name, // property name do not need to add prefix to avoid naming collision
-                operations: listOperationsInOperationGroup(context, operationGroup).map(o => emitOperation(context, o, name)).reduce((a, b) => a.concat(...b), []),
+                operations: listOperationsInOperationGroup(context, operationGroup)
+                    .map((o) => emitOperation(context, o, name))
+                    .reduce((a, b) => a.concat(...b), []),
                 operationGroups: emitOperationGroups(context, operationGroup),
             });
         }
