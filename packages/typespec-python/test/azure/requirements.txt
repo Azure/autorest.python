@@ -45,7 +45,7 @@ azure-core==1.28.0
 -e ./generated/typetest-property-valuetypes
 -e ./generated/typetest-property-additionalproperties
 -e ./generated/typetest-scalar
--e ./generated/typetest-union
+#-e ./generated/typetest-union
 -e ./generated/typetest-model-empty
 -e ./generated/headasbooleantrue
 -e ./generated/headasbooleanfalse
