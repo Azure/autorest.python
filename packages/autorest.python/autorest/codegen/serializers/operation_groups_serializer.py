@@ -54,7 +54,7 @@ class OperationGroupsSerializer(BaseSerializer):
 
     def serialize(self) -> str:
         if self.operation_group:
-            operation_groups = self.operation_group
+            operation_groups = [self.operation_group]
         else:
             operation_groups = get_all_operation_groups_recursively(self.clients)
 
