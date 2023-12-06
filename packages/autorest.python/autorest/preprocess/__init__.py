@@ -510,7 +510,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         operation_groups_yaml_data = client["operationGroups"]
         for operation_group in operation_groups_yaml_data:
             operation_group["identifyName"] = self.pad_reserved_words(
-                operation_group.get("name", operation_group["propertyName"]), PadType.OPERATION_GROUP
+                operation_group.get("name", operation_group["propertyName"]),
+                PadType.OPERATION_GROUP,
             )
             operation_group["identifyName"] = to_snake_case(
                 operation_group["identifyName"]
