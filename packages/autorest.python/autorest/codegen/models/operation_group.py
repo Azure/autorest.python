@@ -180,8 +180,7 @@ class OperationGroup(BaseModel):
     @property
     def has_operations(self) -> bool:
         return any(
-            operation_group.has_operations
-            for operation_group in self.operation_groups
+            operation_group.has_operations for operation_group in self.operation_groups
         ) or bool(self.operations)
 
     @classmethod

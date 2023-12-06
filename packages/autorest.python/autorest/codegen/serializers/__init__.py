@@ -33,7 +33,8 @@ from .._utils import VALID_PACKAGE_MODE
 from .utils import (
     extract_sample_name,
     get_namespace_from_package_name,
-    get_namespace_config, get_all_operation_groups_recursively,
+    get_namespace_config,
+    get_all_operation_groups_recursively,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -415,7 +416,9 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 clients=clients,
             )
         else:
-            for operation_group in get_all_operation_groups_recursively(self.code_model.clients):
+            for operation_group in get_all_operation_groups_recursively(
+                self.code_model.clients
+            ):
                 self._serialize_and_write_operations_file(
                     env=env,
                     namespace_path=namespace_path,

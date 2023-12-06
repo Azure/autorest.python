@@ -275,8 +275,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def has_operations(self) -> bool:
         return any(
-            operation_group.has_operations
-            for operation_group in self.operation_groups
+            operation_group.has_operations for operation_group in self.operation_groups
         )
 
     def link_lro_initial_operations(self) -> None:

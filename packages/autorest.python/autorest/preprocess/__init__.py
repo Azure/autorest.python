@@ -124,9 +124,7 @@ def update_description(
     return description
 
 
-def update_operation_group_class_name(
-    prefix: str, class_name: str
-) -> str:
+def update_operation_group_class_name(prefix: str, class_name: str) -> str:
     if class_name == "":
         return prefix + "OperationsMixin"
     if class_name == "Operations":
@@ -514,7 +512,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             operation_group["identifyName"] = self.pad_reserved_words(
                 operation_group["name"], PadType.OPERATION_GROUP
             )
-            operation_group["identifyName"] = to_snake_case(operation_group["identifyName"])
+            operation_group["identifyName"] = to_snake_case(
+                operation_group["identifyName"]
+            )
             operation_group["propertyName"] = self.pad_reserved_words(
                 operation_group["propertyName"], PadType.OPERATION_GROUP
             )
