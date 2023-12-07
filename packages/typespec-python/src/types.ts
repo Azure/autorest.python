@@ -45,7 +45,7 @@ function isEmptyModel(type: SdkType): boolean {
     );
 }
 
-function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
+export function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
     const key = dump(result, { sortKeys: true });
     const value = simpleTypesMap.get(key);
     if (value) {

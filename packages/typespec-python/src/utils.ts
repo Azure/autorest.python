@@ -29,9 +29,9 @@ export function removeUnderscoresFromNamespace(name?: string): string {
   return (name || "").replace(/_/g, "");
 }
 
-export function getImplementation(parameter: SdkParameter | SdkHttpParameter): "client" | "method" {
-  if (parameter.onClient) return "client";
-  return "method";
+export function getImplementation(parameter: SdkParameter | SdkHttpParameter): "Client" | "Method" {
+  if (parameter.onClient) return "Client";
+  return "Method";
 }
 
 export function isAbstract<TServiceOperation extends SdkServiceOperation>(

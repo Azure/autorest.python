@@ -11,7 +11,7 @@ import {
   SdkServiceMethod,
   SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
-import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
+import { KnownTypes, getSimpleTypeResult, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
 
@@ -86,8 +86,20 @@ function emitMethodParameter(
     return {
       ...base,
       skipUrlEncoding: !parameter.urlEncode,
-      wireName: parameter.serializedName,
-      location: "endpointPath",
+      wireName: "$host",
+      location: "endpoint",
+    };
+  }
+  if (parameter.isApiVersionParam) {
+    return {
+      ...base,
+      location: "query",
+      wireName: "api-version",
+      type: getSimpleTypeResult({
+        type: "constant",
+        value: parameter.apiVersions[0],
+        valueType: base.type,
+      })
     };
   }
   return base;
@@ -121,7 +133,7 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
       // Also currently assume subclient is operationGroup to keep code changes minimal
       const operationGroup = method.response;
       let operations: Record<string, any>[] = [];
-      for (const method of operationGroup.methods) { 
+      for (const method of operationGroup.methods) {
         if (method.kind === "clientaccessor") continue; // skipping for now since we don't do sub-sub clients
         operations = operations.concat(emitMethod(context, method, operationGroup.name));
       }
