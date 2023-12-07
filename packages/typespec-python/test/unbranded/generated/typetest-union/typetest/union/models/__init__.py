@@ -6,25 +6,48 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BaseModel
-from ._models import Model1
-from ._models import Model2
-from ._models import ModelWithNamedUnionProperty
-from ._models import ModelWithNamedUnionPropertyInResponse
-from ._models import ModelWithSimpleUnionProperty
-from ._models import ModelWithSimpleUnionPropertyInResponse
+from ._models import Cat
+from ._models import Dog
+from ._models import EnumsOnlyCases
+from ._models import GetResponse
+from ._models import GetResponse1
+from ._models import GetResponse2
+from ._models import GetResponse3
+from ._models import GetResponse4
+from ._models import GetResponse5
+from ._models import GetResponse6
+from ._models import GetResponse7
+from ._models import GetResponse8
+from ._models import GetResponse9
+from ._models import MixedLiteralsCases
+from ._models import MixedTypesCases
+from ._models import StringAndArrayCases
+
+from ._enums import LR
+from ._enums import UD
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BaseModel",
-    "Model1",
-    "Model2",
-    "ModelWithNamedUnionProperty",
-    "ModelWithNamedUnionPropertyInResponse",
-    "ModelWithSimpleUnionProperty",
-    "ModelWithSimpleUnionPropertyInResponse",
+    "Cat",
+    "Dog",
+    "EnumsOnlyCases",
+    "GetResponse",
+    "GetResponse1",
+    "GetResponse2",
+    "GetResponse3",
+    "GetResponse4",
+    "GetResponse5",
+    "GetResponse6",
+    "GetResponse7",
+    "GetResponse8",
+    "GetResponse9",
+    "MixedLiteralsCases",
+    "MixedTypesCases",
+    "StringAndArrayCases",
+    "LR",
+    "UD",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
