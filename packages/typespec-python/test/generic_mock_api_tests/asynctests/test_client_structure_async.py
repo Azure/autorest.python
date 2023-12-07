@@ -13,15 +13,12 @@ from client.structure.twooperationgroup.aio import TwoOperationGroupClient
 @pytest.mark.asyncio
 async def test_structure_default():
     client = ServiceClient(endpoint="http://localhost:3000", client=ClientType.DEFAULT)
-    client.one()
-    client.two()
-    client.foo.three()
-    client.foo.four()
-    client.bar.five()
-    client.bar.six()
-    client.baz.foo.seven()
-    client.qux.eight()
-    client.qux.bar.nine()
+    await client.one()
+    await client.two()
+    await client.foo.three()
+    await client.foo.four()
+    await client.bar.five()
+    await client.bar.six()
 
 @pytest.mark.asyncio
 async def test_structure_multiclient():

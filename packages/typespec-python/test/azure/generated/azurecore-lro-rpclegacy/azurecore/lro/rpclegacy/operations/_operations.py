@@ -257,7 +257,8 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
     @overload
     def begin_create_job(
         self, body: _models.JobData, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -272,8 +273,9 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -283,10 +285,44 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                 body = {
                     "comment": "str"  # Comment. Required.
                 }
+
+                # response body for status code(s): 202
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @overload
-    def begin_create_job(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> LROPoller[None]:
+    def begin_create_job(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> LROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -301,15 +337,51 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @overload
     def begin_create_job(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -324,13 +396,51 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @distributed_trace
-    def begin_create_job(self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any) -> LROPoller[None]:
+    def begin_create_job(
+        self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any
+    ) -> LROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Is one of the following types: JobData, JSON, IO[bytes] Required.
@@ -345,8 +455,9 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -356,12 +467,43 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                 body = {
                     "comment": "str"  # Comment. Required.
                 }
+
+                # response body for status code(s): 202
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -371,9 +513,17 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+
+            deserialized = _deserialize(_models.JobResult, response.json())
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+            return deserialized
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
@@ -382,10 +532,12 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller[None].from_continuation_token(
+            return LROPoller[_models.JobResult].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.JobResult](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )

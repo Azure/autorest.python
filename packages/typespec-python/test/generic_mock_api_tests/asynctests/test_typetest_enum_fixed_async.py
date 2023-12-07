@@ -12,7 +12,7 @@ async def client():
         yield client
 
 @pytest.mark.asyncio
-async def test_known_value(client: aio.FixedClient):
+async def test_known_value(client):
     assert await client.string.get_known_value() == models.DaysOfWeekEnum.MONDAY
     await client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
