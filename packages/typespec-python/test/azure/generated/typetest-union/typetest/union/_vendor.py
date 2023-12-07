@@ -1,5 +1,3 @@
-# coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7,9 +5,22 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING, Union
+from abc import ABC
+from typing import TYPE_CHECKING
+
+from ._configuration import UnionClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import models as _models
-MyNamedUnion = Union["_models.Model1", "_models.Model2"]
+    from azure.core import PipelineClient
+
+    from ._serialization import Deserializer, Serializer
+
+
+class UnionClientMixinABC(ABC):
+    """DO NOT use this class. It is for internal typing use only."""
+
+    _client: "PipelineClient"
+    _config: UnionClientConfiguration
+    _serialize: "Serializer"
+    _deserialize: "Deserializer"

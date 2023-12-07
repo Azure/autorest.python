@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7,9 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING, Union
+from ._operations import UnionClientOperationsMixin
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from . import models as _models
-MyNamedUnion = Union["_models.Model1", "_models.Model2"]
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import patch_sdk as _patch_sdk
+
+__all__ = [
+    "UnionClientOperationsMixin",
+]
+__all__.extend([p for p in _patch_all if p not in __all__])
+_patch_sdk()
