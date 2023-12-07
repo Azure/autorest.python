@@ -15,10 +15,10 @@ async def test_structure_default():
     client = ServiceClient(endpoint="http://localhost:3000", client=ClientType.DEFAULT)
     await client.one()
     await client.two()
-    await client.three()
-    await client.four()
-    await client.five()
-    await client.six()
+    await client.foo.three()
+    await client.foo.four()
+    await client.bar.five()
+    await client.bar.six()
 
 @pytest.mark.asyncio
 async def test_structure_multiclient():

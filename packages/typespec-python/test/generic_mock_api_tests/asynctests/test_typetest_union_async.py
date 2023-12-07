@@ -3,14 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import pytest
-from typetest.union.aio import UnionClient
-from typetest.union import models
+# import pytest
+# from typetest.union.aio import UnionClient
+# from typetest.union import models
 
-@pytest.fixture
-async def client():
-    async with UnionClient() as client:
-        yield client
+# @pytest.fixture
+# async def client():
+#     async with UnionClient() as client:
+#         yield client
 
 # @pytest.mark.asyncio
 # async def test_send_int(client):
