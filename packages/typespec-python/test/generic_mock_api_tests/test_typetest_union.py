@@ -3,14 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import pytest
-from typetest.union import UnionClient
-from typetest.union import models
+# import pytest
+# from typetest.union import UnionClient
+# from typetest.union import models
 
-@pytest.fixture
-def client():
-    with UnionClient() as client:
-        yield client
+# @pytest.fixture
+# def client():
+#     with UnionClient() as client:
+#         yield client
 
 # def test_send_int(client):
 #     client.send_int(models.ModelWithSimpleUnionProperty(simple_union=1))

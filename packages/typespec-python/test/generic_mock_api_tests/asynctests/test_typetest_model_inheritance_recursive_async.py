@@ -16,6 +16,7 @@ async def client():
 @pytest.fixture
 async def expected():
     return Extension({
+  "level": 0,
   "extension": [
     {
       "level": 1,

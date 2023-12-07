@@ -15,12 +15,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import LegacyClientConfiguration
-from ._operations import LegacyClientOperationsMixin
+from .operations import CreateResourcePollViaOperationLocationOperations
 
 
-class LegacyClient(LegacyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class LegacyClient:  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core with long-running operation.
 
+    :ivar create_resource_poll_via_operation_location:
+     CreateResourcePollViaOperationLocationOperations operations
+    :vartype create_resource_poll_via_operation_location:
+     azurecore.lro.rpclegacy.aio.operations.CreateResourcePollViaOperationLocationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
@@ -57,6 +61,9 @@ class LegacyClient(LegacyClientOperationsMixin):  # pylint: disable=client-accep
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.create_resource_poll_via_operation_location = CreateResourcePollViaOperationLocationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

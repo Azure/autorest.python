@@ -12,11 +12,11 @@ def client():
         yield client
 
 def test_known_value(client):
-    assert client.get_known_value() == models.DaysOfWeekEnum.MONDAY
-    client.put_known_value(models.DaysOfWeekEnum.MONDAY)
+    assert client.string.get_known_value() == models.DaysOfWeekEnum.MONDAY
+    client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
 def test_unknown_value(client, core_library):
     try:
-        client.put_unknown_value("Weekend")
+        client.string.put_unknown_value("Weekend")
     except core_library.exceptions.HttpResponseError as err:
         assert err.status_code == 500
