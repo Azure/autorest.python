@@ -869,7 +869,7 @@ class StringExtensibleNamedOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _types.StringExtensibleNamedUnion, content_type: str = "application/json", **kwargs: Any
+        self, *, prop: "_types.StringExtensibleNamedUnion", content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
@@ -900,7 +900,11 @@ class StringExtensibleNamedOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _types.StringExtensibleNamedUnion = _Unset, **kwargs: Any
+        self,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        prop: "_types.StringExtensibleNamedUnion" = _Unset,
+        **kwargs: Any
     ) -> None:
         """send.
 

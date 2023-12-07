@@ -3,43 +3,57 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-# import pytest
-# from typetest.union.aio import UnionClient
-# from typetest.union import models
+from typing import Any, Type
+import pytest
+from typetest.union.aio import UnionClient
+from typetest.union import models
 
-# @pytest.fixture
-# async def client():
-#     async with UnionClient() as client:
-#         yield client
+@pytest.fixture
+async def client():
+    async with UnionClient() as client:
+        yield client
 
-# @pytest.mark.asyncio
-# async def test_send_int(client):
-#     await client.send_int(models.ModelWithSimpleUnionProperty(simple_union=1))
-
-# @pytest.mark.asyncio
-# async def test_send_int_array(client):
-#     await client.send_int_array(models.ModelWithSimpleUnionProperty(simple_union=[1, 2]))
-
-# @pytest.mark.asyncio
-# async def test_send_first_named_union_value(client):
-#     await client.send_first_named_union_value(models.ModelWithNamedUnionProperty(named_union=models.Model1(name="model1", prop1=1)))
-
-# @pytest.mark.asyncio
-# async def test_send_second_named_union_value(client):
-#     await client.send_second_named_union_value(models.ModelWithNamedUnionProperty(named_union=models.Model2(name="model2", prop2=2)))
-
-# @pytest.mark.asyncio
-# async def test_receive_string(client):
-#     assert await client.receive_string() == models.ModelWithSimpleUnionPropertyInResponse(simple_union="string")
-
-# @pytest.mark.asyncio
-# async def test_receive_int_array(client):
-#     assert await client.receive_int_array() == models.ModelWithSimpleUnionPropertyInResponse(simple_union=[1, 2])
-
-# @pytest.mark.asyncio
-# async def test_receive_first_named_union_value(client):
-#     assert await client.receive_first_named_union_value() == models.ModelWithNamedUnionPropertyInResponse(named_union=models.Model1(name="model1", prop1=1))
-
-# @pytest.mark.asyncio
-# async def test_receive_second_named_union_value(client):
-#     assert await client.receive_second_named_union_value() == models.ModelWithNamedUnionPropertyInResponse(named_union=models.Model2(name="model2", prop2=2))
+@pytest.mark.parametrize(
+    "og_name,value,res_model_type",
+    [
+        ("strings_only", "b", models.GetResponse),
+        ("string_extensible", "custom", models.GetResponse1),
+        ("string_extensible_named", "custom", models.GetResponse2),
+        ("ints_only", 2, models.GetResponse3),
+        ("floats_only", 2.2, models.GetResponse4),
+        ("models_only", models.Cat(name="test"), models.GetResponse5),
+        (
+            "enums_only",
+            models.EnumsOnlyCases(lr=models.LR.RIGHT, ud=models.UD.UP),
+            models.GetResponse6,
+        ),
+        (
+            "string_and_array",
+            models.StringAndArrayCases(string="test", array=["test1", "test2"]),
+            models.GetResponse7,
+        ),
+        (
+            "mixed_literals",
+            models.MixedLiteralsCases(
+                string_literal="a",
+                int_literal=2,
+                float_literal=3.3,
+                boolean_literal=True,
+            ),
+            models.GetResponse8,
+        ),
+        (
+            "mixed_types",
+            models.MixedTypesCases(
+                model=models.Cat(name="test"), literal="a", int=2, boolean=True
+            ),
+            models.GetResponse9,
+        ),
+    ],
+)
+@pytest.mark.asyncio
+async def test_union(client: UnionClient, og_name: str, value: Any, res_model_type: Type):
+    og_group = getattr(client, og_name)
+    assert await og_group.get() == res_model_type(prop=value)
+    await og_group.send(prop=value)
+    await og_group.send({"prop": value})
