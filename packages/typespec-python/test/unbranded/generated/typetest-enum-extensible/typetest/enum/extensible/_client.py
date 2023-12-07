@@ -13,13 +13,15 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ExtensibleClientConfiguration
-from ._operations import ExtensibleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import StringOperations
 
 
-class ExtensibleClient(ExtensibleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ExtensibleClient:  # pylint: disable=client-accepts-api-version-keyword
     """ExtensibleClient.
 
+    :ivar string: StringOperations operations
+    :vartype string: typetest.enum.extensible.operations.StringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -44,6 +46,7 @@ class ExtensibleClient(ExtensibleClientOperationsMixin):  # pylint: disable=clie
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

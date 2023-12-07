@@ -173,6 +173,26 @@ class Operations:
         return AsyncItemPaged(get_next, extract_data)
 
 
+class CustomUpdateOperationsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`custom_update_operations` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+
 class CatalogsOperations:
     """
     .. warning::
