@@ -52,4 +52,3 @@ function-naming-style=snake_case
 argument-naming-style=snake_case
 variable-naming-style=snake_case
 inlinevar-naming-style=snake_case
-bad-names=
