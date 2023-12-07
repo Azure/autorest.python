@@ -83,8 +83,10 @@ function addPagingInformation(
   method: SdkPagingServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ) {
-  if (!isAzureCoreModel(method.response.type?.__raw)) {
-    getType(context, method.response.type!)["pageResultModel"] = true;
+  let itemType: Record<string, any> = KnownTypes.anyObject;
+  if (!isAzureCoreModel(method.response.type)) {
+    itemType = getType(context, method.response.type!);
+    itemType["pageResultModel"] = true;
   }
   return {
     ...emitHttpOperation(context, method.operation, operationGroupName),
@@ -93,7 +95,7 @@ function addPagingInformation(
     exposeStreamKeyword: false,
     itemName: method.response.responsePath,
     continuationTokenName: method.nextLinkLogicalPath,
-    itemType: getType(context, method.response.type!),
+    itemType,
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
   };
@@ -239,9 +241,9 @@ function emitHttpResponse(
   if (!response) return undefined;
   return {
     headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
-    statusCodes: statusCodes,
+    statusCodes: statusCodes === "*" ? "default" : statusCodes,
     discriminator: "basic",
-    type: response.type ? getType(context, response.type) : undefined,
+    type: (response.type && !isAzureCoreModel(response.type)) ? getType(context, response.type) : undefined,
     contentTypes: "",
   };
 }

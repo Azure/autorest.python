@@ -64,7 +64,7 @@ class _ParameterBase(
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.wire_name: str = yaml_data["wireName"]
+        self.wire_name: str = yaml_data.get("wireName", "")
         self.client_name: str = self.yaml_data["clientName"]
         self.optional: bool = self.yaml_data["optional"]
         self.location: ParameterLocation = self.yaml_data["location"]

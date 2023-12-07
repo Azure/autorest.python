@@ -3,10 +3,12 @@ import {
   SdkHeaderParameter,
   SdkHttpParameter,
   SdkMethod,
+  SdkModelType,
   SdkParameter,
   SdkQueryParameter,
   SdkServiceMethod,
   SdkServiceOperation,
+  SdkType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getType } from "./types.js";
 import { getNamespaceFullName, Type } from "@typespec/compiler";
@@ -41,6 +43,7 @@ export function isAbstract<TServiceOperation extends SdkServiceOperation>(
 export function getDelimeterAndExplode(
   parameter: SdkQueryParameter | SdkHeaderParameter,
 ): [string | undefined, boolean] {
+  if (parameter.type.kind !== "array") return [undefined, false];
   let delimiter: string | undefined = undefined;
   let explode = false;
   if (parameter.collectionFormat === "csv") {
@@ -82,25 +85,27 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
   };
 }
 
-export function isAzureCoreModel(t: Type | undefined): boolean {
+export function isAzureCoreModel(t: SdkType | undefined): boolean {
   if (!t) return false;
+  const tspType = t.__raw;
+  if (!tspType) return false;
   return (
-    t.kind === "Model" &&
-    t.namespace !== undefined &&
-    ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))
+    tspType.kind === "Model" &&
+    tspType.namespace !== undefined &&
+    ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace))
   );
 }
 
 export function getDescriptionAndSummary<TServiceOperation extends SdkServiceOperation>(
   method: SdkMethod<TServiceOperation>,
-): {description?: string, summary?: string} {
+): { description?: string; summary?: string } {
   if (method.details) {
     return {
       description: method.details,
       summary: method.description,
-    }
+    };
   }
   return {
     description: method.description,
-  }
+  };
 }

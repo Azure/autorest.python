@@ -12,7 +12,7 @@ import {
   SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
 import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
-import { emitParamBase, getImplementation } from "./utils.js";
+import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
 
 function emitBasicMethod<TServiceOperation extends SdkServiceOperation>(
@@ -87,7 +87,6 @@ function emitMethodParameter(
       ...base,
       skipUrlEncoding: !parameter.urlEncode,
       wireName: parameter.serializedName,
-      type: "endpointPath",
       location: "endpointPath",
     };
   }
@@ -172,7 +171,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
   // Get types
   const sdkPackage = sdkContext.sdkPackage;
   const codeModel: Record<string, any> = {
-    namespace: sdkPackage.rootNamespace,
+    namespace: removeUnderscoresFromNamespace(sdkPackage.rootNamespace).toLowerCase(),
     clients: [],
     subnamespaceToClients: {},
   };
