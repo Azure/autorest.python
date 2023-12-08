@@ -17,7 +17,7 @@ async def test_known_value(client):
     await client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
 @pytest.mark.asyncio
-async def test_unknown_value(client, core_library):
+async def test_unknown_value(client: aio.FixedClient, core_library):
     try:
         await client.string.put_unknown_value("Weekend")
     except core_library.exceptions.HttpResponseError as err:
