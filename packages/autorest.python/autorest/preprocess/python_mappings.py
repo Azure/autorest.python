@@ -93,6 +93,7 @@ _always_reserved = [
     "yield",
     "async",
     "await",
+    "int",
 ]
 
 RESERVED_WORDS = {
@@ -163,7 +164,7 @@ RESERVED_WORDS = {
         *_always_reserved,
     ],
     PadType.MODEL: [*_always_reserved],
-    PadType.PROPERTY: ["self", "int", *_always_reserved],
+    PadType.PROPERTY: ["self", *_always_reserved],
     PadType.ENUM: ["mro", *_always_reserved],
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
