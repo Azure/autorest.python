@@ -20,6 +20,13 @@ async def client():
     ("duration", "P123DT22H14M12.011S"),
     ("collections_byte", ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
     ("collections_model", [{'property': 'hello'}, {'property': 'world'}]),
+    ("string_literal", "hello"),
+    ("int_literal", 1),
+    ("float_literal", 1.2),
+    ("boolean_literal", True),
+    ("union_string_literal", "world"),
+    ("union_int_literal", 2),
+    ("union_float_literal", 2.3),
 ]
 )
 @pytest.mark.asyncio
@@ -39,6 +46,13 @@ async def test_json(client, og_name, val):
     ("duration", models.DurationProperty, "P123DT22H14M12.011S"),
     ("collections_byte", models.CollectionsByteProperty, ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]),
     ("collections_model", models.CollectionsModelProperty, [models.StringProperty(property="hello"), models.StringProperty(property="world")]),
+    ("string_literal", models.StringLiteralProperty, "hello"),
+    ("int_literal", models.IntLiteralProperty, 1),
+    ("float_literal", models.FloatLiteralProperty, 1.2),
+    ("boolean_literal", models.BooleanLiteralProperty, True),
+    ("union_string_literal", models.UnionStringLiteralProperty, "world"),
+    ("union_int_literal", models.UnionIntLiteralProperty, 2),
+    ("union_float_literal", models.UnionFloatLiteralProperty, 2.3),
 ]
 )
 @pytest.mark.asyncio

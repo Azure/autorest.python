@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.15.13",
+    "version": "0.16.3",
     "author": "Microsoft Corporation",
     "description": "TypeSpec emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -42,12 +42,12 @@
         "get-autorest-python-path.cjs"
     ],
     "peerDependencies": {
-        "@azure-tools/typespec-azure-core": ">=0.36.0 <1.0.0",
-        "@azure-tools/typespec-client-generator-core": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzMyMDI4NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.37.0-pr-3343.20231205.11.tgz",
-        "@typespec/compiler": ">=0.50.0 <1.0.0",
-        "@typespec/http": ">=0.50.0 <1.0.0",
-        "@typespec/rest": ">=0.50.0 <1.0.0",
-        "@typespec/versioning": ">=0.50.0 <1.0.0"
+        "@azure-tools/typespec-azure-core": ">=0.37.0 <1.0.0",
+        "@azure-tools/typespec-client-generator-core": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzMyOTgwNy9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-3343.20231208.9.tgz",
+        "@typespec/compiler": ">=0.51.0 <1.0.0",
+        "@typespec/http": ">=0.51.0 <1.0.0",
+        "@typespec/rest": ">=0.51.0 <1.0.0",
+        "@typespec/versioning": ">=0.51.0 <1.0.0"
     },
     "dependenciesMeta": {
         "@azure-tools/typespec-client-generator-core": {
@@ -59,19 +59,25 @@
         "js-yaml": "~4.1.0"
     },
     "devDependencies": {
-        "@azure-tools/typespec-azure-resource-manager": ">=0.36.0 <1.0.0",
-        "@azure-tools/typespec-autorest": ">=0.36.0 <1.0.0",
-        "@azure-tools/cadl-ranch-expect": "~0.8.0",
-        "@azure-tools/cadl-ranch-specs": "~0.24.0",
+        "@azure-tools/typespec-azure-resource-manager": ">=0.37.0 <1.0.0",
+        "@azure-tools/typespec-autorest": ">=0.37.0 <1.0.0",
+        "@azure-tools/cadl-ranch-expect": "~0.10.0",
+        "@azure-tools/cadl-ranch-specs": "~0.28.0",
         "@types/js-yaml": "~4.0.5",
         "@types/mocha": "~10.0.1",
         "@types/node": "^18.16.3",
-        "@typespec/eslint-config-typespec": "~0.50.0",
-        "@typespec/openapi": ">=0.50.0 <1.0.0",
+        "@typespec/eslint-config-typespec": "~0.51.0",
+        "@typespec/openapi": ">=0.51.0 <1.0.0",
         "c8": "~7.13.0",
         "eslint": "^8.44.0",
         "mocha": "~10.2.0",
         "rimraf": "~5.0.0",
-        "typescript": "~5.1.3"
+        "typescript": "~5.1.3",
+        "@azure-tools/typespec-azure-core": "~0.37.0",
+        "@azure-tools/typespec-client-generator-core": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzMyOTgwNy9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-3343.20231208.9.tgz",
+        "@typespec/compiler": "~0.51.0",
+        "@typespec/http": "~0.51.0",
+        "@typespec/rest": "~0.51.0",
+        "@typespec/versioning": "~0.51.0"
     }
 }

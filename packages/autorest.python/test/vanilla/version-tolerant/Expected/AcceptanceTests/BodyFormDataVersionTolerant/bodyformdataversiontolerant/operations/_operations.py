@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -32,7 +32,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_formdata_upload_file_via_body_request(  # pylint: disable=name-too-long
-    *, content: IO, **kwargs: Any
+    *, content: IO[bytes], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -66,6 +66,7 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
         raise_if_not_implemented(
             self.__class__,
             [
@@ -75,11 +76,11 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         )
 
     @distributed_trace
-    def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> Iterator[bytes]:
+    def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> Iterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :return: Iterator of the response bytes
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:

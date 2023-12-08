@@ -22,6 +22,7 @@ async def valid_body():
 @pytest.mark.asyncio
 async def test_get_model(client, valid_body):
     assert await client.get_model() == valid_body
+    assert isinstance(await client.get_model(), GoblinShark)
 
 
 @pytest.mark.asyncio
@@ -63,6 +64,7 @@ async def valid_recursive_body():
 @pytest.mark.asyncio
 async def test_get_recursive_model(client, valid_recursive_body):
     assert valid_recursive_body == await client.get_recursive_model()
+    assert isinstance(await client.get_recursive_model(), Salmon)
 
 
 @pytest.mark.asyncio

@@ -4,6 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import datetime
+import decimal
+
 import pytest
 from typetest.property.valuetypes import models
 from typetest.property.valuetypes.aio import ValueTypesClient
@@ -23,6 +25,8 @@ async def client():
         ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
         ("int", 42),
         ("float", 42.42),
+        ("decimal", decimal.Decimal("0.33333")),
+        ("decimal128", decimal.Decimal("0.33333")),
         ("datetime", "2022-08-26T18:38:00Z"),
         ("duration", "P123DT22H14M12.011S"),
         ("enum", "ValueOne"),
@@ -36,6 +40,13 @@ async def client():
         ("unknown_int", 42),
         ("unknown_dict", {'k1': 'hello', 'k2': 42}),
         ("unknown_array", ['hello', 'world']),
+        ("boolean_literal", True),
+        ("int_literal", 42),
+        ("string_literal", "hello"),
+        ("float_literal", 42.42),
+        ("union_string_literal", "world"),
+        ("union_float_literal", 43.43),
+        ("union_int_literal", 42),
     ]
 )
 async def test(client, og_name, val):
@@ -52,6 +63,8 @@ async def test(client, og_name, val):
         ("bytes", models.BytesProperty, b'hello, world!'),
         ("int", models.IntProperty, 42),
         ("float", models.FloatProperty, 42.42),
+        ("decimal", models.DecimalProperty, decimal.Decimal("0.33333")),
+        ("decimal128", models.Decimal128Property, decimal.Decimal("0.33333")),
         ("enum", models.EnumProperty, models.InnerEnum.VALUE_ONE),
         ("extensible_enum", models.ExtensibleEnumProperty, "UnknownValue"),
         ("model", models.ModelProperty, models.InnerModel(property="hello")),
@@ -66,6 +79,13 @@ async def test(client, og_name, val):
         ("unknown_int", models.UnknownIntProperty, 42),
         ("unknown_dict", models.UnknownDictProperty, {'k1': 'hello', 'k2': 42}),
         ("unknown_array", models.UnknownArrayProperty, ['hello', 'world']),
+        ("boolean_literal", models.BooleanLiteralProperty, True),
+        ("int_literal", models.IntLiteralProperty, 42),
+        ("string_literal", models.StringLiteralProperty, "hello"),
+        ("float_literal", models.FloatLiteralProperty, 42.42),
+        ("union_string_literal", models.UnionStringLiteralProperty, "world"),
+        ("union_float_literal", models.UnionFloatLiteralProperty, 43.43),
+        ("union_int_literal", models.UnionIntLiteralProperty, 42),
     ]
 )
 @pytest.mark.asyncio

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -367,6 +367,14 @@ class Int32ValueOperations:
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -424,16 +432,24 @@ class Int32ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": 0  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -443,12 +459,12 @@ class Int32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
+        :param body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type body: dict[str, int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -527,6 +543,14 @@ class Int64ValueOperations:
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -584,16 +608,24 @@ class Int64ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": 0  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -603,12 +635,12 @@ class Int64ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
+        :param body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type body: dict[str, int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -687,6 +719,14 @@ class BooleanValueOperations:
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -744,16 +784,24 @@ class BooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": bool  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -763,12 +811,12 @@ class BooleanValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, bool], IO], **kwargs: Any
+        self, body: Union[Dict[str, bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: bool} type or a IO type. Required.
-        :type body: dict[str, bool] or IO
+        :param body: Is either a {str: bool} type or a IO[bytes] type. Required.
+        :type body: dict[str, bool] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -847,6 +895,14 @@ class StringValueOperations:
         :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -904,16 +960,24 @@ class StringValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": "str"  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -923,12 +987,12 @@ class StringValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO], **kwargs: Any
+        self, body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: str} type or a IO type. Required.
-        :type body: dict[str, str] or IO
+        :param body: Is either a {str: str} type or a IO[bytes] type. Required.
+        :type body: dict[str, str] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1007,6 +1071,14 @@ class Float32ValueOperations:
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": 0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1064,16 +1136,24 @@ class Float32ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": 0.0  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1083,12 +1163,12 @@ class Float32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
-        :type body: dict[str, float] or IO
+        :param body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type body: dict[str, float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1167,6 +1247,14 @@ class DatetimeValueOperations:
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": "2020-02-20 00:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1224,16 +1312,24 @@ class DatetimeValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": "2020-02-20 00:00:00"  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1243,12 +1339,12 @@ class DatetimeValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.datetime} type or a IO type. Required.
-        :type body: dict[str, ~datetime.datetime] or IO
+        :param body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~datetime.datetime] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1327,6 +1423,14 @@ class DurationValueOperations:
         :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": "1 day, 0:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1384,16 +1488,24 @@ class DurationValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": "1 day, 0:00:00"  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1403,12 +1515,12 @@ class DurationValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.timedelta], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.timedelta} type or a IO type. Required.
-        :type body: dict[str, ~datetime.timedelta] or IO
+        :param body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~datetime.timedelta] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1487,6 +1599,14 @@ class UnknownValueOperations:
         :return: dict mapping str to any
         :rtype: dict[str, any]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": {}  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1544,16 +1664,24 @@ class UnknownValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": {}  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1563,12 +1691,12 @@ class UnknownValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Any], IO], **kwargs: Any
+        self, body: Union[Dict[str, Any], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: Any} type or a IO type. Required.
-        :type body: dict[str, any] or IO
+        :param body: Is either a {str: Any} type or a IO[bytes] type. Required.
+        :type body: dict[str, any] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1647,6 +1775,19 @@ class ModelValueOperations:
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": {
+                        "property": "str",  # Required string property. Required.
+                        "children": {
+                            "str": ...
+                        }
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1704,16 +1845,29 @@ class ModelValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": {
+                        "property": "str",  # Required string property. Required.
+                        "children": {
+                            "str": ...
+                        }
+                    }
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1723,12 +1877,12 @@ class ModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
+        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1807,6 +1961,19 @@ class RecursiveModelValueOperations:
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": {
+                        "property": "str",  # Required string property. Required.
+                        "children": {
+                            "str": ...
+                        }
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1864,16 +2031,29 @@ class RecursiveModelValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": {
+                        "property": "str",  # Required string property. Required.
+                        "children": {
+                            "str": ...
+                        }
+                    }
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1883,12 +2063,12 @@ class RecursiveModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
+        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1967,6 +2147,14 @@ class NullableFloatValueOperations:
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "str": 0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2024,16 +2212,24 @@ class NullableFloatValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "str": 0.0  # Optional.
+                }
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2043,12 +2239,12 @@ class NullableFloatValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
-        :type body: dict[str, float] or IO
+        :param body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type body: dict[str, float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

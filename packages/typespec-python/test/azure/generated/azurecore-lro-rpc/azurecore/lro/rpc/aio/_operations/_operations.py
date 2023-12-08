@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -41,7 +41,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
-    async def _long_running_rpc_initial(self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any) -> JSON:
+    async def _long_running_rpc_initial(
+        self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -119,6 +121,19 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prompt": "str"  # Prompt. Required.
+                }
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @overload
@@ -145,18 +160,26 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @overload
     async def begin_long_running_rpc(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -171,18 +194,26 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
 
     @distributed_trace_async
     async def begin_long_running_rpc(
-        self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any
+        self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
 
-        :param body: Is one of the following types: GenerationOptions, JSON, IO Required.
-        :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO
+        :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
+        :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -197,6 +228,19 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prompt": "str"  # Prompt. Required.
+                }
+
+                # response body for status code(s): 202
+                response == {
+                    "data": "str"  # The data. Required.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

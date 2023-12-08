@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -81,13 +81,13 @@ class OperationGroupOneOperations:
     )
     @distributed_trace_async
     async def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
-         value is None.
-        :type parameter_one: ~multiapicombiner.v3.models.ModelThree or IO
+        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[bytes] type.
+         Default value is None.
+        :type parameter_one: ~multiapicombiner.v3.models.ModelThree or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -309,12 +309,13 @@ class OperationGroupTwoOperations:
     )
     @distributed_trace_async
     async def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
-        :type input: ~multiapicombiner.v3.models.SourcePath or IO
+        :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
+         is None.
+        :type input: ~multiapicombiner.v3.models.SourcePath or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
@@ -486,7 +487,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
 
     async def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -550,12 +551,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     )
     @distributed_trace_async
     async def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~multiapicombiner.v1.models.Product or IO
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
+         None.
+        :type product: ~multiapicombiner.v1.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

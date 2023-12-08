@@ -16,21 +16,30 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import ValueTypesClientConfiguration
 from .operations import (
+    BooleanLiteralOperations,
     BooleanOperations,
     BytesOperations,
     CollectionsIntOperations,
     CollectionsModelOperations,
     CollectionsStringOperations,
     DatetimeOperations,
+    Decimal128Operations,
+    DecimalOperations,
     DictionaryStringOperations,
     DurationOperations,
     EnumOperations,
     ExtensibleEnumOperations,
+    FloatLiteralOperations,
     FloatOperations,
+    IntLiteralOperations,
     IntOperations,
     ModelOperations,
     NeverOperations,
+    StringLiteralOperations,
     StringOperations,
+    UnionFloatLiteralOperations,
+    UnionIntLiteralOperations,
+    UnionStringLiteralOperations,
     UnknownArrayOperations,
     UnknownDictOperations,
     UnknownIntOperations,
@@ -51,6 +60,10 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype int: typetest.property.valuetypes.aio.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: typetest.property.valuetypes.aio.operations.FloatOperations
+    :ivar decimal: DecimalOperations operations
+    :vartype decimal: typetest.property.valuetypes.aio.operations.DecimalOperations
+    :ivar decimal128: Decimal128Operations operations
+    :vartype decimal128: typetest.property.valuetypes.aio.operations.Decimal128Operations
     :ivar datetime: DatetimeOperations operations
     :vartype datetime: typetest.property.valuetypes.aio.operations.DatetimeOperations
     :ivar duration: DurationOperations operations
@@ -82,6 +95,23 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype unknown_dict: typetest.property.valuetypes.aio.operations.UnknownDictOperations
     :ivar unknown_array: UnknownArrayOperations operations
     :vartype unknown_array: typetest.property.valuetypes.aio.operations.UnknownArrayOperations
+    :ivar string_literal: StringLiteralOperations operations
+    :vartype string_literal: typetest.property.valuetypes.aio.operations.StringLiteralOperations
+    :ivar int_literal: IntLiteralOperations operations
+    :vartype int_literal: typetest.property.valuetypes.aio.operations.IntLiteralOperations
+    :ivar float_literal: FloatLiteralOperations operations
+    :vartype float_literal: typetest.property.valuetypes.aio.operations.FloatLiteralOperations
+    :ivar boolean_literal: BooleanLiteralOperations operations
+    :vartype boolean_literal: typetest.property.valuetypes.aio.operations.BooleanLiteralOperations
+    :ivar union_string_literal: UnionStringLiteralOperations operations
+    :vartype union_string_literal:
+     typetest.property.valuetypes.aio.operations.UnionStringLiteralOperations
+    :ivar union_int_literal: UnionIntLiteralOperations operations
+    :vartype union_int_literal:
+     typetest.property.valuetypes.aio.operations.UnionIntLiteralOperations
+    :ivar union_float_literal: UnionFloatLiteralOperations operations
+    :vartype union_float_literal:
+     typetest.property.valuetypes.aio.operations.UnionFloatLiteralOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -117,6 +147,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.decimal = DecimalOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.decimal128 = Decimal128Operations(self._client, self._config, self._serialize, self._deserialize)
         self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
@@ -137,6 +169,19 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.unknown_int = UnknownIntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_dict = UnknownDictOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_array = UnknownArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string_literal = StringLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_literal = IntLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.float_literal = FloatLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.boolean_literal = BooleanLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.union_string_literal = UnionStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.union_int_literal = UnionIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.union_float_literal = UnionFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

@@ -8,14 +8,49 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+import sys
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+
+
+class BooleanLiteralProperty(_model_base.Model):
+    """Model with boolean literal property.
+
+    :ivar property: Property. Default value is True.
+    :vartype property: bool
+    """
+
+    property: Optional[Literal[True]] = rest_field()
+    """Property. Default value is True."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Literal[True]] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class BytesProperty(_model_base.Model):
@@ -164,6 +199,64 @@ class DurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class FloatLiteralProperty(_model_base.Model):
+    """Model with float literal property.
+
+    :ivar property: Property. Default value is 1.2.
+    :vartype property: float
+    """
+
+    property: Optional[float] = rest_field()
+    """Property. Default value is 1.2."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[float] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class IntLiteralProperty(_model_base.Model):
+    """Model with int literal property.
+
+    :ivar property: Property. Default value is 1.
+    :vartype property: int
+    """
+
+    property: Optional[Literal[1]] = rest_field()
+    """Property. Default value is 1."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Literal[1]] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
@@ -200,6 +293,35 @@ class RequiredAndOptionalProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class StringLiteralProperty(_model_base.Model):
+    """Model with string literal property.
+
+    :ivar property: Property. Default value is "hello".
+    :vartype property: str
+    """
+
+    property: Optional[Literal["hello"]] = rest_field()
+    """Property. Default value is \"hello\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Literal["hello"]] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class StringProperty(_model_base.Model):
     """Template type for testing models with optional property. Pass in the type of the property you
     are looking for.
@@ -216,6 +338,93 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: Optional[str] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionFloatLiteralProperty(_model_base.Model):
+    """Model with union of float literal property.
+
+    :ivar property: Property. Is either a float type or a float type.
+    :vartype property: float or float
+    """
+
+    property: Optional[Union[float, float]] = rest_field()
+    """Property. Is either a float type or a float type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Union[float, float]] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionIntLiteralProperty(_model_base.Model):
+    """Model with union of int literal property.
+
+    :ivar property: Property. Is either a Literal[1] type or a Literal[2] type.
+    :vartype property: int or int
+    """
+
+    property: Optional[Union[Literal[1], Literal[2]]] = rest_field()
+    """Property. Is either a Literal[1] type or a Literal[2] type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Union[Literal[1], Literal[2]]] = None,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionStringLiteralProperty(_model_base.Model):
+    """Model with union of string literal property.
+
+    :ivar property: Property. Is either a Literal["hello"] type or a Literal["world"] type.
+    :vartype property: str or str
+    """
+
+    property: Optional[Union[Literal["hello"], Literal["world"]]] = rest_field()
+    """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[Union[Literal["hello"], Literal["world"]]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 

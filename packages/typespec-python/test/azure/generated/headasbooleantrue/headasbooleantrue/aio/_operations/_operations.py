@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -62,6 +62,39 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -80,16 +113,34 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
     async def get_model(
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -98,16 +149,34 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @distributed_trace_async
     async def get_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -116,6 +185,39 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -183,6 +285,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -200,11 +320,11 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def head_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> bool:
+    async def head_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -214,17 +334,35 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
+    async def head_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> bool:
         """head_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -286,6 +424,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -306,12 +462,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -322,18 +478,36 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @distributed_trace_async
     async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -394,6 +568,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -414,12 +606,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -430,18 +622,36 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @distributed_trace_async
     async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """patch_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -502,6 +712,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -522,12 +750,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -538,18 +766,36 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @distributed_trace_async
     async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """post_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -610,6 +856,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
 
     @overload
@@ -630,12 +894,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -646,18 +910,36 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @distributed_trace_async
     async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """delete_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "createProp": [
+                        "str"  # Required string[], illustrating a create property. Required.
+                    ],
+                    "deleteProp": bool,  # Required bool, illustrating a delete property.
+                      Required.
+                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
+                    "readProp": "str",  # Required string, illustrating a readonly property.
+                      Required.
+                    "updateProp": [
+                        0  # Required int32[], illustrating a update property. Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

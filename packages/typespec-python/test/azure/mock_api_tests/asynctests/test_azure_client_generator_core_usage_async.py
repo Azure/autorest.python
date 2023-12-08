@@ -16,8 +16,8 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_input_to_input_output(client: UsageClient):
-    await client.input_to_input_output(models.InputModel(name="Madge"))
+    await client.model_in_operation.input_to_input_output(models.InputModel(name="Madge"))
 
 @pytest.mark.asyncio
 async def test_output_to_input_output(client: UsageClient):
-    assert models.OutputModel(name="Madge") == await client.output_to_input_output()
+    assert models.OutputModel(name="Madge") == await client.model_in_operation.output_to_input_output()

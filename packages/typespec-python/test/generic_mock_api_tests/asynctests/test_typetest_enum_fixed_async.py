@@ -13,12 +13,12 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_known_value(client):
-    assert await client.get_known_value() == models.DaysOfWeekEnum.MONDAY
-    await client.put_known_value(models.DaysOfWeekEnum.MONDAY)
+    assert await client.string.get_known_value() == models.DaysOfWeekEnum.MONDAY
+    await client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
 @pytest.mark.asyncio
-async def test_unknown_value(client, core_library):
+async def test_unknown_value(client: aio.FixedClient, core_library):
     try:
-        await client.put_unknown_value("Weekend")
+        await client.string.put_unknown_value("Weekend")
     except core_library.exceptions.HttpResponseError as err:
         assert err.status_code == 500

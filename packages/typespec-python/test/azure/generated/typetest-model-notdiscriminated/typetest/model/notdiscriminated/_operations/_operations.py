@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -101,6 +101,16 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
 
     @overload
@@ -121,12 +131,12 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @overload
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -137,18 +147,28 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @distributed_trace
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """post_valid.
 
-        :param input: Is one of the following types: Siamese, JSON, IO Required.
-        :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO
+        :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -204,6 +224,16 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -263,6 +293,23 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
 
     @overload
@@ -279,14 +326,24 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
 
     @overload
-    def put_valid(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -295,14 +352,24 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
 
     @distributed_trace
-    def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
-        :param input: Is one of the following types: Siamese, JSON, IO Required.
-        :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO
+        :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -311,6 +378,23 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "age": 0,  # Required.
+                    "name": "str",  # Required.
+                    "smart": bool  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

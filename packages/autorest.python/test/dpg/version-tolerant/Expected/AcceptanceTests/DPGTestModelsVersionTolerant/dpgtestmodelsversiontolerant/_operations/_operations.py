@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -192,7 +192,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
     @overload
     def post_model(
-        self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, mode: str, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -202,7 +202,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          before returning to users. Required.
         :type mode: str
         :param input: Please put {'hello': 'world!'}. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -212,7 +212,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @distributed_trace
-    def post_model(self, mode: str, input: Union[_models.Input, IO], **kwargs: Any) -> _models.Product:
+    def post_model(self, mode: str, input: Union[_models.Input, IO[bytes]], **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -220,8 +220,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a Input type or a IO type. Required.
-        :type input: ~dpgtestmodelsversiontolerant.models.Input or IO
+        :param input: Please put {'hello': 'world!'}. Is either a Input type or a IO[bytes] type.
+         Required.
+        :type input: ~dpgtestmodelsversiontolerant.models.Input or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
