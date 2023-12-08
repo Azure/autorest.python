@@ -120,8 +120,9 @@ class Response(BaseModel):
         if self.nullable:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if isinstance(self.type, CombinedType) and self.type.name:
+            async_mode = kwargs.get("async_mode", False)
             file_import.add_submodule_import(
-                "..",
+                "..." if async_mode else "..",
                 "_types",
                 ImportType.LOCAL,
                 TypingSection.TYPING,
