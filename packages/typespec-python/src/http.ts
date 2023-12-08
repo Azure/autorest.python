@@ -69,7 +69,7 @@ function addLroInformation(
 ) {
   return {
     ...emitHttpOperation(context, method.operation, opreationGroupName),
-    name: method.name,
+    name: camelToSnakeCase(method.name),
     discriminator: "lro",
     initialOperation: emitInitialLroHttpMethod(context, method, opreationGroupName),
     exposeStreamKeyword: false,
@@ -90,11 +90,11 @@ function addPagingInformation(
   }
   return {
     ...emitHttpOperation(context, method.operation, operationGroupName),
-    name: method.name,
+    name: camelToSnakeCase(method.name),
     discriminator: "paging",
     exposeStreamKeyword: false,
     itemName: method.response.responsePath,
-    continuationTokenName: method.nextLinkLogicalPath,
+    continuationTokenName: method.nextLinkLogicalPath?.join("."),
     itemType,
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
@@ -241,7 +241,7 @@ function emitHttpResponse(
   if (!response) return undefined;
   return {
     headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
-    statusCodes: statusCodes === "*" ? "default" : statusCodes,
+    statusCodes: statusCodes === "*" ? ["default"] : statusCodes.split(",").map(x => parseInt(x)),
     discriminator: "basic",
     type: (response.type && !isAzureCoreModel(response.type)) ? getType(context, response.type) : undefined,
     contentTypes: "",
