@@ -45,7 +45,7 @@ async def client():
         (
             "mixed_types",
             models.MixedTypesCases(
-                model=models.Cat(name="test"), literal="a", int=2, boolean=True
+                model=models.Cat(name="test"), literal="a", int_property=2, boolean=True
             ),
             models.GetResponse9,
         ),

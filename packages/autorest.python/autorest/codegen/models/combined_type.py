@@ -65,7 +65,8 @@ class CombinedType(BaseType):
 
     def type_annotation(self, **kwargs: Any) -> str:
         if self.name:
-            return f'"_types.{self.name}"'
+            ret = f"_types.{self.name}"
+            return ret if kwargs.get("is_operation_file") else f'"{ret}"'
         return self.type_definition(**kwargs)
 
     def type_definition(self, **kwargs: Any) -> str:
