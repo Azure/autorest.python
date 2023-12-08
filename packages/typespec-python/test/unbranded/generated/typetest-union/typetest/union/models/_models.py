@@ -505,9 +505,9 @@ class MixedTypesCases(_model_base.Model):
     :ivar literal: This should be receive/send the "a" variant. Required. Is one of the following
      types: Cat, Literal["a"], int, bool
     :vartype literal: ~typetest.union.models.Cat or str or int or bool
-    :ivar int: This should be receive/send the int variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
-    :vartype int: ~typetest.union.models.Cat or str or int or bool
+    :ivar int_property: This should be receive/send the int variant. Required. Is one of the
+     following types: Cat, Literal["a"], int, bool
+    :vartype int_property: ~typetest.union.models.Cat or str or int or bool
     :ivar boolean: This should be receive/send the boolean variant. Required. Is one of the
      following types: Cat, Literal["a"], int, bool
     :vartype boolean: ~typetest.union.models.Cat or str or int or bool
@@ -519,7 +519,7 @@ class MixedTypesCases(_model_base.Model):
     literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
     """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    int: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
+    int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(name="int")
     """This should be receive/send the int variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
@@ -532,7 +532,7 @@ class MixedTypesCases(_model_base.Model):
         *,
         model: Union["_models.Cat", Literal["a"], int, bool],
         literal: Union["_models.Cat", Literal["a"], int, bool],
-        int: Union["_models.Cat", Literal["a"], int, bool],
+        int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
     ):
         ...
