@@ -64,3 +64,59 @@ def check_client_request_id_header():
         validate_format(request.http_request.headers[header], "uuid")
         checked[header] = request.http_request.headers[header]
     return func
+
+# ================== after azure-core fix, the following code can be removed (begin) ==================
+import urllib.parse
+from azure.core.rest import HttpRequest
+
+def update_api_version_of_status_link(
+    status_link: str
+):
+    request_params = {}
+    parsed_status_link = urllib.parse.urlparse(status_link)
+    request_params = {
+        key.lower(): [urllib.parse.quote(v) for v in value]
+        for key, value in urllib.parse.parse_qs(parsed_status_link.query).items()
+    }
+    request_params["api-version"] = "2022-12-01-preview"
+    status_link = urllib.parse.urljoin(status_link, parsed_status_link.path)
+    return status_link, request_params
+
+@pytest.fixture
+def polling_method():
+    from azure.core.polling.base_polling import LROBasePolling
+
+    class TempLroBasePolling(LROBasePolling):
+
+        def request_status(self, status_link: str):
+            if self._path_format_arguments:
+                status_link = self._client.format_url(status_link, **self._path_format_arguments)
+            status_link, request_params = update_api_version_of_status_link(status_link)
+            if "request_id" not in self._operation_config:
+                self._operation_config["request_id"] = self._get_request_id()
+
+            rest_request = HttpRequest("GET", status_link, params=request_params)
+            return self._client.send_request(rest_request, _return_pipeline_response=True, **self._operation_config)
+
+    return TempLroBasePolling(0)
+
+@pytest.fixture
+def async_polling_method():
+    from azure.core.polling.async_base_polling import AsyncLROBasePolling
+
+    class AsyncTempLroBasePolling(AsyncLROBasePolling):
+
+        async def request_status(self, status_link: str):
+            if self._path_format_arguments:
+                status_link = self._client.format_url(status_link, **self._path_format_arguments)
+            status_link, request_params = update_api_version_of_status_link(status_link)
+            # Re-inject 'x-ms-client-request-id' while polling
+            if "request_id" not in self._operation_config:
+                self._operation_config["request_id"] = self._get_request_id()
+
+            rest_request = HttpRequest("GET", status_link, params=request_params)
+            return await self._client.send_request(rest_request, _return_pipeline_response=True, **self._operation_config)
+
+    return AsyncTempLroBasePolling(0)
+
+# ================== after azure-core fix, the up code can be removed (end) ==================
