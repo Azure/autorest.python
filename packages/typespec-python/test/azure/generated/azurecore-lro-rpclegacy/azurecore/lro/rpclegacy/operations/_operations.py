@@ -76,6 +76,8 @@ def build_create_resource_poll_via_operation_location_create_job_request(  # pyl
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs"
 
@@ -83,6 +85,7 @@ def build_create_resource_poll_via_operation_location_create_job_request(  # pyl
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
@@ -197,9 +200,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         return deserialized  # type: ignore
 
-    def _create_job_initial(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    def _create_job_initial(self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -212,7 +213,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -246,8 +247,12 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(JSON, response.json())
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def begin_create_job(
@@ -503,7 +508,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._create_job_initial(  # type: ignore
+            raw_result = self._create_job_initial(
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
