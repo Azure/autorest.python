@@ -55,8 +55,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype string: typetest.property.valuetypes.operations.StringOperations
     :ivar bytes: BytesOperations operations
     :vartype bytes: typetest.property.valuetypes.operations.BytesOperations
-    :ivar int: IntOperations operations
-    :vartype int: typetest.property.valuetypes.operations.IntOperations
+    :ivar int_operations: IntOperations operations
+    :vartype int_operations: typetest.property.valuetypes.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: typetest.property.valuetypes.operations.FloatOperations
     :ivar decimal: DecimalOperations operations
@@ -135,7 +135,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.boolean = BooleanOperations(self._client, self._config, self._serialize, self._deserialize)
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_operations = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
         self.decimal = DecimalOperations(self._client, self._config, self._serialize, self._deserialize)
         self.decimal128 = Decimal128Operations(self._client, self._config, self._serialize, self._deserialize)

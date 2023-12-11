@@ -179,7 +179,7 @@ class _ParameterBase(
             )
         if isinstance(self.type, CombinedType) and self.type.name:
             file_import.add_submodule_import(
-                "..",
+                "..." if async_mode else "..",
                 "_types",
                 ImportType.LOCAL,
                 TypingSection.TYPING,

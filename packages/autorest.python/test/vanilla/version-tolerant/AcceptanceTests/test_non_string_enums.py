@@ -33,11 +33,11 @@ def client():
         yield client
 
 def test_put_int_enum(client):
-    result = client.int.put(200)
+    result = client.int_operations.put(200)
     assert result == "Nice job posting an int enum"
 
 def test_get_int_enum(client):
-    result = client.int.get()
+    result = client.int_operations.get()
     assert result == 429
 
 def test_put_float_enum(client):
