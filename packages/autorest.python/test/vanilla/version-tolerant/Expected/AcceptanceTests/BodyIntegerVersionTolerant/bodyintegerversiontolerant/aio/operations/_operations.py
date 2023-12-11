@@ -23,20 +23,20 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
-    build_int_get_invalid_request,
-    build_int_get_invalid_unix_time_request,
-    build_int_get_null_request,
-    build_int_get_null_unix_time_request,
-    build_int_get_overflow_int32_request,
-    build_int_get_overflow_int64_request,
-    build_int_get_underflow_int32_request,
-    build_int_get_underflow_int64_request,
-    build_int_get_unix_time_request,
-    build_int_put_max32_request,
-    build_int_put_max64_request,
-    build_int_put_min32_request,
-    build_int_put_min64_request,
-    build_int_put_unix_time_date_request,
+    build_int_operations_get_invalid_request,
+    build_int_operations_get_invalid_unix_time_request,
+    build_int_operations_get_null_request,
+    build_int_operations_get_null_unix_time_request,
+    build_int_operations_get_overflow_int32_request,
+    build_int_operations_get_overflow_int64_request,
+    build_int_operations_get_underflow_int32_request,
+    build_int_operations_get_underflow_int64_request,
+    build_int_operations_get_unix_time_request,
+    build_int_operations_put_max32_request,
+    build_int_operations_put_max64_request,
+    build_int_operations_put_min32_request,
+    build_int_operations_put_min64_request,
+    build_int_operations_put_unix_time_date_request,
 )
 
 T = TypeVar("T")
@@ -50,7 +50,7 @@ class IntOperations:
 
         Instead, you should access the following operations through
         :class:`~bodyintegerversiontolerant.aio.AutoRestIntegerTestService`'s
-        :attr:`int` attribute.
+        :attr:`int_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -81,7 +81,7 @@ class IntOperations:
 
         cls: ClsType[Optional[int]] = kwargs.pop("cls", None)
 
-        _request = build_int_get_null_request(
+        _request = build_int_operations_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -131,7 +131,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_invalid_request(
+        _request = build_int_operations_get_invalid_request(
             headers=_headers,
             params=_params,
         )
@@ -181,7 +181,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_overflow_int32_request(
+        _request = build_int_operations_get_overflow_int32_request(
             headers=_headers,
             params=_params,
         )
@@ -231,7 +231,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_underflow_int32_request(
+        _request = build_int_operations_get_underflow_int32_request(
             headers=_headers,
             params=_params,
         )
@@ -281,7 +281,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_overflow_int64_request(
+        _request = build_int_operations_get_overflow_int64_request(
             headers=_headers,
             params=_params,
         )
@@ -331,7 +331,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_underflow_int64_request(
+        _request = build_int_operations_get_underflow_int64_request(
             headers=_headers,
             params=_params,
         )
@@ -386,7 +386,7 @@ class IntOperations:
 
         _json = int_body
 
-        _request = build_int_put_max32_request(
+        _request = build_int_operations_put_max32_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -436,7 +436,7 @@ class IntOperations:
 
         _json = int_body
 
-        _request = build_int_put_max64_request(
+        _request = build_int_operations_put_max64_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -486,7 +486,7 @@ class IntOperations:
 
         _json = int_body
 
-        _request = build_int_put_min32_request(
+        _request = build_int_operations_put_min32_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -536,7 +536,7 @@ class IntOperations:
 
         _json = int_body
 
-        _request = build_int_put_min64_request(
+        _request = build_int_operations_put_min64_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -581,7 +581,7 @@ class IntOperations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        _request = build_int_get_unix_time_request(
+        _request = build_int_operations_get_unix_time_request(
             headers=_headers,
             params=_params,
         )
@@ -638,7 +638,7 @@ class IntOperations:
 
         _json = int_body
 
-        _request = build_int_put_unix_time_date_request(
+        _request = build_int_operations_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -683,7 +683,7 @@ class IntOperations:
 
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
-        _request = build_int_get_invalid_unix_time_request(
+        _request = build_int_operations_get_invalid_unix_time_request(
             headers=_headers,
             params=_params,
         )
@@ -733,7 +733,7 @@ class IntOperations:
 
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_int_get_null_unix_time_request(
+        _request = build_int_operations_get_null_unix_time_request(
             headers=_headers,
             params=_params,
         )
