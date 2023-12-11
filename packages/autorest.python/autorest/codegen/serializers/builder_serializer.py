@@ -1104,14 +1104,7 @@ class _OperationSerializer(
                     deserialize_code.append(
                         f"    response.json(){response.result_property}{format_filed}"
                     )
-                    # it is hard to judge in accurate whether initial call response has body, so judge it in run-time
-                    check_body_str = (
-                        " if response.text() else {}"
-                        if builder.is_lro_initial_operation
-                        and self.code_model.options["from_typespec"]
-                        else ""
-                    )
-                    deserialize_code.append(")" + check_body_str)
+                    deserialize_code.append(")")
 
             else:
                 deserialized_value = (
