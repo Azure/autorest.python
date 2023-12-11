@@ -24,8 +24,8 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import (
     build_float_get_request,
     build_float_put_request,
-    build_int_get_request,
-    build_int_put_request,
+    build_int_operations_get_request,
+    build_int_operations_put_request,
 )
 
 T = TypeVar("T")
@@ -39,7 +39,7 @@ class IntOperations:
 
         Instead, you should access the following operations through
         :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
-        :attr:`int` attribute.
+        :attr:`int_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -79,7 +79,7 @@ class IntOperations:
         else:
             _json = None
 
-        _request = build_int_put_request(
+        _request = build_int_operations_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -131,7 +131,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_request(
+        _request = build_int_operations_get_request(
             headers=_headers,
             params=_params,
         )
