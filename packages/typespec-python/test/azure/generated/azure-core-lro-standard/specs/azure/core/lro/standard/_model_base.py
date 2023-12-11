@@ -705,10 +705,20 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         if obj is None:
             return obj
         try:
+<<<<<<< HEAD
             return _deserialize_with_callable(annotation, obj)
         except Exception:
             pass
         return _deserialize_with_callable(deserializer_from_mapping, obj)
+=======
+            return _deserialize_with_callable(deserializer, obj)
+        except Exception:
+            pass
+        return obj
+
+    if get_deserializer(annotation, rf):
+        return functools.partial(_deserialize_default, get_deserializer(annotation, rf))
+>>>>>>> 48e64e2a1d6519db6586d28d3fec7d7418265d3b
 
     return functools.partial(_deserialize_default, annotation, get_deserializer(annotation, rf))
 

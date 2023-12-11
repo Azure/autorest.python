@@ -83,8 +83,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         self,
     ) -> List[Union[RequestBuilder, OverloadedRequestBuilder]]:
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
-        for og_group in self.yaml_data["operationGroups"]:
-            for operation_yaml in og_group["operations"]:
+
+        def add_og_request_builder(og: Dict[str, Any]):
+            for operation_yaml in og["operations"]:
                 request_builder = get_request_builder(
                     operation_yaml,
                     code_model=self.code_model,
@@ -111,6 +112,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                             client=self,
                         )
                     )
+
+        queue = self.yaml_data["operationGroups"].copy()
+        while queue:
+            now = queue.pop(0)
+            add_og_request_builder(now)
+            if now.get("operationGroups"):
+                queue.extend(now["operationGroups"])
+
         return request_builders
 
     def pipeline_class(self, async_mode: bool) -> str:
@@ -247,7 +256,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def has_mixin(self) -> bool:
         """Do we want a mixin ABC class for typing purposes?"""
-        return any(o for o in self.operation_groups if o.is_mixin)
+        return any(og for og in self.operation_groups if og.is_mixin)
 
     @property
     def lro_operations(self) -> List["OperationType"]:
@@ -255,8 +264,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return [
             operation
             for operation_group in self.operation_groups
-            for operation in operation_group.operations
-            if operation.operation_type in ("lro", "lropaging")
+            for operation in operation_group.lro_operations
         ]
 
     @property
@@ -267,8 +275,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def has_operations(self) -> bool:
         return any(
-            bool(operation_group.operations)
-            for operation_group in self.operation_groups
+            operation_group.has_operations for operation_group in self.operation_groups
         )
 
     def link_lro_initial_operations(self) -> None:

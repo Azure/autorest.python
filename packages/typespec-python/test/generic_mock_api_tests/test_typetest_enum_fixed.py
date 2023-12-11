@@ -15,7 +15,7 @@ def test_known_value(client):
     assert client.string.get_known_value() == models.DaysOfWeekEnum.MONDAY
     client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
-def test_unknown_value(client, core_library):
+def test_unknown_value(client: FixedClient, core_library):
     try:
         client.string.put_unknown_value("Weekend")
     except core_library.exceptions.HttpResponseError as err:

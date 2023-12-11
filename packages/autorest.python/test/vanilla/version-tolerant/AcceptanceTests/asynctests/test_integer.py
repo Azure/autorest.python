@@ -40,41 +40,41 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_max_min_32_bit(client):
-    await client.int.put_max32(2147483647) # sys.maxint
-    await client.int.put_min32(-2147483648)
+    await client.int_operations.put_max32(2147483647) # sys.maxint
+    await client.int_operations.put_min32(-2147483648)
 
 @pytest.mark.asyncio
 async def test_max_min_64_bit(client):
-    await client.int.put_max64(9223372036854776000)  # sys.maxsize
-    await client.int.put_min64(-9223372036854776000)
+    await client.int_operations.put_max64(9223372036854776000)  # sys.maxsize
+    await client.int_operations.put_min64(-9223372036854776000)
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(client):
-    await client.int.get_null()
+    await client.int_operations.get_null()
 
     with pytest.raises(DecodeError):
-        await client.int.get_invalid()
+        await client.int_operations.get_invalid()
 
 @pytest.mark.asyncio
 async def test_get_overflow(client):
     # Testserver excepts these to fail, but they won't in Python and it's ok.
-    await client.int.get_overflow_int32()
-    await client.int.get_overflow_int64()
+    await client.int_operations.get_overflow_int32()
+    await client.int_operations.get_overflow_int64()
 
 @pytest.mark.asyncio
 async def test_get_underflow(client):
-    await client.int.get_underflow_int32()
-    await client.int.get_underflow_int64()
+    await client.int_operations.get_underflow_int32()
+    await client.int_operations.get_underflow_int64()
 
 @pytest.mark.asyncio
 async def test_unix_time_date(client):
     unix_date = datetime(year=2016, month=4, day=13)
-    await client.int.put_unix_time_date(serialize_unix(unix_date))
-    assert unix_date.utctimetuple() == deserialize_unix(await client.int.get_unix_time()).utctimetuple()
+    await client.int_operations.put_unix_time_date(serialize_unix(unix_date))
+    assert unix_date.utctimetuple() == deserialize_unix(await client.int_operations.get_unix_time()).utctimetuple()
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid_unix_time(client):
-    assert await client.int.get_null_unix_time() is None
+    assert await client.int_operations.get_null_unix_time() is None
 
     with pytest.raises(DecodeError):
-        await client.int.get_invalid_unix_time()
+        await client.int_operations.get_invalid_unix_time()

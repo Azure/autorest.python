@@ -57,10 +57,10 @@ from ...operations._operations import (
     build_float_literal_get_request,
     build_float_literal_put_request,
     build_float_put_request,
-    build_int_get_request,
     build_int_literal_get_request,
     build_int_literal_put_request,
-    build_int_put_request,
+    build_int_operations_get_request,
+    build_int_operations_put_request,
     build_model_get_request,
     build_model_put_request,
     build_never_get_request,
@@ -707,7 +707,7 @@ class IntOperations:
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`int` attribute.
+        :attr:`int_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -748,7 +748,7 @@ class IntOperations:
 
         cls: ClsType[_models.IntProperty] = kwargs.pop("cls", None)
 
-        _request = build_int_get_request(
+        _request = build_int_operations_get_request(
             headers=_headers,
             params=_params,
         )
@@ -877,7 +877,7 @@ class IntOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int_put_request(
+        _request = build_int_operations_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

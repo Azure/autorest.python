@@ -39,11 +39,11 @@ def client():
 class TestNonStringEnums(object):
 
     def test_put_int_enum(self, client):
-        result = client.int.put(IntEnum.TWO_HUNDRED)
+        result = client.int_operations.put(IntEnum.TWO_HUNDRED)
         assert result == "Nice job posting an int enum"
 
     def test_get_int_enum(self, client):
-        result = client.int.get()
+        result = client.int_operations.get()
         assert result == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
 
     def test_put_float_enum(self, client):

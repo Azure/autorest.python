@@ -9,9 +9,15 @@ import datetime
 from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, Tuple, Optional, overload, Union
 import pytest
 import isodate
+import sys
 
-from specialwords._model_base import SdkJSONEncoder, Model, rest_field, _is_model, rest_discriminator
+from specialwords._model_base import SdkJSONEncoder, Model, rest_field, _is_model, rest_discriminator, _deserialize
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 class BasicResource(Model):
     platform_update_domain_count: int = rest_field(
@@ -3945,4 +3951,7 @@ def test_decimal_serialization():
     assert json.dumps({"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")},
                       cls=SdkJSONEncoder) == '{"a": 0.33333, "b": 0.33333}'
 
-
+def test_deserialize():
+    expected = {"name": "name", "role": "role"}
+    result = _deserialize(JSON, expected)
+    assert result == expected
