@@ -36,12 +36,12 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_put_int_enum(client):
-    result = await client.int.put(200)
+    result = await client.int_operations.put(200)
     assert result == "Nice job posting an int enum"
 
 @pytest.mark.asyncio
 async def test_get_int_enum(client):
-    result = await client.int.get()
+    result = await client.int_operations.get()
     assert result == 429
 
 @pytest.mark.asyncio

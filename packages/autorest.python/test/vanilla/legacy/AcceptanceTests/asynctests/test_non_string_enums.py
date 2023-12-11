@@ -41,12 +41,12 @@ class TestNonStringEnums(object):
 
     @pytest.mark.asyncio
     async def test_put_int_enum(self, client):
-        result = await client.int.put(IntEnum.TWO_HUNDRED)
+        result = await client.int_operations.put(IntEnum.TWO_HUNDRED)
         assert result == "Nice job posting an int enum"
 
     @pytest.mark.asyncio
     async def test_get_int_enum(self, client):
-        result = await client.int.get()
+        result = await client.int_operations.get()
         assert result == IntEnum.FOUR_HUNDRED_TWENTY_NINE.value
 
     @pytest.mark.asyncio
