@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -61,6 +61,14 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # User name. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -30,6 +30,8 @@ from ..models import (
     Property,
     RequestBuilderType,
     CombinedType,
+    JSONModelType,
+    DPGModelType,
     ParameterListType,
     ByteArraySchema,
 )
@@ -181,8 +183,10 @@ def _serialize_json_model_body(
         for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
     )
     model_type = cast(ModelType, body_parameter.type)
-    if isinstance(model_type, CombinedType) and model_type.json_subtype:
-        model_type = model_type.json_subtype
+    if isinstance(model_type, CombinedType) and model_type.target_model_subtype(
+        (JSONModelType,)
+    ):
+        model_type = model_type.target_model_subtype((JSONModelType,))
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
     retval.append(f"    {body_parameter.client_name} =  {{")
     retval.append(
@@ -320,6 +324,10 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         description_list.append("")
         return description_list
 
+    @staticmethod
+    def line_too_long(docs: List[str]) -> bool:
+        return any(len(line) > 120 for line in docs)
+
     def example_template(self, builder: BuilderType) -> List[str]:
         template = []
         if builder.abstract:
@@ -376,18 +384,21 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         if (
             isinstance(body_param.type, (ListType, DictionaryType))
-            and self.code_model.options["models_mode"]
+            and self.code_model.options["models_mode"] == "msrest"
         ):
             return template
 
-        if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
+        if isinstance(body_param.type, ModelType) and body_param.type.base == "msrest":
             return template
 
         json_type = body_param.type
         if isinstance(body_param.type, CombinedType):
-            if body_param.type.json_subtype is None:
+            target_model_type = body_param.type.target_model_subtype(
+                (JSONModelType, DPGModelType)
+            )
+            if target_model_type is None:
                 return template
-            json_type = body_param.type.json_subtype
+            json_type = target_model_type
 
         polymorphic_subtypes: List[ModelType] = []
         json_type.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -597,7 +608,7 @@ class _OperationSerializer(
 
     def example_template(self, builder: OperationType) -> List[str]:
         retval = super().example_template(builder)
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return retval
         for response in builder.responses:
             polymorphic_subtypes: List[ModelType] = []

@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from ._operations import Operations
+from ._operations import CustomUpdateOperationsOperations
 from ._operations import CatalogsOperations
 from ._operations import ImagesOperations
 from ._operations import DeviceGroupsOperations
@@ -21,6 +22,7 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "Operations",
+    "CustomUpdateOperationsOperations",
     "CatalogsOperations",
     "ImagesOperations",
     "DeviceGroupsOperations",

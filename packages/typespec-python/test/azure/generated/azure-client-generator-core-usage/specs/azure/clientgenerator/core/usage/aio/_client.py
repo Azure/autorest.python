@@ -15,12 +15,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import UsageClientConfiguration
-from ._operations import UsageClientOperationsMixin
+from .operations import ModelInOperationOperations
 
 
-class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class UsageClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for internal decorator.
 
+    :ivar model_in_operation: ModelInOperationOperations operations
+    :vartype model_in_operation:
+     specs.azure.clientgenerator.core.usage.aio.operations.ModelInOperationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -51,6 +54,9 @@ class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.model_in_operation = ModelInOperationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

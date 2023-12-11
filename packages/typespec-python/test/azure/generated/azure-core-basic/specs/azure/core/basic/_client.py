@@ -14,13 +14,16 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BasicClientConfiguration
-from ._operations import BasicClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import BasicClientOperationsMixin, TwoModelsAsPageItemOperations
 
 
 class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core.
 
+    :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations
+    :vartype two_models_as_page_item:
+     specs.azure.core.basic.operations.TwoModelsAsPageItemOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
@@ -55,6 +58,9 @@ class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.two_models_as_page_item = TwoModelsAsPageItemOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

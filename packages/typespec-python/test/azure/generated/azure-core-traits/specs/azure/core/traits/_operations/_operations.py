@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -155,6 +155,15 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0,  # The user's id. Required.
+                    "name": "str"  # Optional. The user's name.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -236,6 +245,19 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "userActionValue": "str"  # User action value. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "userActionResult": "str"  # User action result. Required.
+                }
         """
 
     @overload
@@ -256,18 +278,26 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "userActionResult": "str"  # User action result. Required.
+                }
         """
 
     @overload
     def repeatable_action(
-        self, id: int, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
         :type id: int
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -276,18 +306,26 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "userActionResult": "str"  # User action result. Required.
+                }
         """
 
     @distributed_trace
     def repeatable_action(
-        self, id: int, body: Union[_models.UserActionParam, JSON, IO], **kwargs: Any
+        self, id: int, body: Union[_models.UserActionParam, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO Required.
-        :type body: ~specs.azure.core.traits.models.UserActionParam or JSON or IO
+        :param body: Is one of the following types: UserActionParam, JSON, IO[bytes] Required.
+        :type body: ~specs.azure.core.traits.models.UserActionParam or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -296,6 +334,19 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "userActionValue": "str"  # User action value. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "userActionResult": "str"  # User action result. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

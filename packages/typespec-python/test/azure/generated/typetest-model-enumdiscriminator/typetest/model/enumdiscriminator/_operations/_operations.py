@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -175,6 +175,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "golden":
+                dog = {
+                    "kind": "golden",
+                    "weight": 0  # Weight of the dog. Required.
+                }
+
+                # response body for status code(s): 200
+                response == dog
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -232,6 +246,21 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "golden":
+                dog = {
+                    "kind": "golden",
+                    "weight": 0  # Weight of the dog. Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = dog
         """
 
     @overload
@@ -252,12 +281,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @overload
     def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -268,18 +297,33 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @distributed_trace
     def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Dog, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
 
-        :param input: Dog to create. Is one of the following types: Dog, JSON, IO Required.
-        :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO
+        :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "golden":
+                dog = {
+                    "kind": "golden",
+                    "weight": 0  # Weight of the dog. Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = dog
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -335,6 +379,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "golden":
+                dog = {
+                    "kind": "golden",
+                    "weight": 0  # Weight of the dog. Required.
+                }
+
+                # response body for status code(s): 200
+                response == dog
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -387,6 +445,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "golden":
+                dog = {
+                    "kind": "golden",
+                    "weight": 0  # Weight of the dog. Required.
+                }
+
+                # response body for status code(s): 200
+                response == dog
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -439,6 +511,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "cobra":
+                snake = {
+                    "kind": "cobra",
+                    "length": 0  # Length of the snake. Required.
+                }
+
+                # response body for status code(s): 200
+                response == snake
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -496,6 +582,21 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "cobra":
+                snake = {
+                    "kind": "cobra",
+                    "length": 0  # Length of the snake. Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = snake
         """
 
     @overload
@@ -516,12 +617,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @overload
     def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -532,18 +633,33 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @distributed_trace
     def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Snake, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
 
-        :param input: Snake to create. Is one of the following types: Snake, JSON, IO Required.
-        :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO
+        :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "cobra":
+                snake = {
+                    "kind": "cobra",
+                    "length": 0  # Length of the snake. Required.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                input = snake
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -599,6 +715,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "cobra":
+                snake = {
+                    "kind": "cobra",
+                    "length": 0  # Length of the snake. Required.
+                }
+
+                # response body for status code(s): 200
+                response == snake
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -651,6 +781,20 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "cobra":
+                snake = {
+                    "kind": "cobra",
+                    "length": 0  # Length of the snake. Required.
+                }
+
+                # response body for status code(s): 200
+                response == snake
         """
         error_map = {
             401: ClientAuthenticationError,

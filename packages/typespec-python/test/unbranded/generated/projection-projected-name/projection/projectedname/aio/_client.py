@@ -14,7 +14,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import ProjectedNameClientConfiguration
-from .operations import ProjectedNameClientOperationsMixin, PropertyOperations
+from .operations import ModelOperations, ProjectedNameClientOperationsMixin, PropertyOperations
 
 
 class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -22,6 +22,8 @@ class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disabl
 
     :ivar property: PropertyOperations operations
     :vartype property: projection.projectedname.aio.operations.PropertyOperations
+    :ivar model: ModelOperations operations
+    :vartype model: projection.projectedname.aio.operations.ModelOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -47,6 +49,7 @@ class ProjectedNameClient(ProjectedNameClientOperationsMixin):  # pylint: disabl
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

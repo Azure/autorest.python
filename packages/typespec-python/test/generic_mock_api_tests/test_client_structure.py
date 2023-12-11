@@ -14,10 +14,10 @@ def test_structure_default():
     client = ServiceClient(endpoint="http://localhost:3000", client=ClientType.DEFAULT)
     client.one()
     client.two()
-    client.three()
-    client.four()
-    client.five()
-    client.six()
+    client.foo.three()
+    client.foo.four()
+    client.bar.five()
+    client.bar.six()
 
 def test_structure_multiclient():
     client_a = ClientAClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -85,6 +85,14 @@ class ExtendsUnknownOperations:
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -142,6 +150,14 @@ class ExtendsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -162,12 +178,12 @@ class ExtendsUnknownOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -178,20 +194,28 @@ class ExtendsUnknownOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsUnknownAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtendsUnknownAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: ExtendsUnknownAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
-         or JSON or IO
+         or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -266,6 +290,14 @@ class IsUnknownOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -323,6 +355,14 @@ class IsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -343,12 +383,12 @@ class IsUnknownOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -359,20 +399,28 @@ class IsUnknownOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IsUnknownAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: IsUnknownAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties or
-         JSON or IO
+         JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -447,6 +495,14 @@ class ExtendsStringOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -504,6 +560,14 @@ class ExtendsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -524,12 +588,12 @@ class ExtendsStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -540,20 +604,28 @@ class ExtendsStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtendsStringAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: ExtendsStringAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties or
-         JSON or IO
+         JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -628,6 +700,14 @@ class IsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -685,6 +765,14 @@ class IsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
 
     @overload
@@ -705,12 +793,12 @@ class IsStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -721,20 +809,28 @@ class IsStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsStringAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IsStringAdditionalProperties, JSON, IO
+        :param body: body. Is one of the following types: IsStringAdditionalProperties, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties or JSON
-         or IO
+         or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -809,6 +905,14 @@ class ExtendsFloatOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -866,6 +970,14 @@ class ExtendsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
 
     @overload
@@ -886,12 +998,12 @@ class ExtendsFloatOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -902,20 +1014,28 @@ class ExtendsFloatOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtendsFloatAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: ExtendsFloatAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties or
-         JSON or IO
+         JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -990,6 +1110,14 @@ class IsFloatOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1047,6 +1175,14 @@ class IsFloatOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
 
     @overload
@@ -1067,12 +1203,12 @@ class IsFloatOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1083,20 +1219,28 @@ class IsFloatOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IsFloatAdditionalProperties, JSON, IO
+        :param body: body. Is one of the following types: IsFloatAdditionalProperties, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties or JSON
-         or IO
+         or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1228,6 +1372,12 @@ class ExtendsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1248,12 +1398,12 @@ class ExtendsModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1264,20 +1414,26 @@ class ExtendsModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtendsModelAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: ExtendsModelAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties or
-         JSON or IO
+         JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1409,6 +1565,12 @@ class IsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1429,12 +1591,12 @@ class IsModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1445,20 +1607,26 @@ class IsModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IsModelAdditionalProperties, JSON, IO
+        :param body: body. Is one of the following types: IsModelAdditionalProperties, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties or JSON
-         or IO
+         or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1595,6 +1763,12 @@ class ExtendsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1615,12 +1789,12 @@ class ExtendsModelArrayOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1631,21 +1805,27 @@ class ExtendsModelArrayOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsModelArrayAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsModelArrayAdditionalProperties, JSON,
-         IO Required.
+         IO[bytes] Required.
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties or JSON or
-         IO
+         IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1777,6 +1957,12 @@ class IsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
 
     @overload
@@ -1797,12 +1983,12 @@ class IsModelArrayOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1813,20 +1999,26 @@ class IsModelArrayOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IsModelArrayAdditionalProperties, JSON, IO
-         Required.
+        :param body: body. Is one of the following types: IsModelArrayAdditionalProperties, JSON,
+         IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties or
-         JSON or IO
+         JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {}
         """
         error_map = {
             401: ClientAuthenticationError,

@@ -39,6 +39,7 @@ import {
     getPropertyNames,
     getEffectivePayloadType,
     getAccess,
+    SdkOperationGroup,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -729,37 +730,56 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitOperationGroups(context: SdkContext, client: SdkClient): Record<string, any>[] {
+function emitOperationGroups(
+    context: SdkContext,
+    group: SdkClient | SdkOperationGroup,
+): Record<string, any>[] | undefined {
     const operationGroups: Record<string, any>[] = [];
-    for (const operationGroup of listOperationGroups(context, client)) {
-        let operations: Record<string, any>[] = [];
-        const name = operationGroup.type.name;
-        for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
-            operations = operations.concat(emitOperation(context, operation, name));
-        }
-        operationGroups.push({
-            className: name,
-            propertyName: name,
-            operations: operations,
-        });
-    }
-    const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
-    for (const operation of listOperationsInOperationGroup(context, client)) {
-        const groupName = context.arm ? operation.interface?.name ?? "" : "";
-        const emittedOperation = emitOperation(context, operation, groupName);
-        if (!clientOperations.has(groupName)) {
-            clientOperations.set(groupName, {
-                className: groupName,
-                propertyName: groupName,
-                operations: [],
+
+    if (group.kind === "SdkClient") {
+        for (const operationGroup of listOperationGroups(context, group)) {
+            const name = operationGroup.type.name;
+            operationGroups.push({
+                name: name,
+                className: name,
+                propertyName: name,
+                operations: listOperationsInOperationGroup(context, operationGroup)
+                    .map((o) => emitOperation(context, o, name))
+                    .reduce((a, b) => a.concat(...b), []),
+                operationGroups: emitOperationGroups(context, operationGroup),
             });
         }
-        const og = clientOperations.get(groupName) as Record<string, any>;
-        og.operations = og.operations.concat(emittedOperation);
+
+        // mixin operation group
+        const operations = listOperationsInOperationGroup(context, group);
+        if (operations.length > 0) {
+            operationGroups.push({
+                name: "",
+                className: "",
+                propertyName: "",
+                operations: listOperationsInOperationGroup(context, group)
+                    .map((o) => emitOperation(context, o, ""))
+                    .reduce((a, b) => a.concat(b), []),
+            });
+        }
+    } else {
+        if (group.subOperationGroups === undefined) {
+            return undefined;
+        }
+        for (const operationGroup of group.subOperationGroups) {
+            const name = operationGroup.groupPath.split(".").slice(1).join("");
+            operationGroups.push({
+                name: name,
+                className: name,
+                propertyName: operationGroup.type.name, // property name do not need to add prefix to avoid naming collision
+                operations: listOperationsInOperationGroup(context, operationGroup)
+                    .map((o) => emitOperation(context, o, name))
+                    .reduce((a, b) => a.concat(...b), []),
+                operationGroups: emitOperationGroups(context, operationGroup),
+            });
+        }
     }
-    for (const value of clientOperations.values()) {
-        operationGroups.push(value);
-    }
+
     return operationGroups;
 }
 

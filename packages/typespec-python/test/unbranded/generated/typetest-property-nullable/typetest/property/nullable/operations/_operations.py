@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -400,6 +400,15 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -451,6 +460,15 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -508,6 +526,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -528,12 +555,12 @@ class StringOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -543,17 +570,26 @@ class StringOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -614,6 +650,15 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -634,12 +679,12 @@ class StringOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -649,17 +694,26 @@ class StringOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "str",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -732,6 +786,15 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -783,6 +846,15 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -840,6 +912,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -860,12 +941,12 @@ class BytesOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -875,17 +956,26 @@ class BytesOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -946,6 +1036,15 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -966,12 +1065,12 @@ class BytesOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -981,17 +1080,26 @@ class BytesOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1064,6 +1172,15 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1115,6 +1232,15 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1172,6 +1298,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1192,12 +1327,12 @@ class DatetimeOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1207,17 +1342,26 @@ class DatetimeOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1278,6 +1422,15 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1298,12 +1451,12 @@ class DatetimeOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1313,17 +1466,26 @@ class DatetimeOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1396,6 +1558,15 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1447,6 +1618,15 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1504,6 +1684,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1524,12 +1713,12 @@ class DurationOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1539,17 +1728,26 @@ class DurationOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1610,6 +1808,15 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1630,12 +1837,12 @@ class DurationOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1645,17 +1852,26 @@ class DurationOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1728,6 +1944,17 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1779,6 +2006,17 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1840,6 +2078,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1860,12 +2109,12 @@ class CollectionsByteOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1875,17 +2124,28 @@ class CollectionsByteOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1950,6 +2210,17 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -1970,12 +2241,12 @@ class CollectionsByteOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -1985,17 +2256,28 @@ class CollectionsByteOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2069,6 +2351,19 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2121,6 +2416,19 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2182,6 +2490,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -2202,12 +2523,12 @@ class CollectionsModelOperations:
 
     @overload
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -2217,17 +2538,30 @@ class CollectionsModelOperations:
         """
 
     def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2292,6 +2626,19 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
 
     @overload
@@ -2312,12 +2659,12 @@ class CollectionsModelOperations:
 
     @overload
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -2327,17 +2674,30 @@ class CollectionsModelOperations:
         """
 
     def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "nullableProperty": [
+                        {
+                            "property": "str"  # Inner model property. Required.
+                        }
+                    ],
+                    "requiredProperty": "str"  # Required property. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

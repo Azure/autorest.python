@@ -15,7 +15,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import ServiceClientConfiguration
-from ._operations import ServiceClientOperationsMixin
+from .operations import BarOperations, FooOperations, ServiceClientOperationsMixin
 
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -30,6 +30,10 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     #. have two clients with operations come from different interfaces
     #. have two clients with a hierarchy relation.
 
+    :ivar foo: FooOperations operations
+    :vartype foo: client.structure.service.aio.operations.FooOperations
+    :ivar bar: BarOperations operations
+    :vartype bar: client.structure.service.aio.operations.BarOperations
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
@@ -59,6 +63,8 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

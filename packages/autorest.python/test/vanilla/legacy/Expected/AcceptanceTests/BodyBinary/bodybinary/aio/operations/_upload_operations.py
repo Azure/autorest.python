@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -50,11 +50,13 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def file(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -100,11 +102,13 @@ class UploadOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def binary(  # pylint: disable=inconsistent-return-statements
+        self, file_param: IO[bytes], **kwargs: Any
+    ) -> None:
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

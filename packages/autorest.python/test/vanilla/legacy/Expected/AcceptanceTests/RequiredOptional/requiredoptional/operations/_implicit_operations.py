@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -104,7 +104,7 @@ def build_put_optional_body_request(*, content: Optional[str] = None, **kwargs: 
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_put_optional_binary_body_request(*, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
+def build_put_optional_binary_body_request(*, content: Optional[IO[bytes]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -403,12 +403,12 @@ class ImplicitOperations:
 
     @distributed_trace
     def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
     ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

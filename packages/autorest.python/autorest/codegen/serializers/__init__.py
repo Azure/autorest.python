@@ -34,6 +34,7 @@ from .utils import (
     extract_sample_name,
     get_namespace_from_package_name,
     get_namespace_config,
+    get_all_operation_groups_recursively,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -415,14 +416,15 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 clients=clients,
             )
         else:
-            for client in self.code_model.clients:
-                for operation_group in client.operation_groups:
-                    self._serialize_and_write_operations_file(
-                        env=env,
-                        namespace_path=namespace_path,
-                        operation_group=operation_group,
-                        clients=self.code_model.clients,
-                    )
+            for operation_group in get_all_operation_groups_recursively(
+                self.code_model.clients
+            ):
+                self._serialize_and_write_operations_file(
+                    env=env,
+                    namespace_path=namespace_path,
+                    operation_group=operation_group,
+                    clients=clients,
+                )
 
     def _serialize_and_write_version_file(
         self,
