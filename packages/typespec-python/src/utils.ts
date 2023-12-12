@@ -3,6 +3,7 @@ import {
   SdkHeaderParameter,
   SdkHttpParameter,
   SdkMethod,
+  SdkModelPropertyType,
   SdkModelType,
   SdkParameter,
   SdkQueryParameter,
@@ -10,7 +11,7 @@ import {
   SdkServiceOperation,
   SdkType,
 } from "@azure-tools/typespec-client-generator-core";
-import { getType } from "./types.js";
+import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName, Type } from "@typespec/compiler";
 
 export function camelToSnakeCase(name: string): string {
@@ -70,18 +71,31 @@ type ParamBase = {
   type: Record<string, any>;
 };
 
+export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
+  context: SdkContext<TServiceOperation>,
+  parameter: SdkModelPropertyType,
+): string | undefined {
+  // We only want added on if it's not the same as the client's added on
+  if (parameter.apiVersions[0] === context.sdkPackage.clients[0].apiVersions[0]) return undefined;
+  return parameter.apiVersions[0];
+}
+
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
   context: SdkContext<TServiceOperation>,
   parameter: SdkParameter | SdkHttpParameter,
 ): ParamBase {
+  let type = getType(context, parameter.type);
+  if (parameter.isApiVersionParam) {
+    type = getSimpleTypeResult({ type: "constant", value: parameter.apiVersions[0], valueType: type });
+  }
   return {
     optional: parameter.optional,
     description: parameter.description || "",
-    addedOn: parameter.apiVersions.length > 0 ? parameter.apiVersions[0] : undefined,
+    addedOn: getAddedOn(context, parameter),
     clientName: camelToSnakeCase(parameter.nameInClient),
     inOverload: false,
     isApiVersion: parameter.isApiVersionParam,
-    type: getType(context, parameter.type),
+    type,
   };
 }
 

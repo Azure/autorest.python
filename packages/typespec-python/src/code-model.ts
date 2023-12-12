@@ -11,9 +11,10 @@ import {
   SdkServiceMethod,
   SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
-import { KnownTypes, getSimpleTypeResult, getType, simpleTypesMap, typesMap } from "./types.js";
+import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
+import { getHttpOperation } from "@typespec/http";
 
 function emitBasicMethod<TServiceOperation extends SdkServiceOperation>(
   context: SdkContext<TServiceOperation>,
@@ -78,7 +79,6 @@ function emitMethodParameter(
   const base = {
     ...emitParamBase(context, parameter),
     implementation: getImplementation(parameter),
-    type: getType(context, parameter.type),
     clientDefaultValue: parameter.clientDefaultValue,
     location: parameter.kind,
   };
@@ -95,11 +95,6 @@ function emitMethodParameter(
       ...base,
       location: "query",
       wireName: "api-version",
-      type: getSimpleTypeResult({
-        type: "constant",
-        value: parameter.apiVersions[0],
-        valueType: base.type,
-      })
     };
   }
   return base;
@@ -212,5 +207,6 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
     }
   }
   codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+  const a =getHttpOperation(sdkContext.program, sdkContext.sdkPackage.clients[0].methods[0].__raw!)
   return codeModel;
 }

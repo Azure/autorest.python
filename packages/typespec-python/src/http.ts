@@ -21,7 +21,7 @@ import {
   isAbstract,
   isAzureCoreModel,
 } from "./utils.js";
-import { KnownTypes, getType } from "./types.js";
+import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
 
 export function emitBasicHttpMethod(
   context: SdkContext<SdkHttpOperation>,
@@ -83,10 +83,10 @@ function addPagingInformation(
   method: SdkPagingServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ) {
-  let itemType: Record<string, any> = KnownTypes.anyObject;
-  if (!isAzureCoreModel(method.response.type)) {
-    itemType = getType(context, method.response.type!);
-    itemType["pageResultModel"] = true;
+  for (const response of Object.values(method.operation.responses)) {
+    if (response.type && !isAzureCoreModel(response.type)) {
+      getType(context, response.type)["pageResultModel"] = true;
+    }
   }
   return {
     ...emitHttpOperation(context, method.operation, operationGroupName),
@@ -95,7 +95,7 @@ function addPagingInformation(
     exposeStreamKeyword: false,
     itemName: method.response.responsePath,
     continuationTokenName: method.nextLinkLogicalPath?.join("."),
-    itemType,
+    itemType: getType(context, method.response.type!),
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
   };
@@ -173,6 +173,9 @@ function emitHttpHeaderParameter(
 ): Record<string, any> {
   const base = emitParamBase(context, parameter);
   const [delimiter, explode] = getDelimeterAndExplode(parameter);
+  if (parameter.serializedName === "Accept") {
+    base.type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: base.type })
+  }
   return {
     ...base,
     wireName: parameter.serializedName,

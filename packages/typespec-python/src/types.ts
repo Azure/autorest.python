@@ -17,7 +17,7 @@ import {
     SdkCredentialType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
-import { camelToSnakeCase, isAzureCoreModel } from "./utils.js";
+import { camelToSnakeCase, getAddedOn } from "./utils.js";
 import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
@@ -175,7 +175,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         type: getType(context, type.type),
         optional: type.optional,
         description: type.description,
-        addedOn: type.apiVersions[0],
+        addedOn: getAddedOn(context, type),
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
     };
