@@ -93,6 +93,7 @@ _always_reserved = [
     "yield",
     "async",
     "await",
+    "int",
 ]
 
 RESERVED_WORDS = {

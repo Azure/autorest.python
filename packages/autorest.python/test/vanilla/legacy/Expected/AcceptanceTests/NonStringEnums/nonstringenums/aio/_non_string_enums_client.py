@@ -25,8 +25,8 @@ if TYPE_CHECKING:
 class NonStringEnumsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Testing non-string enums.
 
-    :ivar int: IntOperations operations
-    :vartype int: nonstringenums.aio.operations.IntOperations
+    :ivar int_operations: IntOperations operations
+    :vartype int_operations: nonstringenums.aio.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: nonstringenums.aio.operations.FloatOperations
     :param base_url: Service URL. Default value is "http://localhost:3000".
@@ -60,7 +60,7 @@ class NonStringEnumsClient:  # pylint: disable=client-accepts-api-version-keywor
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_operations = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(

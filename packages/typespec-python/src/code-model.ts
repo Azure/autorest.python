@@ -125,41 +125,47 @@ function emitMethod<TServiceOperation extends SdkServiceOperation>(
 function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
   context: SdkContext<TServiceOperation>,
   client: SdkClientType<TServiceOperation>,
-): Record<string, any>[] {
+  prefix: string,
+): Record<string, any>[] | undefined {
   const operationGroups: Record<string, any>[] = [];
-  const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
+
   for (const method of client.methods) {
     if (method.kind === "clientaccessor") {
-      // Also currently assume subclient is operationGroup to keep code changes minimal
       const operationGroup = method.response;
+      const name = prefix + operationGroup.name;
       let operations: Record<string, any>[] = [];
       for (const method of operationGroup.methods) {
-        if (method.kind === "clientaccessor") continue; // skipping for now since we don't do sub-sub clients
+        if (method.kind === "clientaccessor") continue;
         operations = operations.concat(emitMethod(context, method, operationGroup.name));
       }
       operationGroups.push({
-        className: operationGroup.name,
+        name: name,
+        className: name,
         propertyName: operationGroup.name,
         operations: operations,
+        operationGroups: emitOperationGroups(context, operationGroup, name),
       });
-    } else {
-      const groupName = context.arm ? method.operation.__raw.operation.interface?.name ?? "" : "";
-      const emittedOperation = emitMethod(context, method, groupName);
-      if (!clientOperations.has(groupName)) {
-        clientOperations.set(groupName, {
-          className: groupName,
-          propertyName: groupName,
-          operations: [],
-        });
-      }
-      const og = clientOperations.get(groupName) as Record<string, any>;
-      og.operations = og.operations.concat(emittedOperation);
     }
   }
-  for (const value of clientOperations.values()) {
-    operationGroups.push(value);
+
+  // root client should deal with mixin operation group
+  if (prefix === "") {
+    let operations: Record<string, any>[] = [];
+    for (const method of client.methods) {
+      if (method.kind === "clientaccessor") continue;
+      operations = operations.concat(emitMethod(context, method, ""));
+    }
+    if (operations.length > 0) {
+      operationGroups.push({
+        name: "",
+        className: "",
+        propertyName: "",
+        operations: operations,
+      });
+    }
   }
-  return operationGroups;
+
+  return operationGroups.length > 0 ? operationGroups : undefined;
 }
 
 function emitClient<TServiceOperation extends SdkServiceOperation>(
@@ -170,7 +176,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     name: client.name,
     description: client.description,
     parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, x)),
-    operationGroups: emitOperationGroups(context, client),
+    operationGroups: emitOperationGroups(context, client, ""),
     url: client.endpoint,
     apiVersions: client.apiVersions,
     arm: client.arm,

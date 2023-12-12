@@ -48,38 +48,38 @@ def client():
 class TestInteger(object):
 
     def test_max_min_32_bit(self, client):
-        client.int.put_max32(2147483647) # sys.maxint
-        client.int.put_min32(-2147483648)
+        client.int_operations.put_max32(2147483647) # sys.maxint
+        client.int_operations.put_min32(-2147483648)
 
     def test_max_min_64_bit(self, client):
-        client.int.put_max64(9223372036854776000)  # sys.maxsize
-        client.int.put_min64(-9223372036854776000)
+        client.int_operations.put_max64(9223372036854776000)  # sys.maxsize
+        client.int_operations.put_min64(-9223372036854776000)
 
     def test_get_null_and_invalid(self, client):
-        client.int.get_null()
+        client.int_operations.get_null()
 
         with pytest.raises(DecodeError):
-            client.int.get_invalid()
+            client.int_operations.get_invalid()
 
     def test_get_overflow(self, client):
         # Testserver excepts these to fail, but they won't in Python and it's ok.
-        client.int.get_overflow_int32()
-        client.int.get_overflow_int64()
+        client.int_operations.get_overflow_int32()
+        client.int_operations.get_overflow_int64()
 
     def test_get_underflow(self, client):
-        client.int.get_underflow_int32()
-        client.int.get_underflow_int64()
+        client.int_operations.get_underflow_int32()
+        client.int_operations.get_underflow_int64()
 
     def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
-        client.int.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  client.int.get_unix_time().utctimetuple()
+        client.int_operations.put_unix_time_date(unix_date)
+        assert unix_date.utctimetuple() ==  client.int_operations.get_unix_time().utctimetuple()
 
     def test_get_null_and_invalid_unix_time(self, client):
-        assert client.int.get_null_unix_time() is None
+        assert client.int_operations.get_null_unix_time() is None
 
         with pytest.raises(DecodeError):
-            client.int.get_invalid_unix_time()
+            client.int_operations.get_invalid_unix_time()
 
     def test_models(self):
         from bodyinteger.models import Error
@@ -91,7 +91,7 @@ class TestInteger(object):
         from bodyinteger.operations import IntOperations
 
         with pytest.raises(ImportError):
-            from bodyinteger.operations import _int_operations_py3
+            from bodyinteger.operations import _int_operations_operations_py3
 
-        from bodyinteger.operations._int_operations import IntOperations as IntOperationsPy2
+        from bodyinteger.operations._int_operations_operations import IntOperations as IntOperationsPy2
         assert IntOperations == IntOperationsPy2
