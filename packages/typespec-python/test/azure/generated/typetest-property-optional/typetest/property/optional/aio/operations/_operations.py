@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -120,6 +120,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -172,6 +180,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -229,6 +245,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -249,12 +273,12 @@ class StringOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -265,18 +289,26 @@ class StringOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -337,6 +369,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -357,12 +397,12 @@ class StringOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -373,18 +413,26 @@ class StringOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.StringProperty or JSON or IO
+        :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -458,6 +506,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -510,6 +566,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -567,6 +631,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -587,12 +659,12 @@ class BytesOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -603,18 +675,26 @@ class BytesOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -675,6 +755,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -695,12 +783,12 @@ class BytesOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -711,18 +799,26 @@ class BytesOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -796,6 +892,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -848,6 +952,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -905,6 +1017,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -925,12 +1045,12 @@ class DatetimeOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -941,18 +1061,26 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1013,6 +1141,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1033,12 +1169,12 @@ class DatetimeOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1049,18 +1185,26 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1134,6 +1278,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1186,6 +1338,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1243,6 +1403,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1263,12 +1431,12 @@ class DurationOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1279,18 +1447,26 @@ class DurationOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1351,6 +1527,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1371,12 +1555,12 @@ class DurationOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1387,18 +1571,26 @@ class DurationOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO
+        :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1472,6 +1664,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1524,6 +1726,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1581,6 +1793,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -1601,12 +1823,12 @@ class CollectionsByteOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1617,18 +1839,28 @@ class CollectionsByteOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1689,6 +1921,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -1709,12 +1951,12 @@ class CollectionsByteOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1725,18 +1967,28 @@ class CollectionsByteOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1811,6 +2063,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1864,6 +2128,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1921,6 +2197,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -1941,12 +2229,12 @@ class CollectionsModelOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1957,18 +2245,30 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2029,6 +2329,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -2049,12 +2361,12 @@ class CollectionsModelOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2065,18 +2377,30 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2150,6 +2474,14 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2202,6 +2534,14 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2259,6 +2599,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
 
     @overload
@@ -2279,12 +2627,12 @@ class StringLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2295,18 +2643,26 @@ class StringLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO
+        :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2367,6 +2723,14 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
 
     @overload
@@ -2387,12 +2751,12 @@ class StringLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2403,18 +2767,26 @@ class StringLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO
+        :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2488,6 +2860,14 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2540,6 +2920,14 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2597,6 +2985,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
 
     @overload
@@ -2617,12 +3013,12 @@ class IntLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2633,18 +3029,26 @@ class IntLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: IntLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO
+        :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2705,6 +3109,14 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
 
     @overload
@@ -2725,12 +3137,12 @@ class IntLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2741,18 +3153,26 @@ class IntLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: IntLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO
+        :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2826,6 +3246,14 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2878,6 +3306,14 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2935,6 +3371,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
 
     @overload
@@ -2955,12 +3399,12 @@ class FloatLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2971,18 +3415,26 @@ class FloatLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: FloatLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO
+        :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3043,6 +3495,14 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
 
     @overload
@@ -3063,12 +3523,12 @@ class FloatLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3079,18 +3539,26 @@ class FloatLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: FloatLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO
+        :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3164,6 +3632,14 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3216,6 +3692,14 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3273,6 +3757,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
 
     @overload
@@ -3293,12 +3785,12 @@ class BooleanLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3309,18 +3801,26 @@ class BooleanLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO
+        :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3381,6 +3881,14 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
 
     @overload
@@ -3401,12 +3909,12 @@ class BooleanLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3417,18 +3925,26 @@ class BooleanLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO
+        :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": True  # Optional. Default value is True. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3495,6 +4011,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -3503,6 +4020,15 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3548,6 +4074,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -3556,6 +4083,15 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3603,6 +4139,7 @@ class UnionStringLiteralOperations:
     async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3613,6 +4150,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
 
     @overload
@@ -3633,12 +4179,12 @@ class UnionStringLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3649,18 +4195,29 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3711,6 +4268,7 @@ class UnionStringLiteralOperations:
     async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -3721,6 +4279,15 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
 
     @overload
@@ -3741,12 +4308,12 @@ class UnionStringLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3757,18 +4324,29 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
-        :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3842,6 +4420,15 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3894,6 +4481,15 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3951,6 +4547,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
 
     @overload
@@ -3971,12 +4576,12 @@ class UnionIntLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3987,18 +4592,27 @@ class UnionIntLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4059,6 +4673,15 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
 
     @overload
@@ -4079,12 +4702,12 @@ class UnionIntLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4095,18 +4718,27 @@ class UnionIntLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4181,6 +4813,15 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4234,6 +4875,15 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4291,6 +4941,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
 
     @overload
@@ -4311,12 +4970,12 @@ class UnionFloatLiteralOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4327,18 +4986,28 @@ class UnionFloatLiteralOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4399,6 +5068,15 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
 
     @overload
@@ -4419,12 +5097,12 @@ class UnionFloatLiteralOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4435,18 +5113,28 @@ class UnionFloatLiteralOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO
+        :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
+                      float type or a float type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4521,6 +5209,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4574,6 +5271,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4631,6 +5337,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -4651,12 +5366,12 @@ class RequiredAndOptionalOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4667,18 +5382,28 @@ class RequiredAndOptionalOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4739,6 +5464,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -4759,12 +5493,12 @@ class RequiredAndOptionalOperations:
 
     @overload
     async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4775,18 +5509,28 @@ class RequiredAndOptionalOperations:
 
     @distributed_trace_async
     async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
 
-        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
-        :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

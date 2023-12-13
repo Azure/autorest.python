@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,7 +30,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_int_put_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_int_operations_put_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -47,7 +47,7 @@ def build_int_put_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpR
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_int_get_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -99,7 +99,7 @@ class IntOperations:
 
         Instead, you should access the following operations through
         :class:`~nonstringenumsversiontolerant.NonStringEnumsClient`'s
-        :attr:`int` attribute.
+        :attr:`int_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -139,7 +139,7 @@ class IntOperations:
         else:
             _json = None
 
-        _request = build_int_put_request(
+        _request = build_int_operations_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -191,7 +191,7 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        _request = build_int_get_request(
+        _request = build_int_operations_get_request(
             headers=_headers,
             params=_params,
         )

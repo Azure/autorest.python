@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -100,6 +100,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -120,12 +128,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -135,18 +143,26 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """input.
 
-        :param input: Is one of the following types: InputRecord, JSON, IO Required.
-        :type input: ~typetest.model.usage.models.InputRecord or JSON or IO
+        :param input: Is one of the following types: InputRecord, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.usage.models.InputRecord or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -201,6 +217,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputRecord. The OutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.OutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -260,6 +284,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -278,16 +315,24 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
     def input_and_output(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -296,15 +341,23 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
-        :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
-        :type body: ~typetest.model.usage.models.InputOutputRecord or JSON or IO
+        :param body: Is one of the following types: InputOutputRecord, JSON, IO[bytes] Required.
+        :type body: ~typetest.model.usage.models.InputOutputRecord or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -313,6 +366,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

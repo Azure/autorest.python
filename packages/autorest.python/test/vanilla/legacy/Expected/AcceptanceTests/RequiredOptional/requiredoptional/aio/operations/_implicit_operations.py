@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -263,12 +263,12 @@ class ImplicitOperations:
 
     @distributed_trace_async
     async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, **kwargs: Any
+        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
     ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
-        :type body_parameter: IO
+        :type body_parameter: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

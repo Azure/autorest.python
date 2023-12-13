@@ -15,12 +15,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import ExtensibleClientConfiguration
-from ._operations import ExtensibleClientOperationsMixin
+from .operations import StringOperations
 
 
-class ExtensibleClient(ExtensibleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ExtensibleClient:  # pylint: disable=client-accepts-api-version-keyword
     """ExtensibleClient.
 
+    :ivar string: StringOperations operations
+    :vartype string: typetest.enum.extensible.aio.operations.StringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -51,6 +53,7 @@ class ExtensibleClient(ExtensibleClientOperationsMixin):  # pylint: disable=clie
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

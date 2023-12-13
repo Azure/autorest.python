@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -567,6 +567,19 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -585,16 +598,24 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
     def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -603,16 +624,24 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @distributed_trace
     def default(
-        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -621,6 +650,19 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -690,6 +732,19 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -708,16 +763,24 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
     def rfc3339(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -726,16 +789,24 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @distributed_trace
     def rfc3339(
-        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
-        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -744,6 +815,19 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -813,6 +897,19 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -831,16 +928,24 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
     def rfc7231(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -849,16 +954,24 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @distributed_trace
     def rfc7231(
-        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
-        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -867,6 +980,19 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -937,6 +1063,19 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
@@ -956,16 +1095,24 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @overload
     def unix_timestamp(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -975,16 +1122,25 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
 
     @distributed_trace
     def unix_timestamp(
-        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
-        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO
+        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -994,6 +1150,19 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": "2020-02-20 00:00:00"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1064,6 +1233,23 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     @overload
@@ -1083,16 +1269,26 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     @overload
     def unix_timestamp_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1102,17 +1298,27 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
 
     @distributed_trace
     def unix_timestamp_array(
-        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
-        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO
+        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO
+        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1122,6 +1328,23 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "value": [
+                        "2020-02-20 00:00:00"  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

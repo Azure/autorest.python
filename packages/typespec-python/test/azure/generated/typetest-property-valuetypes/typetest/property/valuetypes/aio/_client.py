@@ -23,6 +23,8 @@ from .operations import (
     CollectionsModelOperations,
     CollectionsStringOperations,
     DatetimeOperations,
+    Decimal128Operations,
+    DecimalOperations,
     DictionaryStringOperations,
     DurationOperations,
     EnumOperations,
@@ -54,10 +56,14 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype string: typetest.property.valuetypes.aio.operations.StringOperations
     :ivar bytes: BytesOperations operations
     :vartype bytes: typetest.property.valuetypes.aio.operations.BytesOperations
-    :ivar int: IntOperations operations
-    :vartype int: typetest.property.valuetypes.aio.operations.IntOperations
+    :ivar int_operations: IntOperations operations
+    :vartype int_operations: typetest.property.valuetypes.aio.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: typetest.property.valuetypes.aio.operations.FloatOperations
+    :ivar decimal: DecimalOperations operations
+    :vartype decimal: typetest.property.valuetypes.aio.operations.DecimalOperations
+    :ivar decimal128: Decimal128Operations operations
+    :vartype decimal128: typetest.property.valuetypes.aio.operations.Decimal128Operations
     :ivar datetime: DatetimeOperations operations
     :vartype datetime: typetest.property.valuetypes.aio.operations.DatetimeOperations
     :ivar duration: DurationOperations operations
@@ -139,8 +145,10 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.boolean = BooleanOperations(self._client, self._config, self._serialize, self._deserialize)
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_operations = IntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.decimal = DecimalOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.decimal128 = Decimal128Operations(self._client, self._config, self._serialize, self._deserialize)
         self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)

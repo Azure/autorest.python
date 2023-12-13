@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -46,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
     async def _create_or_replace_initial(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -138,6 +138,21 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @overload
@@ -166,11 +181,20 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @overload
     async def begin_create_or_replace(
-        self, name: str, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, name: str, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -179,7 +203,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :param name: The name of user. Required.
         :type name: str
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -194,11 +218,20 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
 
     @distributed_trace_async
     async def begin_create_or_replace(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -206,8 +239,9 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         :param name: The name of user. Required.
         :type name: str
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -222,6 +256,21 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
+
+                # response body for status code(s): 201, 200
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "role": "str"  # The role of user. Required.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -435,6 +484,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response == {
+                    "name": "str",  # The name of user. Required.
+                    "resourceUri": "str"  # The exported URI. Required.
+                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

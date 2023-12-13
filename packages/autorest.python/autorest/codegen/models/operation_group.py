@@ -11,6 +11,8 @@ from .base import BaseModel
 from .operation import get_operation
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
+from .lro_operation import LROOperation
+from .lro_paging_operation import LROPagingOperation
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -32,9 +34,17 @@ class OperationGroup(BaseModel):
         super().__init__(yaml_data, code_model)
         self.client = client
         self.class_name: str = yaml_data["className"]
+        self.identify_name: str = yaml_data["identifyName"]
         self.property_name: str = yaml_data["propertyName"]
         self.operations = operations
         self.api_versions = api_versions
+        self.operation_groups: List[OperationGroup] = []
+        if self.code_model.options["show_operations"]:
+            self.operation_groups = [
+                OperationGroup.from_yaml(op_group, code_model, client)
+                for op_group in self.yaml_data.get("operationGroups", [])
+            ]
+            self.link_lro_initial_operations()
 
     @property
     def has_abstract_operations(self) -> bool:
@@ -43,7 +53,7 @@ class OperationGroup(BaseModel):
     @property
     def base_class(self) -> str:
         base_classes: List[str] = []
-        if self.is_mixin and self.code_model.need_mixin_abc:
+        if self.is_mixin:
             base_classes.append(f"{self.client.name}MixinABC")
         return ", ".join(base_classes)
 
@@ -71,6 +81,8 @@ class OperationGroup(BaseModel):
             retval = add_to_pylint_disable(retval, "too-many-public-methods")
         if len(self.class_name) > NAME_LENGTH_LIMIT:
             retval = add_to_pylint_disable(retval, "name-too-long")
+        if len(self.operation_groups) > 6:
+            retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval
 
     @property
@@ -88,6 +100,13 @@ class OperationGroup(BaseModel):
             file_import.merge(
                 operation.imports(async_mode, relative_path=relative_path)
             )
+        if not self.code_model.options["combine_operation_files"]:
+            for og in self.operation_groups:
+                file_import.add_submodule_import(
+                    ".",
+                    og.class_name,
+                    ImportType.LOCAL,
+                )
         # for multiapi
         if (
             (self.code_model.public_model_types)
@@ -124,7 +143,45 @@ class OperationGroup(BaseModel):
     @property
     def is_mixin(self) -> bool:
         """The operation group with no name is the direct client methods."""
-        return self.property_name == ""
+        return self.identify_name == ""
+
+    def link_lro_initial_operations(self) -> None:
+        """Link each LRO operation to its initial operation"""
+        for operation_group in self.operation_groups:
+            for operation in operation_group.operations:
+                if isinstance(operation, (LROOperation, LROPagingOperation)):
+                    operation.initial_operation = self.lookup_operation(
+                        id(operation.yaml_data["initialOperation"])
+                    )
+
+    def lookup_operation(self, operation_id: int) -> "OperationType":
+        try:
+            return next(
+                o
+                for og in self.operation_groups
+                for o in og.operations
+                if id(o.yaml_data) == operation_id
+            )
+        except StopIteration as exc:
+            raise KeyError(f"No operation with id {operation_id} found.") from exc
+
+    @property
+    def lro_operations(self) -> List["OperationType"]:
+        return [
+            operation
+            for operation in self.operations
+            if operation.operation_type in ("lro", "lropaging")
+        ] + [
+            operation
+            for operation_group in self.operation_groups
+            for operation in operation_group.lro_operations
+        ]
+
+    @property
+    def has_operations(self) -> bool:
+        return any(
+            operation_group.has_operations for operation_group in self.operation_groups
+        ) or bool(self.operations)
 
     @classmethod
     def from_yaml(

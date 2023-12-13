@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -72,6 +72,7 @@ class StorageAccountsOperations:
     async def check_name_availability(
         self, account_name: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -110,14 +111,15 @@ class StorageAccountsOperations:
 
     @overload
     async def check_name_availability(
-        self, account_name: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, account_name: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
-        :type account_name: IO
+        :type account_name: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
@@ -142,13 +144,14 @@ class StorageAccountsOperations:
         """
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def check_name_availability(self, account_name: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a JSON type or a IO type. Required.
-        :type account_name: JSON or IO
+         lower-case letters only. Is either a JSON type or a IO[bytes] type. Required.
+        :type account_name: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
         :paramtype content_type: str
@@ -235,7 +238,7 @@ class StorageAccountsOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     async def _create_initial(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -307,6 +310,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -427,11 +431,12 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -445,7 +450,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
@@ -533,8 +538,9 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def begin_create(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
+        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -548,8 +554,8 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Is either a JSON type or
-         a IO type. Required.
-        :type parameters: JSON or IO
+         a IO[bytes] type. Required.
+        :type parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
         :paramtype content_type: str
@@ -754,6 +760,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -895,6 +902,7 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1021,11 +1029,12 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1043,7 +1052,7 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
@@ -1124,8 +1133,9 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def update(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1142,8 +1152,8 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a JSON type or a IO type. Required.
-        :type parameters: JSON or IO
+         changed at a time using this API. Is either a JSON type or a IO[bytes] type. Required.
+        :type parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
         :paramtype content_type: str
@@ -1374,6 +1384,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable[JSON]:
+        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -1520,6 +1531,7 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSON]:
+        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -1716,7 +1728,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        regenerate_key: IO,
+        regenerate_key: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1731,7 +1743,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated. Required.
-        :type regenerate_key: IO
+        :type regenerate_key: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
@@ -1751,7 +1763,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def regenerate_key(
-        self, resource_group_name: str, account_name: str, regenerate_key: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, regenerate_key: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
         """Regenerates the access keys for the specified storage account.
 
@@ -1763,8 +1775,8 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated. Is either a JSON
-         type or a IO type. Required.
-        :type regenerate_key: JSON or IO
+         type or a IO[bytes] type. Required.
+        :type regenerate_key: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
         :paramtype content_type: str
@@ -1864,6 +1876,7 @@ class UsageOperations:
 
     @distributed_trace_async
     async def list(self, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :return: JSON object
