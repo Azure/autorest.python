@@ -207,6 +207,5 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
     }
   }
   codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
-  const a =getHttpOperation(sdkContext.program, sdkContext.sdkPackage.clients[0].methods[0].__raw!)
   return codeModel;
 }
