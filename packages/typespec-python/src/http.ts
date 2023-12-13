@@ -88,14 +88,17 @@ function addPagingInformation(
       getType(context, response.type)["pageResultModel"] = true;
     }
   }
+  const itemType = getType(context, method.response.type!);
+  const base = emitHttpOperation(context, method.operation, operationGroupName)
+  base.responses.forEach((resp: Record<string, any>) => {resp.type = itemType});
   return {
-    ...emitHttpOperation(context, method.operation, operationGroupName),
+    ...base,
     name: camelToSnakeCase(method.name),
     discriminator: "paging",
     exposeStreamKeyword: false,
     itemName: method.response.responsePath,
     continuationTokenName: method.nextLinkLogicalPath?.join("."),
-    itemType: getType(context, method.response.type!),
+    itemType,
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
   };
