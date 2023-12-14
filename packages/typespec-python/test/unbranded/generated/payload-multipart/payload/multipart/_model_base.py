@@ -8,6 +8,10 @@
 # pyright: reportGeneralTypeIssues=false
 
 import calendar
+<<<<<<< HEAD
+=======
+import decimal
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
 import functools
 import sys
 import logging
@@ -144,6 +148,11 @@ class SdkJSONEncoder(JSONEncoder):
         except TypeError:
             if isinstance(o, _Null):
                 return None
+<<<<<<< HEAD
+=======
+            if isinstance(o, decimal.Decimal):
+                return float(o)
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
             if isinstance(o, (bytes, bytearray)):
                 return _serialize_bytes(o, self.format)
             try:
@@ -275,6 +284,15 @@ def _deserialize_duration(attr):
     return isodate.parse_duration(attr)
 
 
+<<<<<<< HEAD
+=======
+def _deserialize_decimal(attr):
+    if isinstance(attr, decimal.Decimal):
+        return attr
+    return decimal.Decimal(str(attr))
+
+
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
 _DESERIALIZE_MAPPING = {
     datetime: _deserialize_datetime,
     date: _deserialize_date,
@@ -283,6 +301,10 @@ _DESERIALIZE_MAPPING = {
     bytearray: _deserialize_bytes,
     timedelta: _deserialize_duration,
     typing.Any: lambda x: x,
+<<<<<<< HEAD
+=======
+    decimal.Decimal: _deserialize_decimal,
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
 }
 
 _DESERIALIZE_MAPPING_WITHFORMAT = {
@@ -426,6 +448,11 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
         return tuple(_serialize(x, format) for x in o)
     if isinstance(o, (bytes, bytearray)):
         return _serialize_bytes(o, format)
+<<<<<<< HEAD
+=======
+    if isinstance(o, decimal.Decimal):
+        return float(o)
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
     try:
         # First try datetime.datetime
         return _serialize_datetime(o, format)
@@ -550,6 +577,7 @@ class Model(_MyMutableMapping):
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
+<<<<<<< HEAD
     def as_origin_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
         """Return a dict that the value is the origin value instead of serialized value.
 
@@ -578,6 +606,8 @@ class Model(_MyMutableMapping):
             return {dk: Model._as_origin_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
         return v.as_origin_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_origin_dict") else v
 
+=======
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
     @staticmethod
     def _as_dict_value(v: typing.Any, exclude_readonly: bool = False) -> typing.Any:
         if v is None or isinstance(v, _Null):
@@ -670,16 +700,23 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
 
     try:
         if annotation._name == "Dict":
+<<<<<<< HEAD
             key_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module, rf)
             value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module, rf)
 
             def _deserialize_dict(
                 key_deserializer: typing.Optional[typing.Callable],
+=======
+            value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module, rf)
+
+            def _deserialize_dict(
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
                 value_deserializer: typing.Optional[typing.Callable],
                 obj: typing.Dict[typing.Any, typing.Any],
             ):
                 if obj is None:
                     return obj
+<<<<<<< HEAD
                 return {
                     _deserialize(key_deserializer, k, module): _deserialize(value_deserializer, v, module)
                     for k, v in obj.items()
@@ -688,6 +725,12 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
             return functools.partial(
                 _deserialize_dict,
                 key_deserializer,
+=======
+                return {k: _deserialize(value_deserializer, v, module) for k, v in obj.items()}
+
+            return functools.partial(
+                _deserialize_dict,
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
                 value_deserializer,
             )
     except (AttributeError, IndexError):
@@ -726,19 +769,35 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         pass
 
     def _deserialize_default(
+<<<<<<< HEAD
         annotation,
         deserializer_from_mapping,
+=======
+        deserializer,
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
         obj,
     ):
         if obj is None:
             return obj
         try:
+<<<<<<< HEAD
             return _deserialize_with_callable(annotation, obj)
         except Exception:
             pass
         return _deserialize_with_callable(deserializer_from_mapping, obj)
 
     return functools.partial(_deserialize_default, annotation, get_deserializer(annotation, rf))
+=======
+            return _deserialize_with_callable(deserializer, obj)
+        except Exception:
+            pass
+        return obj
+
+    if get_deserializer(annotation, rf):
+        return functools.partial(_deserialize_default, get_deserializer(annotation, rf))
+
+    return functools.partial(_deserialize_default, annotation)
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
 
 
 def _deserialize_with_callable(
@@ -746,7 +805,11 @@ def _deserialize_with_callable(
     value: typing.Any,
 ):
     try:
+<<<<<<< HEAD
         if value is None:
+=======
+        if value is None or isinstance(value, _Null):
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
             return None
         if deserializer is None:
             return value
@@ -774,7 +837,12 @@ def _deserialize(
         value = value.http_response.json()
     if rf is None and format:
         rf = _RestField(format=format)
+<<<<<<< HEAD
     deserializer = _get_deserialize_callable_from_annotation(deserializer, module, rf)
+=======
+    if not isinstance(deserializer, functools.partial):
+        deserializer = _get_deserialize_callable_from_annotation(deserializer, module, rf)
+>>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
     return _deserialize_with_callable(deserializer, value)
 
 

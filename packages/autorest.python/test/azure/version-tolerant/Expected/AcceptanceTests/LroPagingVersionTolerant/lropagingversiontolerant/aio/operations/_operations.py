@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -69,6 +69,7 @@ class QuestionAnsweringProjectsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
+        # pylint: disable=line-too-long
         """Gets all the QnAs of a project.
 
         Gets all the QnAs of a project.
@@ -254,7 +255,7 @@ class QuestionAnsweringProjectsOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     async def _update_qnas_initial(
-        self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any
+        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -324,6 +325,7 @@ class QuestionAnsweringProjectsOperations:
     async def begin_update_qnas(
         self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -503,8 +505,9 @@ class QuestionAnsweringProjectsOperations:
 
     @overload
     async def begin_update_qnas(
-        self, project_name: str, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, project_name: str, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -512,7 +515,7 @@ class QuestionAnsweringProjectsOperations:
         :param project_name: The name of the project to use. Required.
         :type project_name: str
         :param body: Update QnAs parameters of a project. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -624,17 +627,18 @@ class QuestionAnsweringProjectsOperations:
 
     @distributed_trace_async
     async def begin_update_qnas(
-        self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any
+        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
         :type project_name: str
-        :param body: Update QnAs parameters of a project. Is either a [JSON] type or a IO type.
+        :param body: Update QnAs parameters of a project. Is either a [JSON] type or a IO[bytes] type.
          Required.
-        :type body: list[JSON] or IO
+        :type body: list[JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

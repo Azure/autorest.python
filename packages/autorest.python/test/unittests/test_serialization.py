@@ -24,7 +24,7 @@
 # THE SOFTWARE.
 #
 #--------------------------------------------------------------------------
-
+import decimal
 from decimal import Decimal
 import sys
 import json
@@ -881,6 +881,16 @@ class TestRuntimeSerialized(unittest.TestCase):
 
         d = self.s.serialize_data(100.0123, 'float')
         self.assertEqual(d, 100.0123)
+
+    def test_serialize_decimal(self):
+        result = self.s.serialize_data(decimal.Decimal('0.33333'), 'decimal')
+        self.assertEqual(result, 0.33333)
+
+        result = self.s.serialize_data(0.33333, 'decimal')
+        self.assertEqual(result, 0.33333)
+
+        with self.assertRaises(SerializationError):
+            self.s.serialize_data('not a decimal', 'decimal')
 
     def test_serialize_object(self):
 
@@ -2185,6 +2195,16 @@ class TestRuntimeDeserialized(unittest.TestCase):
         datetime2 = pickle.loads(pickled)
 
         assert datetime1 == datetime2
+
+    def test_deserialize_decimal(self):
+        result = self.d.deserialize_data(0.33333, 'decimal')
+        self.assertEqual(result, decimal.Decimal('0.33333'))
+
+        result = self.d.deserialize_data('0.33333', 'decimal')
+        self.assertEqual(result, decimal.Decimal('0.33333'))
+
+        with self.assertRaises(DeserializationError):
+            self.d.deserialize_data('not a decimal', 'decimal')
 
     def test_polymorphic_deserialization(self):
 

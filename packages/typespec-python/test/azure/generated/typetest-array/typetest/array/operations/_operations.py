@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -341,6 +341,14 @@ class Int32ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -398,16 +406,24 @@ class Int32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -417,11 +433,13 @@ class Int32ValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+    ) -> None:
         """put.
 
-        :param body: Is either a [int] type or a IO type. Required.
-        :type body: list[int] or IO
+        :param body: Is either a [int] type or a IO[bytes] type. Required.
+        :type body: list[int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -501,6 +519,14 @@ class Int64ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -558,16 +584,24 @@ class Int64ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -577,11 +611,13 @@ class Int64ValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+    ) -> None:
         """put.
 
-        :param body: Is either a [int] type or a IO type. Required.
-        :type body: list[int] or IO
+        :param body: Is either a [int] type or a IO[bytes] type. Required.
+        :type body: list[int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -661,6 +697,14 @@ class BooleanValueOperations:
         :return: list of bool
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    bool  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -718,16 +762,24 @@ class BooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    bool  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -737,11 +789,13 @@ class BooleanValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[bool], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[bool], IO[bytes]], **kwargs: Any
+    ) -> None:
         """put.
 
-        :param body: Is either a [bool] type or a IO type. Required.
-        :type body: list[bool] or IO
+        :param body: Is either a [bool] type or a IO[bytes] type. Required.
+        :type body: list[bool] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -821,6 +875,14 @@ class StringValueOperations:
         :return: list of str
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "str"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -878,16 +940,24 @@ class StringValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "str"  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -897,11 +967,13 @@ class StringValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[str], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[str], IO[bytes]], **kwargs: Any
+    ) -> None:
         """put.
 
-        :param body: Is either a [str] type or a IO type. Required.
-        :type body: list[str] or IO
+        :param body: Is either a [str] type or a IO[bytes] type. Required.
+        :type body: list[str] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -981,6 +1053,14 @@ class Float32ValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0.0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1038,16 +1118,24 @@ class Float32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0.0  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1058,12 +1146,12 @@ class Float32ValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO], **kwargs: Any
+        self, body: Union[List[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [float] type or a IO type. Required.
-        :type body: list[float] or IO
+        :param body: Is either a [float] type or a IO[bytes] type. Required.
+        :type body: list[float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1143,6 +1231,14 @@ class DatetimeValueOperations:
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "2020-02-20 00:00:00"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1200,16 +1296,24 @@ class DatetimeValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "2020-02-20 00:00:00"  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1220,12 +1324,12 @@ class DatetimeValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.datetime], IO], **kwargs: Any
+        self, body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [datetime.datetime] type or a IO type. Required.
-        :type body: list[~datetime.datetime] or IO
+        :param body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
+        :type body: list[~datetime.datetime] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1305,6 +1409,14 @@ class DurationValueOperations:
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    "1 day, 0:00:00"  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1362,16 +1474,24 @@ class DurationValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    "1 day, 0:00:00"  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1382,12 +1502,12 @@ class DurationValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.timedelta], IO], **kwargs: Any
+        self, body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [datetime.timedelta] type or a IO type. Required.
-        :type body: list[~datetime.timedelta] or IO
+        :param body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
+        :type body: list[~datetime.timedelta] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1467,6 +1587,14 @@ class UnknownValueOperations:
         :return: list of any
         :rtype: list[any]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    {}  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1524,16 +1652,24 @@ class UnknownValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    {}  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1543,11 +1679,13 @@ class UnknownValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[Any], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[List[Any], IO[bytes]], **kwargs: Any
+    ) -> None:
         """put.
 
-        :param body: Is either a [Any] type or a IO type. Required.
-        :type body: list[any] or IO
+        :param body: Is either a [Any] type or a IO[bytes] type. Required.
+        :type body: list[any] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1627,6 +1765,19 @@ class ModelValueOperations:
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    {
+                        "property": "str",  # Required string property. Required.
+                        "children": [
+                            ...
+                        ]
+                    }
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1684,16 +1835,29 @@ class ModelValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    {
+                        "property": "str",  # Required string property. Required.
+                        "children": [
+                            ...
+                        ]
+                    }
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1704,12 +1868,12 @@ class ModelValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[_models.InnerModel], IO], **kwargs: Any
+        self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [InnerModel] type or a IO type. Required.
-        :type body: list[~typetest.array.models.InnerModel] or IO
+        :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
+        :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1789,6 +1953,14 @@ class NullableFloatValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0.0  # Optional.
+                ]
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1846,16 +2018,24 @@ class NullableFloatValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = [
+                    0.0  # Optional.
+                ]
         """
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1866,12 +2046,12 @@ class NullableFloatValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO], **kwargs: Any
+        self, body: Union[List[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [float] type or a IO type. Required.
-        :type body: list[float] or IO
+        :param body: Is either a [float] type or a IO[bytes] type. Required.
+        :type body: list[float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

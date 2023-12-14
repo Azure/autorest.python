@@ -124,11 +124,9 @@ def update_description(
     return description
 
 
-def update_operation_group_class_name(
-    yaml_data: Dict[str, Any], class_name: str
-) -> str:
+def update_operation_group_class_name(prefix: str, class_name: str) -> str:
     if class_name == "":
-        return yaml_data["name"] + "OperationsMixin"
+        return prefix + "OperationsMixin"
     if class_name == "Operations":
         return "Operations"
     return class_name + "Operations"
@@ -511,7 +509,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     ) -> None:
         operation_groups_yaml_data = client["operationGroups"]
         for operation_group in operation_groups_yaml_data:
-            operation_group["clientName"] = client["name"]
+            operation_group["identifyName"] = self.pad_reserved_words(
+                operation_group.get("name", operation_group["propertyName"]),
+                PadType.OPERATION_GROUP,
+            )
+            operation_group["identifyName"] = to_snake_case(
+                operation_group["identifyName"]
+            )
             operation_group["propertyName"] = self.pad_reserved_words(
                 operation_group["propertyName"], PadType.OPERATION_GROUP
             )
@@ -519,10 +523,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 operation_group["propertyName"]
             )
             operation_group["className"] = update_operation_group_class_name(
-                client, operation_group["className"]
+                client["name"], operation_group["className"]
             )
             for operation in operation_group["operations"]:
                 self.get_operation_updater(operation)(code_model, operation)
+
+            if operation_group.get("operationGroups"):
+                self.update_operation_groups(code_model, operation_group)
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""

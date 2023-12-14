@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -54,11 +54,11 @@ class FormdataOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file(self, file_content: IO[bytes], file_name: str, **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
          Required.
         :type file_name: str
@@ -116,11 +116,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
-        :type file_content: IO
+        :type file_content: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
@@ -171,11 +171,11 @@ class FormdataOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, file_content: List[IO], **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_files(self, file_content: List[IO[bytes]], **kwargs: Any) -> AsyncIterator[bytes]:
         """Upload multiple files.
 
         :param file_content: Files to upload. Required.
-        :type file_content: list[IO]
+        :type file_content: list[IO[bytes]]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]

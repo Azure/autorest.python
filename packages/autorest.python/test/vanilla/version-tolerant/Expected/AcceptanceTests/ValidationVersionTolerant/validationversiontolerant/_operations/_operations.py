@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -148,6 +148,7 @@ def build_auto_rest_validation_test_post_with_constant_in_body_request(  # pylin
 class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -244,6 +245,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -321,11 +323,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[IO] = None,
+        body: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -334,7 +337,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -374,8 +377,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -383,8 +387,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -560,6 +564,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     def post_with_constant_in_body(
         self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
@@ -632,12 +637,13 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -679,11 +685,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
-        :param body: Is either a JSON type or a IO type. Default value is None.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type body: JSON or IO[bytes]
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -156,12 +156,12 @@ class OperationGroupOneOperations:
 
     @overload
     async def test_two(
-        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, parameter_one: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter. Default value is None.
-        :type parameter_one: IO
+        :type parameter_one: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -173,13 +173,13 @@ class OperationGroupOneOperations:
 
     @distributed_trace_async
     async def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
-         value is None.
-        :type parameter_one: ~azure.multiapi.sample.v3.models.ModelThree or IO
+        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[bytes] type.
+         Default value is None.
+        :type parameter_one: ~azure.multiapi.sample.v3.models.ModelThree or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

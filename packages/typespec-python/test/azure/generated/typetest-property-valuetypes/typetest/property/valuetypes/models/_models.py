@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
+import decimal
 import sys
 from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
@@ -215,6 +216,68 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: datetime.datetime,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Decimal128Property(_model_base.Model):
+    """Model with a decimal128 property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required.
+    :vartype property: ~decimal.Decimal
+    """
+
+    property: decimal.Decimal = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: decimal.Decimal,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DecimalProperty(_model_base.Model):
+    """Model with a decimal property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required.
+    :vartype property: ~decimal.Decimal
+    """
+
+    property: decimal.Decimal = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: decimal.Decimal,  # pylint: disable=redefined-builtin
     ):
         ...
 

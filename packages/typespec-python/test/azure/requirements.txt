@@ -37,6 +37,7 @@ azure-core==1.28.0
 -e ./generated/typetest-model-nesteddiscriminator
 -e ./generated/typetest-model-notdiscriminated
 -e ./generated/typetest-model-singlediscriminator
+-e ./generated/typetest-model-recursive
 -e ./generated/typetest-model-usage
 -e ./generated/typetest-model-visibility
 -e ./generated/typetest-property-nullable

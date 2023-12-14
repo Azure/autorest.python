@@ -22,8 +22,8 @@ from .operations import IntOperations
 class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
-    :ivar int: IntOperations operations
-    :vartype int: bodyinteger.operations.IntOperations
+    :ivar int_operations: IntOperations operations
+    :vartype int_operations: bodyinteger.operations.IntOperations
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
@@ -55,7 +55,7 @@ class AutoRestIntegerTestService:  # pylint: disable=client-accepts-api-version-
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.int = IntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_operations = IntOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

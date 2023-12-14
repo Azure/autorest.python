@@ -19,6 +19,7 @@ from ._configuration import AzureSphereClientConfiguration
 from .operations import (
     CatalogsOperations,
     CertificatesOperations,
+    CustomUpdateOperationsOperations,
     DeploymentsOperations,
     DeviceGroupsOperations,
     DevicesOperations,
@@ -37,6 +38,9 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
 
     :ivar operations: Operations operations
     :vartype operations: azure.mgmt.spheredpg.aio.operations.Operations
+    :ivar custom_update_operations: CustomUpdateOperationsOperations operations
+    :vartype custom_update_operations:
+     azure.mgmt.spheredpg.aio.operations.CustomUpdateOperationsOperations
     :ivar catalogs: CatalogsOperations operations
     :vartype catalogs: azure.mgmt.spheredpg.aio.operations.CatalogsOperations
     :ivar images: ImagesOperations operations
@@ -95,6 +99,9 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.custom_update_operations = CustomUpdateOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.catalogs = CatalogsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.images = ImagesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.device_groups = DeviceGroupsOperations(self._client, self._config, self._serialize, self._deserialize)

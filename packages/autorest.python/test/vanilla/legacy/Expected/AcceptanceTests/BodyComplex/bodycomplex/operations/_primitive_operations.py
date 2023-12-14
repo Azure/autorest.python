@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -462,12 +462,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -479,12 +479,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.IntWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.IntWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.IntWrapper or IO
+        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO[bytes] type.
+         Required.
+        :type complex_body: ~bodycomplex.models.IntWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -607,12 +608,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -624,13 +625,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.LongWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.LongWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
-         or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.LongWrapper or IO
+         or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.LongWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -753,12 +754,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -770,13 +771,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.FloatWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.FloatWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO type.
-         Required.
-        :type complex_body: ~bodycomplex.models.FloatWrapper or IO
+        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO[bytes]
+         type. Required.
+        :type complex_body: ~bodycomplex.models.FloatWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -900,13 +901,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -918,14 +919,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DoubleWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DoubleWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DoubleWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DoubleWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1048,12 +1049,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1065,13 +1066,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.BooleanWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.BooleanWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO type.
-         Required.
-        :type complex_body: ~bodycomplex.models.BooleanWrapper or IO
+        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO[bytes]
+         type. Required.
+        :type complex_body: ~bodycomplex.models.BooleanWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1194,12 +1195,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1211,13 +1212,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.StringWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.StringWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.StringWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.StringWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1340,12 +1341,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1357,13 +1358,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DateWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DateWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
-         a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DateWrapper or IO
+         a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DateWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1487,13 +1488,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
          Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1505,13 +1506,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.DatetimeWrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.DatetimeWrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a DatetimeWrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO
+         either a DatetimeWrapper type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1635,13 +1636,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1653,13 +1654,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO], **kwargs: Any
+        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a Datetimerfc1123Wrapper type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO
+         GMT'. Is either a Datetimerfc1123Wrapper type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

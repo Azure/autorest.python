@@ -71,6 +71,9 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
     },
+    "type/model/inheritance/recursive": {
+        "package-name": "typetest-model-recursive",
+    },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
@@ -227,9 +230,8 @@ def _regenerate(
 
 
 def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
-    if "sphere" in str(s):
+    if "sphere" in str(s) or len(invalid_folders) == 0:
         return False
-    invalid_folders = invalid_folders + ["type/union"]
     return any(n in s.relative_to(CADL_RANCH_DIR).as_posix() for n in invalid_folders)
 
 

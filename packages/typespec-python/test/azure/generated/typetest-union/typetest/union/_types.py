@@ -7,9 +7,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING, Union
+import sys
+from typing import Union
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from . import models as _models
-MyNamedUnion = Union["_models.Model1", "_models.Model2"]
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+StringExtensibleNamedUnion = Union[str, Literal["b"], Literal["c"]]
