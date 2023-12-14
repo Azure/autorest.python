@@ -19,7 +19,10 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
+from .. import models as _models
+from .._model_base import _deserialize
 from .._serialization import Serializer
 from .._vendor import OAuth2ClientMixinABC
 
@@ -38,10 +41,17 @@ def build_oauth2_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/authentication/oauth2/invalid"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
@@ -101,6 +111,9 @@ class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
+            403: lambda response: HttpResponseError(
+                response=response, model=_deserialize(_models.InvalidAuth, response.json())
+            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
