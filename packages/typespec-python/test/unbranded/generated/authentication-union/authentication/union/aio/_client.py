@@ -29,8 +29,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
      ServiceKeyCredential type or a TokenCredential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.AsyncTokenCredential
-    :keyword endpoint: Illustrates clients generated with ApiKey and OAuth2 authentication. Default
-     value is "http://localhost:3000".
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

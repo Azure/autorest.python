@@ -23,8 +23,7 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
 
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential
-    :keyword endpoint: Illustrates clients generated with ApiKey authentication. Default value is
-     "http://localhost:3000".
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

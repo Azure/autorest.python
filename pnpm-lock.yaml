@@ -70,8 +70,8 @@ importers:
         specifier: '>=0.37.0 <1.0.0'
         version: 0.37.0(@azure-tools/typespec-autorest@0.37.0)(@azure-tools/typespec-azure-core@0.37.0)(@typespec/compiler@0.51.0)(@typespec/http@0.51.0)(@typespec/openapi@0.51.0)(@typespec/rest@0.51.0)(@typespec/versioning@0.51.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0MTEwOS9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231213.20.tgz
-        version: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0MTEwOS9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231213.20.tgz(@typespec/compiler@0.51.0)(@typespec/http@0.51.0)(@typespec/rest@0.51.0)(@typespec/versioning@0.51.0)'
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0NDExMC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231214.6.tgz
+        version: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0NDExMC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231214.6.tgz(@typespec/compiler@0.51.0)(@typespec/http@0.51.0)(@typespec/rest@0.51.0)(@typespec/versioning@0.51.0)'
       '@types/js-yaml':
         specifier: ~4.0.5
         version: 4.0.5
@@ -5233,11 +5233,11 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
 
-  '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0MTEwOS9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231213.20.tgz(@typespec/compiler@0.51.0)(@typespec/http@0.51.0)(@typespec/rest@0.51.0)(@typespec/versioning@0.51.0)':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0MTEwOS9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231213.20.tgz}
-    id: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0MTEwOS9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231213.20.tgz'
+  '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0NDExMC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231214.6.tgz(@typespec/compiler@0.51.0)(@typespec/http@0.51.0)(@typespec/rest@0.51.0)(@typespec/versioning@0.51.0)':
+    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0NDExMC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231214.6.tgz}
+    id: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMzM0NDExMC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.38.0-pr-6.20231214.6.tgz'
     name: '@azure-tools/typespec-client-generator-core'
-    version: 0.38.0-pr-6.20231213.20
+    version: 0.38.0-pr-6.20231214.6
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.51.0
