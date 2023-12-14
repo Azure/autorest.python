@@ -14,7 +14,6 @@ import {
 import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
-import { getHttpOperation } from "@typespec/http";
 
 function emitBasicMethod<TServiceOperation extends SdkServiceOperation>(
   context: SdkContext<TServiceOperation>,

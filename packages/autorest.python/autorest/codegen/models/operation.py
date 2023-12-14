@@ -475,6 +475,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+        if self.non_default_errors and self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+            )
         return file_import
 
     def get_response_from_status(

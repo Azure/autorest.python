@@ -89,8 +89,10 @@ function addPagingInformation(
     }
   }
   const itemType = getType(context, method.response.type!);
-  const base = emitHttpOperation(context, method.operation, operationGroupName)
-  base.responses.forEach((resp: Record<string, any>) => {resp.type = itemType});
+  const base = emitHttpOperation(context, method.operation, operationGroupName);
+  base.responses.forEach((resp: Record<string, any>) => {
+    resp.type = itemType;
+  });
   return {
     ...base,
     name: camelToSnakeCase(method.name),
@@ -138,8 +140,12 @@ function emitHttpOperation(
   operationGroupName: string,
 ): Record<string, any> {
   const responses: Record<string, any>[] = [];
+  const exceptions: Record<string, any>[] = [];
   for (const [statusCodes, response] of Object.entries(operation.responses)) {
     responses.push(emitHttpResponse(context, statusCodes, response)!);
+  }
+  for (const [statusCodes, exception] of Object.entries(operation.exceptions)) {
+    exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
   }
   return {
     url: operation.path,
@@ -147,7 +153,7 @@ function emitHttpOperation(
     parameters: emitHttpParameters(context, operation),
     bodyParameter: emitHttpBodyParameter(context, operation.bodyParams),
     responses,
-    exceptions: [emitHttpResponse(context, "*", operation.exception)],
+    exceptions,
     groupName: operationGroupName,
     addedOn: "",
     discriminator: "basic",
@@ -177,7 +183,7 @@ function emitHttpHeaderParameter(
   const base = emitParamBase(context, parameter);
   const [delimiter, explode] = getDelimeterAndExplode(parameter);
   if (parameter.serializedName === "Accept") {
-    base.type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: base.type })
+    base.type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: base.type });
   }
   return {
     ...base,
@@ -242,14 +248,14 @@ function emitHttpBodyParameter(
 function emitHttpResponse(
   context: SdkContext<SdkHttpOperation>,
   statusCodes: string,
-  response: SdkHttpResponse | undefined,
+  response: SdkHttpResponse,
 ): Record<string, any> | undefined {
   if (!response) return undefined;
   return {
     headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
-    statusCodes: statusCodes === "*" ? ["default"] : statusCodes.split(",").map(x => parseInt(x)),
+    statusCodes: statusCodes === "*" ? ["default"] : statusCodes.split(",").map((x) => parseInt(x)),
     discriminator: "basic",
-    type: (response.type && !isAzureCoreModel(response.type)) ? getType(context, response.type) : undefined,
+    type: response.type && !isAzureCoreModel(response.type) ? getType(context, response.type) : undefined,
     contentTypes: "",
   };
 }
