@@ -1860,11 +1860,7 @@ class Deserializer(object):
         if isinstance(attr, ET.Element):
             attr = attr.text
         try:
-<<<<<<< HEAD
-            return decimal.Decimal(attr)  # type: ignore
-=======
             return decimal.Decimal(str(attr))  # type: ignore
->>>>>>> 0f0581dc59f39d4a33bd0a6c045f30ac09f1bad8
         except decimal.DecimalException as err:
             msg = "Invalid decimal {}".format(attr)
             raise DeserializationError(msg) from err
