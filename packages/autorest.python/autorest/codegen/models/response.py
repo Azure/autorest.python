@@ -203,8 +203,10 @@ class PagingResponse(Response):
         return self.get_pager_path(async_mode).split(".")[-1]
 
     def type_annotation(self, **kwargs: Any) -> str:
-        iterable = "AsyncIterable" if kwargs["async_mode"] else "Iterable"
-        return f"{iterable}[{self.item_type.type_annotation(**kwargs)}]"
+        protocol = (
+            "AsyncPageableProtocol" if kwargs["async_mode"] else "PageableProtocol"
+        )
+        return f"{protocol}[{self.item_type.type_annotation(**kwargs)}]"
 
     def docstring_text(self, **kwargs: Any) -> str:
         base_description = "An iterator like instance of "

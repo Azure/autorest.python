@@ -18,6 +18,7 @@ from .request_builder import (
 from .parameter import Parameter, ParameterMethodLocation
 from .lro_operation import LROOperation
 from .lro_paging_operation import LROPagingOperation
+from .paging_operation import PagingOperation
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -297,6 +298,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             self.code_model.options["show_operations"]
             and bool(self.request_builders)
             and not self.code_model.options["version_tolerant"]
+        )
+
+    @property
+    def need_pageable_protocol(self) -> bool:
+        """
+        Whether we need to define a pageable protocol
+        """
+        return any(
+            isinstance(o, (PagingOperation, LROPagingOperation))
+            for operation_group in self.operation_groups
+            for o in operation_group.operations
         )
 
     @property

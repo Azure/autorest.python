@@ -12,7 +12,7 @@ from .request_builder import (
     RequestBuilder,
     get_request_builder,
 )
-from .imports import ImportType, FileImport, TypingSection
+from .imports import ImportType, FileImport
 from .parameter_list import ParameterList
 from .model_type import ModelType
 from .list_type import ListType
@@ -128,14 +128,6 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = super()._imports_shared(async_mode, **kwargs)
-        if async_mode:
-            file_import.add_submodule_import(
-                "typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
-        else:
-            file_import.add_submodule_import(
-                "typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
         if (
             self.next_request_builder
             and self.code_model.options["builders_visibility"] == "embedded"
@@ -179,6 +171,20 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
                 )
+        file_import.add_submodule_import(
+            ".._vendor",
+            f"{'Async' if async_mode else ''}PageableProtocol",
+            ImportType.LOCAL,
+        )
+        return file_import
+    
+    def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports_for_multiapi(async_mode, **kwargs)
+        file_import.add_submodule_import(
+            "._vendor",
+            f"{'Async' if async_mode else ''}PageableProtocol",
+            ImportType.LOCAL,
+        )
         return file_import
 
 

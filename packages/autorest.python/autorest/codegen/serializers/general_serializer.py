@@ -130,6 +130,15 @@ class GeneralSerializer(BaseSerializer):
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
+        if self.code_model.need_pageable_protocol:
+            file_import.add_submodule_import("typing", "Protocol", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_submodule_import(
+                "collections.abc",
+                f"{'Async' if self.async_mode else ''}Iterator",
+                ImportType.STDLIB,
+            )
 
         return template.render(
             code_model=self.code_model,

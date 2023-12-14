@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -32,7 +32,7 @@ from ...operations._operation_group_one_operations import (
     build_test_operation_group_paging_request,
     build_test_two_request,
 )
-from .._vendor import MultiapiServiceClientMixinABC
+from .._vendor import AsyncPageableProtocol, MultiapiServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -59,7 +59,7 @@ class OperationGroupOneOperations:
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace
-    def test_operation_group_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
+    def test_operation_group_paging(self, **kwargs: Any) -> AsyncPageableProtocol["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

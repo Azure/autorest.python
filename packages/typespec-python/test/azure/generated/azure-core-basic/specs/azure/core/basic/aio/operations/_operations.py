@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -42,7 +42,7 @@ from ...operations._operations import (
     build_two_models_as_page_item_list_first_item_request,
     build_two_models_as_page_item_list_second_item_request,
 )
-from .._vendor import BasicClientMixinABC
+from .._vendor import AsyncPageableProtocol, BasicClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -71,7 +71,7 @@ class TwoModelsAsPageItemOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def list_first_item(self, **kwargs: Any) -> AsyncIterable["_models.FirstItem"]:
+    def list_first_item(self, **kwargs: Any) -> AsyncPageableProtocol["_models.FirstItem"]:
         """Two operations with two different page item types should be successfully generated. Should
         generate model for FirstItem.
 
@@ -154,7 +154,7 @@ class TwoModelsAsPageItemOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_second_item(self, **kwargs: Any) -> AsyncIterable["_models.SecondItem"]:
+    def list_second_item(self, **kwargs: Any) -> AsyncPageableProtocol["_models.SecondItem"]:
         """Two operations with two different page item types should be successfully generated. Should
         generate model for SecondItem.
 
@@ -813,7 +813,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         select: Optional[List[str]] = None,
         expand: Optional[List[str]] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.User"]:
+    ) -> AsyncPageableProtocol["_models.User"]:
         """Lists all users.
 
         Lists all Users.
@@ -928,7 +928,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_with_page(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
+    def list_with_page(self, **kwargs: Any) -> AsyncPageableProtocol["_models.User"]:
         """List with Azure.Core.Page<>.
 
         :return: An iterator like instance of User
@@ -1026,7 +1026,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.User"]:
+    ) -> AsyncPageableProtocol["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -1072,7 +1072,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.User"]:
+    ) -> AsyncPageableProtocol["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -1113,7 +1113,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.User"]:
+    ) -> AsyncPageableProtocol["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -1153,7 +1153,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.User"]:
+    ) -> AsyncPageableProtocol["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Is one of the following types: ListItemInputBody,
@@ -1268,7 +1268,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_with_custom_page_model(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
+    def list_with_custom_page_model(self, **kwargs: Any) -> AsyncPageableProtocol["_models.User"]:
         """List with custom page model.
 
         :return: An iterator like instance of User

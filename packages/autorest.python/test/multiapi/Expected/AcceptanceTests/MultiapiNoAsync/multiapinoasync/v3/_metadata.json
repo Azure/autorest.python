@@ -96,20 +96,20 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Iterable\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.paging\": [\"ItemPaged\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.async_paging\": [\"AsyncItemPaged\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]], \"._vendor\": [\"PageableProtocol\"]}, \"sdkcore\": {\"azure.core.paging\": [\"ItemPaged\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]], \"._vendor\": [\"AsyncPageableProtocol\"]}, \"sdkcore\": {\"azure.core.async_paging\": [\"AsyncItemPaged\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}}",
         "sync_mixin_typing_definitions": "",
         "async_mixin_typing_definitions": "",
         "operations": {
             "test_paging" : {
                 "sync": {
-                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e Iterable[\"_models.ModelThree\"]:\n",
+                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e PageableProtocol[\"_models.ModelThree\"]:\n",
                     "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either ModelThree or the result of cls(response)\n:rtype: ~azure.core.paging.ItemPaged[~multiapinoasync.v3.models.ModelThree]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "**kwargs"
                 },
                 "async": {
                     "coroutine": false,
-                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e AsyncIterable[\"_models.ModelThree\"]:\n",
+                    "signature": "def test_paging(\n    self,\n    **kwargs: Any\n) -\u003e AsyncPageableProtocol[\"_models.ModelThree\"]:\n",
                     "doc": "\"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: An iterator like instance of either ModelThree or the result of cls(response)\n:rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapinoasync.v3.models.ModelThree]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "**kwargs"
                 }

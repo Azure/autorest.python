@@ -6,7 +6,8 @@
 # --------------------------------------------------------------------------
 
 from abc import ABC
-from typing import TYPE_CHECKING
+from collections.abc import Iterator
+from typing import Optional, Protocol, TYPE_CHECKING, TypeVar
 
 from azure.core.pipeline.transport import HttpRequest
 
@@ -34,3 +35,17 @@ class MultiapiServiceClientMixinABC(ABC):
     _config: MultiapiServiceClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+
+
+ReturnType = TypeVar("ReturnType")
+
+
+class PageableProtocol(Protocol[ReturnType]):
+    def __iter__(self) -> Iterator[ReturnType]:
+        pass
+
+    def __next__(self) -> ReturnType:
+        pass
+
+    def by_page(self, continuation_token: Optional[str] = None) -> Iterator[Iterator[ReturnType]]:
+        pass

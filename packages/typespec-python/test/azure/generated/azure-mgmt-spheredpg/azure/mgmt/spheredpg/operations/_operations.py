@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -30,6 +30,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from .. import models as _models
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
+from .._vendor import PageableProtocol
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -1551,7 +1552,7 @@ class Operations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> Iterable["_models.Operation"]:
+    def list(self, **kwargs: Any) -> PageableProtocol["_models.Operation"]:
         # pylint: disable=line-too-long
         """List the operations for the provider.
 
@@ -2603,7 +2604,7 @@ class CatalogsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.Catalog"]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> PageableProtocol["_models.Catalog"]:
         # pylint: disable=line-too-long
         """List Catalog resources by resource group.
 
@@ -2722,7 +2723,7 @@ class CatalogsOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.Catalog"]:
+    def list_by_subscription(self, **kwargs: Any) -> PageableProtocol["_models.Catalog"]:
         # pylint: disable=line-too-long
         """List Catalog resources by subscription ID.
 
@@ -2916,7 +2917,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceInsight"]:
+    ) -> PageableProtocol["_models.DeviceInsight"]:
         """Lists device insights for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3035,7 +3036,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Device"]:
+    ) -> PageableProtocol["_models.Device"]:
         # pylint: disable=line-too-long
         """Lists devices for catalog.
 
@@ -3183,7 +3184,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Deployment"]:
+    ) -> PageableProtocol["_models.Deployment"]:
         # pylint: disable=line-too-long
         """Lists deployments for catalog.
 
@@ -3381,7 +3382,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
@@ -3469,7 +3470,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
@@ -3552,7 +3553,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
@@ -3634,7 +3635,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
@@ -3938,7 +3939,7 @@ class ImagesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Image"]:
+    ) -> PageableProtocol["_models.Image"]:
         # pylint: disable=line-too-long
         """List Image resources by Catalog.
 
@@ -4666,7 +4667,7 @@ class DeviceGroupsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
@@ -6338,7 +6339,7 @@ class CertificatesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Certificate"]:
+    ) -> PageableProtocol["_models.Certificate"]:
         # pylint: disable=line-too-long
         """List Certificate resources by Catalog.
 
@@ -7040,7 +7041,7 @@ class DeploymentsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Deployment"]:
+    ) -> PageableProtocol["_models.Deployment"]:
         # pylint: disable=line-too-long
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
@@ -8720,7 +8721,7 @@ class DevicesOperations:
     @distributed_trace
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> Iterable["_models.Device"]:
+    ) -> PageableProtocol["_models.Device"]:
         # pylint: disable=line-too-long
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
@@ -9643,7 +9644,7 @@ class ProductsOperations:
     @distributed_trace
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         # pylint: disable=line-too-long
         """List Product resources by Catalog.
 
@@ -10689,7 +10690,7 @@ class ProductsOperations:
     @distributed_trace
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.

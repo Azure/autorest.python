@@ -10,12 +10,13 @@
 # --------------------------------------------------------------------------
 from .._serialization import Serializer, Deserializer
 from io import IOBase
-from typing import Any, AsyncIterable, IO, Optional, Union
+from typing import Any, IO, Optional, Union
 
 from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller
 
 from .. import models as _models
+from ._vendor import AsyncPageableProtocol
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -66,7 +67,7 @@ class MultiapiServiceClientOperationsMixin(object):
         *,
         client_request_id: Optional[str] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+    ) -> AsyncLROPoller[AsyncPageableProtocol["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
@@ -177,7 +178,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ModelThree"]:
+    ) -> AsyncPageableProtocol["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

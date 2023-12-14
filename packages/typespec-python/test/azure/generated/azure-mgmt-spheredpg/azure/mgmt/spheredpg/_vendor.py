@@ -5,26 +5,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from abc import ABC
 from collections.abc import Iterator
-from typing import Optional, Protocol, TYPE_CHECKING, TypeVar
-
-from ._configuration import BasicClientConfiguration
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from azure.core import PipelineClient
-
-    from ._serialization import Deserializer, Serializer
-
-
-class BasicClientMixinABC(ABC):
-    """DO NOT use this class. It is for internal typing use only."""
-
-    _client: "PipelineClient"
-    _config: BasicClientConfiguration
-    _serialize: "Serializer"
-    _deserialize: "Deserializer"
+from typing import Optional, Protocol, TypeVar
 
 
 ReturnType = TypeVar("ReturnType")

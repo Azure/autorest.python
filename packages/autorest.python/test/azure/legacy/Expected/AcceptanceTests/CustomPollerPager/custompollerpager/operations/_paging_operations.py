@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, Union, cast
 import urllib.parse
 
 from custompollerpagerdefinitions import CustomPager, CustomPoller
@@ -32,7 +32,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import _convert_request
+from .._vendor import PageableProtocol, _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -551,7 +551,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_no_item_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -625,7 +625,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_empty_next_link_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_empty_next_link_name_pages(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that gets an empty next link and should stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -699,7 +699,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_null_next_link_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -773,7 +773,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_single_pages(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -849,7 +849,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_single_pages_with_body_params(
         self, name: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param name: Default value is None.
@@ -930,7 +930,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def first_response_empty(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def first_response_empty(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -1010,7 +1010,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional[_models.PagingGetMultiplePagesOptions] = None,
         **kwargs: Any,
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -1097,7 +1097,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_with_query_params(self, required_query_parameter: int, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_with_query_params(
+        self, required_query_parameter: int, **kwargs: Any
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -1176,7 +1178,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> Iterable["_models.Product"]:
+    def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -1255,7 +1257,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def page_with_max_page_size(self, maxpagesize: Literal["5"] = "5", **kwargs: Any) -> Iterable["_models.Product"]:
+    def page_with_max_page_size(
+        self, maxpagesize: Literal["5"] = "5", **kwargs: Any
+    ) -> PageableProtocol["_models.Product"]:
         """Paging with max page size. We don't want to.
 
         :param maxpagesize: Max page size query param. Don't send. Known values are "5" and None.
@@ -1338,7 +1342,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional[_models.PagingGetOdataMultiplePagesOptions] = None,
         **kwargs: Any,
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -1430,7 +1434,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         paging_get_multiple_pages_with_offset_options: _models.PagingGetMultiplePagesWithOffsetOptions,
         client_request_id: Optional[str] = None,
         **kwargs: Any,
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
@@ -1520,7 +1524,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_first(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -1595,7 +1599,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_second(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -1670,7 +1674,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages_failure(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_single_pages_failure(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1744,7 +1748,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1818,7 +1822,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1894,7 +1898,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self, api_version: str, tenant: str, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use. Required.
@@ -1972,7 +1976,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(  # pylint: disable=name-too-long
         self, custom_parameter_group: _models.CustomParameterGroup, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group. Required.
@@ -2114,7 +2118,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any,
-    ) -> CustomPoller[Iterable["_models.Product"]]:
+    ) -> CustomPoller[PageableProtocol["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -2237,18 +2241,18 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return CustomPoller[Iterable["_models.Product"]].from_continuation_token(
+            return CustomPoller[PageableProtocol["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return CustomPoller[Iterable["_models.Product"]](
+        return CustomPoller[PageableProtocol["_models.Product"]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
     @distributed_trace
-    def append_api_version(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def append_api_version(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation with api version. When calling the next link, you want to append your
         client's api version to the next link.
 
@@ -2325,7 +2329,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def replace_api_version(self, **kwargs: Any) -> Iterable["_models.Product"]:
+    def replace_api_version(self, **kwargs: Any) -> PageableProtocol["_models.Product"]:
         """A paging operation with api version. When calling the next link, you want to reformat it and
         override the returned api version with your client's api version.
 
@@ -2404,7 +2408,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 

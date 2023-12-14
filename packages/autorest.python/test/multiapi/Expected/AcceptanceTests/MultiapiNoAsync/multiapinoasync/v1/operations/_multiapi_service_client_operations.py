@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -30,7 +30,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MultiapiServiceClientMixinABC, _convert_request
+from .._vendor import MultiapiServiceClientMixinABC, PageableProtocol, _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -415,7 +415,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> LROPoller[Iterable["_models.Product"]]:
+    ) -> LROPoller[PageableProtocol["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -537,13 +537,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller[Iterable["_models.Product"]].from_continuation_token(
+            return LROPoller[PageableProtocol["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[Iterable["_models.Product"]](
+        return LROPoller[PageableProtocol["_models.Product"]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 

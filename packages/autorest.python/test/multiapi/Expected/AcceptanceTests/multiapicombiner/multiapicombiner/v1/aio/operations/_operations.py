@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -38,7 +38,7 @@ from ...operations._operations import (
     build_multiapi_service_test_one_request,
     build_operation_group_one_test_two_request,
 )
-from .._vendor import MultiapiServiceClientMixinABC
+from .._vendor import AsyncPageableProtocol, MultiapiServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -344,7 +344,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         *,
         client_request_id: Optional[str] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+    ) -> AsyncLROPoller[AsyncPageableProtocol["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
@@ -466,13 +466,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[AsyncIterable["_models.Product"]].from_continuation_token(
+            return AsyncLROPoller[AsyncPageableProtocol["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[AsyncIterable["_models.Product"]](
+        return AsyncLROPoller[AsyncPageableProtocol["_models.Product"]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 

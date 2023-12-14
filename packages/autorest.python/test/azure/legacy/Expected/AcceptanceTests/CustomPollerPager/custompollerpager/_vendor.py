@@ -5,6 +5,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from collections.abc import Iterator
+from typing import Optional, Protocol, TypeVar
+
 from azure.core.pipeline.transport import HttpRequest
 
 
@@ -14,3 +17,17 @@ def _convert_request(request, files=None):
     if files:
         request.set_formdata_body(files)
     return request
+
+
+ReturnType = TypeVar("ReturnType")
+
+
+class PageableProtocol(Protocol[ReturnType]):
+    def __iter__(self) -> Iterator[ReturnType]:
+        pass
+
+    def __next__(self) -> ReturnType:
+        pass
+
+    def by_page(self, continuation_token: Optional[str] = None) -> Iterator[Iterator[ReturnType]]:
+        pass

@@ -65,3 +65,18 @@ def prep_if_none_match(etag: Optional[str], match_condition: Optional[MatchCondi
         return "*"
     return None
 {% endif %}
+{% if code_model.need_pageable_protocol %}
+{% set iterator = keywords.async_class + "Iterator" %}
+
+ReturnType = TypeVar('ReturnType')
+class {{ keywords.async_class }}PageableProtocol(Protocol[ReturnType]):
+    {{ keywords.def }} __{{ keywords.async_prefix }}iter__(self) -> {{iterator}}[ReturnType]:
+        pass
+
+    {{ keywords.def }} __{{ keywords.async_prefix }}next__(self) -> ReturnType:
+        pass
+
+    def by_page(self, continuation_token: Optional[str] = None) -> {{iterator}}[{{iterator}}[ReturnType]]:
+        pass
+
+{% endif %}

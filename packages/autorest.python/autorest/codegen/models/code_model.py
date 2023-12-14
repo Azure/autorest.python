@@ -133,7 +133,12 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc or self.has_etag
+        return (
+            self.need_request_converter
+            or self.need_mixin_abc
+            or self.has_etag
+            or self.need_pageable_protocol
+        )
 
     @property
     def need_request_converter(self) -> bool:
@@ -146,6 +151,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     @property
     def has_abstract_operations(self) -> bool:
         return any(c for c in self.clients if c.has_abstract_operations)
+
+    @property
+    def need_pageable_protocol(self) -> bool:
+        return any(c for c in self.clients if c.need_pageable_protocol)
 
     @property
     def operations_folder_name(self) -> str:

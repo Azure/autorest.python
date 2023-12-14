@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -27,6 +27,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 from .._serialization import Serializer
+from .._vendor import PageableProtocol
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -1545,7 +1546,7 @@ class Operations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> Iterable["_models.Operation"]:
+    def list(self, **kwargs: Any) -> PageableProtocol["_models.Operation"]:
         """List the operations for the provider.
 
         :return: An iterator like instance of Operation
@@ -2076,7 +2077,7 @@ class CatalogsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.Catalog"]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> PageableProtocol["_models.Catalog"]:
         """List Catalog resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2156,7 +2157,7 @@ class CatalogsOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.Catalog"]:
+    def list_by_subscription(self, **kwargs: Any) -> PageableProtocol["_models.Catalog"]:
         """List Catalog resources by subscription ID.
 
         :return: An iterator like instance of Catalog
@@ -2303,7 +2304,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceInsight"]:
+    ) -> PageableProtocol["_models.DeviceInsight"]:
         """Lists device insights for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2406,7 +2407,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Device"]:
+    ) -> PageableProtocol["_models.Device"]:
         """Lists devices for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2509,7 +2510,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Deployment"]:
+    ) -> PageableProtocol["_models.Deployment"]:
         """Lists deployments for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2614,7 +2615,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2650,7 +2651,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2685,7 +2686,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2890,7 +2891,7 @@ class ImagesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Image"]:
+    ) -> PageableProtocol["_models.Image"]:
         """List Image resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3241,7 +3242,7 @@ class DeviceGroupsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
 
@@ -4153,7 +4154,7 @@ class CertificatesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Certificate"]:
+    ) -> PageableProtocol["_models.Certificate"]:
         """List Certificate resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4584,7 +4585,7 @@ class DeploymentsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable["_models.Deployment"]:
+    ) -> PageableProtocol["_models.Deployment"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
 
@@ -5241,7 +5242,7 @@ class DevicesOperations:
     @distributed_trace
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> Iterable["_models.Device"]:
+    ) -> PageableProtocol["_models.Device"]:
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
 
@@ -5797,7 +5798,7 @@ class ProductsOperations:
     @distributed_trace
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> Iterable["_models.Product"]:
+    ) -> PageableProtocol["_models.Product"]:
         """List Product resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6343,7 +6344,7 @@ class ProductsOperations:
     @distributed_trace
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
+    ) -> PageableProtocol["_models.DeviceGroup"]:
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.
 
