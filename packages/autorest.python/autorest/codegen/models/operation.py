@@ -572,8 +572,8 @@ class Operation(OperationBase[Response]):
         if self.code_model.options["models_mode"] == "dpg":
             if (
                 self.parameters.has_body
-                and not self.parameters.body_parameter.default_content_type
-                == "multipart/form-data"
+                and self.parameters.body_parameter.default_content_type
+                != "multipart/form-data"
             ):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "SdkJSONEncoder", ImportType.LOCAL

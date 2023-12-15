@@ -134,7 +134,7 @@ class GeneralSerializer(BaseSerializer):
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
             file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
             file_import.add_submodule_import("io", "BytesIO", ImportType.STDLIB)
-            file_import.add_import("time", ImportType.STDLIB)
+            file_import.add_import("uuid", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,

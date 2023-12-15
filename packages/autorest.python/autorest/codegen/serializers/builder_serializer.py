@@ -551,6 +551,7 @@ class RequestBuilderSerializer(
         for parameter in builder.parameters.headers:
             if (
                 parameter.wire_name.lower() == "content-type"
+                and builder.parameters.has_body
                 and builder.parameters.body_parameter.default_content_type
                 == "multipart/form-data"
             ):
@@ -1006,7 +1007,6 @@ class _OperationSerializer(
             retval.append(
                 f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
             )
-
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
         retval.append(")")

@@ -6,8 +6,8 @@
 # --------------------------------------------------------------------------
 
 from io import BytesIO, IOBase
-import time
 from typing import Union
+import uuid
 
 
 class NamedBytesIO(BytesIO):
@@ -19,4 +19,4 @@ class NamedBytesIO(BytesIO):
 def multipart_form_data_file(file: Union[IOBase, bytes]) -> IOBase:
     if isinstance(file, IOBase):
         return file
-    return NamedBytesIO("auto_name_" + str(time.time()), file)
+    return NamedBytesIO("auto-name-" + str(uuid.uuid4()), file)
