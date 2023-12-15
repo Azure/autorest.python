@@ -570,7 +570,11 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         relative_path = "..." if async_mode else ".."
         if self.code_model.options["models_mode"] == "dpg":
-            if self.parameters.has_body and not self.parameters.body_parameter.default_content_type == "multipart/form-data":
+            if (
+                self.parameters.has_body
+                and not self.parameters.body_parameter.default_content_type
+                == "multipart/form-data"
+            ):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "SdkJSONEncoder", ImportType.LOCAL
                 )
@@ -581,8 +585,14 @@ class Operation(OperationBase[Response]):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
                 )
-        if self.parameters.has_body and self.parameters.body_parameter.default_content_type == "multipart/form-data":
-            file_import.add_submodule_import(relative_path, "_model_base", ImportType.LOCAL)
+        if (
+            self.parameters.has_body
+            and self.parameters.body_parameter.default_content_type
+            == "multipart/form-data"
+        ):
+            file_import.add_submodule_import(
+                relative_path, "_model_base", ImportType.LOCAL
+            )
             file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "multipart_form_data_file", ImportType.LOCAL

@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, Optional, TypeVar
+import sys
+from typing import Any, Callable, Dict, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -26,6 +27,11 @@ from .. import _model_base, models as _models
 from .._serialization import Serializer
 from .._vendor import multipart_form_data_file
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -59,7 +65,7 @@ class FormDataOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace
+    @overload
     def basic(  # pylint: disable=inconsistent-return-statements
         self, body: _models.MultiPartRequest, **kwargs: Any
     ) -> None:
@@ -67,6 +73,39 @@ class FormDataOperations:
 
         :param body: Required.
         :type body: ~payload.multipart.models.MultiPartRequest
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": "str",  # Required.
+                    "profileImage": bytes("bytes", encoding="utf-8")  # Required.
+                }
+        """
+
+    @overload
+    def basic(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Test content-type: multipart/form-data.
+
+        :param body: Required.
+        :type body: JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def basic(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Is either a MultiPartRequest type or a JSON type. Required.
+        :type body: ~payload.multipart.models.MultiPartRequest or JSON
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

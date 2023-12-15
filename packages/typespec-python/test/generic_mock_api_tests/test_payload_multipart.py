@@ -16,14 +16,14 @@ def client():
 
 def test_basic(client: MultiPartClient, jpg_data: bytes):
     # test bytes
-    client.basic({"id": "123", "profileImage": jpg_data})
-    client.basic(models.MultiPartRequest(id="123", profile_image=jpg_data))
+    client.form_data.basic({"id": "123", "profileImage": jpg_data})
+    client.form_data.basic(models.MultiPartRequest(id="123", profile_image=jpg_data))
 
     # test io
     with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as jpg_data_io:
-        client.basic({"id": "123", "profileImage": jpg_data_io})
+        client.form_data.basic({"id": "123", "profileImage": jpg_data_io})
 
     with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as jpg_data_io:
         # caused by deepcopy when DPG model init
         with pytest.raises(TypeError):
-            client.basic(models.MultiPartRequest(id="123", profile_image=jpg_data_io))
+            client.form_data.basic(models.MultiPartRequest(id="123", profile_image=jpg_data_io))

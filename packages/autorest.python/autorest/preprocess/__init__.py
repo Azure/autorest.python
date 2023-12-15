@@ -201,7 +201,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             and any(
                 ct
                 for ct in body_parameter.get("contentTypes", [])
-                if JSON_REGEXP.match(ct)
+                if JSON_REGEXP.match(ct) or ct == "multipart/form-data"
             )
             and not body_parameter["type"].get("xmlMetadata")
             and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
@@ -210,8 +210,14 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             is_dpg_model = body_parameter["type"].get("base") == "dpg"
             body_parameter["type"] = {
                 "type": "combined",
-                "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+                "types": [body_parameter["type"]],
             }
+            if not any(
+                ct
+                for ct in body_parameter.get("contentTypes", [])
+                if ct == "multipart/form-data"
+            ):
+                body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
             if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":
                 body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
             code_model["types"].append(body_parameter["type"])
@@ -371,9 +377,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
         wire_name_lower = (yaml_data.get("wireName") or "").lower()
-        if (
-            yaml_data["location"] == "header"
-            and (wire_name_lower in HEADERS_HIDE_IN_METHOD or yaml_data.get("clientDefaultValue") == "multipart/form-data")
+        if yaml_data["location"] == "header" and (
+            wire_name_lower in HEADERS_HIDE_IN_METHOD
+            or yaml_data.get("clientDefaultValue") == "multipart/form-data"
         ):
             yaml_data["hideInMethod"] = True
         if (

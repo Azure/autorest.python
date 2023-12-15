@@ -83,7 +83,11 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             for client in self.clients:
                 for operation_group in client.operation_groups:
                     for operation in operation_group.operations:
-                        if operation.parameters.has_body and operation.parameters.body_parameter.default_content_type == "multipart/form-data":
+                        if (
+                            operation.parameters.has_body
+                            and operation.parameters.body_parameter.default_content_type
+                            == "multipart/form-data"
+                        ):
                             return True
         return False
 
@@ -143,7 +147,12 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc or self.has_etag
+        return (
+            self.need_request_converter
+            or self.need_mixin_abc
+            or self.has_etag
+            or self.has_form_data
+        )
 
     @property
     def need_request_converter(self) -> bool:
