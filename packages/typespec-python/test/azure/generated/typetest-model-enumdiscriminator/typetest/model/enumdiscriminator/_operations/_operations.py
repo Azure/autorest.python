@@ -303,8 +303,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
         :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -639,8 +639,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.
         :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

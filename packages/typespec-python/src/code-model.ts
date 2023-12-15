@@ -168,7 +168,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
 ): Record<string, any> {
   return {
     name: client.name,
-    description: client.description,
+    description: client.description ?? "",
     parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, x)),
     operationGroups: emitOperationGroups(context, client, ""),
     url: client.endpoint,

@@ -385,7 +385,7 @@ class Parameter(_ParameterBase):
             return ParameterMethodLocation.KEYWORD_ONLY
         if self.grouper:
             return ParameterMethodLocation.POSITIONAL
-        if self.constant:
+        if self.constant and self.wire_name != "Content-Type":
             return ParameterMethodLocation.KWARG
         if self.is_content_type:
             if self.in_overload:

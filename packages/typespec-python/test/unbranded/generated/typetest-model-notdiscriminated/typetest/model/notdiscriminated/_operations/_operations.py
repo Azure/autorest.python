@@ -78,9 +78,9 @@ def build_not_discriminated_put_valid_request(**kwargs: Any) -> HttpRequest:  # 
     _url = "/type/model/inheritance/not-discriminated/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -151,8 +151,8 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
         :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.
         :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -366,8 +366,8 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
         :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.
         :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.

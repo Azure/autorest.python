@@ -461,8 +461,8 @@ class ExtendsUnknownOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
          or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -664,8 +664,8 @@ class IsUnknownOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -867,8 +867,8 @@ class ExtendsStringOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1070,8 +1070,8 @@ class IsStringOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties or JSON
          or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1273,8 +1273,8 @@ class ExtendsFloatOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1476,8 +1476,8 @@ class IsFloatOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties or JSON
          or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1669,8 +1669,8 @@ class ExtendsModelOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1860,8 +1860,8 @@ class IsModelOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties or JSON
          or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2057,8 +2057,8 @@ class ExtendsModelArrayOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2248,8 +2248,8 @@ class IsModelArrayOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

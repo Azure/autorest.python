@@ -112,8 +112,8 @@ class StringOperations:
         :param body: _. Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
          "Saturday", and "Sunday". Required.
         :type body: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -168,8 +168,8 @@ class StringOperations:
         :param body: _. Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
          "Saturday", and "Sunday". Required.
         :type body: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None

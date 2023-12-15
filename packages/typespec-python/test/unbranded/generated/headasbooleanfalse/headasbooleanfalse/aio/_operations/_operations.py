@@ -175,8 +175,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -342,8 +342,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -485,8 +485,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -628,8 +628,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -771,8 +771,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -914,8 +914,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

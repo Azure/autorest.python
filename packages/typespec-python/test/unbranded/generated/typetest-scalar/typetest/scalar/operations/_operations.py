@@ -49,13 +49,12 @@ def build_string_get_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/string"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -77,13 +76,12 @@ def build_boolean_get_request(**kwargs: Any) -> HttpRequest:
 def build_boolean_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/boolean"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -105,13 +103,12 @@ def build_unknown_get_request(**kwargs: Any) -> HttpRequest:
 def build_unknown_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/unknown"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -133,13 +130,12 @@ def build_decimal_type_response_body_request(**kwargs: Any) -> HttpRequest:
 def build_decimal_type_request_body_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/decimal/resquest_body"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -175,13 +171,12 @@ def build_decimal128_type_response_body_request(**kwargs: Any) -> HttpRequest:  
 def build_decimal128_type_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/decimal128/resquest_body"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -217,13 +212,12 @@ def build_decimal_verify_prepare_verify_request(**kwargs: Any) -> HttpRequest:  
 def build_decimal_verify_verify_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/decimal/verify"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -245,13 +239,12 @@ def build_decimal128_verify_prepare_verify_request(**kwargs: Any) -> HttpRequest
 def build_decimal128_verify_verify_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/scalar/decimal128/verify"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -329,8 +322,8 @@ class StringOperations:
 
         :param body: _. Required.
         :type body: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -450,8 +443,8 @@ class BooleanOperations:
 
         :param body: _. Required.
         :type body: bool
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -571,8 +564,8 @@ class UnknownOperations:
 
         :param body: _. Required.
         :type body: any
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -694,8 +687,8 @@ class DecimalTypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -864,8 +857,8 @@ class Decimal128TypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1040,8 +1033,8 @@ class DecimalVerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1169,8 +1162,8 @@ class Decimal128VerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
