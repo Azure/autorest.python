@@ -75,7 +75,7 @@ class MediaTypesSharedMixin:
         return request, kwargs
 
     @staticmethod
-    def _handle_body_three_types_response(pipeline_response: PipelineResponse, cls=None, error_map=None):
+    def _handle_body_three_types_response(pipeline_response: PipelineResponse, cls=None, error_map={}):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
