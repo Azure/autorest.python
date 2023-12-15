@@ -83,8 +83,9 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
   context: SdkContext<TServiceOperation>,
   parameter: SdkParameter | SdkHttpParameter,
+  fromBody: boolean = false,
 ): ParamBase {
-  let type = getType(context, parameter.type);
+  let type = getType(context, parameter.type, fromBody);
   if (parameter.isApiVersionParam) {
     type = getSimpleTypeResult({ type: "constant", value: parameter.apiVersions[0], valueType: type });
   }
@@ -120,6 +121,6 @@ export function getDescriptionAndSummary<TServiceOperation extends SdkServiceOpe
     };
   }
   return {
-    description: method.description,
+    description: method.description ?? "",
   };
 }

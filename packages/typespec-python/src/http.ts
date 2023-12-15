@@ -147,7 +147,7 @@ function emitHttpOperation(
   for (const [statusCodes, exception] of Object.entries(operation.exceptions)) {
     exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
   }
-  return {
+  const result = {
     url: operation.path,
     method: operation.verb.toUpperCase(),
     parameters: emitHttpParameters(context, operation),
@@ -163,6 +163,40 @@ function emitHttpOperation(
     wantTracing: true,
     exposeStreamKeyword: true,
   };
+  if (result.bodyParameter?.type.type === "model" && result.bodyParameter.type.base === "json") {
+    result.bodyParameter["propertyToParameterName"] = {};
+    result.bodyParameter["defaultToUnsetSentinel"] = true;
+    for (const property of result.bodyParameter.type.properties) {
+        result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
+        result.parameters.push(emitFlattenedParameter(result.bodyParameter, property));
+    }
+  }
+  return result;
+}
+
+function emitFlattenedParameter(
+    bodyParameter: Record<string, any>,
+    property: Record<string, any>,
+): Record<string, any> {
+    return {
+        checkClientInput: false,
+        clientDefaultValue: null,
+        clientName: property.clientName,
+        delimiter: null,
+        description: property.description,
+        implementation: "Method",
+        inDocstring: true,
+        inFlattenedBody: true,
+        inOverload: false,
+        inOverriden: false,
+        isApiVersion: bodyParameter["isApiVersion"],
+        location: "other",
+        optional: property["optional"],
+        wireName: null,
+        skipUrlEncoding: false,
+        type: property["type"],
+        defaultToUnsetSentinel: true,
+    };
 }
 
 function emitHttpPathParameter(context: SdkContext<SdkHttpOperation>, parameter: SdkPathParameter) {
@@ -234,11 +268,10 @@ function emitHttpBodyParameter(
   if (bodyParams.length === 0) return undefined;
   const bodyParam = bodyParams[0];
   return {
-    ...emitParamBase(context, bodyParam),
+    ...emitParamBase(context, bodyParam, true),
     contentTypes: bodyParam.contentTypes,
     location: bodyParam.kind,
     wireName: bodyParam.nameInClient,
-    type: getType(context, bodyParam.type),
     implementation: getImplementation(bodyParam),
     clientDefaultValue: bodyParam.clientDefaultValue,
     defaultContentType: bodyParam.defaultContentType,
