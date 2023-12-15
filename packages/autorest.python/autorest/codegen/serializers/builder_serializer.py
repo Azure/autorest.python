@@ -757,15 +757,12 @@ class _OperationSerializer(
         This function serializes the body params that need to be serialized.
         """
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if (
-            self.code_model.options["version_tolerant"]
-            and body_param.default_content_type == "multipart/form-data"
-        ):
+        if body_param.default_content_type == "multipart/form-data":
             return [
                 f"if isinstance({body_param.client_name}, _model_base.Model):",
                 f"    _body = {body_param.client_name}.as_origin_dict()",
                 "else:",
-                f"    _body = {body_param.client_name}",
+                f"    _body = cast(Dict[str, Any], {body_param.client_name})",
                 "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
                 "_data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
             ]
