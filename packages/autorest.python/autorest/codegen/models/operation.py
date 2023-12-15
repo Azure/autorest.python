@@ -215,6 +215,14 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         return "'object'"
 
     @property
+    def has_special_status_code(self):
+        for excep in self.non_default_errors:
+            for status_code in excep.status_codes:
+                if status_code in (401, 404, 409, 304):
+                    return True
+        return False
+
+    @property
     def non_default_errors(self) -> List[Response]:
         return [e for e in self.exceptions if "default" not in e.status_codes]
 
