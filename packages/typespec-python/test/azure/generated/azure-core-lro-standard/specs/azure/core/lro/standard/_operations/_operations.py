@@ -63,9 +63,9 @@ def build_standard_create_or_replace_request(name: str, **kwargs: Any) -> HttpRe
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -222,7 +222,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                     "role": "str"  # The role of user. Required.
                 }
 
-                # response body for status code(s): 201, 200
+                # response body for status code(s): 200, 201
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -258,7 +258,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 201, 200
+                # response body for status code(s): 200, 201
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -294,7 +294,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 201, 200
+                # response body for status code(s): 200, 201
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -314,8 +314,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
@@ -337,7 +337,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                     "role": "str"  # The role of user. Required.
                 }
 
-                # response body for status code(s): 201, 200
+                # response body for status code(s): 200, 201
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.

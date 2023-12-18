@@ -25,15 +25,18 @@ def update_overload_section(
     yaml_data: Dict[str, Any],
     section: str,
 ):
-    for overload_s, original_s in zip(overload[section], yaml_data[section]):
-        if overload_s.get("type"):
-            overload_s["type"] = original_s["type"]
-        if overload_s.get("headers"):
-            for overload_h, original_h in zip(
-                overload_s["headers"], original_s["headers"]
-            ):
-                if overload_h.get("type"):
-                    overload_h["type"] = original_h["type"]
+    try:
+        for overload_s, original_s in zip(overload[section], yaml_data[section]):
+            if overload_s.get("type"):
+                overload_s["type"] = original_s["type"]
+            if overload_s.get("headers"):
+                for overload_h, original_h in zip(
+                    overload_s["headers"], original_s["headers"]
+                ):
+                    if overload_h.get("type"):
+                        overload_h["type"] = original_h["type"]
+    except KeyError:
+        raise ValueError(overload["name"])
 
 
 def add_overload(

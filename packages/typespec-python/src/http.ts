@@ -10,6 +10,7 @@ import {
   SdkPagingServiceMethod,
   SdkPathParameter,
   SdkQueryParameter,
+  SdkServiceMethod,
   SdkServiceResponseHeader,
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -31,7 +32,7 @@ export function emitBasicHttpMethod(
 ): Record<string, any>[] {
   return [
     {
-      ...emitHttpOperation(context, method.operation, operationGroupName),
+      ...emitHttpOperation(context, operationGroupName, method.operation, method),
       abstract: isAbstract(method),
       internal: method.access === "internal",
       name: camelToSnakeCase(method.name),
@@ -46,18 +47,18 @@ function emitInitialLroHttpMethod(
   method: SdkLroServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any> {
-  const initialOperation = emitHttpOperation(context, method.operation, operationGroupName);
+  const initialOperation = emitHttpOperation(context, operationGroupName, method.initialOperation);
+  initialOperation.responses.forEach((resp: Record<string, any>) => {
+    if (method.initialOperation.responses[resp.statusCodes[0]]?.type) {
+      resp["type"] = KnownTypes.anyObject;
+    }
+  });
   return {
     ...initialOperation,
-    name: `_${camelToSnakeCase(method.name)}_intial`,
+    name: `_${camelToSnakeCase(method.name)}_initial`,
     isLroInitialOperation: true,
     wantTracing: false,
     exposeStreamKeyword: false,
-    responses: initialOperation.responses.forEach((resp: Record<string, any>) => {
-      if (resp.type) {
-        resp.type = KnownTypes.anyObject;
-      }
-    }),
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
   };
@@ -69,7 +70,7 @@ function addLroInformation(
   opreationGroupName: string,
 ) {
   return {
-    ...emitHttpOperation(context, method.operation, opreationGroupName),
+    ...emitHttpOperation(context, opreationGroupName, method.operation, method),
     name: camelToSnakeCase(method.name),
     discriminator: "lro",
     initialOperation: emitInitialLroHttpMethod(context, method, opreationGroupName),
@@ -90,7 +91,7 @@ function addPagingInformation(
     }
   }
   const itemType = getType(context, method.response.type!);
-  const base = emitHttpOperation(context, method.operation, operationGroupName);
+  const base = emitHttpOperation(context, operationGroupName, method.operation, method);
   base.responses.forEach((resp: Record<string, any>) => {
     resp.type = itemType;
   });
@@ -113,7 +114,7 @@ export function emitLroHttpMethod(
   operationGroupName: string,
 ): Record<string, any>[] {
   const lroMethod = addLroInformation(context, method, operationGroupName);
-  return [lroMethod, lroMethod.initialOperation];
+  return [lroMethod.initialOperation, lroMethod];
 }
 
 export function emitPagingHttpMethod(
@@ -137,13 +138,14 @@ export function emitLroPagingHttpMethod(
 
 function emitHttpOperation(
   context: SdkContext<SdkHttpOperation>,
-  operation: SdkHttpOperation,
   operationGroupName: string,
+  operation: SdkHttpOperation,
+  method?: SdkServiceMethod<SdkHttpOperation>,
 ): Record<string, any> {
   const responses: Record<string, any>[] = [];
   const exceptions: Record<string, any>[] = [];
   for (const [statusCodes, response] of Object.entries(operation.responses)) {
-    responses.push(emitHttpResponse(context, statusCodes, response)!);
+    responses.push(emitHttpResponse(context, statusCodes, response, method)!);
   }
   for (const [statusCodes, exception] of Object.entries(operation.exceptions)) {
     exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
@@ -171,36 +173,36 @@ function emitHttpOperation(
     result.bodyParameter["propertyToParameterName"] = {};
     result.bodyParameter["defaultToUnsetSentinel"] = true;
     for (const property of result.bodyParameter.type.properties) {
-        result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
-        result.parameters.push(emitFlattenedParameter(result.bodyParameter, property));
+      result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
+      result.parameters.push(emitFlattenedParameter(result.bodyParameter, property));
     }
   }
   return result;
 }
 
 function emitFlattenedParameter(
-    bodyParameter: Record<string, any>,
-    property: Record<string, any>,
+  bodyParameter: Record<string, any>,
+  property: Record<string, any>,
 ): Record<string, any> {
-    return {
-        checkClientInput: false,
-        clientDefaultValue: null,
-        clientName: property.clientName,
-        delimiter: null,
-        description: property.description,
-        implementation: "Method",
-        inDocstring: true,
-        inFlattenedBody: true,
-        inOverload: false,
-        inOverriden: false,
-        isApiVersion: bodyParameter["isApiVersion"],
-        location: "other",
-        optional: property["optional"],
-        wireName: null,
-        skipUrlEncoding: false,
-        type: property["type"],
-        defaultToUnsetSentinel: true,
-    };
+  return {
+    checkClientInput: false,
+    clientDefaultValue: null,
+    clientName: property.clientName,
+    delimiter: null,
+    description: property.description,
+    implementation: "Method",
+    inDocstring: true,
+    inFlattenedBody: true,
+    inOverload: false,
+    inOverriden: false,
+    isApiVersion: bodyParameter["isApiVersion"],
+    location: "other",
+    optional: property["optional"],
+    wireName: null,
+    skipUrlEncoding: false,
+    type: property["type"],
+    defaultToUnsetSentinel: true,
+  };
 }
 
 function emitHttpPathParameter(context: SdkContext<SdkHttpOperation>, parameter: SdkPathParameter) {
@@ -286,14 +288,22 @@ function emitHttpResponse(
   context: SdkContext<SdkHttpOperation>,
   statusCodes: string,
   response: SdkHttpResponse,
+  method?: SdkServiceMethod<SdkHttpOperation>,
 ): Record<string, any> | undefined {
   if (!response) return undefined;
+  let type = undefined;
+  if (response.type && !isAzureCoreModel(response.type)) {
+    type = getType(context, response.type);
+  } else if (method && method.response.type && !isAzureCoreModel(method.response.type)) {
+    type = getType(context, method.response.type);
+  }
   return {
     headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
     statusCodes: statusCodes === "*" ? ["default"] : statusCodes.split(",").map((x) => parseInt(x)),
     discriminator: "basic",
-    type: response.type && !isAzureCoreModel(response.type) ? getType(context, response.type) : undefined,
+    type,
     contentTypes: "",
+    resultProperty: method?.response.responsePath,
   };
 }
 
