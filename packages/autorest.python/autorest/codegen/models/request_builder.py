@@ -58,6 +58,10 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.want_tracing = False
 
     @property
+    def has_form_data_body(self):
+        return self.parameters.has_form_data_body
+
+    @property
     def is_lro(self) -> bool:
         return self.yaml_data.get("discriminator") in ("lro", "lropaging")
 

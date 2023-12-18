@@ -82,11 +82,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         for client in self.clients:
             for operation_group in client.operation_groups:
                 for operation in operation_group.operations:
-                    if (
-                        operation.parameters.has_body
-                        and operation.parameters.body_parameter.default_content_type
-                        == "multipart/form-data"
-                    ):
+                    if operation.has_form_data_body:
                         return True
         return False
 

@@ -59,6 +59,14 @@ OperationType = TypeVar(
 )
 
 
+def _need_type_ignore(builder: OperationType) -> bool:
+    for excep in builder.non_default_errors:
+        for status_code in excep.status_codes:
+            if status_code in (401, 404, 409, 304):
+                return True
+    return False
+
+
 def _xml_config(send_xml: bool, content_types: List[str]) -> str:
     if not (send_xml and "xml" in str(content_types)):
         return ""
@@ -547,25 +555,21 @@ class RequestBuilderSerializer(
         return retval
 
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
-        retval = []
-        for parameter in builder.parameters.headers:
-            if (
-                parameter.wire_name.lower() == "content-type"
-                and builder.parameters.has_body
-                and builder.parameters.body_parameter.default_content_type
-                == "multipart/form-data"
-            ):
-                continue
+        headers = [
+            h
+            for h in builder.parameters.headers
+            if not builder.has_form_data_body or h.wire_name.lower() != "content-type"
+        ]
+        retval = ["# Construct headers"] if headers else []
+        for header in headers:
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
-                    parameter,
+                    header,
                     "headers",
                     self.serializer_name,
                     self.code_model.is_legacy,
                 )
             )
-        if retval:
-            retval.insert(0, "# Construct headers")
         return retval
 
     def serialize_query(self, builder: RequestBuilderType) -> List[str]:
@@ -1169,7 +1173,7 @@ class _OperationSerializer(
                     f"        {async_await} response.read()  # Load the body in memory and close the socket",
                 ]
             )
-        type_ignore = "  # type: ignore" if builder.has_special_status_code else ""
+        type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
         retval.append(
             f"    map_error(status_code=response.status_code, response=response, error_map=error_map){type_ignore}"
         )

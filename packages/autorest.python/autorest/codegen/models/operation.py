@@ -93,6 +93,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.has_etag: bool = self.yaml_data.get("hasEtag", False)
 
     @property
+    def has_form_data_body(self):
+        return self.parameters.has_form_data_body
+
+    @property
     def expose_stream_keyword(self) -> bool:
         return self.yaml_data.get("exposeStreamKeyword", False)
 
@@ -213,14 +217,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnyType
         return "'object'"
-
-    @property
-    def has_special_status_code(self):
-        for excep in self.non_default_errors:
-            for status_code in excep.status_codes:
-                if status_code in (401, 404, 409, 304):
-                    return True
-        return False
 
     @property
     def non_default_errors(self) -> List[Response]:
