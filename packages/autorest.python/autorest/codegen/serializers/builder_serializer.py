@@ -981,11 +981,7 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
-        if (
-            request_builder.parameters.has_body
-            and request_builder.parameters.body_parameter.default_content_type
-            == "multipart/form-data"
-        ):
+        if request_builder.has_form_data_body:
             retval.append("    data=_data,")
             retval.append("    files=_files,")
         elif request_builder.overloads:
@@ -1059,11 +1055,7 @@ class _OperationSerializer(
                     builder.parameters.body_parameter, builder.parameters.parameters
                 )
             )
-        if (
-            builder.parameters.has_body
-            and builder.parameters.body_parameter.default_content_type
-            == "multipart/form-data"
-        ):
+        if builder.has_form_data_body:
             retval.extend(self._create_body_parameter(builder))
         elif builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
