@@ -562,7 +562,7 @@ class Model(_MyMutableMapping):
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
-    def as_origin_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
+    def _as_origin_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
         """Return a dict that the value is the origin value instead of serialized value.
 
         :keyword bool exclude_readonly: Whether to remove the readonly properties.
@@ -588,7 +588,7 @@ class Model(_MyMutableMapping):
             return [Model._as_origin_dict_value(x, exclude_readonly=exclude_readonly) for x in v]
         if isinstance(v, dict):
             return {dk: Model._as_origin_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
-        return v.as_origin_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_origin_dict") else v
+        return v._as_origin_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_origin_dict") else v
 
     @staticmethod
     def _as_dict_value(v: typing.Any, exclude_readonly: bool = False) -> typing.Any:

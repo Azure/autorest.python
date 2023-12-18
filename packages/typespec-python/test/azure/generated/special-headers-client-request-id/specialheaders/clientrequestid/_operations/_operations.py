@@ -37,6 +37,8 @@ def build_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/special-headers/client-request-id"
 
+    # Construct headers
+
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 

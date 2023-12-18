@@ -764,7 +764,7 @@ class _OperationSerializer(
         if body_param.default_content_type == "multipart/form-data":
             return [
                 f"if isinstance({body_param.client_name}, _model_base.Model):",
-                f"    _body = {body_param.client_name}.as_origin_dict()",
+                f"    _body = {body_param.client_name}._as_origin_dict()  # pylint: disable=protected-access",
                 "else:",
                 f"    _body = cast(Dict[str, Any], {body_param.client_name})",
                 "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",

@@ -133,7 +133,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if isinstance(body, _model_base.Model):
-            _body = body.as_origin_dict()
+            _body = body._as_origin_dict()  # pylint: disable=protected-access
         else:
             _body = cast(Dict[str, Any], body)
         _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
