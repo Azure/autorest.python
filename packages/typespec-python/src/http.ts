@@ -14,6 +14,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   camelToSnakeCase,
+  capitalize,
   emitParamBase,
   getDelimeterAndExplode,
   getDescriptionAndSummary,
@@ -163,6 +164,9 @@ function emitHttpOperation(
     wantTracing: true,
     exposeStreamKeyword: true,
   };
+  if (result.bodyParameter?.type.type === "model" && result.bodyParameter?.type.name === "") {
+    result.bodyParameter.type.name = capitalize(operation.__raw.operation.name) + "Request";
+  }
   if (result.bodyParameter?.type.type === "model" && result.bodyParameter.type.base === "json") {
     result.bodyParameter["propertyToParameterName"] = {};
     result.bodyParameter["defaultToUnsetSentinel"] = true;
