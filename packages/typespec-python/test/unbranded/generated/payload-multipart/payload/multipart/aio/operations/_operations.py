@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -120,7 +120,7 @@ class FormDataOperations:
         if isinstance(body, _model_base.Model):
             _body = body._as_origin_dict()  # pylint: disable=protected-access
         else:
-            _body = cast(Dict[str, Any], body)
+            _body = body
         _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
         _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 

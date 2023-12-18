@@ -562,7 +562,9 @@ class Model(_MyMutableMapping):
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
-    def _as_origin_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
+    def _as_origin_dict(
+        self, *, exclude_readonly: bool = False
+    ) -> MutableMapping[str, typing.Any]:  # pylint: disable=unsubscriptable-object
         """Return a dict that the value is the origin value instead of serialized value.
 
         :keyword bool exclude_readonly: Whether to remove the readonly properties.

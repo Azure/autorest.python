@@ -479,8 +479,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-        if self.code_model.has_form_data:
-            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 
     def get_response_from_status(
