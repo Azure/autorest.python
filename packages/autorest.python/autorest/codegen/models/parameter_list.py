@@ -135,10 +135,7 @@ class _ParameterListBase(
 
     @property
     def has_form_data_body(self):
-        return (
-            self.has_body
-            and self.body_parameter.default_content_type == "multipart/form-data"
-        )
+        return self.has_body and self.body_parameter.is_form_data
 
     @property
     def has_body(self) -> bool:

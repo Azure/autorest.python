@@ -761,7 +761,7 @@ class _OperationSerializer(
         This function serializes the body params that need to be serialized.
         """
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if body_param.default_content_type == "multipart/form-data":
+        if body_param.is_form_data:
             return [
                 f"if isinstance({body_param.client_name}, _model_base.Model):",
                 f"    _body = {body_param.client_name}._as_origin_dict()  # pylint: disable=protected-access",

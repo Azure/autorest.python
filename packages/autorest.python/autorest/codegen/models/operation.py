@@ -589,11 +589,7 @@ class Operation(OperationBase[Response]):
                 file_import.add_submodule_import(
                     f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
                 )
-        if (
-            self.parameters.has_body
-            and self.parameters.body_parameter.default_content_type
-            == "multipart/form-data"
-        ):
+        if self.has_form_data_body:
             file_import.add_submodule_import(
                 relative_path, "_model_base", ImportType.LOCAL
             )
