@@ -171,26 +171,14 @@ def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
             yaml_data[k] = v
 
 
-def _has_special_content_type(
-    yaml_data: Dict[str, Any], judge_func: Callable[[str], bool]
-) -> bool:
-    return any(ct for ct in yaml_data.get("contentTypes", []) if judge_func(ct))
-
-
-def _is_json(content_type: str) -> bool:
-    return bool(JSON_REGEXP.match(content_type))
-
-
 def has_json_content_type(yaml_data: Dict[str, Any]) -> bool:
-    return _has_special_content_type(yaml_data, _is_json)
-
-
-def _is_multi_part(content_type: str) -> bool:
-    return content_type == "multipart/form-data"
+    return any(ct for ct in yaml_data.get("contentTypes", []) if JSON_REGEXP.match(ct))
 
 
 def has_multi_part_content_type(from_typespec: bool, yaml_data: Dict[str, Any]) -> bool:
-    return from_typespec and _has_special_content_type(yaml_data, _is_multi_part)
+    return from_typespec and any(
+        ct for ct in yaml_data.get("contentTypes", []) if ct == "multipart/form-data"
+    )
 
 
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
@@ -217,6 +205,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         code_model: Dict[str, Any],
         body_parameter: Dict[str, Any],
     ):
+        # only add overload for special content type
         if (  # pylint: disable=too-many-boolean-expressions
             body_parameter
             and body_parameter["type"]["type"] in ("model", "dict", "list")
@@ -233,8 +222,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 "type": "combined",
                 "types": [body_parameter["type"]],
             }
+            # don't add binary overload for multipart content type
             if not has_multi_part_content_type(self.is_cadl, body_parameter):
                 body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
+
             if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":
                 body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
             code_model["types"].append(body_parameter["type"])
