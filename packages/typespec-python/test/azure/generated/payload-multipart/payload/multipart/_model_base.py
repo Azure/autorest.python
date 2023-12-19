@@ -562,36 +562,6 @@ class Model(_MyMutableMapping):
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
-    def _as_origin_dict(
-        self, *, exclude_readonly: bool = False
-    ) -> MutableMapping[str, typing.Any]:  # pylint: disable=unsubscriptable-object
-        """Return a dict that the value is the origin value instead of serialized value.
-
-        :keyword bool exclude_readonly: Whether to remove the readonly properties.
-        :returns: A dict JSON compatible object
-        :rtype: dict
-        """
-
-        result = {}
-        for attr, field in self._attr_to_rest_field.items():
-            if exclude_readonly and _is_readonly(rest_field):  # pyright: ignore[reportUnboundVariable]
-                continue
-            rest_name = field._rest_name  # pylint: disable=protected-access
-            value = self.get(rest_name)
-            if value is not None:
-                result[rest_name] = Model._as_origin_dict_value(getattr(self, attr), exclude_readonly=exclude_readonly)
-        return result
-
-    @staticmethod
-    def _as_origin_dict_value(v: typing.Any, exclude_readonly: bool = False) -> typing.Any:
-        if v is None or isinstance(v, _Null):
-            return None
-        if isinstance(v, (list, tuple, set)):
-            return [Model._as_origin_dict_value(x, exclude_readonly=exclude_readonly) for x in v]
-        if isinstance(v, dict):
-            return {dk: Model._as_origin_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
-        return v._as_origin_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_origin_dict") else v
-
     @staticmethod
     def _as_dict_value(v: typing.Any, exclude_readonly: bool = False) -> typing.Any:
         if v is None or isinstance(v, _Null):

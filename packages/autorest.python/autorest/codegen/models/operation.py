@@ -597,6 +597,11 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "multipart_form_data_file", ImportType.LOCAL
             )
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor",
+                "handle_multipart_form_data_model",
+                ImportType.LOCAL,
+            )
 
         return file_import
 

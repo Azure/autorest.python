@@ -175,8 +175,8 @@ def has_json_content_type(yaml_data: Dict[str, Any]) -> bool:
     return any(ct for ct in yaml_data.get("contentTypes", []) if JSON_REGEXP.match(ct))
 
 
-def has_multi_part_content_type(from_typespec: bool, yaml_data: Dict[str, Any]) -> bool:
-    return from_typespec and any(
+def has_multi_part_content_type(yaml_data: Dict[str, Any]) -> bool:
+    return any(
         ct for ct in yaml_data.get("contentTypes", []) if ct == "multipart/form-data"
     )
 
@@ -211,7 +211,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             and body_parameter["type"]["type"] in ("model", "dict", "list")
             and (
                 has_json_content_type(body_parameter)
-                or has_multi_part_content_type(self.is_cadl, body_parameter)
+                or (self.is_cadl and has_multi_part_content_type(body_parameter))
             )
             and not body_parameter["type"].get("xmlMetadata")
             and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
@@ -223,7 +223,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 "types": [body_parameter["type"]],
             }
             # don't add binary overload for multipart content type
-            if not has_multi_part_content_type(self.is_cadl, body_parameter):
+            if not (self.is_cadl and has_multi_part_content_type(body_parameter)):
                 body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
 
             if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":

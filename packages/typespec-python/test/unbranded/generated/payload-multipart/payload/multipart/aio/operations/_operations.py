@@ -22,7 +22,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import _model_base, models as _models
-from ..._vendor import multipart_form_data_file
+from ..._vendor import handle_multipart_form_data_model, multipart_form_data_file
 from ...operations._operations import build_form_data_basic_request
 
 if sys.version_info >= (3, 9):
@@ -118,7 +118,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if isinstance(body, _model_base.Model):
-            _body = body._as_origin_dict()  # pylint: disable=protected-access
+            _body = handle_multipart_form_data_model(body)
         else:
             _body = body
         _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
