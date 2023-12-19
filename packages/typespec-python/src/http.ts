@@ -1,6 +1,7 @@
 import {
   SdkBasicServiceMethod,
   SdkBodyParameter,
+  SdkClientType,
   SdkContext,
   SdkHeaderParameter,
   SdkHttpOperation,
@@ -24,15 +25,17 @@ import {
   isAzureCoreModel,
 } from "./utils.js";
 import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
+import { PythonSdkContext } from "./lib.js";
 
 export function emitBasicHttpMethod(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkBasicServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   return [
     {
-      ...emitHttpOperation(context, operationGroupName, method.operation, method),
+      ...emitHttpOperation(context, client, operationGroupName, method.operation, method),
       abstract: isAbstract(method),
       internal: method.access === "internal",
       name: camelToSnakeCase(method.name),
@@ -43,11 +46,12 @@ export function emitBasicHttpMethod(
 }
 
 function emitInitialLroHttpMethod(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkLroServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any> {
-  const initialOperation = emitHttpOperation(context, operationGroupName, method.initialOperation);
+  const initialOperation = emitHttpOperation(context, client, operationGroupName, method.initialOperation);
   initialOperation.responses.forEach((resp: Record<string, any>) => {
     if (method.initialOperation.responses[resp.statusCodes[0]]?.type) {
       resp["type"] = KnownTypes.anyObject;
@@ -65,15 +69,16 @@ function emitInitialLroHttpMethod(
 }
 
 function addLroInformation(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkLroServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
-  opreationGroupName: string,
+  operationGroupName: string,
 ) {
   return {
-    ...emitHttpOperation(context, opreationGroupName, method.operation, method),
+    ...emitHttpOperation(context, client, operationGroupName, method.operation, method),
     name: camelToSnakeCase(method.name),
     discriminator: "lro",
-    initialOperation: emitInitialLroHttpMethod(context, method, opreationGroupName),
+    initialOperation: emitInitialLroHttpMethod(context, client, method, operationGroupName),
     exposeStreamKeyword: false,
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
@@ -81,7 +86,8 @@ function addLroInformation(
 }
 
 function addPagingInformation(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkPagingServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ) {
@@ -91,7 +97,7 @@ function addPagingInformation(
     }
   }
   const itemType = getType(context, method.response.type!);
-  const base = emitHttpOperation(context, operationGroupName, method.operation, method);
+  const base = emitHttpOperation(context, client, operationGroupName, method.operation, method);
   base.responses.forEach((resp: Record<string, any>) => {
     resp.type = itemType;
   });
@@ -109,35 +115,39 @@ function addPagingInformation(
 }
 
 export function emitLroHttpMethod(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkLroServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
-  const lroMethod = addLroInformation(context, method, operationGroupName);
+  const lroMethod = addLroInformation(context, client, method, operationGroupName);
   return [lroMethod.initialOperation, lroMethod];
 }
 
 export function emitPagingHttpMethod(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
-  const pagingMethod = addPagingInformation(context, method, operationGroupName);
+  const pagingMethod = addPagingInformation(context, client, method, operationGroupName);
   return [pagingMethod];
 }
 
 export function emitLroPagingHttpMethod(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   method: SdkLroPagingServiceMethod<SdkHttpOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
-  const pagingMethod = addPagingInformation(context, method, operationGroupName);
-  const lroMethod = addLroInformation(context, method, operationGroupName);
+  const pagingMethod = addPagingInformation(context, client, method, operationGroupName);
+  const lroMethod = addLroInformation(context, client, method, operationGroupName);
   return [lroMethod.initialOperation, pagingMethod, lroMethod];
 }
 
 function emitHttpOperation(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
   operationGroupName: string,
   operation: SdkHttpOperation,
   method?: SdkServiceMethod<SdkHttpOperation>,
@@ -153,7 +163,7 @@ function emitHttpOperation(
   const result = {
     url: operation.path,
     method: operation.verb.toUpperCase(),
-    parameters: emitHttpParameters(context, operation),
+    parameters: emitHttpParameters(context, client, operation),
     bodyParameter: emitHttpBodyParameter(context, operation.bodyParams),
     responses,
     exceptions,
@@ -205,7 +215,7 @@ function emitFlattenedParameter(
   };
 }
 
-function emitHttpPathParameter(context: SdkContext<SdkHttpOperation>, parameter: SdkPathParameter) {
+function emitHttpPathParameter(context: PythonSdkContext<SdkHttpOperation>, parameter: SdkPathParameter) {
   const base = emitParamBase(context, parameter);
   return {
     ...base,
@@ -217,7 +227,7 @@ function emitHttpPathParameter(context: SdkContext<SdkHttpOperation>, parameter:
   };
 }
 function emitHttpHeaderParameter(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
   parameter: SdkHeaderParameter,
 ): Record<string, any> {
   const base = emitParamBase(context, parameter);
@@ -237,7 +247,7 @@ function emitHttpHeaderParameter(
 }
 
 function emitHttpQueryParameter(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
   parameter: SdkQueryParameter,
 ): Record<string, any> {
   const base = emitParamBase(context, parameter);
@@ -253,8 +263,12 @@ function emitHttpQueryParameter(
   };
 }
 
-function emitHttpParameters(context: SdkContext<SdkHttpOperation>, operation: SdkHttpOperation): Record<string, any>[] {
-  const parameters: Record<string, any>[] = [];
+function emitHttpParameters(
+  context: PythonSdkContext<SdkHttpOperation>,
+  client: SdkClientType<SdkHttpOperation>,
+  operation: SdkHttpOperation,
+): Record<string, any>[] {
+  const parameters: Record<string, any>[] = context.__endpointPathParameters[client.name] ?? [];
   for (const queryParam of operation.queryParams) {
     parameters.push(emitHttpQueryParameter(context, queryParam));
   }
@@ -268,7 +282,7 @@ function emitHttpParameters(context: SdkContext<SdkHttpOperation>, operation: Sd
 }
 
 function emitHttpBodyParameter(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
   bodyParams: SdkBodyParameter[],
 ): Record<string, any> | undefined {
   if (bodyParams.length === 0) return undefined;
@@ -285,7 +299,7 @@ function emitHttpBodyParameter(
 }
 
 function emitHttpResponse(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
   statusCodes: string,
   response: SdkHttpResponse,
   method?: SdkServiceMethod<SdkHttpOperation>,
@@ -308,7 +322,7 @@ function emitHttpResponse(
 }
 
 function emitHttpResponseHeader(
-  context: SdkContext<SdkHttpOperation>,
+  context: PythonSdkContext<SdkHttpOperation>,
   header: SdkServiceResponseHeader,
 ): Record<string, any> {
   return {

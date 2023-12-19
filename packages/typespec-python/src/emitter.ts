@@ -1,10 +1,15 @@
 import { EmitContext } from "@typespec/compiler";
-import { createSdkContext, SdkContext, SdkHttpOperation } from "@azure-tools/typespec-client-generator-core";
+import {
+  createSdkContext,
+  SdkContext,
+  SdkHttpOperation,
+  SdkServiceOperation,
+} from "@azure-tools/typespec-client-generator-core";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
-import { PythonEmitterOptions } from "./lib.js";
+import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 
 const defaultOptions = {
@@ -44,6 +49,15 @@ interface InternalPythonEmitterOptions {
   "package-mode"?: string;
 }
 
+function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
+  context: EmitContext<PythonEmitterOptions>,
+): PythonSdkContext<TServiceOperation> {
+  return {
+    ...createSdkContext<TServiceOperation>(context, "@azure-tools/typespec-python"),
+    __endpointPathParameters: {},
+  };
+}
+
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
   const program = context.program;
   const resolvedOptions: PythonEmitterOptions & InternalPythonEmitterOptions = {
@@ -51,7 +65,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     ...context.options,
   };
 
-  const sdkContext = createSdkContext<SdkHttpOperation>(context, "@azure-tools/typespec-python");
+  const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
   const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
   const outputDir = context.emitterOutputDir;
   const yamlMap = emitCodeModel(sdkContext);

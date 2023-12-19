@@ -14,65 +14,71 @@ import {
 import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
+import { PythonSdkContext } from "./lib.js";
 
 function emitBasicMethod<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   method: SdkBasicServiceMethod<TServiceOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   if (method.operation.kind !== "http") throw new Error("We only support HTTP operations right now");
   switch (method.operation.kind) {
     case "http":
-      return emitBasicHttpMethod(context, method, operationGroupName);
+      return emitBasicHttpMethod(context, client, method, operationGroupName);
     default:
       throw new Error("We only support HTTP operations right now");
   }
 }
 
 function emitLroMethod<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   method: SdkLroServiceMethod<TServiceOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   if (method.operation.kind !== "http") throw new Error("We only support HTTP operations right now");
   switch (method.operation.kind) {
     case "http":
-      return emitLroHttpMethod(context, method, operationGroupName);
+      return emitLroHttpMethod(context, client, method, operationGroupName);
     default:
       throw new Error("We only support HTTP operations right now");
   }
 }
 
 function emitPagingMethod<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   method: SdkPagingServiceMethod<TServiceOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   if (method.operation.kind !== "http") throw new Error("We only support HTTP operations right now");
   switch (method.operation.kind) {
     case "http":
-      return emitPagingHttpMethod(context, method, operationGroupName);
+      return emitPagingHttpMethod(context, client, method, operationGroupName);
     default:
       throw new Error("We only support HTTP operations right now");
   }
 }
 
 function emitLroPagingMethod<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   method: SdkLroPagingServiceMethod<TServiceOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   if (method.operation.kind !== "http") throw new Error("We only support HTTP operations right now");
   switch (method.operation.kind) {
     case "http":
-      return emitLroPagingHttpMethod(context, method, operationGroupName);
+      return emitLroPagingHttpMethod(context, client, method, operationGroupName);
     default:
       throw new Error("We only support HTTP operations right now");
   }
 }
 
-function emitMethodParameter(
-  context: SdkContext,
+function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
 ): Record<string, any> {
   const base = {
@@ -82,12 +88,19 @@ function emitMethodParameter(
     location: parameter.kind,
   };
   if (parameter.kind === "endpoint") {
-    return {
+    const endpointParameter = {
       ...base,
       skipUrlEncoding: !parameter.urlEncode,
-      wireName: "$host",
-      location: "endpoint",
+      wireName: client.hasParameterizedEndpoint ? parameter.nameInClient : "$host",
+      location: client.hasParameterizedEndpoint ? "endpointPath" : "path",
     };
+    if (client.hasParameterizedEndpoint) {
+      if (!context.__endpointPathParameters[client.name]) {
+        context.__endpointPathParameters[client.name] = [];
+      }
+      context.__endpointPathParameters[client.name].push(endpointParameter);
+    }
+    return endpointParameter;
   }
   if (parameter.isApiVersionParam) {
     return {
@@ -100,24 +113,25 @@ function emitMethodParameter(
 }
 
 function emitMethod<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
+  client: SdkClientType<TServiceOperation>,
   method: SdkServiceMethod<TServiceOperation>,
   operationGroupName: string,
 ): Record<string, any>[] {
   switch (method.kind) {
     case "basic":
-      return emitBasicMethod(context, method, operationGroupName);
+      return emitBasicMethod(context, client, method, operationGroupName);
     case "lro":
-      return emitLroMethod(context, method, operationGroupName);
+      return emitLroMethod(context, client, method, operationGroupName);
     case "paging":
-      return emitPagingMethod(context, method, operationGroupName);
+      return emitPagingMethod(context, client, method, operationGroupName);
     default:
-      return emitLroPagingMethod(context, method, operationGroupName);
+      return emitLroPagingMethod(context, client, method, operationGroupName);
   }
 }
 
 function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
   client: SdkClientType<TServiceOperation>,
   prefix: string,
 ): Record<string, any>[] | undefined {
@@ -130,7 +144,7 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
       let operations: Record<string, any>[] = [];
       for (const method of operationGroup.methods) {
         if (method.kind === "clientaccessor") continue;
-        operations = operations.concat(emitMethod(context, method, operationGroup.name));
+        operations = operations.concat(emitMethod(context, client, method, operationGroup.name));
       }
       operationGroups.push({
         name: name,
@@ -147,7 +161,7 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
     let operations: Record<string, any>[] = [];
     for (const method of client.methods) {
       if (method.kind === "clientaccessor") continue;
-      operations = operations.concat(emitMethod(context, method, ""));
+      operations = operations.concat(emitMethod(context, client, method, ""));
     }
     if (operations.length > 0) {
       operationGroups.push({
@@ -163,13 +177,13 @@ function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
 }
 
 function emitClient<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
   client: SdkClientType<TServiceOperation>,
 ): Record<string, any> {
   return {
     name: client.name,
     description: client.description ?? "",
-    parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, x)),
+    parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)),
     operationGroups: emitOperationGroups(context, client, ""),
     url: client.endpoint,
     apiVersions: client.apiVersions,
@@ -178,7 +192,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
 }
 
 export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
-  sdkContext: SdkContext<TServiceOperation>,
+  sdkContext: PythonSdkContext<TServiceOperation>,
 ) {
   // Get types
   const sdkPackage = sdkContext.sdkPackage;
