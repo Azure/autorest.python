@@ -7,51 +7,30 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Union
+from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models as _models
 from .._serialization import Deserializer, Serializer
-from ._configuration import ServiceClientConfiguration
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
+from ._configuration import MediaTypeClientConfiguration
+from .operations import StringBodyOperations
 
 
-class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test that we can use @client and @operationGroup decorators to customize client side code
-    structure, such as:
+class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Test the payload with different media types and different types of the payload itself.
 
-
-    #. have everything as default.
-    #. to rename client or operation group
-    #. one client can have more than one operations groups
-    #. split one interface into two clients
-    #. have two clients with operations come from different interfaces
-    #. have two clients with a hierarchy relation.
-
-    :ivar baz: BazOperations operations
-    :vartype baz: client.structure.service.aio.operations.BazOperations
-    :ivar qux: QuxOperations operations
-    :vartype qux: client.structure.service.aio.operations.QuxOperations
-    :ivar foo: FooOperations operations
-    :vartype foo: client.structure.service.aio.operations.FooOperations
-    :ivar bar: BarOperations operations
-    :vartype bar: client.structure.service.aio.operations.BarOperations
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
-    :type endpoint: str
-    :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", and "two-operation-group". Required.
-    :type client: str or ~client.structure.service.models.ClientType
+    :ivar string_body: StringBodyOperations operations
+    :vartype string_body: payload.mediatype.aio.operations.StringBodyOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        _endpoint = "{endpoint}/client/structure/{client}"
-        self._config = ServiceClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+        self._config = MediaTypeClientConfiguration(**kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -69,15 +48,12 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.baz = BazOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.qux = QuxOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string_body = StringBodyOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -100,18 +76,13 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
         """
 
         request_copy = deepcopy(request)
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
-        }
-
-        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
+        request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ServiceClient":
+    async def __aenter__(self) -> "MediaTypeClient":
         await self._client.__aenter__()
         return self
 

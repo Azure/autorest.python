@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._operations import BazOperations
+from ._operations import QuxOperations
 from ._operations import FooOperations
 from ._operations import BarOperations
 from ._operations import ServiceClientOperationsMixin
@@ -15,6 +17,8 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "BazOperations",
+    "QuxOperations",
     "FooOperations",
     "BarOperations",
     "ServiceClientOperationsMixin",
