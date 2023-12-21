@@ -16,3 +16,9 @@ async def test_json(client: MediaTypeClient):
     data = "foo"
     await client.string_body.send_as_json(data)
     assert await client.string_body.get_as_json() == data
+
+@pytest.mark.asyncio
+async def test_text(client: MediaTypeClient):
+    data = "{cat}"
+    await client.string_body.send_as_text(data)
+    assert await client.string_body.get_as_text() == data
