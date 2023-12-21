@@ -1101,7 +1101,6 @@ class _OperationSerializer(
                         and response.default_content_type == "application/json"
                         else ""
                     )
-                    # content_types = [h.client_default_value for h in builder.parameters.headers if h.wire_name.lower() == "accept"]
                     response_attr = (
                         "json"
                         if JSON_REGEXP.match(str(response.default_content_type))

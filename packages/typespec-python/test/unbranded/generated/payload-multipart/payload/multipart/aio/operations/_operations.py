@@ -82,7 +82,7 @@ class FormDataOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "multipart/form-data"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = body
 
         _request = build_form_data_basic_request(
             content_type=content_type,
