@@ -78,6 +78,15 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         ]
 
     @property
+    def has_form_data(self) -> bool:
+        for client in self.clients:
+            for operation_group in client.operation_groups:
+                for operation in operation_group.operations:
+                    if operation.has_form_data_body:
+                        return True
+        return False
+
+    @property
     def has_etag(self) -> bool:
         return any(client.has_etag for client in self.clients)
 
@@ -133,7 +142,12 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc or self.has_etag
+        return (
+            self.need_request_converter
+            or self.need_mixin_abc
+            or self.has_etag
+            or self.has_form_data
+        )
 
     @property
     def need_request_converter(self) -> bool:

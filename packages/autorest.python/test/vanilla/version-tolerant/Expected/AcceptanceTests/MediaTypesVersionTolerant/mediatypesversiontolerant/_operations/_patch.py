@@ -75,7 +75,7 @@ class MediaTypesSharedMixin:
         return request, kwargs
 
     @staticmethod
-    def _handle_body_three_types_response(pipeline_response: PipelineResponse, cls=None, error_map=None):
+    def _handle_body_three_types_response(pipeline_response: PipelineResponse, error_map, cls):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -165,7 +165,7 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
         pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
-        return self._handle_body_three_types_response(pipeline_response, cls=cls, error_map=error_map)
+        return self._handle_body_three_types_response(pipeline_response, error_map, cls)
 
 
 __all__: List[str] = [
