@@ -60,6 +60,14 @@ OperationType = TypeVar(
 )
 
 
+def _need_type_ignore(builder: OperationType) -> bool:
+    for excep in builder.non_default_errors:
+        for status_code in excep.status_codes:
+            if status_code in (401, 404, 409, 304):
+                return True
+    return False
+
+
 def _xml_config(send_xml: bool, content_types: List[str]) -> str:
     if not (send_xml and "xml" in str(content_types)):
         return ""
@@ -548,11 +556,16 @@ class RequestBuilderSerializer(
         return retval
 
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
-        retval = ["# Construct headers"]
-        for parameter in builder.parameters.headers:
+        headers = [
+            h
+            for h in builder.parameters.headers
+            if not builder.has_form_data_body or h.wire_name.lower() != "content-type"
+        ]
+        retval = ["# Construct headers"] if headers else []
+        for header in headers:
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
-                    parameter,
+                    header,
                     "headers",
                     self.serializer_name,
                     self.code_model.is_legacy,
@@ -748,8 +761,17 @@ class _OperationSerializer(
 
         This function serializes the body params that need to be serialized.
         """
-        retval: List[str] = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        if body_param.is_form_data:
+            return [
+                f"if isinstance({body_param.client_name}, _model_base.Model):",
+                f"    _body = handle_multipart_form_data_model({body_param.client_name})",
+                "else:",
+                f"    _body = {body_param.client_name}",
+                "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
+                "_data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
+            ]
+        retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
@@ -963,7 +985,10 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
-        if request_builder.overloads:
+        if request_builder.has_form_data_body:
+            retval.append("    data=_data,")
+            retval.append("    files=_files,")
+        elif request_builder.overloads:
             seen_body_params = set()
             for overload in request_builder.overloads:
                 body_param = cast(
@@ -1034,7 +1059,9 @@ class _OperationSerializer(
                     builder.parameters.body_parameter, builder.parameters.parameters
                 )
             )
-        if builder.overloads:
+        if builder.has_form_data_body:
+            retval.extend(self._create_body_parameter(builder))
+        elif builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             retval.extend(self._initialize_overloads(builder, is_paging=is_paging))
         elif builder.parameters.has_body:
@@ -1147,8 +1174,9 @@ class _OperationSerializer(
                     f"        {async_await} response.read()  # Load the body in memory and close the socket",
                 ]
             )
+        type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
         retval.append(
-            "    map_error(status_code=response.status_code, response=response, error_map=error_map)"
+            f"    map_error(status_code=response.status_code, response=response, error_map=error_map){type_ignore}"
         )
         error_model = ""
         if (

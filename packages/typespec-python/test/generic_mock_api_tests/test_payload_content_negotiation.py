@@ -5,26 +5,14 @@
 # --------------------------------------------------------------------------
 import base64
 import pytest
-from pathlib import Path
 from payload.contentnegotiation import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
 
-FILE_FOLDER = Path(__file__).parent
 
 @pytest.fixture
 def client():
     with ContentNegotiationClient(endpoint="http://localhost:3000") as client:
         yield client
-
-@pytest.fixture
-def png_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
-        return file_in.read()
-
-@pytest.fixture
-def jpg_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
-        return file_in.read()
 
 def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
     assert client.same_body.get_avatar_as_png() == png_data
