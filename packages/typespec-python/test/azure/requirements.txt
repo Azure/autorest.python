@@ -61,3 +61,4 @@ azure-core==1.29.5
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
+-e ./generated/payload-media-type
