@@ -38,6 +38,7 @@ from ..models import (
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
 from . import utils
+from ..._utils import JSON_REGEXP
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
@@ -791,17 +792,20 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
-                create_body_call = (
-                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                    "cls=SdkJSONEncoder, exclude_readonly=True, "
-                    f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
-                )
+            if JSON_REGEXP.match(body_param.default_content_type):
+                if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
+                    create_body_call = (
+                        f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                        "cls=SdkJSONEncoder, exclude_readonly=True, "
+                        f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
+                    )
+                else:
+                    create_body_call = (
+                        f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                        "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
+                    )
             else:
-                create_body_call = (
-                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                    "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
-                )
+                create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -1124,12 +1128,17 @@ class _OperationSerializer(
                         and response.default_content_type == "application/json"
                         else ""
                     )
+                    response_attr = (
+                        "json"
+                        if JSON_REGEXP.match(str(response.default_content_type))
+                        else "text"
+                    )
                     deserialize_code.append("deserialized = _deserialize(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                     )
                     deserialize_code.append(
-                        f"    response.json(){response.result_property}{format_filed}"
+                        f"    response.{response_attr}(){response.result_property}{format_filed}"
                     )
                     deserialize_code.append(")")
 

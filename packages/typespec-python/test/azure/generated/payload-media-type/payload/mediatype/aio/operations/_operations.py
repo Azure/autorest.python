@@ -77,7 +77,7 @@ class StringBodyOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "text/plain"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(text, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = text
 
         _request = build_string_body_send_as_text_request(
             content_type=content_type,
@@ -148,7 +148,7 @@ class StringBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(str, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

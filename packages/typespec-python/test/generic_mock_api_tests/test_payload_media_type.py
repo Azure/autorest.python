@@ -15,3 +15,8 @@ def test_json(client: MediaTypeClient):
     data = "foo"
     client.string_body.send_as_json(data)
     assert client.string_body.get_as_json() == data
+
+def test_text(client: MediaTypeClient):
+    data = "{cat}"
+    client.string_body.send_as_text(data)
+    assert client.string_body.get_as_text() == data
