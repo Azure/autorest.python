@@ -1,5 +1,30 @@
 # Release
 
+## 2023-12-22 - 0.17.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.50.0`      |
+| `@typespec/http`                                                        | `0.50.0`      |
+| `@typespec/rest`                                                        | `0.50.0`      |
+| `@typespec/versioning`                                                  | `0.50.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.36.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.1`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b1`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Support `multipart/form-data` #2314
+
+**Other Changes**
+
+- import deserialization logic with content type #2320
+
 ## 2023-12-11 - 0.16.4
 
 | Library                                                                 | Min Version   |
