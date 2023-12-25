@@ -173,14 +173,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -430,7 +430,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -527,7 +527,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

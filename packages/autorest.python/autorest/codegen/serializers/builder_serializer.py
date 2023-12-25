@@ -38,7 +38,6 @@ from ..models import (
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
 from . import utils
-from ..._utils import JSON_REGEXP
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
@@ -58,14 +57,6 @@ OperationType = TypeVar(
     "OperationType",
     bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
-
-
-def _need_type_ignore(builder: OperationType) -> bool:
-    for excep in builder.non_default_errors:
-        for status_code in excep.status_codes:
-            if status_code in (401, 404, 409, 304):
-                return True
-    return False
 
 
 def _xml_config(send_xml: bool, content_types: List[str]) -> str:
@@ -556,16 +547,11 @@ class RequestBuilderSerializer(
         return retval
 
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
-        headers = [
-            h
-            for h in builder.parameters.headers
-            if not builder.has_form_data_body or h.wire_name.lower() != "content-type"
-        ]
-        retval = ["# Construct headers"] if headers else []
-        for header in headers:
+        retval = ["# Construct headers"]
+        for parameter in builder.parameters.headers:
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
-                    header,
+                    parameter,
                     "headers",
                     self.serializer_name,
                     self.code_model.is_legacy,
@@ -761,17 +747,8 @@ class _OperationSerializer(
 
         This function serializes the body params that need to be serialized.
         """
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if body_param.is_form_data:
-            return [
-                f"if isinstance({body_param.client_name}, _model_base.Model):",
-                f"    _body = handle_multipart_form_data_model({body_param.client_name})",
-                "else:",
-                f"    _body = {body_param.client_name}",
-                "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
-                "_data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
-            ]
         retval: List[str] = []
+        body_param = cast(BodyParameter, builder.parameters.body_parameter)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
@@ -792,20 +769,17 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if JSON_REGEXP.match(body_param.default_content_type):
-                if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
-                    create_body_call = (
-                        f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                        "cls=SdkJSONEncoder, exclude_readonly=True, "
-                        f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
-                    )
-                else:
-                    create_body_call = (
-                        f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                        "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
-                    )
+            if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=SdkJSONEncoder, exclude_readonly=True, "
+                    f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
+                )
             else:
-                create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
+                )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -985,10 +959,7 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
-        if request_builder.has_form_data_body:
-            retval.append("    data=_data,")
-            retval.append("    files=_files,")
-        elif request_builder.overloads:
+        if request_builder.overloads:
             seen_body_params = set()
             for overload in request_builder.overloads:
                 body_param = cast(
@@ -1059,9 +1030,7 @@ class _OperationSerializer(
                     builder.parameters.body_parameter, builder.parameters.parameters
                 )
             )
-        if builder.has_form_data_body:
-            retval.extend(self._create_body_parameter(builder))
-        elif builder.overloads:
+        if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             retval.extend(self._initialize_overloads(builder, is_paging=is_paging))
         elif builder.parameters.has_body:
@@ -1128,19 +1097,21 @@ class _OperationSerializer(
                         and response.default_content_type == "application/json"
                         else ""
                     )
-                    response_attr = (
-                        "json"
-                        if JSON_REGEXP.match(str(response.default_content_type))
-                        else "text"
-                    )
                     deserialize_code.append("deserialized = _deserialize(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                     )
                     deserialize_code.append(
-                        f"    response.{response_attr}(){response.result_property}{format_filed}"
+                        f"    response.json(){response.result_property}{format_filed}"
                     )
-                    deserialize_code.append(")")
+                    # it is hard to judge in accurate whether initial call response has body, so judge it in run-time
+                    check_body_str = (
+                        " if response.text() else {}"
+                        if builder.is_lro_initial_operation
+                        and self.code_model.options["from_typespec"]
+                        else ""
+                    )
+                    deserialize_code.append(")" + check_body_str)
 
             else:
                 deserialized_value = (
@@ -1174,9 +1145,8 @@ class _OperationSerializer(
                     f"        {async_await} response.read()  # Load the body in memory and close the socket",
                 ]
             )
-        type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
         retval.append(
-            f"    map_error(status_code=response.status_code, response=response, error_map=error_map){type_ignore}"
+            "    map_error(status_code=response.status_code, response=response, error_map=error_map)"
         )
         error_model = ""
         if (
