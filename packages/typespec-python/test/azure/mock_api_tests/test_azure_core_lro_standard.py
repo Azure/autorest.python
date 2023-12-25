@@ -12,17 +12,15 @@ def client():
     with StandardClient() as client:
         yield client
 
-# cadl-ranch check api-version in poll request which is not supported by azure-core
+def test_lro_core_put(client, polling_method):
+    user = User({"name": "madge", "role": "contributor"})
+    result = client.begin_create_or_replace(name=user.name, resource=user, polling_interval=0, polling=polling_method).result()
+    assert result == user
 
-# def test_lro_core_put(client):
-#     user = User({"name": "madge", "role": "contributor"})
-#     result = client.begin_create_or_replace(name=user.name, resource=user, polling_interval=0).result()
-#     assert result == user
+def test_lro_core_delete(client, polling_method):
+    client.begin_delete(name="madge", polling_interval=0, polling=polling_method).result()
 
-# def test_lro_core_delete(client):
-#     client.begin_delete(name="madge", polling_interval=0).result()
-
-# def test_lro_core_export(client):
-#     export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
-#     result = client.begin_export(name="madge", format="json", polling_interval=0).result()
-#     assert result == export_user
+def test_lro_core_export(client, polling_method):
+    export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
+    result = client.begin_export(name="madge", format="json", polling_interval=0, polling=polling_method).result()
+    assert result == export_user

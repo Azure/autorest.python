@@ -2,7 +2,7 @@ aiohttp;python_full_version>="3.5.2"
 requests==2.28.2
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
-corehttp==1.0.0b1
+corehttp==1.0.0b2
 
 # common test case
 -e ./generated/authentication-api-key
@@ -50,3 +50,4 @@ corehttp==1.0.0b1
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
+-e ./generated/payload-media-type

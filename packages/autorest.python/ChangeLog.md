@@ -1,5 +1,37 @@
 # Release
 
+## 2023-12-22 - 6.11.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.29.5`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Other Changes**
+
+- Upgrade dependency of `azure-core` #2314
+
+## 2023-12-11 - 6.11.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.28.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**New Features**
+
+- Support sub operation groups #2294
+
 ## 2023-12-06 - 6.10.2
 
 | Library                                                                 | Min Version |

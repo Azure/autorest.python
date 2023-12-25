@@ -2,7 +2,7 @@ aiohttp;python_full_version>="3.5.2"
 requests==2.31.0
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
-azure-core==1.28.0
+azure-core==1.29.5
 # only for azure
 -e ./generated/azure-mgmt-spheredpg
 -e ./generated/azure-mgmt-spheremsrest
@@ -61,3 +61,4 @@ azure-core==1.28.0
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
+-e ./generated/payload-media-type
