@@ -40,12 +40,12 @@ def build_versioned_without_api_version_request(**kwargs: Any) -> HttpRequest:  
 def build_versioned_with_query_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("apiVersion", "2022-12-01-preview"))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     # Construct URL
     _url = "/server/versions/versioned/with-query-api-version"
 
     # Construct parameters
-    _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
