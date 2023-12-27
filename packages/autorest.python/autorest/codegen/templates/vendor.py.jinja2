@@ -77,11 +77,9 @@ def multipart_file(file: Union[IOBase, bytes]) -> IOBase:
     return NamedBytesIO("auto-name-" + str(uuid.uuid4()), file)
 
 def multipart_data(data: Any) -> Any:
-    serialized_data = _serialize(data)
-
-    if isinstance(serialized_data, (list, tuple, dict)):
-        return json.dumps(serialized_data, cls=SdkJSONEncoder, exclude_readonly=True)
-    return serialized_data
+    if isinstance(data, (list, tuple, dict)):
+        return json.dumps(data, cls=SdkJSONEncoder, exclude_readonly=True)
+    return data
 
 def handle_multipart_form_data_model(body: Model) -> MutableMapping[str, Any]:  # pylint: disable=unsubscriptable-object
     """handle first layer of model. 

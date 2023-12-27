@@ -11,7 +11,7 @@ import sys
 from typing import Any, Union
 import uuid
 
-from ._model_base import Model, SdkJSONEncoder, _serialize
+from ._model_base import Model, SdkJSONEncoder
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -32,11 +32,9 @@ def multipart_file(file: Union[IOBase, bytes]) -> IOBase:
 
 
 def multipart_data(data: Any) -> Any:
-    serialized_data = _serialize(data)
-
-    if isinstance(serialized_data, (list, tuple, dict)):
-        return json.dumps(serialized_data, cls=SdkJSONEncoder, exclude_readonly=True)
-    return serialized_data
+    if isinstance(data, (list, tuple, dict)):
+        return json.dumps(data, cls=SdkJSONEncoder, exclude_readonly=True)
+    return data
 
 
 def handle_multipart_form_data_model(body: Model) -> MutableMapping[str, Any]:  # pylint: disable=unsubscriptable-object
