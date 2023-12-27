@@ -16,9 +16,9 @@ async def client():
 async def test_without_api_version(client: VersionedClient):
     await client.without_api_version()
 
-# @pytest.mark.asyncio
-# def test_with_query_api_version(client: VersionedClient):
-#     await client.with_query_api_version()
+@pytest.mark.asyncio
+async def test_with_query_api_version(client: VersionedClient):
+    await client.with_query_api_version()
 
 @pytest.mark.asyncio
 async def test_with_path_api_version(client: VersionedClient):
