@@ -299,12 +299,7 @@ function emitParameter(
         type = type["valueType"];
     }
     const paramMap: Record<string, any> = {
-        wireName:
-            parameter.type === "path"
-                ? parameter.param.name
-                : parameter.type === "query" && parameter.name.toLocaleLowerCase() === "apiversion"
-                ? "api-version"
-                : parameter.name,
+        wireName: parameter.type === "path" ? parameter.param.name : parameter.name,
         location: parameter.type,
         type: type,
         implementation: implementation,
