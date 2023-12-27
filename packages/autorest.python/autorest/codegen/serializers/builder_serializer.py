@@ -768,8 +768,8 @@ class _OperationSerializer(
                 f"    _body = handle_multipart_form_data_model({body_param.client_name})",
                 "else:",
                 f"    _body = {body_param.client_name}",
-                "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
-                "_data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
+                "_files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
+                "_data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
             ]
         retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name

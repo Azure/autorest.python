@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import _model_base, models as _models
 from .._serialization import Serializer
-from .._vendor import handle_multipart_form_data_model, multipart_form_data_file
+from .._vendor import handle_multipart_form_data_model, multipart_data, multipart_file
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -181,8 +181,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_basic_request(
             data=_data,
@@ -301,8 +301,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_complex_request(
             data=_data,
@@ -403,8 +403,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_json_part_request(
             data=_data,
@@ -505,8 +505,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_binary_array_parts_request(
             data=_data,
@@ -611,8 +611,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_json_array_parts_request(
             data=_data,
@@ -709,8 +709,8 @@ class FormDataOperations:
             _body = handle_multipart_form_data_model(body)
         else:
             _body = body
-        _files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
-        _data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
+        _files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}
+        _data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}
 
         _request = build_form_data_multi_binary_parts_request(
             data=_data,

@@ -35,6 +35,18 @@ def client():
             {},
             {"profileImage": JPG},
         ),
+        (
+            "json_part",
+            models.JsonPartRequest,
+            {"address": {"city": "X"}},
+            {"profileImage": JPG},
+        ),
+        (
+            "json_array_parts",
+            models.JsonArrayPartsRequest,
+            {"previousAddresses": [{"city": "Y"}, {"city": "Z"}]},
+            {"profileImage": JPG},
+        ),
     ],
 )
 def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
