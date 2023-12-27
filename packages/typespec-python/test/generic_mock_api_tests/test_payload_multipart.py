@@ -3,27 +3,55 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Dict, Any
 from pathlib import Path
 import pytest
 from payload.multipart import MultiPartClient, models
+from payload.multipart._model_base import Model
 
-FILE_FOLDER = Path(__file__).parent
+JPG = Path(__file__).parent / "data/image.jpg"
+PNG = Path(__file__).parent / "data/image.png"
+
 
 @pytest.fixture
 def client():
     with MultiPartClient(endpoint="http://localhost:3000") as client:
         yield client
 
-def test_basic(client: MultiPartClient, jpg_data: bytes):
+
+@pytest.mark.parametrize(
+    "op_name,model_class,data,file",
+    [
+        ("basic", models.MultiPartRequest, {"id": "123"}, {"profileImage": JPG}),
+        (
+            "multi_binary_parts",
+            models.MultiBinaryPartsRequest,
+            {},
+            {"profileImage": JPG, "picture": PNG},
+        ),
+        (
+            "multi_binary_parts",
+            models.MultiBinaryPartsRequest,
+            {},
+            {"profileImage": JPG},
+        ),
+    ],
+)
+def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
+    op = getattr(client.form_data, op_name)
     # test bytes
-    client.form_data.basic({"id": "123", "profileImage": jpg_data})
-    client.form_data.basic(models.MultiPartRequest(id="123", profile_image=jpg_data))
+    body = {k: open(str(v), "rb").read() for k, v in file.items()}
+    body.update(data)
+    op(body)
+    op(model_class(body))
 
     # test io
-    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as jpg_data_io:
-        client.form_data.basic({"id": "123", "profileImage": jpg_data_io})
+    body = {k: open(str(v), "rb") for k, v in file.items()}
+    body.update(data)
+    op(body)
 
-    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as jpg_data_io:
+    body = {k: open(str(v), "rb") for k, v in file.items()}
+    body.update(data)
+    with pytest.raises(TypeError):
         # caused by deepcopy when DPG model init
-        with pytest.raises(TypeError):
-            client.form_data.basic(models.MultiPartRequest(id="123", profile_image=jpg_data_io))
+        op(model_class(body))
