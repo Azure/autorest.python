@@ -14,7 +14,7 @@ from .. import _serialization
 
 class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
     _serialization.Model
-):
+):  # pylint: disable=name-too-long
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to server.
@@ -47,7 +47,9 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
         self.world = world
 
 
-class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(_serialization.Model):
+class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(
+    _serialization.Model
+):  # pylint: disable=name-too-long
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to server.

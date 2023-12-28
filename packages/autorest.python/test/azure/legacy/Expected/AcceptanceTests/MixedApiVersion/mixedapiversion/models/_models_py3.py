@@ -51,7 +51,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):
+class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     All required parameters must be populated in order to send to server.

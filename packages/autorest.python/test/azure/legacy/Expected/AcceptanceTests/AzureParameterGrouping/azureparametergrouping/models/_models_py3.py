@@ -102,7 +102,9 @@ class Grouper(msrest.serialization.Model):
         self.grouped_parameter = grouped_parameter
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(
+    msrest.serialization.Model
+):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar header_two:
@@ -201,7 +203,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.body = body
 
 
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
+class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.

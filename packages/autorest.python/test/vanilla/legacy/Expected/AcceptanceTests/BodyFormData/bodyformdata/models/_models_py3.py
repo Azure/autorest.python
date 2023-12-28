@@ -38,7 +38,9 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
+class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(
+    _serialization.Model
+):  # pylint: disable=name-too-long
     """Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to server.
@@ -72,7 +74,9 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         self.file_name = file_name
 
 
-class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
+class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(
+    _serialization.Model
+):  # pylint: disable=name-too-long
     """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to server.

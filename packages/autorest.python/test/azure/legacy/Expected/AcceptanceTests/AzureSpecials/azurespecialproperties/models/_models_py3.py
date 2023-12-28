@@ -51,7 +51,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
+class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
