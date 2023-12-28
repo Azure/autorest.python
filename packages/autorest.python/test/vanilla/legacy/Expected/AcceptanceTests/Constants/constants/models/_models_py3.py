@@ -248,7 +248,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: Default value is "value1".
@@ -290,7 +290,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".

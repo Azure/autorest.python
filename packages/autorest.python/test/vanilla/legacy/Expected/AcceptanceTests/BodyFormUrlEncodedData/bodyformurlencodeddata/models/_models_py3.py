@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
     _serialization.Model
-):
+):  # pylint: disable=name-too-long
     """Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to server.
@@ -85,7 +85,7 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
 class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
     _serialization.Model
-):
+):  # pylint: disable=name-too-long
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     Variables are only populated by the server, and will be ignored when sending a request.

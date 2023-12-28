@@ -387,7 +387,7 @@ class StorageAccount(Resource):  # pylint: disable=too-many-instance-attributes
         self.secondary_endpoints = secondary_endpoints
 
 
-class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):
+class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):  # pylint: disable=name-too-long
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to server.
