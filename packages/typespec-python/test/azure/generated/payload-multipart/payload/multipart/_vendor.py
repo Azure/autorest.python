@@ -32,7 +32,7 @@ def multipart_file(file: Union[IOBase, bytes]) -> IOBase:
 
 
 def multipart_data(data: Any) -> Any:
-    if isinstance(data, (list, tuple, dict)):
+    if isinstance(data, (list, tuple, dict, Model)):
         return json.dumps(data, cls=SdkJSONEncoder, exclude_readonly=True)
     return data
 

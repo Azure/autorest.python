@@ -40,13 +40,13 @@ async def client():
         (
             "json_part",
             models.JsonPartRequest,
-            {"address": {"city": "X"}},
+            {"address": models.Address(city="X")},
             {"profileImage": JPG},
         ),
         (
             "json_array_parts",
             models.JsonArrayPartsRequest,
-            {"previousAddresses": [{"city": "Y"}, {"city": "Z"}]},
+            {"previousAddresses": [models.Address(city="Y"), models.Address(city="Z")]},
             {"profileImage": JPG},
         ),
     ],
