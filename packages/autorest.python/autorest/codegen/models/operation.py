@@ -589,7 +589,12 @@ class Operation(OperationBase[Response]):
                     file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
                     file_import.add_submodule_import(
                         f"{relative_path}_vendor",
-                        "multipart_form_data_file",
+                        "multipart_file",
+                        ImportType.LOCAL,
+                    )
+                    file_import.add_submodule_import(
+                        f"{relative_path}_vendor",
+                        "multipart_data",
                         ImportType.LOCAL,
                     )
                     file_import.add_submodule_import(

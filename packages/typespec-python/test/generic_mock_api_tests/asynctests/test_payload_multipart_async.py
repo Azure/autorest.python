@@ -37,6 +37,18 @@ async def client():
             {},
             {"profileImage": JPG},
         ),
+        (
+            "json_part",
+            models.JsonPartRequest,
+            {"address": models.Address(city="X")},
+            {"profileImage": JPG},
+        ),
+        (
+            "json_array_parts",
+            models.JsonArrayPartsRequest,
+            {"previousAddresses": [models.Address(city="Y"), models.Address(city="Z")]},
+            {"profileImage": JPG},
+        ),
     ],
 )
 async def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
