@@ -11,6 +11,7 @@ import importlib
 from pathlib import Path
 from typing import List
 
+FILE_FOLDER = Path(__file__).parent
 
 def start_server_process():
     path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
@@ -89,3 +90,13 @@ SPECIAL_WORDS = [
 @pytest.fixture
 def special_words() -> List[str]:
     return SPECIAL_WORDS
+
+@pytest.fixture
+def png_data() -> bytes:
+    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
+        return file_in.read()
+
+@pytest.fixture
+def jpg_data() -> bytes:
+    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
+        return file_in.read()

@@ -93,6 +93,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.has_etag: bool = self.yaml_data.get("hasEtag", False)
 
     @property
+    def has_form_data_body(self):
+        return self.parameters.has_form_data_body
+
+    @property
     def expose_stream_keyword(self) -> bool:
         return self.yaml_data.get("exposeStreamKeyword", False)
 
@@ -572,13 +576,36 @@ class Operation(OperationBase[Response]):
             and not self.code_model.options["models_mode"]
         ):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+        relative_path = "..." if async_mode else ".."
         if self.code_model.options["models_mode"] == "dpg":
-            relative_path = "..." if async_mode else ".."
             if self.parameters.has_body:
-                file_import.add_submodule_import(
-                    f"{relative_path}_model_base", "SdkJSONEncoder", ImportType.LOCAL
-                )
-                file_import.add_import("json", ImportType.STDLIB)
+                if not self.parameters.body_parameter.is_form_data:
+                    file_import.add_submodule_import(
+                        f"{relative_path}_model_base",
+                        "SdkJSONEncoder",
+                        ImportType.LOCAL,
+                    )
+                    file_import.add_import("json", ImportType.STDLIB)
+                else:
+                    file_import.add_submodule_import(
+                        relative_path, "_model_base", ImportType.LOCAL
+                    )
+                    file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
+                    file_import.add_submodule_import(
+                        f"{relative_path}_vendor",
+                        "multipart_file",
+                        ImportType.LOCAL,
+                    )
+                    file_import.add_submodule_import(
+                        f"{relative_path}_vendor",
+                        "multipart_data",
+                        ImportType.LOCAL,
+                    )
+                    file_import.add_submodule_import(
+                        f"{relative_path}_vendor",
+                        "handle_multipart_form_data_model",
+                        ImportType.LOCAL,
+                    )
             if self.default_error_deserialization or any(
                 r.type for r in self.responses
             ):

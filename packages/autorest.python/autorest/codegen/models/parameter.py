@@ -244,6 +244,10 @@ class BodyParameter(_ParameterBase):
     """Body parameter."""
 
     @property
+    def is_form_data(self) -> bool:
+        return self.default_content_type == "multipart/form-data"
+
+    @property
     def is_partial_body(self) -> bool:
         """Whether it's part of a bigger body parameter, i.e. a MultipartBodyParameter"""
         return self.yaml_data.get("isPartialBody", False)

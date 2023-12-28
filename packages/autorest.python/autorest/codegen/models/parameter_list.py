@@ -134,6 +134,10 @@ class _ParameterListBase(
         return params
 
     @property
+    def has_form_data_body(self):
+        return self.has_body and self.body_parameter.is_form_data
+
+    @property
     def has_body(self) -> bool:
         """Whether there is a body parameter in the parameter list"""
         return bool(self._body_parameter)
