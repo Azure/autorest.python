@@ -4,7 +4,6 @@ import {
   SdkHttpParameter,
   SdkMethod,
   SdkModelPropertyType,
-  SdkModelType,
   SdkParameter,
   SdkQueryParameter,
   SdkServiceMethod,
@@ -12,7 +11,7 @@ import {
   SdkType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getSimpleTypeResult, getType } from "./types.js";
-import { getNamespaceFullName, Type } from "@typespec/compiler";
+import { getNamespaceFullName } from "@typespec/compiler";
 
 export function camelToSnakeCase(name: string): string {
   if (!name) return name;
@@ -87,7 +86,9 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
 ): ParamBase {
   let type = getType(context, parameter.type, fromBody);
   if (parameter.isApiVersionParam) {
-    type = getSimpleTypeResult({ type: "constant", value: parameter.apiVersions[0], valueType: type });
+    if (parameter.clientDefaultValue) {
+       type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: type });
+    }
   }
   return {
     optional: parameter.optional,
