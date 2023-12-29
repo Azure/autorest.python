@@ -792,8 +792,8 @@ class ExtendsUnknownDerivedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1023,8 +1023,8 @@ class ExtendsUnknownDiscriminatedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
          or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1450,8 +1450,8 @@ class IsUnknownDerivedOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
          or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1681,8 +1681,8 @@ class IsUnknownDiscriminatedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body parameter's content type. Known values are application/json.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
