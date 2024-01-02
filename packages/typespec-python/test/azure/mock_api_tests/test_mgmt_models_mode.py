@@ -4,8 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 import inspect
+import pytest
 from azure.mgmt.spheredpg import AzureSphereClient as MsrestModelClient
 from azure.mgmt.spheremsrest import AzureSphereClient as DpgModelClient
+from azure.mgmt.spheredpg.models import Catalog, CatalogProperties
 
 
 def test_client_signature():
@@ -29,3 +31,36 @@ def test_model_mode():
     from azure.mgmt.spheremsrest import _serialization
     from azure.mgmt.spheremsrest.models import ArmResource as ArmResourceMsrest
     assert isinstance(ArmResourceMsrest(id="", type=""), _serialization.Model)
+
+def test_dpg_model_common():
+    catalog = Catalog(location="eastus", tags={"hello": "world"}, properties=CatalogProperties(provisioning_state="Succeeded"))
+    assert catalog.location == "eastus"
+    assert catalog.tags == {"hello": "world"}
+    assert catalog.properties.provisioning_state == "Succeeded"
+    assert catalog.provisioning_state == "Succeeded"
+
+def test_dpg_model_none():
+    catalog = Catalog()
+    assert catalog.location is None
+    assert catalog.tags is None
+    assert catalog.properties is None
+    assert catalog.provisioning_state is None
+
+def test_dpg_model_compatility():
+    catalog = Catalog(provisioning_state="Succeeded")
+    assert catalog.provisioning_state == "Succeeded"
+    assert catalog.properties.provisioning_state == "Succeeded"
+
+
+def test_dpg_model_setattr():
+    catalog = Catalog()
+
+    catalog.provisioning_state = "Failed"
+    assert catalog.properties.provisioning_state == "Failed"
+    
+    catalog.properties.provisioning_state = "Caceled"
+    assert catalog.provisioning_state == "Caceled"
+
+def test_dpg_model_exception():
+    with pytest.raises(AttributeError):
+        Catalog().no_prop

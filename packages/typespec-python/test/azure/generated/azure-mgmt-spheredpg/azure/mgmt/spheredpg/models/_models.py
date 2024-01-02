@@ -124,6 +124,8 @@ class Catalog(TrackedResourceBase):
     properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
     """The resource-specific properties for this resource."""
 
+    _flatten_items = ["provisioning_state"]
+
     @overload
     def __init__(
         self,
@@ -142,8 +144,28 @@ class Catalog(TrackedResourceBase):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        flatten_map = {k: kwargs.pop(k, None) for k in self._flatten_items}
         super().__init__(*args, **kwargs)
+        for k, v in flatten_map.items():
+            if v is not None:
+                setattr(self, k, v)
 
+    def __getattr__(self, name: str) -> Any:
+        if name in self._flatten_items:
+            if self.properties:
+                return getattr(self.properties, name)
+            return None
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key in self._flatten_items:
+            if self.properties is None:
+                class_type = self._attr_to_rest_field["properties"]._class_type
+                self.properties = class_type()
+            setattr(self.properties, key, value)
+        else:
+            super().__setattr__(key, value)
 
 class CatalogProperties(_model_base.Model):
     """Catalog properties.
