@@ -176,12 +176,15 @@ RESERVED_WORDS = {
         *_always_reserved,
     ],
     PadType.MODEL: [*_always_reserved],
-    PadType.PROPERTY: ["self", *_always_reserved, *RESERVED_MODEL_PROPERTIES],
+    PadType.PROPERTY: ["self", *_always_reserved],
     PadType.ENUM: ["mro", *_always_reserved],
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
 
-CADL_RESERVED_WORDS = {PadType.PARAMETER: ["stream"]}
+CADL_RESERVED_WORDS = {
+    PadType.PARAMETER: ["stream"],
+    PadType.PROPERTY: RESERVED_MODEL_PROPERTIES,
+}
 
 REDEFINED_BUILTINS = [  # we don't pad, but we need to do lint ignores
     "id",
