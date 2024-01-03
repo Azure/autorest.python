@@ -96,6 +96,18 @@ _always_reserved = [
     "int",
 ]
 
+RESERVED_MODEL_PROPERTIES = [
+    "keys",
+    "items",
+    "values",
+    "popitem",
+    "clear",
+    "update",
+    "setdefault",
+    "pop",
+    "get",
+]
+
 RESERVED_WORDS = {
     PadType.METHOD: [*_always_reserved],
     PadType.PARAMETER: [
@@ -164,7 +176,7 @@ RESERVED_WORDS = {
         *_always_reserved,
     ],
     PadType.MODEL: [*_always_reserved],
-    PadType.PROPERTY: ["self", *_always_reserved],
+    PadType.PROPERTY: ["self", *_always_reserved, *RESERVED_MODEL_PROPERTIES],
     PadType.ENUM: ["mro", *_always_reserved],
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
