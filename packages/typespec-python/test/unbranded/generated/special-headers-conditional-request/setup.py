@@ -62,5 +62,5 @@ setup(
         "isodate<1.0.0,>=0.6.1",
         "corehttp[requests]",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
 )

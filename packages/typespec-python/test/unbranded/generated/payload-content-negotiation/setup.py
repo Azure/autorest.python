@@ -63,5 +63,5 @@ setup(
         "corehttp[requests]",
         "typing-extensions>=4.3.0; python_version<'3.8.0'",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
 )
