@@ -73,8 +73,8 @@ jobs:
             regenerate: true
 
       - script: |
-          pip install pip==20.2
-          pip install  coverage
+          pip install pip
+          pip install coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - template: generated-code-checks-template.yml
