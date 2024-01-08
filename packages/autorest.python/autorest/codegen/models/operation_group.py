@@ -48,7 +48,15 @@ class OperationGroup(BaseModel):
 
     @property
     def has_abstract_operations(self) -> bool:
-        return any(o for o in self.operations if o.abstract)
+        return any(o for o in self.operations if o.abstract) or any(
+            operation_group.has_abstract_operations for operation_group in self.operation_groups
+        )
+
+    @property
+    def has_non_abstract_operations(self) -> bool:
+        return any(o for o in self.operations if not o.abstract) or any(
+            operation_group.has_non_abstract_operations for operation_group in self.operation_groups
+        )
 
     @property
     def base_class(self) -> str:

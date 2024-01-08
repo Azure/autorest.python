@@ -103,18 +103,8 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def has_non_abstract_operations(self) -> bool:
-        for client in self.clients:
-            for operation_group in client.operation_groups:
-                for operation in operation_group.operations:
-                    if not operation.abstract:
-                        return True
-        for clients in self.subnamespace_to_clients.values():
-            for client in clients:
-                for operation_group in client.operation_groups:
-                    for operation in operation_group.operations:
-                        if not operation.abstract:
-                            return True
-        return False
+        return any(c for c in self.clients if c.has_non_abstract_operations) or any(
+            c for c in cs if c.has_non_abstract_operations for cs in self.subnamespace_to_clients.values())
 
     def lookup_request_builder(
         self, request_builder_id: int
@@ -199,7 +189,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
                 t
                 for t in self.types_map.values()
                 if isinstance(t, ModelType)
-                and not (self.options["models_mode"] == "dpg" and t.page_result_model)
+                   and not (self.options["models_mode"] == "dpg" and t.page_result_model)
             ]
         return self._model_types
 
