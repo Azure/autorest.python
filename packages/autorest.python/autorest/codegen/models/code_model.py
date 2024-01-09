@@ -79,12 +79,11 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def has_form_data(self) -> bool:
-        for client in self.clients:
-            for operation_group in client.operation_groups:
-                for operation in operation_group.operations:
-                    if operation.has_form_data_body:
-                        return True
-        return False
+        return any(
+            og.has_form_data_body
+            for client in self.clients
+            for og in client.operation_groups
+        )
 
     @property
     def has_etag(self) -> bool:
