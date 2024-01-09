@@ -267,15 +267,21 @@ function emitHttpParameters(
   rootClient: SdkClientType<SdkHttpOperation>,
   operation: SdkHttpOperation,
 ): Record<string, any>[] {
-  const parameters: Record<string, any>[] = context.__endpointPathParameters[rootClient.name] ? [...context.__endpointPathParameters[rootClient.name]] : [];
-  for (const queryParam of operation.queryParams) {
-    parameters.push(emitHttpQueryParameter(context, queryParam));
-  }
-  for (const headerParam of operation.headerParams) {
-    parameters.push(emitHttpHeaderParameter(context, headerParam));
-  }
-  for (const pathParam of operation.pathParams) {
-    parameters.push(emitHttpPathParameter(context, pathParam));
+  const parameters: Record<string, any>[] = context.__endpointPathParameters[rootClient.name]
+    ? [...context.__endpointPathParameters[rootClient.name]]
+    : [];
+  for (const parameter of operation.parameters) {
+    switch (parameter.kind) {
+      case "header":
+        parameters.push(emitHttpHeaderParameter(context, parameter));
+        break;
+      case "query":
+        parameters.push(emitHttpQueryParameter(context, parameter));
+        break;
+      case "path":
+        parameters.push(emitHttpPathParameter(context, parameter));
+        break;
+    }
   }
   return parameters;
 }
