@@ -193,6 +193,13 @@ class OperationGroup(BaseModel):
             operation_group.has_operations for operation_group in self.operation_groups
         ) or bool(self.operations)
 
+    @property
+    def has_form_data_body(self) -> bool:
+        operations = self.operations + [
+            o for og in self.operation_groups for o in og.operations
+        ]
+        return any(operation.has_form_data_body for operation in operations)
+
     @classmethod
     def from_yaml(
         cls,
