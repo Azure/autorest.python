@@ -1,5 +1,22 @@
 # Release
 
+## 2023-01-09 - 6.12.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.29.5`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- fix logic for judging whether there is non-abstract operations #2340
+- fix multipart for sub operation groups #2347
+
 ## 2023-01-04 - 6.12.0
 
 | Library                                                                 | Min Version |
