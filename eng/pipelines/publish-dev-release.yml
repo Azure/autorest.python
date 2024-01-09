@@ -3,7 +3,7 @@ pr: none
 
 variables:
   NodeVersion: "12.x"
-  PythonVersion: "3.7"
+  PythonVersion: "3.8"
   TestFolder: "$(Build.SourcesDirectory)/test/"
 
 pool:
@@ -16,9 +16,9 @@ steps:
       versionSpec: "$(NodeVersion)"
 
   - task: UsePythonVersion@0
-    displayName: "Use Python 3.7"
+    displayName: "Use Python 3.8"
     inputs:
-      versionSpec: 3.7
+      versionSpec: 3.8
 
   - script: |
       cd $(Build.SourcesDirectory)

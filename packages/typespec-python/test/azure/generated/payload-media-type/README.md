@@ -13,7 +13,7 @@ python -m pip install payload-mediatype
 
 #### Prequisites
 
-- Python 3.7 or later is required to use this package.
+- Python 3.8 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Payload Mediatype instance.
 

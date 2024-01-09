@@ -240,8 +240,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return name
 
         if self.is_cadl:
-            reserved_words = copy.copy(CADL_RESERVED_WORDS)
-            reserved_words.update(RESERVED_WORDS)
+            reserved_words = {
+                k: (v + CADL_RESERVED_WORDS.get(k, []))
+                for k, v in RESERVED_WORDS.items()
+            }
         else:
             reserved_words = RESERVED_WORDS
         name = pad_special_chars(name)

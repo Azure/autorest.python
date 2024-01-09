@@ -204,23 +204,6 @@ class FileImport:
         )
         self.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
-    def add_literal_import(self) -> None:
-        self.add_import("sys", ImportType.STDLIB)
-        self.add_submodule_import(
-            "typing_extensions",
-            "Literal",
-            ImportType.BYVERSION,
-            TypingSection.REGULAR,
-            None,
-            (
-                (
-                    (3, 8),
-                    "typing",
-                    "pylint: disable=no-name-in-module, ungrouped-imports",
-                ),
-            ),
-        )
-
     def to_dict(
         self,
     ) -> Dict[

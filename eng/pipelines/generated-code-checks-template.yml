@@ -10,7 +10,7 @@ steps:
     - script: tox run -e lint
       displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
-      condition: and(eq(variables['PythonVersion'], '3.7'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
+      condition: and(eq(variables['PythonVersion'], '3.8'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
     - script: tox run -e mypy
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)

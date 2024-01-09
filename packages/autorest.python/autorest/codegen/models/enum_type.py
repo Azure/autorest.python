@@ -78,7 +78,9 @@ class EnumValue(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.merge(self.value_type.imports(**kwargs))
-        file_import.add_literal_import()
+        file_import.add_submodule_import(
+            "typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR
+        )
         file_import.add_submodule_import(
             "._enums", self.enum_type.name, ImportType.LOCAL, TypingSection.REGULAR
         )
