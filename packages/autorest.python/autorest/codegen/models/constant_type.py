@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base import BaseType
-from .imports import FileImport
+from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 from .utils import add_to_description
 
@@ -134,7 +134,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         if self._is_literal:
-            file_import.add_literal_import()
+            file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR)
         return file_import
 
     @property
