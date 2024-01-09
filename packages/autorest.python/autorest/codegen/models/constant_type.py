@@ -134,7 +134,9 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         if self._is_literal:
-            file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR)
+            file_import.add_submodule_import(
+                "typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR
+            )
         return file_import
 
     @property
