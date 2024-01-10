@@ -15,6 +15,7 @@ import {
     SdkDatetimeType,
     SdkDurationType,
     getClientType,
+    shouldFlattenProperty,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
@@ -204,6 +205,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         addedOn: type.apiVersions[0],
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
+        flatten: shouldFlattenProperty(context, type.__raw!),
     };
 }
 

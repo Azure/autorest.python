@@ -37,6 +37,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
+        self.is_flatten: bool = yaml_data.get("flatten", False)
 
     @property
     def pylint_disable(self) -> str:

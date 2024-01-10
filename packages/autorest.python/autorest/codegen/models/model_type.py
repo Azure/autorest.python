@@ -77,6 +77,22 @@ class ModelType(  # pylint: disable=abstract-method
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
+    def has_flatten_property(self) -> bool:
+        return any(p.is_flatten for p in self.properties)
+
+    @property
+    def flatten_property(self) -> Property:
+        return next(p for p in self.properties if p.is_flatten)
+
+    @property
+    def flatten_items(self) -> List[str]:
+        items = []
+        for p in self.properties:
+            if p.is_flatten and isinstance(p.type, ModelType):
+                items.extend([item.client_name for item in p.type.properties])
+        return items
+
+    @property
     def is_xml(self) -> bool:
         return self.yaml_data.get("isXml", False)
 
