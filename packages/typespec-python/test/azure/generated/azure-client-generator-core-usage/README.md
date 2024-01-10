@@ -13,7 +13,7 @@ python -m pip install specs-azure-clientgenerator-core-usage
 
 #### Prequisites
 
-- Python 3.7 or later is required to use this package.
+- Python 3.8 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Specs Azure Clientgenerator Core Usage instance.
 

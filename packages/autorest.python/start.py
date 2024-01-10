@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import sys
 if not sys.version_info >= (3, 7, 0):
-    raise Exception("Autorest for Python extension requires Python 3.7 at least")
+    raise Exception("Autorest for Python extension requires Python 3.8 at least")
 
 from pathlib import Path
 import venv

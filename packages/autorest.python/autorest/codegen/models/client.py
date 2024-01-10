@@ -304,6 +304,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         """Whether there is abstract operation in any operation group."""
         return any(og.has_abstract_operations for og in self.operation_groups)
 
+    @property
+    def has_non_abstract_operations(self) -> bool:
+        """Whether there is non-abstract operation in any operation group."""
+        return any(og.has_non_abstract_operations for og in self.operation_groups)
+
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
         if async_mode:

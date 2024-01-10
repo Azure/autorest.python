@@ -1,5 +1,25 @@
 # Release
 
+## 2023-01-04 - 0.18.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.51.0`      |
+| `@typespec/http`                                                        | `0.51.0`      |
+| `@typespec/rest`                                                        | `0.51.0`      |
+| `@typespec/versioning`                                                  | `0.51.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.37.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.37.0`      |
+| `azure-core` dep of generated code                                      | `1.29.5`      |
+| `corehttp` dep of generated code                                        | `1.0.0b2`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Upgrade minimum version of Python from `3.7` to `3.8` #2338
+
 ## 2023-12-22 - 0.17.0
 
 | Library                                                                 | Min Version   |

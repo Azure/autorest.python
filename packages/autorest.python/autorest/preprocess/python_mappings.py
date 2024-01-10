@@ -96,6 +96,18 @@ _always_reserved = [
     "int",
 ]
 
+RESERVED_MODEL_PROPERTIES = [
+    "keys",
+    "items",
+    "values",
+    "popitem",
+    "clear",
+    "update",
+    "setdefault",
+    "pop",
+    "get",
+]
+
 RESERVED_WORDS = {
     PadType.METHOD: [*_always_reserved],
     PadType.PARAMETER: [
@@ -169,7 +181,10 @@ RESERVED_WORDS = {
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
 
-CADL_RESERVED_WORDS = {PadType.PARAMETER: ["stream"]}
+CADL_RESERVED_WORDS = {
+    PadType.PARAMETER: ["stream"],
+    PadType.PROPERTY: RESERVED_MODEL_PROPERTIES,
+}
 
 REDEFINED_BUILTINS = [  # we don't pad, but we need to do lint ignores
     "id",

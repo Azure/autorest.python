@@ -7,17 +7,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
-from typing import Any, Dict, Mapping, overload
+from typing import Any, Dict, Literal, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 from ._enums import DogKind, SnakeKind
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class Snake(_model_base.Model):
