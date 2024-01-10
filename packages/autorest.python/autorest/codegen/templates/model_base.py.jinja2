@@ -35,6 +35,7 @@ _LOGGER = logging.getLogger(__name__)
 __all__ = ["SdkJSONEncoder", "Model", "rest_field", "rest_discriminator"]
 
 TZ_UTC = timezone.utc
+_T = typing.TypeVar("_T")
 
 
 def _timedelta_as_isostr(td: timedelta) -> str:
@@ -383,8 +384,12 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
         except KeyError:
             return default
 
-    @typing.overload  # type: ignore
-    def pop(self, key: str) -> typing.Any:  # pylint: disable=no-member
+    @typing.overload
+    def pop(self, key: str) -> typing.Any:
+        ...
+
+    @typing.overload
+    def pop(self, key: str, default: _T) -> _T:
         ...
 
     @typing.overload
@@ -405,8 +410,8 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
     def update(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         self._data.update(*args, **kwargs)
 
-    @typing.overload  # type: ignore
-    def setdefault(self, key: str) -> typing.Any:
+    @typing.overload
+    def setdefault(self, key: str, default: None = None) -> None:
         ...
 
     @typing.overload
