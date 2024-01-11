@@ -106,6 +106,7 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
       ...base,
       location: "query",
       wireName: "api-version",
+      in_docstring: false,
     };
   }
   return base;
