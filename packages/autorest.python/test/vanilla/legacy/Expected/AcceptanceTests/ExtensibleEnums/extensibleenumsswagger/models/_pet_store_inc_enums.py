@@ -27,7 +27,7 @@ class IntEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     ONE = "1"
     """This is a really long comment to see what wrapping looks like. This comment is really long and
-    #: it should wrap for readability. Please wrap. This should wrap."""
+    it should wrap for readability. Please wrap. This should wrap."""
     TWO = "2"
     """two"""
     THREE = "3"
