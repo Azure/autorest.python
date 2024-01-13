@@ -60,7 +60,10 @@ class BaseBuilder(
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
-        self.overloads = overloads or []
+        self.overloads: Union[
+            List["Operation"],
+            List["RequestBuilder"]
+        ] = overloads or []
         self._summary: str = yaml_data.get("summary", "")
         self.want_tracing: bool = yaml_data.get("wantTracing", True)
         self.group_name: str = yaml_data[
