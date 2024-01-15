@@ -128,6 +128,12 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
         resolvedOptions["packaging-files-config"] = undefined;
     }
+    if (
+        resolvedOptions["package-pprint-name"] !== undefined &&
+        !resolvedOptions["package-pprint-name"].startsWith('"')
+    ) {
+        resolvedOptions["package-pprint-name"] = `"${resolvedOptions["package-pprint-name"]}"`;
+    }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
         if (value !== undefined) {

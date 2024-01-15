@@ -8,6 +8,6 @@ class {{ enum.name }}({{ enum.value_type.type_annotation(is_operation_file=False
     {% for value in enum.values %}
     {{ value.name }} = {{ enum.value_type.get_declaration(value.value) }}
     {% if value.description(is_operation_file=False) %}
-    """{{ value.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    #: ') }}"""
+    """{{ value.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}"""
     {% endif %}
     {% endfor %}
