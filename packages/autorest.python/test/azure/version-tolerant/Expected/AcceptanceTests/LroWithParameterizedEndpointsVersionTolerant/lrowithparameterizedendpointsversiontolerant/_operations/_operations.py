@@ -135,13 +135,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns str
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -265,13 +258,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
          Note that overriding this default value may result in unsupported behavior.
         :paramtype constant_parameter: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns str
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
