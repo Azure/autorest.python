@@ -616,7 +616,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
 
     # is it a literal?
     try:
-        if annotation.__origin__ == typing.Literal:
+        if annotation.__origin__ is typing.Literal:
             return None
     except AttributeError:
         pass
