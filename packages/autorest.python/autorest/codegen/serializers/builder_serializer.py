@@ -700,19 +700,6 @@ class _OperationSerializer(
             retval.append(_api_version_validation(builder))
         return retval
 
-    def param_description(self, builder: OperationType) -> List[str]:
-        description_list = super().param_description(builder)
-        if builder.expose_stream_keyword and builder.has_response_body:
-            description_list.append(
-                ":keyword bool stream: Whether to stream the response of this operation. "
-                "Defaults to False. You will have to context manage the returned stream."
-            )
-        if not self.code_model.options["version_tolerant"]:
-            description_list.append(
-                ":keyword callable cls: A custom type or function that will be passed the direct response"
-            )
-        return description_list
-
     def pop_kwargs_from_signature(self, builder: OperationType) -> List[str]:
         kwargs_to_pop = builder.parameters.kwargs_to_pop
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(

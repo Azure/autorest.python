@@ -843,8 +843,6 @@ class BooleanOperations:
     def get(self, **kwargs: Any) -> _models.BooleanProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BooleanProperty. The BooleanProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.BooleanProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1043,8 +1041,6 @@ class StringOperations:
     def get(self, **kwargs: Any) -> _models.StringProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1243,8 +1239,6 @@ class BytesOperations:
     def get(self, **kwargs: Any) -> _models.BytesProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1443,8 +1437,6 @@ class IntOperations:
     def get(self, **kwargs: Any) -> _models.IntProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IntProperty. The IntProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.IntProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1643,8 +1635,6 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> _models.FloatProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatProperty. The FloatProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.FloatProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1843,8 +1833,6 @@ class DecimalOperations:
     def get(self, **kwargs: Any) -> _models.DecimalProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DecimalProperty. The DecimalProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.DecimalProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2043,8 +2031,6 @@ class Decimal128Operations:
     def get(self, **kwargs: Any) -> _models.Decimal128Property:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Decimal128Property. The Decimal128Property is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.Decimal128Property
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2243,8 +2229,6 @@ class DatetimeOperations:
     def get(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2443,8 +2427,6 @@ class DurationOperations:
     def get(self, **kwargs: Any) -> _models.DurationProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2643,8 +2625,6 @@ class EnumOperations:
     def get(self, **kwargs: Any) -> _models.EnumProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: EnumProperty. The EnumProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.EnumProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2846,8 +2826,6 @@ class ExtensibleEnumOperations:
     def get(self, **kwargs: Any) -> _models.ExtensibleEnumProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtensibleEnumProperty. The ExtensibleEnumProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.ExtensibleEnumProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3050,8 +3028,6 @@ class ModelOperations:
     def get(self, **kwargs: Any) -> _models.ModelProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ModelProperty. The ModelProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.ModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3256,8 +3232,6 @@ class CollectionsStringOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsStringProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsStringProperty. The CollectionsStringProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.valuetypes.models.CollectionsStringProperty
@@ -3464,8 +3438,6 @@ class CollectionsIntOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsIntProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsIntProperty. The CollectionsIntProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.CollectionsIntProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3671,8 +3643,6 @@ class CollectionsModelOperations:
     def get(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.valuetypes.models.CollectionsModelProperty
@@ -3885,8 +3855,6 @@ class DictionaryStringOperations:
     def get(self, **kwargs: Any) -> _models.DictionaryStringProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DictionaryStringProperty. The DictionaryStringProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.valuetypes.models.DictionaryStringProperty
@@ -4093,8 +4061,6 @@ class NeverOperations:
     def get(self, **kwargs: Any) -> _models.NeverProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: NeverProperty. The NeverProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.NeverProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4281,8 +4247,6 @@ class UnknownStringOperations:
     def get(self, **kwargs: Any) -> _models.UnknownStringProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnknownStringProperty. The UnknownStringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnknownStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4482,8 +4446,6 @@ class UnknownIntOperations:
     def get(self, **kwargs: Any) -> _models.UnknownIntProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnknownIntProperty. The UnknownIntProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnknownIntProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4682,8 +4644,6 @@ class UnknownDictOperations:
     def get(self, **kwargs: Any) -> _models.UnknownDictProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnknownDictProperty. The UnknownDictProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnknownDictProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4883,8 +4843,6 @@ class UnknownArrayOperations:
     def get(self, **kwargs: Any) -> _models.UnknownArrayProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnknownArrayProperty. The UnknownArrayProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnknownArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5084,8 +5042,6 @@ class StringLiteralOperations:
     def get(self, **kwargs: Any) -> _models.StringLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.StringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5285,8 +5241,6 @@ class IntLiteralOperations:
     def get(self, **kwargs: Any) -> _models.IntLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.IntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5485,8 +5439,6 @@ class FloatLiteralOperations:
     def get(self, **kwargs: Any) -> _models.FloatLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.FloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5686,8 +5638,6 @@ class BooleanLiteralOperations:
     def get(self, **kwargs: Any) -> _models.BooleanLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.BooleanLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5888,8 +5838,6 @@ class UnionStringLiteralOperations:
         # pylint: disable=line-too-long
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnionStringLiteralProperty
@@ -6096,8 +6044,6 @@ class UnionIntLiteralOperations:
     def get(self, **kwargs: Any) -> _models.UnionIntLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnionIntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -6300,8 +6246,6 @@ class UnionFloatLiteralOperations:
     def get(self, **kwargs: Any) -> _models.UnionFloatLiteralProperty:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionFloatLiteralProperty. The UnionFloatLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.valuetypes.models.UnionFloatLiteralProperty

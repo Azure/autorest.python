@@ -522,8 +522,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -553,8 +551,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -579,8 +575,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -604,8 +598,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -686,8 +678,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -717,8 +707,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -743,8 +731,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -768,8 +754,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -850,8 +834,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
@@ -882,8 +864,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
@@ -909,8 +889,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
@@ -936,8 +914,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
@@ -1019,8 +995,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
@@ -1051,8 +1025,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
@@ -1078,8 +1050,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
@@ -1105,8 +1075,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
@@ -1188,8 +1156,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
@@ -1224,8 +1190,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
@@ -1253,8 +1217,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
@@ -1282,8 +1244,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty

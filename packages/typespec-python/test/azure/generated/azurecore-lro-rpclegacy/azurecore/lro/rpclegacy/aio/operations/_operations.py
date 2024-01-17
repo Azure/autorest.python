@@ -66,8 +66,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         :param job_id: A processing job identifier. Required.
         :type job_id: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: JobResult. The JobResult is compatible with MutableMapping
         :rtype: ~azurecore.lro.rpclegacy.models.JobResult
         :raises ~azure.core.exceptions.HttpResponseError:

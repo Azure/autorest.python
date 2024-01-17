@@ -107,8 +107,6 @@ class StringBodyOperations:
     async def get_as_text(self, **kwargs: Any) -> str:
         """get_as_text.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -211,8 +209,6 @@ class StringBodyOperations:
     async def get_as_json(self, **kwargs: Any) -> str:
         """get_as_json.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
