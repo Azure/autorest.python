@@ -1543,25 +1543,6 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         self.async_mode = async_mode
         self.parameter_serializer = ParameterSerializer()
 
-    def param_description(self, builder: LROOperationType) -> List[str]:
-        retval = super().param_description(builder)
-        retval.append(
-            ":keyword str continuation_token: A continuation token to restart a poller from a saved state."
-        )
-        retval.append(
-            f":keyword polling: By default, your polling method will be {builder.get_polling_method(self.async_mode)}. "
-            "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
-            " personal polling strategy."
-        )
-        retval.append(
-            f":paramtype polling: bool or ~{builder.get_base_polling_method_path(self.async_mode)}"
-        )
-        retval.append(
-            ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
-            "if no Retry-After header is present."
-        )
-        return retval
-
     def serialize_path(self, builder: LROOperationType) -> List[str]:
         return self.parameter_serializer.serialize_path(
             builder.parameters.path, self.serializer_name
