@@ -149,7 +149,6 @@ class BasicOperations:
     def get_valid(self, **kwargs: Any) -> _models.Basic:
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -204,7 +203,6 @@ class BasicOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -221,7 +219,6 @@ class BasicOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -239,7 +236,6 @@ class BasicOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -297,7 +293,6 @@ class BasicOperations:
     def get_invalid(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type that is invalid for the local strong type.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -345,7 +340,6 @@ class BasicOperations:
     def get_empty(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type that is empty.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -393,7 +387,6 @@ class BasicOperations:
     def get_null(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type whose properties are null.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -441,7 +434,6 @@ class BasicOperations:
     def get_not_provided(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type while the server doesn't provide a response payload.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:

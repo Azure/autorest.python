@@ -64,7 +64,6 @@ class OperationGroupTwoOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -82,7 +81,6 @@ class OperationGroupTwoOperations:
          Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png',
          'image/tiff'. Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -100,7 +98,6 @@ class OperationGroupTwoOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -161,7 +158,6 @@ class OperationGroupTwoOperations:
     async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestFive should be in OperationGroupTwoOperations.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

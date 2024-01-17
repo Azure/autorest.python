@@ -70,7 +70,6 @@ class FlattencomplexOperations:
     def get_valid(self, **kwargs: Any) -> _models.MyBaseType:
         """get_valid.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises ~azure.core.exceptions.HttpResponseError:

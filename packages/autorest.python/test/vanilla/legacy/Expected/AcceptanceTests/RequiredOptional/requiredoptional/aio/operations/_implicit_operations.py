@@ -66,7 +66,6 @@ class ImplicitOperations:
 
         :param path_parameter: Required.
         :type path_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -115,7 +114,6 @@ class ImplicitOperations:
 
         :param query_parameter: Default value is None.
         :type query_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -164,7 +162,6 @@ class ImplicitOperations:
 
         :param query_parameter: Default value is None.
         :type query_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,7 +210,6 @@ class ImplicitOperations:
 
         :param body_parameter: Default value is None.
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -269,7 +265,6 @@ class ImplicitOperations:
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -318,7 +313,6 @@ class ImplicitOperations:
     async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required path parameter.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -363,7 +357,6 @@ class ImplicitOperations:
     async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly required query parameter.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -408,7 +401,6 @@ class ImplicitOperations:
     async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Test implicitly optional query parameter.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

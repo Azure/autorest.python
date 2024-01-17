@@ -84,7 +84,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword bool_path: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -133,7 +132,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
          this default value may result in unsupported behavior.
         :paramtype bool_path: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -182,7 +180,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword int_path: '1000000' integer value. Default value is 1000000. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype int_path: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -233,7 +230,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword int_path: '-1000000' integer value. Default value is -1000000. Note that overriding
          this default value may result in unsupported behavior.
         :paramtype int_path: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -282,7 +278,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype long_path: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -331,7 +326,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype long_path: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -380,7 +374,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword float_path: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -429,7 +422,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword float_path: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -478,7 +470,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword double_path: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -527,7 +518,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword double_path: '-9999999.999'numeric value. Default value is -9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -576,7 +566,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
          that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -626,7 +615,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
          "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_path: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -678,7 +666,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
          "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype string_path: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -727,7 +714,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
          default value may result in unsupported behavior.
         :paramtype string_path: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -777,7 +763,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param string_path: null string value. Required.
         :type string_path: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -827,7 +812,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
          color". Required.
         :type enum_path: str or ~url.models.UriColor
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -877,7 +861,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :param enum_path: send null should throw. Known values are: "red color", "green color", and
          "blue color". Required.
         :type enum_path: str or ~url.models.UriColor
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -926,7 +909,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
         :type byte_path: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -974,7 +956,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
          Note that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1024,7 +1005,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param byte_path: null as byte array (should throw). Required.
         :type byte_path: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1072,7 +1052,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :keyword date_path: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
          this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1123,7 +1102,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1172,7 +1150,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_path: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1222,7 +1199,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1271,7 +1247,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1322,7 +1297,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format. Required.
         :type array_path: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1371,7 +1345,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

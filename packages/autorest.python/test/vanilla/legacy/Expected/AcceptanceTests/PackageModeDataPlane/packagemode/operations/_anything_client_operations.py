@@ -122,7 +122,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was
         successfully returned' }.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: any or the result of cls(response)
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -172,7 +171,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type input: any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -220,7 +218,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
     def get_string(self, **kwargs: Any) -> Any:
         """Basic get that returns an string as anything. Returns string 'foo'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: any or the result of cls(response)
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -270,7 +267,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         :param input: Pass in 'anything' for a 200, anything else for an object error. Required.
         :type input: any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -318,7 +314,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
     def get_array(self, **kwargs: Any) -> Any:
         """Basic get that returns an array as anything. Returns string ['foo', 'bar'].
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: any or the result of cls(response)
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -368,7 +363,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error. Required.
         :type input: any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

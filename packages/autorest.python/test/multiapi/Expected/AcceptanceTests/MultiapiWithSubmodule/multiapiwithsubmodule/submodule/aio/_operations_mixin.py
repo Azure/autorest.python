@@ -33,7 +33,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
@@ -66,7 +65,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options:
          ~multiapiwithsubmodule.submodule.v1.models.TestLroAndPagingOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
@@ -102,7 +100,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -137,7 +134,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :type id: int
         :param message: An optional string parameter. Default value is None.
         :type message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -164,7 +160,6 @@ class MultiapiServiceClientOperationsMixin(object):
     ) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype:
          ~azure.core.async_paging.AsyncItemPaged[~multiapiwithsubmodule.submodule.v3.models.ModelThree]

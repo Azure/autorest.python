@@ -137,7 +137,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type id: int
         :param message: An optional string parameter. Default value is None.
         :type message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -253,7 +252,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -270,7 +268,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -288,7 +285,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -401,7 +397,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type client_request_id: str
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapinoasync.v1.models.TestLroAndPagingOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
@@ -527,7 +522,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         :param greeting_in_english: pass in 'hello' to pass test. Required.
         :type greeting_in_english: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

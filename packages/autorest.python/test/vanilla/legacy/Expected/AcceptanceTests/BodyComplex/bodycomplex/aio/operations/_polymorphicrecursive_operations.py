@@ -54,7 +54,6 @@ class PolymorphicrecursiveOperations:
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
         """Get complex types that are polymorphic and have recursive references.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -161,7 +160,6 @@ class PolymorphicrecursiveOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -230,7 +228,6 @@ class PolymorphicrecursiveOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -299,7 +296,6 @@ class PolymorphicrecursiveOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

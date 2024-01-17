@@ -52,7 +52,6 @@ class DownloadOperations:
     async def error_stream(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """Get binary error stream.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:

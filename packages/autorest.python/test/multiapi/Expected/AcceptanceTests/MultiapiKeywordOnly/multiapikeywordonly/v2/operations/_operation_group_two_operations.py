@@ -81,7 +81,6 @@ class OperationGroupTwoOperations:
 
         :keyword parameter_one: A boolean parameter. Required.
         :paramtype parameter_one: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

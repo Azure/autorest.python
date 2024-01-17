@@ -201,7 +201,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -221,7 +220,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -242,7 +240,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -371,7 +368,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -391,7 +387,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -412,7 +407,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -528,7 +522,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -547,7 +540,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -567,7 +559,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -683,7 +674,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -703,7 +693,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -724,7 +713,6 @@ class LROsCustomHeaderOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:

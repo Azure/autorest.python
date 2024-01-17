@@ -96,7 +96,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of AsyncLROPoller that returns either str or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,7 +212,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
          Note that overriding this default value may result in unsupported behavior.
         :paramtype constant_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An instance of AsyncLROPoller that returns either str or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:
