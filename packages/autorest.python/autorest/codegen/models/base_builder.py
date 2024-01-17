@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import List, Dict, Any, Generic, TypeVar, Optional, Union, TYPE_CHECKING
+from typing import List, Dict, Any, Generic, TypeVar, Optional, Union, TYPE_CHECKING, cast
 from abc import abstractmethod
 
 from .base import BaseModel
@@ -60,10 +60,7 @@ class BaseBuilder(
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
-        self.overloads: Union[
-            List["Operation"],
-            List["RequestBuilder"]
-        ] = overloads or []
+        self.overloads = overloads or cast(OverloadListType, [])
         self._summary: str = yaml_data.get("summary", "")
         self.want_tracing: bool = yaml_data.get("wantTracing", True)
         self.group_name: str = yaml_data[
