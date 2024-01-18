@@ -223,9 +223,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :param input: Please put {'hello': 'world!'}. Is either a Input type or a IO[bytes] type.
          Required.
         :type input: ~dpgtestmodelsversiontolerant.models.Input or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:

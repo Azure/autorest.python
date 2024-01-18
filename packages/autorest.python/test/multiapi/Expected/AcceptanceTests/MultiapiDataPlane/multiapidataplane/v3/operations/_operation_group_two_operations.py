@@ -137,9 +137,6 @@ class OperationGroupTwoOperations:
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
         :type input: ~multiapidataplane.v3.models.SourcePath or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

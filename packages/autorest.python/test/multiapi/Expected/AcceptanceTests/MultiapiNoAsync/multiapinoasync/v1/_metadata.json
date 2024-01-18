@@ -116,26 +116,26 @@
             "_test_lro_initial" : {
                 "sync": {
                     "signature": "def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
                     "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapinoasync.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 }
             },
             "begin_test_lro" : {
                 "sync": {
                     "signature": "def begin_test_lro(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e LROPoller[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:return: An instance of LROPoller that returns either Product or the result of cls(response)\n:rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:return: An instance of LROPoller that returns either Product or the result of cls(response)\n:rtype: ~azure.core.polling.LROPoller[~multiapinoasync.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
                     "signature": "async def begin_test_lro(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e AsyncLROPoller[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:return: An instance of AsyncLROPoller that returns either Product or the result of\n cls(response)\n:rtype: ~azure.core.polling.AsyncLROPoller[~multiapinoasync.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapinoasync.v1.models.Product or IO[bytes]\n:return: An instance of AsyncLROPoller that returns either Product or the result of\n cls(response)\n:rtype: ~azure.core.polling.AsyncLROPoller[~multiapinoasync.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 }
             },

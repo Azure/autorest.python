@@ -629,10 +629,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
          test. Required.
         :type required_query_parameter: int
-        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype query_constant: bool
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.packagemode.batch.paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:

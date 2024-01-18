@@ -206,9 +206,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~multiapisecurity.v1.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapisecurity.v1.models.Product]

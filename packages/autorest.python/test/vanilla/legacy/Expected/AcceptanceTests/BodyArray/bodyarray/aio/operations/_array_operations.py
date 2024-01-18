@@ -302,9 +302,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -443,9 +440,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [bool] type or a IO[bytes] type. Required.
         :type array_body: list[bool] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -678,9 +672,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
         :type array_body: list[int] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -913,9 +904,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
         :type array_body: list[int] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1148,9 +1136,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
         :type array_body: list[float] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1383,9 +1368,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
         :type array_body: list[float] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1618,9 +1600,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1760,9 +1739,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :param array_body: Is either a [Union[str, "_models.FooEnum"]] type or a IO[bytes] type.
          Required.
         :type array_body: list[str or ~bodyarray.models.FooEnum] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1902,9 +1878,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :param array_body: Is either a [Union[str, "_models.Enum1"]] type or a IO[bytes] type.
          Required.
         :type array_body: list[str or ~bodyarray.models.Enum1] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2141,9 +2114,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2329,9 +2299,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.date] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.date] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2568,9 +2535,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2807,9 +2771,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2948,9 +2909,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.timedelta] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3093,9 +3051,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [bytes] type or a IO[bytes] type. Required.
         :type array_body: list[bytes] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3523,9 +3478,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [Product] type or a IO[bytes] type. Required.
         :type array_body: list[~bodyarray.models.Product] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3852,9 +3804,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [[str]] type or a IO[bytes] type. Required.
         :type array_body: list[list[str]] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4187,9 +4136,6 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [{str: str}] type or a IO[bytes] type. Required.
         :type array_body: list[dict[str, str]] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

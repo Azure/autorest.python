@@ -354,9 +354,6 @@ class ParamsOperations:
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO[bytes] type. Required.
         :type parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

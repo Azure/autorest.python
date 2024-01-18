@@ -195,9 +195,6 @@ class BoolOperations:
     def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value true.
 
-        :keyword bool_body: Default value is True. Note that overriding this default value may result
-         in unsupported behavior.
-        :paramtype bool_body: bool
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -294,9 +291,6 @@ class BoolOperations:
     def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value false.
 
-        :keyword bool_body: Required. Default value is False. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype bool_body: bool
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

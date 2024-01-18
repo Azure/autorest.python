@@ -307,9 +307,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a JSON type or
          a IO[bytes] type. Required.
         :type horse: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -477,9 +474,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         :param pet: Put a pet with name 'Butter'. Is either a JSON type or a IO[bytes] type. Required.
         :type pet: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -649,9 +643,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param feline: Put a feline who hisses and doesn't meow. Is either a JSON type or a IO[bytes]
          type. Required.
         :type feline: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -828,9 +819,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
          either a JSON type or a IO[bytes] type. Required.
         :type cat: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1015,9 +1003,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Is either a JSON type or a IO[bytes] type. Required.
         :type kitten: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
