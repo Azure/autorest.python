@@ -595,9 +595,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: DefaultDurationProperty, JSON, IO[bytes] Required.
         :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -751,9 +748,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO[bytes] Required.
         :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -911,9 +905,6 @@ class PropertyOperations:
         :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.duration.models.Int32SecondsDurationProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
@@ -1072,9 +1063,6 @@ class PropertyOperations:
         :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.duration.models.FloatSecondsDurationProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
@@ -1241,9 +1229,6 @@ class PropertyOperations:
         :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty

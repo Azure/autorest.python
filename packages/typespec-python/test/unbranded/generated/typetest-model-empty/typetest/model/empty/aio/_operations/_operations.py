@@ -103,9 +103,6 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
         :param input: Is one of the following types: EmptyInput, JSON, IO[bytes] Required.
         :type input: ~typetest.model.empty.models.EmptyInput or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -271,9 +268,6 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
         :param body: Is one of the following types: EmptyInputOutput, JSON, IO[bytes] Required.
         :type body: ~typetest.model.empty.models.EmptyInputOutput or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~corehttp.exceptions.HttpResponseError:

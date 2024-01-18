@@ -192,9 +192,6 @@ class ModelOperations:
 
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
         :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -335,9 +332,6 @@ class AliasOperations:
         :type body: JSON or IO[bytes]
         :keyword name: Required.
         :paramtype name: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -487,9 +481,6 @@ class AliasOperations:
         :paramtype x_ms_test_header: str
         :keyword name: Required.
         :paramtype name: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -682,9 +673,6 @@ class AliasOperations:
         :paramtype prop5: str
         :keyword prop6: Required.
         :paramtype prop6: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

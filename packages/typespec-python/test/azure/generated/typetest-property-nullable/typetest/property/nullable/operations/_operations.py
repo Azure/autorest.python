@@ -576,8 +576,6 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -701,8 +699,6 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -962,8 +958,6 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1087,8 +1081,6 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1348,8 +1340,6 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1473,8 +1463,6 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1734,8 +1722,6 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1859,8 +1845,6 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2130,8 +2114,6 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2263,8 +2245,6 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2544,8 +2524,6 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2681,8 +2659,6 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
-        :keyword content_type: content-type is application/merge-patch+json. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
