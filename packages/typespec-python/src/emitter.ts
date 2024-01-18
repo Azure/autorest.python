@@ -521,13 +521,13 @@ function emitOperation(context: SdkContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function hasResourceLocation(envelopeResult: Record<string, any>): boolean {  
-    for (const p of envelopeResult.properties) {  
-        if (p.wireName === "resourceLocation"){  
-            return true;  
-        }  
-    }  
-    return false;  
+function hasResourceLocation(envelopeResult: Record<string, any>): boolean {
+    for (const p of envelopeResult.properties) {
+        if (p.wireName === "resourceLocation") {
+            return true;
+        }
+    }
+    return false;
 }
 
 function addLroInformation(
