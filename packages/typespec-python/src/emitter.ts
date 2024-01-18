@@ -521,6 +521,15 @@ function emitOperation(context: SdkContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
+function hasResourceLocation(envelopeResult: Record<string, any>): boolean {  
+    for (const p of envelopeResult.properties) {  
+        if (p.wireName === "resourceLocation"){  
+            return true;  
+        }  
+    }  
+    return false;  
+}
+
 function addLroInformation(
     context: SdkContext,
     tspOperation: Operation,
@@ -537,7 +546,8 @@ function addLroInformation(
     }
     if (!isAzureCoreModel(logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, logicalResult);
-        if (lroMeta!.logicalPath) {
+        const envelopeResult = getType(context, lroMeta!.envelopeResult);
+        if (lroMeta!.logicalPath && !hasResourceLocation(envelopeResult)) {
             emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
