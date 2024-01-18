@@ -925,7 +925,7 @@ class CreateResourcePollViaOperationLocationAndResourceLocationOperations:  # py
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.DocumentModelDetails, response.json().get("result"))
+            deserialized = _deserialize(_models.DocumentModelDetails, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
