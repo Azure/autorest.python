@@ -50,7 +50,6 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a head request to the service. Should have header ``x-ms-enum`` with value ``single``.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

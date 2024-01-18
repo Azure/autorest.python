@@ -69,7 +69,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
 
         :param id: An int parameter. Put in 2 to pass. Required.
         :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -63,7 +63,6 @@ class OperationGroupOneOperations:
     def test_operation_group_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype:
          ~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v3.models.ModelThree]
@@ -149,7 +148,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapicredentialdefaultpolicy.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -166,7 +164,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapicredentialdefaultpolicy.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -184,7 +181,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapicredentialdefaultpolicy.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:

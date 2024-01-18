@@ -88,7 +88,6 @@ class FloatOperations:
         :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
          Default value is None.
         :type input: float or ~nonstringenums.models.FloatEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -143,7 +142,6 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> Union[float, _models.FloatEnum]:
         """Get a float enum.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatEnum or the result of cls(response)
         :rtype: float or ~nonstringenums.models.FloatEnum
         :raises ~azure.core.exceptions.HttpResponseError:

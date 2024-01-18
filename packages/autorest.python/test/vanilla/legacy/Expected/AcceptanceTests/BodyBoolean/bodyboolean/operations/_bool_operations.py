@@ -148,7 +148,6 @@ class BoolOperations:
     def get_true(self, **kwargs: Any) -> bool:
         """Get true Boolean value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -199,7 +198,6 @@ class BoolOperations:
         :keyword bool_body: Default value is True. Note that overriding this default value may result
          in unsupported behavior.
         :paramtype bool_body: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -249,7 +247,6 @@ class BoolOperations:
     def get_false(self, **kwargs: Any) -> bool:
         """Get false Boolean value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -300,7 +297,6 @@ class BoolOperations:
         :keyword bool_body: Required. Default value is False. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype bool_body: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -350,7 +346,6 @@ class BoolOperations:
     def get_null(self, **kwargs: Any) -> Optional[bool]:
         """Get null Boolean value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or None or the result of cls(response)
         :rtype: bool or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -398,7 +393,6 @@ class BoolOperations:
     def get_invalid(self, **kwargs: Any) -> bool:
         """Get invalid Boolean value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:

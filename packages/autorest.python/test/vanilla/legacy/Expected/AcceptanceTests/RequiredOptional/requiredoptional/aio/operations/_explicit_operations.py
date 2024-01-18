@@ -83,7 +83,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Default value is None.
         :type body_parameter: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -136,7 +135,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Required.
         :type body_parameter: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -190,7 +188,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Required.
         :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -243,7 +240,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Default value is None.
         :type body_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -300,7 +296,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Required.
         :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -354,7 +349,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Default value is None.
         :type value: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -412,7 +406,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param header_parameter: Required.
         :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -461,7 +454,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param header_parameter: Default value is None.
         :type header_parameter: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -511,7 +503,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Required.
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -564,7 +555,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Default value is None.
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -621,7 +611,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Required.
         :type value: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -675,7 +664,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Default value is None.
         :type value: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -733,7 +721,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param header_parameter: Required.
         :type header_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -782,7 +769,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Default value is None.
         :type body_parameter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -835,7 +821,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -853,7 +838,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -871,7 +855,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -934,7 +917,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -951,7 +933,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -968,7 +949,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1032,7 +1012,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Required.
         :type value: ~requiredoptional.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1086,7 +1065,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Default value is None.
         :type value: ~requiredoptional.models.Product
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1147,7 +1125,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1165,7 +1142,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1183,7 +1159,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1246,7 +1221,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1263,7 +1237,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1280,7 +1253,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1344,7 +1316,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Required.
         :type value: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1398,7 +1369,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param value: Default value is None.
         :type value: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1456,7 +1426,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param header_parameter: Required.
         :type header_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1505,7 +1474,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param header_parameter: Default value is None.
         :type header_parameter: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

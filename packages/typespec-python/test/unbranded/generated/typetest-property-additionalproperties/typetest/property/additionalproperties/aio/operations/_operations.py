@@ -85,8 +85,6 @@ class ExtendsUnknownOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalProperties. The ExtendsUnknownAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
@@ -288,8 +286,6 @@ class ExtendsUnknownDerivedOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDerived:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalPropertiesDerived. The
          ExtendsUnknownAdditionalPropertiesDerived is compatible with MutableMapping
         :rtype:
@@ -504,8 +500,6 @@ class ExtendsUnknownDiscriminatedOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDiscriminated:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalPropertiesDiscriminated. The
          ExtendsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
         :rtype:
@@ -740,8 +734,6 @@ class IsUnknownOperations:
     async def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalProperties. The IsUnknownAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
@@ -943,8 +935,6 @@ class IsUnknownDerivedOperations:
     async def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDerived:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalPropertiesDerived. The IsUnknownAdditionalPropertiesDerived is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
@@ -1156,8 +1146,6 @@ class IsUnknownDiscriminatedOperations:
     async def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDiscriminated:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalPropertiesDiscriminated. The
          IsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
         :rtype:
@@ -1392,8 +1380,6 @@ class ExtendsStringOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsStringAdditionalProperties. The ExtendsStringAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
@@ -1595,8 +1581,6 @@ class IsStringOperations:
     async def get(self, **kwargs: Any) -> _models.IsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsStringAdditionalProperties. The IsStringAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
@@ -1798,8 +1782,6 @@ class ExtendsFloatOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsFloatAdditionalProperties. The ExtendsFloatAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
@@ -2001,8 +1983,6 @@ class IsFloatOperations:
     async def get(self, **kwargs: Any) -> _models.IsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsFloatAdditionalProperties. The IsFloatAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
@@ -2204,8 +2184,6 @@ class ExtendsModelOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelAdditionalProperties. The ExtendsModelAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
@@ -2395,8 +2373,6 @@ class IsModelOperations:
     async def get(self, **kwargs: Any) -> _models.IsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelAdditionalProperties. The IsModelAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
@@ -2586,8 +2562,6 @@ class ExtendsModelArrayOperations:
     async def get(self, **kwargs: Any) -> _models.ExtendsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelArrayAdditionalProperties. The ExtendsModelArrayAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
@@ -2783,8 +2757,6 @@ class IsModelArrayOperations:
     async def get(self, **kwargs: Any) -> _models.IsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelArrayAdditionalProperties. The IsModelArrayAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties

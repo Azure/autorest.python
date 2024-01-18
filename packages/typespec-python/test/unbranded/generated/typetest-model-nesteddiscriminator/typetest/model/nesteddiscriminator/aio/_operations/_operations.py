@@ -48,8 +48,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     async def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -307,8 +305,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     async def get_recursive_model(self, **kwargs: Any) -> _models.Fish:
         """get_recursive_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -566,8 +562,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     async def get_missing_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_missing_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -650,8 +644,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     async def get_wrong_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_wrong_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:

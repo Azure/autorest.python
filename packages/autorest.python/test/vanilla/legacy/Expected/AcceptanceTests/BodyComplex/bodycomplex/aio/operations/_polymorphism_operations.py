@@ -64,7 +64,6 @@ class PolymorphismOperations:
     async def get_valid(self, **kwargs: Any) -> _models.Fish:
         """Get complex types that are polymorphic.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -151,7 +150,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -200,7 +198,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -249,7 +246,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -305,7 +301,6 @@ class PolymorphismOperations:
     async def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
         """Get complex types that are polymorphic, JSON key contains a dot.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -355,7 +350,6 @@ class PolymorphismOperations:
         element type, with discriminator specified. Deserialization must NOT fail and use the
         discriminator type specified on the wire.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -405,7 +399,6 @@ class PolymorphismOperations:
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
         the explicit type of the property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -454,7 +447,6 @@ class PolymorphismOperations:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -510,7 +502,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -528,7 +519,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -546,7 +536,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -609,7 +598,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -626,7 +614,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -643,7 +630,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -737,7 +723,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -781,7 +766,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -825,7 +809,6 @@ class PolymorphismOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

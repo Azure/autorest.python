@@ -247,8 +247,6 @@ class ModelInOperationOperations:
              "name": <any string>
            }.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:

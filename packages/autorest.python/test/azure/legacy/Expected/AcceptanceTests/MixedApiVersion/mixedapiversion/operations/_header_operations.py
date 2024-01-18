@@ -109,7 +109,6 @@ class HeaderOperations:
 
         :param foo_client_request_id: The fooRequestId. Required.
         :type foo_client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -165,7 +164,6 @@ class HeaderOperations:
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group. Required.
         :type header_custom_named_request_id_param_grouping_parameters:
          ~mixedapiversion.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -221,7 +219,6 @@ class HeaderOperations:
 
         :param foo_client_request_id: The fooRequestId. Required.
         :type foo_client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

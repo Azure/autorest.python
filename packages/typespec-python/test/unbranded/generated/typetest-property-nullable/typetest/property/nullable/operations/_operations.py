@@ -395,8 +395,6 @@ class StringOperations:
     def get_non_null(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -455,8 +453,6 @@ class StringOperations:
     def get_null(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -781,8 +777,6 @@ class BytesOperations:
     def get_non_null(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -841,8 +835,6 @@ class BytesOperations:
     def get_null(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1167,8 +1159,6 @@ class DatetimeOperations:
     def get_non_null(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1227,8 +1217,6 @@ class DatetimeOperations:
     def get_null(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1553,8 +1541,6 @@ class DurationOperations:
     def get_non_null(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1613,8 +1599,6 @@ class DurationOperations:
     def get_null(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1939,8 +1923,6 @@ class CollectionsByteOperations:
     def get_non_null(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2001,8 +1983,6 @@ class CollectionsByteOperations:
     def get_null(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2345,8 +2325,6 @@ class CollectionsModelOperations:
     def get_non_null(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
@@ -2410,8 +2388,6 @@ class CollectionsModelOperations:
     def get_null(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty

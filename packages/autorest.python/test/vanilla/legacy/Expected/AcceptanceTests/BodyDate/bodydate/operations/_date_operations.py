@@ -175,7 +175,6 @@ class DateOperations:
     def get_null(self, **kwargs: Any) -> Optional[datetime.date]:
         """Get null date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or None or the result of cls(response)
         :rtype: ~datetime.date or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -223,7 +222,6 @@ class DateOperations:
     def get_invalid_date(self, **kwargs: Any) -> datetime.date:
         """Get invalid date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -271,7 +269,6 @@ class DateOperations:
     def get_overflow_date(self, **kwargs: Any) -> datetime.date:
         """Get overflow date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -319,7 +316,6 @@ class DateOperations:
     def get_underflow_date(self, **kwargs: Any) -> datetime.date:
         """Get underflow date value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -371,7 +367,6 @@ class DateOperations:
 
         :param date_body: date body. Required.
         :type date_body: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -420,7 +415,6 @@ class DateOperations:
     def get_max_date(self, **kwargs: Any) -> datetime.date:
         """Get max date value 9999-12-31.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -472,7 +466,6 @@ class DateOperations:
 
         :param date_body: date body. Required.
         :type date_body: ~datetime.date
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -521,7 +514,6 @@ class DateOperations:
     def get_min_date(self, **kwargs: Any) -> datetime.date:
         """Get min date value 0000-01-01.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises ~azure.core.exceptions.HttpResponseError:
