@@ -171,6 +171,16 @@ def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
             yaml_data[k] = v
 
 
+def has_json_content_type(yaml_data: Dict[str, Any]) -> bool:
+    return any(ct for ct in yaml_data.get("contentTypes", []) if JSON_REGEXP.match(ct))
+
+
+def has_multi_part_content_type(yaml_data: Dict[str, Any]) -> bool:
+    return any(
+        ct for ct in yaml_data.get("contentTypes", []) if ct == "multipart/form-data"
+    )
+
+
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     """Add Python naming information."""
 
@@ -195,13 +205,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         code_model: Dict[str, Any],
         body_parameter: Dict[str, Any],
     ):
-        if (
+        # only add overload for special content type
+        if (  # pylint: disable=too-many-boolean-expressions
             body_parameter
             and body_parameter["type"]["type"] in ("model", "dict", "list")
-            and any(
-                ct
-                for ct in body_parameter.get("contentTypes", [])
-                if JSON_REGEXP.match(ct)
+            and (
+                has_json_content_type(body_parameter)
+                or (self.is_cadl and has_multi_part_content_type(body_parameter))
             )
             and not body_parameter["type"].get("xmlMetadata")
             and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
@@ -210,8 +220,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             is_dpg_model = body_parameter["type"].get("base") == "dpg"
             body_parameter["type"] = {
                 "type": "combined",
-                "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+                "types": [body_parameter["type"]],
             }
+            # don't add binary overload for multipart content type
+            if not (self.is_cadl and has_multi_part_content_type(body_parameter)):
+                body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
+
             if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":
                 body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
             code_model["types"].append(body_parameter["type"])
@@ -223,8 +237,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return name
 
         if self.is_cadl:
-            reserved_words = copy.copy(CADL_RESERVED_WORDS)
-            reserved_words.update(RESERVED_WORDS)
+            reserved_words = {
+                k: (v + CADL_RESERVED_WORDS.get(k, []))
+                for k, v in RESERVED_WORDS.items()
+            }
         else:
             reserved_words = RESERVED_WORDS
         name = pad_special_chars(name)
@@ -371,9 +387,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
         wire_name_lower = (yaml_data.get("wireName") or "").lower()
-        if (
-            yaml_data["location"] == "header"
-            and wire_name_lower in HEADERS_HIDE_IN_METHOD
+        if yaml_data["location"] == "header" and (
+            wire_name_lower in HEADERS_HIDE_IN_METHOD
+            or yaml_data.get("clientDefaultValue") == "multipart/form-data"
         ):
             yaml_data["hideInMethod"] = True
         if (

@@ -19,6 +19,9 @@ async def test_structure_default():
     await client.foo.four()
     await client.bar.five()
     await client.bar.six()
+    await client.baz.foo.seven()
+    await client.qux.eight()
+    await client.qux.bar.nine()
 
 @pytest.mark.asyncio
 async def test_structure_multiclient():

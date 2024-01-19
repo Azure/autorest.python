@@ -10,7 +10,7 @@ const cp = require("child_process");
 const extension = require("@autorest/system-requirements");
 
 async function runPython3(scriptName, ...args) {
-  const command = await extension.patchPythonPath(["python", scriptName, ...args], { version: ">=3.7", environmentVariable: "AUTOREST_PYTHON_EXE" });
+  const command = await extension.patchPythonPath(["python", scriptName, ...args], { version: ">=3.8", environmentVariable: "AUTOREST_PYTHON_EXE" });
   cp.execSync(command.join(" "), {
     stdio: [0, 1, 2]
   });

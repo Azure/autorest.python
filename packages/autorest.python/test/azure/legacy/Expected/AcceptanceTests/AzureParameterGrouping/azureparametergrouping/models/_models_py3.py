@@ -7,15 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
-from typing import Any, Optional
+from typing import Any, Literal, Optional
 
 import msrest.serialization
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class Error(msrest.serialization.Model):
@@ -102,7 +96,9 @@ class Grouper(msrest.serialization.Model):
         self.grouped_parameter = grouped_parameter
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(
+    msrest.serialization.Model
+):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar header_two:
@@ -201,7 +197,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.body = body
 
 
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
+class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.

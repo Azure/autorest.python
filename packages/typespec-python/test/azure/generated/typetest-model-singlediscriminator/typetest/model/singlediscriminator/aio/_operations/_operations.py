@@ -51,8 +51,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
     async def get_model(self, **kwargs: Any) -> _models.Bird:
         """get_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -330,8 +328,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
     async def get_recursive_model(self, **kwargs: Any) -> _models.Bird:
         """get_recursive_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -609,8 +605,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
     async def get_missing_discriminator(self, **kwargs: Any) -> _models.Bird:
         """get_missing_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -700,8 +694,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
     async def get_wrong_discriminator(self, **kwargs: Any) -> _models.Bird:
         """get_wrong_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -791,8 +783,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
     async def get_legacy_model(self, **kwargs: Any) -> _models.Dinosaur:
         """get_legacy_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Dinosaur. The Dinosaur is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Dinosaur
         :raises ~azure.core.exceptions.HttpResponseError:

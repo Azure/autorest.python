@@ -54,7 +54,6 @@ class OperationGroupOneOperations:
     async def test_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestTwo should be in OperationGroupOneOperations.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

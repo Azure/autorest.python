@@ -56,8 +56,6 @@ class StringOperations:
     async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_known_value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~typetest.enum.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -108,8 +106,6 @@ class StringOperations:
     async def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_unknown_value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~typetest.enum.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:

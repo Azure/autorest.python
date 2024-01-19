@@ -16,7 +16,7 @@ resources:
       name: Azure/azure-sdk-tools
 
 variables:
-  PythonVersion: "3.7"
+  PythonVersion: "3.12"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
   PROXY_URL: http://localhost:5000
   PROXY_MANUAL_START: true
@@ -42,14 +42,6 @@ jobs:
 
     strategy:
       matrix:
-        Windows_Python37:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.7"
-        Linux_Python37:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.7"
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -58,6 +50,14 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.11"
+        Linux_Python312:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu22.04"
+          PythonVersion: "3.12"
+        Windows_Python312:
+          OSName: "Windows"
+          OSVmImage: "MMS2023"
+          PythonVersion: "3.12"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general
@@ -73,8 +73,8 @@ jobs:
             regenerate: true
 
       - script: |
-          pip install pip==20.2
-          pip install  coverage
+          pip install pip
+          pip install coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - template: generated-code-checks-template.yml
@@ -134,14 +134,6 @@ jobs:
 
     strategy:
       matrix:
-        Windows_Python37:
-          OSName: "Windows"
-          OSVmImage: "MMS2019"
-          PythonVersion: "3.7"
-        Linux_Python37:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.7"
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -150,6 +142,14 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.11"
+        Linux_Python312:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu22.04"
+          PythonVersion: "3.12"
+        Windows_Python312:
+          OSName: "Windows"
+          OSVmImage: "MMS2023"
+          PythonVersion: "3.12"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general

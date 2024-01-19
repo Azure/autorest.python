@@ -5,26 +5,13 @@
 # --------------------------------------------------------------------------
 import base64
 import pytest
-from pathlib import Path
 from payload.contentnegotiation.aio import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-
-FILE_FOLDER = Path(__file__).parent.parent
 
 @pytest.fixture
 async def client():
     async with ContentNegotiationClient(endpoint="http://localhost:3000") as client:
         yield client
-
-@pytest.fixture
-def png_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
-        return file_in.read()
-
-@pytest.fixture
-def jpg_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
-        return file_in.read()
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):

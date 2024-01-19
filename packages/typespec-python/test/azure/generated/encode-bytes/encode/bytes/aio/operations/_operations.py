@@ -292,8 +292,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -323,8 +321,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -349,8 +345,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -375,8 +369,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -457,8 +449,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -488,8 +478,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -514,8 +502,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -540,8 +526,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -622,8 +606,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -653,8 +635,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -679,8 +659,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -705,8 +683,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -787,8 +763,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -823,8 +797,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -852,8 +824,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -882,8 +852,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -1467,8 +1435,6 @@ class ResponseBodyOperations:
     async def default(self, **kwargs: Any) -> bytes:
         """default.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1519,8 +1485,6 @@ class ResponseBodyOperations:
     async def octet_stream(self, **kwargs: Any) -> bytes:
         """octet_stream.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1569,8 +1533,6 @@ class ResponseBodyOperations:
     async def custom_content_type(self, **kwargs: Any) -> bytes:
         """custom_content_type.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1619,8 +1581,6 @@ class ResponseBodyOperations:
     async def base64(self, **kwargs: Any) -> bytes:
         """base64.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1671,8 +1631,6 @@ class ResponseBodyOperations:
     async def base64url(self, **kwargs: Any) -> bytes:
         """base64url.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:

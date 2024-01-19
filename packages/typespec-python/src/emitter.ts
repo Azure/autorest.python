@@ -128,6 +128,12 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
         resolvedOptions["packaging-files-config"] = undefined;
     }
+    if (
+        resolvedOptions["package-pprint-name"] !== undefined &&
+        !resolvedOptions["package-pprint-name"].startsWith('"')
+    ) {
+        resolvedOptions["package-pprint-name"] = `"${resolvedOptions["package-pprint-name"]}"`;
+    }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
         if (value !== undefined) {
@@ -386,10 +392,10 @@ function emitFlattenedParameter(
     };
 }
 
-function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
+function emitAcceptParameter(inOverload: boolean, inOverriden: boolean, contentType: string): Record<string, any> {
     return {
         checkClientInput: false,
-        clientDefaultValue: "application/json",
+        clientDefaultValue: contentType,
         clientName: "accept",
         delimiter: null,
         description: "Accept header.",
@@ -403,7 +409,7 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
         optional: false,
         wireName: "Accept",
         skipUrlEncoding: false,
-        type: getConstantType("application/json"),
+        type: getConstantType(contentType),
     };
 }
 
@@ -525,8 +531,12 @@ function addLroInformation(
     emittedOperation["initialOperation"] = initialOperation;
     emittedOperation["exposeStreamKeyword"] = false;
     const lroMeta = getLroMetadata(context.program, tspOperation);
-    if (!isAzureCoreModel(lroMeta!.logicalResult)) {
-        emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
+    let logicalResult = lroMeta!.logicalResult;
+    if (logicalResult.name === "") {
+        logicalResult = getEffectivePayloadType(context, logicalResult);
+    }
+    if (!isAzureCoreModel(logicalResult)) {
+        emittedOperation["responses"][0]["type"] = getType(context, logicalResult);
         if (lroMeta!.logicalPath) {
             emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
@@ -625,13 +635,18 @@ function isAbstract(operation: HttpOperation): boolean {
     return body !== undefined && body.contentTypes.length > 1;
 }
 
-function addAcceptParameter(context: SdkContext, operation: Operation, parameters: Record<string, any>[]) {
+function addAcceptParameter(
+    context: SdkContext,
+    operation: Operation,
+    parameters: Record<string, any>[],
+    contentType: string = "application/json",
+) {
     const httpOperation = ignoreDiagnostics(getHttpOperation(context.program, operation));
     if (
         getBodyFromResponse(context, httpOperation.responses[0]) &&
         parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0
     ) {
-        parameters.push(emitAcceptParameter(false, false));
+        parameters.push(emitAcceptParameter(false, false, contentType));
     }
 }
 
@@ -666,7 +681,7 @@ function emitBasicOperation(
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         const emittedResponse = emitResponse(context, response);
-        addAcceptParameter(context, operation, parameters);
+        addAcceptParameter(context, operation, parameters, emittedResponse.defaultContentType);
         if (isErrorModel(context.program, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
             if (response.statusCodes === "*") {

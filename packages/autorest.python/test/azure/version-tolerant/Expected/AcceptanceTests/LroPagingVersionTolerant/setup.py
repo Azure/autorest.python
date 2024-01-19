@@ -22,8 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
-        "azure-core<2.0.0,>=1.28.0",
-        "typing-extensions>=4.3.0; python_version<'3.8.0'",
+        "azure-core<2.0.0,>=1.29.5",
     ],
     long_description="""\
     The language service API is a suite of natural language processing (NLP) skills built with best-in-class Microsoft machine learning algorithms.

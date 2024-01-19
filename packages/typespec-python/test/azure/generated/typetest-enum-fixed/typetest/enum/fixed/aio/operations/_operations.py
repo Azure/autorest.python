@@ -55,8 +55,6 @@ class StringOperations:
     async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
         """getKnownValue.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DaysOfWeekEnum
         :rtype: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
         :raises ~azure.core.exceptions.HttpResponseError:

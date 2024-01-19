@@ -59,7 +59,6 @@ class ArrayOperations:
     async def get_valid(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -111,7 +110,6 @@ class ArrayOperations:
 
         :param array: Default value is None.
         :type array: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -161,7 +159,6 @@ class ArrayOperations:
     async def get_empty(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property which is empty.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,7 +210,6 @@ class ArrayOperations:
 
         :param array: Default value is None.
         :type array: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -263,7 +259,6 @@ class ArrayOperations:
     async def get_not_provided(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property while server doesn't provide a response payload.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises ~azure.core.exceptions.HttpResponseError:

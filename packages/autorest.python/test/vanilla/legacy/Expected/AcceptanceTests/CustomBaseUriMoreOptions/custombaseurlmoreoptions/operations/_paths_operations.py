@@ -93,7 +93,6 @@ class PathsOperations:
         :type key_name: str
         :param key_version: The key version. Default value 'v1'. Default value is "v1".
         :type key_version: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

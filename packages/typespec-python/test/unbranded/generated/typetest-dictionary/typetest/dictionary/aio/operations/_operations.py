@@ -74,8 +74,6 @@ class Int32ValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -250,8 +248,6 @@ class Int64ValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -426,8 +422,6 @@ class BooleanValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, bool]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -602,8 +596,6 @@ class StringValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, str]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -778,8 +770,6 @@ class Float32ValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -954,8 +944,6 @@ class DatetimeValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1130,8 +1118,6 @@ class DurationValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1306,8 +1292,6 @@ class UnknownValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, Any]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to any
         :rtype: dict[str, any]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1482,8 +1466,6 @@ class ModelValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1668,8 +1650,6 @@ class RecursiveModelValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1854,8 +1834,6 @@ class NullableFloatValueOperations:
     async def get(self, **kwargs: Any) -> Dict[str, float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:

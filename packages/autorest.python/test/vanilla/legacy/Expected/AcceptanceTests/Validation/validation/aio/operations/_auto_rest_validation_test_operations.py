@@ -7,8 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,10 +33,6 @@ from ...operations._auto_rest_validation_test_operations import (
 )
 from .._vendor import AutoRestValidationTestMixinABC
 
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -54,7 +49,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -125,7 +119,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -153,7 +146,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -175,7 +167,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -246,7 +237,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -301,7 +291,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -321,7 +310,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -341,7 +329,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:

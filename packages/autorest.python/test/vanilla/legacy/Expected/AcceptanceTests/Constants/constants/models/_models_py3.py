@@ -7,15 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
-from typing import Any, Optional, TYPE_CHECKING, Union
+from typing import Any, Literal, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -248,7 +242,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: Default value is "value1".
@@ -290,7 +284,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".

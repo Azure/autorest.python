@@ -43,7 +43,6 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type body: JSON
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

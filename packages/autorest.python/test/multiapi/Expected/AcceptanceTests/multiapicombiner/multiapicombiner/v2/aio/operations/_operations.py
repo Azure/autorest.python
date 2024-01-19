@@ -54,7 +54,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :paramtype id: int
         :keyword message: An optional string parameter. Default value is None.
         :paramtype message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -114,7 +113,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :paramtype greeting_in_english: str
         :keyword greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :paramtype greeting_in_chinese: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -192,7 +190,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -209,7 +206,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -227,7 +223,6 @@ class OperationGroupOneOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -292,7 +287,6 @@ class OperationGroupOneOperations:
     async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -363,7 +357,6 @@ class OperationGroupTwoOperations:
 
         :keyword parameter_one: A boolean parameter. Required.
         :paramtype parameter_one: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

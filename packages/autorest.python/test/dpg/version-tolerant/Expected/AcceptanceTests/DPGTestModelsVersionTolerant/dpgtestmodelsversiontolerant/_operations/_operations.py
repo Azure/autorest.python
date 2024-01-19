@@ -402,13 +402,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns LROProduct
         :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
         :raises ~azure.core.exceptions.HttpResponseError:

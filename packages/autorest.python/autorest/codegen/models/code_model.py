@@ -78,6 +78,14 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         ]
 
     @property
+    def has_form_data(self) -> bool:
+        return any(
+            og.has_form_data_body
+            for client in self.clients
+            for og in client.operation_groups
+        )
+
+    @property
     def has_etag(self) -> bool:
         return any(client.has_etag for client in self.clients)
 
@@ -94,18 +102,12 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def has_non_abstract_operations(self) -> bool:
-        for client in self.clients:
-            for operation_group in client.operation_groups:
-                for operation in operation_group.operations:
-                    if not operation.abstract:
-                        return True
-        for clients in self.subnamespace_to_clients.values():
-            for client in clients:
-                for operation_group in client.operation_groups:
-                    for operation in operation_group.operations:
-                        if not operation.abstract:
-                            return True
-        return False
+        return any(c for c in self.clients if c.has_non_abstract_operations) or any(
+            c
+            for cs in self.subnamespace_to_clients.values()
+            for c in cs
+            if c.has_non_abstract_operations
+        )
 
     def lookup_request_builder(
         self, request_builder_id: int
@@ -133,7 +135,12 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc or self.has_etag
+        return (
+            self.need_request_converter
+            or self.need_mixin_abc
+            or self.has_etag
+            or self.has_form_data
+        )
 
     @property
     def need_request_converter(self) -> bool:

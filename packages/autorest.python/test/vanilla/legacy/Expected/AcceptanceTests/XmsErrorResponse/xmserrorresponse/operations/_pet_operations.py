@@ -115,7 +115,6 @@ class PetOperations:
 
         :param pet_id: pet id. Required.
         :type pet_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or None or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -153,7 +152,7 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)  # type: ignore
             raise HttpResponseError(response=response)
 
         deserialized = None
@@ -171,7 +170,6 @@ class PetOperations:
 
         :param what_action: what action the pet should do. Required.
         :type what_action: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -229,7 +227,6 @@ class PetOperations:
         :param models: Make sure model deserialization doesn't conflict with this param name, which has
          input name 'models'. Use client default value in call. Default value is "value1".
         :type models: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

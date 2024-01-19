@@ -67,6 +67,62 @@ def build_extends_unknown_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+def build_extends_unknown_derived_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/property/additionalProperties/extendsRecordUnknownDerived"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_extends_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/property/additionalProperties/extendsRecordUnknownDerived"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_extends_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/property/additionalProperties/extendsUnknownDiscriminated"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_extends_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/property/additionalProperties/extendsUnknownDiscriminated"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
 def build_is_unknown_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -87,6 +143,62 @@ def build_is_unknown_put_request(**kwargs: Any) -> HttpRequest:
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/type/property/additionalProperties/isRecordUnknown"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_is_unknown_derived_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/property/additionalProperties/isRecordUnknownDerived"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_is_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/property/additionalProperties/isRecordUnknownDerived"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_is_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/property/additionalProperties/isUnknownDiscriminated"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_is_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/property/additionalProperties/isUnknownDiscriminated"
 
     # Construct headers
     if content_type is not None:
@@ -339,8 +451,6 @@ class ExtendsUnknownOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalProperties. The ExtendsUnknownAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
@@ -522,6 +632,454 @@ class ExtendsUnknownOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
+class ExtendsUnknownDerivedOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.AdditionalPropertiesClient`'s
+        :attr:`extends_unknown_derived` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDerived:
+        """Get call.
+
+        :return: ExtendsUnknownAdditionalPropertiesDerived. The
+         ExtendsUnknownAdditionalPropertiesDerived is compatible with MutableMapping
+        :rtype:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ExtendsUnknownAdditionalPropertiesDerived] = kwargs.pop("cls", None)
+
+        _request = build_extends_unknown_derived_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ExtendsUnknownAdditionalPropertiesDerived, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self,
+        body: _models.ExtendsUnknownAdditionalPropertiesDerived,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: ExtendsUnknownAdditionalPropertiesDerived,
+         JSON, IO[bytes] Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived or
+         JSON or IO[bytes]
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_extends_unknown_derived_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class ExtendsUnknownDiscriminatedOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.AdditionalPropertiesClient`'s
+        :attr:`extends_unknown_discriminated` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDiscriminated:
+        """Get call.
+
+        :return: ExtendsUnknownAdditionalPropertiesDiscriminated. The
+         ExtendsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
+        :rtype:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                extends_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # response body for status code(s): 200
+                response == extends_unknown_additional_properties_discriminated
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ExtendsUnknownAdditionalPropertiesDiscriminated] = kwargs.pop("cls", None)
+
+        _request = build_extends_unknown_discriminated_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ExtendsUnknownAdditionalPropertiesDiscriminated, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self,
+        body: _models.ExtendsUnknownAdditionalPropertiesDiscriminated,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                extends_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = extends_unknown_additional_properties_discriminated
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types:
+         ExtendsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes] Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
+         or JSON or IO[bytes]
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                extends_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = extends_unknown_additional_properties_discriminated
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_extends_unknown_discriminated_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
 class IsUnknownOperations:
     """
     .. warning::
@@ -542,8 +1100,6 @@ class IsUnknownOperations:
     def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalProperties. The IsUnknownAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
@@ -725,6 +1281,451 @@ class IsUnknownOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
+class IsUnknownDerivedOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.AdditionalPropertiesClient`'s
+        :attr:`is_unknown_derived` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDerived:
+        """Get call.
+
+        :return: IsUnknownAdditionalPropertiesDerived. The IsUnknownAdditionalPropertiesDerived is
+         compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.IsUnknownAdditionalPropertiesDerived] = kwargs.pop("cls", None)
+
+        _request = build_is_unknown_derived_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDerived, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self,
+        body: _models.IsUnknownAdditionalPropertiesDerived,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.IsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: IsUnknownAdditionalPropertiesDerived, JSON,
+         IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
+         or JSON or IO[bytes]
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "index": 0,  # The index property. Required.
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_is_unknown_derived_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class IsUnknownDiscriminatedOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.AdditionalPropertiesClient`'s
+        :attr:`is_unknown_discriminated` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDiscriminated:
+        """Get call.
+
+        :return: IsUnknownAdditionalPropertiesDiscriminated. The
+         IsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
+        :rtype:
+         ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                is_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # response body for status code(s): 200
+                response == is_unknown_additional_properties_discriminated
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.IsUnknownAdditionalPropertiesDiscriminated] = kwargs.pop("cls", None)
+
+        _request = build_is_unknown_discriminated_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDiscriminated, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self,
+        body: _models.IsUnknownAdditionalPropertiesDiscriminated,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                is_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = is_unknown_additional_properties_discriminated
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.IsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: IsUnknownAdditionalPropertiesDiscriminated,
+         JSON, IO[bytes] Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated or
+         JSON or IO[bytes]
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "kind":
+
+                # JSON input template for discriminator value "derived":
+                is_unknown_additional_properties_discriminated = {
+                    "index": 0,  # The index property. Required.
+                    "kind": "derived",
+                    "name": "str",  # The name property. Required.
+                    "age": 0.0  # Optional. The age property.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = is_unknown_additional_properties_discriminated
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_is_unknown_discriminated_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
 class ExtendsStringOperations:
     """
     .. warning::
@@ -745,8 +1746,6 @@ class ExtendsStringOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsStringAdditionalProperties. The ExtendsStringAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
@@ -948,8 +1947,6 @@ class IsStringOperations:
     def get(self, **kwargs: Any) -> _models.IsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsStringAdditionalProperties. The IsStringAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
@@ -1151,8 +2148,6 @@ class ExtendsFloatOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsFloatAdditionalProperties. The ExtendsFloatAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
@@ -1354,8 +2349,6 @@ class IsFloatOperations:
     def get(self, **kwargs: Any) -> _models.IsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsFloatAdditionalProperties. The IsFloatAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
@@ -1557,8 +2550,6 @@ class ExtendsModelOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelAdditionalProperties. The ExtendsModelAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
@@ -1748,8 +2739,6 @@ class IsModelOperations:
     def get(self, **kwargs: Any) -> _models.IsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelAdditionalProperties. The IsModelAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
@@ -1939,8 +2928,6 @@ class ExtendsModelArrayOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelArrayAdditionalProperties. The ExtendsModelArrayAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
@@ -2136,8 +3123,6 @@ class IsModelArrayOperations:
     def get(self, **kwargs: Any) -> _models.IsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelArrayAdditionalProperties. The IsModelArrayAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties

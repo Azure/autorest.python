@@ -7,10 +7,239 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Mapping, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
+
+
+class Address(_model_base.Model):
+    """Address.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar city: Required.
+    :vartype city: str
+    """
+
+    city: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        city: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class BinaryArrayPartsRequest(_model_base.Model):
+    """BinaryArrayPartsRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar pictures: Required.
+    :vartype pictures: list[bytes]
+    """
+
+    id: str = rest_field()
+    """Required."""
+    pictures: List[bytes] = rest_field(format="base64")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        pictures: List[bytes],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ComplexPartsRequest(_model_base.Model):
+    """ComplexPartsRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar address: Required.
+    :vartype address: ~payload.multipart.models.Address
+    :ivar profile_image: Required.
+    :vartype profile_image: bytes
+    :ivar previous_addresses: Required.
+    :vartype previous_addresses: list[~payload.multipart.models.Address]
+    :ivar pictures: Required.
+    :vartype pictures: list[bytes]
+    """
+
+    id: str = rest_field()
+    """Required."""
+    address: "_models.Address" = rest_field()
+    """Required."""
+    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    """Required."""
+    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    """Required."""
+    pictures: List[bytes] = rest_field(format="base64")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        address: "_models.Address",
+        profile_image: bytes,
+        previous_addresses: List["_models.Address"],
+        pictures: List[bytes],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class JsonArrayPartsRequest(_model_base.Model):
+    """JsonArrayPartsRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: bytes
+    :ivar previous_addresses: Required.
+    :vartype previous_addresses: list[~payload.multipart.models.Address]
+    """
+
+    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    """Required."""
+    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: bytes,
+        previous_addresses: List["_models.Address"],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class JsonPartRequest(_model_base.Model):
+    """JsonPartRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar address: Required.
+    :vartype address: ~payload.multipart.models.Address
+    :ivar profile_image: Required.
+    :vartype profile_image: bytes
+    """
+
+    address: "_models.Address" = rest_field()
+    """Required."""
+    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        address: "_models.Address",
+        profile_image: bytes,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class MultiBinaryPartsRequest(_model_base.Model):
+    """MultiBinaryPartsRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: bytes
+    :ivar picture:
+    :vartype picture: bytes
+    """
+
+    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    """Required."""
+    picture: Optional[bytes] = rest_field(format="base64")
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: bytes,
+        picture: Optional[bytes] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class MultiPartRequest(_model_base.Model):

@@ -336,8 +336,6 @@ class Int32ValueOperations:
     def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -514,8 +512,6 @@ class Int64ValueOperations:
     def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -692,8 +688,6 @@ class BooleanValueOperations:
     def get(self, **kwargs: Any) -> List[bool]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of bool
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -870,8 +864,6 @@ class StringValueOperations:
     def get(self, **kwargs: Any) -> List[str]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of str
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1048,8 +1040,6 @@ class Float32ValueOperations:
     def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1226,8 +1216,6 @@ class DatetimeValueOperations:
     def get(self, **kwargs: Any) -> List[datetime.datetime]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1404,8 +1392,6 @@ class DurationValueOperations:
     def get(self, **kwargs: Any) -> List[datetime.timedelta]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1582,8 +1568,6 @@ class UnknownValueOperations:
     def get(self, **kwargs: Any) -> List[Any]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of any
         :rtype: list[any]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1760,8 +1744,6 @@ class ModelValueOperations:
     def get(self, **kwargs: Any) -> List[_models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1948,8 +1930,6 @@ class NullableFloatValueOperations:
     def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:

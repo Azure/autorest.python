@@ -202,13 +202,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -244,13 +237,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -280,13 +266,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -317,13 +296,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -445,13 +417,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         :param name: The name of user. Required.
         :type name: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -544,13 +509,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :type name: str
         :keyword format: The format of the data. Required.
         :paramtype format: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns ExportedUser. The ExportedUser is compatible
          with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.ExportedUser]

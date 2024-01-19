@@ -66,8 +66,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         :param job_id: A processing job identifier. Required.
         :type job_id: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: JobResult. The JobResult is compatible with MutableMapping
         :rtype: ~azurecore.lro.rpclegacy.models.JobResult
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -150,7 +148,9 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         return deserialized  # type: ignore
 
-    async def _create_job_initial(self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any) -> JSON:
+    async def _create_job_initial(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -163,7 +163,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -197,12 +197,8 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     async def begin_create_job(
@@ -216,13 +212,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
-         for this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
@@ -280,13 +269,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
-         for this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
@@ -339,13 +321,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
-         for this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
@@ -398,13 +373,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
-         for this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
@@ -458,7 +426,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._create_job_initial(
+            raw_result = await self._create_job_initial(  # type: ignore
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
