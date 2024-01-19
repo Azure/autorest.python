@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import DocumentModel
-from ._models import DocumentModelDetails
 from ._models import Error
 from ._models import ErrorResponse
 from ._models import InnerError
@@ -20,8 +18,6 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "DocumentModel",
-    "DocumentModelDetails",
     "Error",
     "ErrorResponse",
     "InnerError",
