@@ -161,8 +161,7 @@ class Catalog(TrackedResourceBase):
     def __setattr__(self, key: str, value: Any) -> None:
         if key in self._flatten_items:
             if self.properties is None:
-                class_type = self._attr_to_rest_field["properties"]._class_type
-                self.properties = class_type()
+                self.properties = self._attr_to_rest_field["properties"]._class_type()
             setattr(self.properties, key, value)
         else:
             super().__setattr__(key, value)

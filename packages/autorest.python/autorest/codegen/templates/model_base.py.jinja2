@@ -789,7 +789,7 @@ class _RestField:
         self._default = default
         self._format = format
 
-    {% if code_model.enable_flatten and code_model.has_flatten_model %}
+    {% if code_model.options["models_mode"] == "dpg" and code_model.has_flatten_model %}
     @property
     def _class_type(self) -> typing.Any:
         functools_args = getattr(self._type, "args", [None])
