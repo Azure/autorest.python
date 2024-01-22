@@ -32,8 +32,8 @@ SPECIAL_HEADER_SERIALIZATION: Dict[str, List[str]] = {
     ],
     "repeatability-first-sent": [
         """if "Repeatability-First-Sent" not in _headers:""",
-        """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
-        "rfc-1123")""",
+        """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(""",
+        """        datetime.datetime.now(datetime.timezone.utc), "rfc-1123")""",
     ],
     "client-request-id": [],
     "x-ms-client-request-id": [],
