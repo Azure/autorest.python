@@ -50,7 +50,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
     async def get_horse(self, **kwargs: Any) -> _models.Horse:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Horse or the result of cls(response)
         :rtype: ~multipleinheritance.models.Horse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -103,7 +102,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -118,7 +116,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -134,7 +131,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -193,7 +189,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
     async def get_pet(self, **kwargs: Any) -> _models.Pet:
         """Get a pet with name 'Peanut'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~multipleinheritance.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -243,7 +238,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         :param name: Required.
         :type name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -296,7 +290,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
     async def get_feline(self, **kwargs: Any) -> _models.Feline:
         """Get a feline where meows and hisses are true.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Feline or the result of cls(response)
         :rtype: ~multipleinheritance.models.Feline
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -349,7 +342,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -364,7 +356,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -380,7 +371,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -439,7 +429,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
     async def get_cat(self, **kwargs: Any) -> _models.Cat:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Cat or the result of cls(response)
         :rtype: ~multipleinheritance.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -493,7 +482,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -509,7 +497,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -525,7 +512,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -585,7 +571,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Kitten or the result of cls(response)
         :rtype: ~multipleinheritance.models.Kitten
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -640,7 +625,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -657,7 +641,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -674,7 +657,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:

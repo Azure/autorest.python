@@ -216,8 +216,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
     def get_valid(self, **kwargs: Any) -> _models.Siamese:
         """get_valid.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -285,8 +283,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -318,8 +314,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -344,8 +338,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -369,8 +361,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:

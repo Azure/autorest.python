@@ -700,19 +700,6 @@ class _OperationSerializer(
             retval.append(_api_version_validation(builder))
         return retval
 
-    def param_description(self, builder: OperationType) -> List[str]:
-        description_list = super().param_description(builder)
-        if builder.expose_stream_keyword and builder.has_response_body:
-            description_list.append(
-                ":keyword bool stream: Whether to stream the response of this operation. "
-                "Defaults to False. You will have to context manage the returned stream."
-            )
-        if not self.code_model.options["version_tolerant"]:
-            description_list.append(
-                ":keyword callable cls: A custom type or function that will be passed the direct response"
-            )
-        return description_list
-
     def pop_kwargs_from_signature(self, builder: OperationType) -> List[str]:
         kwargs_to_pop = builder.parameters.kwargs_to_pop
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(
@@ -1542,25 +1529,6 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         self.code_model = code_model
         self.async_mode = async_mode
         self.parameter_serializer = ParameterSerializer()
-
-    def param_description(self, builder: LROOperationType) -> List[str]:
-        retval = super().param_description(builder)
-        retval.append(
-            ":keyword str continuation_token: A continuation token to restart a poller from a saved state."
-        )
-        retval.append(
-            f":keyword polling: By default, your polling method will be {builder.get_polling_method(self.async_mode)}. "
-            "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
-            " personal polling strategy."
-        )
-        retval.append(
-            f":paramtype polling: bool or ~{builder.get_base_polling_method_path(self.async_mode)}"
-        )
-        retval.append(
-            ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
-            "if no Retry-After header is present."
-        )
-        return retval
 
     def serialize_path(self, builder: LROOperationType) -> List[str]:
         return self.parameter_serializer.serialize_path(

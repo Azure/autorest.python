@@ -2329,13 +2329,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[JSON]]
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -112,7 +112,9 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
     if "Repeatability-Request-ID" not in _headers:
         _headers["Repeatability-Request-ID"] = str(uuid.uuid4())
     if "Repeatability-First-Sent" not in _headers:
-        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(), "rfc-1123")
+        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(
+            datetime.datetime.now(datetime.timezone.utc), "rfc-1123"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
@@ -150,8 +152,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :paramtype etag: str
         :keyword match_condition: The match condition to use upon the etag. Default value is None.
         :paramtype match_condition: ~azure.core.MatchConditions
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -240,8 +240,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -273,8 +271,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -301,8 +297,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -329,8 +323,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:

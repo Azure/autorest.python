@@ -49,7 +49,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def test_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype:
          ~azure.core.async_paging.AsyncItemPaged[~multiapicredentialdefaultpolicy.v3.models.ModelThree]
@@ -136,7 +135,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type greeting_in_chinese: str
         :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

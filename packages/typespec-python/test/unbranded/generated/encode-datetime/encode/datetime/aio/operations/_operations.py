@@ -338,8 +338,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -369,8 +367,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -395,8 +391,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -420,8 +414,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -502,8 +494,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -533,8 +523,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -559,8 +547,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -584,8 +570,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -666,8 +650,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -697,8 +679,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -723,8 +703,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -748,8 +726,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -830,8 +806,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
@@ -862,8 +836,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
@@ -889,8 +861,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
@@ -916,8 +886,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
@@ -999,8 +967,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
@@ -1035,8 +1001,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
@@ -1064,8 +1028,6 @@ class PropertyOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
@@ -1093,8 +1055,6 @@ class PropertyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty

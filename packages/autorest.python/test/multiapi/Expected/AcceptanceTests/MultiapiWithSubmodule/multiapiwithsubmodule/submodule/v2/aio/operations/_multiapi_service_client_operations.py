@@ -47,7 +47,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type id: int
         :param message: An optional string parameter. Default value is None.
         :type message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -107,7 +106,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

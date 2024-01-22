@@ -64,7 +64,6 @@ class Datetimerfc1123Operations:
     async def get_null(self, **kwargs: Any) -> Optional[datetime.datetime]:
         """Get null datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or None or the result of cls(response)
         :rtype: ~datetime.datetime or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -112,7 +111,6 @@ class Datetimerfc1123Operations:
     async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
         """Get invalid datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -160,7 +158,6 @@ class Datetimerfc1123Operations:
     async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
         """Get overflow datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -208,7 +205,6 @@ class Datetimerfc1123Operations:
     async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
         """Get underflow datetime value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -260,7 +256,6 @@ class Datetimerfc1123Operations:
 
         :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -309,7 +304,6 @@ class Datetimerfc1123Operations:
     async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -357,7 +351,6 @@ class Datetimerfc1123Operations:
     async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -409,7 +402,6 @@ class Datetimerfc1123Operations:
 
         :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -458,7 +450,6 @@ class Datetimerfc1123Operations:
     async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:

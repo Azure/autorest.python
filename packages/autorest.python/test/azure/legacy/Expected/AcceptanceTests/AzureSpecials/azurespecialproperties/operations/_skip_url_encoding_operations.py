@@ -193,7 +193,6 @@ class SkipUrlEncodingOperations:
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -242,7 +241,6 @@ class SkipUrlEncodingOperations:
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -291,7 +289,6 @@ class SkipUrlEncodingOperations:
          Default value is "path1/path2/path3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -339,7 +336,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -388,7 +384,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value null. Default value is None.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -435,7 +430,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -484,7 +478,6 @@ class SkipUrlEncodingOperations:
          value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

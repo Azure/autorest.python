@@ -88,7 +88,6 @@ class InheritanceOperations:
     def get_valid(self, **kwargs: Any) -> _models.Siamese:
         """Get complex types that extend others.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Siamese or the result of cls(response)
         :rtype: ~bodycomplex.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -145,7 +144,6 @@ class InheritanceOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -164,7 +162,6 @@ class InheritanceOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -184,7 +181,6 @@ class InheritanceOperations:
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

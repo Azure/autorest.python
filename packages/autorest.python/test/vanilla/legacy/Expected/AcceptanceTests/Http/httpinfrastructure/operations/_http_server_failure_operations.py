@@ -118,7 +118,6 @@ class HttpServerFailureOperations:
     def head501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 501 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -162,7 +161,6 @@ class HttpServerFailureOperations:
     def get501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 501 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -211,7 +209,6 @@ class HttpServerFailureOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -268,7 +265,6 @@ class HttpServerFailureOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

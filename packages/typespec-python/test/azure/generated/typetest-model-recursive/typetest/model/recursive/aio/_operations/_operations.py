@@ -173,8 +173,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
     async def get(self, **kwargs: Any) -> _models.Extension:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Extension. The Extension is compatible with MutableMapping
         :rtype: ~typetest.model.recursive.models.Extension
         :raises ~azure.core.exceptions.HttpResponseError:

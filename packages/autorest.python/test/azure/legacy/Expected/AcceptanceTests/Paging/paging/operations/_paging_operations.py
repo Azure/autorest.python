@@ -546,7 +546,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_no_item_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that must return result of the default 'value' node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -620,7 +619,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_empty_next_link_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that gets an empty next link and should stop after page 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -694,7 +692,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_null_next_link_name_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -768,7 +765,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_single_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that finishes on the first call without a nextlink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -846,7 +842,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         :param name: Default value is None.
         :type name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -926,7 +921,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1009,7 +1003,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1099,7 +1092,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
          nextOperationWithQueryParams. Default value is True. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype query_constant: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1174,7 +1166,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         :param filter: OData filter options. Pass in 'foo'. Default value is None.
         :type filter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1252,7 +1243,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param maxpagesize: Max page size query param. Don't send. Known values are "5" and None.
          Default value is "5".
         :type maxpagesize: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1337,7 +1327,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1429,7 +1418,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id: Default value is None.
         :type client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1515,7 +1503,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1590,7 +1577,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1664,7 +1650,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_single_pages_failure(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that receives a 400 on the first call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1738,7 +1723,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_multiple_pages_failure(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that receives a 400 on the second call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1812,7 +1796,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_multiple_pages_failure_uri(self, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that receives an invalid nextLink.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1892,7 +1875,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :type api_version: str
         :param tenant: Sets the tenant to use. Required.
         :type tenant: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1968,7 +1950,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         :param custom_parameter_group: Parameter group. Required.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2112,14 +2093,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of either
          ProductResult or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~paging.models.Product]]
@@ -2241,7 +2214,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation with api version. When calling the next link, you want to append your
         client's api version to the next link.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2318,7 +2290,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation with api version. When calling the next link, you want to reformat it and
         override the returned api version with your client's api version.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2397,7 +2368,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:

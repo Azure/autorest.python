@@ -72,8 +72,6 @@ class Int32ValueOperations:
     async def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -248,8 +246,6 @@ class Int64ValueOperations:
     async def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -424,8 +420,6 @@ class BooleanValueOperations:
     async def get(self, **kwargs: Any) -> List[bool]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of bool
         :rtype: list[bool]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -600,8 +594,6 @@ class StringValueOperations:
     async def get(self, **kwargs: Any) -> List[str]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of str
         :rtype: list[str]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -776,8 +768,6 @@ class Float32ValueOperations:
     async def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -952,8 +942,6 @@ class DatetimeValueOperations:
     async def get(self, **kwargs: Any) -> List[datetime.datetime]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1128,8 +1116,6 @@ class DurationValueOperations:
     async def get(self, **kwargs: Any) -> List[datetime.timedelta]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1304,8 +1290,6 @@ class UnknownValueOperations:
     async def get(self, **kwargs: Any) -> List[Any]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of any
         :rtype: list[any]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1480,8 +1464,6 @@ class ModelValueOperations:
     async def get(self, **kwargs: Any) -> List[_models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1666,8 +1648,6 @@ class NullableFloatValueOperations:
     async def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~corehttp.exceptions.HttpResponseError:

@@ -42,7 +42,9 @@ def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
     if "Repeatability-Request-ID" not in _headers:
         _headers["Repeatability-Request-ID"] = str(uuid.uuid4())
     if "Repeatability-First-Sent" not in _headers:
-        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(), "rfc-1123")
+        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(
+            datetime.datetime.now(datetime.timezone.utc), "rfc-1123"
+        )
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
