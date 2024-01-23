@@ -195,9 +195,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
         :type input: ~internaloperation.models.SourcePath or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -300,9 +297,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
         :type input: ~internaloperation.models.SourcePath or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -543,9 +537,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         :param message: The payload body. Is one of the following types: Any, IO[bytes], str Required.
         :type message: any or IO[bytes] or str
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/octet-stream', 'text/plain'. Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:

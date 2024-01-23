@@ -146,9 +146,6 @@ class FormdataurlencodedOperations:
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token. Required.
         :type access_token: str
-        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype grant_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

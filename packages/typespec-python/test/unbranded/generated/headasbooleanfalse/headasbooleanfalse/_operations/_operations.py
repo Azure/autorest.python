@@ -252,9 +252,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -417,9 +414,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -560,9 +554,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -703,9 +694,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -846,9 +834,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -989,9 +974,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~headasbooleanfalse.models.VisibilityModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

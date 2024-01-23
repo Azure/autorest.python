@@ -941,9 +941,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO[bytes]
          type. Required.
         :type parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1227,10 +1224,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test. Required.
         :paramtype required_query_parameter: int
-        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:

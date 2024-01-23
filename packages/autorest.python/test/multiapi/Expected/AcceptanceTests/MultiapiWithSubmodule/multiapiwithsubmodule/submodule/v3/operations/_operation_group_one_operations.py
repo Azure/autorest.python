@@ -211,9 +211,6 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[bytes] type.
          Default value is None.
         :type parameter_one: ~multiapiwithsubmodule.submodule.v3.models.ModelThree or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:

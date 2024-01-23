@@ -636,9 +636,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -793,9 +790,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -950,9 +944,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1111,9 +1102,6 @@ class PropertyOperations:
         :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
@@ -1281,9 +1269,6 @@ class PropertyOperations:
         :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty

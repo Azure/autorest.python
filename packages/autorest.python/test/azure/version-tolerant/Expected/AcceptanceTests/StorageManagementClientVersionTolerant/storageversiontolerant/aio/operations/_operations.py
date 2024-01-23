@@ -152,9 +152,6 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Is either a JSON type or a IO[bytes] type. Required.
         :type account_name: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -542,9 +539,6 @@ class StorageAccountsOperations:
         :param parameters: The parameters to provide for the created account. Is either a JSON type or
          a IO[bytes] type. Required.
         :type parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1133,9 +1127,6 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API. Is either a JSON type or a IO[bytes] type. Required.
         :type parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1756,9 +1747,6 @@ class StorageAccountsOperations:
         :param regenerate_key: Specifies name of the key which should be regenerated. Is either a JSON
          type or a IO[bytes] type. Required.
         :type regenerate_key: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

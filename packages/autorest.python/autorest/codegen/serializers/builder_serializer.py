@@ -349,7 +349,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
-            if not param.in_docstring or param.hide_in_operation_signature:
+            if (
+                not param.in_docstring
+                or param.hide_in_operation_signature
+                or param.method_location == ParameterMethodLocation.KWARG
+            ):
                 continue
             description_list.extend(
                 f":{param.description_keyword} {param.client_name}: {param.description}".replace(

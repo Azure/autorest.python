@@ -221,9 +221,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.lro.standard.models.User or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns User. The User is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]

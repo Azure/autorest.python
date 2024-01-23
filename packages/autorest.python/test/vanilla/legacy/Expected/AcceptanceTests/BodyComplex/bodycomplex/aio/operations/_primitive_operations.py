@@ -162,9 +162,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO[bytes] type.
          Required.
         :type complex_body: ~bodycomplex.models.IntWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -304,9 +301,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
          or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.LongWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -446,9 +440,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO[bytes]
          type. Required.
         :type complex_body: ~bodycomplex.models.FloatWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -591,9 +582,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DoubleWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -733,9 +721,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO[bytes]
          type. Required.
         :type complex_body: ~bodycomplex.models.BooleanWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -875,9 +860,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.StringWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1017,9 +999,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DateWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1161,9 +1140,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
          either a DatetimeWrapper type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1305,9 +1281,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Is either a Datetimerfc1123Wrapper type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

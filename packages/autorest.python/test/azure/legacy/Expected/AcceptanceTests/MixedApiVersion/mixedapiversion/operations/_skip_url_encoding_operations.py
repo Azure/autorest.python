@@ -284,10 +284,6 @@ class SkipUrlEncodingOperations:
     def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
-         Default value is "path1/path2/path3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype unencoded_path_param: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -473,10 +469,6 @@ class SkipUrlEncodingOperations:
     def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
-         value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype q1: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

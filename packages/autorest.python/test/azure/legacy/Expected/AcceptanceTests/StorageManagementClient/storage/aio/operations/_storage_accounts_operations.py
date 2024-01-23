@@ -117,9 +117,6 @@ class StorageAccountsOperations:
          lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a
          IO[bytes] type. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -330,9 +327,6 @@ class StorageAccountsOperations:
         :param parameters: The parameters to provide for the created account. Is either a
          StorageAccountCreateParameters type or a IO[bytes] type. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
@@ -601,9 +595,6 @@ class StorageAccountsOperations:
          changed at a time using this API. Is either a StorageAccountUpdateParameters type or a
          IO[bytes] type. Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -1787,9 +1787,6 @@ class CatalogsOperations:
         :param resource: Resource create parameters. Is either a Catalog type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1935,9 +1932,6 @@ class CatalogsOperations:
         :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2686,9 +2680,6 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3046,9 +3037,6 @@ class ImagesOperations:
         :param resource: Resource create parameters. Is either a Image type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Image or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3476,9 +3464,6 @@ class DeviceGroupsOperations:
         :param resource: Resource create parameters. Is either a DeviceGroup type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3714,9 +3699,6 @@ class DeviceGroupsOperations:
         :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
          a IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3951,9 +3933,6 @@ class DeviceGroupsOperations:
         :param claim_devices_request: Bulk claim devices request body. Is either a ClaimDevicesRequest
          type or a IO[bytes] type. Required.
         :type claim_devices_request: ~azure.mgmt.spheremsrest.models.ClaimDevicesRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4354,9 +4333,6 @@ class CertificatesOperations:
         :param parameters: Proof of possession nonce request body. Is either a
          ProofOfPossessionNonceRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4737,9 +4713,6 @@ class DeploymentsOperations:
         :param resource: Resource create parameters. Is either a Deployment type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5093,9 +5066,6 @@ class DevicesOperations:
         :param resource: Resource create parameters. Is either a Device type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Device or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5441,9 +5411,6 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5621,9 +5588,6 @@ class DevicesOperations:
         :param parameters: Generate capability image request body. Is either a
          GenerateCapabilityImageRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5949,9 +5913,6 @@ class ProductsOperations:
         :param resource: Resource create parameters. Is either a Product type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Product or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6174,9 +6135,6 @@ class ProductsOperations:
         :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Product or None
         :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
