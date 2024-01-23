@@ -613,9 +613,6 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Default value is "value1". Note that overriding this default value may result
-         in unsupported behavior.
-        :paramtype input: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -665,9 +662,6 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Default value is "value1". Note that overriding this default value may result
-         in unsupported behavior.
-        :paramtype input: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

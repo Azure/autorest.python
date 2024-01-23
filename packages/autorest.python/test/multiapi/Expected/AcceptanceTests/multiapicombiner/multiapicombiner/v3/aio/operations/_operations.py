@@ -325,9 +325,6 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[bytes] type.
          Default value is None.
         :type parameter_one: ~multiapicombiner.v3.models.ModelThree or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapicombiner.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -451,9 +448,6 @@ class OperationGroupTwoOperations:
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
         :type input: ~multiapicombiner.v3.models.SourcePath or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

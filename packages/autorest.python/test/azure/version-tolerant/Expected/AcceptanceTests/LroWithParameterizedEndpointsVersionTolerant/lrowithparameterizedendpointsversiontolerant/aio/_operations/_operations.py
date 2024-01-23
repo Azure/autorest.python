@@ -216,9 +216,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
-        :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
-         Note that overriding this default value may result in unsupported behavior.
-        :paramtype constant_parameter: str
         :return: An instance of AsyncLROPoller that returns str
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises ~azure.core.exceptions.HttpResponseError:

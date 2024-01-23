@@ -107,8 +107,6 @@ class StringBodyOperations:
 
         :param text: Required.
         :type text: str
-        :keyword content_type: Default value is "text/plain".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -207,8 +205,6 @@ class StringBodyOperations:
 
         :param text: Required.
         :type text: str
-        :keyword content_type: Default value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

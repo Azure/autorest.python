@@ -417,9 +417,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         :param body: Is one of the following types: JobData, JSON, IO[bytes] Required.
         :type body: ~azurecore.lro.rpclegacy.models.JobData or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]

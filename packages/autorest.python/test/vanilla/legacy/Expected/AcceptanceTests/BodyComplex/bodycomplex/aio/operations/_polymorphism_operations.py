@@ -243,9 +243,6 @@ class PolymorphismOperations:
                  ]
                };. Is either a Fish type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -533,9 +530,6 @@ class PolymorphismOperations:
 
         :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -627,9 +621,6 @@ class PolymorphismOperations:
 
         :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -806,9 +797,6 @@ class PolymorphismOperations:
              ]
          }. Is either a Fish type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

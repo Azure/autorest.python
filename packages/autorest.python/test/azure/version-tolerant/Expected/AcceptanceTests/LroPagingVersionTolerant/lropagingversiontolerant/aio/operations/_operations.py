@@ -625,9 +625,6 @@ class QuestionAnsweringProjectsOperations:
         :param body: Update QnAs parameters of a project. Is either a [JSON] type or a IO[bytes] type.
          Required.
         :type body: list[JSON] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[JSON]]
         :raises ~azure.core.exceptions.HttpResponseError:

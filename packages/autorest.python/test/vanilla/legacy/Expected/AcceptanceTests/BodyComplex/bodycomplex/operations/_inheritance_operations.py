@@ -178,9 +178,6 @@ class InheritanceOperations:
          the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a Siamese type or a
          IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Siamese or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

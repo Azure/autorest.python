@@ -225,9 +225,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: JsonProjectedNameModel, JSON, IO[bytes] Required.
         :type body: ~projection.projectedname.models.JsonProjectedNameModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -349,9 +346,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: ClientProjectedNameModel, JSON, IO[bytes] Required.
         :type body: ~projection.projectedname.models.ClientProjectedNameModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -474,9 +468,6 @@ class PropertyOperations:
         :param body: Is one of the following types: LanguageProjectedNameModel, JSON, IO[bytes]
          Required.
         :type body: ~projection.projectedname.models.LanguageProjectedNameModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -600,9 +591,6 @@ class PropertyOperations:
          Required.
         :type body: ~projection.projectedname.models.JsonAndClientProjectedNameModel or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -742,9 +730,6 @@ class ModelOperations:
 
         :param body: Is one of the following types: ClientModel, JSON, IO[bytes] Required.
         :type body: ~projection.projectedname.models.ClientModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -866,9 +851,6 @@ class ModelOperations:
 
         :param body: Is one of the following types: PythonModel, JSON, IO[bytes] Required.
         :type body: ~projection.projectedname.models.PythonModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

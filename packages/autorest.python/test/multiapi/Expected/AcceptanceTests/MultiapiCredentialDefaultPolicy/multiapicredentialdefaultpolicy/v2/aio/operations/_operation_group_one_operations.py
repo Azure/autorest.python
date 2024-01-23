@@ -94,9 +94,6 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO[bytes] type.
          Default value is None.
         :type parameter_one: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:

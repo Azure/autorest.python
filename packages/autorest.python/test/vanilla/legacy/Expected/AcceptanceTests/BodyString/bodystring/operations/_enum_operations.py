@@ -401,9 +401,6 @@ class EnumOperations:
 
         :param field1: Sample string. Default value is None.
         :type field1: str
-        :keyword color_constant: Referenced Color Constant Description. Default value is "green-color".
-         Note that overriding this default value may result in unsupported behavior.
-        :paramtype color_constant: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
