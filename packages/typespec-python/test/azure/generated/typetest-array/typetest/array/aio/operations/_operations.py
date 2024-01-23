@@ -176,9 +176,6 @@ class Int32ValueOperations:
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
         :type body: list[int] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -352,9 +349,6 @@ class Int64ValueOperations:
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
         :type body: list[int] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -528,9 +522,6 @@ class BooleanValueOperations:
 
         :param body: Is either a [bool] type or a IO[bytes] type. Required.
         :type body: list[bool] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -704,9 +695,6 @@ class StringValueOperations:
 
         :param body: Is either a [str] type or a IO[bytes] type. Required.
         :type body: list[str] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -880,9 +868,6 @@ class Float32ValueOperations:
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
         :type body: list[float] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1056,9 +1041,6 @@ class DatetimeValueOperations:
 
         :param body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type body: list[~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1232,9 +1214,6 @@ class DurationValueOperations:
 
         :param body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
         :type body: list[~datetime.timedelta] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1408,9 +1387,6 @@ class UnknownValueOperations:
 
         :param body: Is either a [Any] type or a IO[bytes] type. Required.
         :type body: list[any] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1594,9 +1570,6 @@ class ModelValueOperations:
 
         :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
         :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1770,9 +1743,6 @@ class NullableFloatValueOperations:
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
         :type body: list[float] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

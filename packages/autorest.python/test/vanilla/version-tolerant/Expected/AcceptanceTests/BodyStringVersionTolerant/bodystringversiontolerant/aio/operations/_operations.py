@@ -230,9 +230,6 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
-        :keyword string_body: string body. Required. Default value is "". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -332,10 +329,6 @@ class StringOperations:
     async def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword string_body: string body. Default value is
-         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -441,10 +434,6 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword string_body: string body. Default value is "    Now is the time for all good men to
-         come to the aid of their country    ". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype string_body: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1078,9 +1067,6 @@ class EnumOperations:
 
         :param enum_string_body: enum string body. Is either a JSON type or a IO[bytes] type. Required.
         :type enum_string_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

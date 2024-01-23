@@ -274,9 +274,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a Horse type or
          a IO[bytes] type. Required.
         :type horse: ~multipleinheritance.models.Horse or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -514,9 +511,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param feline: Put a feline who hisses and doesn't meow. Is either a Feline type or a IO[bytes]
          type. Required.
         :type feline: ~multipleinheritance.models.Feline or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -655,9 +649,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
          either a Cat type or a IO[bytes] type. Required.
         :type cat: ~multipleinheritance.models.Cat or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -800,9 +791,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Is either a Kitten type or a IO[bytes] type. Required.
         :type kitten: ~multipleinheritance.models.Kitten or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:

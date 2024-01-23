@@ -1022,9 +1022,6 @@ class BasicOperations:
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
          or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1467,9 +1464,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put -1 and 2. Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1639,9 +1633,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a JSON type or a
          IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1811,9 +1802,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1.05 and -0.003. Is either a JSON type or a IO[bytes] type.
          Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1991,9 +1979,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          -0.000000000000000000000000000000000000000000000000000000005. Is either a JSON type or a
          IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2164,9 +2149,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put true and false. Is either a JSON type or a IO[bytes] type.
          Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2338,9 +2320,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'goodrequest', '', and null. Is either a JSON type or a
          IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2511,9 +2490,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a JSON type or a
          IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2685,9 +2661,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
          either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2859,9 +2832,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3029,9 +2999,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a JSON type or a IO[bytes]
          type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3200,9 +3167,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
          either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3393,9 +3357,6 @@ class ArrayOperations:
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
          quick brown fox jumps over the lazy dog". Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3568,9 +3529,6 @@ class ArrayOperations:
         :param complex_body: Please put an empty array. Is either a JSON type or a IO[bytes] type.
          Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3824,9 +3782,6 @@ class DictionaryOperations:
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a JSON type or a IO[bytes] type.
          Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3999,9 +3954,6 @@ class DictionaryOperations:
         :param complex_body: Please put an empty dictionary. Is either a JSON type or a IO[bytes] type.
          Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4334,9 +4286,6 @@ class InheritanceOperations:
          the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a JSON type or a
          IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4736,9 +4685,6 @@ class PolymorphismOperations:
                  ]
                };. Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5229,9 +5175,6 @@ class PolymorphismOperations:
 
         :param complex_body: Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5404,9 +5347,6 @@ class PolymorphismOperations:
 
         :param complex_body: Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5690,9 +5630,6 @@ class PolymorphismOperations:
              ]
          }. Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6196,9 +6133,6 @@ class PolymorphicrecursiveOperations:
              ]
          }. Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6438,9 +6372,6 @@ class ReadonlypropertyOperations:
 
         :param complex_body: Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

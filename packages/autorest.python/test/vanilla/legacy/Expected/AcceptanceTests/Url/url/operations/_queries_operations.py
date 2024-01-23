@@ -732,9 +732,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_query: true boolean value. Default value is True. Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype bool_query: bool
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -780,9 +777,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. Required. Default value is False. Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype bool_query: bool
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -876,9 +870,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_query: '1000000' integer value. Default value is 1000000. Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype int_query: int
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -924,9 +915,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1000000' integer value.
 
-        :keyword int_query: '-1000000' integer value. Default value is -1000000. Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype int_query: int
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1020,9 +1008,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: int
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1068,9 +1053,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: int
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1164,9 +1146,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_query: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype float_query: float
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1212,9 +1191,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_query: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype float_query: float
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1308,9 +1284,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_query: '9999999.999'numeric value. Default value is 9999999.999. Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype double_query: float
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1356,9 +1329,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_query: '-9999999.999'numeric value. Default value is -9999999.999. Note that
-         overriding this default value may result in unsupported behavior.
-        :paramtype double_query: float
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1452,9 +1422,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype string_query: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1500,10 +1467,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
-         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype string_query: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1551,9 +1514,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. Required. Default value is "". Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype string_query: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1794,9 +1754,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
-        :paramtype byte_query: bytes
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1890,9 +1847,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_query: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype date_query: ~datetime.date
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1986,10 +1940,6 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. Default value is
-         "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
-         behavior.
-        :paramtype date_time_query: ~datetime.datetime
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

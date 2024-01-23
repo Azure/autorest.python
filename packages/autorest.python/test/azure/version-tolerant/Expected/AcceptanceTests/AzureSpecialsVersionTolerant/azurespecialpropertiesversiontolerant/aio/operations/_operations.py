@@ -846,9 +846,6 @@ class ApiVersionLocalOperations:
     async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -943,9 +940,6 @@ class ApiVersionLocalOperations:
     async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -991,10 +985,6 @@ class ApiVersionLocalOperations:
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         Default value is "2.0". Note that overriding this default value may result in unsupported
-         behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1154,10 +1144,6 @@ class SkipUrlEncodingOperations:
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
-         Default value is "path1/path2/path3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype unencoded_path_param: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1347,10 +1333,6 @@ class SkipUrlEncodingOperations:
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
-         value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype q1: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

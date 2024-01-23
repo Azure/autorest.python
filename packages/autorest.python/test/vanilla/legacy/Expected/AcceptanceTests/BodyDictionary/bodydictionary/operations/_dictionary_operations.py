@@ -1143,9 +1143,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: str} type or a IO[bytes] type. Required.
         :type array_body: dict[str, str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1472,9 +1469,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: bool} type or a IO[bytes] type. Required.
         :type array_body: dict[str, bool] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1707,9 +1701,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: int} type or a IO[bytes] type. Required.
         :type array_body: dict[str, int] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1942,9 +1933,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: int} type or a IO[bytes] type. Required.
         :type array_body: dict[str, int] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2177,9 +2165,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: float} type or a IO[bytes] type. Required.
         :type array_body: dict[str, float] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2412,9 +2397,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: float} type or a IO[bytes] type. Required.
         :type array_body: dict[str, float] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2647,9 +2629,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: str} type or a IO[bytes] type. Required.
         :type array_body: dict[str, str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2882,9 +2861,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: datetime.date} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.date] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3121,9 +3097,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3360,9 +3333,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3501,9 +3471,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.timedelta] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3646,9 +3613,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: bytes} type or a IO[bytes] type. Required.
         :type array_body: dict[str, bytes] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4077,9 +4041,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: Widget} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~bodydictionary.models.Widget] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4410,9 +4371,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: [str]} type or a IO[bytes] type. Required.
         :type array_body: dict[str, list[str]] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4749,9 +4707,6 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a {str: {str: str}} type or a IO[bytes] type. Required.
         :type array_body: dict[str, dict[str, str]] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

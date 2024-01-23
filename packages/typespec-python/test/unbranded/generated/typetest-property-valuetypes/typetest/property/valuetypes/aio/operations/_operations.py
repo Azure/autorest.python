@@ -230,9 +230,6 @@ class BooleanOperations:
 
         :param body: body. Is one of the following types: BooleanProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.BooleanProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -428,9 +425,6 @@ class StringOperations:
 
         :param body: body. Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.StringProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -626,9 +620,6 @@ class BytesOperations:
 
         :param body: body. Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.BytesProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -824,9 +815,6 @@ class IntOperations:
 
         :param body: body. Is one of the following types: IntProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.IntProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1022,9 +1010,6 @@ class FloatOperations:
 
         :param body: body. Is one of the following types: FloatProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.FloatProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1220,9 +1205,6 @@ class DecimalOperations:
 
         :param body: body. Is one of the following types: DecimalProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DecimalProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1418,9 +1400,6 @@ class Decimal128Operations:
 
         :param body: body. Is one of the following types: Decimal128Property, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.Decimal128Property or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1616,9 +1595,6 @@ class DatetimeOperations:
 
         :param body: body. Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DatetimeProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1814,9 +1790,6 @@ class DurationOperations:
 
         :param body: body. Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DurationProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2014,9 +1987,6 @@ class EnumOperations:
 
         :param body: body. Is one of the following types: EnumProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.EnumProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2216,9 +2186,6 @@ class ExtensibleEnumOperations:
         :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.ExtensibleEnumProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2419,9 +2386,6 @@ class ModelOperations:
 
         :param body: body. Is one of the following types: ModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.ModelProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2625,9 +2589,6 @@ class CollectionsStringOperations:
         :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsStringProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2830,9 +2791,6 @@ class CollectionsIntOperations:
         :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsIntProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3040,9 +2998,6 @@ class CollectionsModelOperations:
         :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsModelProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3248,9 +3203,6 @@ class DictionaryStringOperations:
         :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.DictionaryStringProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3438,9 +3390,6 @@ class NeverOperations:
 
         :param body: body. Is one of the following types: NeverProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.NeverProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3635,9 +3584,6 @@ class UnknownStringOperations:
         :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownStringProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3833,9 +3779,6 @@ class UnknownIntOperations:
 
         :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.UnknownIntProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4032,9 +3975,6 @@ class UnknownDictOperations:
         :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownDictProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4231,9 +4171,6 @@ class UnknownArrayOperations:
         :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownArrayProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4430,9 +4367,6 @@ class StringLiteralOperations:
         :param body: body. Is one of the following types: StringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.StringLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4628,9 +4562,6 @@ class IntLiteralOperations:
 
         :param body: body. Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.IntLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -4827,9 +4758,6 @@ class FloatLiteralOperations:
         :param body: body. Is one of the following types: FloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.FloatLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5026,9 +4954,6 @@ class BooleanLiteralOperations:
         :param body: body. Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.BooleanLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5232,9 +5157,6 @@ class UnionStringLiteralOperations:
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionStringLiteralProperty or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5434,9 +5356,6 @@ class UnionIntLiteralOperations:
         :param body: body. Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionIntLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -5637,9 +5556,6 @@ class UnionFloatLiteralOperations:
         :param body: body. Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionFloatLiteralProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

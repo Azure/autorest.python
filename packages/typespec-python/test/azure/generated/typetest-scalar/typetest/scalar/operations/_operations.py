@@ -330,9 +330,6 @@ class StringOperations:
 
         :param body: _. Required.
         :type body: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -451,9 +448,6 @@ class BooleanOperations:
 
         :param body: _. Required.
         :type body: bool
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -572,9 +566,6 @@ class UnknownOperations:
 
         :param body: _. Required.
         :type body: any
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -695,9 +686,6 @@ class DecimalTypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -866,9 +854,6 @@ class Decimal128TypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1043,9 +1028,6 @@ class DecimalVerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1172,9 +1154,6 @@ class Decimal128VerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -193,9 +193,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]

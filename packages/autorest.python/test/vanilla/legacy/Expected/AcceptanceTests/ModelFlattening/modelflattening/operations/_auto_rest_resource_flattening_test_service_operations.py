@@ -273,9 +273,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
          IO[bytes] type. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -437,9 +434,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
          or a IO[bytes] type. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -599,9 +593,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
          FlattenedProduct} type or a IO[bytes] type. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -766,9 +757,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          ResourceCollection type or a IO[bytes] type. Default value is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -927,9 +915,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a
          IO[bytes] type. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:

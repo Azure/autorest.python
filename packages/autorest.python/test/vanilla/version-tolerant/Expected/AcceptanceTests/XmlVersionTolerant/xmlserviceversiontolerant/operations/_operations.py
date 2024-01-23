@@ -1628,9 +1628,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
         """Lists containers in a storage account.
 
-        :keyword comp: Default value is "list". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
         :return: ListContainersResponse
         :rtype: ~xmlserviceversiontolerant.models.ListContainersResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1680,12 +1677,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
         """Gets storage service properties.
 
-        :keyword comp: Default value is "properties". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "service". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
         :return: StorageServiceProperties
         :rtype: ~xmlserviceversiontolerant.models.StorageServiceProperties
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1741,12 +1732,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Required.
         :type properties: ~xmlserviceversiontolerant.models.StorageServiceProperties
-        :keyword comp: Default value is "properties". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "service". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1799,12 +1784,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
         """Gets storage ACLs for a container.
 
-        :keyword comp: Default value is "acl". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
         :return: SignedIdentifier
         :rtype: ~xmlserviceversiontolerant.models.SignedIdentifier
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1860,12 +1839,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Required.
         :type properties: ~xmlserviceversiontolerant.models.SignedIdentifier
-        :keyword comp: Default value is "acl". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1921,12 +1894,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
         """Lists blobs in a storage container.
 
-        :keyword comp: Default value is "list". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
         :return: ListBlobsResponse
         :rtype: ~xmlserviceversiontolerant.models.ListBlobsResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2017,9 +1984,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Is either a JSONInput type or a IO[bytes] type. Required.
         :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

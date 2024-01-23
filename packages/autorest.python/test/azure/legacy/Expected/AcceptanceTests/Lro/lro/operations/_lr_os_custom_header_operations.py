@@ -237,9 +237,6 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~lro.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -404,9 +401,6 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~lro.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns either Product or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -556,9 +550,6 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~lro.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -710,9 +701,6 @@ class LROsCustomHeaderOperations:
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~lro.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An instance of LROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:

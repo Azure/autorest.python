@@ -284,9 +284,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type id: int
         :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -411,9 +408,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -467,9 +461,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -542,9 +533,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -586,12 +574,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body: JSON or IO[bytes]
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

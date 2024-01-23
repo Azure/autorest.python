@@ -1301,9 +1301,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Required.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1411,9 +1408,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1732,9 +1726,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Required.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1842,9 +1833,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2056,9 +2044,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Required.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2168,9 +2153,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2288,9 +2270,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Required.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2404,9 +2383,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2523,9 +2499,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a [str] type or a IO[bytes] type. Required.
         :type body_parameter: list[str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2625,9 +2598,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a [str] type or a IO[bytes] type. Default value is None.
         :type body_parameter: list[str] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2735,9 +2705,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Required.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2849,9 +2816,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         :param body_parameter: Is either a JSON type or a IO[bytes] type. Default value is None.
         :type body_parameter: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

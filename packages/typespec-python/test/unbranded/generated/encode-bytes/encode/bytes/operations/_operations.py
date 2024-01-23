@@ -642,9 +642,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: DefaultBytesProperty, JSON, IO[bytes] Required.
         :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -798,9 +795,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Base64BytesProperty, JSON, IO[bytes] Required.
         :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -954,9 +948,6 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO[bytes] Required.
         :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
         :rtype: ~encode.bytes.models.Base64urlBytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1122,9 +1113,6 @@ class PropertyOperations:
         :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO[bytes]
          Required.
         :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
          MutableMapping
         :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -1422,9 +1410,6 @@ class RequestBodyOperations:
 
         :param value: Required.
         :type value: bytes
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1474,8 +1459,6 @@ class RequestBodyOperations:
 
         :param value: Required.
         :type value: bytes
-        :keyword content_type: Default value is "application/octet-stream".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1527,8 +1510,6 @@ class RequestBodyOperations:
 
         :param value: Required.
         :type value: bytes
-        :keyword content_type: Default value is "image/png".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1578,9 +1559,6 @@ class RequestBodyOperations:
 
         :param value: Required.
         :type value: bytes
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1630,9 +1608,6 @@ class RequestBodyOperations:
 
         :param value: Required.
         :type value: bytes
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
