@@ -131,6 +131,8 @@ class GeneralSerializer(BaseSerializer):
                 ImportType.SDKCORE,
             )
         if self.code_model.has_form_data:
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
             file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)

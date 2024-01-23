@@ -8,7 +8,7 @@
 from io import BytesIO, IOBase
 import json
 import sys
-from typing import Any, Union
+from typing import Any, List, Tuple, Union
 import uuid
 
 from ._model_base import Model, SdkJSONEncoder
@@ -19,16 +19,37 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 
 
+# file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`
+FileType = Union[IOBase, bytes]
+FileTuple = Union[Tuple[str, FileType], Tuple[str, FileType, str]]
+MultiPartFile = Union[IOBase, bytes, FileTuple]
+HandledMultiPartFile = Union[IOBase, FileTuple]
+
+
 class NamedBytesIO(BytesIO):
     def __init__(self, name: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
 
 
-def multipart_file(file: Union[IOBase, bytes]) -> IOBase:
-    if isinstance(file, IOBase):
+def has_file(data: Any) -> bool:
+    return isinstance(data, (IOBase, bytes)) or (
+        isinstance(data, (list, tuple)) and any(isinstance(f, (IOBase, bytes, tuple)) for f in data)
+    )
+
+
+def handle_file(file: Union[IOBase, bytes, FileTuple]) -> IOBase:
+    if isinstance(file, (IOBase, Tuple)):
         return file
     return NamedBytesIO("auto-name-" + str(uuid.uuid4()), file)
+
+
+def multipart_file(
+    file: Union[MultiPartFile, List[MultiPartFile]]
+) -> Union[HandledMultiPartFile, List[HandledMultiPartFile]]:
+    if isinstance(file, list):
+        return [handle_file(f) for f in file]
+    return handle_file(file)
 
 
 def multipart_data(data: Any) -> Any:
@@ -52,6 +73,6 @@ def handle_multipart_form_data_model(body: Model) -> MutableMapping[str, Any]:  
         attr = rest_name_attr.get(rest_name)
         if attr is not None:
             raw_value = getattr(body, attr, None)
-            if isinstance(raw_value, (bytes, IOBase)):
+            if has_file(raw_value):
                 result[rest_name] = raw_value
     return result
