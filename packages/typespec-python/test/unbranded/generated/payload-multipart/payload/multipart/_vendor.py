@@ -38,8 +38,8 @@ def has_file(data: Any) -> bool:
     )
 
 
-def handle_file(file: Union[IOBase, bytes, FileTuple]) -> IOBase:
-    if isinstance(file, (IOBase, Tuple)):
+def handle_file(file: Union[IOBase, bytes, FileTuple]) -> HandledMultiPartFile:
+    if isinstance(file, (IOBase, tuple)):
         return file
     return NamedBytesIO("auto-name-" + str(uuid.uuid4()), file)
 

@@ -586,7 +586,6 @@ class Operation(OperationBase[Response]):
                     file_import.add_submodule_import(
                         relative_path, "_model_base", ImportType.LOCAL
                     )
-                    file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
                     file_import.add_submodule_import(
                         f"{relative_path}_vendor",
                         "has_file",
