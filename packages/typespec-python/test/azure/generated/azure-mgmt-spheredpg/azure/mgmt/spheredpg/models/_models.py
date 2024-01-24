@@ -18,7 +18,65 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmResource(_model_base.Model):
+class ArmOperationStatus(_model_base.Model):
+    """Standard ARM operation status response.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar status: The operation status. Required. Known values are: "Succeeded", "Failed", and
+     "Canceled".
+    :vartype status: str or ~azure.mgmt.spheredpg.models.ResourceProvisioningState
+    :ivar name: The name of the  operationStatus resource.
+    :vartype name: str
+    :ivar start_time: Operation start time.
+    :vartype start_time: ~datetime.datetime
+    :ivar end_time: Operation complete time.
+    :vartype end_time: ~datetime.datetime
+    :ivar percent_complete: The progress made toward completing the operation.
+    :vartype percent_complete: float
+    :ivar error: Errors that occurred if the operation ended with Canceled or Failed status.
+    :vartype error: ~azure.mgmt.spheredpg.models.ErrorDetail
+    """
+
+    status: Union[str, "_models.ResourceProvisioningState"] = rest_field()
+    """The operation status. Required. Known values are: \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    name: Optional[str] = rest_field(visibility=["read"])
+    """The name of the  operationStatus resource."""
+    start_time: Optional[datetime.datetime] = rest_field(name="startTime", visibility=["read"], format="rfc3339")
+    """Operation start time."""
+    end_time: Optional[datetime.datetime] = rest_field(name="endTime", visibility=["read"], format="rfc3339")
+    """Operation complete time."""
+    percent_complete: Optional[float] = rest_field(name="percentComplete", visibility=["read"])
+    """The progress made toward completing the operation."""
+    error: Optional["_models.ErrorDetail"] = rest_field(visibility=["read"])
+    """Errors that occurred if the operation ended with Canceled or Failed status."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        status: Union[str, "_models.ResourceProvisioningState"],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ArmResourceBase(_model_base.Model):
+    """Base class used for type definitions."""
+
+
+class ArmResource(ArmResourceBase):
     """Common properties for all ARM resources.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
