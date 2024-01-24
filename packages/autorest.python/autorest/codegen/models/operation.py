@@ -14,7 +14,7 @@ from typing import (
     Generic,
     TypeVar,
     cast,
-    Sequence
+    Sequence,
 )
 
 from .request_builder_parameter import RequestBuilderParameter

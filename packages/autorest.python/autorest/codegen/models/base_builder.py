@@ -4,7 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import List, Dict, Any, Generic, TypeVar, Optional, Union, TYPE_CHECKING, cast
+from typing import (
+    List,
+    Dict,
+    Any,
+    Generic,
+    TypeVar,
+    Optional,
+    Union,
+    TYPE_CHECKING,
+    cast,
+)
 from abc import abstractmethod
 
 from .base import BaseModel
@@ -30,11 +40,7 @@ if TYPE_CHECKING:
 
 
 OverloadListType = TypeVar(
-    "OverloadListType", 
-    bound=Union[
-        List["Operation"],
-        List["RequestBuilder"]
-    ]
+    "OverloadListType", bound=Union[List["Operation"], List["RequestBuilder"]]
 )
 
 _LOGGER = logging.getLogger(__name__)
