@@ -639,8 +639,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
 
     if getattr(annotation, "__origin__", None) is typing.Union:
         deserializers = [
-            _get_deserialize_callable_from_annotation(arg, module, rf) for arg in annotation.__args__
-        ]  # pyright: ignore
+            _get_deserialize_callable_from_annotation(arg, module, rf) for arg in annotation.__args__  # pyright: ignore
+        ]
 
         def _deserialize_with_union(deserializers, obj):
             for deserializer in deserializers:
@@ -655,8 +655,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
     try:
         if annotation._name == "Dict":  # pyright: ignore
             value_deserializer = _get_deserialize_callable_from_annotation(
-                annotation.__args__[1], module, rf
-            )  # pyright: ignore
+                annotation.__args__[1], module, rf  # pyright: ignore
+            )
 
             def _deserialize_dict(
                 value_deserializer: typing.Optional[typing.Callable],
@@ -693,8 +693,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
                 ]
                 return functools.partial(_deserialize_multiple_sequence, entry_deserializers)
             deserializer = _get_deserialize_callable_from_annotation(
-                annotation.__args__[0], module, rf
-            )  # pyright: ignore
+                annotation.__args__[0], module, rf  # pyright: ignore
+            )
 
             def _deserialize_sequence(
                 deserializer: typing.Optional[typing.Callable],
