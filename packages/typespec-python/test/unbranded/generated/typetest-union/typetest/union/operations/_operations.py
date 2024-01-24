@@ -345,8 +345,6 @@ class StringsOnlyOperations:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse. The GetResponse is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -480,9 +478,6 @@ class StringsOnlyOperations:
         :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
          Required.
         :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -567,8 +562,6 @@ class StringExtensibleOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse1:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse1
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -694,9 +687,6 @@ class StringExtensibleOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
         :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -781,8 +771,6 @@ class StringExtensibleNamedOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse2:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse2
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -908,9 +896,6 @@ class StringExtensibleNamedOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
         :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -995,8 +980,6 @@ class IntsOnlyOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse3:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse3
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1122,9 +1105,6 @@ class IntsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
         :paramtype prop: int or int or int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1209,8 +1189,6 @@ class FloatsOnlyOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse4:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse4
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1332,9 +1310,6 @@ class FloatsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: float, float, float Required.
         :paramtype prop: float or float or float
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1419,8 +1394,6 @@ class ModelsOnlyOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse5:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse5
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1544,9 +1517,6 @@ class ModelsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is either a Cat type or a Dog type. Required.
         :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1633,8 +1603,6 @@ class EnumsOnlyOperations:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse6
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1768,9 +1736,6 @@ class EnumsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.EnumsOnlyCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1861,8 +1826,6 @@ class StringAndArrayOperations:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse7
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1994,9 +1957,6 @@ class StringAndArrayOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.StringAndArrayCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2086,8 +2046,6 @@ class MixedLiteralsOperations:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse8
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2235,9 +2193,6 @@ class MixedLiteralsOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedLiteralsCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2334,8 +2289,6 @@ class MixedTypesOperations:
     def get(self, **kwargs: Any) -> _models.GetResponse9:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse9
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2481,9 +2434,6 @@ class MixedTypesOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedTypesCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

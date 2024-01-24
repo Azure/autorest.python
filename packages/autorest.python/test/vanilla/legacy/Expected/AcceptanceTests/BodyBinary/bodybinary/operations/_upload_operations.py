@@ -86,7 +86,6 @@ class UploadOperations:
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
         :type file_param: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -136,7 +135,6 @@ class UploadOperations:
 
         :param file_param: Non-empty binary file. Required.
         :type file_param: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

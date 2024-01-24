@@ -53,11 +53,6 @@ class SameBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> bytes:
         """get_avatar_as_png.
 
-        :keyword accept: Default value is "image/png". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype accept: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -107,11 +102,6 @@ class SameBodyOperations:
     async def get_avatar_as_jpeg(self, **kwargs: Any) -> bytes:
         """get_avatar_as_jpeg.
 
-        :keyword accept: Default value is "image/jpeg". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype accept: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -179,11 +169,6 @@ class DifferentBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> bytes:
         """get_avatar_as_png.
 
-        :keyword accept: Default value is "image/png". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype accept: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bytes
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -233,11 +218,6 @@ class DifferentBodyOperations:
     async def get_avatar_as_json(self, **kwargs: Any) -> _models.PngImageAsJson:
         """get_avatar_as_json.
 
-        :keyword accept: Default value is "application/json". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype accept: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: PngImageAsJson. The PngImageAsJson is compatible with MutableMapping
         :rtype: ~payload.contentnegotiation.models.PngImageAsJson
         :raises ~corehttp.exceptions.HttpResponseError:

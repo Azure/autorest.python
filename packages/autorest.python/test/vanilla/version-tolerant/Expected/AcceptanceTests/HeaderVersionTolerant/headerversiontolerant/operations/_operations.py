@@ -599,9 +599,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
-        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
-         Required.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -62,7 +62,6 @@ class FormdataOperations:
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
          Required.
         :type file_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -121,7 +120,6 @@ class FormdataOperations:
 
         :param file_content: File to upload. Required.
         :type file_content: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -176,7 +174,6 @@ class FormdataOperations:
 
         :param file_content: Files to upload. Required.
         :type file_content: list[IO[bytes]]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Async iterator of the response bytes or the result of cls(response)
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:

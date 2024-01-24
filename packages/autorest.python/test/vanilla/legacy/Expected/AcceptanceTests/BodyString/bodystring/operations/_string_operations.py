@@ -260,7 +260,6 @@ class StringOperations:
     def get_null(self, **kwargs: Any) -> Optional[str]:
         """Get null string value value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or None or the result of cls(response)
         :rtype: str or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -312,7 +311,6 @@ class StringOperations:
 
         :param string_body: string body. Default value is None.
         :type string_body: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -364,7 +362,6 @@ class StringOperations:
     def get_empty(self, **kwargs: Any) -> str:
         """Get empty string value value ''.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -412,10 +409,6 @@ class StringOperations:
     def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
-        :keyword string_body: string body. Required. Default value is "". Note that overriding this
-         default value may result in unsupported behavior.
-        :paramtype string_body: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -465,7 +458,6 @@ class StringOperations:
     def get_mbcs(self, **kwargs: Any) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -513,11 +505,6 @@ class StringOperations:
     def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword string_body: string body. Default value is
-         "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
-         this default value may result in unsupported behavior.
-        :paramtype string_body: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -571,7 +558,6 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -621,11 +607,6 @@ class StringOperations:
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword string_body: string body. Default value is "    Now is the time for all good men to
-         come to the aid of their country    ". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype string_body: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -677,7 +658,6 @@ class StringOperations:
     def get_not_provided(self, **kwargs: Any) -> str:
         """Get String value when no string value is sent in response payload.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -725,7 +705,6 @@ class StringOperations:
     def get_base64_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64 encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -773,7 +752,6 @@ class StringOperations:
     def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -825,7 +803,6 @@ class StringOperations:
 
         :param string_body: string body. Required.
         :type string_body: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -874,7 +851,6 @@ class StringOperations:
     def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
         """Get null value that is expected to be base64url encoded.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or None or the result of cls(response)
         :rtype: bytes or None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -221,8 +221,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -296,8 +294,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -325,8 +321,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -346,11 +340,6 @@ class CatalogsOperations:
         :param resource: Resource create parameters. Is either a Catalog type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -446,8 +435,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -475,8 +462,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -500,11 +485,6 @@ class CatalogsOperations:
         :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -795,8 +775,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1257,9 +1235,6 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1381,8 +1356,6 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1563,8 +1536,6 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1595,8 +1566,6 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1623,11 +1592,6 @@ class ImagesOperations:
         :param resource: Resource create parameters. Is either a Image type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Image or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1909,8 +1873,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1993,8 +1955,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2029,8 +1989,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2061,11 +2019,6 @@ class DeviceGroupsOperations:
         :param resource: Resource create parameters. Is either a DeviceGroup type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2237,8 +2190,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2273,8 +2224,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2305,11 +2254,6 @@ class DeviceGroupsOperations:
         :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
          a IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2398,8 +2342,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2546,9 +2488,6 @@ class DeviceGroupsOperations:
         :param claim_devices_request: Bulk claim devices request body. Is either a ClaimDevicesRequest
          type or a IO[bytes] type. Required.
         :type claim_devices_request: ~azure.mgmt.spheremsrest.models.ClaimDevicesRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2644,8 +2583,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Certificate
         :rtype: ~azure.mgmt.spheremsrest.models.Certificate
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2815,8 +2752,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CertificateChainResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CertificateChainResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2895,8 +2830,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2928,8 +2861,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2957,11 +2888,6 @@ class CertificatesOperations:
         :param parameters: Proof of possession nonce request body. Is either a
          ProofOfPossessionNonceRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3071,8 +2997,6 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3272,8 +3196,6 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3312,8 +3234,6 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3348,11 +3268,6 @@ class DeploymentsOperations:
         :param resource: Resource create parameters. Is either a Deployment type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3550,8 +3465,6 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3638,8 +3551,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3677,8 +3588,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3712,11 +3621,6 @@ class DevicesOperations:
         :param resource: Resource create parameters. Is either a Device type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Device or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3992,8 +3896,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4031,8 +3933,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4066,11 +3966,6 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4176,8 +4071,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4216,8 +4109,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4252,11 +4143,6 @@ class DevicesOperations:
         :param parameters: Generate capability image request body. Is either a
          GenerateCapabilityImageRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4448,8 +4334,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4528,8 +4412,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4561,8 +4443,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4590,11 +4470,6 @@ class ProductsOperations:
         :param resource: Resource create parameters. Is either a Product type or a IO[bytes] type.
          Required.
         :type resource: ~azure.mgmt.spheremsrest.models.Product or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4759,8 +4634,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None
         :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4792,8 +4665,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None
         :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4821,11 +4692,6 @@ class ProductsOperations:
         :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None
         :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5000,8 +4866,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:

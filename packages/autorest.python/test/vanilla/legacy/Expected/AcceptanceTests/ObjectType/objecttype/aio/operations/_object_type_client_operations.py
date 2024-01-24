@@ -42,7 +42,6 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
         returned' }.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -94,7 +93,6 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
          Required.
         :type put_object: JSON
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

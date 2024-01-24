@@ -68,8 +68,6 @@ class StringOperations:
     async def get(self, **kwargs: Any) -> str:
         """get string value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -122,9 +120,6 @@ class StringOperations:
 
         :param body: _. Required.
         :type body: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -191,8 +186,6 @@ class BooleanOperations:
     async def get(self, **kwargs: Any) -> bool:
         """get boolean value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -245,9 +238,6 @@ class BooleanOperations:
 
         :param body: _. Required.
         :type body: bool
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -314,8 +304,6 @@ class UnknownOperations:
     async def get(self, **kwargs: Any) -> Any:
         """get unknown value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: any
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -368,9 +356,6 @@ class UnknownOperations:
 
         :param body: _. Required.
         :type body: any
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -437,8 +422,6 @@ class DecimalTypeOperations:
     async def response_body(self, **kwargs: Any) -> decimal.Decimal:
         """response_body.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: decimal.Decimal
         :rtype: ~decimal.Decimal
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -493,9 +476,6 @@ class DecimalTypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -610,8 +590,6 @@ class Decimal128TypeOperations:
     async def response_body(self, **kwargs: Any) -> decimal.Decimal:
         """response_body.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: decimal.Decimal
         :rtype: ~decimal.Decimal
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -666,9 +644,6 @@ class Decimal128TypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -783,8 +758,6 @@ class DecimalVerifyOperations:
     async def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
         """prepare_verify.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -847,9 +820,6 @@ class DecimalVerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -916,8 +886,6 @@ class Decimal128VerifyOperations:
     async def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
         """prepare_verify.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -980,9 +948,6 @@ class Decimal128VerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

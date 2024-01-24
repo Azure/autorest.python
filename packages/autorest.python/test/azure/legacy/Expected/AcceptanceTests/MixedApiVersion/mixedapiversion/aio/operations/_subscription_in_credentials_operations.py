@@ -60,7 +60,6 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -106,7 +105,6 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         null, and client-side validation should prevent you from making this call.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -154,7 +152,6 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -202,7 +199,6 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -248,7 +244,6 @@ class SubscriptionInCredentialsOperations:
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
         '1234-5678-9012-3456' to succeed.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

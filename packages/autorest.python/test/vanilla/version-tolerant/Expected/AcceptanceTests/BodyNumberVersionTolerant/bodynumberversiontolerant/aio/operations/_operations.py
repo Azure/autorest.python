@@ -479,9 +479,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value 99999999.99.
 
-        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype number_body: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -583,9 +580,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value -99999999.99.
 
-        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype number_body: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -789,9 +783,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value 99999999.99.
 
-        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype number_body: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -893,9 +884,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value -99999999.99.
 
-        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype number_body: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

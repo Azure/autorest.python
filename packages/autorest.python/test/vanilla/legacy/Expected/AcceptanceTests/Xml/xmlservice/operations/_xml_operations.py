@@ -581,7 +581,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_complex_type_ref_no_meta(self, **kwargs: Any) -> _models.RootWithRefAndNoMeta:
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -632,7 +631,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -680,7 +678,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -731,7 +728,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndMeta
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -779,7 +775,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_simple(self, **kwargs: Any) -> _models.Slideshow:
         """Get a simple XML document.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -831,7 +826,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -880,7 +874,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
         """Get an XML document with multiple wrapped lists.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -931,7 +924,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param wrapped_lists: Required.
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -980,7 +972,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get strongly-typed response headers.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1026,7 +1017,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
         """Get an empty list.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1077,7 +1067,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1125,7 +1114,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
         """Gets some empty wrapped lists.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1176,7 +1164,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param apple_barrel: Required.
         :type apple_barrel: ~xmlservice.models.AppleBarrel
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1224,7 +1211,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets a list as the root element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1275,7 +1261,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1324,7 +1309,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets a list with a single item.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1375,7 +1359,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1424,7 +1407,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
         """Gets an empty list as the root element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of Banana or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1475,7 +1457,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1524,7 +1505,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
         """Gets an XML document with an empty child element.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1575,7 +1555,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param banana: Required.
         :type banana: ~xmlservice.models.Banana
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1623,10 +1602,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
         """Lists containers in a storage account.
 
-        :keyword comp: Default value is "list". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1675,13 +1650,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
         """Gets storage service properties.
 
-        :keyword comp: Default value is "properties". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "service". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1736,13 +1704,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Required.
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword comp: Default value is "properties". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "service". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1794,13 +1755,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
         """Gets storage ACLs for a container.
 
-        :keyword comp: Default value is "acl". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of SignedIdentifier or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1855,13 +1809,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties: Required.
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword comp: Default value is "acl". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1916,13 +1863,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
         """Lists blobs in a storage container.
 
-        :keyword comp: Default value is "list". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype comp: str
-        :keyword restype: Default value is "container". Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype restype: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1978,7 +1918,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param id: Default value is None.
         :type id: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2027,7 +1966,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def json_output(self, **kwargs: Any) -> _models.JSONOutput:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2075,7 +2013,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ObjectWithXMsTextProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ObjectWithXMsTextProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2122,7 +2059,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
         """Get an XML document with binary property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelWithByteProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ModelWithByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2174,7 +2110,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param bytes: Default value is None.
         :type bytes: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2224,7 +2159,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
         """Get an XML document with uri property.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelWithUrlProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ModelWithUrlProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2276,7 +2210,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param url: Default value is None.
         :type url: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -129,7 +129,6 @@ class ByteOperations:
     def get_null(self, **kwargs: Any) -> bytes:
         """Get null byte value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -177,7 +176,6 @@ class ByteOperations:
     def get_empty(self, **kwargs: Any) -> bytes:
         """Get empty byte value ''.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -225,7 +223,6 @@ class ByteOperations:
     def get_non_ascii(self, **kwargs: Any) -> bytes:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -276,7 +273,6 @@ class ByteOperations:
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
          Required.
         :type byte_body: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -325,7 +321,6 @@ class ByteOperations:
     def get_invalid(self, **kwargs: Any) -> bytes:
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:

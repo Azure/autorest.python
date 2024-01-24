@@ -62,7 +62,6 @@ class OdataOperations:
         :type top: int
         :param orderby: The orderby parameter with value id. Default value is None.
         :type orderby: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

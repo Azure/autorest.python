@@ -66,7 +66,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     def create_secret(self, **kwargs: Any) -> _models.SecretResponse:
         """Creates a secret.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SecretResponse or the result of cls(response)
         :rtype: ~errorwithsecrets.models.SecretResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -114,7 +113,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
     def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Gets an error response containing secrets and PII.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

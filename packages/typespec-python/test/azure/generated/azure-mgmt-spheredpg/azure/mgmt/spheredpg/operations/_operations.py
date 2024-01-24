@@ -1703,8 +1703,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1817,8 +1815,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1920,8 +1916,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1988,8 +1982,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2052,11 +2044,6 @@ class CatalogsOperations:
         :param resource: Resource create parameters. Is one of the following types: Catalog, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Catalog or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2224,8 +2211,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2299,8 +2284,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2367,8 +2350,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2431,11 +2412,6 @@ class CatalogsOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          CatalogUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.CatalogUpdate or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog. The Catalog is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2845,8 +2821,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3652,9 +3626,6 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3824,8 +3795,6 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image. The Image is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4108,8 +4077,6 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image. The Image is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4238,8 +4205,6 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image. The Image is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4321,8 +4286,6 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image. The Image is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4400,11 +4363,6 @@ class ImagesOperations:
         :param resource: Resource create parameters. Is one of the following types: Image, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Image or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image. The Image is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4827,8 +4785,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4958,8 +4914,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5084,8 +5038,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5167,8 +5119,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5246,11 +5196,6 @@ class DeviceGroupsOperations:
         :param resource: Resource create parameters. Is one of the following types: DeviceGroup, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.DeviceGroup or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5510,8 +5455,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5609,8 +5552,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5692,8 +5633,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5771,11 +5710,6 @@ class DeviceGroupsOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          DeviceGroupUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5924,8 +5858,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6125,9 +6057,6 @@ class DeviceGroupsOperations:
          ClaimDevicesRequest, JSON, IO[bytes] Required.
         :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6230,8 +6159,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Certificate. The Certificate is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Certificate
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6490,8 +6417,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CertificateChainResponse. The CertificateChainResponse is compatible with
          MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.CertificateChainResponse
@@ -6580,8 +6505,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
          MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
@@ -6639,8 +6562,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
          MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
@@ -6693,8 +6614,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
          MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
@@ -6744,11 +6663,6 @@ class CertificatesOperations:
          ProofOfPossessionNonceRequest, JSON, IO[bytes] Required.
         :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
          MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
@@ -6880,8 +6794,6 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment. The Deployment is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -7267,8 +7179,6 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment. The Deployment is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -7489,8 +7399,6 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment. The Deployment is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -7622,8 +7530,6 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment. The Deployment is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -7751,11 +7657,6 @@ class DeploymentsOperations:
         :param resource: Resource create parameters. Is one of the following types: Deployment, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Deployment or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment. The Deployment is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8131,8 +8032,6 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8264,8 +8163,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8389,8 +8286,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8473,8 +8368,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8553,11 +8446,6 @@ class DevicesOperations:
         :param resource: Resource create parameters. Is one of the following types: Device, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Device or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -8962,8 +8850,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9053,8 +8939,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9137,8 +9021,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9217,11 +9099,6 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          DeviceUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None. The Device is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9376,8 +9253,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
          with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
@@ -9433,8 +9308,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
          with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
@@ -9483,8 +9356,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
          with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
@@ -9530,11 +9401,6 @@ class DevicesOperations:
          GenerateCapabilityImageRequest, JSON, IO[bytes] Required.
         :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or
          IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
          with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
@@ -9774,8 +9640,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9890,8 +9754,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -9991,8 +9853,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10060,8 +9920,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10125,11 +9983,6 @@ class ProductsOperations:
         :param resource: Resource create parameters. Is one of the following types: Product, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Product or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10360,8 +10213,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10436,8 +10287,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10505,8 +10354,6 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10570,11 +10417,6 @@ class ProductsOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          ProductUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product or None. The Product is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -10836,8 +10678,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:

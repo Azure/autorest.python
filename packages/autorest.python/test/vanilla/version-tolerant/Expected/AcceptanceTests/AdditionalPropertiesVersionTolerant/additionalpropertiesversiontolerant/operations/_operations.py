@@ -221,9 +221,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -367,9 +364,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -512,9 +506,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -655,9 +646,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -798,9 +786,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -953,9 +938,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a JSON type or a IO[bytes] type. Required.
         :type create_parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

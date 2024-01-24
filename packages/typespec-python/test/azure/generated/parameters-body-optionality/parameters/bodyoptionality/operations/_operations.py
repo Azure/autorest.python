@@ -178,9 +178,6 @@ class OptionalExplicitOperations:
 
         :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Default value is None.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -305,9 +302,6 @@ class OptionalExplicitOperations:
 
         :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Default value is None.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -434,9 +428,6 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
         :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -558,9 +549,6 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
         :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

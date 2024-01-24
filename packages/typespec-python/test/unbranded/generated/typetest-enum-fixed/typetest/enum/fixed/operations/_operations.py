@@ -94,8 +94,6 @@ class StringOperations:
     def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
         """getKnownValue.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DaysOfWeekEnum
         :rtype: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -150,9 +148,6 @@ class StringOperations:
         :param body: _. Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
          "Saturday", and "Sunday". Required.
         :type body: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -205,9 +200,6 @@ class StringOperations:
         :param body: _. Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
          "Saturday", and "Sunday". Required.
         :type body: str or ~typetest.enum.fixed.models.DaysOfWeekEnum
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

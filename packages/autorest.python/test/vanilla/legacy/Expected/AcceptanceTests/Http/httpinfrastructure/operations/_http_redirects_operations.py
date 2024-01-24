@@ -301,7 +301,6 @@ class HttpRedirectsOperations:
     def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 300 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -349,7 +348,6 @@ class HttpRedirectsOperations:
     def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of str or None or the result of cls(response)
         :rtype: list[str] or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -402,7 +400,6 @@ class HttpRedirectsOperations:
     def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 301 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -450,7 +447,6 @@ class HttpRedirectsOperations:
     def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 301 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -504,7 +500,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -559,7 +554,6 @@ class HttpRedirectsOperations:
     def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 302 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -607,7 +601,6 @@ class HttpRedirectsOperations:
     def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 302 status code and redirect to /http/success/200.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -661,7 +654,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -722,7 +714,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -778,7 +769,6 @@ class HttpRedirectsOperations:
     def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Redirect with 307, resulting in a 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -826,7 +816,6 @@ class HttpRedirectsOperations:
     def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Redirect get with 307, resulting in a 200 success.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -874,7 +863,6 @@ class HttpRedirectsOperations:
     def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """options redirected with 307, resulting in a 200 after redirect.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -927,7 +915,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -988,7 +975,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1049,7 +1035,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1110,7 +1095,6 @@ class HttpRedirectsOperations:
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

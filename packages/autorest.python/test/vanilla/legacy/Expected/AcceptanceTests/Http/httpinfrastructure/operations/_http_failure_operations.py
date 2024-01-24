@@ -98,7 +98,6 @@ class HttpFailureOperations:
     def get_empty_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -146,7 +145,6 @@ class HttpFailureOperations:
     def get_no_model_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -193,7 +191,6 @@ class HttpFailureOperations:
     def get_no_model_empty(self, **kwargs: Any) -> bool:
         """Get empty response from server.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
