@@ -588,11 +588,6 @@ class Operation(OperationBase[Response]):
                     )
                     file_import.add_submodule_import(
                         f"{relative_path}_vendor",
-                        "has_file",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
                         "multipart_file",
                         ImportType.LOCAL,
                     )

@@ -23,7 +23,9 @@ from .base import BaseType
 from .constant_type import ConstantType
 from .utils import add_to_description
 from .combined_type import CombinedType
-from .model_type import JSONModelType
+from .model_type import JSONModelType, DPGModelType
+from .primitive_types import ByteArraySchema
+from .list_type import ListType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -277,6 +279,25 @@ class BodyParameter(_ParameterBase):
         if isinstance(self.type, CombinedType):
             return self.type.target_model_subtype((JSONModelType,)) is not None
         return isinstance(self.type, JSONModelType)
+
+    @property
+    def file_properties(self) -> List[str]:
+        model_type = None
+        if isinstance(self.type, CombinedType):
+            model_type = self.type.target_model_subtype((JSONModelType, DPGModelType))
+        elif isinstance(self.type, (JSONModelType, DPGModelType)):
+            model_type = self.type
+        if model_type is None:
+            return []
+        return [
+            prop.wire_name
+            for prop in model_type.properties
+            if isinstance(prop.type, ByteArraySchema)
+            or (
+                isinstance(prop.type, ListType)
+                and isinstance(prop.type.element_type, ByteArraySchema)
+            )
+        ]
 
     @classmethod
     def from_yaml(

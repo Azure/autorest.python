@@ -78,9 +78,6 @@ class NamedBytesIO(BytesIO):
         super().__init__(*args, **kwargs)
         self.name = name
 
-def has_file(data: Any) -> bool:
-    return isinstance(data, (IOBase, bytes)) or (isinstance(data, (list, tuple)) and any(isinstance(f, (IOBase, bytes, tuple)) for f in data))
-
 def handle_file(file: Union[IOBase, bytes, FileTuple]) -> HandledMultiPartFile:
     if isinstance(file, (IOBase, tuple)):
         return file
@@ -96,12 +93,14 @@ def multipart_data(data: Any) -> Any:
         return json.dumps(data, cls=SdkJSONEncoder, exclude_readonly=True)
     return data
 
-def handle_multipart_form_data_model(body: Model) -> MutableMapping[str, Any]:  # pylint: disable=unsubscriptable-object
+def handle_multipart_form_data_model(body: Model, file_properties: List[str]) -> MutableMapping[str, Any]:  # pylint: disable=unsubscriptable-object
     """handle first layer of model. 
     If its value is bytes or IO, replace it with raw value instead of serialized value.
 
     :param body: The model to handle.
     :type body: ~payload.multipart._model_base.Model
+    :param file_properties: The properties of the model that are file type.
+    :type file_properties: list[str]
     :return: The handled model.
     :rtype: MutableMapping[str, Any]
     """
@@ -109,9 +108,7 @@ def handle_multipart_form_data_model(body: Model) -> MutableMapping[str, Any]:  
     rest_name_attr = {v._rest_name: k for k, v in body._attr_to_rest_field.items()}  # pylint: disable=protected-access
     for rest_name in result.keys():
         attr = rest_name_attr.get(rest_name)
-        if attr is not None:
-            raw_value = getattr(body, attr, None)
-            if has_file(raw_value):
-                result[rest_name] = raw_value
+        if attr is not None and rest_name in file_properties:
+            result[rest_name] = getattr(body, attr, None)
     return result
 {% endif %}
