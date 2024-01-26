@@ -21,9 +21,9 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import _model_base, models as _models
+from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import handle_multipart_form_data_model, multipart_data, multipart_file
+from .._vendor import handle_multipart_form_data_body
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -175,15 +175,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["profileImage"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_basic_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,
@@ -295,15 +289,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["profileImage", "pictures"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_complex_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,
@@ -397,15 +385,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["profileImage"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_json_part_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,
@@ -499,15 +481,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["pictures"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_binary_array_parts_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,
@@ -605,15 +581,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["profileImage"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_json_array_parts_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,
@@ -703,15 +673,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         file_properties = ["profileImage", "picture"]
-        if isinstance(body, _model_base.Model):
-            _body = handle_multipart_form_data_model(body, file_properties)
-        else:
-            _body = body
-        _files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}
-        _data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}
+        _files = handle_multipart_form_data_body(body, file_properties)
 
         _request = build_form_data_multi_binary_parts_request(
-            data=_data,
             files=_files,
             headers=_headers,
             params=_params,

@@ -756,12 +756,7 @@ class _OperationSerializer(
         if body_param.is_form_data:
             return [
                 'file_properties = ["' + '", "'.join(body_param.file_properties) + '"]',
-                f"if isinstance({body_param.client_name}, _model_base.Model):",
-                f"    _body = handle_multipart_form_data_model({body_param.client_name}, file_properties)",
-                "else:",
-                f"    _body = {body_param.client_name}",
-                "_files = {k: multipart_file(v) for k, v in _body.items() if k in file_properties}",
-                "_data = {k: multipart_data(v) for k, v in _body.items() if k not in file_properties}",
+                f"_files = handle_multipart_form_data_body({body_param.client_name}, file_properties)",
             ]
         retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
@@ -978,7 +973,6 @@ class _OperationSerializer(
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
         if request_builder.has_form_data_body:
-            retval.append("    data=_data,")
             retval.append("    files=_files,")
         elif request_builder.overloads:
             seen_body_params = set()

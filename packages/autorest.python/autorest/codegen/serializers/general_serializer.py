@@ -136,7 +136,6 @@ class GeneralSerializer(BaseSerializer):
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
             file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
-            file_import.add_submodule_import("io", "BytesIO", ImportType.STDLIB)
             file_import.add_import("uuid", ImportType.STDLIB)
             file_import.add_import("json", ImportType.STDLIB)
             file_import.add_mutable_mapping_import()

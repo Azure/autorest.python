@@ -67,38 +67,30 @@ def prep_if_none_match(etag: Optional[str], match_condition: Optional[MatchCondi
 {% endif %}
 {% if code_model.has_form_data %}
 
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+
 # file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`
 FileType = Union[IOBase, bytes]
 FileTuple = Union[Tuple[str, FileType], Tuple[str, FileType, str]]
 MultiPartFile = Union[IOBase, bytes, FileTuple]
 HandledMultiPartFile = Union[IOBase, FileTuple]
 
-class NamedBytesIO(BytesIO):
-    def __init__(self, name: str, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.name = name
-
-def handle_file(file: Union[IOBase, bytes, FileTuple]) -> HandledMultiPartFile:
+def multipart_file(file: MultiPartFile) -> HandledMultiPartFile:
     if isinstance(file, (IOBase, tuple)):
         return file
-    return NamedBytesIO("auto-name-" + str(uuid.uuid4()), file)
-
-def multipart_file(file: Union[MultiPartFile, List[MultiPartFile]]) -> Union[HandledMultiPartFile, List[HandledMultiPartFile]]:
-    if isinstance(file, list):
-        return [handle_file(f) for f in file]
-    return handle_file(file)
+    return ("auto-name-" + str(uuid.uuid4()), file)
 
 def multipart_data(data: Any) -> Any:
     if isinstance(data, (list, tuple, dict, Model)):
         return json.dumps(data, cls=SdkJSONEncoder, exclude_readonly=True)
     return data
 
-def handle_multipart_form_data_model(body: Model, file_properties: List[str]) -> MutableMapping[str, Any]:  # pylint: disable=unsubscriptable-object
-    """handle first layer of model. 
+def handle_multipart_form_data_model(body: Model, file_properties: List[str])-> JSON:  # pylint: disable=unsubscriptable-object
+    """handle first layer of model.
     If its value is bytes or IO, replace it with raw value instead of serialized value.
 
     :param body: The model to handle.
-    :type body: ~payload.multipart._model_base.Model
+    :type body: ._model_base.Model
     :param file_properties: The properties of the model that are file type.
     :type file_properties: list[str]
     :return: The handled model.
@@ -111,4 +103,25 @@ def handle_multipart_form_data_model(body: Model, file_properties: List[str]) ->
         if attr is not None and rest_name in file_properties:
             result[rest_name] = getattr(body, attr, None)
     return result
+
+def handle_multipart_form_data_body(body: Union[Model, JSON], file_properties: List[str])-> List[Tuple[str, HandledMultiPartFile]]:
+    """handle multipart form data body.
+
+    :param body: The body to handle.
+    :type body: ._model_base.Model or dict[str, Any]
+    :param file_properties: The properties of the model that are file type.
+    :type file_properties: list[str]
+    :return: The handled body.
+    :rtype: list[tuple[str, HandledMultiPartFile]]
+    """
+    _body = handle_multipart_form_data_model(body, file_properties) if isinstance(body, Model) else body
+    files = []
+    for filed_name, value in _body.items():
+        if filed_name in file_properties:
+            if isinstance(value, list):
+                files.extend([(filed_name, multipart_file(i)) for i in value])
+            files.append((filed_name, multipart_file(value)))
+        else:
+            files.append((filed_name, multipart_data(value)))
+    return files
 {% endif %}

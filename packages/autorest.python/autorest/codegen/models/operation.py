@@ -584,21 +584,8 @@ class Operation(OperationBase[Response]):
                     file_import.add_import("json", ImportType.STDLIB)
                 else:
                     file_import.add_submodule_import(
-                        relative_path, "_model_base", ImportType.LOCAL
-                    )
-                    file_import.add_submodule_import(
                         f"{relative_path}_vendor",
-                        "multipart_file",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "multipart_data",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "handle_multipart_form_data_model",
+                        "handle_multipart_form_data_body",
                         ImportType.LOCAL,
                     )
             if self.default_error_deserialization or any(

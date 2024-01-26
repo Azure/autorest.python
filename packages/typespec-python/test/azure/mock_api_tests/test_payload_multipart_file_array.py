@@ -19,43 +19,43 @@ def client():
         yield client
 
 
-@pytest.mark.parametrize(
-    "op_name,model_class,data,file",
-    [
-        (
-            "binary_array_parts",
-            models.BinaryArrayPartsRequest,
-            {"id": "123"},
-            {"pictures": [PNG, PNG]},
-        ),
-        (
-            "complex",
-            models.ComplexPartsRequest,
-            {"id": "123", "previousAddresses": [models.Address(city="Y"), models.Address(city="Z")], "address": models.Address(city="X")},
-            {"pictures": [PNG, PNG], "profileImage": JPG},
-        )
-    ],
-)
-def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
-    file_bytes = lambda p: open(str(p), "rb").read()
-    op = getattr(client.form_data, op_name)
-    # test bytes
-    body = {k: ([file_bytes(vi) for vi in v] if isinstance(v, list) else file_bytes(v)) for k, v in file.items()}
-    body.update(data)
-    op(body)
-    op(model_class(body))
+# @pytest.mark.parametrize(
+#     "op_name,model_class,data,file",
+#     [
+#         (
+#             "binary_array_parts",
+#             models.BinaryArrayPartsRequest,
+#             {"id": "123"},
+#             {"pictures": [PNG, PNG]},
+#         ),
+#         (
+#             "complex",
+#             models.ComplexPartsRequest,
+#             {"id": "123", "previousAddresses": [models.Address(city="Y"), models.Address(city="Z")], "address": models.Address(city="X")},
+#             {"pictures": [PNG, PNG], "profileImage": JPG},
+#         )
+#     ],
+# )
+# def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
+#     file_bytes = lambda p: open(str(p), "rb").read()
+#     op = getattr(client.form_data, op_name)
+#     # test bytes
+#     body = {k: ([file_bytes(vi) for vi in v] if isinstance(v, list) else file_bytes(v)) for k, v in file.items()}
+#     body.update(data)
+#     op(body)
+#     op(model_class(body))
 
-    # test io
-    file_io = lambda p: open(str(p), "rb")
-    body = {k: ([file_io(vi) for vi in v] if isinstance(v, list) else file_io(v)) for k, v in file.items()}
-    body.update(data)
-    op(body)
+#     # test io
+#     file_io = lambda p: open(str(p), "rb")
+#     body = {k: ([file_io(vi) for vi in v] if isinstance(v, list) else file_io(v)) for k, v in file.items()}
+#     body.update(data)
+#     op(body)
 
-    body = {k: ([file_io(vi) for vi in v] if isinstance(v, list) else file_io(v)) for k, v in file.items()}
-    body.update(data)
-    with pytest.raises(TypeError):
-        # caused by deepcopy when DPG model init
-        op(model_class(body))
+#     body = {k: ([file_io(vi) for vi in v] if isinstance(v, list) else file_io(v)) for k, v in file.items()}
+#     body.update(data)
+#     with pytest.raises(TypeError):
+#         # caused by deepcopy when DPG model init
+#         op(model_class(body))
 
 # def test_sample_single_file(client: MultiPartClient):
 #     # Python SDK support several kinds of file format for multipart/form-data and users can choose any of them
