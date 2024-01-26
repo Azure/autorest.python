@@ -76,11 +76,11 @@ def handle_multipart_form_data_body(
     """
     _body = handle_multipart_form_data_model(body, file_properties) if isinstance(body, Model) else body
     files = []
-    for filed_name, value in _body.items():
-        if filed_name in file_properties:
+    for field_name, value in _body.items():
+        if field_name in file_properties:
             if isinstance(value, list):
-                files.extend([(filed_name, multipart_file(i)) for i in value])
-            files.append((filed_name, multipart_file(value)))
+                files.extend([(field_name, multipart_file(i)) for i in value])
+            files.append((field_name, multipart_file(value)))
         else:
-            files.append((filed_name, multipart_data(value)))
+            files.append((field_name, multipart_data(value)))
     return files
