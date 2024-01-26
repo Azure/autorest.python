@@ -66,6 +66,8 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
      "2022-09-01-preview". Note that overriding this default value may result in unsupported
      behavior.
     :paramtype api_version: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+     Retry-After header is present.
     """
 
     def __init__(
