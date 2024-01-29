@@ -80,7 +80,8 @@ def handle_multipart_form_data_body(
         if field_name in file_properties:
             if isinstance(value, list):
                 files.extend([(field_name, multipart_file(i)) for i in value])
-            files.append((field_name, multipart_file(value)))
+            else:
+                files.append((field_name, multipart_file(value)))
         else:
             files.append((field_name, multipart_data(value)))
     return files
