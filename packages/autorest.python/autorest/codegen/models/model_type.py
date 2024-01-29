@@ -75,6 +75,7 @@ class ModelType(  # pylint: disable=abstract-method
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
+        self.is_form_data = any(p.is_form_data for p in self.properties)
 
     @property
     def is_xml(self) -> bool:

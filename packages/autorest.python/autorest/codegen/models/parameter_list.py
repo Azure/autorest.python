@@ -22,19 +22,15 @@ from enum import Enum
 
 from .request_builder_parameter import (
     RequestBuilderBodyParameter,
-    RequestBuilderMultipartBodyParameter,
     RequestBuilderParameter,
-    get_request_body_parameter,
 )
 from .parameter import (
-    MultipartBodyParameter,
     ParameterLocation,
     BodyParameter,
     Parameter,
     ParameterMethodLocation,
     ClientParameter,
     ConfigParameter,
-    get_body_parameter,
 )
 
 ParameterType = TypeVar(
@@ -43,10 +39,6 @@ ParameterType = TypeVar(
 BodyParameterType = TypeVar(
     "BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter]
 )
-RequestBuilderBodyParameterType = Union[
-    RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter
-]
-
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -314,7 +306,7 @@ class _ParameterListBase(
 
 class _ParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
-        Parameter, Union[MultipartBodyParameter, BodyParameter]
+        Parameter, BodyParameter
     ]
 ):
     """Base Parameter class for the two operation ParameterLists"""
@@ -326,10 +318,10 @@ class _ParameterList(
     @staticmethod
     def body_parameter_creator() -> (
         Callable[
-            [Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]
+            [Dict[str, Any], "CodeModel"], BodyParameter
         ]
     ):
-        return get_body_parameter
+        return BodyParameter.from_yaml
 
     @property
     def implementation(self) -> str:
@@ -348,7 +340,7 @@ class ParameterList(_ParameterList):
 
 class _RequestBuilderParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
-        RequestBuilderParameter, RequestBuilderBodyParameterType
+        RequestBuilderParameter, RequestBuilderBodyParameter
     ]
 ):
     """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
@@ -361,9 +353,9 @@ class _RequestBuilderParameterList(
 
     @staticmethod
     def body_parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType]
+        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameter]
     ):
-        return get_request_body_parameter
+        return RequestBuilderBodyParameter.from_yaml
 
     @property
     def implementation(self) -> str:
@@ -372,14 +364,14 @@ class _RequestBuilderParameterList(
     @property
     def unsorted_method_params(
         self,
-    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
+    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
         # don't have access to client params in request builder
         retval = [
             p
             for p in super().unsorted_method_params
             if not (
                 p.location == ParameterLocation.BODY
-                and cast(RequestBuilderBodyParameterType, p).is_partial_body
+                and cast(RequestBuilderBodyParameter, p).is_partial_body
             )
         ]
         retval.extend(
@@ -400,7 +392,7 @@ class _RequestBuilderParameterList(
     @property
     def constant(
         self,
-    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
+    ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
         """All constant parameters"""
         return [
             p for p in super().constant if p.location != ParameterLocation.ENDPOINT_PATH

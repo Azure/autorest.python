@@ -20,6 +20,7 @@ from .primitive_types import (
     DurationType,
     IntegerType,
     FloatType,
+    MultipartFileType,
     StringType,
     TimeType,
     AnyType,
@@ -43,7 +44,6 @@ from .parameter import (
     ParameterLocation,
     BodyParameter,
     ParameterDelimeter,
-    MultipartBodyParameter,
     ClientParameter,
     ConfigParameter,
 )
@@ -115,7 +115,6 @@ __all__ = [
     "BodyParameter",
     "RequestBuilderBodyParameter",
     "ParameterDelimeter",
-    "MultipartBodyParameter",
     "CredentialType",
     "ClientParameter",
     "ConfigParameter",
@@ -150,6 +149,7 @@ TYPE_TO_OBJECT = {
     "unixtime": UnixTimeType,
     "credential": StringType,
     "sdkcore": SdkCoreType,
+    "multipartfile": MultipartFileType
 }
 _LOGGER = logging.getLogger(__name__)
 

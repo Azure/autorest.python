@@ -23,7 +23,7 @@ from .base import BaseType
 from .constant_type import ConstantType
 from .utils import add_to_description
 from .combined_type import CombinedType
-from .model_type import JSONModelType, DPGModelType
+from .model_type import JSONModelType, DPGModelType, ModelType
 from .primitive_types import ByteArraySchema
 from .list_type import ListType
 
@@ -93,6 +93,7 @@ class _ParameterBase(
             "defaultToUnsetSentinel", False
         )
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
+        self.form_data_input = isinstance(self.type, ModelType) and any(p.is_multipart_file for p in self.type.properties)
 
     def get_declaration(self, value: Any = None) -> Any:
         return self.type.get_declaration(value)
@@ -247,7 +248,7 @@ class BodyParameter(_ParameterBase):
 
     @property
     def is_form_data(self) -> bool:
-        return self.default_content_type == "multipart/form-data"
+        return self.type.is_form_data
 
     @property
     def is_partial_body(self) -> bool:
@@ -313,47 +314,6 @@ class BodyParameter(_ParameterBase):
 EntryBodyParameterType = TypeVar(
     "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
 )
-
-
-class _MultipartBodyParameter(Generic[EntryBodyParameterType], BodyParameter):
-    """Base class for MultipartBodyParameter and RequestBuilderMultipartBodyParameter"""
-
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        type: BaseType,
-        entries: List[EntryBodyParameterType],
-    ) -> None:
-        super().__init__(yaml_data, code_model, type)
-        self.entries = entries
-
-    @property
-    def in_method_signature(self) -> bool:
-        # Right now, only legacy generates with multipart bodies
-        # and legacy generates with the multipart body arguments splatted out
-        return False
-
-
-class MultipartBodyParameter(
-    _MultipartBodyParameter[BodyParameter]  # pylint: disable=unsubscriptable-object
-):
-    """Multipart body parameter for Operation. Used for files and data input."""
-
-    @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "MultipartBodyParameter":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
-            entries=[
-                BodyParameter.from_yaml(entry, code_model)
-                for entry in yaml_data["entries"]
-            ],
-        )
-
 
 class Parameter(_ParameterBase):
     """Basic Parameter class"""
@@ -476,12 +436,3 @@ class ConfigParameter(Parameter):
         if self.constant:
             return ParameterMethodLocation.KWARG
         return ParameterMethodLocation.POSITIONAL
-
-
-def get_body_parameter(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
-) -> Union[BodyParameter, MultipartBodyParameter]:
-    """Creates a regular body parameter or Multipart body parameter"""
-    if yaml_data.get("entries"):
-        return MultipartBodyParameter.from_yaml(yaml_data, code_model)
-    return BodyParameter.from_yaml(yaml_data, code_model)

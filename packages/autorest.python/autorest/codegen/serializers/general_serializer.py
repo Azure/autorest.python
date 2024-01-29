@@ -131,18 +131,10 @@ class GeneralSerializer(BaseSerializer):
                 ImportType.SDKCORE,
             )
         if self.code_model.has_form_data:
-            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-            file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
-            file_import.add_import("uuid", ImportType.STDLIB)
-            file_import.add_import("json", ImportType.STDLIB)
-            file_import.add_mutable_mapping_import()
-            file_import.add_submodule_import("._model_base", "Model", ImportType.LOCAL)
-            file_import.add_submodule_import(
-                "._model_base", "SdkJSONEncoder", ImportType.LOCAL
-            )
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,

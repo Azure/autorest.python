@@ -37,6 +37,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
+        self.is_multipart_file: bool = True
 
     @property
     def pylint_disable(self) -> str:
@@ -162,6 +163,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 ImportType.LOCAL,
             )
         return file_import
+    
+    @property
+    def is_form_data(self) -> bool:
+        from .model_type import ModelType
+        return isinstance(self.type, ModelType) and self.type.is_form_data
 
     @classmethod
     def from_yaml(

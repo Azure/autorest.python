@@ -26,7 +26,6 @@ from ..models import (
     ParameterMethodLocation,
     RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
-    MultipartBodyParameter,
     Property,
     RequestBuilderType,
     CombinedType,
@@ -34,6 +33,7 @@ from ..models import (
     DPGModelType,
     ParameterListType,
     ByteArraySchema,
+    MultipartFileType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -203,19 +203,6 @@ def _serialize_json_model_body(
     )
     retval.append("    }")
     return retval
-
-
-def _serialize_multipart_body(builder: BuilderType) -> List[str]:
-    retval: List[str] = []
-    body_param = cast(MultipartBodyParameter, builder.parameters.body_parameter)
-    # we have to construct our form data before passing to the request as well
-    retval.append("# Construct form data")
-    retval.append(f"_{body_param.client_name} = {{")
-    for param in body_param.entries:
-        retval.append(f'    "{param.wire_name}": {param.client_name},')
-    retval.append("}")
-    return retval
-
 
 def _get_json_response_template_to_status_codes(
     builder: OperationType,
@@ -752,12 +739,17 @@ class _OperationSerializer(
 
         This function serializes the body params that need to be serialized.
         """
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if body_param.is_form_data:
-            return [
-                'file_properties = ["' + '", "'.join(body_param.file_properties) + '"]',
-                f"_files = handle_multipart_form_data_body({body_param.client_name}, file_properties)",
-            ]
+        body_param = builder.parameters.body_parameter
+        if body_param.form_data_input:
+            retval = ["_files = []"]
+            for prop in cast(ModelType, body_param.type).properties:
+                if isinstance(prop.type, MultipartFileType):
+                    if isinstance(prop.type, ListType):
+                        retval.append(f"_files.extend(self.{prop.client_name})")
+                    else:
+                        # we assume that it's just a single multipart file input
+                        retval.append(f"_files.append(self.{prop.client_name})")
+            return retval
         retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
@@ -810,9 +802,7 @@ class _OperationSerializer(
     ) -> List[str]:
         """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if hasattr(body_param, "entries"):
-            return _serialize_multipart_body(builder)
+        body_param = builder.parameters.body_parameter
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         body_param_type = body_param.type
         if isinstance(body_param_type, BinaryType) or (
