@@ -150,8 +150,6 @@ def _add_options(
     special_flags: Dict[str, Any],
     debug=False,
 ) -> List[str]:
-    # if debug:
-    #   options["debug"] = "true"
     result = []
     for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
