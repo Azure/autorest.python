@@ -288,7 +288,7 @@ def build_response_body_default_request(**kwargs: Any) -> HttpRequest:
 def build_response_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/octet-stream")
 
     # Construct URL
     _url = "/encode/bytes/body/response/octet-stream"
@@ -302,7 +302,7 @@ def build_response_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
 def build_response_body_custom_content_type_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "image/png")
 
     # Construct URL
     _url = "/encode/bytes/body/response/custom-content-type"

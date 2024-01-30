@@ -7,7 +7,11 @@
 # --------------------------------------------------------------------------
 
 from ._operations import ExtendsUnknownOperations
+from ._operations import ExtendsUnknownDerivedOperations
+from ._operations import ExtendsUnknownDiscriminatedOperations
 from ._operations import IsUnknownOperations
+from ._operations import IsUnknownDerivedOperations
+from ._operations import IsUnknownDiscriminatedOperations
 from ._operations import ExtendsStringOperations
 from ._operations import IsStringOperations
 from ._operations import ExtendsFloatOperations
@@ -23,7 +27,11 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "ExtendsUnknownOperations",
+    "ExtendsUnknownDerivedOperations",
+    "ExtendsUnknownDiscriminatedOperations",
     "IsUnknownOperations",
+    "IsUnknownDerivedOperations",
+    "IsUnknownDiscriminatedOperations",
     "ExtendsStringOperations",
     "IsStringOperations",
     "ExtendsFloatOperations",
