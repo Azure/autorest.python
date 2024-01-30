@@ -1000,7 +1000,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: _models.ListItemInputBody,
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.User"]:
@@ -1046,7 +1046,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: JSON,
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.User"]:
@@ -1087,7 +1087,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: IO[bytes],
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.User"]:
@@ -1128,7 +1128,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.

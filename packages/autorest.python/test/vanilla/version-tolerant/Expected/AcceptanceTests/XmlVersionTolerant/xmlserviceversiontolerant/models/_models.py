@@ -329,12 +329,12 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
         content_disposition: Optional[str] = None,
         cache_control: Optional[str] = None,
         blob_sequence_number: Optional[int] = None,
-        blob_type: Optional[Union[str, "_models.BlobType"]] = None,
-        lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "_models.LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = None,
+        blob_type: Optional[Union["_models.BlobType", str]] = None,
+        lease_status: Optional[Union["_models.LeaseStatusType", str]] = None,
+        lease_state: Optional[Union["_models.LeaseStateType", str]] = None,
+        lease_duration: Optional[Union["_models.LeaseDurationType", str]] = None,
         copy_id: Optional[str] = None,
-        copy_status: Optional[Union[str, "_models.CopyStatusType"]] = None,
+        copy_status: Optional[Union["_models.CopyStatusType", str]] = None,
         copy_source: Optional[str] = None,
         copy_progress: Optional[str] = None,
         copy_completion_time: Optional[datetime.datetime] = None,
@@ -344,9 +344,9 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
         destination_snapshot: Optional[str] = None,
         deleted_time: Optional[datetime.datetime] = None,
         remaining_retention_days: Optional[int] = None,
-        access_tier: Optional[Union[str, "_models.AccessTier"]] = None,
+        access_tier: Optional[Union["_models.AccessTier", str]] = None,
         access_tier_inferred: Optional[bool] = None,
-        archive_status: Optional[Union[str, "_models.ArchiveStatus"]] = None,
+        archive_status: Optional[Union["_models.ArchiveStatus", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -599,10 +599,10 @@ class ContainerProperties(_serialization.Model):
         *,
         last_modified: datetime.datetime,
         etag: str,
-        lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "_models.LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = None,
-        public_access: Optional[Union[str, "_models.PublicAccessType"]] = None,
+        lease_status: Optional[Union["_models.LeaseStatusType", str]] = None,
+        lease_state: Optional[Union["_models.LeaseStateType", str]] = None,
+        lease_duration: Optional[Union["_models.LeaseDurationType", str]] = None,
+        public_access: Optional[Union["_models.PublicAccessType", str]] = None,
         **kwargs: Any
     ) -> None:
         """

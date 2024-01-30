@@ -332,7 +332,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
+    async def reserved_enum(self, enum_parameter: Union[_models.MyEnum, str], **kwargs: Any) -> JSON:
         """Operation that accepts a reserved enum value.
 
         :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and

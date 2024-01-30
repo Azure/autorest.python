@@ -138,7 +138,7 @@ def build_operation_with_url_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> HttpRequest:
+def build_reserved_enum_request(*, enum_parameter: Union[_models.MyEnum, str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -441,7 +441,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace
-    def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
+    def reserved_enum(self, enum_parameter: Union[_models.MyEnum, str], **kwargs: Any) -> JSON:
         """Operation that accepts a reserved enum value.
 
         :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and

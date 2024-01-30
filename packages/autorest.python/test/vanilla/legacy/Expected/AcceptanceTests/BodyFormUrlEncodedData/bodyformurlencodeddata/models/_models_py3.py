@@ -54,8 +54,8 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
     def __init__(
         self,
         *,
-        pet_type: Union[str, "_models.PetType"],
-        pet_food: Union[str, "_models.PetFood"],
+        pet_type: Union["_models.PetType", str],
+        pet_food: Union["_models.PetFood", str],
         pet_age: int,
         name: Optional[str] = None,
         status: Optional[str] = None,

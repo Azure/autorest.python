@@ -761,7 +761,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, enum_path: Union[str, _models.UriColor], **kwargs: Any
+        self, enum_path: Union[_models.UriColor, str], **kwargs: Any
     ) -> None:
         """Get using uri with 'green color' in path parameter.
 
@@ -810,7 +810,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, enum_path: Union[str, _models.UriColor], **kwargs: Any
+        self, enum_path: Union[_models.UriColor, str], **kwargs: Any
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 

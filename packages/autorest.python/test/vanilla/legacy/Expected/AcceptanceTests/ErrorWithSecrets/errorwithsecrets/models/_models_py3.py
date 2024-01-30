@@ -55,7 +55,7 @@ class Error(_serialization.Model):
     def __init__(
         self,
         *,
-        code: Union[str, "_models.ErrorCode"],
+        code: Union["_models.ErrorCode", str],
         message: str,
         additional_properties: Optional[Dict[str, Any]] = None,
         target: Optional[str] = None,
@@ -160,7 +160,7 @@ class InnerError(_serialization.Model):
     def __init__(
         self,
         *,
-        code: Union[str, "_models.InnerErrorCode"],
+        code: Union["_models.InnerErrorCode", str],
         message: str,
         additional_properties: Optional[Dict[str, Any]] = None,
         innererror: Optional["_models.InnerError"] = None,

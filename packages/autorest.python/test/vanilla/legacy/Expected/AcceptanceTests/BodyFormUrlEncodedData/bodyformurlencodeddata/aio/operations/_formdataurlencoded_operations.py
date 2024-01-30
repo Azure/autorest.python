@@ -56,8 +56,8 @@ class FormdataurlencodedOperations:
     async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
         self,
         pet_id: int,
-        pet_type: Union[str, _models.PetType],
-        pet_food: Union[str, _models.PetFood],
+        pet_type: Union[_models.PetType, str],
+        pet_food: Union[_models.PetFood, str],
         pet_age: int,
         name: Optional[str] = None,
         status: Optional[str] = None,

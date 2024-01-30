@@ -53,7 +53,7 @@ class StringOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+    async def get_known_value(self, **kwargs: Any) -> Union[_models.DaysOfWeekExtensibleEnum, str]:
         """get_known_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -71,7 +71,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.DaysOfWeekExtensibleEnum, str]] = kwargs.pop("cls", None)
 
         _request = build_string_get_known_value_request(
             headers=_headers,
@@ -95,7 +95,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
+            deserialized = _deserialize(Union[_models.DaysOfWeekExtensibleEnum, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -103,7 +103,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
+    async def get_unknown_value(self, **kwargs: Any) -> Union[_models.DaysOfWeekExtensibleEnum, str]:
         """get_unknown_value.
 
         :return: DaysOfWeekExtensibleEnum
@@ -121,7 +121,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.DaysOfWeekExtensibleEnum, str]] = kwargs.pop("cls", None)
 
         _request = build_string_get_unknown_value_request(
             headers=_headers,
@@ -145,7 +145,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
+            deserialized = _deserialize(Union[_models.DaysOfWeekExtensibleEnum, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -154,7 +154,7 @@ class StringOperations:
 
     @distributed_trace_async
     async def put_known_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+        self, body: Union[_models.DaysOfWeekExtensibleEnum, str], **kwargs: Any
     ) -> None:
         """put_known_value.
 
@@ -207,7 +207,7 @@ class StringOperations:
 
     @distributed_trace_async
     async def put_unknown_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
+        self, body: Union[_models.DaysOfWeekExtensibleEnum, str], **kwargs: Any
     ) -> None:
         """put_unknown_value.
 

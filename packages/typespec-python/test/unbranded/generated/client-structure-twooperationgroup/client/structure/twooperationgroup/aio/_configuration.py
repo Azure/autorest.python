@@ -28,7 +28,7 @@ class TwoOperationGroupClientConfiguration:  # pylint: disable=too-many-instance
     :type client: str or ~client.structure.twooperationgroup.models.ClientType
     """
 
-    def __init__(self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, client: Union[_models.ClientType, str], **kwargs: Any) -> None:
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
         if client is None:

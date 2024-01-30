@@ -28,7 +28,7 @@ class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringNoRequiredOneValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: "value1"
@@ -52,7 +52,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     def __init__(
         self,
         *,
-        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None,
+        parameter: Optional[Union["_models.ModelAsStringNoRequiredOneValueNoDefaultEnum", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -75,7 +75,7 @@ class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringNoRequiredTwoValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
@@ -99,7 +99,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     def __init__(
         self,
         *,
-        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
+        parameter: Optional[Union["_models.ModelAsStringNoRequiredTwoValueNoDefaultEnum", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -128,7 +128,7 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringRequiredOneValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: "value1"
@@ -156,7 +156,7 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringRequiredOneValueNoDefaultEnum", str], **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Required. "value1"
@@ -184,7 +184,7 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringRequiredTwoValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
@@ -212,7 +212,7 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs: Any
+        self, *, parameter: Union["_models.ModelAsStringRequiredTwoValueNoDefaultEnum", str], **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".
@@ -274,7 +274,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.NoModelAsStringNoRequiredTwoValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
@@ -298,7 +298,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylin
     def __init__(
         self,
         *,
-        parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
+        parameter: Optional[Union["_models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -379,7 +379,7 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs: Any
+        self, *, parameter: Union["_models.NoModelAsStringRequiredTwoValueDefaultEnum", str] = "value1", **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
@@ -407,7 +407,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs: Any
+        self, *, parameter: Union["_models.NoModelAsStringRequiredTwoValueNoDefaultEnum", str], **kwargs: Any
     ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".

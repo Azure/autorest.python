@@ -357,14 +357,14 @@ class EnumProperty(_model_base.Model):
     :vartype property: str or ~typetest.property.valuetypes.models.FixedInnerEnum
     """
 
-    property: Union[str, "_models.FixedInnerEnum"] = rest_field()
+    property: Union["_models.FixedInnerEnum", str] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.FixedInnerEnum"],  # pylint: disable=redefined-builtin
+        property: Union["_models.FixedInnerEnum", str],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -388,14 +388,14 @@ class ExtensibleEnumProperty(_model_base.Model):
     :vartype property: str or ~typetest.property.valuetypes.models.InnerEnum
     """
 
-    property: Union[str, "_models.InnerEnum"] = rest_field()
+    property: Union["_models.InnerEnum", str] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
+        property: Union["_models.InnerEnum", str],  # pylint: disable=redefined-builtin
     ):
         ...
 

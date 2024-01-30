@@ -226,7 +226,7 @@ def build_basic_list_with_page_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_basic_list_with_parameters_request(
-    *, another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None, **kwargs: Any
+    *, another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1256,7 +1256,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: _models.ListItemInputBody,
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> Iterable["_models.User"]:
@@ -1302,7 +1302,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: JSON,
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> Iterable["_models.User"]:
@@ -1343,7 +1343,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: IO[bytes],
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> Iterable["_models.User"]:
@@ -1384,7 +1384,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         self,
         body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
         *,
-        another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
+        another: Optional[Union[_models.ListItemInputExtensibleEnum, str]] = None,
         **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.

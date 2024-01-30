@@ -62,7 +62,7 @@ class CheckNameAvailabilityResult(_serialization.Model):
         self,
         *,
         name_available: Optional[bool] = None,
-        reason: Optional[Union[str, "_models.Reason"]] = None,
+        reason: Optional[Union["_models.Reason", str]] = None,
         message: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -319,14 +319,14 @@ class StorageAccount(Resource):  # pylint: disable=too-many-instance-attributes
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        account_type: Optional[Union[str, "_models.AccountType"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
+        account_type: Optional[Union["_models.AccountType", str]] = None,
         primary_endpoints: Optional["_models.Endpoints"] = None,
         primary_location: Optional[str] = None,
-        status_of_primary: Optional[Union[str, "_models.AccountStatus"]] = None,
+        status_of_primary: Optional[Union["_models.AccountStatus", str]] = None,
         last_geo_failover_time: Optional[datetime.datetime] = None,
         secondary_location: Optional[str] = None,
-        status_of_secondary: Optional[Union[str, "_models.AccountStatus"]] = None,
+        status_of_secondary: Optional[Union["_models.AccountStatus", str]] = None,
         creation_time: Optional[datetime.datetime] = None,
         custom_domain: Optional["_models.CustomDomain"] = None,
         secondary_endpoints: Optional["_models.Endpoints"] = None,
@@ -462,7 +462,7 @@ class StorageAccountCreateParameters(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "_models.AccountType"]] = None,
+        account_type: Optional[Union["_models.AccountType", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -545,7 +545,7 @@ class StorageAccountRegenerateKeyParameters(_serialization.Model):
         "key_name": {"key": "keyName", "type": "str"},
     }
 
-    def __init__(self, *, key_name: Optional[Union[str, "_models.KeyName"]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, key_name: Optional[Union["_models.KeyName", str]] = None, **kwargs: Any) -> None:
         """
         :keyword key_name: Known values are: "key1" and "key2".
         :paramtype key_name: str or ~storage.models.KeyName
@@ -604,7 +604,7 @@ class StorageAccountUpdateParameters(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "_models.AccountType"]] = None,
+        account_type: Optional[Union["_models.AccountType", str]] = None,
         custom_domain: Optional["_models.CustomDomain"] = None,
         **kwargs: Any
     ) -> None:
@@ -672,7 +672,7 @@ class Usage(_serialization.Model):
     def __init__(
         self,
         *,
-        unit: Optional[Union[str, "_models.UsageUnit"]] = None,
+        unit: Optional[Union["_models.UsageUnit", str]] = None,
         current_value: Optional[int] = None,
         limit: Optional[int] = None,
         name: Optional["_models.UsageName"] = None,

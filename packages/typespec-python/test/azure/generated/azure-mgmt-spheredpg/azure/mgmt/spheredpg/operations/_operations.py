@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -22,12 +22,10 @@ from azure.core.exceptions import (
 )
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
-from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._model_base import SdkJSONEncoder, _deserialize
@@ -1794,76 +1792,8 @@ class CatalogsOperations:
 
         return deserialized  # type: ignore
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        resource: Union[_models.Catalog, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_catalogs_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1871,7 +1801,7 @@ class CatalogsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Catalog]:
+    ) -> _models.Catalog:
         # pylint: disable=line-too-long
         """Create a Catalog.
 
@@ -1885,9 +1815,8 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Catalog. The Catalog is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Catalog]
+        :return: Catalog. The Catalog is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -1965,7 +1894,7 @@ class CatalogsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1973,7 +1902,7 @@ class CatalogsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Catalog]:
+    ) -> _models.Catalog:
         # pylint: disable=line-too-long
         """Create a Catalog.
 
@@ -1987,9 +1916,8 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Catalog. The Catalog is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Catalog]
+        :return: Catalog. The Catalog is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -2032,7 +1960,7 @@ class CatalogsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2040,7 +1968,7 @@ class CatalogsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Catalog]:
+    ) -> _models.Catalog:
         # pylint: disable=line-too-long
         """Create a Catalog.
 
@@ -2054,9 +1982,8 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Catalog. The Catalog is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Catalog]
+        :return: Catalog. The Catalog is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -2099,13 +2026,13 @@ class CatalogsOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
         resource: Union[_models.Catalog, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.Catalog]:
+    ) -> _models.Catalog:
         # pylint: disable=line-too-long
         """Create a Catalog.
 
@@ -2117,9 +2044,8 @@ class CatalogsOperations:
         :param resource: Resource create parameters. Is one of the following types: Catalog, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Catalog or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Catalog. The Catalog is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Catalog]
+        :return: Catalog. The Catalog is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -2195,50 +2121,72 @@ class CatalogsOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Catalog, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Catalog].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Catalog](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_catalogs_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
         )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Catalog, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Catalog, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def update(
@@ -2570,9 +2518,21 @@ class CatalogsOperations:
 
         return deserialized  # type: ignore
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> None:
+        """Delete a Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2617,92 +2577,6 @@ class CatalogsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
-
-    @distributed_trace
-    def begin_delete(
-        self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.Catalog"]:
@@ -4177,78 +4051,8 @@ class ImagesOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        image_name: str,
-        resource: Union[_models.Image, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_images_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            image_name=image_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4257,7 +4061,7 @@ class ImagesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Image]:
+    ) -> _models.Image:
         # pylint: disable=line-too-long
         """Create a Image.
 
@@ -4273,9 +4077,8 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Image. The Image is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Image]
+        :return: Image. The Image is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4377,7 +4180,7 @@ class ImagesOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4386,7 +4189,7 @@ class ImagesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Image]:
+    ) -> _models.Image:
         # pylint: disable=line-too-long
         """Create a Image.
 
@@ -4402,9 +4205,8 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Image. The Image is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Image]
+        :return: Image. The Image is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4459,7 +4261,7 @@ class ImagesOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4468,7 +4270,7 @@ class ImagesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Image]:
+    ) -> _models.Image:
         # pylint: disable=line-too-long
         """Create a Image.
 
@@ -4484,9 +4286,8 @@ class ImagesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Image. The Image is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Image]
+        :return: Image. The Image is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4541,14 +4342,14 @@ class ImagesOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
         resource: Union[_models.Image, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.Image]:
+    ) -> _models.Image:
         # pylint: disable=line-too-long
         """Create a Image.
 
@@ -4562,9 +4363,8 @@ class ImagesOperations:
         :param resource: Resource create parameters. Is one of the following types: Image, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Image or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Image. The Image is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Image]
+        :return: Image. The Image is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4664,55 +4464,91 @@ class ImagesOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Image] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                image_name=image_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Image, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Image].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Image](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_images_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            image_name=image_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Image, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Image, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
     ) -> None:
+        """Delete a Image.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param image_name: Image name. Use .default for image creation. Required.
+        :type image_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4758,95 +4594,6 @@ class ImagesOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
-
-    @distributed_trace
-    def begin_delete(
-        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a Image.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                image_name=image_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
 
 class DeviceGroupsOperations:
@@ -5137,80 +4884,8 @@ class DeviceGroupsOperations:
 
         return deserialized  # type: ignore
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        resource: Union[_models.DeviceGroup, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_device_groups_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5220,7 +4895,7 @@ class DeviceGroupsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
+    ) -> _models.DeviceGroup:
         # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -5239,9 +4914,8 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5335,7 +5009,7 @@ class DeviceGroupsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5345,7 +5019,7 @@ class DeviceGroupsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
+    ) -> _models.DeviceGroup:
         # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -5364,9 +5038,8 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5417,7 +5090,7 @@ class DeviceGroupsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5427,7 +5100,7 @@ class DeviceGroupsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
+    ) -> _models.DeviceGroup:
         # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -5446,9 +5119,8 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5499,7 +5171,7 @@ class DeviceGroupsOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5507,7 +5179,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         resource: Union[_models.DeviceGroup, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
+    ) -> _models.DeviceGroup:
         # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -5524,9 +5196,8 @@ class DeviceGroupsOperations:
         :param resource: Resource create parameters. Is one of the following types: DeviceGroup, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.DeviceGroup or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5618,56 +5289,95 @@ class DeviceGroupsOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.DeviceGroup, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.DeviceGroup].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.DeviceGroup](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_device_groups_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            device_group_name=device_group_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.DeviceGroup, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.DeviceGroup, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> None:
+        """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5715,11 +5425,20 @@ class DeviceGroupsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    @distributed_trace
-    def begin_delete(
-        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: _models.DeviceGroupUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -5731,9 +5450,110 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
+
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5741,74 +5561,131 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
+        :raises ~azure.core.exceptions.HttpResponseError:
 
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        Example:
+            .. code-block:: python
 
-    def _update_initial(
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
+
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5816,7 +5693,89 @@ class DeviceGroupsOperations:
         device_group_name: str,
         properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Is one of the following types:
+         DeviceGroupUpdate, JSON, IO[bytes] Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO[bytes]
+        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5829,7 +5788,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -5852,7 +5811,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5869,7 +5828,10 @@ class DeviceGroupsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.DeviceGroup, response.json())
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -5879,408 +5841,6 @@ class DeviceGroupsOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: _models.DeviceGroupUpdate,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> LROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         DeviceGroupUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns DeviceGroup. The DeviceGroup is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                properties=properties,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.DeviceGroup, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.DeviceGroup].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.DeviceGroup](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
     @distributed_trace
     def count_devices(
@@ -7585,82 +7145,8 @@ class DeploymentsOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        deployment_name: str,
-        resource: Union[_models.Deployment, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_deployments_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            deployment_name=deployment_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -7671,7 +7157,7 @@ class DeploymentsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Deployment]:
+    ) -> _models.Deployment:
         # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -7693,9 +7179,8 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Deployment. The Deployment is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Deployment]
+        :return: Deployment. The Deployment is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -7881,7 +7366,7 @@ class DeploymentsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -7892,7 +7377,7 @@ class DeploymentsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Deployment]:
+    ) -> _models.Deployment:
         # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -7914,9 +7399,8 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Deployment. The Deployment is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Deployment]
+        :return: Deployment. The Deployment is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8013,7 +7497,7 @@ class DeploymentsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8024,7 +7508,7 @@ class DeploymentsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Deployment]:
+    ) -> _models.Deployment:
         # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -8046,9 +7530,8 @@ class DeploymentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Deployment. The Deployment is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Deployment]
+        :return: Deployment. The Deployment is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8145,7 +7628,7 @@ class DeploymentsOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8154,7 +7637,7 @@ class DeploymentsOperations:
         deployment_name: str,
         resource: Union[_models.Deployment, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.Deployment]:
+    ) -> _models.Deployment:
         # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
@@ -8174,9 +7657,8 @@ class DeploymentsOperations:
         :param resource: Resource create parameters. Is one of the following types: Deployment, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Deployment or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Deployment. The Deployment is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Deployment]
+        :return: Deployment. The Deployment is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8360,55 +7842,78 @@ class DeploymentsOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                deployment_name=deployment_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Deployment, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Deployment].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Deployment](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_deployments_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            device_group_name=device_group_name,
+            deployment_name=deployment_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Deployment, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Deployment, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8417,6 +7922,25 @@ class DeploymentsOperations:
         deployment_name: str,
         **kwargs: Any
     ) -> None:
+        """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
+         current deployment for the associated device group. Required.
+        :type deployment_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -8464,109 +7988,6 @@ class DeploymentsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
-
-    @distributed_trace
-    def begin_delete(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        deployment_name: str,
-        **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
-         current deployment for the associated device group. Required.
-        :type deployment_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                deployment_name=deployment_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
 
 class DevicesOperations:
@@ -8709,82 +8130,8 @@ class DevicesOperations:
 
         return deserialized  # type: ignore
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        resource: Union[_models.Device, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_devices_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            device_name=device_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8795,7 +8142,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
@@ -8816,9 +8163,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Device. The Device is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Device]
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8908,7 +8254,7 @@ class DevicesOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8919,7 +8265,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
@@ -8940,9 +8286,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Device. The Device is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Device]
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8991,7 +8336,7 @@ class DevicesOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -9002,7 +8347,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
@@ -9023,9 +8368,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Device. The Device is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Device]
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9074,7 +8418,7 @@ class DevicesOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -9083,7 +8427,7 @@ class DevicesOperations:
         device_name: str,
         resource: Union[_models.Device, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
@@ -9102,9 +8446,8 @@ class DevicesOperations:
         :param resource: Resource create parameters. Is one of the following types: Device, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Device or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Device. The Device is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Device]
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9192,53 +8535,75 @@ class DevicesOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Device] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                device_name=device_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Device, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Device].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Device](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_devices_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            device_group_name=device_group_name,
+            device_name=device_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
         )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace
     def list_by_device_group(
@@ -9377,7 +8742,8 @@ class DevicesOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -9386,6 +8752,23 @@ class DevicesOperations:
         device_name: str,
         **kwargs: Any
     ) -> None:
+        """Delete a Device.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -9433,107 +8816,6 @@ class DevicesOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
-
-    @distributed_trace
-    def begin_delete(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a Device.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                device_name=device_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
     @overload
     def update(
@@ -10445,78 +9727,8 @@ class ProductsOperations:
 
         return deserialized  # type: ignore
 
-    def _create_or_update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: Union[_models.Product, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_products_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -10525,7 +9737,7 @@ class ProductsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    ) -> _models.Product:
         # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
@@ -10542,9 +9754,8 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10616,7 +9827,7 @@ class ProductsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -10625,7 +9836,7 @@ class ProductsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    ) -> _models.Product:
         # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
@@ -10642,9 +9853,8 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10684,7 +9894,7 @@ class ProductsOperations:
         """
 
     @overload
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -10693,7 +9903,7 @@ class ProductsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    ) -> _models.Product:
         # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
@@ -10710,9 +9920,8 @@ class ProductsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10752,14 +9961,14 @@ class ProductsOperations:
         """
 
     @distributed_trace
-    def begin_create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         resource: Union[_models.Product, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    ) -> _models.Product:
         # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
@@ -10774,9 +9983,8 @@ class ProductsOperations:
         :param resource: Resource create parameters. Is one of the following types: Product, JSON,
          IO[bytes] Required.
         :type resource: ~azure.mgmt.spheredpg.models.Product or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10846,55 +10054,92 @@ class ProductsOperations:
                     }
                 }
         """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Product, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
         else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Product].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Product](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_products_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
-    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Product, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Product, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> None:
+        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name'.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -10941,12 +10186,20 @@ class ProductsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    @distributed_trace
-    def begin_delete(
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> LROPoller[_models.ArmOperationStatus]:
-        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name'.
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: _models.ProductUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -10955,9 +10208,87 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :return: An instance of LROPoller that returns ArmOperationStatus. The ArmOperationStatus is
-         compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Product or None. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product or None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "description": "str"  # Optional. Description of the product.
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "description": "str",  # Description of the product. Required.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
+
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Product or None. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10965,80 +10296,173 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "description": "str",  # Description of the product. Required.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
+    @overload
+    def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Product or None. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product or None
+        :raises ~azure.core.exceptions.HttpResponseError:
 
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.ArmOperationStatus](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        Example:
+            .. code-block:: python
 
-    def _update_initial(
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "description": "str",  # Description of the product. Required.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
+
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Is one of the following types:
+         ProductUpdate, JSON, IO[bytes] Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO[bytes]
+        :return: Product or None. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product or None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "description": "str"  # Optional. Description of the product.
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                      Required.
+                    "type": "str",  # The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                      Required.
+                    "properties": {
+                        "description": "str",  # Description of the product. Required.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    }
+                }
+        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -11051,7 +10475,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -11073,7 +10497,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -11090,7 +10514,10 @@ class ProductsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Product, response.json())
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -11100,333 +10527,6 @@ class ProductsOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: _models.ProductUpdate,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "description": "str"  # Optional. Description of the product.
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace
-    def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         ProductUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "description": "str"  # Optional. Description of the product.
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                properties=properties,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Product, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller[_models.Product].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller[_models.Product](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
 
     @distributed_trace
     def generate_default_device_groups(

@@ -34,7 +34,7 @@ class OperationResult(_serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
+        status: Optional[Union["_models.OperationResultStatus", str]] = None,
         error: Optional["_models.OperationResultError"] = None,
         **kwargs: Any
     ) -> None:

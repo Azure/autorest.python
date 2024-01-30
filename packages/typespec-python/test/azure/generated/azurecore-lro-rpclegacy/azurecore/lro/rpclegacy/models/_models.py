@@ -191,7 +191,7 @@ class JobResult(_model_base.Model):
     """A processing job identifier. Required."""
     comment: str = rest_field(visibility=["read"])
     """Comment. Required."""
-    status: Union[str, "_models.JobStatus"] = rest_field(visibility=["read"])
+    status: Union["_models.JobStatus", str] = rest_field(visibility=["read"])
     """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
      \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
     errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])

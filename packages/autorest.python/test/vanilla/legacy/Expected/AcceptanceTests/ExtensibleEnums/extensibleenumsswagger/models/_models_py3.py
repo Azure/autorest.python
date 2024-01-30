@@ -43,9 +43,9 @@ class Pet(_serialization.Model):
     def __init__(
         self,
         *,
-        int_enum: Union[str, "_models.IntEnum"],
+        int_enum: Union["_models.IntEnum", str],
         name: Optional[str] = None,
-        days_of_week: Union[str, "_models.DaysOfWeekExtensibleEnum"] = "Friday",
+        days_of_week: Union["_models.DaysOfWeekExtensibleEnum", str] = "Friday",
         **kwargs: Any
     ) -> None:
         """

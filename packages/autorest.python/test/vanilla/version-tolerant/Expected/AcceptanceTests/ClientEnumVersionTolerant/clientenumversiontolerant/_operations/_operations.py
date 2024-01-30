@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_client_with_enum_head_request(*, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any) -> HttpRequest:
+def build_client_with_enum_head_request(*, x_ms_enum: Union[_models.Enum0, str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL

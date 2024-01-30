@@ -267,7 +267,7 @@ class DifferentBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PngImageAsJson, response.json())
+            deserialized = _deserialize(_models.PngImageAsJson, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

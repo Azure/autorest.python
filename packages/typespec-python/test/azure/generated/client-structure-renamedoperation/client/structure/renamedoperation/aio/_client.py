@@ -35,7 +35,7 @@ class RenamedOperationClient(
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[_models.ClientType, str], **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = RenamedOperationClientConfiguration(endpoint=endpoint, client=client, **kwargs)

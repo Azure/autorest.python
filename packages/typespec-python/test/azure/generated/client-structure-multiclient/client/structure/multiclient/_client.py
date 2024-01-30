@@ -31,7 +31,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[_models.ClientType, str], **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientAClientConfiguration(endpoint=endpoint, client=client, **kwargs)
@@ -108,7 +108,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[_models.ClientType, str], **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientBClientConfiguration(endpoint=endpoint, client=client, **kwargs)

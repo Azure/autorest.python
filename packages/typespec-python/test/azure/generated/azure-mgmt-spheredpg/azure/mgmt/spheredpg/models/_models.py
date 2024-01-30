@@ -18,65 +18,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmOperationStatus(_model_base.Model):
-    """Standard ARM operation status response.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar status: The operation status. Required. Known values are: "Succeeded", "Failed", and
-     "Canceled".
-    :vartype status: str or ~azure.mgmt.spheredpg.models.ResourceProvisioningState
-    :ivar name: The name of the  operationStatus resource.
-    :vartype name: str
-    :ivar start_time: Operation start time.
-    :vartype start_time: ~datetime.datetime
-    :ivar end_time: Operation complete time.
-    :vartype end_time: ~datetime.datetime
-    :ivar percent_complete: The progress made toward completing the operation.
-    :vartype percent_complete: float
-    :ivar error: Errors that occurred if the operation ended with Canceled or Failed status.
-    :vartype error: ~azure.mgmt.spheredpg.models.ErrorDetail
-    """
-
-    status: Union[str, "_models.ResourceProvisioningState"] = rest_field()
-    """The operation status. Required. Known values are: \"Succeeded\", \"Failed\", and \"Canceled\"."""
-    name: Optional[str] = rest_field(visibility=["read"])
-    """The name of the  operationStatus resource."""
-    start_time: Optional[datetime.datetime] = rest_field(name="startTime", visibility=["read"], format="rfc3339")
-    """Operation start time."""
-    end_time: Optional[datetime.datetime] = rest_field(name="endTime", visibility=["read"], format="rfc3339")
-    """Operation complete time."""
-    percent_complete: Optional[float] = rest_field(name="percentComplete", visibility=["read"])
-    """The progress made toward completing the operation."""
-    error: Optional["_models.ErrorDetail"] = rest_field(visibility=["read"])
-    """Errors that occurred if the operation ended with Canceled or Failed status."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        status: Union[str, "_models.ResourceProvisioningState"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class ArmResourceBase(_model_base.Model):
-    """Base class used for type definitions."""
-
-
-class ArmResource(ArmResourceBase):
+class ArmResource(_model_base.Model):
     """Common properties for all ARM resources.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
@@ -213,7 +155,7 @@ class CatalogProperties(_model_base.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -350,7 +292,7 @@ class CertificateProperties(_model_base.Model):
 
     certificate: Optional[str] = rest_field(visibility=["read"])
     """The certificate as a UTF-8 encoded base 64 string."""
-    status: Optional[Union[str, "_models.CertificateStatus"]] = rest_field(visibility=["read"])
+    status: Optional[Union["_models.CertificateStatus", str]] = rest_field(visibility=["read"])
     """The certificate status. Known values are: \"Active\", \"Inactive\", \"Expired\", and
      \"Revoked\"."""
     subject: Optional[str] = rest_field(visibility=["read"])
@@ -361,7 +303,7 @@ class CertificateProperties(_model_base.Model):
     """The certificate expiry date."""
     not_before_utc: Optional[datetime.datetime] = rest_field(name="notBeforeUtc", visibility=["read"], format="rfc3339")
     """The certificate not before date."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -525,7 +467,7 @@ class DeploymentProperties(_model_base.Model):
         name="deploymentDateUtc", visibility=["read"], format="rfc3339"
     )
     """Deployment date UTC."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -666,24 +608,24 @@ class DeviceGroupProperties(_model_base.Model):
 
     description: Optional[str] = rest_field()
     """Description of the device group."""
-    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    os_feed_type: Optional[Union["_models.OSFeedType", str]] = rest_field(name="osFeedType")
     """Operating system feed type of the device group. Known values are: \"Retail\" and
      \"RetailEval\"."""
-    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    update_policy: Optional[Union["_models.UpdatePolicy", str]] = rest_field(name="updatePolicy")
     """Update policy of the device group. Known values are: \"UpdateAll\" and
      \"No3rdPartyAppUpdates\"."""
-    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+    allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = rest_field(
         name="allowCrashDumpsCollection"
     )
     """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
      \"Disabled\"."""
-    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+    regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = rest_field(
         name="regionalDataBoundary"
     )
     """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
     has_deployment: Optional[bool] = rest_field(name="hasDeployment", visibility=["read"])
     """Deployment status for the device group."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -694,10 +636,10 @@ class DeviceGroupProperties(_model_base.Model):
         self,
         *,
         description: Optional[str] = None,
-        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
-        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
-        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        os_feed_type: Optional[Union["_models.OSFeedType", str]] = None,
+        update_policy: Optional[Union["_models.UpdatePolicy", str]] = None,
+        allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
     ):
         ...
 
@@ -762,18 +704,18 @@ class DeviceGroupUpdateProperties(_model_base.Model):
 
     description: Optional[str] = rest_field()
     """Description of the device group."""
-    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    os_feed_type: Optional[Union["_models.OSFeedType", str]] = rest_field(name="osFeedType")
     """Operating system feed type of the device group. Known values are: \"Retail\" and
      \"RetailEval\"."""
-    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    update_policy: Optional[Union["_models.UpdatePolicy", str]] = rest_field(name="updatePolicy")
     """Update policy of the device group. Known values are: \"UpdateAll\" and
      \"No3rdPartyAppUpdates\"."""
-    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+    allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = rest_field(
         name="allowCrashDumpsCollection"
     )
     """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
      \"Disabled\"."""
-    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+    regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = rest_field(
         name="regionalDataBoundary"
     )
     """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
@@ -783,10 +725,10 @@ class DeviceGroupUpdateProperties(_model_base.Model):
         self,
         *,
         description: Optional[str] = None,
-        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
-        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
-        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        os_feed_type: Optional[Union["_models.OSFeedType", str]] = None,
+        update_policy: Optional[Union["_models.UpdatePolicy", str]] = None,
+        allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
     ):
         ...
 
@@ -905,7 +847,7 @@ class DeviceProperties(_model_base.Model):
         name="lastUpdateRequestUtc", visibility=["read"], format="rfc3339"
     )
     """Time when update was last requested."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -1074,14 +1016,14 @@ class GenerateCapabilityImageRequest(_model_base.Model):
     :vartype capabilities: list[str or ~azure.mgmt.spheredpg.models.CapabilityType]
     """
 
-    capabilities: List[Union[str, "_models.CapabilityType"]] = rest_field()
+    capabilities: List[Union["_models.CapabilityType", str]] = rest_field()
     """List of capabilities to create. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        capabilities: List[Union[str, "_models.CapabilityType"]],
+        capabilities: List[Union["_models.CapabilityType", str]],
     ):
         ...
 
@@ -1179,7 +1121,7 @@ class ImageProperties(_model_base.Model):
     """Image ID."""
     image_name: Optional[str] = rest_field(name="imageName", visibility=["read"])
     """Image name."""
-    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+    regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = rest_field(
         name="regionalDataBoundary", visibility=["read", "create"]
     )
     """Regional data boundary for an image. Known values are: \"None\" and \"EU\"."""
@@ -1189,14 +1131,14 @@ class ImageProperties(_model_base.Model):
     """The image description."""
     component_id: Optional[str] = rest_field(name="componentId", visibility=["read"])
     """The image component id."""
-    image_type: Optional[Union[str, "_models.ImageType"]] = rest_field(name="imageType", visibility=["read"])
+    image_type: Optional[Union["_models.ImageType", str]] = rest_field(name="imageType", visibility=["read"])
     """The image type. Known values are: \"InvalidImageType\", \"OneBl\", \"PlutonRuntime\",
      \"WifiFirmware\", \"SecurityMonitor\", \"NormalWorldLoader\", \"NormalWorldDtb\",
      \"NormalWorldKernel\", \"RootFs\", \"Services\", \"Applications\", \"FwConfig\",
      \"BootManifest\", \"Nwfs\", \"TrustedKeystore\", \"Policy\", \"CustomerBoardConfig\",
      \"UpdateCertStore\", \"BaseSystemUpdateManifest\", \"FirmwareUpdateManifest\",
      \"CustomerUpdateManifest\", \"RecoveryManifest\", \"ManifestSet\", and \"Other\"."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -1208,7 +1150,7 @@ class ImageProperties(_model_base.Model):
         *,
         image: Optional[str] = None,
         image_id: Optional[str] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
     ):
         ...
 
@@ -1283,11 +1225,11 @@ class Operation(_model_base.Model):
      \"false\" for ARM/control-plane operations."""
     display: Optional["_models.OperationDisplay"] = rest_field()
     """Localized display information for this particular operation."""
-    origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
+    origin: Optional[Union["_models.Origin", str]] = rest_field(visibility=["read"])
     """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
      logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
      \"user,system\"."""
-    action_type: Optional[Union[str, "_models.ActionType"]] = rest_field(name="actionType")
+    action_type: Optional[Union["_models.ActionType", str]] = rest_field(name="actionType")
     """Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only
      APIs. \"Internal\""""
 
@@ -1296,7 +1238,7 @@ class Operation(_model_base.Model):
         self,
         *,
         display: Optional["_models.OperationDisplay"] = None,
-        action_type: Optional[Union[str, "_models.ActionType"]] = None,
+        action_type: Optional[Union["_models.ActionType", str]] = None,
     ):
         ...
 
@@ -1422,7 +1364,7 @@ class ProductProperties(_model_base.Model):
 
     description: str = rest_field()
     """Description of the product. Required."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+    provisioning_state: Optional[Union["_models.ProvisioningState", str]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
@@ -1595,7 +1537,7 @@ class SystemData(_model_base.Model):
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+    created_by_type: Optional[Union["_models.CreatedByType", str]] = rest_field(
         name="createdByType", visibility=["read"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
@@ -1604,7 +1546,7 @@ class SystemData(_model_base.Model):
     """The type of identity that created the resource."""
     last_modified_by: Optional[str] = rest_field(name="lastModifiedBy", visibility=["read"])
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+    last_modified_by_type: Optional[Union["_models.CreatedByType", str]] = rest_field(
         name="lastModifiedByType", visibility=["read"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",

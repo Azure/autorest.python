@@ -24,7 +24,7 @@ class ClientWithEnumConfiguration:  # pylint: disable=too-many-instance-attribut
     :type x_ms_enum: str or ~clientenum.models.Enum0
     """
 
-    def __init__(self, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any) -> None:
+    def __init__(self, x_ms_enum: Union[_models.Enum0, str], **kwargs: Any) -> None:
         if x_ms_enum is None:
             raise ValueError("Parameter 'x_ms_enum' must not be None.")
 

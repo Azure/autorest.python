@@ -48,7 +48,7 @@ class FloatOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[float, _models.FloatEnum]] = None, **kwargs: Any) -> str:
+    async def put(self, input: Optional[Union[_models.FloatEnum, float]] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
         :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
@@ -105,7 +105,7 @@ class FloatOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[float, _models.FloatEnum]:
+    async def get(self, **kwargs: Any) -> Union[_models.FloatEnum, float]:
         """Get a float enum.
 
         :return: FloatEnum or the result of cls(response)
@@ -123,7 +123,7 @@ class FloatOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[float, _models.FloatEnum]] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.FloatEnum, float]] = kwargs.pop("cls", None)
 
         _request = build_get_request(
             headers=_headers,

@@ -335,7 +335,7 @@ def build_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_valid_request(enum_path: Union[str, _models.UriColor], **kwargs: Any) -> HttpRequest:
+def build_enum_valid_request(enum_path: Union[_models.UriColor, str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -354,7 +354,7 @@ def build_enum_valid_request(enum_path: Union[str, _models.UriColor], **kwargs: 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_null_request(enum_path: Union[str, _models.UriColor], **kwargs: Any) -> HttpRequest:
+def build_enum_null_request(enum_path: Union[_models.UriColor, str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1268,7 +1268,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, enum_path: Union[str, _models.UriColor], **kwargs: Any
+        self, enum_path: Union[_models.UriColor, str], **kwargs: Any
     ) -> None:
         """Get using uri with 'green color' in path parameter.
 
@@ -1317,7 +1317,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, enum_path: Union[str, _models.UriColor], **kwargs: Any
+        self, enum_path: Union[_models.UriColor, str], **kwargs: Any
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 

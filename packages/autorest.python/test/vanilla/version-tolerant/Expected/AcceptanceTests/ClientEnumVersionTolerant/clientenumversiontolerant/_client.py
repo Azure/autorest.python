@@ -29,7 +29,7 @@ class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-a
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, x_ms_enum: Union[str, _models.Enum0], *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, x_ms_enum: Union[_models.Enum0, str], *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ClientWithEnumConfiguration(x_ms_enum=x_ms_enum, **kwargs)
         _policies = kwargs.pop("policies", None)

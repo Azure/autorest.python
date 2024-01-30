@@ -178,7 +178,7 @@ class EnumType(BaseType):
             if not kwargs.get("is_operation_file", False):
                 model_name = f'"{model_name}"'
 
-            return f"Union[{self.value_type.type_annotation(**kwargs)}, {model_name}]"
+            return f"Union[{model_name}, {self.value_type.type_annotation(**kwargs)}]"
         return self.value_type.type_annotation(**kwargs)
 
     def get_declaration(self, value: Any) -> str:

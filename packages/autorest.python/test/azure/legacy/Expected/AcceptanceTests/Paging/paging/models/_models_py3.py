@@ -109,7 +109,7 @@ class OperationResult(_serialization.Model):
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, status: Optional[Union["_models.OperationResultStatus", str]] = None, **kwargs: Any) -> None:
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",

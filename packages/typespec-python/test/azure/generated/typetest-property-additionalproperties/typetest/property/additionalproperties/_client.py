@@ -20,15 +20,11 @@ from .operations import (
     ExtendsModelArrayOperations,
     ExtendsModelOperations,
     ExtendsStringOperations,
-    ExtendsUnknownDerivedOperations,
-    ExtendsUnknownDiscriminatedOperations,
     ExtendsUnknownOperations,
     IsFloatOperations,
     IsModelArrayOperations,
     IsModelOperations,
     IsStringOperations,
-    IsUnknownDerivedOperations,
-    IsUnknownDiscriminatedOperations,
     IsUnknownOperations,
 )
 
@@ -39,20 +35,8 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     :ivar extends_unknown: ExtendsUnknownOperations operations
     :vartype extends_unknown:
      typetest.property.additionalproperties.operations.ExtendsUnknownOperations
-    :ivar extends_unknown_derived: ExtendsUnknownDerivedOperations operations
-    :vartype extends_unknown_derived:
-     typetest.property.additionalproperties.operations.ExtendsUnknownDerivedOperations
-    :ivar extends_unknown_discriminated: ExtendsUnknownDiscriminatedOperations operations
-    :vartype extends_unknown_discriminated:
-     typetest.property.additionalproperties.operations.ExtendsUnknownDiscriminatedOperations
     :ivar is_unknown: IsUnknownOperations operations
     :vartype is_unknown: typetest.property.additionalproperties.operations.IsUnknownOperations
-    :ivar is_unknown_derived: IsUnknownDerivedOperations operations
-    :vartype is_unknown_derived:
-     typetest.property.additionalproperties.operations.IsUnknownDerivedOperations
-    :ivar is_unknown_discriminated: IsUnknownDiscriminatedOperations operations
-    :vartype is_unknown_discriminated:
-     typetest.property.additionalproperties.operations.IsUnknownDiscriminatedOperations
     :ivar extends_string: ExtendsStringOperations operations
     :vartype extends_string:
      typetest.property.additionalproperties.operations.ExtendsStringOperations
@@ -105,19 +89,7 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.extends_unknown = ExtendsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extends_unknown_derived = ExtendsUnknownDerivedOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.extends_unknown_discriminated = ExtendsUnknownDiscriminatedOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
         self.is_unknown = IsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.is_unknown_derived = IsUnknownDerivedOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.is_unknown_discriminated = IsUnknownDiscriminatedOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
         self.extends_string = ExtendsStringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.is_string = IsStringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.extends_float = ExtendsFloatOperations(self._client, self._config, self._serialize, self._deserialize)

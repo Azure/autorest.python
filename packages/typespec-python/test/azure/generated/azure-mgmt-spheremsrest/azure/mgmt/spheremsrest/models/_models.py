@@ -17,81 +17,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmOperationStatus(_serialization.Model):
-    """Standard ARM operation status response.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar status: The operation status. Required. Known values are: "Succeeded", "Failed", and
-     "Canceled".
-    :vartype status: str or ~azure.mgmt.spheremsrest.models.ResourceProvisioningState
-    :ivar name: The name of the  operationStatus resource.
-    :vartype name: str
-    :ivar start_time: Operation start time.
-    :vartype start_time: ~datetime.datetime
-    :ivar end_time: Operation complete time.
-    :vartype end_time: ~datetime.datetime
-    :ivar percent_complete: The progress made toward completing the operation.
-    :vartype percent_complete: float
-    :ivar error: Errors that occurred if the operation ended with Canceled or Failed status.
-    :vartype error: ~azure.mgmt.spheremsrest.models.ErrorDetail
-    """
-
-    _validation = {
-        "status": {"required": True},
-    }
-
-    _attribute_map = {
-        "status": {"key": "status", "type": "str"},
-        "name": {"key": "name", "type": "str"},
-        "start_time": {"key": "startTime", "type": "iso-8601"},
-        "end_time": {"key": "endTime", "type": "iso-8601"},
-        "percent_complete": {"key": "percentComplete", "type": "float"},
-        "error": {"key": "error", "type": "ErrorDetail"},
-    }
-
-    def __init__(
-        self,
-        *,
-        status: Union[str, "_models.ResourceProvisioningState"],
-        name: Optional[str] = None,
-        start_time: Optional[datetime.datetime] = None,
-        end_time: Optional[datetime.datetime] = None,
-        percent_complete: Optional[float] = None,
-        error: Optional["_models.ErrorDetail"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword status: The operation status. Required. Known values are: "Succeeded", "Failed", and
-         "Canceled".
-        :paramtype status: str or ~azure.mgmt.spheremsrest.models.ResourceProvisioningState
-        :keyword name: The name of the  operationStatus resource.
-        :paramtype name: str
-        :keyword start_time: Operation start time.
-        :paramtype start_time: ~datetime.datetime
-        :keyword end_time: Operation complete time.
-        :paramtype end_time: ~datetime.datetime
-        :keyword percent_complete: The progress made toward completing the operation.
-        :paramtype percent_complete: float
-        :keyword error: Errors that occurred if the operation ended with Canceled or Failed status.
-        :paramtype error: ~azure.mgmt.spheremsrest.models.ErrorDetail
-        """
-        super().__init__(**kwargs)
-        self.status = status
-        self.name = name
-        self.start_time = start_time
-        self.end_time = end_time
-        self.percent_complete = percent_complete
-        self.error = error
-
-
-class ArmResourceBase(_serialization.Model):
-    """Base class used for type definitions."""
-
-
-class ArmResource(ArmResourceBase):
+class ArmResource(_serialization.Model):
     """Common properties for all ARM resources.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -335,7 +261,7 @@ class CatalogProperties(_serialization.Model):
     }
 
     def __init__(
-        self, *, provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None, **kwargs: Any
+        self, *, provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None, **kwargs: Any
     ) -> None:
         """
         :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -537,12 +463,12 @@ class CertificateProperties(_serialization.Model):
         self,
         *,
         certificate: Optional[str] = None,
-        status: Optional[Union[str, "_models.CertificateStatus"]] = None,
+        status: Optional[Union["_models.CertificateStatus", str]] = None,
         subject: Optional[str] = None,
         thumbprint: Optional[str] = None,
         expiry_utc: Optional[datetime.datetime] = None,
         not_before_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -756,7 +682,7 @@ class DeploymentProperties(_serialization.Model):
         deployment_id: Optional[str] = None,
         deployed_images: Optional[List["_models.Image"]] = None,
         deployment_date_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -970,12 +896,12 @@ class DeviceGroupProperties(_serialization.Model):
         self,
         *,
         description: Optional[str] = None,
-        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
-        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
-        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        os_feed_type: Optional[Union["_models.OSFeedType", str]] = None,
+        update_policy: Optional[Union["_models.UpdatePolicy", str]] = None,
+        allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
         has_deployment: Optional[bool] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1062,10 +988,10 @@ class DeviceGroupUpdateProperties(_serialization.Model):
         self,
         *,
         description: Optional[str] = None,
-        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
-        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
-        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        os_feed_type: Optional[Union["_models.OSFeedType", str]] = None,
+        update_policy: Optional[Union["_models.UpdatePolicy", str]] = None,
+        allow_crash_dumps_collection: Optional[Union["_models.AllowCrashDumpCollection", str]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1253,7 +1179,7 @@ class DeviceProperties(_serialization.Model):
         last_installed_os_version: Optional[str] = None,
         last_os_update_utc: Optional[datetime.datetime] = None,
         last_update_request_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1445,7 +1371,7 @@ class GenerateCapabilityImageRequest(_serialization.Model):
         "capabilities": {"key": "capabilities", "type": "[str]"},
     }
 
-    def __init__(self, *, capabilities: List[Union[str, "_models.CapabilityType"]], **kwargs: Any) -> None:
+    def __init__(self, *, capabilities: List[Union["_models.CapabilityType", str]], **kwargs: Any) -> None:
         """
         :keyword capabilities: List of capabilities to create. Required.
         :paramtype capabilities: list[str or ~azure.mgmt.spheremsrest.models.CapabilityType]
@@ -1597,12 +1523,12 @@ class ImageProperties(_serialization.Model):
         image: Optional[str] = None,
         image_id: Optional[str] = None,
         image_name: Optional[str] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        regional_data_boundary: Optional[Union["_models.RegionalDataBoundary", str]] = None,
         uri: Optional[str] = None,
         description: Optional[str] = None,
         component_id: Optional[str] = None,
-        image_type: Optional[Union[str, "_models.ImageType"]] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        image_type: Optional[Union["_models.ImageType", str]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1701,8 +1627,8 @@ class Operation(_serialization.Model):
         name: Optional[str] = None,
         is_data_action: Optional[bool] = None,
         display: Optional["_models.OperationDisplay"] = None,
-        origin: Optional[Union[str, "_models.Origin"]] = None,
-        action_type: Optional[Union[str, "_models.ActionType"]] = None,
+        origin: Optional[Union["_models.Origin", str]] = None,
+        action_type: Optional[Union["_models.ActionType", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1969,7 +1895,7 @@ class ProductProperties(_serialization.Model):
         self,
         *,
         description: str,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        provisioning_state: Optional[Union["_models.ProvisioningState", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -2130,10 +2056,10 @@ class SystemData(_serialization.Model):
         self,
         *,
         created_by: Optional[str] = None,
-        created_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
+        created_by_type: Optional[Union["_models.CreatedByType", str]] = None,
         created_at: Optional[datetime.date] = None,
         last_modified_by: Optional[str] = None,
-        last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
+        last_modified_by_type: Optional[Union["_models.CreatedByType", str]] = None,
         last_modified_at: Optional[datetime.date] = None,
         **kwargs: Any
     ) -> None:

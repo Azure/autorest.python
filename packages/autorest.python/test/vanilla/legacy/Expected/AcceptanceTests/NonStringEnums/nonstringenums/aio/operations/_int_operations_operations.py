@@ -48,7 +48,7 @@ class IntOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def put(self, input: Optional[Union[int, _models.IntEnum]] = None, **kwargs: Any) -> str:
+    async def put(self, input: Optional[Union[_models.IntEnum, int]] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
         :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
@@ -105,7 +105,7 @@ class IntOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Union[int, _models.IntEnum]:
+    async def get(self, **kwargs: Any) -> Union[_models.IntEnum, int]:
         """Get an int enum.
 
         :return: IntEnum or the result of cls(response)
@@ -123,7 +123,7 @@ class IntOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[int, _models.IntEnum]] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.IntEnum, int]] = kwargs.pop("cls", None)
 
         _request = build_get_request(
             headers=_headers,

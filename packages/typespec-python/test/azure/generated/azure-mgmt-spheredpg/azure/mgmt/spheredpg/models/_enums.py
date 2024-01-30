@@ -164,17 +164,6 @@ class RegionalDataBoundary(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """EU data boundary"""
 
 
-class ResourceProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The provisioning state of a resource type."""
-
-    SUCCEEDED = "Succeeded"
-    """Resource has been created."""
-    FAILED = "Failed"
-    """Resource creation failed."""
-    CANCELED = "Canceled"
-    """Resource creation was canceled."""
-
-
 class UpdatePolicy(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Update policy values."""
 

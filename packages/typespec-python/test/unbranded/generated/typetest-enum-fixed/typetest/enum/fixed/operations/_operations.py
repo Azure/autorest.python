@@ -91,7 +91,7 @@ class StringOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
+    def get_known_value(self, **kwargs: Any) -> Union[_models.DaysOfWeekEnum, str]:
         """getKnownValue.
 
         :return: DaysOfWeekEnum
@@ -109,7 +109,7 @@ class StringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[str, _models.DaysOfWeekEnum]] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.DaysOfWeekEnum, str]] = kwargs.pop("cls", None)
 
         _request = build_string_get_known_value_request(
             headers=_headers,
@@ -133,7 +133,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Union[str, _models.DaysOfWeekEnum], response.json())
+            deserialized = _deserialize(Union[_models.DaysOfWeekEnum, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -141,7 +141,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     def put_known_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekEnum], **kwargs: Any
+        self, body: Union[_models.DaysOfWeekEnum, str], **kwargs: Any
     ) -> None:
         """putKnownValue.
 
@@ -193,7 +193,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def put_unknown_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekEnum], **kwargs: Any
+        self, body: Union[_models.DaysOfWeekEnum, str], **kwargs: Any
     ) -> None:
         """putUnknownValue.
 

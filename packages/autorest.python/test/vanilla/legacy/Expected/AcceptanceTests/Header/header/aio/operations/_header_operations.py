@@ -1414,7 +1414,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_enum(  # pylint: disable=inconsistent-return-statements
-        self, scenario: str, value: Optional[Union[str, _models.GreyscaleColors]] = None, **kwargs: Any
+        self, scenario: str, value: Optional[Union[_models.GreyscaleColors, str]] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.

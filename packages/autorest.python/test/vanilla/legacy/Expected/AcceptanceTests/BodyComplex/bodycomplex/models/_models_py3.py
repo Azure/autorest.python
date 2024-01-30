@@ -60,7 +60,7 @@ class Basic(msrest.serialization.Model):
         *,
         id: Optional[int] = None,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
-        color: Optional[Union[str, "_models.CMYKColors"]] = None,
+        color: Optional[Union["_models.CMYKColors", str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -820,7 +820,7 @@ class Goblinshark(Shark):
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
-        color: Union[str, "_models.GoblinSharkColor"] = "gray",
+        color: Union["_models.GoblinSharkColor", str] = "gray",
         **kwargs: Any
     ) -> None:
         """

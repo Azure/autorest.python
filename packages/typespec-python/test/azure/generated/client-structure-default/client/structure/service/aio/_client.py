@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import ServiceClientConfiguration
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
+from .operations import BarOperations, FooOperations, ServiceClientOperationsMixin
 
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -31,10 +31,6 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     #. have two clients with operations come from different interfaces
     #. have two clients with a hierarchy relation.
 
-    :ivar baz: BazOperations operations
-    :vartype baz: client.structure.service.aio.operations.BazOperations
-    :ivar qux: QuxOperations operations
-    :vartype qux: client.structure.service.aio.operations.QuxOperations
     :ivar foo: FooOperations operations
     :vartype foo: client.structure.service.aio.operations.FooOperations
     :ivar bar: BarOperations operations
@@ -48,7 +44,7 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[_models.ClientType, str], **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ServiceClientConfiguration(endpoint=endpoint, client=client, **kwargs)
@@ -74,8 +70,6 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.baz = BazOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.qux = QuxOperations(self._client, self._config, self._serialize, self._deserialize)
         self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
         self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
 

@@ -1652,7 +1652,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.FooEnum]]:
+    async def get_enum_valid(self, **kwargs: Any) -> List[Union[_models.FooEnum, str]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of FooEnum or the result of cls(response)
@@ -1670,7 +1670,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Union[str, _models.FooEnum]]] = kwargs.pop("cls", None)
+        cls: ClsType[List[Union[_models.FooEnum, str]]] = kwargs.pop("cls", None)
 
         _request = build_get_enum_valid_request(
             headers=_headers,
@@ -1700,7 +1700,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, _models.FooEnum]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: List[Union[_models.FooEnum, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1732,11 +1732,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Union[str, _models.FooEnum]], IO[bytes]], **kwargs: Any
+        self, array_body: Union[List[Union[_models.FooEnum, str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [Union[str, "_models.FooEnum"]] type or a IO[bytes] type.
+        :param array_body: Is either a [Union["_models.FooEnum", str]] type or a IO[bytes] type.
          Required.
         :type array_body: list[str or ~bodyarray.models.FooEnum] or IO[bytes]
         :return: None or the result of cls(response)
@@ -1791,7 +1791,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_string_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.Enum0]]:
+    async def get_string_enum_valid(self, **kwargs: Any) -> List[Union[_models.Enum0, str]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of Enum0 or the result of cls(response)
@@ -1809,7 +1809,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Union[str, _models.Enum0]]] = kwargs.pop("cls", None)
+        cls: ClsType[List[Union[_models.Enum0, str]]] = kwargs.pop("cls", None)
 
         _request = build_get_string_enum_valid_request(
             headers=_headers,
@@ -1839,7 +1839,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, _models.Enum1]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: List[Union[_models.Enum1, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1871,11 +1871,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Union[str, _models.Enum1]], IO[bytes]], **kwargs: Any
+        self, array_body: Union[List[Union[_models.Enum1, str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [Union[str, "_models.Enum1"]] type or a IO[bytes] type.
+        :param array_body: Is either a [Union["_models.Enum1", str]] type or a IO[bytes] type.
          Required.
         :type array_body: list[str or ~bodyarray.models.Enum1] or IO[bytes]
         :return: None or the result of cls(response)
