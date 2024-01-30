@@ -73,7 +73,7 @@ def parse_args(
         dest="debug",
         help="Debug mode",
         required=False,
-        action="store_true",
+        action="store",
     )
     args, unknown_args = parser.parse_known_args()
 
