@@ -13,6 +13,7 @@ corehttp==1.0.0b2
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
 -e ./generated/projection-projected-name
+-e ./generated/projection-client-encoded-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/server-path-multiple

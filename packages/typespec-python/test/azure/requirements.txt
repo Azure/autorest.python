@@ -24,6 +24,7 @@ azure-core==1.29.5
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
 -e ./generated/projection-projected-name
+-e ./generated/projection-client-encoded-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/server-path-multiple
