@@ -239,7 +239,6 @@ def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
 
 @task
 def regenerate_azure(c, name=None, debug=False):
-    raise ValueError("ppppeeee")
     specs = [
         s
         for s in _all_specification_folders("azure")
