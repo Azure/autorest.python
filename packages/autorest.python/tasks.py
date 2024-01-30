@@ -332,7 +332,10 @@ def _run_single_autorest(cmd_line, debug=False):
     print(Fore.RED +
           f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
 
-    output_folder = re.findall(r"--output-folder=([^\s]+)", cmd_line)[0]
+    try:
+        output_folder = re.findall(r"--output-folder=([^\s]+)", cmd_line)[0]
+    except IndexError as e:
+        raise ValueError(f"Can not find output folder for {cmd_line}") from e
     shutil.rmtree(output_folder, ignore_errors=True)
     return False
 
