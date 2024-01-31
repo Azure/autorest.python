@@ -89,7 +89,7 @@ export function getType(
             return getSimpleTypeResult({
                 type: "bytes",
                 encode: "base64",
-            })
+            });
         case "bytes":
         case "boolean":
         case "date":
