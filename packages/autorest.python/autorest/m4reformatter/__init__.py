@@ -524,11 +524,8 @@ class M4Reformatter(
             body_parameter["type"]["type"] == "combined" if body_parameter else False
         )
         abstract = False
-        if body_parameter and (
-            body_parameter.get("entries")
-            or len(body_parameter["type"].get("types", [])) > 2
-        ):
-            # this means it's formdata or urlencoded, or there are more than 2 types of body
+        if body_parameter and len(body_parameter["type"].get("types", [])) > 2:
+            # this means there are more than 2 types of body
             abstract = True
         return {
             "name": yaml_data["language"]["default"]["name"],

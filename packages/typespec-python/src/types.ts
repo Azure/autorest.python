@@ -86,6 +86,7 @@ export function getType(
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
         case "bytes":
+        case "multipartFile":
         case "boolean":
         case "date":
         case "time":
@@ -335,12 +336,6 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
 };
 
 function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
-    if (type.kind === "bytes") {
-        return getSimpleTypeResult({
-            type: "multipartfile",
-            encode: type.encode,
-        })
-    }
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],

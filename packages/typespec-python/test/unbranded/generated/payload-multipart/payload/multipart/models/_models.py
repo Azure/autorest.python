@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from .._vendor import FileType
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
@@ -14,7 +15,7 @@ from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import models as _models
+    from .. import _model_base, models as _models
 
 
 class Address(_model_base.Model):
@@ -56,12 +57,12 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: list[filetype]
     """
 
     id: str = rest_field()
     """Required."""
-    pictures: List[bytes] = rest_field(format="base64")
+    pictures: List[FileType] = rest_field()
     """Required."""
 
     @overload
@@ -69,7 +70,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
         self,
         *,
         id: str,  # pylint: disable=redefined-builtin
-        pictures: List[bytes],
+        pictures: List[FileType],
     ):
         ...
 
@@ -94,22 +95,22 @@ class ComplexPartsRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: filetype
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: list[filetype]
     """
 
     id: str = rest_field()
     """Required."""
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    profile_image: FileType = rest_field(name="profileImage")
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
-    pictures: List[bytes] = rest_field(format="base64")
+    pictures: List[FileType] = rest_field()
     """Required."""
 
     @overload
@@ -118,9 +119,9 @@ class ComplexPartsRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         address: "_models.Address",
-        profile_image: bytes,
+        profile_image: FileType,
         previous_addresses: List["_models.Address"],
-        pictures: List[bytes],
+        pictures: List[FileType],
     ):
         ...
 
@@ -141,12 +142,12 @@ class JsonArrayPartsRequest(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: filetype
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     """
 
-    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    profile_image: FileType = rest_field(name="profileImage")
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
@@ -155,7 +156,7 @@ class JsonArrayPartsRequest(_model_base.Model):
     def __init__(
         self,
         *,
-        profile_image: bytes,
+        profile_image: FileType,
         previous_addresses: List["_models.Address"],
     ):
         ...
@@ -179,12 +180,12 @@ class JsonPartRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: filetype
     """
 
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    profile_image: FileType = rest_field(name="profileImage")
     """Required."""
 
     @overload
@@ -192,7 +193,7 @@ class JsonPartRequest(_model_base.Model):
         self,
         *,
         address: "_models.Address",
-        profile_image: bytes,
+        profile_image: FileType,
     ):
         ...
 
@@ -213,21 +214,21 @@ class MultiBinaryPartsRequest(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: filetype
     :ivar picture:
-    :vartype picture: bytes
+    :vartype picture: filetype
     """
 
-    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    profile_image: FileType = rest_field(name="profileImage")
     """Required."""
-    picture: Optional[bytes] = rest_field(format="base64")
+    picture: Optional[FileType] = rest_field()
 
     @overload
     def __init__(
         self,
         *,
-        profile_image: bytes,
-        picture: Optional[bytes] = None,
+        profile_image: FileType,
+        picture: Optional[FileType] = None,
     ):
         ...
 
@@ -250,12 +251,12 @@ class MultiPartRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: filetype
     """
 
     id: str = rest_field()
     """Required."""
-    profile_image: bytes = rest_field(name="profileImage", format="base64")
+    profile_image: FileType = rest_field(name="profileImage")
     """Required."""
 
     @overload
@@ -263,7 +264,7 @@ class MultiPartRequest(_model_base.Model):
         self,
         *,
         id: str,  # pylint: disable=redefined-builtin
-        profile_image: bytes,
+        profile_image: FileType,
     ):
         ...
 

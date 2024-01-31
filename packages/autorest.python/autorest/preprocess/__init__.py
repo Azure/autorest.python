@@ -421,8 +421,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_parameter(parameter)
         if yaml_data.get("bodyParameter"):
             self.update_parameter(yaml_data["bodyParameter"])
-            for entry in yaml_data["bodyParameter"].get("entries", []):
-                self.update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
             self.update_operation(code_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):

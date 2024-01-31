@@ -75,7 +75,10 @@ class ModelType(  # pylint: disable=abstract-method
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
-        self.is_form_data = any(p.is_form_data for p in self.properties)
+
+    @property
+    def is_multipart_file(self) -> bool:
+        return any(p.is_multipart_file for p in self.properties)
 
     @property
     def is_xml(self) -> bool:
@@ -311,6 +314,15 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
+                typing_section=TypingSection.TYPING
+                if kwargs.get("model_typing")
+                else TypingSection.REGULAR,
+            )
+            if self.is_multipart_file:
+                file_import.add_submodule_import(
+                relative_path,
+                "_model_base",
+                ImportType.LOCAL,
                 typing_section=TypingSection.TYPING
                 if kwargs.get("model_typing")
                 else TypingSection.REGULAR,

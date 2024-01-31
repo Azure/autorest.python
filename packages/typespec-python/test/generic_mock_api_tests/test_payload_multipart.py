@@ -52,7 +52,7 @@ def client():
 def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
     op = getattr(client.form_data, op_name)
     # test bytes
-    body = {k: open(str(v), "rb").read() for k, v in file.items()}
+    body = {k: ("blob", open(str(v), "rb").read(), "application/octet-stream") for k, v in file.items()}
     body.update(data)
     op(body)
     op(model_class(body))

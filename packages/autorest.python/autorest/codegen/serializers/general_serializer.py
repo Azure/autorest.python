@@ -135,6 +135,8 @@ class GeneralSerializer(BaseSerializer):
             file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Sequence", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,

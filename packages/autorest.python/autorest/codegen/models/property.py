@@ -166,8 +166,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     
     @property
     def is_form_data(self) -> bool:
-        from .model_type import ModelType
-        return isinstance(self.type, ModelType) and self.type.is_form_data
+        return self.type.is_multipart_file
 
     @classmethod
     def from_yaml(

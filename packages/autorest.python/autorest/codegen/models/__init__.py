@@ -149,7 +149,7 @@ TYPE_TO_OBJECT = {
     "unixtime": UnixTimeType,
     "credential": StringType,
     "sdkcore": SdkCoreType,
-    "multipartfile": MultipartFileType
+    "multipartFile": MultipartFileType
 }
 _LOGGER = logging.getLogger(__name__)
 

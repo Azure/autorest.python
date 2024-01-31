@@ -740,15 +740,24 @@ class _OperationSerializer(
         This function serializes the body params that need to be serialized.
         """
         body_param = builder.parameters.body_parameter
-        if body_param.form_data_input:
-            retval = ["_files = []"]
-            for prop in cast(ModelType, body_param.type).properties:
-                if isinstance(prop.type, MultipartFileType):
+        if body_param.is_form_data:
+            retval = [
+                f"_body = {body_param.client_name}.as_dict() if isinstance({body_param.client_name}, _model_base.Model) else {body_param.client_name}",
+                "_files = []",
+                "_data = {}",
+            ]
+            model_type = body_param.type.target_model_subtype((JSONModelType, DPGModelType)) if isinstance(body_param.type, CombinedType) else body_param.type
+            for prop in model_type.properties:
+                prop_access = f'_body["{prop.wire_name}"]'
+                retval.append(f'if _body.get("{prop.wire_name}") is not None:')
+                if prop.is_form_data:
                     if isinstance(prop.type, ListType):
-                        retval.append(f"_files.extend(self.{prop.client_name})")
+                        retval.append(f'    _files.extend([("{prop.wire_name}", _body[i]) for i in {prop_access}])')
                     else:
                         # we assume that it's just a single multipart file input
-                        retval.append(f"_files.append(self.{prop.client_name})")
+                        retval.append(f'    _files.append(("{prop.wire_name}", {prop_access}))')
+                else:
+                    retval.append(f'    _data["{prop.wire_name}"] = {prop_access}')
             return retval
         retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
@@ -964,6 +973,7 @@ class _OperationSerializer(
             )
         if request_builder.has_form_data_body:
             retval.append("    files=_files,")
+            retval.append("    data=_data,")
         elif request_builder.overloads:
             seen_body_params = set()
             for overload in request_builder.overloads:

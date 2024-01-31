@@ -93,7 +93,6 @@ class _ParameterBase(
             "defaultToUnsetSentinel", False
         )
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
-        self.form_data_input = isinstance(self.type, ModelType) and any(p.is_multipart_file for p in self.type.properties)
 
     def get_declaration(self, value: Any = None) -> Any:
         return self.type.get_declaration(value)
@@ -248,7 +247,7 @@ class BodyParameter(_ParameterBase):
 
     @property
     def is_form_data(self) -> bool:
-        return self.type.is_form_data
+        return self.type.is_multipart_file
 
     @property
     def is_partial_body(self) -> bool:

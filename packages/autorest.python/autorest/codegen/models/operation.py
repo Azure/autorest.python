@@ -573,7 +573,7 @@ class Operation(OperationBase[Response]):
         relative_path = "..." if async_mode else ".."
         if self.code_model.options["models_mode"] == "dpg":
             if self.parameters.has_body:
-                if not self.parameters.body_parameter.is_form_data:
+                if not self.has_form_data_body:
                     file_import.add_submodule_import(
                         f"{relative_path}_model_base",
                         "SdkJSONEncoder",

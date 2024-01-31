@@ -90,6 +90,10 @@ class MultipartFileType(PrimitiveType):
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(".._vendor", "FileType", ImportType.STDLIB)
         return file_import
+    
+    @property
+    def is_multipart_file(self) -> bool:
+        return True
 
     @property
     def instance_check_template(self) -> str:
@@ -107,7 +111,7 @@ class MultipartFileType(PrimitiveType):
 
     @property
     def default_template_representation_declaration(self) -> str:
-        return self.get_declaration({})
+        return self.get_declaration("FileInputType")
 
 
 class BinaryType(PrimitiveType):
