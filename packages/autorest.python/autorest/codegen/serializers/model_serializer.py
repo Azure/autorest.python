@@ -259,7 +259,7 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"default={prop.client_default_value_declaration}")
         if hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
             args.append(f'format="{prop.type.encode}"')  # type: ignore
-        if prop.is_form_data:
+        if prop.is_multipart_file:
             args.append("is_multipart_file=True")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"

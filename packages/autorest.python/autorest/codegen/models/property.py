@@ -37,7 +37,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
-        self.is_multipart_file: bool = True
 
     @property
     def pylint_disable(self) -> str:
@@ -165,8 +164,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return file_import
     
     @property
-    def is_form_data(self) -> bool:
-        return self.type.is_multipart_file
+    def is_multipart_file(self) -> bool:
+        """
+        We need to check if the type is a model because this could cause infinite recursion.
+        The only file values that we consider is either a single mutlipart file type, or a list
+        of them, so there's no need to check for models
+        """
+        return self.type != "model" and self.type.is_multipart_file # this prevents infinite recursion f
 
     @classmethod
     def from_yaml(

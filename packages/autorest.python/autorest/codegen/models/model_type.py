@@ -77,7 +77,7 @@ class ModelType(  # pylint: disable=abstract-method
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
-    def is_multipart_file(self) -> bool:
+    def is_form_data(self) -> bool:
         return any(p.is_multipart_file for p in self.properties)
 
     @property
@@ -318,7 +318,7 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 if kwargs.get("model_typing")
                 else TypingSection.REGULAR,
             )
-            if self.is_multipart_file:
+            if self.is_form_data:
                 file_import.add_submodule_import(
                 relative_path,
                 "_model_base",

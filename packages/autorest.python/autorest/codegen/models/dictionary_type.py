@@ -33,10 +33,6 @@ class DictionaryType(BaseType):
     @property
     def encode(self) -> Optional[str]:
         return self.element_type.encode if hasattr(self.element_type, "encode") else None  # type: ignore
-    
-    @property
-    def is_multipart_file(self) -> bool:
-        return self.element_type.is_multipart_file
 
     @property
     def serialization_type(self) -> str:

@@ -15,7 +15,7 @@ from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import _model_base, models as _models
+    from .. import models as _models
 
 
 class Address(_model_base.Model):
@@ -62,7 +62,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
 
     id: str = rest_field()
     """Required."""
-    pictures: List[FileType] = rest_field()
+    pictures: List[FileType] = rest_field(is_multipart_file=True)
     """Required."""
 
     @overload
@@ -106,11 +106,11 @@ class ComplexPartsRequest(_model_base.Model):
     """Required."""
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage")
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
-    pictures: List[FileType] = rest_field()
+    pictures: List[FileType] = rest_field(is_multipart_file=True)
     """Required."""
 
     @overload
@@ -147,7 +147,7 @@ class JsonArrayPartsRequest(_model_base.Model):
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     """
 
-    profile_image: FileType = rest_field(name="profileImage")
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
@@ -185,7 +185,7 @@ class JsonPartRequest(_model_base.Model):
 
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage")
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
 
     @overload
@@ -219,9 +219,9 @@ class MultiBinaryPartsRequest(_model_base.Model):
     :vartype picture: filetype
     """
 
-    profile_image: FileType = rest_field(name="profileImage")
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
-    picture: Optional[FileType] = rest_field()
+    picture: Optional[FileType] = rest_field(is_multipart_file=True)
 
     @overload
     def __init__(
@@ -256,7 +256,7 @@ class MultiPartRequest(_model_base.Model):
 
     id: str = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage")
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
 
     @overload

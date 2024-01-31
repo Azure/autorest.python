@@ -17,6 +17,13 @@ class LR(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     RIGHT = "right"
 
 
+class StringExtensibleNamedUnion(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of StringExtensibleNamedUnion."""
+
+    OPTION_B = "b"
+    C = "c"
+
+
 class UD(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UD."""
 

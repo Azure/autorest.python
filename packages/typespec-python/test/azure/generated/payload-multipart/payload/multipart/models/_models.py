@@ -15,7 +15,7 @@ from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import _model_base, models as _models
+    from .. import models as _models
 
 
 class Address(_model_base.Model):
@@ -104,11 +104,11 @@ class ComplexPartsRequest(_model_base.Model):
 
     id: str = rest_field()
     """Required."""
-    address: "_models.Address" = rest_field(is_multipart_file=True)
+    address: "_models.Address" = rest_field()
     """Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses", is_multipart_file=True)
+    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
     pictures: List[FileType] = rest_field(is_multipart_file=True)
     """Required."""
@@ -149,7 +149,7 @@ class JsonArrayPartsRequest(_model_base.Model):
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses", is_multipart_file=True)
+    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
 
     @overload
@@ -183,7 +183,7 @@ class JsonPartRequest(_model_base.Model):
     :vartype profile_image: filetype
     """
 
-    address: "_models.Address" = rest_field(is_multipart_file=True)
+    address: "_models.Address" = rest_field()
     """Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
     """Required."""
