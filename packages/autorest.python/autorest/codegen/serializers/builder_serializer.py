@@ -752,7 +752,7 @@ class _OperationSerializer(
                 retval.append(f'if _body.get("{prop.wire_name}") is not None:')
                 if prop.is_form_data:
                     if isinstance(prop.type, ListType):
-                        retval.append(f'    _files.extend([("{prop.wire_name}", _body[i]) for i in {prop_access}])')
+                        retval.append(f'    _files.extend([("{prop.wire_name}", {prop.wire_name[0]}) for {prop.wire_name[0]} in {prop_access}])')
                     else:
                         # we assume that it's just a single multipart file input
                         retval.append(f'    _files.append(("{prop.wire_name}", {prop_access}))')

@@ -306,9 +306,9 @@ class FormDataOperations:
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
         if _body.get("previousAddresses") is not None:
-            _files.extend([("previousAddresses", _body[i]) for i in _body["previousAddresses"]])
+            _files.extend([("previousAddresses", p) for p in _body["previousAddresses"]])
         if _body.get("pictures") is not None:
-            _files.extend([("pictures", _body[i]) for i in _body["pictures"]])
+            _files.extend([("pictures", p) for p in _body["pictures"]])
 
         _request = build_form_data_complex_request(
             files=_files,
@@ -514,7 +514,7 @@ class FormDataOperations:
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
         if _body.get("pictures") is not None:
-            _files.extend([("pictures", _body[i]) for i in _body["pictures"]])
+            _files.extend([("pictures", p) for p in _body["pictures"]])
 
         _request = build_form_data_binary_array_parts_request(
             files=_files,
@@ -621,7 +621,7 @@ class FormDataOperations:
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
         if _body.get("previousAddresses") is not None:
-            _files.extend([("previousAddresses", _body[i]) for i in _body["previousAddresses"]])
+            _files.extend([("previousAddresses", p) for p in _body["previousAddresses"]])
 
         _request = build_form_data_json_array_parts_request(
             files=_files,
