@@ -86,7 +86,6 @@ export function getType(
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
         case "bytes":
-        case "multipartFile":
         case "boolean":
         case "date":
         case "time":
@@ -196,10 +195,14 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 }
 
 function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Record<string, any> {
+    const propertyType = getType(context, type.type);
+    if (type.isMultipartFileInput) {
+        propertyType.type = "multipartFile";
+    }
     return {
         clientName: camelToSnakeCase(type.nameInClient),
         wireName: type.serializedName,
-        type: getType(context, type.type),
+        type: propertyType,
         optional: type.optional,
         description: type.description,
         addedOn: type.apiVersions[0],
