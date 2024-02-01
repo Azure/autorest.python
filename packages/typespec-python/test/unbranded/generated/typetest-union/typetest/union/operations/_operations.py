@@ -849,7 +849,7 @@ class StringExtensibleNamedOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self,
         *,
-        prop: Union[str, _models.StringExtensibleNamedUnion],
+        prop: Union[_models.StringExtensibleNamedUnion, str],
         content_type: str = "application/json",
         **kwargs: Any
     ) -> None:
@@ -885,7 +885,7 @@ class StringExtensibleNamedOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
+        prop: Union[_models.StringExtensibleNamedUnion, str] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.

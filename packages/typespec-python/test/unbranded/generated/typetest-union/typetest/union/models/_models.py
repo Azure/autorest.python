@@ -352,14 +352,14 @@ class GetResponse7(_model_base.Model):
     :vartype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
     """
 
-    prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field()
+    prop: Union["_models.StringExtensibleNamedUnion", str] = rest_field()
     """Required. Known values are: \"b\" and \"c\"."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, "_models.StringExtensibleNamedUnion"],
+        prop: Union["_models.StringExtensibleNamedUnion", str],
     ):
         ...
 
