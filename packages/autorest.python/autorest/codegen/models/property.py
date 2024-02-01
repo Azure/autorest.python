@@ -174,6 +174,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
         if self.is_multipart_file_input:
             file_import.add_submodule_import(".._vendor", "FileType", ImportType.LOCAL)
+            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
         return file_import
 
     @classmethod

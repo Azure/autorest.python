@@ -179,7 +179,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
         if _body.get("profileImage") is not None:
@@ -296,7 +296,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
         if _body.get("address") is not None:
@@ -407,7 +407,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("address") is not None:
             _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
         if _body.get("profileImage") is not None:
@@ -506,7 +506,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
         if _body.get("pictures") is not None:
@@ -613,7 +613,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
         if _body.get("previousAddresses") is not None:
@@ -714,7 +714,7 @@ class FormDataOperations:
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _files = []
-        _data = {}
+        _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
         if _body.get("picture") is not None:

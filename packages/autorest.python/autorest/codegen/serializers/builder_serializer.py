@@ -762,7 +762,7 @@ class _OperationSerializer(
                     f"    {body_param.client_name}",
                     ")",
                     "_files = []",
-                    "_data = {}",
+                    "_data: Dict[str, Any] = {}",
                 ]
             )
             model_type = (
