@@ -221,14 +221,14 @@ class MultiBinaryPartsRequest(_model_base.Model):
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
-    picture: FileType = rest_field(is_multipart_file_input=True)
+    picture: Optional[FileType] = rest_field(is_multipart_file_input=True)
 
     @overload
     def __init__(
         self,
         *,
         profile_image: FileType,
-        picture: FileType = None,
+        picture: Optional[FileType] = None,
     ):
         ...
 

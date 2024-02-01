@@ -97,17 +97,18 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.is_discriminator and self.type.type == "enum"
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        types_type_annotation = self.type.type_annotation(
+            is_operation_file=is_operation_file
+        )
         if self.is_multipart_file_input:
             # we only support FileType or list of FileType
-            if self.type.type == "list":
-                return "List[FileType]"
-            return "FileType"
+            types_type_annotation = types_type_annotation.replace("bytes", "FileType")
         if self.is_enum_discriminator:
             # here we are the enum discriminator property on the base model
             return "Literal[None]"
         if self.optional and self.client_default_value is None:
-            return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
-        return self.type.type_annotation(is_operation_file=is_operation_file)
+            return f"Optional[{types_type_annotation}]"
+        return types_type_annotation
 
     def get_declaration(self, value: Any = None) -> Any:
         if self.is_enum_discriminator:
