@@ -290,25 +290,6 @@ class BodyParameter(_ParameterBase):
             return self.type.target_model_subtype((JSONModelType,)) is not None
         return isinstance(self.type, JSONModelType)
 
-    @property
-    def file_properties(self) -> List[str]:
-        model_type = None
-        if isinstance(self.type, CombinedType):
-            model_type = self.type.target_model_subtype((JSONModelType, DPGModelType))
-        elif isinstance(self.type, (JSONModelType, DPGModelType)):
-            model_type = self.type
-        if model_type is None:
-            return []
-        return [
-            prop.wire_name
-            for prop in model_type.properties
-            if isinstance(prop.type, ByteArraySchema)
-            or (
-                isinstance(prop.type, ListType)
-                and isinstance(prop.type.element_type, ByteArraySchema)
-            )
-        ]
-
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
