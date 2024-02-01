@@ -136,12 +136,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        if (value !== undefined) {
-            commandArgs.push(`--${key}=${value}`);
-        }
-    }
-    if (resolvedOptions.debug) {
-        commandArgs.push("--debug");
+        commandArgs.push(`--${key}=${value}`);
     }
     if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");

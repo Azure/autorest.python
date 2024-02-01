@@ -20,7 +20,7 @@ else:
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import _types, models as _models
+    from .. import models as _models
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -348,18 +348,18 @@ class GetResponse7(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
+    :ivar prop: Required. Known values are: "b" and "c".
+    :vartype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
     """
 
-    prop: "_types.StringExtensibleNamedUnion" = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
+    prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field()
+    """Required. Known values are: \"b\" and \"c\"."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_types.StringExtensibleNamedUnion",
+        prop: Union[str, "_models.StringExtensibleNamedUnion"],
     ):
         ...
 

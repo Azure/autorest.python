@@ -150,8 +150,6 @@ def _add_options(
     special_flags: Dict[str, Any],
     debug=False,
 ) -> List[str]:
-    # if debug:
-    #   options["debug"] = "true"
     result = []
     for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
@@ -168,6 +166,8 @@ def _add_options(
     emitter_configs = []
     for options in result:
         emitter_option = ""
+        if debug:
+            emitter_option += " --option @azure-tools/typespec-python.debug=true"
         for item in [options, special_flags]:
             for k, v in item.items():
                 emitter_option += f" --option @azure-tools/typespec-python.{k}={v}"
@@ -216,8 +216,8 @@ def _regenerate(
             s / "old.tsp" for s in _all_specification_folders(category, filename="old.tsp")
         )
     for spec in specs:
-        for pacakge_name in _get_package_names(spec, category):
-            (generated_folder / pacakge_name).mkdir(parents=True, exist_ok=True)
+        for package_name in _get_package_names(spec, category):
+            (generated_folder / package_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
