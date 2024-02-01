@@ -16,7 +16,7 @@ import base64
 import re
 import copy
 import typing
-import email
+import email.utils
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import isodate
