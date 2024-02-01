@@ -125,7 +125,7 @@ def test_model_deserialization(client: ValueTypesClient):
 
 def test_enum_property():
     string_type = models.EnumProperty(property="ValueOne")
-    assert isinstance(string_type.property, str)
+    assert isinstance(string_type.property, models.FixedInnerEnum)
     assert isinstance(string_type["property"], str)
 
     string_type = models.EnumProperty(property=models.FixedInnerEnum.VALUE_ONE)
