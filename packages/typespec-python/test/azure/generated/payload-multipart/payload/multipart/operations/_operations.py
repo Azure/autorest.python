@@ -178,7 +178,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -295,7 +295,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -406,7 +406,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("address") is not None:
             _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
@@ -505,7 +505,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -612,7 +612,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
@@ -713,7 +713,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files = []
+        _files: FilesType = []
         _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))

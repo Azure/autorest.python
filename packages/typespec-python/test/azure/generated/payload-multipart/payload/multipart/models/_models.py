@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
-from .._vendor import FileType
+from .._vendor import FileType, FilesType
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
