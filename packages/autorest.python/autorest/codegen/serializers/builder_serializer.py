@@ -778,9 +778,10 @@ class _OperationSerializer(
                     if isinstance(prop.type, ListType):
                         retval.extend(
                             [
-                                "    _files.extend([",
-                                f'  ("{prop.wire_name}", {prop.wire_name[0]})',
-                                f'"for {prop.wire_name[0]} in {prop_access}])',
+                                "     _files.extend([",
+                                f'        ("{prop.wire_name}", {prop.wire_name[0]})',
+                                f'        for {prop.wire_name[0]} in {prop_access}',
+                                "])",
                             ]
                         )
                     else:
