@@ -750,9 +750,6 @@ class _OperationSerializer(
         This function serializes the body params that need to be serialized.
         """
         body_param = builder.parameters.body_parameter
-        if body_param.entries:
-            """This means we're in legacy code bc m4 gives us the formdata entries as a list of body params"""
-            return _serialize_multipart_body(builder)
         if body_param.is_form_data:
             retval = [
                 f"_body = {body_param.client_name}.as_dict() if isinstance({body_param.client_name}, _model_base.Model) else {body_param.client_name}",

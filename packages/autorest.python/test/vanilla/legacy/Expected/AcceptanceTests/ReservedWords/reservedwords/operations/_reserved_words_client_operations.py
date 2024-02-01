@@ -321,7 +321,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     def operation_with_files_param(self, files: IO[bytes], file_name: str, **kwargs: Any) -> JSON:
         """Operation with multipart body param called 'files'.
 
-        :param files: Files to upload. Pass in list of input streams Required.
+        :param files: Files to upload. Pass in list of input streams. Required.
         :type files: IO[bytes]
         :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
