@@ -2,5 +2,5 @@ isodate<1.0.0,>=0.6.1
 requests==2.28.2
 pytest
 pytest-cov
--e git+https://github.com/Azure/azure-sdk-for-python.git@main#egg=azure-core&subdirectory=sdk/core/azure-core
+azure-core==1.30.0
 -e ../../.
