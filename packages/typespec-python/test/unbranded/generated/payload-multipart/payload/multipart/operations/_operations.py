@@ -44,10 +44,6 @@ def build_form_data_basic_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/multipart/form-data/mixed-parts"
 
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
-
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
@@ -56,10 +52,6 @@ def build_form_data_complex_request(**kwargs: Any) -> HttpRequest:
 
     # Construct URL
     _url = "/multipart/form-data/complex-parts"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -70,10 +62,6 @@ def build_form_data_json_part_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/multipart/form-data/json-part"
 
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
-
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
@@ -82,10 +70,6 @@ def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:  #
 
     # Construct URL
     _url = "/multipart/form-data/binary-array-parts"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -96,10 +80,6 @@ def build_form_data_json_array_parts_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/multipart/form-data/json-array-parts"
 
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
-
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
@@ -108,10 +88,6 @@ def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:  #
 
     # Construct URL
     _url = "/multipart/form-data/multi-binary-parts"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -151,7 +127,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
 
@@ -183,7 +159,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
         error_map = {
@@ -199,21 +175,17 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("id") is not None:
-                _data["id"] = _body["id"]
-            if _body.get("profileImage") is not None:
-                _files.append(("profileImage", _body["profileImage"]))
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("id") is not None:
+            _data["id"] = _body["id"]
+        if _body.get("profileImage") is not None:
+            _files.append(("profileImage", _body["profileImage"]))
 
         _request = build_form_data_basic_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -256,15 +228,13 @@ class FormDataOperations:
                         "city": "str"  # Required.
                     },
                     "id": "str",  # Required.
-                    "pictures": [
-                        FileInputType  # Required.
-                    ],
+                    "pictures": [filetype],
                     "previousAddresses": [
                         {
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
 
@@ -299,15 +269,13 @@ class FormDataOperations:
                         "city": "str"  # Required.
                     },
                     "id": "str",  # Required.
-                    "pictures": [
-                        FileInputType  # Required.
-                    ],
+                    "pictures": [filetype],
                     "previousAddresses": [
                         {
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
         error_map = {
@@ -323,27 +291,25 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("id") is not None:
-                _data["id"] = _body["id"]
-            if _body.get("address") is not None:
-                _data["address"] = _body["address"]
-            if _body.get("profileImage") is not None:
-                _files.append(("profileImage", _body["profileImage"]))
-            if _body.get("previousAddresses") is not None:
-                _data["previousAddresses"] = _body["previousAddresses"]
-            if _body.get("pictures") is not None:
-                _files.extend([("pictures", p) for p in _body["pictures"]])
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("id") is not None:
+            _data["id"] = _body["id"]
+        if _body.get("address") is not None:
+            _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
+        if _body.get("profileImage") is not None:
+            _files.append(("profileImage", _body["profileImage"]))
+        if _body.get("previousAddresses") is not None:
+            _data["previousAddresses"] = json.dumps(
+                _body["previousAddresses"], cls=SdkJSONEncoder, exclude_readonly=True
+            )
+        if _body.get("pictures") is not None:
+            _files.extend([("pictures", p) for p in _body["pictures"]])
 
         _request = build_form_data_complex_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -385,7 +351,7 @@ class FormDataOperations:
                     "address": {
                         "city": "str"  # Required.
                     },
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
 
@@ -419,7 +385,7 @@ class FormDataOperations:
                     "address": {
                         "city": "str"  # Required.
                     },
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
         error_map = {
@@ -435,21 +401,17 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("address") is not None:
-                _data["address"] = _body["address"]
-            if _body.get("profileImage") is not None:
-                _files.append(("profileImage", _body["profileImage"]))
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("address") is not None:
+            _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
+        if _body.get("profileImage") is not None:
+            _files.append(("profileImage", _body["profileImage"]))
 
         _request = build_form_data_json_part_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -489,9 +451,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "pictures": [
-                        FileInputType  # Required.
-                    ]
+                    "pictures": [filetype]
                 }
         """
 
@@ -523,9 +483,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "pictures": [
-                        FileInputType  # Required.
-                    ]
+                    "pictures": [filetype]
                 }
         """
         error_map = {
@@ -541,21 +499,17 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("id") is not None:
-                _data["id"] = _body["id"]
-            if _body.get("pictures") is not None:
-                _files.extend([("pictures", p) for p in _body["pictures"]])
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("id") is not None:
+            _data["id"] = _body["id"]
+        if _body.get("pictures") is not None:
+            _files.extend([("pictures", p) for p in _body["pictures"]])
 
         _request = build_form_data_binary_array_parts_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -599,7 +553,7 @@ class FormDataOperations:
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
 
@@ -635,7 +589,7 @@ class FormDataOperations:
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": FileInputType  # Required.
+                    "profileImage": filetype
                 }
         """
         error_map = {
@@ -651,21 +605,19 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("profileImage") is not None:
-                _files.append(("profileImage", _body["profileImage"]))
-            if _body.get("previousAddresses") is not None:
-                _data["previousAddresses"] = _body["previousAddresses"]
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("profileImage") is not None:
+            _files.append(("profileImage", _body["profileImage"]))
+        if _body.get("previousAddresses") is not None:
+            _data["previousAddresses"] = json.dumps(
+                _body["previousAddresses"], cls=SdkJSONEncoder, exclude_readonly=True
+            )
 
         _request = build_form_data_json_array_parts_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -704,8 +656,8 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "profileImage": FileInputType,  # Required.
-                    "picture": FileInputType  # Optional.
+                    "profileImage": filetype,
+                    "picture": filetype
                 }
         """
 
@@ -736,8 +688,8 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "profileImage": FileInputType,  # Required.
-                    "picture": FileInputType  # Optional.
+                    "profileImage": filetype,
+                    "picture": filetype
                 }
         """
         error_map = {
@@ -753,21 +705,17 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "multipart/form-data"
-        _content = None
-        if isinstance(body, _model_base.Model):
-            _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-            _files = []
-            _data = {}
-            if _body.get("profileImage") is not None:
-                _files.append(("profileImage", _body["profileImage"]))
-            if _body.get("picture") is not None:
-                _files.append(("picture", _body["picture"]))
-        elif isinstance(body, MutableMapping):
-            _content = body
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _files = []
+        _data = {}
+        if _body.get("profileImage") is not None:
+            _files.append(("profileImage", _body["profileImage"]))
+        if _body.get("picture") is not None:
+            _files.append(("picture", _body["picture"]))
 
         _request = build_form_data_multi_binary_parts_request(
-            content=_content,
+            files=_files,
+            data=_data,
             headers=_headers,
             params=_params,
         )

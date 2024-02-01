@@ -7,11 +7,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from .._vendor import FileType
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
+from .._vendor import FileType
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -57,12 +57,12 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar pictures: Required.
-    :vartype pictures: list[filetype]
+    :vartype pictures: list[bytes]
     """
 
     id: str = rest_field()
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file=True)
+    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -95,22 +95,22 @@ class ComplexPartsRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: filetype
+    :vartype profile_image: bytes
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     :ivar pictures: Required.
-    :vartype pictures: list[filetype]
+    :vartype pictures: list[bytes]
     """
 
     id: str = rest_field()
     """Required."""
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file=True)
+    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -142,12 +142,12 @@ class JsonArrayPartsRequest(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: filetype
+    :vartype profile_image: bytes
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
@@ -180,12 +180,12 @@ class JsonPartRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: filetype
+    :vartype profile_image: bytes
     """
 
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -214,21 +214,21 @@ class MultiBinaryPartsRequest(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: filetype
+    :vartype profile_image: bytes
     :ivar picture:
-    :vartype picture: filetype
+    :vartype picture: bytes
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
-    picture: Optional[FileType] = rest_field(is_multipart_file=True)
+    picture: FileType = rest_field(is_multipart_file_input=True)
 
     @overload
     def __init__(
         self,
         *,
         profile_image: FileType,
-        picture: Optional[FileType] = None,
+        picture: FileType = None,
     ):
         ...
 
@@ -251,12 +251,12 @@ class MultiPartRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar profile_image: Required.
-    :vartype profile_image: filetype
+    :vartype profile_image: bytes
     """
 
     id: str = rest_field()
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
 
     @overload

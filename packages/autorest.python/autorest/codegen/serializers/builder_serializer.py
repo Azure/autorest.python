@@ -756,7 +756,8 @@ class _OperationSerializer(
                         # we assume that it's just a single multipart file input
                         retval.append(f'    _files.append(("{prop.wire_name}", {prop_access}))')
                 else:
-                    retval.append(f'    _data["{prop.wire_name}"] = {prop_access}')
+                    serialization = f"json.dumps({prop_access}, cls=SdkJSONEncoder, exclude_readonly=True)" if prop.type.type in ["list", "tuple", "dict", "model"] else prop_access
+                    retval.append(f'    _data["{prop.wire_name}"] = {serialization}')
             return retval
         retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name

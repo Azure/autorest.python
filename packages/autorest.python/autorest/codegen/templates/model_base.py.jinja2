@@ -472,7 +472,7 @@ def _get_rest_field(
 def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typing.Any:
     if not rf:
         return _serialize(value, None)
-    if rf._is_multipart_file:
+    if rf._is_multipart_file_input:
         return value
     if rf._is_model:
         return _deserialize(rf._type, value)
@@ -575,7 +575,7 @@ class Model(_MyMutableMapping):
                 continue
             is_multipart_file_input = False
             try:
-                is_multipart_file_input = next(rf for rf in self._attr_to_rest_field.values() if rf._rest_name == k)._is_multipart_file
+                is_multipart_file_input = next(rf for rf in self._attr_to_rest_field.values() if rf._rest_name == k)._is_multipart_file_input
             except StopIteration:
                 pass
             result[k] = v if is_multipart_file_input else Model._as_dict_value(v, exclude_readonly=exclude_readonly)

@@ -464,7 +464,7 @@ def _get_rest_field(
 def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typing.Any:
     if not rf:
         return _serialize(value, None)
-    if rf._is_multipart_file:
+    if rf._is_multipart_file_input:
         return value
     if rf._is_model:
         return _deserialize(rf._type, value)
@@ -565,14 +565,14 @@ class Model(_MyMutableMapping):
         for k, v in self.items():
             if exclude_readonly and k in readonly_props:  # pyright: ignore[reportUnboundVariable]
                 continue
-            is_multipart_file = False
+            is_multipart_file_input = False
             try:
-                is_multipart_file = next(
+                is_multipart_file_input = next(
                     rf for rf in self._attr_to_rest_field.values() if rf._rest_name == k
-                )._is_multipart_file
+                )._is_multipart_file_input
             except StopIteration:
                 pass
-            result[k] = v if is_multipart_file else Model._as_dict_value(v, exclude_readonly=exclude_readonly)
+            result[k] = v if is_multipart_file_input else Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
     @staticmethod
@@ -775,7 +775,7 @@ class _RestField:
         visibility: typing.Optional[typing.List[str]] = None,
         default: typing.Any = _UNSET,
         format: typing.Optional[str] = None,
-        is_multipart_file: bool = False,
+        is_multipart_file_input: bool = False,
     ):
         self._type = type
         self._rest_name_input = name
@@ -785,7 +785,7 @@ class _RestField:
         self._is_model = False
         self._default = default
         self._format = format
-        self._is_multipart_file = is_multipart_file
+        self._is_multipart_file_input = is_multipart_file_input
 
     @property
     def _rest_name(self) -> str:
@@ -831,10 +831,15 @@ def rest_field(
     visibility: typing.Optional[typing.List[str]] = None,
     default: typing.Any = _UNSET,
     format: typing.Optional[str] = None,
-    is_multipart_file: bool = False,
+    is_multipart_file_input: bool = False,
 ) -> typing.Any:
     return _RestField(
-        name=name, type=type, visibility=visibility, default=default, format=format, is_multipart_file=is_multipart_file
+        name=name,
+        type=type,
+        visibility=visibility,
+        default=default,
+        format=format,
+        is_multipart_file_input=is_multipart_file_input,
     )
 
 
