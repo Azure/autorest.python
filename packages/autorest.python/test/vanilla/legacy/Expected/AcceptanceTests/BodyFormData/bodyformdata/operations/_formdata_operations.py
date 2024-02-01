@@ -43,8 +43,6 @@ def build_upload_file_request(**kwargs: Any) -> HttpRequest:
     _url = kwargs.pop("template_url", "/formdata/stream/uploadfile")
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -77,8 +75,6 @@ def build_upload_files_request(**kwargs: Any) -> HttpRequest:
     _url = kwargs.pop("template_url", "/formdata/stream/uploadfiles")
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

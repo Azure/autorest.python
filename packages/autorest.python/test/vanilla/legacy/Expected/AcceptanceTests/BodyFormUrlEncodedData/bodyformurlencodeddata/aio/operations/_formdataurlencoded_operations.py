@@ -69,17 +69,17 @@ class FormdataurlencodedOperations:
 
         :param pet_id: ID of pet that needs to be updated. Required.
         :type pet_id: int
-        :param pet_type: Can take a value of dog, or cat, or fish. Known values are: "dog", "cat", and
+        :param pet_type: Can take a value of dog, or cat, or fish Known values are: "dog", "cat", and
          "fish". Required.
         :type pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :param pet_food: Can take a value of meat, or fish, or plant. Known values are: "meat", "fish",
+        :param pet_food: Can take a value of meat, or fish, or plant Known values are: "meat", "fish",
          and "plant". Required.
         :type pet_food: str or ~bodyformurlencodeddata.models.PetFood
-        :param pet_age: How many years is it old?. Required.
+        :param pet_age: How many years is it old? Required.
         :type pet_age: int
-        :param name: Updated name of the pet. Default value is None.
+        :param name: Updated name of the pet Default value is None.
         :type name: str
-        :param status: Updated status of the pet. Default value is None.
+        :param status: Updated status of the pet Default value is None.
         :type status: str
         :return: None or the result of cls(response)
         :rtype: None

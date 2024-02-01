@@ -246,8 +246,14 @@ class BodyParameter(_ParameterBase):
     """Body parameter."""
 
     @property
+    def entries(self) -> List[str]:
+        return [BodyParameter.from_yaml(e, self.code_model) for e in self.yaml_data.get("entries", [])]
+
+    @property
     def is_form_data(self) -> bool:
-        return self.type.is_form_data
+        # hacky, but rn in legacy, there is no formdata model type, it's just a dict
+        # with all of the entries splatted out
+        return self.type.is_form_data or self.entries
 
     @property
     def is_partial_body(self) -> bool:
@@ -264,6 +270,10 @@ class BodyParameter(_ParameterBase):
 
     @property
     def in_method_signature(self) -> bool:
+        if self.yaml_data.get("entries"):
+            # Right now, only legacy generates with multipart bodies and entries
+            # and legacy generates with the multipart body arguments splatted out
+            return False
         return not (self.flattened or self.grouped_by)
 
     @property

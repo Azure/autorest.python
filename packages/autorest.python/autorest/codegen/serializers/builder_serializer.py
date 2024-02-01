@@ -203,6 +203,17 @@ def _serialize_json_model_body(
     retval.append("    }")
     return retval
 
+def _serialize_multipart_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    body_param = builder.parameters.body_parameter
+    # we have to construct our form data before passing to the request as well
+    retval.append("# Construct form data")
+    retval.append(f"_{body_param.client_name} = {{")
+    for param in body_param.entries:
+        retval.append(f'    "{param.wire_name}": {param.client_name},')
+    retval.append("}")
+    return retval
+
 def _get_json_response_template_to_status_codes(
     builder: OperationType,
 ) -> Dict[str, List[str]]:
@@ -739,6 +750,9 @@ class _OperationSerializer(
         This function serializes the body params that need to be serialized.
         """
         body_param = builder.parameters.body_parameter
+        if body_param.entries:
+            """This means we're in legacy code bc m4 gives us the formdata entries as a list of body params"""
+            return _serialize_multipart_body(builder)
         if body_param.is_form_data:
             retval = [
                 f"_body = {body_param.client_name}.as_dict() if isinstance({body_param.client_name}, _model_base.Model) else {body_param.client_name}",
@@ -812,6 +826,8 @@ class _OperationSerializer(
         """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
         body_param = builder.parameters.body_parameter
+        if body_param.entries:
+            return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         body_param_type = body_param.type
         if isinstance(body_param_type, BinaryType) or (
@@ -971,7 +987,11 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
-        if request_builder.has_form_data_body:
+        if builder.parameters.has_body and builder.parameters.body_parameter.entries:
+            # this is for legacy
+            client_name = builder.parameters.body_parameter.client_name
+            retval.append(f"    {client_name}=_{client_name},")
+        elif request_builder.has_form_data_body:
             retval.append("    files=_files,")
             retval.append("    data=_data,")
         elif request_builder.overloads:

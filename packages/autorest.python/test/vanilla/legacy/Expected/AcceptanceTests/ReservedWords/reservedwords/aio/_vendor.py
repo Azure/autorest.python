@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------
 
 from abc import ABC
-from typing import TYPE_CHECKING
+from typing import IO, Mapping, Optional, Sequence, TYPE_CHECKING, Tuple, Union
 
 from azure.core.pipeline.transport import HttpRequest
 
@@ -26,3 +26,18 @@ class ReservedWordsClientMixinABC(ABC):
     _config: ReservedWordsClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+
+
+# file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`
+FileContent = Union[str, bytes, IO[str], IO[bytes]]
+
+FileType = Union[
+    # file (or bytes)
+    FileContent,
+    # (filename, file (or bytes))
+    Tuple[Optional[str], FileContent],
+    # (filename, file (or bytes), content_type)
+    Tuple[Optional[str], FileContent, Optional[str]],
+]
+
+FilesType = Union[Mapping[str, FileType], Sequence[Tuple[str, FileType]]]

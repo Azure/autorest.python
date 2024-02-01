@@ -5,6 +5,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import IO, Mapping, Optional, Sequence, Tuple, Union
+
 from azure.core.pipeline.transport import HttpRequest
 
 
@@ -14,3 +16,18 @@ def _convert_request(request, files=None):
     if files:
         request.set_formdata_body(files)
     return request
+
+
+# file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`
+FileContent = Union[str, bytes, IO[str], IO[bytes]]
+
+FileType = Union[
+    # file (or bytes)
+    FileContent,
+    # (filename, file (or bytes))
+    Tuple[Optional[str], FileContent],
+    # (filename, file (or bytes), content_type)
+    Tuple[Optional[str], FileContent, Optional[str]],
+]
+
+FilesType = Union[Mapping[str, FileType], Sequence[Tuple[str, FileType]]]
