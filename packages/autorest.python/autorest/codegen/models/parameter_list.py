@@ -317,9 +317,7 @@ class _ParameterList(
 
     @staticmethod
     def body_parameter_creator() -> (
-        Callable[
-            [Dict[str, Any], "CodeModel"], BodyParameter
-        ]
+        Callable[[Dict[str, Any], "CodeModel"], BodyParameter]
     ):
         return BodyParameter.from_yaml
 

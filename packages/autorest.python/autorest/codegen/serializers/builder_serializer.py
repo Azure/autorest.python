@@ -203,6 +203,7 @@ def _serialize_json_model_body(
     retval.append("    }")
     return retval
 
+
 def _serialize_multipart_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
     body_param = builder.parameters.body_parameter
@@ -213,6 +214,7 @@ def _serialize_multipart_body(builder: BuilderType) -> List[str]:
         retval.append(f'    "{param.wire_name}": {param.client_name},')
     retval.append("}")
     return retval
+
 
 def _get_json_response_template_to_status_codes(
     builder: OperationType,
@@ -756,18 +758,30 @@ class _OperationSerializer(
                 "_files = []",
                 "_data = {}",
             ]
-            model_type = body_param.type.target_model_subtype((JSONModelType, DPGModelType)) if isinstance(body_param.type, CombinedType) else body_param.type
+            model_type = (
+                body_param.type.target_model_subtype((JSONModelType, DPGModelType))
+                if isinstance(body_param.type, CombinedType)
+                else body_param.type
+            )
             for prop in model_type.properties:
                 prop_access = f'_body["{prop.wire_name}"]'
                 retval.append(f'if _body.get("{prop.wire_name}") is not None:')
                 if prop.is_multipart_file_input:
                     if isinstance(prop.type, ListType):
-                        retval.append(f'    _files.extend([("{prop.wire_name}", {prop.wire_name[0]}) for {prop.wire_name[0]} in {prop_access}])')
+                        retval.append(
+                            f'    _files.extend([("{prop.wire_name}", {prop.wire_name[0]}) for {prop.wire_name[0]} in {prop_access}])'
+                        )
                     else:
                         # we assume that it's just a single multipart file input
-                        retval.append(f'    _files.append(("{prop.wire_name}", {prop_access}))')
+                        retval.append(
+                            f'    _files.append(("{prop.wire_name}", {prop_access}))'
+                        )
                 else:
-                    serialization = f"json.dumps({prop_access}, cls=SdkJSONEncoder, exclude_readonly=True)" if prop.type.type in ["list", "tuple", "dict", "model"] else prop_access
+                    serialization = (
+                        f"json.dumps({prop_access}, cls=SdkJSONEncoder, exclude_readonly=True)"
+                        if prop.type.type in ["list", "tuple", "dict", "model"]
+                        else prop_access
+                    )
                     retval.append(f'    _data["{prop.wire_name}"] = {serialization}')
             return retval
         retval: List[str] = []

@@ -65,6 +65,7 @@ class RequestBuilderBodyParameter(BodyParameter):
             return "_json"
         return "_content"
 
+
 class RequestBuilderParameter(Parameter):
     """Basic RequestBuilder Parameter."""
 

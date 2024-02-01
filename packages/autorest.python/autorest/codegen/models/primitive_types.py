@@ -81,6 +81,7 @@ class BooleanType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, bool)"
 
+
 class BinaryType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)

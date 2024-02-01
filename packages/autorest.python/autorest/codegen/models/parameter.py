@@ -247,7 +247,10 @@ class BodyParameter(_ParameterBase):
 
     @property
     def entries(self) -> List[str]:
-        return [BodyParameter.from_yaml(e, self.code_model) for e in self.yaml_data.get("entries", [])]
+        return [
+            BodyParameter.from_yaml(e, self.code_model)
+            for e in self.yaml_data.get("entries", [])
+        ]
 
     @property
     def is_form_data(self) -> bool:
@@ -304,6 +307,7 @@ class BodyParameter(_ParameterBase):
 EntryBodyParameterType = TypeVar(
     "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
 )
+
 
 class Parameter(_ParameterBase):
     """Basic Parameter class"""
