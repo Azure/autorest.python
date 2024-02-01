@@ -195,19 +195,16 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 }
 
 function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Record<string, any> {
-    const propertyType = getType(context, type.type);
-    if (type.isMultipartFileInput) {
-        propertyType.type = "multipartFile";
-    }
     return {
         clientName: camelToSnakeCase(type.nameInClient),
         wireName: type.serializedName,
-        type: propertyType,
+        type: getType(context, type.type),
         optional: type.optional,
         description: type.description,
         addedOn: type.apiVersions[0],
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
+        isMultipartFileInput: type.isMultipartFileInput,
     };
 }
 

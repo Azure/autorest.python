@@ -20,7 +20,6 @@ from .primitive_types import (
     DurationType,
     IntegerType,
     FloatType,
-    MultipartFileType,
     StringType,
     TimeType,
     AnyType,
@@ -149,7 +148,6 @@ TYPE_TO_OBJECT = {
     "unixtime": UnixTimeType,
     "credential": StringType,
     "sdkcore": SdkCoreType,
-    "multipartFile": MultipartFileType
 }
 _LOGGER = logging.getLogger(__name__)
 

@@ -188,5 +188,5 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         return self.type_annotation()
     
     @property
-    def is_multipart_file(self) -> bool:
+    def is_form_data(self) -> bool:
         return False

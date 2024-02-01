@@ -37,6 +37,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
+        self.is_multipart_file_input: bool = yaml_data.get("isMultipartFileInput", False)
 
     @property
     def pylint_disable(self) -> str:
@@ -94,6 +95,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.is_discriminator and self.type.type == "enum"
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        if self.is_multipart_file_input:
+            # we only support FileType or list of FileType
+            if self.type.type == "list":
+                return "List[FileType]"
+            return "FileType"
         if self.is_enum_discriminator:
             # here we are the enum discriminator property on the base model
             return "Literal[None]"
@@ -114,6 +120,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
     ) -> Any:
+        if self.is_multipart_file_input:
+            return "[filetype]" if self.type.type == "list" else "filetype"
         if self.client_default_value:
             client_default_value_declaration = self.get_declaration(
                 self.client_default_value
@@ -161,16 +169,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 "rest_discriminator" if self.is_discriminator else "rest_field",
                 ImportType.LOCAL,
             )
+        if self.is_multipart_file_input:
+            file_import.add_submodule_import(".._vendor", "FileType", ImportType.LOCAL)
         return file_import
-    
-    @property
-    def is_multipart_file(self) -> bool:
-        """
-        We need to check if the type is a model because this could cause infinite recursion.
-        The only file values that we consider is either a single mutlipart file type, or a list
-        of them, so there's no need to check for models
-        """
-        return self.type != "model" and self.type.is_multipart_file # this prevents infinite recursion f
 
     @classmethod
     def from_yaml(

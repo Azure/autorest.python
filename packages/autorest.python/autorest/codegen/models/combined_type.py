@@ -81,7 +81,7 @@ class CombinedType(BaseType):
     
     @property
     def is_form_data(self) -> bool:
-        return any(t.type == "model" and t.is_form_data for t in self.types)
+        return any(t.is_form_data for t in self.types)
 
     def get_json_template_representation(
         self,

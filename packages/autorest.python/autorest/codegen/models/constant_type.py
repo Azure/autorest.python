@@ -37,10 +37,6 @@ class ConstantType(BaseType):
         self.value_type = value_type
         self.value = value
 
-    @property
-    def is_multipart_file(self) -> bool:
-        return self.value_type.is_multipart_file
-
     def get_declaration(self, value=None):
         if value and value != self.value:
             _LOGGER.warning(

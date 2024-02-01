@@ -247,7 +247,7 @@ class BodyParameter(_ParameterBase):
 
     @property
     def is_form_data(self) -> bool:
-        return self.type.type == "model" and self.type.is_form_data
+        return self.type.is_form_data
 
     @property
     def is_partial_body(self) -> bool:

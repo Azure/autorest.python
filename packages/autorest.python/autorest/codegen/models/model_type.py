@@ -78,7 +78,7 @@ class ModelType(  # pylint: disable=abstract-method
 
     @property
     def is_form_data(self) -> bool:
-        return any(p.is_multipart_file for p in self.properties)
+        return any(p.is_multipart_file_input for p in self.properties)
 
     @property
     def is_xml(self) -> bool:

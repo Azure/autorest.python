@@ -33,7 +33,6 @@ from ..models import (
     DPGModelType,
     ParameterListType,
     ByteArraySchema,
-    MultipartFileType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -750,7 +749,7 @@ class _OperationSerializer(
             for prop in model_type.properties:
                 prop_access = f'_body["{prop.wire_name}"]'
                 retval.append(f'if _body.get("{prop.wire_name}") is not None:')
-                if prop.is_multipart_file:
+                if prop.is_multipart_file_input:
                     if isinstance(prop.type, ListType):
                         retval.append(f'    _files.extend([("{prop.wire_name}", {prop.wire_name[0]}) for {prop.wire_name[0]} in {prop_access}])')
                     else:

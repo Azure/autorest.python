@@ -81,39 +81,6 @@ class BooleanType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, bool)"
 
-class MultipartFileType(PrimitiveType):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.type = "FileType"
-
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(".._vendor", "FileType", ImportType.STDLIB)
-        return file_import
-    
-    @property
-    def is_multipart_file(self) -> bool:
-        return True
-
-    @property
-    def instance_check_template(self) -> str:
-        return "isinstance({}, FileType)"
-    
-    @property
-    def serialization_type(self) -> str:
-        return "filetype"
-
-    def docstring_type(self, **kwargs: Any) -> str:
-        return "filetype"
-
-    def type_annotation(self, **kwargs: Any) -> str:
-        return "FileType"
-
-    @property
-    def default_template_representation_declaration(self) -> str:
-        return self.get_declaration("FileInputType")
-
-
 class BinaryType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
