@@ -85,11 +85,6 @@ export function getType(
             return emitDurationOrDateType(type);
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
-        case "multipartFile":
-            return getSimpleTypeResult({
-                type: "bytes",
-                encode: "base64",
-            });
         case "bytes":
         case "boolean":
         case "date":
