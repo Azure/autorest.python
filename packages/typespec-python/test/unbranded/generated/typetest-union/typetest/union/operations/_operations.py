@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, TYPE_CHECKING, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -31,10 +31,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from .. import _types
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -780,8 +776,7 @@ class StringExtensibleNamedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -846,19 +841,22 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: "_types.StringExtensibleNamedUnion", content_type: str = "application/json", **kwargs: Any
+        self,
+        *,
+        prop: Union[str, _models.StringExtensibleNamedUnion],
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -887,15 +885,15 @@ class StringExtensibleNamedOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: "_types.StringExtensibleNamedUnion" = _Unset,
+        prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -905,8 +903,7 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {

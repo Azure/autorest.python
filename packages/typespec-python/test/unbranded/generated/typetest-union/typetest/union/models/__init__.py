@@ -24,6 +24,7 @@ from ._models import MixedTypesCases
 from ._models import StringAndArrayCases
 
 from ._enums import LR
+from ._enums import StringExtensibleNamedUnion
 from ._enums import UD
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -47,6 +48,7 @@ __all__ = [
     "MixedTypesCases",
     "StringAndArrayCases",
     "LR",
+    "StringExtensibleNamedUnion",
     "UD",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
