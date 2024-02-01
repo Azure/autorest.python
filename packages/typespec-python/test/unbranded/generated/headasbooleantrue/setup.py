@@ -58,7 +58,7 @@ setup(
     },
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
-        "corehttp[requests]",
+        "corehttp[requests]<1.0.0,>=1.0.0b3",
     ],
     python_requires=">=3.8",
 )

@@ -295,9 +295,11 @@ class BodyParameter(_ParameterBase):
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = super().imports(async_mode, **kwargs)
         if self.is_form_data:
-            file_import.add_submodule_import(".._vendor", "FilesType", ImportType.LOCAL)
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(f"{relative_path}_vendor", "FilesType", ImportType.LOCAL)
             file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+        return file_import
 
     @classmethod
     def from_yaml(

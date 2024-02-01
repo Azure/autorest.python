@@ -24,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import _model_base, models as _models
 from ..._model_base import SdkJSONEncoder
+from ..._vendor import FilesType
 from ...operations._operations import (
     build_form_data_basic_request,
     build_form_data_binary_array_parts_request,
