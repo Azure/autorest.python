@@ -14,7 +14,6 @@ from typing import (
     Optional,
     TypeVar,
     Union,
-    Generic,
 )
 
 from .imports import FileImport, ImportType, TypingSection
@@ -23,9 +22,7 @@ from .base import BaseType
 from .constant_type import ConstantType
 from .utils import add_to_description
 from .combined_type import CombinedType
-from .model_type import JSONModelType, DPGModelType, ModelType
-from .primitive_types import ByteArraySchema
-from .list_type import ListType
+from .model_type import JSONModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -246,7 +243,7 @@ class BodyParameter(_ParameterBase):
     """Body parameter."""
 
     @property
-    def entries(self) -> List[str]:
+    def entries(self) -> List["BodyParameter"]:
         return [
             BodyParameter.from_yaml(e, self.code_model)
             for e in self.yaml_data.get("entries", [])
@@ -256,7 +253,7 @@ class BodyParameter(_ParameterBase):
     def is_form_data(self) -> bool:
         # hacky, but rn in legacy, there is no formdata model type, it's just a dict
         # with all of the entries splatted out
-        return self.type.is_form_data or self.entries
+        return self.type.is_form_data or bool(self.entries)
 
     @property
     def is_partial_body(self) -> bool:
