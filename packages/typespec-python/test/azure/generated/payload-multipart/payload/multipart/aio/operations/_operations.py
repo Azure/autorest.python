@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -24,7 +24,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import _model_base, models as _models
 from ..._model_base import SdkJSONEncoder
-from ..._vendor import FilesType
 from ...operations._operations import (
     build_form_data_basic_request,
     build_form_data_binary_array_parts_request,
@@ -33,6 +32,7 @@ from ...operations._operations import (
     build_form_data_json_part_request,
     build_form_data_multi_binary_parts_request,
 )
+from ...vendor import FileType
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -128,7 +128,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -245,7 +245,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -356,7 +356,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("address") is not None:
             _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
@@ -457,7 +457,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("id") is not None:
             _data["id"] = _body["id"]
@@ -566,7 +566,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
@@ -669,7 +669,7 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: FilesType = []
+        _files: List[FileType] = []
         _data: Dict[str, Any] = {}
         if _body.get("profileImage") is not None:
             _files.append(("profileImage", _body["profileImage"]))
