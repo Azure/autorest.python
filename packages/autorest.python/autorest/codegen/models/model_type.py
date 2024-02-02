@@ -327,13 +327,6 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                     if kwargs.get("model_typing")
                     else TypingSection.REGULAR,
                 )
-                if any(not p.is_multipart_file_input for p in self.properties):
-                    file_import.add_submodule_import(
-                        f"{relative_path}_model_base",
-                        "SdkJSONEncoder",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_import("json", ImportType.STDLIB)
         return file_import
 
 
