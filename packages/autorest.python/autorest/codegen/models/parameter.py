@@ -14,7 +14,6 @@ from typing import (
     Optional,
     TypeVar,
     Union,
-    Generic,
 )
 
 from .imports import FileImport, ImportType, TypingSection
@@ -244,8 +243,17 @@ class BodyParameter(_ParameterBase):
     """Body parameter."""
 
     @property
+    def entries(self) -> List["BodyParameter"]:
+        return [
+            BodyParameter.from_yaml(e, self.code_model)
+            for e in self.yaml_data.get("entries", [])
+        ]
+
+    @property
     def is_form_data(self) -> bool:
-        return self.default_content_type == "multipart/form-data"
+        # hacky, but rn in legacy, there is no formdata model type, it's just a dict
+        # with all of the entries splatted out
+        return self.type.is_form_data or bool(self.entries)
 
     @property
     def is_partial_body(self) -> bool:
@@ -262,6 +270,10 @@ class BodyParameter(_ParameterBase):
 
     @property
     def in_method_signature(self) -> bool:
+        if self.yaml_data.get("entries"):
+            # Right now, only legacy generates with multipart bodies and entries
+            # and legacy generates with the multipart body arguments splatted out
+            return False
         return not (self.flattened or self.grouped_by)
 
     @property
@@ -278,6 +290,18 @@ class BodyParameter(_ParameterBase):
             return self.type.target_model_subtype((JSONModelType,)) is not None
         return isinstance(self.type, JSONModelType)
 
+    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+        file_import = super().imports(async_mode, **kwargs)
+        if self.is_form_data:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor",
+                "prepare_multipart_form_data",
+                ImportType.LOCAL,
+            )
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+        return file_import
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
@@ -292,46 +316,6 @@ class BodyParameter(_ParameterBase):
 EntryBodyParameterType = TypeVar(
     "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
 )
-
-
-class _MultipartBodyParameter(Generic[EntryBodyParameterType], BodyParameter):
-    """Base class for MultipartBodyParameter and RequestBuilderMultipartBodyParameter"""
-
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        type: BaseType,
-        entries: List[EntryBodyParameterType],
-    ) -> None:
-        super().__init__(yaml_data, code_model, type)
-        self.entries = entries
-
-    @property
-    def in_method_signature(self) -> bool:
-        # Right now, only legacy generates with multipart bodies
-        # and legacy generates with the multipart body arguments splatted out
-        return False
-
-
-class MultipartBodyParameter(
-    _MultipartBodyParameter[BodyParameter]  # pylint: disable=unsubscriptable-object
-):
-    """Multipart body parameter for Operation. Used for files and data input."""
-
-    @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "MultipartBodyParameter":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
-            entries=[
-                BodyParameter.from_yaml(entry, code_model)
-                for entry in yaml_data["entries"]
-            ],
-        )
 
 
 class Parameter(_ParameterBase):
@@ -455,12 +439,3 @@ class ConfigParameter(Parameter):
         if self.constant:
             return ParameterMethodLocation.KWARG
         return ParameterMethodLocation.POSITIONAL
-
-
-def get_body_parameter(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
-) -> Union[BodyParameter, MultipartBodyParameter]:
-    """Creates a regular body parameter or Multipart body parameter"""
-    if yaml_data.get("entries"):
-        return MultipartBodyParameter.from_yaml(yaml_data, code_model)
-    return BodyParameter.from_yaml(yaml_data, code_model)

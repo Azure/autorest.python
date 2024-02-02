@@ -37,6 +37,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
+        self.is_multipart_file_input: bool = yaml_data.get(
+            "isMultipartFileInput", False
+        )
 
     @property
     def pylint_disable(self) -> str:
@@ -103,9 +106,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if self.is_base_discriminator:
             return "str"
-        if self.optional and self.client_default_value is None:
-            return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
-        return self.type.type_annotation(is_operation_file=is_operation_file)
+        types_type_annotation = self.type.type_annotation(
+            is_operation_file=is_operation_file
+        )
+        if self.is_multipart_file_input:
+            # we only support FileType or list of FileType
+            types_type_annotation = types_type_annotation.replace("bytes", "FileType")
 
     def get_declaration(self, value: Any = None) -> Any:
         if self.is_base_discriminator:
@@ -119,6 +125,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
     ) -> Any:
+        if self.is_multipart_file_input:
+            return "[filetype]" if self.type.type == "list" else "filetype"
         if self.client_default_value:
             client_default_value_declaration = self.get_declaration(
                 self.client_default_value
@@ -166,6 +174,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 "rest_discriminator" if self.is_discriminator else "rest_field",
                 ImportType.LOCAL,
             )
+        if self.is_multipart_file_input:
+            file_import.add_submodule_import(".._vendor", "FileType", ImportType.LOCAL)
         return file_import
 
     @classmethod
