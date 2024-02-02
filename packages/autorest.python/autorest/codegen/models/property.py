@@ -93,18 +93,23 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def is_enum_discriminator(self) -> bool:
         return self.is_discriminator and self.type.type == "enum"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    @property
+    def is_base_discriminator(self) -> bool:
+        """If this discriminator is on the base model for polymorphic inheritance"""
         if self.is_enum_discriminator:
-            # here we are the enum discriminator property on the base model
-            return "Literal[None]"
+            return self.is_polymorphic and self.client_default_value is None
+        return self.is_discriminator and self.is_polymorphic and self.type.value is None
+
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        if self.is_base_discriminator:
+            return "str"
         if self.optional and self.client_default_value is None:
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
     def get_declaration(self, value: Any = None) -> Any:
-        if self.is_enum_discriminator:
-            # here we are the enum discriminator property on the base model
-            return None
+        if self.is_base_discriminator:
+            return f"kwargs['{self.client_name}']"
         return self.type.get_declaration(value)
 
     def get_json_template_representation(
