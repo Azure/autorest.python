@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "msrest>=0.7.1",
-        "azure-core<2.0.0,>=1.29.5",
+        "azure-core<2.0.0,>=1.30.0",
     ],
     long_description="""\
     Tests whether loggers/tracers redact secrets and PII within error responses.

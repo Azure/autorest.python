@@ -30,7 +30,6 @@ from .response import (
 )
 from .parameter import (
     BodyParameter,
-    MultipartBodyParameter,
     Parameter,
     ParameterLocation,
 )
@@ -290,7 +289,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 Parameter,
                 RequestBuilderParameter,
                 BodyParameter,
-                MultipartBodyParameter,
             ]
         ],
         location: ParameterLocation,
@@ -575,33 +573,13 @@ class Operation(OperationBase[Response]):
         relative_path = "..." if async_mode else ".."
         if self.code_model.options["models_mode"] == "dpg":
             if self.parameters.has_body:
-                if not self.parameters.body_parameter.is_form_data:
+                if not self.has_form_data_body:
                     file_import.add_submodule_import(
                         f"{relative_path}_model_base",
                         "SdkJSONEncoder",
                         ImportType.LOCAL,
                     )
                     file_import.add_import("json", ImportType.STDLIB)
-                else:
-                    file_import.add_submodule_import(
-                        relative_path, "_model_base", ImportType.LOCAL
-                    )
-                    file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "multipart_file",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "multipart_data",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "handle_multipart_form_data_model",
-                        ImportType.LOCAL,
-                    )
             if self.default_error_deserialization or any(
                 r.type for r in self.responses
             ):

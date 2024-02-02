@@ -77,6 +77,10 @@ class ModelType(  # pylint: disable=abstract-method
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
+    def is_form_data(self) -> bool:
+        return any(p.is_multipart_file_input for p in self.properties)
+
+    @property
     def is_xml(self) -> bool:
         return self.yaml_data.get("isXml", False)
 
@@ -314,6 +318,15 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 if kwargs.get("model_typing")
                 else TypingSection.REGULAR,
             )
+            if self.is_form_data:
+                file_import.add_submodule_import(
+                    relative_path,
+                    "_model_base",
+                    ImportType.LOCAL,
+                    typing_section=TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR,
+                )
         return file_import
 
 

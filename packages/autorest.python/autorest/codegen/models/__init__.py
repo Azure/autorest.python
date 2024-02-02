@@ -43,7 +43,6 @@ from .parameter import (
     ParameterLocation,
     BodyParameter,
     ParameterDelimeter,
-    MultipartBodyParameter,
     ClientParameter,
     ConfigParameter,
 )
@@ -115,7 +114,6 @@ __all__ = [
     "BodyParameter",
     "RequestBuilderBodyParameter",
     "ParameterDelimeter",
-    "MultipartBodyParameter",
     "CredentialType",
     "ClientParameter",
     "ConfigParameter",
