@@ -34,12 +34,12 @@ class AbstractModel(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     name: str = rest_field()
     """Required."""
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
+        self.kind: str = kwargs["kind"]
 
 
 class BaseModel(_model_base.Model):
@@ -215,10 +215,6 @@ class RealModel(AbstractModel, discriminator="real"):
 
     kind: Literal["real"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"real\"."""
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["real"] = "real"
 
 
 class SharedModel(_model_base.Model):

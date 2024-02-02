@@ -29,7 +29,7 @@ class Snake(_model_base.Model):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """discriminator property. Required. \"cobra\""""
     length: int = rest_field()
     """Length of the snake. Required."""
@@ -38,6 +38,7 @@ class Snake(_model_base.Model):
     def __init__(
         self,
         *,
+        kind: str,
         length: int,
     ):
         ...
@@ -51,7 +52,7 @@ class Snake(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
+        self.kind: str = kwargs["kind"]
 
 
 class Cobra(Snake, discriminator="cobra"):
@@ -83,9 +84,8 @@ class Cobra(Snake, discriminator="cobra"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal[SnakeKind.COBRA] = SnakeKind.COBRA
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind=SnakeKind.COBRA, **kwargs)
 
 
 class Dog(_model_base.Model):
@@ -103,7 +103,7 @@ class Dog(_model_base.Model):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """discriminator property. Required. \"golden\""""
     weight: int = rest_field()
     """Weight of the dog. Required."""
@@ -112,6 +112,7 @@ class Dog(_model_base.Model):
     def __init__(
         self,
         *,
+        kind: str,
         weight: int,
     ):
         ...
@@ -125,7 +126,7 @@ class Dog(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
+        self.kind: str = kwargs["kind"]
 
 
 class Golden(Dog, discriminator="golden"):
@@ -157,6 +158,5 @@ class Golden(Dog, discriminator="golden"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal[DogKind.GOLDEN] = DogKind.GOLDEN
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)

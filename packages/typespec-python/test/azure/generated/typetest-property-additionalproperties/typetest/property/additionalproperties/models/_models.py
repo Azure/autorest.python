@@ -170,7 +170,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
     __mapping__: Dict[str, _model_base.Model] = {}
     name: str = rest_field()
     """The name property. Required."""
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """The discriminator. Required. Default value is None."""
 
     @overload
@@ -178,6 +178,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         self,
         *,
         name: str,
+        kind: str,
     ):
         ...
 
@@ -190,7 +191,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
+        self.kind: str = kwargs["kind"]
 
 
 class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
@@ -234,9 +235,8 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["derived"] = "derived"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="derived", **kwargs)
 
 
 class IsFloatAdditionalProperties(_model_base.Model):
@@ -396,7 +396,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
     __mapping__: Dict[str, _model_base.Model] = {}
     name: str = rest_field()
     """The name property. Required."""
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """The discriminator. Required. Default value is None."""
 
     @overload
@@ -404,6 +404,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         self,
         *,
         name: str,
+        kind: str,
     ):
         ...
 
@@ -416,7 +417,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
+        self.kind: str = kwargs["kind"]
 
 
 class IsUnknownAdditionalPropertiesDiscriminatedDerived(
@@ -460,6 +461,5 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["derived"] = "derived"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="derived", **kwargs)
