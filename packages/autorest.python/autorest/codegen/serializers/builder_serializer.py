@@ -761,7 +761,7 @@ class _OperationSerializer(
                     f"    if isinstance({body_param.client_name}, _model_base.Model) else",
                     f"    {body_param.client_name}",
                     ")",
-                    "_files: FilesType = []",
+                    "_files: List[FilesType] = []",
                     "_data: Dict[str, Any] = {}",
                 ]
             )
