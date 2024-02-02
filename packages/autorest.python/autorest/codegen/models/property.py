@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, TYPE_CHECKING, List
+from typing import Any, Dict, Optional, TYPE_CHECKING, List, cast
 
 from .base import BaseModel
 from .constant_type import ConstantType
@@ -101,7 +101,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         """If this discriminator is on the base model for polymorphic inheritance"""
         if self.is_enum_discriminator:
             return self.is_polymorphic and self.client_default_value is None
-        return self.is_discriminator and self.is_polymorphic and self.type.value is None
+        return self.is_discriminator and self.is_polymorphic and cast(ConstantType, self.type.value) is None
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         types_type_annotation = self.type.type_annotation(

@@ -303,7 +303,7 @@ class DpgModelSerializer(_ModelSerializer):
         for parent in model.parents:
             for prop in model.properties:
                 if (
-                    prop.client_name in [prop.client_name for prop in parent.properties]
+                    prop.client_name in [prop.client_name for prop in parent.properties if prop.is_base_discriminator]
                     and prop.is_discriminator
                     and not prop.constant
                     and not prop.readonly

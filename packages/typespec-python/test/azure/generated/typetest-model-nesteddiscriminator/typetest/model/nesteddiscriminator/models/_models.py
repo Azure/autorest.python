@@ -135,7 +135,7 @@ class GoblinShark(Shark, discriminator="goblin"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, kind="shark", sharktype="goblin", **kwargs)
+        super().__init__(*args, sharktype="goblin", **kwargs)
 
 
 class Salmon(Fish, discriminator="salmon"):
@@ -217,4 +217,4 @@ class SawShark(Shark, discriminator="saw"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, kind="shark", sharktype="saw", **kwargs)
+        super().__init__(*args, sharktype="saw", **kwargs)
