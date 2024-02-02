@@ -23,6 +23,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import _model_base, models as _models
 from ..._model_base import SdkJSONEncoder
+from ..._vendor import FileType
 from ...operations._operations import (
     build_form_data_basic_request,
     build_form_data_binary_array_parts_request,
@@ -31,7 +32,6 @@ from ...operations._operations import (
     build_form_data_json_part_request,
     build_form_data_multi_binary_parts_request,
 )
-from ...vendor import FileType
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

@@ -25,7 +25,7 @@ from corehttp.utils import case_insensitive_dict
 from .. import _model_base, models as _models
 from .._model_base import SdkJSONEncoder
 from .._serialization import Serializer
-from ..vendor import FileType
+from .._vendor import FileType
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
