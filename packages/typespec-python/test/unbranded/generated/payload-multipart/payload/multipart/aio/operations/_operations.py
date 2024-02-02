@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -126,8 +126,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["profileImage"]
-        _data_fields = ["id"]
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
@@ -239,8 +239,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["profileImage", "pictures"]
-        _data_fields = ["id", "address", "previousAddresses"]
+        _file_fields: List[str] = ["profileImage", "pictures"]
+        _data_fields: List[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_complex_request(
@@ -338,8 +338,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["profileImage"]
-        _data_fields = ["address"]
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_part_request(
@@ -435,8 +435,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["pictures"]
-        _data_fields = ["id"]
+        _file_fields: List[str] = ["pictures"]
+        _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_binary_array_parts_request(
@@ -540,8 +540,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["profileImage"]
-        _data_fields = ["previousAddresses"]
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_array_parts_request(
@@ -637,8 +637,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _file_fields = ["profileImage", "picture"]
-        _data_fields = []
+        _file_fields: List[str] = ["profileImage", "picture"]
+        _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_multi_binary_parts_request(

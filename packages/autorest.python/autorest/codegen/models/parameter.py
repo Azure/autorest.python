@@ -299,6 +299,7 @@ class BodyParameter(_ParameterBase):
                 "prepare_multipart_form_data",
                 ImportType.LOCAL,
             )
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
         return file_import
 
     @classmethod

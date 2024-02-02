@@ -33,7 +33,7 @@ def serialize_multipart_data_entry(data_entry: Any) -> Any:
 
 
 def prepare_multipart_form_data(
-    body: Dict[str, Any], multipart_fields: List[str], data_fields: List[str]
+    body: Mapping[str, Any], multipart_fields: List[str], data_fields: List[str]
 ) -> Tuple[List[FileType], Dict[str, Any]]:
     files: List[FileType] = []
     data: Dict[str, Any] = {}
