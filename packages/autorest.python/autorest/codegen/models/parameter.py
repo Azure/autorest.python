@@ -299,7 +299,6 @@ class BodyParameter(_ParameterBase):
             )
             file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
         return file_import
 
     @classmethod
