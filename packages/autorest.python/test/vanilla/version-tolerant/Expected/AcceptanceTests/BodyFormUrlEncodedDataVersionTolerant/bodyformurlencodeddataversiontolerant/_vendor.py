@@ -5,8 +5,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import IO, Mapping, Optional, Sequence, Tuple, Union
-
 
 def raise_if_not_implemented(cls, abstract_methods):
     not_implemented = [f for f in abstract_methods if not callable(getattr(cls, f, None))]
@@ -17,18 +15,3 @@ def raise_if_not_implemented(cls, abstract_methods):
                 cls.__name__, "', '".join(not_implemented)
             )
         )
-
-
-# file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`
-FileContent = Union[str, bytes, IO[str], IO[bytes]]
-
-FileType = Union[
-    # file (or bytes)
-    FileContent,
-    # (filename, file (or bytes))
-    Tuple[Optional[str], FileContent],
-    # (filename, file (or bytes), content_type)
-    Tuple[Optional[str], FileContent, Optional[str]],
-]
-
-FilesType = Union[Mapping[str, FileType], Sequence[Tuple[str, FileType]]]

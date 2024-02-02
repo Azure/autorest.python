@@ -130,7 +130,7 @@ class GeneralSerializer(BaseSerializer):
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
-        if self.code_model.has_form_data:
+        if self.code_model.has_form_data and self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
