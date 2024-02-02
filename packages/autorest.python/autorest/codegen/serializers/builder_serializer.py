@@ -754,6 +754,14 @@ class _OperationSerializer(
         retval: List[str] = []
         body_param = builder.parameters.body_parameter
         if body_param.is_form_data:
+            model_type = cast(
+                ModelType,
+                (
+                    body_param.type.target_model_subtype((JSONModelType, DPGModelType))
+                    if isinstance(body_param.type, CombinedType)
+                    else body_param.type
+                ),
+            )
             retval.extend(
                 [
                     "_body = (",
@@ -761,41 +769,11 @@ class _OperationSerializer(
                     f"    if isinstance({body_param.client_name}, _model_base.Model) else",
                     f"    {body_param.client_name}",
                     ")",
-                    "_files: List[FileType] = []",
-                    "_data: Dict[str, Any] = {}",
+                    f"_file_fields = {[p.wire_name for p in model_type.properties if p.is_multipart_file_input]}",
+                    f"_data_fields = {[p.wire_name for p in model_type.properties if not p.is_multipart_file_input]}",
+                    "_files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)",
                 ]
             )
-            model_type = (
-                body_param.type.target_model_subtype((JSONModelType, DPGModelType))
-                if isinstance(body_param.type, CombinedType)
-                else body_param.type
-            )
-            # we know that body param is a model type because it's a formdata
-            for prop in cast(ModelType, model_type).properties:
-                prop_access = f'_body["{prop.wire_name}"]'
-                retval.append(f'if _body.get("{prop.wire_name}") is not None:')
-                if prop.is_multipart_file_input:
-                    if isinstance(prop.type, ListType):
-                        retval.extend(
-                            [
-                                "     _files.extend([",
-                                f'        ("{prop.wire_name}", {prop.wire_name[0]})',
-                                f"        for {prop.wire_name[0]} in {prop_access}",
-                                "])",
-                            ]
-                        )
-                    else:
-                        # we assume that it's just a single multipart file input
-                        retval.append(
-                            f'    _files.append(("{prop.wire_name}", {prop_access}))'
-                        )
-                else:
-                    serialization = (
-                        f"json.dumps({prop_access}, cls=SdkJSONEncoder, exclude_readonly=True)"
-                        if prop.type.type in ["list", "tuple", "dict", "model"]
-                        else prop_access
-                    )
-                    retval.append(f'    _data["{prop.wire_name}"] = {serialization}')
             return retval
 
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name

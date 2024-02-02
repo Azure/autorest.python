@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import _model_base, models as _models
 from .._model_base import SdkJSONEncoder
 from .._serialization import Serializer
-from .._vendor import FileType
+from .._vendor import prepare_multipart_form_data
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -179,12 +179,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("id") is not None:
-            _data["id"] = _body["id"]
-        if _body.get("profileImage") is not None:
-            _files.append(("profileImage", _body["profileImage"]))
+        _file_fields = ["profileImage"]
+        _data_fields = ["id"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
             files=_files,
@@ -296,20 +293,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("id") is not None:
-            _data["id"] = _body["id"]
-        if _body.get("address") is not None:
-            _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
-        if _body.get("profileImage") is not None:
-            _files.append(("profileImage", _body["profileImage"]))
-        if _body.get("previousAddresses") is not None:
-            _data["previousAddresses"] = json.dumps(
-                _body["previousAddresses"], cls=SdkJSONEncoder, exclude_readonly=True
-            )
-        if _body.get("pictures") is not None:
-            _files.extend([("pictures", p) for p in _body["pictures"]])
+        _file_fields = ["profileImage", "pictures"]
+        _data_fields = ["id", "address", "previousAddresses"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_complex_request(
             files=_files,
@@ -407,12 +393,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("address") is not None:
-            _data["address"] = json.dumps(_body["address"], cls=SdkJSONEncoder, exclude_readonly=True)
-        if _body.get("profileImage") is not None:
-            _files.append(("profileImage", _body["profileImage"]))
+        _file_fields = ["profileImage"]
+        _data_fields = ["address"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_part_request(
             files=_files,
@@ -506,12 +489,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("id") is not None:
-            _data["id"] = _body["id"]
-        if _body.get("pictures") is not None:
-            _files.extend([("pictures", p) for p in _body["pictures"]])
+        _file_fields = ["pictures"]
+        _data_fields = ["id"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_binary_array_parts_request(
             files=_files,
@@ -613,14 +593,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("profileImage") is not None:
-            _files.append(("profileImage", _body["profileImage"]))
-        if _body.get("previousAddresses") is not None:
-            _data["previousAddresses"] = json.dumps(
-                _body["previousAddresses"], cls=SdkJSONEncoder, exclude_readonly=True
-            )
+        _file_fields = ["profileImage"]
+        _data_fields = ["previousAddresses"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_array_parts_request(
             files=_files,
@@ -714,12 +689,9 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
-        _files: List[FileType] = []
-        _data: Dict[str, Any] = {}
-        if _body.get("profileImage") is not None:
-            _files.append(("profileImage", _body["profileImage"]))
-        if _body.get("picture") is not None:
-            _files.append(("picture", _body["picture"]))
+        _file_fields = ["profileImage", "picture"]
+        _data_fields = []
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_multi_binary_parts_request(
             files=_files,

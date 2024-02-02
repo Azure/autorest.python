@@ -294,10 +294,11 @@ class BodyParameter(_ParameterBase):
         file_import = super().imports(async_mode, **kwargs)
         if self.is_form_data:
             relative_path = "..." if async_mode else ".."
-            file_import.add_submodule_import(f"{relative_path}_vendor", "FileType", ImportType.LOCAL)
-            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+            file_import.add_submodule_import(
+                f"{relative_path}_vendor",
+                "prepare_multipart_form_data",
+                ImportType.LOCAL,
+            )
         return file_import
 
     @classmethod

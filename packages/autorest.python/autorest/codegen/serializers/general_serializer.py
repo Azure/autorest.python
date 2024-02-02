@@ -137,6 +137,20 @@ class GeneralSerializer(BaseSerializer):
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Sequence", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+            file_import.add_submodule_import(
+                "._model_base",
+                "SdkJSONEncoder",
+                ImportType.LOCAL,
+            )
+            file_import.add_submodule_import(
+                "._model_base",
+                "Model",
+                ImportType.LOCAL,
+            )
+            file_import.add_import("json", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,
