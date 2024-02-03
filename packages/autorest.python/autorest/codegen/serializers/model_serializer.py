@@ -197,7 +197,6 @@ class MsrestModelSerializer(_ModelSerializer):
 
 
 class DpgModelSerializer(_ModelSerializer):
-
     def super_call(self, model: ModelType):
         return f"super().__init__({self.properties_to_pass_to_super(model)})"
 
@@ -294,7 +293,10 @@ class DpgModelSerializer(_ModelSerializer):
         return [
             p
             for p in model.properties
-            if p.is_base_discriminator or not p.is_discriminator and not p.constant and p.visibility != ["read"]
+            if p.is_base_discriminator
+            or not p.is_discriminator
+            and not p.constant
+            and p.visibility != ["read"]
         ]
 
     @staticmethod
@@ -303,7 +305,12 @@ class DpgModelSerializer(_ModelSerializer):
         for parent in model.parents:
             for prop in model.properties:
                 if (
-                    prop.client_name in [prop.client_name for prop in parent.properties if prop.is_base_discriminator]
+                    prop.client_name
+                    in [
+                        prop.client_name
+                        for prop in parent.properties
+                        if prop.is_base_discriminator
+                    ]
                     and prop.is_discriminator
                     and not prop.constant
                     and not prop.readonly
