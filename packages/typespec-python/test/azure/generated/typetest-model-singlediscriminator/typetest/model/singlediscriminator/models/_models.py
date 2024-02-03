@@ -53,9 +53,8 @@ class Bird(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class Dinosaur(_model_base.Model):
@@ -95,9 +94,8 @@ class Dinosaur(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class Eagle(Bird, discriminator="eagle"):

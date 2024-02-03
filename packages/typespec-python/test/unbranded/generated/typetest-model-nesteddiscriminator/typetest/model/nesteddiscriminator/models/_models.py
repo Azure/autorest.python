@@ -53,9 +53,8 @@ class Fish(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class Shark(Fish, discriminator="shark"):
@@ -97,9 +96,8 @@ class Shark(Fish, discriminator="shark"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="shark", **kwargs)
-        self.sharktype: str = kwargs["sharktype"]
 
 
 class GoblinShark(Shark, discriminator="goblin"):

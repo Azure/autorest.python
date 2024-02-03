@@ -37,10 +37,6 @@ class AbstractModel(_model_base.Model):
     kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
-
 
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.

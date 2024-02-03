@@ -50,9 +50,8 @@ class Snake(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class Cobra(Snake, discriminator="cobra"):
@@ -124,9 +123,8 @@ class Dog(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class Golden(Dog, discriminator="golden"):

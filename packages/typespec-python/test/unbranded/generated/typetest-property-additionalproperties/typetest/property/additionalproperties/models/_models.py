@@ -189,9 +189,8 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
@@ -415,9 +414,8 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: str = kwargs["kind"]
 
 
 class IsUnknownAdditionalPropertiesDiscriminatedDerived(

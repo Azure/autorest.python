@@ -282,7 +282,7 @@ class DpgModelSerializer(_ModelSerializer):
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []
         for prop in self.get_properties_to_declare(model):
-            if prop.constant or prop.is_base_discriminator:
+            if prop.constant and not prop.is_base_discriminator:
                 init_args.append(
                     f"self.{prop.client_name}: {prop.type_annotation()} = "
                     f"{prop.get_declaration()}"

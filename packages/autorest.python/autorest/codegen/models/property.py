@@ -117,8 +117,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return types_type_annotation
 
     def get_declaration(self, value: Any = None) -> Any:
-        if self.is_base_discriminator:
-            return f"kwargs['{self.client_name}']"
         return self.type.get_declaration(value)
 
     def get_json_template_representation(
