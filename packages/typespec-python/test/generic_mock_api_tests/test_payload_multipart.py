@@ -66,6 +66,13 @@ def client():
             {"pictures": [PNG, PNG], "profileImage": JPG},
             {},
         ),
+        (
+            "check_file_name_and_content_type",
+            models.MultiPartRequest,
+            {"id": "123"},
+            {"profileImage": JPG},
+            {"content_type": "image/jpg", "file_name": "hello.jpg"},
+        ),
     ],
 )
 def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, file_info):

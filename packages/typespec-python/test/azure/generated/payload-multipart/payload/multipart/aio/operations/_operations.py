@@ -26,6 +26,7 @@ from ..._vendor import prepare_multipart_form_data
 from ...operations._operations import (
     build_form_data_basic_request,
     build_form_data_binary_array_parts_request,
+    build_form_data_check_file_name_and_content_type_request,
     build_form_data_complex_request,
     build_form_data_json_array_parts_request,
     build_form_data_json_part_request,
@@ -647,6 +648,104 @@ class FormDataOperations:
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_multi_binary_parts_request(
+            files=_files,
+            data=_data,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.MultiPartRequest, **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Required.
+        :type body: ~payload.multipart.models.MultiPartRequest
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": "str",  # Required.
+                    "profileImage": filetype
+                }
+        """
+
+    @overload
+    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Required.
+        :type body: JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Is either a MultiPartRequest type or a JSON type. Required.
+        :type body: ~payload.multipart.models.MultiPartRequest or JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": "str",  # Required.
+                    "profileImage": filetype
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["id"]
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+
+        _request = build_form_data_check_file_name_and_content_type_request(
             files=_files,
             data=_data,
             headers=_headers,
