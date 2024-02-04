@@ -787,10 +787,6 @@ class _RestField:
         self._format = format
         self._is_multipart_file_input = is_multipart_file_input
 
-    def _class_type(self) -> typing.Any:
-        functools_args = getattr(self._type, "args", [None])
-        return getattr(functools_args[0], "args", [None])[0]
-    
     @property
     def _rest_name(self) -> str:
         if self._rest_name_input is None:
