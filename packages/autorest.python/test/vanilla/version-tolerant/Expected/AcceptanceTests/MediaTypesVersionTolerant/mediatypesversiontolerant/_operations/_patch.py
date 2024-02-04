@@ -150,9 +150,6 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
 
         :param message: The payload body. Is one of the following types: any, IO, string Required.
         :type message: any or IO or str
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/octet-stream', 'text/plain'. Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:

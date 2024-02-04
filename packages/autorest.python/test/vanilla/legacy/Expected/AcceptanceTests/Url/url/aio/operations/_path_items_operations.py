@@ -76,7 +76,6 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -145,7 +144,6 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -214,7 +212,6 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain null value. Default value is None.
         :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -282,7 +279,6 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value null. Default value is None.
         :type local_string_query: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

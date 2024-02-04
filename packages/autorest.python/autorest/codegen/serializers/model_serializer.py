@@ -257,7 +257,10 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
-        if hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
+
+        if prop.is_multipart_file_input:
+            args.append("is_multipart_file_input=True")
+        elif hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"

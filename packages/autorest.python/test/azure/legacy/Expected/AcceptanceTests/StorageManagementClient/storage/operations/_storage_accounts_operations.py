@@ -345,7 +345,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -364,7 +363,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -381,10 +379,6 @@ class StorageAccountsOperations:
          lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a
          IO[bytes] type. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -533,14 +527,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
@@ -574,14 +560,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
@@ -611,17 +589,6 @@ class StorageAccountsOperations:
         :param parameters: The parameters to provide for the created account. Is either a
          StorageAccountCreateParameters type or a IO[bytes] type. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns either StorageAccount or the result of
          cls(response)
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
@@ -686,7 +653,6 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -743,7 +709,6 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -822,7 +787,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -859,7 +823,6 @@ class StorageAccountsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Known values are: 'application/json', 'text/json'. Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -892,10 +855,6 @@ class StorageAccountsOperations:
          changed at a time using this API. Is either a StorageAccountUpdateParameters type or a
          IO[bytes] type. Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -964,7 +923,6 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account. Required.
         :type account_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1017,7 +975,6 @@ class StorageAccountsOperations:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccount or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1098,7 +1055,6 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
         :type resource_group_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccount or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~storage.models.StorageAccount]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1191,7 +1147,6 @@ class StorageAccountsOperations:
         :type account_name: str
         :param key_name: Known values are: "key1" and "key2". Default value is None.
         :type key_name: str or ~storage.models.KeyName
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises ~azure.core.exceptions.HttpResponseError:

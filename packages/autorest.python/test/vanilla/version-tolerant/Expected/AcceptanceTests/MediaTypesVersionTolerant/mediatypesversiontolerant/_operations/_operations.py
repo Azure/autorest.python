@@ -202,9 +202,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :param input: Input parameter. Is either a JSON type or a IO[bytes] type. Default value is
          None.
         :type input: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -332,9 +329,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :param input: Input parameter. Is either a JSON type or a IO[bytes] type. Default value is
          None.
         :type input: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

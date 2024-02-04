@@ -85,8 +85,6 @@ def build_operation_with_data_param_request(**kwargs: Any) -> HttpRequest:
     _url = kwargs.pop("template_url", "/reservedWords/operation/data")
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -102,8 +100,6 @@ def build_operation_with_files_param_request(**kwargs: Any) -> HttpRequest:
     _url = kwargs.pop("template_url", "/reservedWords/operation/files")
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -160,7 +156,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         :param content: Pass in b'hello, world'. Required.
         :type content: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -214,7 +209,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         :param json: Pass in {'hello': 'world'}. Required.
         :type json: any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -270,7 +264,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :type data: str
         :param world: Pass in 'world'. Required.
         :type world: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -332,7 +325,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :type files: IO[bytes]
         :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -399,7 +391,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :param query_parameters: Query args that uses same name as queryParameters in generated code.
          Pass in ['one', 'two'] to pass test. Default value is None.
         :type query_parameters: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -452,7 +443,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and
          "import". Required.
         :type enum_parameter: str or ~reservedwords.models.MyEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -79,6 +79,10 @@ class CombinedType(BaseType):
         pattern = re.compile(r"Union\[.*\]")
         return f'Union[{", ".join(map(lambda x: x[6: -1] if pattern.match(x) else x, inside_types))}]'
 
+    @property
+    def is_form_data(self) -> bool:
+        return any(t.is_form_data for t in self.types)
+
     def get_json_template_representation(
         self,
         *,

@@ -45,10 +45,6 @@ def build_update_pet_with_form_request(pet_id: int, **kwargs: Any) -> HttpReques
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
 
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
@@ -58,10 +54,6 @@ def build_partial_constant_body_request(**kwargs: Any) -> HttpRequest:
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = kwargs.pop("template_url", "/formsdataurlencoded/partialConstantBody")
-
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -114,7 +106,6 @@ class FormdataurlencodedOperations:
         :type name: str
         :param status: Updated status of the pet. Default value is None.
         :type status: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -180,10 +171,6 @@ class FormdataurlencodedOperations:
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token. Required.
         :type access_token: str
-        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype grant_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

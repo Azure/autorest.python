@@ -72,8 +72,6 @@ class Int32ValueOperations:
     async def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -175,9 +173,6 @@ class Int32ValueOperations:
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
         :type body: list[int] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -248,8 +243,6 @@ class Int64ValueOperations:
     async def get(self, **kwargs: Any) -> List[int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of int
         :rtype: list[int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -351,9 +344,6 @@ class Int64ValueOperations:
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
         :type body: list[int] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -424,8 +414,6 @@ class BooleanValueOperations:
     async def get(self, **kwargs: Any) -> List[bool]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of bool
         :rtype: list[bool]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -527,9 +515,6 @@ class BooleanValueOperations:
 
         :param body: Is either a [bool] type or a IO[bytes] type. Required.
         :type body: list[bool] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -600,8 +585,6 @@ class StringValueOperations:
     async def get(self, **kwargs: Any) -> List[str]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of str
         :rtype: list[str]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -703,9 +686,6 @@ class StringValueOperations:
 
         :param body: Is either a [str] type or a IO[bytes] type. Required.
         :type body: list[str] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -776,8 +756,6 @@ class Float32ValueOperations:
     async def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -879,9 +857,6 @@ class Float32ValueOperations:
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
         :type body: list[float] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -952,8 +927,6 @@ class DatetimeValueOperations:
     async def get(self, **kwargs: Any) -> List[datetime.datetime]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1055,9 +1028,6 @@ class DatetimeValueOperations:
 
         :param body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type body: list[~datetime.datetime] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1128,8 +1098,6 @@ class DurationValueOperations:
     async def get(self, **kwargs: Any) -> List[datetime.timedelta]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1231,9 +1199,6 @@ class DurationValueOperations:
 
         :param body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
         :type body: list[~datetime.timedelta] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1304,8 +1269,6 @@ class UnknownValueOperations:
     async def get(self, **kwargs: Any) -> List[Any]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of any
         :rtype: list[any]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1407,9 +1370,6 @@ class UnknownValueOperations:
 
         :param body: Is either a [Any] type or a IO[bytes] type. Required.
         :type body: list[any] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1480,8 +1440,6 @@ class ModelValueOperations:
     async def get(self, **kwargs: Any) -> List[_models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1593,9 +1551,6 @@ class ModelValueOperations:
 
         :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
         :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1666,8 +1621,6 @@ class NullableFloatValueOperations:
     async def get(self, **kwargs: Any) -> List[float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of float
         :rtype: list[float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1769,9 +1722,6 @@ class NullableFloatValueOperations:
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
         :type body: list[float] or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

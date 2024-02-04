@@ -95,7 +95,6 @@ class PetOperations:
 
         :param pet_id: Pet id. Required.
         :type pet_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -150,7 +149,6 @@ class PetOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -167,7 +165,6 @@ class PetOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -179,10 +176,6 @@ class PetOperations:
 
         :param pet_param: pet param. Is either a Pet type or a IO[bytes] type. Default value is None.
         :type pet_param: ~extensibleenumsswagger.models.Pet or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:

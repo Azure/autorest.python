@@ -65,7 +65,6 @@ class SkipUrlEncodingOperations:
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -114,7 +113,6 @@ class SkipUrlEncodingOperations:
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -159,11 +157,6 @@ class SkipUrlEncodingOperations:
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
-         Default value is "path1/path2/path3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype unencoded_path_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,7 +206,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -262,7 +254,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value null. Default value is None.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -311,7 +302,6 @@ class SkipUrlEncodingOperations:
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -356,11 +346,6 @@ class SkipUrlEncodingOperations:
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
-         value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
-         unsupported behavior.
-        :paramtype q1: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

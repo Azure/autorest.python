@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, TYPE_CHECKING, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -31,10 +31,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from .. import _types
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -341,14 +337,12 @@ class StringsOnlyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse:
+    def get(self, **kwargs: Any) -> _models.GetResponse9:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse. The GetResponse is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse
+        :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse9
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -371,7 +365,7 @@ class StringsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse9] = kwargs.pop("cls", None)
 
         _request = build_strings_only_get_request(
             headers=_headers,
@@ -395,7 +389,7 @@ class StringsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse, response.json())
+            deserialized = _deserialize(_models.GetResponse9, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -480,9 +474,6 @@ class StringsOnlyOperations:
         :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
          Required.
         :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -564,13 +555,11 @@ class StringExtensibleOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse1:
+    def get(self, **kwargs: Any) -> _models.GetResponse8:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse1
+        :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse8
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -593,7 +582,7 @@ class StringExtensibleOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse1] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse8] = kwargs.pop("cls", None)
 
         _request = build_string_extensible_get_request(
             headers=_headers,
@@ -617,7 +606,7 @@ class StringExtensibleOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse1, response.json())
+            deserialized = _deserialize(_models.GetResponse8, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -694,9 +683,6 @@ class StringExtensibleOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
         :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -778,13 +764,11 @@ class StringExtensibleNamedOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse2:
+    def get(self, **kwargs: Any) -> _models.GetResponse7:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse2
+        :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse7
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -792,8 +776,7 @@ class StringExtensibleNamedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -807,7 +790,7 @@ class StringExtensibleNamedOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse2] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse7] = kwargs.pop("cls", None)
 
         _request = build_string_extensible_named_get_request(
             headers=_headers,
@@ -831,7 +814,7 @@ class StringExtensibleNamedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse2, response.json())
+            deserialized = _deserialize(_models.GetResponse7, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -858,19 +841,22 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: "_types.StringExtensibleNamedUnion", content_type: str = "application/json", **kwargs: Any
+        self,
+        *,
+        prop: Union[str, _models.StringExtensibleNamedUnion],
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -899,18 +885,15 @@ class StringExtensibleNamedOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: "_types.StringExtensibleNamedUnion" = _Unset,
+        prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -920,8 +903,7 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -992,13 +974,11 @@ class IntsOnlyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse3:
+    def get(self, **kwargs: Any) -> _models.GetResponse6:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse3
+        :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse6
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1021,7 +1001,7 @@ class IntsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse3] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse6] = kwargs.pop("cls", None)
 
         _request = build_ints_only_get_request(
             headers=_headers,
@@ -1045,7 +1025,7 @@ class IntsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse3, response.json())
+            deserialized = _deserialize(_models.GetResponse6, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1122,9 +1102,6 @@ class IntsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
         :paramtype prop: int or int or int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1206,13 +1183,11 @@ class FloatsOnlyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse4:
+    def get(self, **kwargs: Any) -> _models.GetResponse5:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse4
+        :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse5
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1235,7 +1210,7 @@ class FloatsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse4] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse5] = kwargs.pop("cls", None)
 
         _request = build_floats_only_get_request(
             headers=_headers,
@@ -1259,7 +1234,7 @@ class FloatsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse4, response.json())
+            deserialized = _deserialize(_models.GetResponse5, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1332,9 +1307,6 @@ class FloatsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is one of the following types: float, float, float Required.
         :paramtype prop: float or float or float
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1416,13 +1388,11 @@ class ModelsOnlyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse5:
+    def get(self, **kwargs: Any) -> _models.GetResponse4:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse5
+        :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse4
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1446,7 +1416,7 @@ class ModelsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse5] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse4] = kwargs.pop("cls", None)
 
         _request = build_models_only_get_request(
             headers=_headers,
@@ -1470,7 +1440,7 @@ class ModelsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse5, response.json())
+            deserialized = _deserialize(_models.GetResponse4, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1544,9 +1514,6 @@ class ModelsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is either a Cat type or a Dog type. Required.
         :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1629,14 +1596,12 @@ class EnumsOnlyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse6:
+    def get(self, **kwargs: Any) -> _models.GetResponse3:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse6
+        :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse3
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1664,7 +1629,7 @@ class EnumsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse6] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse3] = kwargs.pop("cls", None)
 
         _request = build_enums_only_get_request(
             headers=_headers,
@@ -1688,7 +1653,7 @@ class EnumsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse6, response.json())
+            deserialized = _deserialize(_models.GetResponse3, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1768,9 +1733,6 @@ class EnumsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.EnumsOnlyCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1857,14 +1819,12 @@ class StringAndArrayOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse7:
+    def get(self, **kwargs: Any) -> _models.GetResponse2:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse7
+        :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse2
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1891,7 +1851,7 @@ class StringAndArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse7] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse2] = kwargs.pop("cls", None)
 
         _request = build_string_and_array_get_request(
             headers=_headers,
@@ -1915,7 +1875,7 @@ class StringAndArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse7, response.json())
+            deserialized = _deserialize(_models.GetResponse2, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1994,9 +1954,6 @@ class StringAndArrayOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.StringAndArrayCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2082,14 +2039,12 @@ class MixedLiteralsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse8:
+    def get(self, **kwargs: Any) -> _models.GetResponse1:
         # pylint: disable=line-too-long
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse8
+        :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse1
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2124,7 +2079,7 @@ class MixedLiteralsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse8] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse1] = kwargs.pop("cls", None)
 
         _request = build_mixed_literals_get_request(
             headers=_headers,
@@ -2148,7 +2103,7 @@ class MixedLiteralsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse8, response.json())
+            deserialized = _deserialize(_models.GetResponse1, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2235,9 +2190,6 @@ class MixedLiteralsOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedLiteralsCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2331,13 +2283,11 @@ class MixedTypesOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> _models.GetResponse9:
+    def get(self, **kwargs: Any) -> _models.GetResponse:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse9
+        :return: GetResponse. The GetResponse is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2372,7 +2322,7 @@ class MixedTypesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse9] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse] = kwargs.pop("cls", None)
 
         _request = build_mixed_types_get_request(
             headers=_headers,
@@ -2396,7 +2346,7 @@ class MixedTypesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse9, response.json())
+            deserialized = _deserialize(_models.GetResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2481,9 +2431,6 @@ class MixedTypesOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedTypesCases
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

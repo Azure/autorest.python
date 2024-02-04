@@ -399,7 +399,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_int(self, **kwargs: Any) -> _models.IntWrapper:
         """Get complex types with integer properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -454,7 +453,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -471,7 +469,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -486,10 +483,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO[bytes] type.
          Required.
         :type complex_body: ~bodycomplex.models.IntWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -545,7 +538,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_long(self, **kwargs: Any) -> _models.LongWrapper:
         """Get complex types with long properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -600,7 +592,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -617,7 +608,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -632,10 +622,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
          or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.LongWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -691,7 +677,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
         """Get complex types with float properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -746,7 +731,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -763,7 +747,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -778,10 +761,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO[bytes]
          type. Required.
         :type complex_body: ~bodycomplex.models.FloatWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -837,7 +816,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
         """Get complex types with double properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -893,7 +871,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -911,7 +888,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -927,10 +903,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DoubleWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -986,7 +958,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
         """Get complex types with bool properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1041,7 +1012,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1058,7 +1028,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1073,10 +1042,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO[bytes]
          type. Required.
         :type complex_body: ~bodycomplex.models.BooleanWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1132,7 +1097,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_string(self, **kwargs: Any) -> _models.StringWrapper:
         """Get complex types with string properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1187,7 +1151,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1204,7 +1167,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1219,10 +1181,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.StringWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1278,7 +1236,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_date(self, **kwargs: Any) -> _models.DateWrapper:
         """Get complex types with date properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1333,7 +1290,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1350,7 +1306,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1365,10 +1320,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
          a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DateWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1424,7 +1375,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
         """Get complex types with datetime properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1480,7 +1430,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1498,7 +1447,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1513,10 +1461,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
          either a DatetimeWrapper type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1572,7 +1516,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
         """Get complex types with datetimeRfc1123 properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1628,7 +1571,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1646,7 +1588,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1661,10 +1602,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Is either a Datetimerfc1123Wrapper type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1720,7 +1657,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
         """Get complex types with duration properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1772,7 +1708,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param field: Default value is None.
         :type field: ~datetime.timedelta
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1822,7 +1757,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
         """Get complex types with byte properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1874,7 +1808,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param field: Default value is None.
         :type field: bytes
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

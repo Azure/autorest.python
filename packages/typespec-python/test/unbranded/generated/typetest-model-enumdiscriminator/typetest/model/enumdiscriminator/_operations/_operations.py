@@ -168,8 +168,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_extensible_model(self, **kwargs: Any) -> _models.Dog:
         """Receive model with extensible enum discriminator type.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -300,9 +298,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
         :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -370,8 +365,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_extensible_model_missing_discriminator(self, **kwargs: Any) -> _models.Dog:  # pylint: disable=name-too-long
         """Get a model omitting the discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -435,8 +428,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_extensible_model_wrong_discriminator(self, **kwargs: Any) -> _models.Dog:
         """Get a model containing discriminator value never defined.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -500,8 +491,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_fixed_model(self, **kwargs: Any) -> _models.Snake:
         """Receive model with fixed enum discriminator type.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -632,9 +621,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.
         :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -702,8 +688,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_fixed_model_missing_discriminator(self, **kwargs: Any) -> _models.Snake:
         """Get a model omitting the discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -767,8 +751,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
     def get_fixed_model_wrong_discriminator(self, **kwargs: Any) -> _models.Snake:
         """Get a model containing discriminator value never defined.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:

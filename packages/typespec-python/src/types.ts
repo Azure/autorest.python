@@ -206,6 +206,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
         flatten: shouldFlattenProperty(context, type.__raw!),
+        isMultipartFileInput: type.isMultipartFileInput,
     };
 }
 
