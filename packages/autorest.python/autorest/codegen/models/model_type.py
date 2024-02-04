@@ -91,7 +91,7 @@ class ModelType(  # pylint: disable=abstract-method
             if p.is_flatten and isinstance(p.type, ModelType):
                 items.extend([item.client_name for item in p.type.properties])
         return items
-    
+
     @property
     def is_form_data(self) -> bool:
         return any(p.is_multipart_file_input for p in self.properties)

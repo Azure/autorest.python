@@ -183,8 +183,6 @@ class NestedFlattenModel(_model_base.Model):
     properties: "_models.ChildFlattenModel" = rest_field()
     """Required."""
 
-    _flatten_items = ["summary", "properties"]
-
     @overload
     def __init__(
         self,
@@ -202,23 +200,4 @@ class NestedFlattenModel(_model_base.Model):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        flatten_map = {k: kwargs.pop(k, None) for k in self._flatten_items}
         super().__init__(*args, **kwargs)
-        for k, v in flatten_map.items():
-            if v is not None:
-                setattr(self, k, v)
-
-    def __getattr__(self, name: str) -> Any:
-        if name in self._flatten_items:
-            if self.properties:
-                return getattr(self.properties, name)
-            return None
-        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
-
-    def __setattr__(self, key: str, value: Any) -> None:
-        if key in self._flatten_items:
-            if self.properties is None:
-                self.properties = self._attr_to_rest_field["properties"]._class_type()
-            setattr(self.properties, key, value)
-        else:
-            super().__setattr__(key, value)

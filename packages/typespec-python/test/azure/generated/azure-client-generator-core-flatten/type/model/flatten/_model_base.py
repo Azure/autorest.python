@@ -789,8 +789,7 @@ class _RestField:
 
     @property
     def _class_type(self) -> typing.Any:
-        functools_args = getattr(self._type, "args", [None])
-        return getattr(functools_args[0], "args", [None])[0]
+        return getattr(self._type, "args", [None])[0]
 
     @property
     def _rest_name(self) -> str:

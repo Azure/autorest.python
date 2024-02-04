@@ -37,9 +37,15 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
-        self.is_flatten: bool = yaml_data.get("flatten", False)
         self.is_multipart_file_input: bool = yaml_data.get(
             "isMultipartFileInput", False
+        )
+
+    @property
+    def is_flatten(self) -> bool:
+        # python doesn't support nested flatten model
+        return self.yaml_data.get("flatten", False) and not getattr(
+            self.type, "has_flatten_property", False
         )
 
     @property
