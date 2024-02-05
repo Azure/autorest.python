@@ -11,7 +11,6 @@ from .model_type import ModelType
 from .combined_type import CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
-from .constant_type import ConstantType
 
 
 def _is_legacy(options) -> bool:
