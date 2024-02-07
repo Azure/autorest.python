@@ -96,6 +96,9 @@ setup(
         {% else %}
         "azure-core<2.0.0,>=1.30.0",
         {% endif %}
+        {% if code_model.need_typing_extensions %}
+        "typing-extensions>=4.6.0",
+        {% endif %}
     ],
     {% if package_mode %}
     python_requires=">=3.8",

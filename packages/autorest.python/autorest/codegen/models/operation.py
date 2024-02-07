@@ -14,6 +14,7 @@ from typing import (
     Generic,
     TypeVar,
     cast,
+    Sequence,
 )
 
 from .request_builder_parameter import RequestBuilderParameter
@@ -54,7 +55,7 @@ def is_internal(target: Optional[BaseType]) -> bool:
 
 
 class OperationBase(  # pylint: disable=too-many-public-methods
-    Generic[ResponseType], BaseBuilder[ParameterList]
+    Generic[ResponseType], BaseBuilder[ParameterList, List["Operation"]]
 ):
     def __init__(
         self,
@@ -490,7 +491,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             ) from exc
 
     @property
-    def success_status_codes(self) -> List[Union[str, int]]:
+    def success_status_codes(self) -> Sequence[Union[str, int]]:
         """The list of all successfull status code."""
         return sorted(
             [code for response in self.responses for code in response.status_codes]
