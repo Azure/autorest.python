@@ -18,8 +18,8 @@
 
 **New Features**
 
-- Add support for `next-pyright` in the `azure-sdk-for-python` repo #2351
-- Improve polymorphic kind detection in returned polymorphic models #2351
+- Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
+- Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
 
 ## 2023-02-01 - 0.19.0
 
