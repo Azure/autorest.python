@@ -1582,8 +1582,8 @@ class Operations:
                           Schedule Collections".
                     },
                     "isDataAction": bool,  # Optional. Whether the operation applies to
-                      data-plane. This is "true" for data-plane operations and "false" for
-                      ARM/control-plane operations.
+                      data-plane. This is "true" for data-plane operations and "false" for Azure
+                      Resource Manager/control-plane operations.
                     "name": "str",  # Optional. The name of the operation, as per Resource-Based
                       Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write",
                       "Microsoft.Compute/virtualMachines/capture/action".
