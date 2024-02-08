@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class ArmOperationStatus(_model_base.Model):
-    """Standard ARM operation status response.
+    """Standard Azure Resource Manager operation status response.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
@@ -77,7 +77,7 @@ class ArmResourceBase(_model_base.Model):
 
 
 class ArmResource(ArmResourceBase):
-    """Common properties for all ARM resources.
+    """Common properties for all Azure Resource Manager resources.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
@@ -1261,7 +1261,7 @@ class Operation(_model_base.Model):
      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
     :vartype name: str
     :ivar is_data_action: Whether the operation applies to data-plane. This is "true" for
-     data-plane operations and "false" for ARM/control-plane operations.
+     data-plane operations and "false" for Azure Resource Manager/control-plane operations.
     :vartype is_data_action: bool
     :ivar display: Localized display information for this particular operation.
     :vartype display: ~azure.mgmt.spheredpg.models.OperationDisplay
@@ -1280,7 +1280,7 @@ class Operation(_model_base.Model):
      \"Microsoft.Compute/virtualMachines/capture/action\"."""
     is_data_action: Optional[bool] = rest_field(name="isDataAction", visibility=["read"])
     """Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
-     \"false\" for ARM/control-plane operations."""
+     \"false\" for Azure Resource Manager/control-plane operations."""
     display: Optional["_models.OperationDisplay"] = rest_field()
     """Localized display information for this particular operation."""
     origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
