@@ -240,6 +240,10 @@ def update_primitive(  # pylint: disable=too-many-return-statements
         base = _update_type_base("bytes", yaml_data)
         base["encode"] = yaml_data["format"]
         return base
+    if type_group == "date":
+        return _update_type_base("plainDate", yaml_data)
+    if type_group == "time":
+        return _update_type_base("plainTime", yaml_data)
     return _update_type_base(type_group, yaml_data)
 
 
