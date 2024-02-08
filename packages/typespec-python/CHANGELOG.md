@@ -1,5 +1,30 @@
 # Release
 
+## 2023-02-08 - 0.20.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.39.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
+- Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
+
+**Other Changes**
+
+- Update `typespec` dependencies to `0.53.0` and `typespec-azure` depedencies to `0.39.0` #2397
+
 ## 2023-02-01 - 0.19.0
 
 | Library                                                                 | Min Version   |

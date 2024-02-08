@@ -64,32 +64,7 @@
     {% set initialize_properties = serializer.initialize_properties(model) %}
     {% if not model.internal and serializer.init_line(model) or initialize_properties %}
     def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
-        {% if code_model.options["models_mode"] == "dpg" and model.has_flatten_property %}
-        {% set flatten_property_name = model.flatten_property.client_name %}
-        {% set flatten_property_wire_name = model.flatten_property.wire_name %}
-        flatten_map = {k: kwargs.pop(k, None) for k in self._flatten_items}
-        super().__init__(*args, **kwargs)
-        for k, v in flatten_map.items():
-            if v is not None:
-                setattr(self, k, v)
-
-    def __getattr__(self, name: str) -> Any:
-        if name in self._flatten_items:
-            if self.{{ flatten_property_name }}:
-                return getattr(self.{{ flatten_property_name }}, name)
-            return None
-        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
-
-    def __setattr__(self, key: str, value: Any) -> None:
-        if key in self._flatten_items:
-            if self.{{ flatten_property_name }} is None:
-                self.{{ flatten_property_name }} = self._attr_to_rest_field["{{ flatten_property_wire_name }}"]._class_type()
-            setattr(self.{{ flatten_property_name }}, key, value)
-        else:
-            super().__setattr__(key, value)
-        {% else %}
-        super().__init__(*args, **kwargs)
-        {% endif %}
+        {{ serializer.super_call(model) }}
     {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
     {% endfor %}

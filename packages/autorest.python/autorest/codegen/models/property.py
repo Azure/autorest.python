@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, TYPE_CHECKING, List
+from typing import Any, Dict, Optional, TYPE_CHECKING, List, cast
 
 from .base import BaseModel
 from .constant_type import ConstantType
@@ -103,6 +103,17 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def is_enum_discriminator(self) -> bool:
         return self.is_discriminator and self.type.type == "enum"
 
+    @property
+    def is_base_discriminator(self) -> bool:
+        """If this discriminator is on the base model for polymorphic inheritance"""
+        if self.is_enum_discriminator:
+            return self.is_polymorphic and self.client_default_value is None
+        return (
+            self.is_discriminator
+            and self.is_polymorphic
+            and cast(ConstantType, self.type).value is None
+        )
+
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         types_type_annotation = self.type.type_annotation(
             is_operation_file=is_operation_file
@@ -110,17 +121,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.is_multipart_file_input:
             # we only support FileType or list of FileType
             types_type_annotation = types_type_annotation.replace("bytes", "FileType")
-        if self.is_enum_discriminator:
-            # here we are the enum discriminator property on the base model
-            return "Literal[None]"
+        if self.is_base_discriminator:
+            return "str"
         if self.optional and self.client_default_value is None:
             return f"Optional[{types_type_annotation}]"
         return types_type_annotation
 
     def get_declaration(self, value: Any = None) -> Any:
-        if self.is_enum_discriminator:
-            # here we are the enum discriminator property on the base model
-            return None
         return self.type.get_declaration(value)
 
     def get_json_template_representation(

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 class ArmOperationStatus(_serialization.Model):
-    """Standard ARM operation status response.
+    """Standard Azure Resource Manager operation status response.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -92,7 +92,7 @@ class ArmResourceBase(_serialization.Model):
 
 
 class ArmResource(ArmResourceBase):
-    """Common properties for all ARM resources.
+    """Common properties for all Azure Resource Manager resources.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -1674,7 +1674,7 @@ class Operation(_serialization.Model):
      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
     :vartype name: str
     :ivar is_data_action: Whether the operation applies to data-plane. This is "true" for
-     data-plane operations and "false" for ARM/control-plane operations.
+     data-plane operations and "false" for Azure Resource Manager/control-plane operations.
     :vartype is_data_action: bool
     :ivar display: Localized display information for this particular operation.
     :vartype display: ~azure.mgmt.spheremsrest.models.OperationDisplay
@@ -1711,7 +1711,7 @@ class Operation(_serialization.Model):
          "Microsoft.Compute/virtualMachines/capture/action".
         :paramtype name: str
         :keyword is_data_action: Whether the operation applies to data-plane. This is "true" for
-         data-plane operations and "false" for ARM/control-plane operations.
+         data-plane operations and "false" for Azure Resource Manager/control-plane operations.
         :paramtype is_data_action: bool
         :keyword display: Localized display information for this particular operation.
         :paramtype display: ~azure.mgmt.spheremsrest.models.OperationDisplay
