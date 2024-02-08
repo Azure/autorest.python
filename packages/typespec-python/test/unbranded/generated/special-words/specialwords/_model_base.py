@@ -15,12 +15,12 @@ import base64
 import re
 import copy
 import typing
+import enum
 import email.utils
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 from typing_extensions import Self
 import isodate
-from enum import Enum
 from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
@@ -444,7 +444,7 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
         return _serialize_bytes(o, format)
     if isinstance(o, decimal.Decimal):
         return float(o)
-    if isinstance(o, Enum):
+    if isinstance(o, enum.Enum):
         return o.value
     try:
         # First try datetime.datetime
