@@ -33,7 +33,7 @@ ParameterListType = TypeVar(
 )
 
 
-class RequestBuilderBase(BaseBuilder[ParameterListType]):
+class RequestBuilderBase(BaseBuilder[ParameterListType, List["RequestBuilder"]]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],

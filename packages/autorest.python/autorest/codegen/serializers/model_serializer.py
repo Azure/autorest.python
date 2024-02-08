@@ -197,6 +197,9 @@ class MsrestModelSerializer(_ModelSerializer):
 
 
 class DpgModelSerializer(_ModelSerializer):
+    def super_call(self, model: ModelType):
+        return f"super().__init__({self.properties_to_pass_to_super(model)})"
+
     def imports(self) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
@@ -238,6 +241,7 @@ class DpgModelSerializer(_ModelSerializer):
                 if not any(
                     p.client_name == pp.client_name
                     and p.type_annotation() == pp.type_annotation()
+                    and not p.is_base_discriminator
                     for pp in parent_properties
                 )
             ]
@@ -257,7 +261,10 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
-        if hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
+
+        if prop.is_multipart_file_input:
+            args.append("is_multipart_file_input=True")
+        elif hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
@@ -274,7 +281,7 @@ class DpgModelSerializer(_ModelSerializer):
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []
         for prop in self.get_properties_to_declare(model):
-            if prop.constant or prop.is_discriminator:
+            if prop.constant and not prop.is_base_discriminator:
                 init_args.append(
                     f"self.{prop.client_name}: {prop.type_annotation()} = "
                     f"{prop.get_declaration()}"
@@ -286,5 +293,30 @@ class DpgModelSerializer(_ModelSerializer):
         return [
             p
             for p in model.properties
-            if not p.is_discriminator and not p.constant and p.visibility != ["read"]
+            if p.is_base_discriminator
+            or not p.is_discriminator
+            and not p.constant
+            and p.visibility != ["read"]
         ]
+
+    @staticmethod
+    def properties_to_pass_to_super(model: ModelType) -> str:
+        properties_to_pass_to_super = ["*args"]
+        for parent in model.parents:
+            for prop in model.properties:
+                if (
+                    prop.client_name
+                    in [
+                        prop.client_name
+                        for prop in parent.properties
+                        if prop.is_base_discriminator
+                    ]
+                    and prop.is_discriminator
+                    and not prop.constant
+                    and not prop.readonly
+                ):
+                    properties_to_pass_to_super.append(
+                        f"{prop.client_name}={prop.get_declaration()}"
+                    )
+        properties_to_pass_to_super.append("**kwargs")
+        return ", ".join(properties_to_pass_to_super)

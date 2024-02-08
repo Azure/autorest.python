@@ -4,7 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import List, Dict, Any, Generic, TypeVar, Optional, Union, TYPE_CHECKING
+from typing import (
+    List,
+    Dict,
+    Any,
+    Generic,
+    TypeVar,
+    Optional,
+    Union,
+    TYPE_CHECKING,
+    cast,
+)
 from abc import abstractmethod
 
 from .base import BaseModel
@@ -28,11 +38,16 @@ if TYPE_CHECKING:
     from .operation import Operation
     from .request_builder import RequestBuilder
 
+
+OverloadListType = TypeVar(
+    "OverloadListType", bound=Union[List["Operation"], List["RequestBuilder"]]
+)
+
 _LOGGER = logging.getLogger(__name__)
 
 
 class BaseBuilder(
-    Generic[ParameterListType], BaseModel
+    Generic[ParameterListType, OverloadListType], BaseModel
 ):  # pylint: disable=too-many-instance-attributes
     """Base class for Operations and Request Builders"""
 
@@ -44,16 +59,14 @@ class BaseBuilder(
         name: str,
         parameters: ParameterListType,
         *,
-        overloads=None,
+        overloads: Optional[OverloadListType] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.client = client
         self.name = name
         self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
-        self.overloads: Union[List["Operation"], List["RequestBuilder"]] = (
-            overloads or []
-        )
+        self.overloads = overloads or cast(OverloadListType, [])
         self._summary: str = yaml_data.get("summary", "")
         self.want_tracing: bool = yaml_data.get("wantTracing", True)
         self.group_name: str = yaml_data[

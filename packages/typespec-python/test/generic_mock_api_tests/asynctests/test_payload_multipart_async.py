@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import uuid
 from typing import Dict, Any
 from pathlib import Path
 import pytest
@@ -22,50 +23,81 @@ async def client():
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "op_name,model_class,data,file",
+    "op_name,model_class,data,file,file_info",
     [
-        ("basic", models.MultiPartRequest, {"id": "123"}, {"profileImage": JPG}),
+        ("basic", models.MultiPartRequest, {"id": "123"}, {"profileImage": JPG}, {}),
         (
             "multi_binary_parts",
             models.MultiBinaryPartsRequest,
             {},
             {"profileImage": JPG, "picture": PNG},
+            {}
         ),
         (
             "multi_binary_parts",
             models.MultiBinaryPartsRequest,
             {},
             {"profileImage": JPG},
+            {}
         ),
         (
             "json_part",
             models.JsonPartRequest,
             {"address": models.Address(city="X")},
             {"profileImage": JPG},
+            {},
         ),
         (
             "json_array_parts",
             models.JsonArrayPartsRequest,
             {"previousAddresses": [models.Address(city="Y"), models.Address(city="Z")]},
             {"profileImage": JPG},
+            {},
+        ),
+        (
+            "binary_array_parts",
+            models.BinaryArrayPartsRequest,
+            {"id": "123"},
+            {"pictures": [PNG, PNG]},
+            {},
+        ),
+        (
+            "complex",
+            models.ComplexPartsRequest,
+            {"id": "123", "previousAddresses": [models.Address(city="Y"), models.Address(city="Z")], "address": models.Address(city="X")},
+            {"pictures": [PNG, PNG], "profileImage": JPG},
+            {},
+        ),
+        (
+            "check_file_name_and_content_type",
+            models.MultiPartRequest,
+            {"id": "123"},
+            {"profileImage": JPG},
+            {"content_type": "image/jpg", "file_name": "hello.jpg"},
         ),
     ],
 )
-async def test_multi_part(client: MultiPartClient, op_name, model_class, data, file):
+async def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, file_info):
+    def add_info(file_path, is_bytes):
+        file_content = open(str(file_path), "rb").read() if is_bytes else open(str(file_path), "rb")
+        name = str(uuid.uuid4()) if file_info.get("file_name") is None else file_info.get("file_name")
+        content_type = "application/octet-stream" if file_info.get("content_type") is None else file_info.get("content_type")
+        return (name, file_content, content_type)
+    def convert(is_bytes=False):
+        files_part = {k: ([add_info(vi, is_bytes) for vi in v] if isinstance(v, list) else add_info(v, is_bytes)) for k, v in file.items()}
+        files_part.update(data)
+        return files_part
     op = getattr(client.form_data, op_name)
-    # test bytes
-    body = {k: open(str(v), "rb").read() for k, v in file.items()}
-    body.update(data)
-    await op(body)
-    await op(model_class(body))
-
-    # test io
-    body = {k: open(str(v), "rb") for k, v in file.items()}
-    body.update(data)
+    # test bytes (raw dict)
+    body = convert(True)
     await op(body)
 
-    body = {k: open(str(v), "rb") for k, v in file.items()}
-    body.update(data)
+    # test io (raw dict)
+    body = convert()
+    await op(body)
+
+    # test io (model)
+    body = convert()
     with pytest.raises(TypeError):
         # caused by deepcopy when DPG model init
         await op(model_class(body))

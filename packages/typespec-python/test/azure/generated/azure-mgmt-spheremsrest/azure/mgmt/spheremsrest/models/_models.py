@@ -17,8 +17,82 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmResource(_serialization.Model):
-    """Common properties for all ARM resources.
+class ArmOperationStatus(_serialization.Model):
+    """Standard Azure Resource Manager operation status response.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar status: The operation status. Required. Known values are: "Succeeded", "Failed", and
+     "Canceled".
+    :vartype status: str or ~azure.mgmt.spheremsrest.models.ResourceProvisioningState
+    :ivar name: The name of the  operationStatus resource.
+    :vartype name: str
+    :ivar start_time: Operation start time.
+    :vartype start_time: ~datetime.datetime
+    :ivar end_time: Operation complete time.
+    :vartype end_time: ~datetime.datetime
+    :ivar percent_complete: The progress made toward completing the operation.
+    :vartype percent_complete: float
+    :ivar error: Errors that occurred if the operation ended with Canceled or Failed status.
+    :vartype error: ~azure.mgmt.spheremsrest.models.ErrorDetail
+    """
+
+    _validation = {
+        "status": {"required": True},
+    }
+
+    _attribute_map = {
+        "status": {"key": "status", "type": "str"},
+        "name": {"key": "name", "type": "str"},
+        "start_time": {"key": "startTime", "type": "iso-8601"},
+        "end_time": {"key": "endTime", "type": "iso-8601"},
+        "percent_complete": {"key": "percentComplete", "type": "float"},
+        "error": {"key": "error", "type": "ErrorDetail"},
+    }
+
+    def __init__(
+        self,
+        *,
+        status: Union[str, "_models.ResourceProvisioningState"],
+        name: Optional[str] = None,
+        start_time: Optional[datetime.datetime] = None,
+        end_time: Optional[datetime.datetime] = None,
+        percent_complete: Optional[float] = None,
+        error: Optional["_models.ErrorDetail"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword status: The operation status. Required. Known values are: "Succeeded", "Failed", and
+         "Canceled".
+        :paramtype status: str or ~azure.mgmt.spheremsrest.models.ResourceProvisioningState
+        :keyword name: The name of the  operationStatus resource.
+        :paramtype name: str
+        :keyword start_time: Operation start time.
+        :paramtype start_time: ~datetime.datetime
+        :keyword end_time: Operation complete time.
+        :paramtype end_time: ~datetime.datetime
+        :keyword percent_complete: The progress made toward completing the operation.
+        :paramtype percent_complete: float
+        :keyword error: Errors that occurred if the operation ended with Canceled or Failed status.
+        :paramtype error: ~azure.mgmt.spheremsrest.models.ErrorDetail
+        """
+        super().__init__(**kwargs)
+        self.status = status
+        self.name = name
+        self.start_time = start_time
+        self.end_time = end_time
+        self.percent_complete = percent_complete
+        self.error = error
+
+
+class ArmResourceBase(_serialization.Model):
+    """Base class used for type definitions."""
+
+
+class ArmResource(ArmResourceBase):
+    """Common properties for all Azure Resource Manager resources.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -1600,7 +1674,7 @@ class Operation(_serialization.Model):
      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
     :vartype name: str
     :ivar is_data_action: Whether the operation applies to data-plane. This is "true" for
-     data-plane operations and "false" for ARM/control-plane operations.
+     data-plane operations and "false" for Azure Resource Manager/control-plane operations.
     :vartype is_data_action: bool
     :ivar display: Localized display information for this particular operation.
     :vartype display: ~azure.mgmt.spheremsrest.models.OperationDisplay
@@ -1637,7 +1711,7 @@ class Operation(_serialization.Model):
          "Microsoft.Compute/virtualMachines/capture/action".
         :paramtype name: str
         :keyword is_data_action: Whether the operation applies to data-plane. This is "true" for
-         data-plane operations and "false" for ARM/control-plane operations.
+         data-plane operations and "false" for Azure Resource Manager/control-plane operations.
         :paramtype is_data_action: bool
         :keyword display: Localized display information for this particular operation.
         :paramtype display: ~azure.mgmt.spheremsrest.models.OperationDisplay
