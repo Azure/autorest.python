@@ -3967,4 +3967,4 @@ def test_enum_deserealization():
 
     model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
     assert model.enum_property == MyEnum.A
-    assert model["enumProperty"] == MyEnum.A
+    assert model["enumProperty"] == "a"

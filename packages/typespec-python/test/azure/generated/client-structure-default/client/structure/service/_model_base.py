@@ -20,6 +20,7 @@ from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 from typing_extensions import Self
 import isodate
+from enum import Enum
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
@@ -443,6 +444,8 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
         return _serialize_bytes(o, format)
     if isinstance(o, decimal.Decimal):
         return float(o)
+    if isinstance(o, Enum):
+        return o.value
     try:
         # First try datetime.datetime
         return _serialize_datetime(o, format)
