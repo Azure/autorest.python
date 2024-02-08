@@ -651,8 +651,10 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         pass
 
     if getattr(annotation, "__origin__", None) is typing.Union:
+        # initial ordering is we make `string` the last deserialization option, because it is often them most generic
         deserializers = [
-            _get_deserialize_callable_from_annotation(arg, module, rf) for arg in annotation.__args__  # pyright: ignore
+            _get_deserialize_callable_from_annotation(arg, module, rf)
+            for arg in sorted(annotation.__args__, key=lambda x: x.__name__ == "str")
         ]
 
         def _deserialize_with_union(deserializers, obj):
