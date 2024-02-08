@@ -21,6 +21,10 @@
 - Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
 - Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
 
+**Bug Fixes**
+
+- Fix serialization and deserialization of enum types in models #2399
+
 **Other Changes**
 
 - Update `typespec` dependencies to `0.53.0` and `typespec-azure` depedencies to `0.39.0` #2397
