@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import json
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,7 +35,19 @@ _SERIALIZER.client_side_validation = False
 def build_string_body_send_as_text_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: str = kwargs.pop("content_type")
+    content_type: Literal[
+        "application/octet-stream",
+        "application/pdf",
+        "image/jpeg",
+        "image/png",
+        "image/tiff",
+        "image/bmp",
+        "image/heif",
+        "text/html",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    ] = kwargs.pop("content_type")
     # Construct URL
     _url = "/payload/media-type/string-body/sendAsText"
 
@@ -121,10 +133,22 @@ class StringBodyOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "text/plain"))
+        content_type: Literal[
+            "application/octet-stream",
+            "application/pdf",
+            "image/jpeg",
+            "image/png",
+            "image/tiff",
+            "image/bmp",
+            "image/heif",
+            "text/html",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        ] = kwargs.pop("content_type")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = text

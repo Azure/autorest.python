@@ -635,14 +635,14 @@ class UnionFloatLiteralProperty(_model_base.Model):
     :vartype property: float or float
     """
 
-    property: Union[float, float] = rest_field()
+    property: float = rest_field()
     """Property. Required. Is either a float type or a float type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[float, float],  # pylint: disable=redefined-builtin
+        property: float,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -666,14 +666,14 @@ class UnionIntLiteralProperty(_model_base.Model):
     :vartype property: int or int
     """
 
-    property: Union[Literal[42], Literal[43]] = rest_field()
+    property: Literal[42, 43] = rest_field()
     """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[Literal[42], Literal[43]],  # pylint: disable=redefined-builtin
+        property: Literal[42, 43],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -698,14 +698,14 @@ class UnionStringLiteralProperty(_model_base.Model):
     :vartype property: str or str
     """
 
-    property: Union[Literal["hello"], Literal["world"]] = rest_field()
+    property: Literal["hello", "world"] = rest_field()
     """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[Literal["hello"], Literal["world"]],  # pylint: disable=redefined-builtin
+        property: Literal["hello", "world"],  # pylint: disable=redefined-builtin
     ):
         ...
 

@@ -74,15 +74,18 @@ class CombinedType(BaseType):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        inside_types = [type.type_annotation(**kwargs) for type in self.types]
+        # remove duplicates
+        inside_types = list(dict.fromkeys([type.type_annotation(**kwargs) for type in self.types]))
+        if len(inside_types) == 1:
+            return inside_types[0]
         if self._is_union_of_literals:
             parsed_values = []
             for entry in inside_types:
-                match = re.search(r'Literal\["(.*)"\]', entry)
+                match = re.search(r'Literal\[(.*)\]', entry)
                 if match is not None:
                     parsed_values.append(match.group(1))
-            join_string = '", "'.join(parsed_values)
-            return f'Literal["{join_string}"]'
+            join_string = ', '.join(parsed_values)
+            return f'Literal[{join_string}]'
 
         # If the inside types has been a Union, peel first and then re-union
         pattern = re.compile(r"Union\[.*\]")

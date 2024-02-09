@@ -426,11 +426,7 @@ class StringsOnlyOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]],
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
@@ -463,11 +459,7 @@ class StringsOnlyOperations:
 
     @distributed_trace
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal["a", "b", "c"] = _Unset, **kwargs: Any
     ) -> None:
         # pylint: disable=line-too-long
         """send.
@@ -1067,7 +1059,7 @@ class IntsOnlyOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[Literal[1], Literal[2], Literal[3]], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
@@ -1099,11 +1091,7 @@ class IntsOnlyOperations:
 
     @distributed_trace
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[Literal[1], Literal[2], Literal[3]] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal[1, 2, 3] = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
@@ -1278,7 +1266,7 @@ class FloatsOnlyOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[float, float, float], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: float, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
@@ -1310,7 +1298,7 @@ class FloatsOnlyOperations:
 
     @distributed_trace
     def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Union[float, float, float] = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: float = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
