@@ -74,12 +74,10 @@
         {% set flattened_property_attr = model.flattened_property.client_name %}
 
     def __getattr__(self, name: str) -> Any:
-        if name in self.__flattened_items and self.{{ flattened_property_attr }} is None:
-            return None
-        try:
+        if name in self.__flattened_items:
+            if self.{{ flattened_property_attr }} is None: return None
             return getattr(self.{{ flattened_property_attr }}, name)
-        except AttributeError:
-            return super().__getattr__(name)  # pylint: disable=no-member
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
     def __setattr__(self, key: str, value: Any) -> None:
         if key in self.__flattened_items:
