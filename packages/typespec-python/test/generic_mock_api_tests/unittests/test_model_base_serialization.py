@@ -10,6 +10,7 @@ from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, T
 import pytest
 import isodate
 import sys
+from enum import Enum
 
 from specialwords._model_base import SdkJSONEncoder, Model, rest_field, _is_model, rest_discriminator, _deserialize
 
@@ -3955,3 +3956,15 @@ def test_deserialize():
     expected = {"name": "name", "role": "role"}
     result = _deserialize(JSON, expected)
     assert result == expected
+
+def test_enum_deserealization():
+    class MyEnum(Enum):
+        A = "a"
+        B = "b"
+
+    class ModelWithEnumProperty(Model):
+        enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
+
+    model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
+    assert model.enum_property == MyEnum.A
+    assert model["enumProperty"] == "a"
