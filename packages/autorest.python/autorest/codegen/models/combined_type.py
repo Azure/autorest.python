@@ -29,6 +29,7 @@ class CombinedType(BaseType):
         super().__init__(yaml_data, code_model)
         self.types = types  # the types that this type is combining
         self.name = yaml_data.get("name")
+        self._is_union_of_literals = all(i.type == "constant" for i in self.types)
 
     @property
     def serialization_type(self) -> str:
@@ -74,6 +75,14 @@ class CombinedType(BaseType):
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         inside_types = [type.type_annotation(**kwargs) for type in self.types]
+        if self._is_union_of_literals:
+            parsed_values = []
+            for entry in inside_types:
+                match = re.search(r'Literal\["(.*)"\]', entry)
+                if match is not None:
+                    parsed_values.append(match.group(1))
+            join_string = '", "'.join(parsed_values)
+            return f'Literal["{join_string}"]'
 
         # If the inside types has been a Union, peel first and then re-union
         pattern = re.compile(r"Union\[.*\]")
@@ -116,7 +125,8 @@ class CombinedType(BaseType):
             return file_import
         for type in self.types:
             file_import.merge(type.imports(**kwargs))
-        file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
+        if not self._is_union_of_literals:
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         return file_import
 
     @classmethod
