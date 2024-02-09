@@ -1,6 +1,6 @@
 # Release
 
-## 2023-02-08 - 0.20.0
+## 2023-02-09 - 0.20.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -20,6 +20,7 @@
 
 - Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
 - Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
+- Add support for legacy @flattened decorator #2362
 
 **Bug Fixes**
 
