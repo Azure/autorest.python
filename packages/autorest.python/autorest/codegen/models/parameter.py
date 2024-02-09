@@ -376,7 +376,7 @@ class Parameter(_ParameterBase):
         if self.constant:
             return ParameterMethodLocation.KWARG
         if self.is_content_type:
-            if self.in_overload or self.client_default_value is None:
+            if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG
         query_or_header = self.location in (
