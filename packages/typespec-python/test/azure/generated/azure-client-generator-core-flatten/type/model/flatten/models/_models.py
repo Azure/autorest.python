@@ -33,7 +33,7 @@ class ChildFlattenModel(_model_base.Model):
     properties: "_models.ChildModel" = rest_field()
     """Required."""
 
-    _flatten_items = ["description", "age"]
+    __flattened_items = ["description", "age"]
 
     @overload
     def __init__(
@@ -52,21 +52,21 @@ class ChildFlattenModel(_model_base.Model):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        flatten_map = {k: kwargs.pop(k, None) for k in self._flatten_items}
+        _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
         super().__init__(*args, **kwargs)
-        for k, v in flatten_map.items():
-            if v is not None:
-                setattr(self, k, v)
+        for k, v in _flattened_input.items():
+            setattr(self, k, v)
 
     def __getattr__(self, name: str) -> Any:
-        if name in self._flatten_items:
-            if self.properties:
-                return getattr(self.properties, name)
+        if name in self.__flattened_items and self.properties is None:
             return None
-        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+        try:
+            return getattr(self.properties, name)
+        except AttributeError:
+            return super().__getattr__(name)
 
     def __setattr__(self, key: str, value: Any) -> None:
-        if key in self._flatten_items:
+        if key in self.__flattened_items:
             if self.properties is None:
                 self.properties = self._attr_to_rest_field["properties"]._class_type()
             setattr(self.properties, key, value)
@@ -126,7 +126,7 @@ class FlattenModel(_model_base.Model):
     properties: "_models.ChildModel" = rest_field()
     """Required."""
 
-    _flatten_items = ["description", "age"]
+    __flattened_items = ["description", "age"]
 
     @overload
     def __init__(
@@ -145,21 +145,21 @@ class FlattenModel(_model_base.Model):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        flatten_map = {k: kwargs.pop(k, None) for k in self._flatten_items}
+        _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
         super().__init__(*args, **kwargs)
-        for k, v in flatten_map.items():
-            if v is not None:
-                setattr(self, k, v)
+        for k, v in _flattened_input.items():
+            setattr(self, k, v)
 
     def __getattr__(self, name: str) -> Any:
-        if name in self._flatten_items:
-            if self.properties:
-                return getattr(self.properties, name)
+        if name in self.__flattened_items and self.properties is None:
             return None
-        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+        try:
+            return getattr(self.properties, name)
+        except AttributeError:
+            return super().__getattr__(name)
 
     def __setattr__(self, key: str, value: Any) -> None:
-        if key in self._flatten_items:
+        if key in self.__flattened_items:
             if self.properties is None:
                 self.properties = self._attr_to_rest_field["properties"]._class_type()
             setattr(self.properties, key, value)
@@ -183,6 +183,8 @@ class NestedFlattenModel(_model_base.Model):
     properties: "_models.ChildFlattenModel" = rest_field()
     """Required."""
 
+    __flattened_items = ["summary", "properties"]
+
     @overload
     def __init__(
         self,
@@ -200,4 +202,23 @@ class NestedFlattenModel(_model_base.Model):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
         super().__init__(*args, **kwargs)
+        for k, v in _flattened_input.items():
+            setattr(self, k, v)
+
+    def __getattr__(self, name: str) -> Any:
+        if name in self.__flattened_items and self.properties is None:
+            return None
+        try:
+            return getattr(self.properties, name)
+        except AttributeError:
+            return super().__getattr__(name)
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key in self.__flattened_items:
+            if self.properties is None:
+                self.properties = self._attr_to_rest_field["properties"]._class_type()
+            setattr(self.properties, key, value)
+        else:
+            super().__setattr__(key, value)

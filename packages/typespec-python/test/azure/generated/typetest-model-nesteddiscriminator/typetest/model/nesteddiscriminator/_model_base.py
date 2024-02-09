@@ -800,6 +800,10 @@ class _RestField:
         self._is_multipart_file_input = is_multipart_file_input
 
     @property
+    def _class_type(self) -> typing.Any:
+        return getattr(self._type, "args", [None])[0]
+
+    @property
     def _rest_name(self) -> str:
         if self._rest_name_input is None:
             raise ValueError("Rest name was never set")

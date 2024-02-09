@@ -77,10 +77,6 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         ]
 
     @property
-    def has_flatten_model(self) -> bool:
-        return any(model.has_flatten_property for model in self.model_types)
-
-    @property
     def has_form_data(self) -> bool:
         return any(
             og.has_form_data_body

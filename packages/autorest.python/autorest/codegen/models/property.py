@@ -40,13 +40,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.is_multipart_file_input: bool = yaml_data.get(
             "isMultipartFileInput", False
         )
-
-    @property
-    def is_flatten(self) -> bool:
-        # python doesn't support nested flatten model
-        return self.yaml_data.get("flatten", False) and not getattr(
-            self.type, "has_flatten_property", False
-        )
+        self.flatten = self.yaml_data.get("flatten", False)
 
     @property
     def pylint_disable(self) -> str:

@@ -77,20 +77,20 @@ class ModelType(  # pylint: disable=abstract-method
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
-    def has_flatten_property(self) -> bool:
-        return any(p.is_flatten for p in self.properties)
+    def flattened_property(self) -> Optional[Property]:
+        try:
+            return next(p for p in self.properties if p.flatten)
+        except StopIteration:
+            return None
 
     @property
-    def flatten_property(self) -> Property:
-        return next(p for p in self.properties if p.is_flatten)
-
-    @property
-    def flatten_items(self) -> List[str]:
-        items = []
-        for p in self.properties:
-            if p.is_flatten and isinstance(p.type, ModelType):
-                items.extend([item.client_name for item in p.type.properties])
-        return items
+    def flattened_items(self) -> List[str]:
+        return [
+            item.client_name
+            for prop in self.properties
+            if isinstance(prop.type, ModelType) and prop.flatten
+            for item in prop.type.properties
+        ]
 
     @property
     def is_form_data(self) -> bool:
@@ -322,6 +322,9 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         relative_path = kwargs.pop("relative_path", None)
         if relative_path:
             # add import for models in operations or _types file
@@ -357,13 +360,6 @@ class MsrestModelType(GeneratedModelType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, msrest.Model)"
-
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = super().imports(**kwargs)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
-        return file_import
 
 
 class DPGModelType(GeneratedModelType):

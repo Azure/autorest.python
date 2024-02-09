@@ -813,11 +813,9 @@ class _RestField:
         self._format = format
         self._is_multipart_file_input = is_multipart_file_input
 
-    {% if code_model.options["models_mode"] == "dpg" and code_model.has_flatten_model %}
     @property
     def _class_type(self) -> typing.Any:
         return getattr(self._type, "args", [None])[0]
-    {% endif %}
 
     @property
     def _rest_name(self) -> str:
