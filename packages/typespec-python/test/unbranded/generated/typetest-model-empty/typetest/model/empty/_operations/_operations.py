@@ -86,6 +86,7 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
 
 
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
+
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
         self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any

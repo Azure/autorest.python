@@ -55,8 +55,7 @@ class BooleanProperty(_model_base.Model):
         self,
         *,
         property: bool,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -86,8 +85,7 @@ class BytesProperty(_model_base.Model):
         self,
         *,
         property: bytes,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -117,8 +115,7 @@ class CollectionsIntProperty(_model_base.Model):
         self,
         *,
         property: List[int],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -148,8 +145,7 @@ class CollectionsModelProperty(_model_base.Model):
         self,
         *,
         property: List["_models.InnerModel"],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -179,8 +175,7 @@ class CollectionsStringProperty(_model_base.Model):
         self,
         *,
         property: List[str],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -210,8 +205,7 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: datetime.datetime,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -241,8 +235,7 @@ class Decimal128Property(_model_base.Model):
         self,
         *,
         property: decimal.Decimal,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -272,8 +265,7 @@ class DecimalProperty(_model_base.Model):
         self,
         *,
         property: decimal.Decimal,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -303,8 +295,7 @@ class DictionaryStringProperty(_model_base.Model):
         self,
         *,
         property: Dict[str, str],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -334,8 +325,7 @@ class DurationProperty(_model_base.Model):
         self,
         *,
         property: datetime.timedelta,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -365,8 +355,7 @@ class EnumProperty(_model_base.Model):
         self,
         *,
         property: Union[str, "_models.FixedInnerEnum"],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -396,8 +385,7 @@ class ExtensibleEnumProperty(_model_base.Model):
         self,
         *,
         property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -446,8 +434,7 @@ class FloatProperty(_model_base.Model):
         self,
         *,
         property: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -477,8 +464,7 @@ class InnerModel(_model_base.Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -527,8 +513,7 @@ class IntProperty(_model_base.Model):
         self,
         *,
         property: int,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -558,8 +543,7 @@ class ModelProperty(_model_base.Model):
         self,
         *,
         property: "_models.InnerModel",  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -612,8 +596,7 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -643,8 +626,7 @@ class UnionFloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Union[float, float],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -674,8 +656,7 @@ class UnionIntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Union[Literal[42], Literal[43]],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -706,8 +687,7 @@ class UnionStringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Union[Literal["hello"], Literal["world"]],  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -737,8 +717,7 @@ class UnknownArrayProperty(_model_base.Model):
         self,
         *,
         property: Any,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -768,8 +747,7 @@ class UnknownDictProperty(_model_base.Model):
         self,
         *,
         property: Any,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -799,8 +777,7 @@ class UnknownIntProperty(_model_base.Model):
         self,
         *,
         property: Any,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -830,8 +807,7 @@ class UnknownStringProperty(_model_base.Model):
         self,
         *,
         property: Any,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

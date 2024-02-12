@@ -813,6 +813,7 @@ class ModelOperations:
 
 
 class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
+
     @distributed_trace_async
     async def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """client_name.

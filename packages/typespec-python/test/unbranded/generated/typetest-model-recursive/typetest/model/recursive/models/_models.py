@@ -31,8 +31,7 @@ class Element(_model_base.Model):
         self,
         *,
         extension: Optional[List["_models.Extension"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -65,8 +64,7 @@ class Extension(Element):
         *,
         level: int,
         extension: Optional[List["_models.Extension"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

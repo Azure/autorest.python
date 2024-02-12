@@ -806,6 +806,7 @@ class ModelOperations:
 
 
 class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
+
     async def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """client_name.
 

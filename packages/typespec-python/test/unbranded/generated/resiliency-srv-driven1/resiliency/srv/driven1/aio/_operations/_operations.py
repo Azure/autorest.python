@@ -33,6 +33,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
     ResiliencyServiceDrivenClientMixinABC
 ):
+
     async def from_none(self, **kwargs: Any) -> bool:
         """Test that currently accepts no parameters, will be updated in next spec to accept a new
         optional parameter as well.

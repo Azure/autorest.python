@@ -95,6 +95,7 @@ def build_json_merge_patch_update_optional_resource_request(  # pylint: disable=
 
 
 class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
+
     @overload
     def create_resource(
         self, body: _models.Resource, *, content_type: str = "application/json", **kwargs: Any

@@ -30,8 +30,7 @@ class PngImageAsJson(_model_base.Model):
         self,
         *,
         content: bytes,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

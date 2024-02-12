@@ -27,6 +27,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class UnionClientOperationsMixin(UnionClientMixinABC):
+
     async def valid_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.
 

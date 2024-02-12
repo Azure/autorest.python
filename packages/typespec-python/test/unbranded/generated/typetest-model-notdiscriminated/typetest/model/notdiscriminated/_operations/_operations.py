@@ -86,6 +86,7 @@ def build_not_discriminated_put_valid_request(**kwargs: Any) -> HttpRequest:  # 
 
 
 class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
+
     @overload
     def post_valid(  # pylint: disable=inconsistent-return-statements
         self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any

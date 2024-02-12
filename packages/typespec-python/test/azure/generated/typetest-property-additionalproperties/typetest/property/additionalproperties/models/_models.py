@@ -30,8 +30,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -69,8 +68,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -100,8 +98,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -139,8 +136,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -179,8 +175,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -224,8 +219,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -255,8 +249,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -294,8 +287,7 @@ class IsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -325,8 +317,7 @@ class IsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -364,8 +355,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -404,8 +394,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -449,8 +438,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

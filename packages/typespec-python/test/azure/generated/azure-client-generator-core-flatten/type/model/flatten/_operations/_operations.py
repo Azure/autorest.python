@@ -76,6 +76,7 @@ def build_flatten_put_nested_flatten_model_request(**kwargs: Any) -> HttpRequest
 
 
 class FlattenClientOperationsMixin(FlattenClientMixinABC):
+
     @overload
     def put_flatten_model(
         self, input: _models.FlattenModel, *, content_type: str = "application/json", **kwargs: Any

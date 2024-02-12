@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
+
     @overload
     async def post_valid(  # pylint: disable=inconsistent-return-statements
         self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any

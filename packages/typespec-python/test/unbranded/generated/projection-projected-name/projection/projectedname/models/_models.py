@@ -30,8 +30,7 @@ class ClientModel(_model_base.Model):
         self,
         *,
         default_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -61,8 +60,7 @@ class ClientProjectedNameModel(_model_base.Model):
         self,
         *,
         client_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -92,8 +90,7 @@ class JsonAndClientProjectedNameModel(_model_base.Model):
         self,
         *,
         client_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -123,8 +120,7 @@ class JsonProjectedNameModel(_model_base.Model):
         self,
         *,
         default_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -154,8 +150,7 @@ class LanguageProjectedNameModel(_model_base.Model):
         self,
         *,
         python_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -185,8 +180,7 @@ class PythonModel(_model_base.Model):
         self,
         *,
         default_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

@@ -33,8 +33,7 @@ class BooleanLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[True]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -63,8 +62,7 @@ class BytesProperty(_model_base.Model):
         self,
         *,
         property: Optional[bytes] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -92,8 +90,7 @@ class CollectionsByteProperty(_model_base.Model):
         self,
         *,
         property: Optional[List[bytes]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -121,8 +118,7 @@ class CollectionsModelProperty(_model_base.Model):
         self,
         *,
         property: Optional[List["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -150,8 +146,7 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.datetime] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -179,8 +174,7 @@ class DurationProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.timedelta] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -208,8 +202,7 @@ class FloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[float] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -237,8 +230,7 @@ class IntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[1]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -273,8 +265,7 @@ class RequiredAndOptionalProperty(_model_base.Model):
         *,
         required_property: int,
         optional_property: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -302,8 +293,7 @@ class StringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal["hello"]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -332,8 +322,7 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: Optional[str] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -361,8 +350,7 @@ class UnionFloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Union[float, float]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -390,8 +378,7 @@ class UnionIntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Union[Literal[1], Literal[2]]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -419,8 +406,7 @@ class UnionStringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Union[Literal["hello"], Literal["world"]]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

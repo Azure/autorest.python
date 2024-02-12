@@ -71,6 +71,7 @@ def build_conditional_request_post_if_none_match_request(  # pylint: disable=nam
 
 
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
+
     def post_if_match(  # pylint: disable=inconsistent-return-statements
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:

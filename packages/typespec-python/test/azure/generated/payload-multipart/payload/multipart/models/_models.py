@@ -35,8 +35,7 @@ class Address(_model_base.Model):
         self,
         *,
         city: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -71,8 +70,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         pictures: List[FileType],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -122,8 +120,7 @@ class ComplexPartsRequest(_model_base.Model):
         profile_image: FileType,
         previous_addresses: List["_models.Address"],
         pictures: List[FileType],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -158,8 +155,7 @@ class JsonArrayPartsRequest(_model_base.Model):
         *,
         profile_image: FileType,
         previous_addresses: List["_models.Address"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -194,8 +190,7 @@ class JsonPartRequest(_model_base.Model):
         *,
         address: "_models.Address",
         profile_image: FileType,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -229,8 +224,7 @@ class MultiBinaryPartsRequest(_model_base.Model):
         *,
         profile_image: FileType,
         picture: Optional[FileType] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -265,8 +259,7 @@ class MultiPartRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         profile_image: FileType,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
