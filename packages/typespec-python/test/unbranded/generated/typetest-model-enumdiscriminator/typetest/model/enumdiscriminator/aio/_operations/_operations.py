@@ -47,6 +47,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
+
     async def get_extensible_model(self, **kwargs: Any) -> _models.Dog:
         """Receive model with extensible enum discriminator type.
 

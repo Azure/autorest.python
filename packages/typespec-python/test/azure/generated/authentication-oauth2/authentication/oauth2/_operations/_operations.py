@@ -45,6 +45,7 @@ def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
 
 
 class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
+
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

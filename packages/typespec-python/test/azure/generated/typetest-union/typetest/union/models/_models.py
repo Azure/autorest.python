@@ -41,8 +41,7 @@ class Cat(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -72,8 +71,7 @@ class Dog(_model_base.Model):
         self,
         *,
         bark: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -112,8 +110,7 @@ class EnumsOnlyCases(_model_base.Model):
         *,
         lr: Union[str, "_models.LR", str, "_models.UD"],
         ud: Union[str, "_models.UD", str, "_models.UD"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -143,8 +140,7 @@ class GetResponse(_model_base.Model):
         self,
         *,
         prop: "_models.MixedTypesCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -174,8 +170,7 @@ class GetResponse1(_model_base.Model):
         self,
         *,
         prop: "_models.MixedLiteralsCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -205,8 +200,7 @@ class GetResponse2(_model_base.Model):
         self,
         *,
         prop: "_models.StringAndArrayCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -236,8 +230,7 @@ class GetResponse3(_model_base.Model):
         self,
         *,
         prop: "_models.EnumsOnlyCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -267,8 +260,7 @@ class GetResponse4(_model_base.Model):
         self,
         *,
         prop: Union["_models.Cat", "_models.Dog"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -298,8 +290,7 @@ class GetResponse5(_model_base.Model):
         self,
         *,
         prop: Union[float, float, float],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -329,8 +320,7 @@ class GetResponse6(_model_base.Model):
         self,
         *,
         prop: Union[Literal[1], Literal[2], Literal[3]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -360,8 +350,7 @@ class GetResponse7(_model_base.Model):
         self,
         *,
         prop: Union[str, "_models.StringExtensibleNamedUnion"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -391,8 +380,7 @@ class GetResponse8(_model_base.Model):
         self,
         *,
         prop: Union[str, Literal["b"], Literal["c"]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -422,8 +410,7 @@ class GetResponse9(_model_base.Model):
         self,
         *,
         prop: Union[Literal["a"], Literal["b"], Literal["c"]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -476,8 +463,7 @@ class MixedLiteralsCases(_model_base.Model):
         int_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
         float_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
         boolean_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -530,8 +516,7 @@ class MixedTypesCases(_model_base.Model):
         literal: Union["_models.Cat", Literal["a"], int, bool],
         int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -568,8 +553,7 @@ class StringAndArrayCases(_model_base.Model):
         *,
         string: Union[str, List[str]],
         array: Union[str, List[str]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

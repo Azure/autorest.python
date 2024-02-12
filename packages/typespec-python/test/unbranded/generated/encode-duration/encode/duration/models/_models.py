@@ -31,8 +31,7 @@ class DefaultDurationProperty(_model_base.Model):
         self,
         *,
         value: datetime.timedelta,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -62,8 +61,7 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
         self,
         *,
         value: List[float],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -93,8 +91,7 @@ class FloatSecondsDurationProperty(_model_base.Model):
         self,
         *,
         value: float,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -124,8 +121,7 @@ class Int32SecondsDurationProperty(_model_base.Model):
         self,
         *,
         value: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -155,8 +151,7 @@ class ISO8601DurationProperty(_model_base.Model):
         self,
         *,
         value: datetime.timedelta,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

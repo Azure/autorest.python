@@ -66,9 +66,9 @@ def add_overload(
     content_type_param["inOverload"] = True
     content_type_param["inDocstring"] = True
     body_type_description = get_body_type_for_description(overload["bodyParameter"])
-    content_type_param[
-        "description"
-    ] = f"Body Parameter content-type. Content type parameter for {body_type_description} body."
+    content_type_param["description"] = (
+        f"Body Parameter content-type. Content type parameter for {body_type_description} body."
+    )
     content_types = yaml_data["bodyParameter"]["contentTypes"]
     if body_type["type"] == "binary" and len(content_types) > 1:
         content_types = "'" + "', '".join(content_types) + "'"
@@ -107,9 +107,9 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["inOverload"] = False
     content_type_param["inOverriden"] = True
     content_type_param["inDocstring"] = True
-    content_type_param[
-        "clientDefaultValue"
-    ] = None  # make it none bc it will be overriden, we depend on default of overloads
+    content_type_param["clientDefaultValue"] = (
+        None  # make it none bc it will be overriden, we depend on default of overloads
+    )
     content_type_param["optional"] = True
 
 

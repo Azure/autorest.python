@@ -51,6 +51,7 @@ def build_multiple_with_operation_path_param_request(  # pylint: disable=name-to
 
 
 class MultipleClientOperationsMixin(MultipleClientMixinABC):
+
     def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """no_operation_params.
 

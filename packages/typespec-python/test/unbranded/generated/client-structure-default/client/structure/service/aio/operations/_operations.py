@@ -343,6 +343,7 @@ class BarOperations:
 
 
 class ServiceClientOperationsMixin(ServiceClientMixinABC):
+
     async def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """one.
 

@@ -133,6 +133,7 @@ def build_nested_discriminator_get_wrong_discriminator_request(  # pylint: disab
 
 
 class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC):
+
     def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.
 

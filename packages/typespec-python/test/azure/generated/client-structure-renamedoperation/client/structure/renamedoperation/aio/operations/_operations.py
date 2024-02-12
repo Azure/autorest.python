@@ -194,6 +194,7 @@ class GroupOperations:
 
 
 class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
+
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_one.

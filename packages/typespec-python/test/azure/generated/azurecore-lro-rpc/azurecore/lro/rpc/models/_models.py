@@ -30,8 +30,7 @@ class GenerationOptions(_model_base.Model):
         self,
         *,
         prompt: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -61,8 +60,7 @@ class GenerationResult(_model_base.Model):
         self,
         *,
         data: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

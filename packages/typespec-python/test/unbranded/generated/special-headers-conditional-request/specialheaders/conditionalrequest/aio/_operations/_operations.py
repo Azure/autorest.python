@@ -32,6 +32,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
+
     async def post_if_match(  # pylint: disable=inconsistent-return-statements
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:

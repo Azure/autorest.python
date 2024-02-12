@@ -46,6 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC):
+
     async def get_model(self, **kwargs: Any) -> _models.Bird:
         """get_model.
 

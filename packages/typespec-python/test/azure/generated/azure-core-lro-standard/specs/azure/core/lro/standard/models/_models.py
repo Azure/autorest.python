@@ -35,8 +35,7 @@ class ExportedUser(_model_base.Model):
         *,
         name: str,
         resource_uri: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -72,8 +71,7 @@ class User(_model_base.Model):
         self,
         *,
         role: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

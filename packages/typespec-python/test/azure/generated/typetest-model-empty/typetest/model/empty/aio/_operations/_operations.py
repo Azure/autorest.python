@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
+
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
         self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any

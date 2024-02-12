@@ -147,6 +147,7 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
 
 
 class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC):
+
     def get_model(self, **kwargs: Any) -> _models.Bird:
         """get_model.
 

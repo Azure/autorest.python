@@ -42,6 +42,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class FlattenClientOperationsMixin(FlattenClientMixinABC):
+
     @overload
     async def put_flatten_model(
         self, input: _models.FlattenModel, *, content_type: str = "application/json", **kwargs: Any

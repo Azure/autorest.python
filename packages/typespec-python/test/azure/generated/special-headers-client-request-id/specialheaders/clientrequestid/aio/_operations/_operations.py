@@ -28,6 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ClientRequestIdClientOperationsMixin(ClientRequestIdClientMixinABC):
+
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get operation with azure client request id header.

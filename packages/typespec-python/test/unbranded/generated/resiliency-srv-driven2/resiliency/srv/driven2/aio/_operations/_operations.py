@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
     ResiliencyServiceDrivenClientMixinABC
 ):
+
     @api_version_validation(
         method_added_on="v2",
     )  # pylint: disable=inconsistent-return-statements

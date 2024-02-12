@@ -30,8 +30,7 @@ class Base64BytesProperty(_model_base.Model):
         self,
         *,
         value: bytes,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -61,8 +60,7 @@ class Base64urlArrayBytesProperty(_model_base.Model):
         self,
         *,
         value: List[bytes],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -92,8 +90,7 @@ class Base64urlBytesProperty(_model_base.Model):
         self,
         *,
         value: bytes,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -123,8 +120,7 @@ class DefaultBytesProperty(_model_base.Model):
         self,
         *,
         value: bytes,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

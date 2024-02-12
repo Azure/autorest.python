@@ -228,6 +228,7 @@ class GroupOperations:
 
 
 class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
+
     def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_one.
 

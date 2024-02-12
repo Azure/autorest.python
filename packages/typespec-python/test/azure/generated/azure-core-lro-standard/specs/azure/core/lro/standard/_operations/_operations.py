@@ -120,6 +120,7 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
+
     def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:

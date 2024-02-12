@@ -117,12 +117,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType, List["RequestBuilder"]])
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_msrest_import(
-            relative_path="..."
-            if (
-                not self.code_model.options["builders_visibility"] == "embedded"
-                and self.group_name
-            )
-            else "..",
+            relative_path=(
+                "..."
+                if (
+                    not self.code_model.options["builders_visibility"] == "embedded"
+                    and self.group_name
+                )
+                else ".."
+            ),
             msrest_import_type=MsrestImportType.Serializer,
             typing_section=TypingSection.REGULAR,
         )
@@ -137,8 +139,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType, List["RequestBuilder"]])
     @abstractmethod
     def parameter_list_type() -> (
         Callable[[Dict[str, Any], "CodeModel"], ParameterListType]
-    ):
-        ...
+    ): ...
 
     @classmethod
     def get_name(

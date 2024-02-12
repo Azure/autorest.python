@@ -42,6 +42,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class TraitsClientOperationsMixin(TraitsClientMixinABC):
+
     @distributed_trace_async
     async def smoke_test(
         self,

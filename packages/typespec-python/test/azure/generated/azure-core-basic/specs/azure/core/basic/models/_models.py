@@ -49,8 +49,7 @@ class ListItemInputBody(_model_base.Model):
         self,
         *,
         input_name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -110,8 +109,7 @@ class User(_model_base.Model):
         *,
         name: str,
         orders: Optional[List["_models.UserOrder"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -152,8 +150,7 @@ class UserOrder(_model_base.Model):
         *,
         user_id: int,
         detail: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

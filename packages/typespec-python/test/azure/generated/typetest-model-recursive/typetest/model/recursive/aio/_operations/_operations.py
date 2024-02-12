@@ -39,6 +39,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
+
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
         self, input: _models.Extension, *, content_type: str = "application/json", **kwargs: Any
