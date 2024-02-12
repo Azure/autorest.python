@@ -322,9 +322,6 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
         relative_path = kwargs.pop("relative_path", None)
         if relative_path:
             # add import for models in operations or _types file
@@ -361,6 +358,13 @@ class MsrestModelType(GeneratedModelType):
     def instance_check_template(self) -> str:
         return "isinstance({}, msrest.Model)"
 
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        return file_import
+
 
 class DPGModelType(GeneratedModelType):
     base = "dpg"
@@ -372,3 +376,9 @@ class DPGModelType(GeneratedModelType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, _model_base.Model)"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        if self.flattened_property:
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+        return file_import
