@@ -1,6 +1,23 @@
 # Release
 
-## 2024-02-12 - 6.13.0
+## 2024-02-12 - 6.13.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Other Changes**
+
+- Add support for legacy @flattened decorator in tsp #2362
+- Generate operations that have multiple binary content types in tsp  #2401
+
+## 2024-02-09 - 6.13.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
