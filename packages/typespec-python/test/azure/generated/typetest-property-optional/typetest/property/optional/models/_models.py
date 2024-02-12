@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -353,14 +353,14 @@ class UnionFloatLiteralProperty(_model_base.Model):
     :vartype property: float or float
     """
 
-    property: Optional[Union[float, float]] = rest_field()
+    property: Optional[float] = rest_field()
     """Property. Is either a float type or a float type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Union[float, float]] = None,  # pylint: disable=redefined-builtin
+        property: Optional[float] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -382,14 +382,14 @@ class UnionIntLiteralProperty(_model_base.Model):
     :vartype property: int or int
     """
 
-    property: Optional[Union[Literal[1], Literal[2]]] = rest_field()
+    property: Optional[Literal[1, 2]] = rest_field()
     """Property. Is either a Literal[1] type or a Literal[2] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Union[Literal[1], Literal[2]]] = None,  # pylint: disable=redefined-builtin
+        property: Optional[Literal[1, 2]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -411,14 +411,14 @@ class UnionStringLiteralProperty(_model_base.Model):
     :vartype property: str or str
     """
 
-    property: Optional[Union[Literal["hello"], Literal["world"]]] = rest_field()
+    property: Optional[Literal["hello", "world"]] = rest_field()
     """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Union[Literal["hello"], Literal["world"]]] = None,  # pylint: disable=redefined-builtin
+        property: Optional[Literal["hello", "world"]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 

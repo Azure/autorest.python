@@ -21,6 +21,7 @@
 - Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
 - Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
 - Add support for legacy @flattened decorator #2362
+- Generate operations that have multiple binary content types  #2401
 
 **Bug Fixes**
 
