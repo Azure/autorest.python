@@ -102,7 +102,7 @@ class EnumsOnlyCases(_model_base.Model):
     lr: Union[str, "_models.LR", str, "_models.UD"] = rest_field()
     """This should be receive/send the left variant. Required. Is either a Union[str, \"_models.LR\"]
      type or a Union[str, \"_models.UD\"] type."""
-    ud: Union[str, "_models.UD", str, "_models.UD"] = rest_field()
+    ud: Union[str, "_models.UD"] = rest_field()
     """This should be receive/send the up variant. Required. Is either a Union[str, \"_models.UD\"]
      type or a Union[str, \"_models.UD\"] type."""
 
@@ -111,7 +111,7 @@ class EnumsOnlyCases(_model_base.Model):
         self,
         *,
         lr: Union[str, "_models.LR", str, "_models.UD"],
-        ud: Union[str, "_models.UD", str, "_models.UD"],
+        ud: Union[str, "_models.UD"],
     ):
         ...
 
@@ -290,14 +290,14 @@ class GetResponse5(_model_base.Model):
     :vartype prop: float or float or float
     """
 
-    prop: Union[float, float, float] = rest_field()
+    prop: float = rest_field()
     """Required. Is one of the following types: float, float, float"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[float, float, float],
+        prop: float,
     ):
         ...
 
@@ -321,14 +321,14 @@ class GetResponse6(_model_base.Model):
     :vartype prop: int or int or int
     """
 
-    prop: Union[Literal[1], Literal[2], Literal[3]] = rest_field()
+    prop: Literal[1, 2, 3] = rest_field()
     """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[Literal[1], Literal[2], Literal[3]],
+        prop: Literal[1, 2, 3],
     ):
         ...
 
@@ -414,14 +414,14 @@ class GetResponse9(_model_base.Model):
     :vartype prop: str or str or str
     """
 
-    prop: Union[Literal["a"], Literal["b"], Literal["c"]] = rest_field()
+    prop: Literal["a", "b", "c"] = rest_field()
     """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]],
+        prop: Literal["a", "b", "c"],
     ):
         ...
 
@@ -455,16 +455,16 @@ class MixedLiteralsCases(_model_base.Model):
     :vartype boolean_literal: str or int or float or bool
     """
 
-    string_literal: Union[Literal["a"], Literal[2], float, Literal[True]] = rest_field(name="stringLiteral")
+    string_literal: Literal["a", 2, True] = rest_field(name="stringLiteral")
     """This should be receive/send the \"a\" variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    int_literal: Union[Literal["a"], Literal[2], float, Literal[True]] = rest_field(name="intLiteral")
+    int_literal: Literal["a", 2, True] = rest_field(name="intLiteral")
     """This should be receive/send the 2 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    float_literal: Union[Literal["a"], Literal[2], float, Literal[True]] = rest_field(name="floatLiteral")
+    float_literal: Literal["a", 2, True] = rest_field(name="floatLiteral")
     """This should be receive/send the 3.3 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    boolean_literal: Union[Literal["a"], Literal[2], float, Literal[True]] = rest_field(name="booleanLiteral")
+    boolean_literal: Literal["a", 2, True] = rest_field(name="booleanLiteral")
     """This should be receive/send the true variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
@@ -472,10 +472,10 @@ class MixedLiteralsCases(_model_base.Model):
     def __init__(
         self,
         *,
-        string_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
-        int_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
-        float_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
-        boolean_literal: Union[Literal["a"], Literal[2], float, Literal[True]],
+        string_literal: Literal["a", 2, True],
+        int_literal: Literal["a", 2, True],
+        float_literal: Literal["a", 2, True],
+        boolean_literal: Literal["a", 2, True],
     ):
         ...
 

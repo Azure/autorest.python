@@ -627,7 +627,9 @@ function emitPagingOperation(
 
 function isAbstract(operation: HttpOperation): boolean {
     const body = operation.parameters.body;
-    return body !== undefined && body.contentTypes.length > 1;
+    const multipleContentTypes = body !== undefined && body.contentTypes.length > 1;
+    if (!multipleContentTypes) return false;
+    return body.contentTypes.some((x) => x.includes("json"));
 }
 
 function addAcceptParameter(
