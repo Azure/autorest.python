@@ -8,6 +8,7 @@ azure-core==1.30.0
 -e ./generated/azure-mgmt-spheremsrest
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-usage
+-e ./generated/azure-client-generator-core-flatten
 -e ./generated/azure-core-basic
 -e ./generated/azurecore-lro-rpclegacy
 -e ./generated/azurecore-lro-rpc

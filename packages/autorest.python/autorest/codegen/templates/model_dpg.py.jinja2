@@ -39,6 +39,10 @@
         {% endif %}
     {% endfor %}
 
+    {% if code_model.options["models_mode"] == "dpg" and model.flattened_property %}
+    __flattened_items = ["{{ model.flattened_items|join('\", \"') }}"]
+    {% endif %}
+
     {% if not model.internal and serializer.init_line(model) %}
     @overload
     def __init__(
@@ -60,8 +64,27 @@
     {% set initialize_properties = serializer.initialize_properties(model) %}
     {% if not model.internal and serializer.init_line(model) or initialize_properties %}
     def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
-        {{ serializer.super_call(model) }}
-    {% for initialize_property in initialize_properties %}
+        {% for line in serializer.super_call(model) %}
+        {{ line }}
+        {% endfor %}
+        {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
-    {% endfor %}
-    {% endif %}
+        {% endfor %}
+        {% if code_model.options["models_mode"] == "dpg" and model.flattened_property %}
+        {% set flattened_property_attr = model.flattened_property.client_name %}
+
+    def __getattr__(self, name: str) -> Any:
+        if name in self.__flattened_items:
+            if self.{{ flattened_property_attr }} is None: return None
+            return getattr(self.{{ flattened_property_attr }}, name)
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key in self.__flattened_items:
+            if self.{{ flattened_property_attr }} is None:
+                self.{{ flattened_property_attr }} = self._attr_to_rest_field["{{ flattened_property_attr }}"]._class_type()
+            setattr(self.properties, key, value)
+        else:
+            super().__setattr__(key, value)
+        {% endif %} 
+    {% endif %} 

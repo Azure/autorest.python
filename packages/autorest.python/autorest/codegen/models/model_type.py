@@ -77,6 +77,22 @@ class ModelType(  # pylint: disable=abstract-method
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
+    def flattened_property(self) -> Optional[Property]:
+        try:
+            return next(p for p in self.properties if p.flatten)
+        except StopIteration:
+            return None
+
+    @property
+    def flattened_items(self) -> List[str]:
+        return [
+            item.client_name
+            for prop in self.properties
+            if isinstance(prop.type, ModelType) and prop.flatten
+            for item in prop.type.properties
+        ]
+
+    @property
     def is_form_data(self) -> bool:
         return any(p.is_multipart_file_input for p in self.properties)
 
@@ -360,3 +376,9 @@ class DPGModelType(GeneratedModelType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, _model_base.Model)"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        if self.flattened_property:
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+        return file_import

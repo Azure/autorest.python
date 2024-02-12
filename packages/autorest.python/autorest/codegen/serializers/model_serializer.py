@@ -60,8 +60,8 @@ class _ModelSerializer(BaseSerializer, ABC):
     def variable_documentation_string(prop: Property) -> List[str]:
         return _documentation_string(prop, "ivar", "vartype")
 
-    def super_call(self, model: ModelType):
-        return f"super().__init__({self.properties_to_pass_to_super(model)})"
+    def super_call(self, model: ModelType) -> List[str]:
+        return [f"super().__init__({self.properties_to_pass_to_super(model)})"]
 
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
@@ -197,8 +197,16 @@ class MsrestModelSerializer(_ModelSerializer):
 
 
 class DpgModelSerializer(_ModelSerializer):
-    def super_call(self, model: ModelType):
-        return f"super().__init__({self.properties_to_pass_to_super(model)})"
+    def super_call(self, model: ModelType) -> List[str]:
+        super_call = f"super().__init__({self.properties_to_pass_to_super(model)})"
+        if model.flattened_property:
+            return [
+                "_flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}",
+                super_call,
+                "for k, v in _flattened_input.items():",
+                "    setattr(self, k, v)",
+            ]
+        return [super_call]
 
     def imports(self) -> FileImport:
         file_import = FileImport(self.code_model)
