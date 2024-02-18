@@ -123,7 +123,7 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "multipart/form-data"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
@@ -235,7 +235,7 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "multipart/form-data"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data

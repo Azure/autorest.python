@@ -9,7 +9,7 @@
 import re
 import copy
 import logging
-from typing import Callable, Dict, Any, Iterable, List, Optional, Set
+from typing import Callable, Dict, Any, List, Optional, Set
 
 from .._utils import (
     to_snake_case,
@@ -369,7 +369,7 @@ def update_response(
 
 
 def _get_default_content_type(  # pylint: disable=too-many-return-statements
-    content_types: Iterable[str],
+    content_types: List[str],
 ) -> Optional[str]:
     json_values = [ct for ct in content_types if JSON_REGEXP.match(ct.split(";")[0])]
     if json_values:
@@ -387,6 +387,8 @@ def _get_default_content_type(  # pylint: disable=too-many-return-statements
         return "application/octet-stream"
     if "application/x-www-form-urlencoded" in content_types:
         return "application/x-www-form-urlencoded"
+    if len(content_types) == 1:
+        return content_types[0]
     return None
 
 
@@ -760,7 +762,7 @@ class M4Reformatter(
             "location": "Method",
             "type": KNOWN_TYPES["anydict"],
             "contentTypes": list(yaml_data.keys()),
-            "defaultContentType": _get_default_content_type(yaml_data.keys()),
+            "defaultContentType": _get_default_content_type(list(yaml_data.keys())),
             "entries": entries,
         }
 

@@ -371,7 +371,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
@@ -526,7 +526,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         ...
 
     @overload
-    def _body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def _body_three_types(self, message: str, *, content_type: str = "text/plain", **kwargs: Any) -> str:
         ...
 
     @distributed_trace
