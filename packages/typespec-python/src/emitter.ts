@@ -9,8 +9,10 @@ import {
     Operation,
     EmitContext,
     listServices,
+    Model,
     Type,
     getNamespaceFullName,
+    TemplatedTypeBase,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -205,6 +207,16 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
+function isModelReferredInTemplate(template: TemplatedTypeBase, target: Model): boolean {
+    return (
+        template === target ||
+        (template?.templateMapper?.args?.some((it) =>
+            it.kind === "Model" || it.kind === "Union" ? isModelReferredInTemplate(it, target) : false,
+        ) ??
+            false)
+    );
+}
+
 function getBodyType(context: SdkContext, route: HttpOperation): Record<string, any> {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
@@ -229,11 +241,10 @@ function getBodyType(context: SdkContext, route: HttpOperation): Record<string, 
             }
         }
         if (resourceType && bodyModel.name === "") {
-            const effectivePayloadType = getEffectivePayloadType(context, bodyModel);
-            if (effectivePayloadType.name !== "") {
-                bodyModel = effectivePayloadType;
-            } else {
+            if (isModelReferredInTemplate(bodyModel, resourceType)) {
                 bodyModel = resourceType;
+            } else {
+                bodyModel = getEffectivePayloadType(context, bodyModel);
             }
         }
     }
