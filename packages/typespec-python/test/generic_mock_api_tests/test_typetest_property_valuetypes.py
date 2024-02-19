@@ -121,3 +121,10 @@ def test_model_deserialization(client: ValueTypesClient):
     assert body.property[0].property == body["property"][0]["property"]
     resp = client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
+
+
+def test_enum_property():
+    for prop in ["ValueOne", models.FixedInnerEnum.VALUE_ONE]:
+        string_type = models.EnumProperty(property=prop)
+        assert isinstance(string_type.property, models.FixedInnerEnum)
+        assert isinstance(string_type["property"], str)
