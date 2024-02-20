@@ -62,6 +62,7 @@ azure-core==1.30.0
 -e ./generated/client-structure-renamedoperation
 -e ./generated/client-structure-twooperationgroup
 -e ./generated/payload-content-negotiation
+-e ./generated/payload-json-merge-patch
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
 -e ./generated/payload-media-type
