@@ -143,6 +143,7 @@ class CredentialType(
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
+        need_comment: Optional[bool] = True,
     ) -> Any:
         raise TypeError(
             "You should not try to get a JSON template representation of a CredentialSchema"

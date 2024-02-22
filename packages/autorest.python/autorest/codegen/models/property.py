@@ -132,6 +132,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         optional: bool = True,  # pylint: disable=unused-argument
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
+        need_comment: Optional[bool] = True,
     ) -> Any:
         if self.is_multipart_file_input:
             return "[filetype]" if self.type.type == "list" else "filetype"
@@ -147,6 +148,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             optional=self.optional,
             client_default_value_declaration=client_default_value_declaration,
             description=description,
+            need_comment=need_comment,
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:

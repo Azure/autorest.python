@@ -41,6 +41,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
+        need_comment: Optional[bool] = True,
     ) -> Any:
         comment = ""
         if optional:
@@ -62,7 +63,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
             comment = add_to_description(comment, description)
         if comment:
             comment = f"# {comment}"
-        return f"{client_default_value_declaration}{comment}"
+        return client_default_value_declaration + (comment if need_comment else "")
 
     @property
     def default_template_representation_declaration(self) -> str:

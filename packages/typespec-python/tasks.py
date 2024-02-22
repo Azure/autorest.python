@@ -209,6 +209,7 @@ def _regenerate(
     special_flags={},
 ):
     generated_folder = Path(f"{PLUGIN_DIR}/test/{category}/generated")
+    special_flags.update({"generate-test": "true"})
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":

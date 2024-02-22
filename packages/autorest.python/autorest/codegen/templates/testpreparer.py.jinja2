@@ -1,0 +1,25 @@
+# coding=utf-8
+{{ code_model.options['license_header'] }}
+import functools
+from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
+{{ imports }}
+
+{% for test_name in test_names %}
+class {{ test_name.base_test_class_name }}(AzureRecordedTestCase):
+
+    def create_client(self, endpoint):
+        credential = self.get_credential({{ test_name.client_name }})
+        return self.create_client_from_credential(
+            {{ test_name.client_name }},
+            credential=credential,
+            endpoint=endpoint,
+        )
+
+
+{{ test_name.preparer_name }} = functools.partial(
+    PowerShellPreparer,
+    "{{ test_name.prefix|lower }}",
+    {{ test_name.prefix|lower }}_endpoint="https://fake_{{ test_name.prefix|lower }}_endpoint.com"
+)
+
+{% endfor %}
