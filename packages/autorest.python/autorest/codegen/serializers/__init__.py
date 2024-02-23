@@ -27,7 +27,7 @@ from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
-from .test_serializer import TestSerializer
+from .test_serializer import TestSerializer, TestGeneralSerializer
 from .types_serializer import TypesSerializer
 from ..._utils import to_snake_case
 from .._utils import VALID_PACKAGE_MODE
@@ -637,28 +637,35 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def _serialize_and_write_test(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_tests")
-        test_serializer = TestSerializer(code_model=self.code_model, env=env)
-        self.write_file(out_path / "conftest.py", test_serializer.serialize_conftest())
+        general_serializer = TestGeneralSerializer(code_model=self.code_model, env=env)
         self.write_file(
-            out_path / "testpreparer.py", test_serializer.serialize_testpreparer()
+            out_path / "conftest.py", general_serializer.serialize_conftest()
+        )
+        self.write_file(
+            out_path / "testpreparer.py", general_serializer.serialize_testpreparer()
+        )
+        general_serializer.is_async = True
+        self.write_file(
+            out_path / "testpreparer_async.py",
+            general_serializer.serialize_testpreparer(),
         )
 
         for client in self.code_model.clients:
             for og in client.operation_groups:
-                property_name = f"_{og.property_name}" if og.property_name else ""
-                file_name = (
-                    f"test_{to_snake_case(client.name)}{property_name}.py"
+                test_serializer = TestSerializer(
+                    self.code_model, env, client=client, operation_group=og
                 )
-                try:
-                    test_serializer.operation_group = og
-                    test_serializer.client = client
-                    self.write_file(out_path / file_name,
-                        test_serializer.serialize_test(),
-                    )
-                except Exception as e:  # pylint: disable=broad-except
-                    # test generation shall not block code generation, so just log error
-                    log_error = f"error happens in test generation for operation group {og.class_name}: {e}"
-                    _LOGGER.error(log_error)
+                for is_async in (True, False):
+                    try:
+                        test_serializer.is_async = is_async
+                        self.write_file(
+                            out_path / f"{to_snake_case(test_serializer.test_class_name)}.py",
+                            test_serializer.serialize_test(),
+                        )
+                    except Exception as e:  # pylint: disable=broad-except
+                        # test generation shall not block code generation, so just log error
+                        log_error = f"error happens in test generation for operation group {og.class_name}: {e}"
+                        _LOGGER.error(log_error)
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):

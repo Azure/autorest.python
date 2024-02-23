@@ -20,9 +20,19 @@ from ..models import (
 from .builder_serializer import _json_dumps_template
 from .utils import get_namespace_from_package_name
 
+
 class TestName:
-    def __init__(self, client_name: str) -> None:
+    def __init__(self, client_name: str, *, is_async: bool = False) -> None:
         self.client_name = client_name
+        self.is_async = is_async
+
+    @property
+    def async_suffix_capt(self) -> str:
+        return "Async" if self.is_async else ""
+
+    @property
+    def create_client_name(self) -> str:
+        return "create_async_client" if self.is_async else "create_client"
 
     @property
     def prefix(self) -> str:
@@ -34,19 +44,22 @@ class TestName:
 
     @property
     def base_test_class_name(self) -> str:
-        return self.client_name + "TestBase"
+        return f"{self.client_name}TestBase{self.async_suffix_capt}"
 
 
-class TestOperation:
+class TestCase:
     def __init__(
         self,
         operation_groups: List[OperationGroup],
         params: Dict[str, Any],
         operation: OperationType,
+        *,
+        is_async: bool = False,
     ) -> None:
         self.operation_groups = operation_groups
         self.params = params
         self.operation = operation
+        self.is_async = is_async
 
     @property
     def operation_group_prefix(self) -> str:
@@ -55,64 +68,129 @@ class TestOperation:
         return "." + ".".join([og.property_name for og in self.operation_groups])
 
     @property
-    def extra_operation(self) -> str:
-        lro = "result = response.result()"
-        paging = "result = list(response)"
-        lropaging = "result = list(response.result())"
+    def response(self) -> str:
+        if self.is_async:
+            if self.operation.operation_type == "lropaging":
+                return "response = await (await "
+            return "response = await "
+        return "response = "
 
-        if self.operation.operation_type == "paging":
-            return paging
-        if self.operation.operation_type == "lro":
-            return lro
+    @property
+    def lro_comment(self) -> str:
+        return " # poll until service return final result"
+
+    @property
+    def operation_suffix(self) -> str:
         if self.operation.operation_type == "lropaging":
-            return lropaging
+            extra = ")" if self.is_async else ""
+            return f"{extra}.result(){self.lro_comment}"
+        return ""
+
+    @property
+    def extra_operation(self) -> str:
+        if self.is_async:
+            if self.operation.operation_type == "lro":
+                return f"result = await response.result(){self.lro_comment}"
+            if self.operation.operation_type == ("lropaging", "paging"):
+                return "result = [r async for r in response]"
+        else:
+            if self.operation.operation_type == "lro":
+                return f"result = response.result(){self.lro_comment}"
+            if self.operation.operation_type in ("lropaging", "paging"):
+                return "result = [r for r in response]"
         return ""
 
 
-class TestOperationGroup(TestName):
+class Test(TestName):
     def __init__(
         self,
         client_name: str,
         operation_group: OperationGroup,
-        test_operations: List[TestOperation],
+        testcases: List[TestCase],
+        test_class_name: str,
+        *,
+        is_async: bool = False,
     ) -> None:
-        super().__init__(client_name)
+        super().__init__(client_name, is_async=is_async)
         self.operation_group = operation_group
-        self.test_operations = test_operations
+        self.testcases = testcases
+        self.test_class_name = test_class_name
 
-class TestSerializer(BaseSerializer):
+
+class TestGeneralSerializer(BaseSerializer):
+    def __init__(
+        self, code_model: CodeModel, env: Environment, *, is_async: bool = False
+    ) -> None:
+        super().__init__(code_model, env)
+        self.is_async = is_async
+
+    @property
+    def test_names(self) -> List[TestName]:
+        return [
+            TestName(c.name, is_async=self.is_async) for c in self.code_model.clients
+        ]
+
+    @property
+    def import_clients(self) -> FileImportSerializer:
+        imports = self.init_file_import()
+        namespace = get_namespace_from_package_name(
+            self.code_model.options["package_name"]
+        )
+        aio_str = ".aio" if self.is_async else ""
+        for client in self.code_model.clients:
+            imports.add_submodule_import(
+                namespace + aio_str, client.name, ImportType.STDLIB
+            )
+        return FileImportSerializer(imports, self.is_async)
+
+    def serialize_conftest(self) -> str:
+        return self.env.get_template("conftest.py.jinja2").render(
+            test_names=self.test_names,
+            code_model=self.code_model,
+        )
+
+    def serialize_testpreparer(self) -> str:
+        return self.env.get_template("testpreparer.py.jinja2").render(
+            test_names=self.test_names,
+            imports=self.import_clients,
+            code_model=self.code_model,
+        )
+
+
+class TestSerializer(TestGeneralSerializer):
     def __init__(
         self,
         code_model: CodeModel,
         env: Environment,
+        *,
         client: Optional[Client] = None,
         operation_group: Optional[OperationGroup] = None,
+        is_async: bool = False,
     ) -> None:
-        super().__init__(code_model, env)
+        super().__init__(code_model, env, is_async=is_async)
         self.client = client
         self.operation_group = operation_group
 
     @property
-    def import_clients(self) -> FileImportSerializer:
-        imports = FileImport(self.code_model)
-        namespace = get_namespace_from_package_name(
-            self.code_model.options["package_name"]
-        )
-        for client in self.code_model.clients:
-            imports.add_submodule_import(namespace, client.name, ImportType.STDLIB)
-        return FileImportSerializer(imports, True)
-
-    @property
     def import_test(self) -> FileImport:
-        imports = FileImport(self.code_model)
-        test_name = TestName(self.client.name)
+        imports = self.init_file_import()
+        test_name = TestName(self.client.name, is_async=self.is_async)
+        aio_str = ".aio" if self.is_async else ""
+        async_suffix = "_async" if self.is_async else ""
         imports.add_submodule_import(
-            "testpreparer", test_name.base_test_class_name, ImportType.LOCAL
+            "testpreparer" + async_suffix,
+            test_name.base_test_class_name,
+            ImportType.LOCAL,
         )
         imports.add_submodule_import(
             "testpreparer", test_name.preparer_name, ImportType.LOCAL
         )
-        return FileImportSerializer(imports, True)
+        imports.add_submodule_import(
+            "devtools_testutils" + aio_str,
+            "recorded_by_proxy" + async_suffix,
+            ImportType.LOCAL,
+        )
+        return FileImportSerializer(imports, self.is_async)
 
     @property
     def breadth_search_operation_group(self) -> List[List[OperationGroup]]:
@@ -131,53 +209,45 @@ class TestSerializer(BaseSerializer):
         operation_params = {}
         required_params = [p for p in operation.parameters.method if not p.optional]
         for param in required_params:
-            operation_params[
-                param.client_name
-            ] = _json_dumps_template(param.type.get_json_template_representation(need_comment=False))
+            operation_params[param.client_name] = _json_dumps_template(
+                param.type.get_json_template_representation(need_comment=False)
+            )
         return operation_params
 
-    def handle_operation_group(self) -> TestOperationGroup:
-        test_operations = []
+    def get_test(self) -> Test:
+        testcases = []
         for operation_groups in self.breadth_search_operation_group:
             for operation in operation_groups[-1].operations:
                 if operation.internal or operation.is_lro_initial_operation:
                     continue
                 operation_params = self.get_operation_params(operation)
-                test_operation = TestOperation(
+                testcase = TestCase(
                     operation_groups=operation_groups,
                     params=operation_params,
                     operation=operation,
                 )
-                test_operations.append(test_operation)
-        if not test_operations:
-            raise Exception("no public operation to test")
+                testcases.append(testcase)
+        if not testcases:
+            raise Exception(  # pylint: disable=broad-exception-raised
+                "no public operation to test"
+            )
 
-        return TestOperationGroup(
-            self.client.name,
-            self.operation_group,
-            test_operations,
+        return Test(
+            client_name=self.client.name,
+            operation_group=self.operation_group,
+            testcases=testcases,
+            test_class_name=self.test_class_name,
+            is_async=self.is_async,
         )
 
     @property
-    def test_names(self) -> List[TestName]:
-        return [TestName(c.name) for c in self.code_model.clients]
+    def test_class_name(self) -> str:
+        test_name = TestName(self.client.name, is_async=self.is_async)
+        return f"Test{test_name.prefix}{self.operation_group.class_name}{test_name.async_suffix_capt}"
 
     def serialize_test(self) -> str:
         return self.env.get_template("test.py.jinja2").render(
             imports=self.import_test,
             code_model=self.code_model,
-            test_operation_group=self.handle_operation_group(),
-        )
-
-    def serialize_testpreparer(self) -> str:
-        return self.env.get_template("testpreparer.py.jinja2").render(
-            test_names=self.test_names,
-            imports=self.import_clients,
-            code_model=self.code_model,
-        )
-
-    def serialize_conftest(self) -> str:
-        return self.env.get_template("conftest.py.jinja2").render(
-            test_names=self.test_names,
-            code_model=self.code_model,
+            test=self.get_test(),
         )
