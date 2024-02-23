@@ -4,7 +4,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, List
 from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
@@ -13,12 +13,10 @@ from ..models import (
     CodeModel,
     ImportType,
     OperationGroup,
-    FileImport,
     Client,
     OperationType,
 )
-from .builder_serializer import _json_dumps_template
-from .utils import get_namespace_from_package_name
+from .utils import get_namespace_from_package_name, json_dumps_template
 
 
 class TestName:
@@ -136,6 +134,15 @@ class TestGeneralSerializer(BaseSerializer):
         namespace = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )
+
+        imports.add_submodule_import(
+            "devtools_testutils", "AzureRecordedTestCase", ImportType.STDLIB
+        )
+        if not self.is_async:
+            imports.add_import("functools", ImportType.STDLIB)
+            imports.add_submodule_import(
+                "devtools_testutils", "PowerShellPreparer", ImportType.STDLIB
+            )
         aio_str = ".aio" if self.is_async else ""
         for client in self.code_model.clients:
             imports.add_submodule_import(
@@ -163,8 +170,8 @@ class TestSerializer(TestGeneralSerializer):
         code_model: CodeModel,
         env: Environment,
         *,
-        client: Optional[Client] = None,
-        operation_group: Optional[OperationGroup] = None,
+        client: Client,
+        operation_group: OperationGroup,
         is_async: bool = False,
     ) -> None:
         super().__init__(code_model, env, is_async=is_async)
@@ -172,7 +179,7 @@ class TestSerializer(TestGeneralSerializer):
         self.operation_group = operation_group
 
     @property
-    def import_test(self) -> FileImport:
+    def import_test(self) -> FileImportSerializer:
         imports = self.init_file_import()
         test_name = TestName(self.client.name, is_async=self.is_async)
         aio_str = ".aio" if self.is_async else ""
@@ -209,7 +216,7 @@ class TestSerializer(TestGeneralSerializer):
         operation_params = {}
         required_params = [p for p in operation.parameters.method if not p.optional]
         for param in required_params:
-            operation_params[param.client_name] = _json_dumps_template(
+            operation_params[param.client_name] = json_dumps_template(
                 param.type.get_json_template_representation(need_comment=False)
             )
         return operation_params
@@ -243,7 +250,10 @@ class TestSerializer(TestGeneralSerializer):
     @property
     def test_class_name(self) -> str:
         test_name = TestName(self.client.name, is_async=self.is_async)
-        return f"Test{test_name.prefix}{self.operation_group.class_name}{test_name.async_suffix_capt}"
+        class_name = (
+            "" if self.operation_group.is_mixin else self.operation_group.class_name
+        )
+        return f"Test{test_name.prefix}{class_name}{test_name.async_suffix_capt}"
 
     def serialize_test(self) -> str:
         return self.env.get_template("test.py.jinja2").render(

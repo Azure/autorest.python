@@ -641,14 +641,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         self.write_file(
             out_path / "conftest.py", general_serializer.serialize_conftest()
         )
-        self.write_file(
-            out_path / "testpreparer.py", general_serializer.serialize_testpreparer()
-        )
-        general_serializer.is_async = True
-        self.write_file(
-            out_path / "testpreparer_async.py",
-            general_serializer.serialize_testpreparer(),
-        )
+        for is_async in (True, False):
+            async_suffix = "_async" if is_async else ""
+            general_serializer.is_async = is_async
+            self.write_file(
+                out_path / f"testpreparer{async_suffix}.py",
+                general_serializer.serialize_testpreparer(),
+            )
 
         for client in self.code_model.clients:
             for og in client.operation_groups:
@@ -659,7 +658,8 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     try:
                         test_serializer.is_async = is_async
                         self.write_file(
-                            out_path / f"{to_snake_case(test_serializer.test_class_name)}.py",
+                            out_path
+                            / f"{to_snake_case(test_serializer.test_class_name)}.py",
                             test_serializer.serialize_test(),
                         )
                     except Exception as e:  # pylint: disable=broad-except
