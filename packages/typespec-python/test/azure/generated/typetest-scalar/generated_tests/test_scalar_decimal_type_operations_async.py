@@ -17,26 +17,29 @@ class TestScalarDecimalTypeOperationsAsync(ScalarClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_response_body(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.decimal_type.response_body()
+        response = await client.decimal_type.response_body()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy_async
     async def test_request_body(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.decimal_type.request_body(
+        response = await client.decimal_type.request_body(
             body=0.0,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy_async
     async def test_request_parameter(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.decimal_type.request_parameter(
+        response = await client.decimal_type.request_parameter(
             value=0.0,
         )
 
         # please add some check logic here by yourself
+        # ...

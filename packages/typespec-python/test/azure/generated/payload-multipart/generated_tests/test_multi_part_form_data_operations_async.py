@@ -17,17 +17,18 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_basic(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.basic(
+        response = await client.form_data.basic(
             body={"id": "str", "profileImage": filetype},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_complex(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.complex(
+        response = await client.form_data.complex(
             body={
                 "address": {"city": "str"},
                 "id": "str",
@@ -38,53 +39,59 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_json_part(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.json_part(
+        response = await client.form_data.json_part(
             body={"address": {"city": "str"}, "profileImage": filetype},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_binary_array_parts(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.binary_array_parts(
+        response = await client.form_data.binary_array_parts(
             body={"id": "str", "pictures": [filetype]},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_json_array_parts(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.json_array_parts(
+        response = await client.form_data.json_array_parts(
             body={"previousAddresses": [{"city": "str"}], "profileImage": filetype},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_multi_binary_parts(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.multi_binary_parts(
+        response = await client.form_data.multi_binary_parts(
             body={"profileImage": filetype, "picture": filetype},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
     async def test_check_file_name_and_content_type(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
-        response = client.form_data.check_file_name_and_content_type(
+        response = await client.form_data.check_file_name_and_content_type(
             body={"id": "str", "profileImage": filetype},
         )
 
         # please add some check logic here by yourself
+        # ...

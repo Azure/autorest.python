@@ -19,6 +19,7 @@ class TestArrayDatetimeValueOperations(ArrayClientTestBase):
         response = client.datetime_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestArrayDatetimeValueOperations(ArrayClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

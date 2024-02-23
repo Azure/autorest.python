@@ -17,16 +17,18 @@ class TestAdditionalPropertiesIsUnknownDiscriminatedOperationsAsync(AdditionalPr
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown_discriminated.get()
+        response = await client.is_unknown_discriminated.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown_discriminated.put(
+        response = await client.is_unknown_discriminated.put(
             body=is_unknown_additional_properties_discriminated,
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.and_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.as_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -35,6 +37,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.assert_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -43,6 +46,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.async_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -51,6 +55,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.await_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -59,6 +64,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.break_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -67,6 +73,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.class_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -75,6 +82,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.constructor()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -83,6 +91,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.continue_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -91,6 +100,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.def_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -99,6 +109,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.del_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -107,6 +118,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.elif_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -115,6 +127,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.else_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -123,6 +136,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.except_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -131,6 +145,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.exec_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -139,6 +154,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.finally_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -147,6 +163,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.for_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -155,6 +172,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.from_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -163,6 +181,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.global_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -171,6 +190,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.if_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -179,6 +199,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.import_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -187,6 +208,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.in_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -195,6 +217,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.is_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -203,6 +226,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.lambda_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -211,6 +235,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.not_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -219,6 +244,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.or_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -227,6 +253,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.pass_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -235,6 +262,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.raise_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -243,6 +271,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.return_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -251,6 +280,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.try_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -259,6 +289,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.while_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -267,6 +298,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.with_method()
 
         # please add some check logic here by yourself
+        # ...
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
@@ -275,3 +307,4 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
         response = client.operations.yield_method()
 
         # please add some check logic here by yourself
+        # ...

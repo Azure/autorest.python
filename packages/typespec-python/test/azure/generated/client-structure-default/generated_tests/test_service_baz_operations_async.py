@@ -17,6 +17,7 @@ class TestServiceBazOperationsAsync(ServiceClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_seven(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
-        response = client.baz.foo.seven()
+        response = await client.baz.foo.seven()
 
         # please add some check logic here by yourself
+        # ...

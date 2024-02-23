@@ -17,34 +17,38 @@ class TestNullableDurationOperationsAsync(NullableClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
-        response = client.duration.get_non_null()
+        response = await client.duration.get_non_null()
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy_async
     async def test_get_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
-        response = client.duration.get_null()
+        response = await client.duration.get_null()
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy_async
     async def test_patch_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
-        response = client.duration.patch_non_null(
+        response = await client.duration.patch_non_null(
             body={"nullableProperty": "1 day, 0:00:00", "requiredProperty": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy_async
     async def test_patch_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
-        response = client.duration.patch_null(
+        response = await client.duration.patch_null(
             body={"nullableProperty": "1 day, 0:00:00", "requiredProperty": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

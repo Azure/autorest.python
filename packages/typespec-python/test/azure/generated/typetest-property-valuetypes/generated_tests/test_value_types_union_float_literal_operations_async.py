@@ -17,16 +17,18 @@ class TestValueTypesUnionFloatLiteralOperationsAsync(ValueTypesClientTestBaseAsy
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.get()
+        response = await client.union_float_literal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.put(
+        response = await client.union_float_literal.put(
             body={"property": 42.42},
         )
 
         # please add some check logic here by yourself
+        # ...

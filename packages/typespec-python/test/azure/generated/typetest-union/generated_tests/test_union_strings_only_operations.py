@@ -19,6 +19,7 @@ class TestUnionStringsOnlyOperations(UnionClientTestBase):
         response = client.strings_only.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -30,3 +31,4 @@ class TestUnionStringsOnlyOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

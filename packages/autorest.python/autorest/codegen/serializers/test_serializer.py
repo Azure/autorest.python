@@ -232,6 +232,7 @@ class TestSerializer(TestGeneralSerializer):
                     operation_groups=operation_groups,
                     params=operation_params,
                     operation=operation,
+                    is_async=self.is_async,
                 )
                 testcases.append(testcase)
         if not testcases:

@@ -17,48 +17,53 @@ class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsy
     @recorded_by_proxy_async
     async def test_multi(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
-        response = client.query.multi(
+        response = await client.query.multi(
             colors=["str"],
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
     async def test_ssv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
-        response = client.query.ssv(
+        response = await client.query.ssv(
             colors=["str"],
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
     async def test_tsv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
-        response = client.query.tsv(
+        response = await client.query.tsv(
             colors=["str"],
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
     async def test_pipes(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
-        response = client.query.pipes(
+        response = await client.query.pipes(
             colors=["str"],
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
     async def test_csv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
-        response = client.query.csv(
+        response = await client.query.csv(
             colors=["str"],
         )
 
         # please add some check logic here by yourself
+        # ...

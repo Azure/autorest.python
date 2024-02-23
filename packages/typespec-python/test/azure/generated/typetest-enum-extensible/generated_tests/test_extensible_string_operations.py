@@ -19,6 +19,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         response = client.string.get_known_value()
 
         # please add some check logic here by yourself
+        # ...
 
     @ExtensiblePreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         response = client.string.get_unknown_value()
 
         # please add some check logic here by yourself
+        # ...
 
     @ExtensiblePreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ExtensiblePreparer()
     @recorded_by_proxy
@@ -47,3 +50,4 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

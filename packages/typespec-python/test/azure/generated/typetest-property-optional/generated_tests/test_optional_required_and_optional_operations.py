@@ -19,6 +19,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
         response = client.required_and_optional.get_all()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
         response = client.required_and_optional.get_required_only()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -47,3 +50,4 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

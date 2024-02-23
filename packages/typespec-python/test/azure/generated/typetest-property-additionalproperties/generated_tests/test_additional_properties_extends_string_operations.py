@@ -19,6 +19,7 @@ class TestAdditionalPropertiesExtendsStringOperations(AdditionalPropertiesClient
         response = client.extends_string.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesExtendsStringOperations(AdditionalPropertiesClient
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestBytesResponseBodyOperations(BytesClientTestBase):
         response = client.response_body.default()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestBytesResponseBodyOperations(BytesClientTestBase):
         response = client.response_body.octet_stream()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -35,6 +37,7 @@ class TestBytesResponseBodyOperations(BytesClientTestBase):
         response = client.response_body.custom_content_type()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -43,6 +46,7 @@ class TestBytesResponseBodyOperations(BytesClientTestBase):
         response = client.response_body.base64()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -51,3 +55,4 @@ class TestBytesResponseBodyOperations(BytesClientTestBase):
         response = client.response_body.base64url()
 
         # please add some check logic here by yourself
+        # ...

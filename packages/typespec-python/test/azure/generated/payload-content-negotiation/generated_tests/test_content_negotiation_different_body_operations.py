@@ -21,6 +21,7 @@ class TestContentNegotiationDifferentBodyOperations(ContentNegotiationClientTest
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ContentNegotiationPreparer()
     @recorded_by_proxy
@@ -31,3 +32,4 @@ class TestContentNegotiationDifferentBodyOperations(ContentNegotiationClientTest
         )
 
         # please add some check logic here by yourself
+        # ...

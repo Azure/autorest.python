@@ -19,6 +19,7 @@ class TestConditionalRequest(ConditionalRequestClientTestBase):
         response = client.post_if_match()
 
         # please add some check logic here by yourself
+        # ...
 
     @ConditionalRequestPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestConditionalRequest(ConditionalRequestClientTestBase):
         response = client.post_if_none_match()
 
         # please add some check logic here by yourself
+        # ...

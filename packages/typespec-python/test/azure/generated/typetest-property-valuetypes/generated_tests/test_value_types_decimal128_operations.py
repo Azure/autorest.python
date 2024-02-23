@@ -19,6 +19,7 @@ class TestValueTypesDecimal128Operations(ValueTypesClientTestBase):
         response = client.decimal128.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesDecimal128Operations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

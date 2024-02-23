@@ -17,15 +17,16 @@ class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.mixed_types.get()
+        response = await client.mixed_types.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy_async
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.mixed_types.send(
+        response = await client.mixed_types.send(
             body={
                 "prop": {
                     "boolean": {"name": "str"},
@@ -43,3 +44,4 @@ class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
         )
 
         # please add some check logic here by yourself
+        # ...

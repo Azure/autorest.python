@@ -17,26 +17,29 @@ class TestFixedStringOperationsAsync(FixedClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_known_value(self, fixed_endpoint):
         client = self.create_async_client(endpoint=fixed_endpoint)
-        response = client.string.get_known_value()
+        response = await client.string.get_known_value()
 
         # please add some check logic here by yourself
+        # ...
 
     @FixedPreparer()
     @recorded_by_proxy_async
     async def test_put_known_value(self, fixed_endpoint):
         client = self.create_async_client(endpoint=fixed_endpoint)
-        response = client.string.put_known_value(
+        response = await client.string.put_known_value(
             body="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @FixedPreparer()
     @recorded_by_proxy_async
     async def test_put_unknown_value(self, fixed_endpoint):
         client = self.create_async_client(endpoint=fixed_endpoint)
-        response = client.string.put_unknown_value(
+        response = await client.string.put_unknown_value(
             body="str",
         )
 
         # please add some check logic here by yourself
+        # ...

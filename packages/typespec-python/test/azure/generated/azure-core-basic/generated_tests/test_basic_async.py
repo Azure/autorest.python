@@ -17,85 +17,94 @@ class TestBasicAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_create_or_update(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.create_or_update(
+        response = await client.create_or_update(
             id=0,
             resource={"etag": "str", "id": 0, "name": "str", "orders": [{"detail": "str", "id": 0, "userId": 0}]},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_create_or_replace(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.create_or_replace(
+        response = await client.create_or_replace(
             id=0,
             resource={"etag": "str", "id": 0, "name": "str", "orders": [{"detail": "str", "id": 0, "userId": 0}]},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_get(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.get(
+        response = await client.get(
             id=0,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_list(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.list()
-        result = [r for r in response]
+        response = await client.list()
+
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_list_with_page(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.list_with_page()
-        result = [r for r in response]
+        response = await client.list_with_page()
+
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_list_with_parameters(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.list_with_parameters(
+        response = await client.list_with_parameters(
             body_input={"inputName": "str"},
         )
-        result = [r for r in response]
+
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_list_with_custom_page_model(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.list_with_custom_page_model()
-        result = [r for r in response]
+        response = await client.list_with_custom_page_model()
+
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_delete(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.delete(
+        response = await client.delete(
             id=0,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy_async
     async def test_export(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = client.export(
+        response = await client.export(
             id=0,
             format="str",
         )
 
         # please add some check logic here by yourself
+        # ...

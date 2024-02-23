@@ -17,16 +17,18 @@ class TestAdditionalPropertiesIsUnknownOperationsAsync(AdditionalPropertiesClien
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown.get()
+        response = await client.is_unknown.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown.put(
+        response = await client.is_unknown.put(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

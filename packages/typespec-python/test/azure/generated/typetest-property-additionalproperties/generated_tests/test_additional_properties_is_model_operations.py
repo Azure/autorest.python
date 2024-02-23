@@ -19,6 +19,7 @@ class TestAdditionalPropertiesIsModelOperations(AdditionalPropertiesClientTestBa
         response = client.is_model.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesIsModelOperations(AdditionalPropertiesClientTestBa
         )
 
         # please add some check logic here by yourself
+        # ...

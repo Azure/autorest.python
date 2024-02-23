@@ -17,26 +17,29 @@ class TestNotDiscriminatedAsync(NotDiscriminatedClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_post_valid(self, notdiscriminated_endpoint):
         client = self.create_async_client(endpoint=notdiscriminated_endpoint)
-        response = client.post_valid(
+        response = await client.post_valid(
             input={"age": 0, "name": "str", "smart": bool},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NotDiscriminatedPreparer()
     @recorded_by_proxy_async
     async def test_get_valid(self, notdiscriminated_endpoint):
         client = self.create_async_client(endpoint=notdiscriminated_endpoint)
-        response = client.get_valid()
+        response = await client.get_valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @NotDiscriminatedPreparer()
     @recorded_by_proxy_async
     async def test_put_valid(self, notdiscriminated_endpoint):
         client = self.create_async_client(endpoint=notdiscriminated_endpoint)
-        response = client.put_valid(
+        response = await client.put_valid(
             input={"age": 0, "name": "str", "smart": bool},
         )
 
         # please add some check logic here by yourself
+        # ...

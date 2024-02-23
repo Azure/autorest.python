@@ -19,6 +19,7 @@ class TestValueTypesIntOperations(ValueTypesClientTestBase):
         response = client.int_operations.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesIntOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

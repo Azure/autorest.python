@@ -21,6 +21,7 @@ class TestLegacyCreateResourcePollViaOperationLocationOperations(LegacyClientTes
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @LegacyPreparer()
     @recorded_by_proxy
@@ -31,3 +32,4 @@ class TestLegacyCreateResourcePollViaOperationLocationOperations(LegacyClientTes
         )
         result = response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...

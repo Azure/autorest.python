@@ -17,50 +17,56 @@ class TestNestedDiscriminatorAsync(NestedDiscriminatorClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_model(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.get_model()
+        response = await client.get_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_put_model(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.put_model(
+        response = await client.put_model(
             input=fish,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_recursive_model(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.get_recursive_model()
+        response = await client.get_recursive_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_put_recursive_model(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.put_recursive_model(
+        response = await client.put_recursive_model(
             input=fish,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_missing_discriminator(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.get_missing_discriminator()
+        response = await client.get_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_wrong_discriminator(self, nesteddiscriminator_endpoint):
         client = self.create_async_client(endpoint=nesteddiscriminator_endpoint)
-        response = client.get_wrong_discriminator()
+        response = await client.get_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...

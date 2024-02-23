@@ -19,6 +19,7 @@ class TestMultiple(MultipleClientTestBase):
         response = client.no_operation_params()
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiplePreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestMultiple(MultipleClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

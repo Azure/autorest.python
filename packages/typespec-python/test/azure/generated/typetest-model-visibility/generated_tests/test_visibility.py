@@ -21,6 +21,7 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @VisibilityPreparer()
     @recorded_by_proxy
@@ -31,6 +32,7 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @VisibilityPreparer()
     @recorded_by_proxy
@@ -41,6 +43,7 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @VisibilityPreparer()
     @recorded_by_proxy
@@ -51,6 +54,7 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @VisibilityPreparer()
     @recorded_by_proxy
@@ -61,6 +65,7 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @VisibilityPreparer()
     @recorded_by_proxy
@@ -71,3 +76,4 @@ class TestVisibility(VisibilityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestAdditionalPropertiesIsFloatOperationsAsync(AdditionalPropertiesClientT
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_float.get()
+        response = await client.is_float.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_float.put(
+        response = await client.is_float.put(
             body={"id": 0.0},
         )
 
         # please add some check logic here by yourself
+        # ...

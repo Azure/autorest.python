@@ -19,6 +19,7 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         response = client.get_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         response = client.get_recursive_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy
@@ -47,6 +50,7 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy
@@ -55,6 +59,7 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         response = client.get_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @NestedDiscriminatorPreparer()
     @recorded_by_proxy
@@ -63,3 +68,4 @@ class TestNestedDiscriminator(NestedDiscriminatorClientTestBase):
         response = client.get_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...

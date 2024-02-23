@@ -17,16 +17,18 @@ class TestScalarDecimalVerifyOperationsAsync(ScalarClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_prepare_verify(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.decimal_verify.prepare_verify()
+        response = await client.decimal_verify.prepare_verify()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy_async
     async def test_verify(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.decimal_verify.verify(
+        response = await client.decimal_verify.verify(
             body=0.0,
         )
 
         # please add some check logic here by yourself
+        # ...

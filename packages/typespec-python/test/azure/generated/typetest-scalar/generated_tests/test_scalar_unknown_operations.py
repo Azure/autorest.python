@@ -19,6 +19,7 @@ class TestScalarUnknownOperations(ScalarClientTestBase):
         response = client.unknown.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestScalarUnknownOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

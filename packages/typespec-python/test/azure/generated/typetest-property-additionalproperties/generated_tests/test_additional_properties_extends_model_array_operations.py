@@ -19,6 +19,7 @@ class TestAdditionalPropertiesExtendsModelArrayOperations(AdditionalPropertiesCl
         response = client.extends_model_array.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesExtendsModelArrayOperations(AdditionalPropertiesCl
         )
 
         # please add some check logic here by yourself
+        # ...

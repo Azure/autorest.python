@@ -19,6 +19,7 @@ class TestB(ClientBClientTestBase):
         response = client.renamed_two()
 
         # please add some check logic here by yourself
+        # ...
 
     @BPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestB(ClientBClientTestBase):
         response = client.renamed_four()
 
         # please add some check logic here by yourself
+        # ...
 
     @BPreparer()
     @recorded_by_proxy
@@ -35,3 +37,4 @@ class TestB(ClientBClientTestBase):
         response = client.renamed_six()
 
         # please add some check logic here by yourself
+        # ...

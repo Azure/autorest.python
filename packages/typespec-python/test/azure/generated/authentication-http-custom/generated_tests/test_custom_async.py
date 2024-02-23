@@ -17,14 +17,16 @@ class TestCustomAsync(CustomClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_valid(self, custom_endpoint):
         client = self.create_async_client(endpoint=custom_endpoint)
-        response = client.valid()
+        response = await client.valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @CustomPreparer()
     @recorded_by_proxy_async
     async def test_invalid(self, custom_endpoint):
         client = self.create_async_client(endpoint=custom_endpoint)
-        response = client.invalid()
+        response = await client.invalid()
 
         # please add some check logic here by yourself
+        # ...

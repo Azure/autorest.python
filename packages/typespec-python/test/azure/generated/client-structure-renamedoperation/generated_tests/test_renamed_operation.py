@@ -19,6 +19,7 @@ class TestRenamedOperation(RenamedOperationClientTestBase):
         response = client.renamed_one()
 
         # please add some check logic here by yourself
+        # ...
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestRenamedOperation(RenamedOperationClientTestBase):
         response = client.renamed_three()
 
         # please add some check logic here by yourself
+        # ...
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
@@ -35,3 +37,4 @@ class TestRenamedOperation(RenamedOperationClientTestBase):
         response = client.renamed_five()
 
         # please add some check logic here by yourself
+        # ...

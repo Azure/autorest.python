@@ -19,6 +19,7 @@ class TestValueTypesCollectionsIntOperations(ValueTypesClientTestBase):
         response = client.collections_int.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesCollectionsIntOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

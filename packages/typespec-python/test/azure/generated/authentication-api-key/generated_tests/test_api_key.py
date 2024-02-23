@@ -19,6 +19,7 @@ class TestApiKey(ApiKeyClientTestBase):
         response = client.valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @ApiKeyPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestApiKey(ApiKeyClientTestBase):
         response = client.invalid()
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestFixedStringOperations(FixedClientTestBase):
         response = client.string.get_known_value()
 
         # please add some check logic here by yourself
+        # ...
 
     @FixedPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestFixedStringOperations(FixedClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @FixedPreparer()
     @recorded_by_proxy
@@ -39,3 +41,4 @@ class TestFixedStringOperations(FixedClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

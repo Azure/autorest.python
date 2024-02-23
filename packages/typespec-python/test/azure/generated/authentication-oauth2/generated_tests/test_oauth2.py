@@ -19,6 +19,7 @@ class TestOAuth2(OAuth2ClientTestBase):
         response = client.valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @OAuth2Preparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestOAuth2(OAuth2ClientTestBase):
         response = client.invalid()
 
         # please add some check logic here by yourself
+        # ...

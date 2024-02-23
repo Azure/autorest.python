@@ -19,6 +19,7 @@ class TestAdditionalPropertiesIsUnknownDiscriminatedOperations(AdditionalPropert
         response = client.is_unknown_discriminated.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesIsUnknownDiscriminatedOperations(AdditionalPropert
         )
 
         # please add some check logic here by yourself
+        # ...

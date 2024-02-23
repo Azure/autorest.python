@@ -17,34 +17,38 @@ class TestOptionalCollectionsByteOperationsAsync(OptionalClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.collections_byte.get_all()
+        response = await client.collections_byte.get_all()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.collections_byte.get_default()
+        response = await client.collections_byte.get_default()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.collections_byte.put_all(
+        response = await client.collections_byte.put_all(
             body={"property": [bytes("bytes", encoding="utf-8")]},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.collections_byte.put_default(
+        response = await client.collections_byte.put_default(
             body={"property": [bytes("bytes", encoding="utf-8")]},
         )
 
         # please add some check logic here by yourself
+        # ...

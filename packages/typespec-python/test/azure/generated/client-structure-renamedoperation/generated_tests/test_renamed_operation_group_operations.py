@@ -19,6 +19,7 @@ class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
         response = client.group.renamed_two()
 
         # please add some check logic here by yourself
+        # ...
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
         response = client.group.renamed_four()
 
         # please add some check logic here by yourself
+        # ...
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
@@ -35,3 +37,4 @@ class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
         response = client.group.renamed_six()
 
         # please add some check logic here by yourself
+        # ...

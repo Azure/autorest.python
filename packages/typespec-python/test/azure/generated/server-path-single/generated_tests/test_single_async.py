@@ -17,6 +17,7 @@ class TestSingleAsync(SingleClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_my_op(self, single_endpoint):
         client = self.create_async_client(endpoint=single_endpoint)
-        response = client.my_op()
+        response = await client.my_op()
 
         # please add some check logic here by yourself
+        # ...

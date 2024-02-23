@@ -19,6 +19,7 @@ class TestArrayNullableFloatValueOperations(ArrayClientTestBase):
         response = client.nullable_float_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestArrayNullableFloatValueOperations(ArrayClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

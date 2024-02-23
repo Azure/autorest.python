@@ -19,3 +19,4 @@ class TestSingle(SingleClientTestBase):
         response = client.my_op()
 
         # please add some check logic here by yourself
+        # ...

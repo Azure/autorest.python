@@ -19,6 +19,7 @@ class TestBasicTwoModelsAsPageItemOperations(BasicClientTestBase):
         response = client.two_models_as_page_item.list_first_item()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestBasicTwoModelsAsPageItemOperations(BasicClientTestBase):
         response = client.two_models_as_page_item.list_second_item()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...

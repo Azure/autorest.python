@@ -19,6 +19,7 @@ class TestArrayFloat32ValueOperations(ArrayClientTestBase):
         response = client.float32_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestArrayFloat32ValueOperations(ArrayClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

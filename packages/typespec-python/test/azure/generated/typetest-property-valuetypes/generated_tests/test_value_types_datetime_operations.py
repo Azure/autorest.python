@@ -19,6 +19,7 @@ class TestValueTypesDatetimeOperations(ValueTypesClientTestBase):
         response = client.datetime.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesDatetimeOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

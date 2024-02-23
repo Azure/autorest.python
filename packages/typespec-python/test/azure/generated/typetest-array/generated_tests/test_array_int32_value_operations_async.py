@@ -17,16 +17,18 @@ class TestArrayInt32ValueOperationsAsync(ArrayClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
-        response = client.int32_value.get()
+        response = await client.int32_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy_async
     async def test_put(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
-        response = client.int32_value.put(
+        response = await client.int32_value.put(
             body=[0],
         )
 
         # please add some check logic here by yourself
+        # ...

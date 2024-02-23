@@ -17,18 +17,19 @@ class TestSpreadAliasOperationsAsync(SpreadClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_spread_as_request_body(self, spread_endpoint):
         client = self.create_async_client(endpoint=spread_endpoint)
-        response = client.alias.spread_as_request_body(
+        response = await client.alias.spread_as_request_body(
             body={"name": "str"},
             name="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SpreadPreparer()
     @recorded_by_proxy_async
     async def test_spread_as_request_parameter(self, spread_endpoint):
         client = self.create_async_client(endpoint=spread_endpoint)
-        response = client.alias.spread_as_request_parameter(
+        response = await client.alias.spread_as_request_parameter(
             id="str",
             body={"name": "str"},
             x_ms_test_header="str",
@@ -36,12 +37,13 @@ class TestSpreadAliasOperationsAsync(SpreadClientTestBaseAsync):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SpreadPreparer()
     @recorded_by_proxy_async
     async def test_spread_with_multiple_parameters(self, spread_endpoint):
         client = self.create_async_client(endpoint=spread_endpoint)
-        response = client.alias.spread_with_multiple_parameters(
+        response = await client.alias.spread_with_multiple_parameters(
             id="str",
             body={"prop1": "str", "prop2": "str", "prop3": "str", "prop4": "str", "prop5": "str", "prop6": "str"},
             x_ms_test_header="str",
@@ -54,3 +56,4 @@ class TestSpreadAliasOperationsAsync(SpreadClientTestBaseAsync):
         )
 
         # please add some check logic here by yourself
+        # ...

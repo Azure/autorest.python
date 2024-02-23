@@ -21,6 +21,7 @@ class TestEmpty(EmptyClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @EmptyPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestEmpty(EmptyClientTestBase):
         response = client.get_empty()
 
         # please add some check logic here by yourself
+        # ...
 
     @EmptyPreparer()
     @recorded_by_proxy
@@ -39,3 +41,4 @@ class TestEmpty(EmptyClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

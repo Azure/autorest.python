@@ -17,16 +17,18 @@ class TestAdditionalPropertiesExtendsModelArrayOperationsAsync(AdditionalPropert
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.extends_model_array.get()
+        response = await client.extends_model_array.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.extends_model_array.put(
+        response = await client.extends_model_array.put(
             body={},
         )
 
         # please add some check logic here by yourself
+        # ...

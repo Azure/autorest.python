@@ -21,6 +21,7 @@ class TestDurationQueryOperations(DurationClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy
@@ -31,6 +32,7 @@ class TestDurationQueryOperations(DurationClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy
@@ -41,6 +43,7 @@ class TestDurationQueryOperations(DurationClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy
@@ -51,6 +54,7 @@ class TestDurationQueryOperations(DurationClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy
@@ -61,3 +65,4 @@ class TestDurationQueryOperations(DurationClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

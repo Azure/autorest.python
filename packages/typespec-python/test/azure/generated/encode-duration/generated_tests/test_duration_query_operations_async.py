@@ -17,48 +17,53 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.query.default(
+        response = await client.query.default(
             input="1 day, 0:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_iso8601(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.query.iso8601(
+        response = await client.query.iso8601(
             input="1 day, 0:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_int32_seconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.query.int32_seconds(
+        response = await client.query.int32_seconds(
             input=0,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_float_seconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.query.float_seconds(
+        response = await client.query.float_seconds(
             input=0.0,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_int32_seconds_array(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.query.int32_seconds_array(
+        response = await client.query.int32_seconds_array(
             input=[0],
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestValueTypesDatetimeOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.datetime.get()
+        response = await client.datetime.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.datetime.put(
+        response = await client.datetime.put(
             body={"property": "2020-02-20 00:00:00"},
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestDictionaryUnknownValueOperationsAsync(DictionaryClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
-        response = client.unknown_value.get()
+        response = await client.unknown_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @DictionaryPreparer()
     @recorded_by_proxy_async
     async def test_put(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
-        response = client.unknown_value.put(
+        response = await client.unknown_value.put(
             body={"str": {}},
         )
 
         # please add some check logic here by yourself
+        # ...

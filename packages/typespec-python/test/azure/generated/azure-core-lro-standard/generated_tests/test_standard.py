@@ -22,6 +22,7 @@ class TestStandard(StandardClientTestBase):
         )
         result = response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...
 
     @StandardPreparer()
     @recorded_by_proxy
@@ -32,6 +33,7 @@ class TestStandard(StandardClientTestBase):
         )
         result = response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...
 
     @StandardPreparer()
     @recorded_by_proxy
@@ -43,3 +45,4 @@ class TestStandard(StandardClientTestBase):
         )
         result = response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...

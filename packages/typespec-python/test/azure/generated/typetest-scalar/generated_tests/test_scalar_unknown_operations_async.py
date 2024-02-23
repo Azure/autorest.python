@@ -17,16 +17,18 @@ class TestScalarUnknownOperationsAsync(ScalarClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.unknown.get()
+        response = await client.unknown.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy_async
     async def test_put(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
-        response = client.unknown.put(
+        response = await client.unknown.put(
             body={},
         )
 
         # please add some check logic here by yourself
+        # ...

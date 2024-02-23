@@ -17,16 +17,18 @@ class TestMultipleAsync(MultipleClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_no_operation_params(self, multiple_endpoint):
         client = self.create_async_client(endpoint=multiple_endpoint)
-        response = client.no_operation_params()
+        response = await client.no_operation_params()
 
         # please add some check logic here by yourself
+        # ...
 
     @MultiplePreparer()
     @recorded_by_proxy_async
     async def test_with_operation_path_param(self, multiple_endpoint):
         client = self.create_async_client(endpoint=multiple_endpoint)
-        response = client.with_operation_path_param(
+        response = await client.with_operation_path_param(
             keyword="str",
         )
 
         # please add some check logic here by yourself
+        # ...

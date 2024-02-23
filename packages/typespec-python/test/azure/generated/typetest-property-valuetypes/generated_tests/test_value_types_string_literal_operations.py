@@ -19,6 +19,7 @@ class TestValueTypesStringLiteralOperations(ValueTypesClientTestBase):
         response = client.string_literal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesStringLiteralOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

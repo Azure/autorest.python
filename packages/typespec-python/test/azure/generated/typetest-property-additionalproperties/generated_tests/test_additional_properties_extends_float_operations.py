@@ -19,6 +19,7 @@ class TestAdditionalPropertiesExtendsFloatOperations(AdditionalPropertiesClientT
         response = client.extends_float.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesExtendsFloatOperations(AdditionalPropertiesClientT
         )
 
         # please add some check logic here by yourself
+        # ...

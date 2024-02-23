@@ -17,38 +17,42 @@ class TestProjectedNamePropertyOperationsAsync(ProjectedNameClientTestBaseAsync)
     @recorded_by_proxy_async
     async def test_json(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.property.json(
+        response = await client.property.json(
             body={"wireName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy_async
     async def test_client(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.property.client(
+        response = await client.property.client(
             body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy_async
     async def test_language(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.property.language(
+        response = await client.property.language(
             body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy_async
     async def test_json_and_client(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.property.json_and_client(
+        response = await client.property.json_and_client(
             body={"wireName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...

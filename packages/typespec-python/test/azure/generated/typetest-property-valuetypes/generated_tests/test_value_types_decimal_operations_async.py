@@ -17,16 +17,18 @@ class TestValueTypesDecimalOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.decimal.get()
+        response = await client.decimal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.decimal.put(
+        response = await client.decimal.put(
             body={"property": 0.0},
         )
 
         # please add some check logic here by yourself
+        # ...

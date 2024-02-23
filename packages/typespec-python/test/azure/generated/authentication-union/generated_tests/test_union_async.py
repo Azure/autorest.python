@@ -17,14 +17,16 @@ class TestUnionAsync(UnionClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_valid_key(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.valid_key()
+        response = await client.valid_key()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy_async
     async def test_valid_token(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.valid_token()
+        response = await client.valid_token()
 
         # please add some check logic here by yourself
+        # ...

@@ -17,14 +17,16 @@ class TestServiceQuxOperationsAsync(ServiceClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_eight(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
-        response = client.qux.eight()
+        response = await client.qux.eight()
 
         # please add some check logic here by yourself
+        # ...
 
     @ServicePreparer()
     @recorded_by_proxy_async
     async def test_nine(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
-        response = client.qux.bar.nine()
+        response = await client.qux.bar.nine()
 
         # please add some check logic here by yourself
+        # ...

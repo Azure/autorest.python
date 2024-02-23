@@ -21,6 +21,7 @@ class TestRecursive(RecursiveClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @RecursivePreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestRecursive(RecursiveClientTestBase):
         response = client.get()
 
         # please add some check logic here by yourself
+        # ...

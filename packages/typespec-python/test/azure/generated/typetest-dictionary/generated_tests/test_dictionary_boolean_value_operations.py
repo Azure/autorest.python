@@ -19,6 +19,7 @@ class TestDictionaryBooleanValueOperations(DictionaryClientTestBase):
         response = client.boolean_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @DictionaryPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestDictionaryBooleanValueOperations(DictionaryClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestValueTypesEnumOperations(ValueTypesClientTestBase):
         response = client.enum.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesEnumOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestBodyOptionalityOptionalExplicitOperations(BodyOptionalityClientTestBas
         response = client.optional_explicit.set()
 
         # please add some check logic here by yourself
+        # ...
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestBodyOptionalityOptionalExplicitOperations(BodyOptionalityClientTestBas
         response = client.optional_explicit.omit()
 
         # please add some check logic here by yourself
+        # ...

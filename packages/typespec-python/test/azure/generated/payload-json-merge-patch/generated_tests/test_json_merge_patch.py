@@ -30,6 +30,7 @@ class TestJsonMergePatch(JsonMergePatchClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @JsonMergePatchPreparer()
     @recorded_by_proxy
@@ -48,6 +49,7 @@ class TestJsonMergePatch(JsonMergePatchClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @JsonMergePatchPreparer()
     @recorded_by_proxy
@@ -56,3 +58,4 @@ class TestJsonMergePatch(JsonMergePatchClientTestBase):
         response = client.update_optional_resource()
 
         # please add some check logic here by yourself
+        # ...

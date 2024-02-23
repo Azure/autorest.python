@@ -17,16 +17,18 @@ class TestRecursiveAsync(RecursiveClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_put(self, recursive_endpoint):
         client = self.create_async_client(endpoint=recursive_endpoint)
-        response = client.put(
+        response = await client.put(
             input={"level": 0, "extension": [...]},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @RecursivePreparer()
     @recorded_by_proxy_async
     async def test_get(self, recursive_endpoint):
         client = self.create_async_client(endpoint=recursive_endpoint)
-        response = client.get()
+        response = await client.get()
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestUnionStringExtensibleNamedOperations(UnionClientTestBase):
         response = client.string_extensible_named.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -30,3 +31,4 @@ class TestUnionStringExtensibleNamedOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

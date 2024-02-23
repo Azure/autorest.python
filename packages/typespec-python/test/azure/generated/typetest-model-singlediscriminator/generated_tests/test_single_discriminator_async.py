@@ -17,58 +17,65 @@ class TestSingleDiscriminatorAsync(SingleDiscriminatorClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_model(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.get_model()
+        response = await client.get_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_put_model(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.put_model(
+        response = await client.put_model(
             input=bird,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_recursive_model(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.get_recursive_model()
+        response = await client.get_recursive_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_put_recursive_model(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.put_recursive_model(
+        response = await client.put_recursive_model(
             input=bird,
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_missing_discriminator(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.get_missing_discriminator()
+        response = await client.get_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_wrong_discriminator(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.get_wrong_discriminator()
+        response = await client.get_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy_async
     async def test_get_legacy_model(self, singlediscriminator_endpoint):
         client = self.create_async_client(endpoint=singlediscriminator_endpoint)
-        response = client.get_legacy_model()
+        response = await client.get_legacy_model()
 
         # please add some check logic here by yourself
+        # ...

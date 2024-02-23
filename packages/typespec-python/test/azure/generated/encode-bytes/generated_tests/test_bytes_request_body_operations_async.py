@@ -17,50 +17,55 @@ class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.request_body.default(
+        response = await client.request_body.default(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_octet_stream(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.request_body.octet_stream(
+        response = await client.request_body.octet_stream(
             value=bytes("bytes", encoding="utf-8"),
             content_type="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_custom_content_type(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.request_body.custom_content_type(
+        response = await client.request_body.custom_content_type(
             value=bytes("bytes", encoding="utf-8"),
             content_type="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.request_body.base64(
+        response = await client.request_body.base64(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.request_body.base64url(
+        response = await client.request_body.base64url(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...

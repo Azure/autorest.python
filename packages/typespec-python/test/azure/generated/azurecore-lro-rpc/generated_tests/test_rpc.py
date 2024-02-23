@@ -21,3 +21,4 @@ class TestRpc(RpcClientTestBase):
         )
         result = response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...

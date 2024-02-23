@@ -17,26 +17,29 @@ class TestEmptyAsync(EmptyClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_put_empty(self, empty_endpoint):
         client = self.create_async_client(endpoint=empty_endpoint)
-        response = client.put_empty(
+        response = await client.put_empty(
             input={},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @EmptyPreparer()
     @recorded_by_proxy_async
     async def test_get_empty(self, empty_endpoint):
         client = self.create_async_client(endpoint=empty_endpoint)
-        response = client.get_empty()
+        response = await client.get_empty()
 
         # please add some check logic here by yourself
+        # ...
 
     @EmptyPreparer()
     @recorded_by_proxy_async
     async def test_post_round_trip_empty(self, empty_endpoint):
         client = self.create_async_client(endpoint=empty_endpoint)
-        response = client.post_round_trip_empty(
+        response = await client.post_round_trip_empty(
             body={},
         )
 
         # please add some check logic here by yourself
+        # ...

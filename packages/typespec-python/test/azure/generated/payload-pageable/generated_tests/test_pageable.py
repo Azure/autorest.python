@@ -19,3 +19,4 @@ class TestPageable(PageableClientTestBase):
         response = client.list()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...

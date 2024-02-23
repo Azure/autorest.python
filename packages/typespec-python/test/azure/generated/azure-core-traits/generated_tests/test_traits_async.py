@@ -17,20 +17,22 @@ class TestTraitsAsync(TraitsClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_smoke_test(self, traits_endpoint):
         client = self.create_async_client(endpoint=traits_endpoint)
-        response = client.smoke_test(
+        response = await client.smoke_test(
             id=0,
             foo="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @TraitsPreparer()
     @recorded_by_proxy_async
     async def test_repeatable_action(self, traits_endpoint):
         client = self.create_async_client(endpoint=traits_endpoint)
-        response = client.repeatable_action(
+        response = await client.repeatable_action(
             id=0,
             body={"userActionValue": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,18 +17,20 @@ class TestContentNegotiationDifferentBodyOperationsAsync(ContentNegotiationClien
     @recorded_by_proxy_async
     async def test_get_avatar_as_png(self, contentnegotiation_endpoint):
         client = self.create_async_client(endpoint=contentnegotiation_endpoint)
-        response = client.different_body.get_avatar_as_png(
+        response = await client.different_body.get_avatar_as_png(
             accept="image/png",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ContentNegotiationPreparer()
     @recorded_by_proxy_async
     async def test_get_avatar_as_json(self, contentnegotiation_endpoint):
         client = self.create_async_client(endpoint=contentnegotiation_endpoint)
-        response = client.different_body.get_avatar_as_json(
+        response = await client.different_body.get_avatar_as_json(
             accept="application/json",
         )
 
         # please add some check logic here by yourself
+        # ...

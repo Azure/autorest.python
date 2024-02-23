@@ -21,3 +21,4 @@ class TestCollectionFormatHeaderOperations(CollectionFormatClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

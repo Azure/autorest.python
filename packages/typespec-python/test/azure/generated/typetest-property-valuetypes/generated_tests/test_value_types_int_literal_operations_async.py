@@ -17,16 +17,18 @@ class TestValueTypesIntLiteralOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.int_literal.get()
+        response = await client.int_literal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.int_literal.put(
+        response = await client.int_literal.put(
             body={"property": 42},
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestUsageModelInOperationOperationsAsync(UsageClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_input_to_input_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
-        response = client.model_in_operation.input_to_input_output(
+        response = await client.model_in_operation.input_to_input_output(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @UsagePreparer()
     @recorded_by_proxy_async
     async def test_output_to_input_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
-        response = client.model_in_operation.output_to_input_output()
+        response = await client.model_in_operation.output_to_input_output()
 
         # please add some check logic here by yourself
+        # ...

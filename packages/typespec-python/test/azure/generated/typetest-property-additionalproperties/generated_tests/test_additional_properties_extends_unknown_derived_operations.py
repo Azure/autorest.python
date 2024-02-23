@@ -19,6 +19,7 @@ class TestAdditionalPropertiesExtendsUnknownDerivedOperations(AdditionalProperti
         response = client.extends_unknown_derived.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesExtendsUnknownDerivedOperations(AdditionalProperti
         )
 
         # please add some check logic here by yourself
+        # ...

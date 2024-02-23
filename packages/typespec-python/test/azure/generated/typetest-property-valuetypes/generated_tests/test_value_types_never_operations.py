@@ -19,6 +19,7 @@ class TestValueTypesNeverOperations(ValueTypesClientTestBase):
         response = client.never.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesNeverOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

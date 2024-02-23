@@ -19,3 +19,4 @@ class TestRequestId(ClientRequestIdClientTestBase):
         response = client.get()
 
         # please add some check logic here by yourself
+        # ...

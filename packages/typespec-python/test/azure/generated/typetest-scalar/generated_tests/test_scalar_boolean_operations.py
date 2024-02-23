@@ -19,6 +19,7 @@ class TestScalarBooleanOperations(ScalarClientTestBase):
         response = client.boolean.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestScalarBooleanOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

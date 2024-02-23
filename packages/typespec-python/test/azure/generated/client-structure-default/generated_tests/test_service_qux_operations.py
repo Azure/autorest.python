@@ -19,6 +19,7 @@ class TestServiceQuxOperations(ServiceClientTestBase):
         response = client.qux.eight()
 
         # please add some check logic here by yourself
+        # ...
 
     @ServicePreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestServiceQuxOperations(ServiceClientTestBase):
         response = client.qux.bar.nine()
 
         # please add some check logic here by yourself
+        # ...

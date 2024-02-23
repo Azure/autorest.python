@@ -17,16 +17,18 @@ class TestValueTypesBooleanOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.boolean.get()
+        response = await client.boolean.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.boolean.put(
+        response = await client.boolean.put(
             body={"property": bool},
         )
 
         # please add some check logic here by yourself
+        # ...

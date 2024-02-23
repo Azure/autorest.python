@@ -17,16 +17,18 @@ class TestAdditionalPropertiesIsModelOperationsAsync(AdditionalPropertiesClientT
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_model.get()
+        response = await client.is_model.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_model.put(
+        response = await client.is_model.put(
             body={},
         )
 
         # please add some check logic here by yourself
+        # ...

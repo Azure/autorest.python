@@ -21,6 +21,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -31,6 +32,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -41,6 +43,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -51,3 +54,4 @@ class TestBytesPropertyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestAdditionalPropertiesExtendsUnknownDiscriminatedOperations(AdditionalPr
         response = client.extends_unknown_discriminated.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesExtendsUnknownDiscriminatedOperations(AdditionalPr
         )
 
         # please add some check logic here by yourself
+        # ...

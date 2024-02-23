@@ -17,8 +17,9 @@ class TestSpecialWordsModelPropertiesOperationsAsync(SpecialWordsClientTestBaseA
     @recorded_by_proxy_async
     async def test_same_as_model(self, specialwords_endpoint):
         client = self.create_async_client(endpoint=specialwords_endpoint)
-        response = client.model_properties.same_as_model(
+        response = await client.model_properties.same_as_model(
             body={"SameAsModel": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -22,6 +22,7 @@ class TestTraits(TraitsClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @TraitsPreparer()
     @recorded_by_proxy
@@ -33,3 +34,4 @@ class TestTraits(TraitsClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

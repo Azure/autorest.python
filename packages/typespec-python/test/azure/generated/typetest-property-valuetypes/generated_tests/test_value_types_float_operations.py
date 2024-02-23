@@ -19,6 +19,7 @@ class TestValueTypesFloatOperations(ValueTypesClientTestBase):
         response = client.float.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesFloatOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

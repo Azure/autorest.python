@@ -19,6 +19,7 @@ class TestUnionEnumsOnlyOperations(UnionClientTestBase):
         response = client.enums_only.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -30,3 +31,4 @@ class TestUnionEnumsOnlyOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

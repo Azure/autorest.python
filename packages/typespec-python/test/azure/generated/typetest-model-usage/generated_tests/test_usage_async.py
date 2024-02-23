@@ -17,26 +17,29 @@ class TestUsageAsync(UsageClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_input(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
-        response = client.input(
+        response = await client.input(
             input={"requiredProp": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @UsagePreparer()
     @recorded_by_proxy_async
     async def test_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
-        response = client.output()
+        response = await client.output()
 
         # please add some check logic here by yourself
+        # ...
 
     @UsagePreparer()
     @recorded_by_proxy_async
     async def test_input_and_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
-        response = client.input_and_output(
+        response = await client.input_and_output(
             body={"requiredProp": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

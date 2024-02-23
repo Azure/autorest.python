@@ -19,6 +19,7 @@ class TestValueTypesBytesOperations(ValueTypesClientTestBase):
         response = client.bytes.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesBytesOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

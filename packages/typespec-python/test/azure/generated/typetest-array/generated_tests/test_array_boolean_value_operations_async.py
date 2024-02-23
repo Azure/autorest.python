@@ -17,16 +17,18 @@ class TestArrayBooleanValueOperationsAsync(ArrayClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
-        response = client.boolean_value.get()
+        response = await client.boolean_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy_async
     async def test_put(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
-        response = client.boolean_value.put(
+        response = await client.boolean_value.put(
             body=[bool],
         )
 
         # please add some check logic here by yourself
+        # ...

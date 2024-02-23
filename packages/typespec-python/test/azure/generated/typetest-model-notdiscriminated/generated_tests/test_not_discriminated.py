@@ -21,6 +21,7 @@ class TestNotDiscriminated(NotDiscriminatedClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NotDiscriminatedPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestNotDiscriminated(NotDiscriminatedClientTestBase):
         response = client.get_valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @NotDiscriminatedPreparer()
     @recorded_by_proxy
@@ -39,3 +41,4 @@ class TestNotDiscriminated(NotDiscriminatedClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

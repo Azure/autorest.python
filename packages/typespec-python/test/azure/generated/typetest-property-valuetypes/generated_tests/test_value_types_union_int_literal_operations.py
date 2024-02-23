@@ -19,6 +19,7 @@ class TestValueTypesUnionIntLiteralOperations(ValueTypesClientTestBase):
         response = client.union_int_literal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesUnionIntLiteralOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

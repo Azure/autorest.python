@@ -17,18 +17,20 @@ class TestProjectedNameModelOperationsAsync(ProjectedNameClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_client(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.model.client(
+        response = await client.model.client(
             body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy_async
     async def test_language(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.model.language(
+        response = await client.model.language(
             body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself
+        # ...

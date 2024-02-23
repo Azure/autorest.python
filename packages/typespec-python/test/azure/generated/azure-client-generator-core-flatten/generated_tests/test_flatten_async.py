@@ -17,18 +17,20 @@ class TestFlattenAsync(FlattenClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_put_flatten_model(self, flatten_endpoint):
         client = self.create_async_client(endpoint=flatten_endpoint)
-        response = client.put_flatten_model(
+        response = await client.put_flatten_model(
             input={"name": "str", "properties": {"age": 0, "description": "str"}},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @FlattenPreparer()
     @recorded_by_proxy_async
     async def test_put_nested_flatten_model(self, flatten_endpoint):
         client = self.create_async_client(endpoint=flatten_endpoint)
-        response = client.put_nested_flatten_model(
+        response = await client.put_nested_flatten_model(
             input={"name": "str", "properties": {"properties": {"age": 0, "description": "str"}, "summary": "str"}},
         )
 
         # please add some check logic here by yourself
+        # ...

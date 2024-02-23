@@ -22,6 +22,7 @@ class TestBasic(BasicClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -33,6 +34,7 @@ class TestBasic(BasicClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -43,6 +45,7 @@ class TestBasic(BasicClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -51,6 +54,7 @@ class TestBasic(BasicClientTestBase):
         response = client.list()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -59,6 +63,7 @@ class TestBasic(BasicClientTestBase):
         response = client.list_with_page()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -69,6 +74,7 @@ class TestBasic(BasicClientTestBase):
         )
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -77,6 +83,7 @@ class TestBasic(BasicClientTestBase):
         response = client.list_with_custom_page_model()
         result = [r for r in response]
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -87,6 +94,7 @@ class TestBasic(BasicClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BasicPreparer()
     @recorded_by_proxy
@@ -98,3 +106,4 @@ class TestBasic(BasicClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestUnionMixedTypesOperations(UnionClientTestBase):
         response = client.mixed_types.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -42,3 +43,4 @@ class TestUnionMixedTypesOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

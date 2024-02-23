@@ -19,6 +19,7 @@ class TestProjectedName(ProjectedNameClientTestBase):
         response = client.client_name()
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestProjectedName(ProjectedNameClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

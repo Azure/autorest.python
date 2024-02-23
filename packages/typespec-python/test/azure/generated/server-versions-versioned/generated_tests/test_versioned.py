@@ -19,6 +19,7 @@ class TestVersioned(VersionedClientTestBase):
         response = client.without_api_version()
 
         # please add some check logic here by yourself
+        # ...
 
     @VersionedPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestVersioned(VersionedClientTestBase):
         response = client.with_query_api_version()
 
         # please add some check logic here by yourself
+        # ...
 
     @VersionedPreparer()
     @recorded_by_proxy
@@ -35,3 +37,4 @@ class TestVersioned(VersionedClientTestBase):
         response = client.with_path_api_version()
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestProjectedNameAsync(ProjectedNameClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_client_name(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.client_name()
+        response = await client.client_name()
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy_async
     async def test_parameter(self, projectedname_endpoint):
         client = self.create_async_client(endpoint=projectedname_endpoint)
-        response = client.parameter(
+        response = await client.parameter(
             client_name="str",
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestAdditionalPropertiesIsStringOperations(AdditionalPropertiesClientTestB
         response = client.is_string.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesIsStringOperations(AdditionalPropertiesClientTestB
         )
 
         # please add some check logic here by yourself
+        # ...

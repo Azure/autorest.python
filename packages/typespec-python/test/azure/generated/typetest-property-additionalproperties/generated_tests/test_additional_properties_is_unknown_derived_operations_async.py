@@ -17,16 +17,18 @@ class TestAdditionalPropertiesIsUnknownDerivedOperationsAsync(AdditionalProperti
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown_derived.get()
+        response = await client.is_unknown_derived.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.is_unknown_derived.put(
+        response = await client.is_unknown_derived.put(
             body={"index": 0, "name": "str", "age": 0.0},
         )
 
         # please add some check logic here by yourself
+        # ...

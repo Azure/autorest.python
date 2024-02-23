@@ -19,6 +19,7 @@ class TestUnionIntsOnlyOperations(UnionClientTestBase):
         response = client.ints_only.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -30,3 +31,4 @@ class TestUnionIntsOnlyOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

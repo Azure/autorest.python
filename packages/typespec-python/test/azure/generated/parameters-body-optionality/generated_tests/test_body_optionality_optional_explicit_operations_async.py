@@ -17,14 +17,16 @@ class TestBodyOptionalityOptionalExplicitOperationsAsync(BodyOptionalityClientTe
     @recorded_by_proxy_async
     async def test_set(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
-        response = client.optional_explicit.set()
+        response = await client.optional_explicit.set()
 
         # please add some check logic here by yourself
+        # ...
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy_async
     async def test_omit(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
-        response = client.optional_explicit.omit()
+        response = await client.optional_explicit.omit()
 
         # please add some check logic here by yourself
+        # ...

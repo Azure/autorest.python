@@ -17,8 +17,9 @@ class TestAccessSharedModelInOperationOperationsAsync(AccessClientTestBaseAsync)
     @recorded_by_proxy_async
     async def test_public(self, access_endpoint):
         client = self.create_async_client(endpoint=access_endpoint)
-        response = client.shared_model_in_operation.public(
+        response = await client.shared_model_in_operation.public(
             name="str",
         )
 
         # please add some check logic here by yourself
+        # ...

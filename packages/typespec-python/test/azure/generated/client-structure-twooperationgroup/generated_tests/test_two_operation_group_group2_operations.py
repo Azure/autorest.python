@@ -19,6 +19,7 @@ class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
         response = client.group2.two()
 
         # please add some check logic here by yourself
+        # ...
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
         response = client.group2.five()
 
         # please add some check logic here by yourself
+        # ...
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy
@@ -35,3 +37,4 @@ class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
         response = client.group2.six()
 
         # please add some check logic here by yourself
+        # ...

@@ -17,30 +17,34 @@ class TestDatetimeResponseHeaderOperationsAsync(DatetimeClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.response_header.default()
+        response = await client.response_header.default()
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_rfc3339(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.response_header.rfc3339()
+        response = await client.response_header.rfc3339()
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_rfc7231(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.response_header.rfc7231()
+        response = await client.response_header.rfc7231()
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_unix_timestamp(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.response_header.unix_timestamp()
+        response = await client.response_header.unix_timestamp()
 
         # please add some check logic here by yourself
+        # ...

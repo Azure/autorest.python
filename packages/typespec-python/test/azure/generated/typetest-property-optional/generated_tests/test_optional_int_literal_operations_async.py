@@ -17,34 +17,38 @@ class TestOptionalIntLiteralOperationsAsync(OptionalClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.int_literal.get_all()
+        response = await client.int_literal.get_all()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.int_literal.get_default()
+        response = await client.int_literal.get_default()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.int_literal.put_all(
+        response = await client.int_literal.put_all(
             body={"property": 1},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = client.int_literal.put_default(
+        response = await client.int_literal.put_default(
             body={"property": 1},
         )
 
         # please add some check logic here by yourself
+        # ...

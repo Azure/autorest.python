@@ -17,14 +17,16 @@ class TestConditionalRequestAsync(ConditionalRequestClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_post_if_match(self, conditionalrequest_endpoint):
         client = self.create_async_client(endpoint=conditionalrequest_endpoint)
-        response = client.post_if_match()
+        response = await client.post_if_match()
 
         # please add some check logic here by yourself
+        # ...
 
     @ConditionalRequestPreparer()
     @recorded_by_proxy_async
     async def test_post_if_none_match(self, conditionalrequest_endpoint):
         client = self.create_async_client(endpoint=conditionalrequest_endpoint)
-        response = client.post_if_none_match()
+        response = await client.post_if_none_match()
 
         # please add some check logic here by yourself
+        # ...

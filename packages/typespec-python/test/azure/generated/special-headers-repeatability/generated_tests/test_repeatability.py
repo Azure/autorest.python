@@ -19,3 +19,4 @@ class TestRepeatability(RepeatabilityClientTestBase):
         response = client.immediate_success()
 
         # please add some check logic here by yourself
+        # ...

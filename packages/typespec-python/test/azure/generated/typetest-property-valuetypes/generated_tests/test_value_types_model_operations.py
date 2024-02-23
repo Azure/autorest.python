@@ -19,6 +19,7 @@ class TestValueTypesModelOperations(ValueTypesClientTestBase):
         response = client.model.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesModelOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,16 +17,18 @@ class TestAdditionalPropertiesExtendsStringOperationsAsync(AdditionalPropertiesC
     @recorded_by_proxy_async
     async def test_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.extends_string.get()
+        response = await client.extends_string.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
-        response = client.extends_string.put(
+        response = await client.extends_string.put(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

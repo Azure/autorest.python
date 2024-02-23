@@ -19,6 +19,7 @@ class TestScalarStringOperations(ScalarClientTestBase):
         response = client.string.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestScalarStringOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

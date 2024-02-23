@@ -17,16 +17,18 @@ class TestValueTypesBytesOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.bytes.get()
+        response = await client.bytes.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.bytes.put(
+        response = await client.bytes.put(
             body={"property": bytes("bytes", encoding="utf-8")},
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -19,6 +19,7 @@ class TestValueTypesBooleanLiteralOperations(ValueTypesClientTestBase):
         response = client.boolean_literal.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestValueTypesBooleanLiteralOperations(ValueTypesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

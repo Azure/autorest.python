@@ -19,6 +19,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
         response = client.collections_byte.get_all()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
         response = client.collections_byte.get_default()
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @OptionalPreparer()
     @recorded_by_proxy
@@ -47,3 +50,4 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

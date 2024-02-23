@@ -17,14 +17,16 @@ class TestOAuth2Async(OAuth2ClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_valid(self, oauth2_endpoint):
         client = self.create_async_client(endpoint=oauth2_endpoint)
-        response = client.valid()
+        response = await client.valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @OAuth2Preparer()
     @recorded_by_proxy_async
     async def test_invalid(self, oauth2_endpoint):
         client = self.create_async_client(endpoint=oauth2_endpoint)
-        response = client.invalid()
+        response = await client.invalid()
 
         # please add some check logic here by yourself
+        # ...

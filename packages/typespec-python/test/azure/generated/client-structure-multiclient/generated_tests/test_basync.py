@@ -17,22 +17,25 @@ class TestBAsync(ClientBClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_renamed_two(self, b_endpoint):
         client = self.create_async_client(endpoint=b_endpoint)
-        response = client.renamed_two()
+        response = await client.renamed_two()
 
         # please add some check logic here by yourself
+        # ...
 
     @BPreparer()
     @recorded_by_proxy_async
     async def test_renamed_four(self, b_endpoint):
         client = self.create_async_client(endpoint=b_endpoint)
-        response = client.renamed_four()
+        response = await client.renamed_four()
 
         # please add some check logic here by yourself
+        # ...
 
     @BPreparer()
     @recorded_by_proxy_async
     async def test_renamed_six(self, b_endpoint):
         client = self.create_async_client(endpoint=b_endpoint)
-        response = client.renamed_six()
+        response = await client.renamed_six()
 
         # please add some check logic here by yourself
+        # ...

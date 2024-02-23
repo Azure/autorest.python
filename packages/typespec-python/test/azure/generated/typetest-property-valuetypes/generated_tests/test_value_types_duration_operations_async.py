@@ -17,16 +17,18 @@ class TestValueTypesDurationOperationsAsync(ValueTypesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.duration.get()
+        response = await client.duration.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.duration.put(
+        response = await client.duration.put(
             body={"property": "1 day, 0:00:00"},
         )
 
         # please add some check logic here by yourself
+        # ...

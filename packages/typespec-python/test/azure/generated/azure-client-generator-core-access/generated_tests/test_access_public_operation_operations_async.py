@@ -17,18 +17,20 @@ class TestAccessPublicOperationOperationsAsync(AccessClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_no_decorator_in_public(self, access_endpoint):
         client = self.create_async_client(endpoint=access_endpoint)
-        response = client.public_operation.no_decorator_in_public(
+        response = await client.public_operation.no_decorator_in_public(
             name="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @AccessPreparer()
     @recorded_by_proxy_async
     async def test_public_decorator_in_public(self, access_endpoint):
         client = self.create_async_client(endpoint=access_endpoint)
-        response = client.public_operation.public_decorator_in_public(
+        response = await client.public_operation.public_decorator_in_public(
             name="str",
         )
 
         # please add some check logic here by yourself
+        # ...

@@ -17,17 +17,19 @@ class TestUnionStringsOnlyOperationsAsync(UnionClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.strings_only.get()
+        response = await client.strings_only.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy_async
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.strings_only.send(
+        response = await client.strings_only.send(
             body={"prop": "a"},
             prop="a",
         )
 
         # please add some check logic here by yourself
+        # ...

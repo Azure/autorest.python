@@ -19,6 +19,7 @@ class TestResiliencyServiceDriven(ResiliencyServiceDrivenClientTestBase):
         response = client.add_operation()
 
         # please add some check logic here by yourself
+        # ...
 
     @ResiliencyServiceDrivenPreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestResiliencyServiceDriven(ResiliencyServiceDrivenClientTestBase):
         response = client.from_none()
 
         # please add some check logic here by yourself
+        # ...
 
     @ResiliencyServiceDrivenPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestResiliencyServiceDriven(ResiliencyServiceDrivenClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ResiliencyServiceDrivenPreparer()
     @recorded_by_proxy
@@ -45,3 +48,4 @@ class TestResiliencyServiceDriven(ResiliencyServiceDrivenClientTestBase):
         response = client.from_one_optional()
 
         # please add some check logic here by yourself
+        # ...

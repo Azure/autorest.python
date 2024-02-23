@@ -19,6 +19,7 @@ class TestUnionStringAndArrayOperations(UnionClientTestBase):
         response = client.string_and_array.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -30,3 +31,4 @@ class TestUnionStringAndArrayOperations(UnionClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

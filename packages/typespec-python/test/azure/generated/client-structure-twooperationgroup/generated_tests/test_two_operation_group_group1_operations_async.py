@@ -17,22 +17,25 @@ class TestTwoOperationGroupGroup1OperationsAsync(TwoOperationGroupClientTestBase
     @recorded_by_proxy_async
     async def test_one(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
-        response = client.group1.one()
+        response = await client.group1.one()
 
         # please add some check logic here by yourself
+        # ...
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy_async
     async def test_three(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
-        response = client.group1.three()
+        response = await client.group1.three()
 
         # please add some check logic here by yourself
+        # ...
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy_async
     async def test_four(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
-        response = client.group1.four()
+        response = await client.group1.four()
 
         # please add some check logic here by yourself
+        # ...

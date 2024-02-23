@@ -21,6 +21,7 @@ class TestProjectedNameModelOperations(ProjectedNameClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ProjectedNamePreparer()
     @recorded_by_proxy
@@ -31,3 +32,4 @@ class TestProjectedNameModelOperations(ProjectedNameClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

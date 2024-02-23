@@ -21,6 +21,7 @@ class TestBodyOptionality(BodyOptionalityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy
@@ -31,3 +32,4 @@ class TestBodyOptionality(BodyOptionalityClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

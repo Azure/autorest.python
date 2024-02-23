@@ -21,6 +21,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -32,6 +33,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -43,6 +45,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -53,6 +56,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy
@@ -63,3 +67,4 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

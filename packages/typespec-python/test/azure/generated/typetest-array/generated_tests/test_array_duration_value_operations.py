@@ -19,6 +19,7 @@ class TestArrayDurationValueOperations(ArrayClientTestBase):
         response = client.duration_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ArrayPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestArrayDurationValueOperations(ArrayClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

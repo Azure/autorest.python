@@ -17,18 +17,20 @@ class TestLegacyCreateResourcePollViaOperationLocationOperationsAsync(LegacyClie
     @recorded_by_proxy_async
     async def test_get_job(self, legacy_endpoint):
         client = self.create_async_client(endpoint=legacy_endpoint)
-        response = client.create_resource_poll_via_operation_location.get_job(
+        response = await client.create_resource_poll_via_operation_location.get_job(
             job_id="str",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @LegacyPreparer()
     @recorded_by_proxy_async
     async def test_begin_create_job(self, legacy_endpoint):
         client = self.create_async_client(endpoint=legacy_endpoint)
-        response = client.create_resource_poll_via_operation_location.begin_create_job(
+        response = await client.create_resource_poll_via_operation_location.begin_create_job(
             body={"comment": "str"},
         )
-        result = response.result()  # poll until service return final result
+        result = await response.result()  # poll until service return final result
         # please add some check logic here by yourself
+        # ...

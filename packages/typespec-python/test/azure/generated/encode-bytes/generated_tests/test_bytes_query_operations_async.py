@@ -17,38 +17,42 @@ class TestBytesQueryOperationsAsync(BytesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.query.default(
+        response = await client.query.default(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.query.base64(
+        response = await client.query.base64(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.query.base64url(
+        response = await client.query.base64url(
             value=bytes("bytes", encoding="utf-8"),
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64url_array(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.query.base64url_array(
+        response = await client.query.base64url_array(
             value=[bytes("bytes", encoding="utf-8")],
         )
 
         # please add some check logic here by yourself
+        # ...

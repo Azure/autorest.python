@@ -19,6 +19,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_extensible_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_extensible_model_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -45,6 +48,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_extensible_model_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -53,6 +57,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_fixed_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -63,6 +68,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -71,6 +77,7 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_fixed_model_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @EnumDiscriminatorPreparer()
     @recorded_by_proxy
@@ -79,3 +86,4 @@ class TestEnumDiscriminator(EnumDiscriminatorClientTestBase):
         response = client.get_fixed_model_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...

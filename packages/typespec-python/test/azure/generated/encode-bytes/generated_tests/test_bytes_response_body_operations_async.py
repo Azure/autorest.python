@@ -17,38 +17,43 @@ class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.response_body.default()
+        response = await client.response_body.default()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_octet_stream(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.response_body.octet_stream()
+        response = await client.response_body.octet_stream()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_custom_content_type(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.response_body.custom_content_type()
+        response = await client.response_body.custom_content_type()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.response_body.base64()
+        response = await client.response_body.base64()
 
         # please add some check logic here by yourself
+        # ...
 
     @BytesPreparer()
     @recorded_by_proxy_async
     async def test_base64url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = client.response_body.base64url()
+        response = await client.response_body.base64url()
 
         # please add some check logic here by yourself
+        # ...

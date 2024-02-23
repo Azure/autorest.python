@@ -19,6 +19,7 @@ class TestCustom(CustomClientTestBase):
         response = client.valid()
 
         # please add some check logic here by yourself
+        # ...
 
     @CustomPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestCustom(CustomClientTestBase):
         response = client.invalid()
 
         # please add some check logic here by yourself
+        # ...

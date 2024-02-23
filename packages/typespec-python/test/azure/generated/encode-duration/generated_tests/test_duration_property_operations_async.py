@@ -17,48 +17,53 @@ class TestDurationPropertyOperationsAsync(DurationClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.property.default(
+        response = await client.property.default(
             body={"value": "1 day, 0:00:00"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_iso8601(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.property.iso8601(
+        response = await client.property.iso8601(
             body={"value": "1 day, 0:00:00"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_int32_seconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.property.int32_seconds(
+        response = await client.property.int32_seconds(
             body={"value": 0},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_float_seconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.property.float_seconds(
+        response = await client.property.float_seconds(
             body={"value": 0.0},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DurationPreparer()
     @recorded_by_proxy_async
     async def test_float_seconds_array(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
-        response = client.property.float_seconds_array(
+        response = await client.property.float_seconds_array(
             body={"value": [0.0]},
         )
 
         # please add some check logic here by yourself
+        # ...

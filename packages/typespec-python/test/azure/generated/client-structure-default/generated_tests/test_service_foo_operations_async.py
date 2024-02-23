@@ -17,14 +17,16 @@ class TestServiceFooOperationsAsync(ServiceClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_three(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
-        response = client.foo.three()
+        response = await client.foo.three()
 
         # please add some check logic here by yourself
+        # ...
 
     @ServicePreparer()
     @recorded_by_proxy_async
     async def test_four(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
-        response = client.foo.four()
+        response = await client.foo.four()
 
         # please add some check logic here by yourself
+        # ...

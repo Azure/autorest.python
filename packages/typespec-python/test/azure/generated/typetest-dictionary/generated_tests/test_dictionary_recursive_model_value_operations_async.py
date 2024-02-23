@@ -17,16 +17,18 @@ class TestDictionaryRecursiveModelValueOperationsAsync(DictionaryClientTestBaseA
     @recorded_by_proxy_async
     async def test_get(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
-        response = client.recursive_model_value.get()
+        response = await client.recursive_model_value.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @DictionaryPreparer()
     @recorded_by_proxy_async
     async def test_put(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
-        response = client.recursive_model_value.put(
+        response = await client.recursive_model_value.put(
             body={"str": {"property": "str", "children": {"str": ...}}},
         )
 
         # please add some check logic here by yourself
+        # ...

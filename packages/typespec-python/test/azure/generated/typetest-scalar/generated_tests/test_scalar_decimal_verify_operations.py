@@ -19,6 +19,7 @@ class TestScalarDecimalVerifyOperations(ScalarClientTestBase):
         response = client.decimal_verify.prepare_verify()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestScalarDecimalVerifyOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

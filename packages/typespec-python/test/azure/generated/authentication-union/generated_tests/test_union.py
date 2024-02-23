@@ -19,6 +19,7 @@ class TestUnion(UnionClientTestBase):
         response = client.valid_key()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestUnion(UnionClientTestBase):
         response = client.valid_token()
 
         # please add some check logic here by yourself
+        # ...

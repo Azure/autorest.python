@@ -19,6 +19,7 @@ class TestAdditionalPropertiesIsModelArrayOperations(AdditionalPropertiesClientT
         response = client.is_model_array.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesIsModelArrayOperations(AdditionalPropertiesClientT
         )
 
         # please add some check logic here by yourself
+        # ...

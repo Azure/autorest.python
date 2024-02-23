@@ -19,6 +19,7 @@ class TestAdditionalPropertiesIsFloatOperations(AdditionalPropertiesClientTestBa
         response = client.is_float.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
@@ -29,3 +30,4 @@ class TestAdditionalPropertiesIsFloatOperations(AdditionalPropertiesClientTestBa
         )
 
         # please add some check logic here by yourself
+        # ...

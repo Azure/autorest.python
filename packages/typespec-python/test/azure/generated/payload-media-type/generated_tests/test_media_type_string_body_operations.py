@@ -22,6 +22,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MediaTypePreparer()
     @recorded_by_proxy
@@ -30,6 +31,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
         response = client.string_body.get_as_text()
 
         # please add some check logic here by yourself
+        # ...
 
     @MediaTypePreparer()
     @recorded_by_proxy
@@ -41,6 +43,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @MediaTypePreparer()
     @recorded_by_proxy
@@ -49,3 +52,4 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
         response = client.string_body.get_as_json()
 
         # please add some check logic here by yourself
+        # ...

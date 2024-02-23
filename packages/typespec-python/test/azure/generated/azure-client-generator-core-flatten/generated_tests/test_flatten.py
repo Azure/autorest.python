@@ -21,6 +21,7 @@ class TestFlatten(FlattenClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @FlattenPreparer()
     @recorded_by_proxy
@@ -31,3 +32,4 @@ class TestFlatten(FlattenClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

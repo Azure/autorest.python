@@ -21,6 +21,7 @@ class TestUsage(UsageClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @UsagePreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestUsage(UsageClientTestBase):
         response = client.output()
 
         # please add some check logic here by yourself
+        # ...
 
     @UsagePreparer()
     @recorded_by_proxy
@@ -39,3 +41,4 @@ class TestUsage(UsageClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

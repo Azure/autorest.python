@@ -17,48 +17,53 @@ class TestDatetimeHeaderOperationsAsync(DatetimeClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_default(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.header.default(
+        response = await client.header.default(
             value="2020-02-20 00:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_rfc3339(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.header.rfc3339(
+        response = await client.header.rfc3339(
             value="2020-02-20 00:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_rfc7231(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.header.rfc7231(
+        response = await client.header.rfc7231(
             value="2020-02-20 00:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_unix_timestamp(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.header.unix_timestamp(
+        response = await client.header.unix_timestamp(
             value="2020-02-20 00:00:00",
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @DatetimePreparer()
     @recorded_by_proxy_async
     async def test_unix_timestamp_array(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
-        response = client.header.unix_timestamp_array(
+        response = await client.header.unix_timestamp_array(
             value=["2020-02-20 00:00:00"],
         )
 
         # please add some check logic here by yourself
+        # ...

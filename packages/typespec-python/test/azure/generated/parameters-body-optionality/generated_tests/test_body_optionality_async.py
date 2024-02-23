@@ -17,18 +17,20 @@ class TestBodyOptionalityAsync(BodyOptionalityClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_required_explicit(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
-        response = client.required_explicit(
+        response = await client.required_explicit(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy_async
     async def test_required_implicit(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
-        response = client.required_implicit(
+        response = await client.required_implicit(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

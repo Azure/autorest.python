@@ -19,3 +19,4 @@ class TestServiceBazOperations(ServiceClientTestBase):
         response = client.baz.foo.seven()
 
         # please add some check logic here by yourself
+        # ...

@@ -17,6 +17,7 @@ class TestRequestIdAsync(ClientRequestIdClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, requestid_endpoint):
         client = self.create_async_client(endpoint=requestid_endpoint)
-        response = client.get()
+        response = await client.get()
 
         # please add some check logic here by yourself
+        # ...

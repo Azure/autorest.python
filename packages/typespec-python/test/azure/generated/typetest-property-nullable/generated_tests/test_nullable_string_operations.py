@@ -19,6 +19,7 @@ class TestNullableStringOperations(NullableClientTestBase):
         response = client.string.get_non_null()
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy
@@ -27,6 +28,7 @@ class TestNullableStringOperations(NullableClientTestBase):
         response = client.string.get_null()
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestNullableStringOperations(NullableClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @NullablePreparer()
     @recorded_by_proxy
@@ -47,3 +50,4 @@ class TestNullableStringOperations(NullableClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

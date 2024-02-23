@@ -19,6 +19,7 @@ class TestService(ServiceClientTestBase):
         response = client.one()
 
         # please add some check logic here by yourself
+        # ...
 
     @ServicePreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestService(ServiceClientTestBase):
         response = client.two()
 
         # please add some check logic here by yourself
+        # ...

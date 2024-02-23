@@ -17,6 +17,7 @@ class TestPageableAsync(PageableClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list(self, pageable_endpoint):
         client = self.create_async_client(endpoint=pageable_endpoint)
-        response = client.list()
-        result = [r for r in response]
+        response = await client.list()
+
         # please add some check logic here by yourself
+        # ...

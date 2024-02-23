@@ -17,17 +17,19 @@ class TestUnionMixedLiteralsOperationsAsync(UnionClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.mixed_literals.get()
+        response = await client.mixed_literals.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @UnionPreparer()
     @recorded_by_proxy_async
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
-        response = client.mixed_literals.send(
+        response = await client.mixed_literals.send(
             body={"prop": {"booleanLiteral": "a", "floatLiteral": "a", "intLiteral": "a", "stringLiteral": "a"}},
             prop={"booleanLiteral": "a", "floatLiteral": "a", "intLiteral": "a", "stringLiteral": "a"},
         )
 
         # please add some check logic here by yourself
+        # ...

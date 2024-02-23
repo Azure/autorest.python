@@ -19,6 +19,7 @@ class TestScalarDecimal128TypeOperations(ScalarClientTestBase):
         response = client.decimal128_type.response_body()
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestScalarDecimal128TypeOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @ScalarPreparer()
     @recorded_by_proxy
@@ -39,3 +41,4 @@ class TestScalarDecimal128TypeOperations(ScalarClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...

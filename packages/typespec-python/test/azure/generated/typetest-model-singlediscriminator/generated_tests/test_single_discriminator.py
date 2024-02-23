@@ -19,6 +19,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         response = client.get_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -29,6 +30,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -37,6 +39,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         response = client.get_recursive_model()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -47,6 +50,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         )
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -55,6 +59,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         response = client.get_missing_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -63,6 +68,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         response = client.get_wrong_discriminator()
 
         # please add some check logic here by yourself
+        # ...
 
     @SingleDiscriminatorPreparer()
     @recorded_by_proxy
@@ -71,3 +77,4 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
         response = client.get_legacy_model()
 
         # please add some check logic here by yourself
+        # ...

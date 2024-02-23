@@ -17,8 +17,9 @@ class TestSpreadModelOperationsAsync(SpreadClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_spread_as_request_body(self, spread_endpoint):
         client = self.create_async_client(endpoint=spread_endpoint)
-        response = client.model.spread_as_request_body(
+        response = await client.model.spread_as_request_body(
             body={"name": "str"},
         )
 
         # please add some check logic here by yourself
+        # ...

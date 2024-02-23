@@ -19,6 +19,7 @@ class TestServiceBarOperations(ServiceClientTestBase):
         response = client.bar.five()
 
         # please add some check logic here by yourself
+        # ...
 
     @ServicePreparer()
     @recorded_by_proxy
@@ -27,3 +28,4 @@ class TestServiceBarOperations(ServiceClientTestBase):
         response = client.bar.six()
 
         # please add some check logic here by yourself
+        # ...

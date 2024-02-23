@@ -17,16 +17,18 @@ class TestValueTypesDictionaryStringOperationsAsync(ValueTypesClientTestBaseAsyn
     @recorded_by_proxy_async
     async def test_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.dictionary_string.get()
+        response = await client.dictionary_string.get()
 
         # please add some check logic here by yourself
+        # ...
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = client.dictionary_string.put(
+        response = await client.dictionary_string.put(
             body={"property": {"str": "str"}},
         )
 
         # please add some check logic here by yourself
+        # ...
