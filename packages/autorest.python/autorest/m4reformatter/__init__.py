@@ -233,7 +233,7 @@ def update_primitive(  # pylint: disable=too-many-return-statements
     if type_group == "binary":
         return KNOWN_TYPES["binary"]
     if type_group == "date-time":
-        base = _update_type_base("datetime", yaml_data)
+        base = _update_type_base("utcDateTime", yaml_data)
         base["encode"] = yaml_data["format"]
         return base
     if type_group == "byte-array":

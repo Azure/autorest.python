@@ -141,8 +141,10 @@ class SameBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        response.read()
-        deserialized = response.content
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -190,8 +192,10 @@ class SameBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        response.read()
-        deserialized = response.content
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -257,8 +261,10 @@ class DifferentBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        response.read()
-        deserialized = response.content
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
