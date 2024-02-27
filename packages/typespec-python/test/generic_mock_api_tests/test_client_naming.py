@@ -40,7 +40,7 @@ def test_header_request(client: NamingClient):
 
 
 def test_header_response(client: NamingClient):
-    assert client.response(cls=lambda x, y, z: z)["client_name"] == "true"
+    assert client.response(cls=lambda x, y, z: z)["default-name"] == "true"
 
 
 def test_model_client(client: NamingClient):

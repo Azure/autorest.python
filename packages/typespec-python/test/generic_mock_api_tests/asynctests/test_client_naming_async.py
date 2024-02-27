@@ -48,7 +48,7 @@ async def test_header_request(client: NamingClient):
 
 @pytest.mark.asyncio
 async def test_header_response(client: NamingClient):
-    assert (await client.response(cls=lambda x, y, z: z))["client_name"] == "true"
+    assert (await client.response(cls=lambda x, y, z: z))["default-name"] == "true"
 
 
 @pytest.mark.asyncio
