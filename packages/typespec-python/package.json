@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.21.0",
+    "version": "0.21.1",
     "author": "Microsoft Corporation",
     "description": "TypeSpec emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -43,7 +43,7 @@
     ],
     "peerDependencies": {
         "@azure-tools/typespec-azure-core": ">=0.39.0 <1.0.0",
-        "@azure-tools/typespec-client-generator-core": ">=0.39.0 <1.0.0",
+        "@azure-tools/typespec-client-generator-core": "0.40.0-dev.14",
         "@typespec/compiler": ">=0.53.0 <1.0.0",
         "@typespec/http": ">=0.53.0 <1.0.0",
         "@typespec/rest": ">=0.53.0 <1.0.0",
@@ -74,7 +74,7 @@
         "rimraf": "~5.0.0",
         "typescript": "~5.1.3",
         "@azure-tools/typespec-azure-core": "~0.39.0",
-        "@azure-tools/typespec-client-generator-core": "~0.39.0",
+        "@azure-tools/typespec-client-generator-core": "0.40.0-dev.14",
         "@typespec/compiler": "~0.53.0",
         "@typespec/http": "~0.53.0",
         "@typespec/rest": "~0.53.0",

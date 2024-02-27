@@ -15,15 +15,15 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    assert await client.same_body.get_avatar_as_png() == png_data
+    assert b"".join([d async for d in (await client.same_body.get_avatar_as_png())]) == png_data
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
-    assert await client.same_body.get_avatar_as_jpeg() == jpg_data
+    assert b"".join([d async for d in (await client.same_body.get_avatar_as_jpeg())]) == jpg_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    assert await client.different_body.get_avatar_as_png() == png_data
+    assert b"".join([d async for d in (await client.different_body.get_avatar_as_png())]) == png_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):
