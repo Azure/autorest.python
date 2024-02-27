@@ -39,7 +39,7 @@ import {
     getEffectivePayloadType,
     getAccess,
     SdkOperationGroup,
-    recursivelyCheckIsErrorModel,
+    isErrorOrChildOfError,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -679,7 +679,7 @@ function emitBasicOperation(
     for (const response of httpOperation.responses) {
         const emittedResponse = emitResponse(context, response);
         addAcceptParameter(context, operation, parameters, emittedResponse.defaultContentType);
-        if (response.type && response.type.kind === "Model" && recursivelyCheckIsErrorModel(context, response.type)) {
+        if (response.type && response.type.kind === "Model" && isErrorOrChildOfError(context, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
             if (response.statusCodes === "*") {
                 exceptions.push(emittedResponse);
