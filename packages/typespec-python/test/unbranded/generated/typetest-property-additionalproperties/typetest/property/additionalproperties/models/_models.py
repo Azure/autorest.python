@@ -461,3 +461,34 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="derived", **kwargs)
+
+
+class ModelForRecord(_model_base.Model):
+    """model for record.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar state: The state property. Required.
+    :vartype state: str
+    """
+
+    state: str = rest_field()
+    """The state property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        state: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
