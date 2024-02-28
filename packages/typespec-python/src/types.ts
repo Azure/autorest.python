@@ -81,7 +81,8 @@ export function getType(
         case "array":
         case "dict":
             return emitArrayOrDict(context, type)!;
-        case "datetime":
+        case "utcDateTime":
+        case "offsetDateTime":
         case "duration":
             return emitDurationOrDateType(type);
         case "enumvalue":

@@ -22,6 +22,7 @@ from ._models import IsUnknownAdditionalProperties
 from ._models import IsUnknownAdditionalPropertiesDerived
 from ._models import IsUnknownAdditionalPropertiesDiscriminated
 from ._models import IsUnknownAdditionalPropertiesDiscriminatedDerived
+from ._models import ModelForRecord
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -43,6 +44,7 @@ __all__ = [
     "IsUnknownAdditionalPropertiesDerived",
     "IsUnknownAdditionalPropertiesDiscriminated",
     "IsUnknownAdditionalPropertiesDiscriminatedDerived",
+    "ModelForRecord",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
