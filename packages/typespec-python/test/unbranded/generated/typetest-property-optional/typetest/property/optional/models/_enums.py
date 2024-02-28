@@ -10,36 +10,18 @@ from enum import Enum
 from corehttp.utils import CaseInsensitiveEnumMeta
 
 
-class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum that will be used as a property for model EnumProperty. Non-extensible."""
-
-    VALUE_ONE = "ValueOne"
-    """First value."""
-    VALUE_TWO = "ValueTwo"
-    """Second value."""
-
-
-class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum that will be used as a property for model EnumProperty. Extensible."""
-
-    VALUE_ONE = "ValueOne"
-    """First value."""
-    VALUE_TWO = "ValueTwo"
-    """Second value."""
-
-
 class UnionFloatLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    43.125 = "43.125"
-    46.875 = "46.875"
+    1.2 = "1.2"
+    2.3 = "2.3"
 
 
 class UnionIntLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionIntLiteralPropertyProperty."""
 
-    42 = "42"
-    43 = "43"
+    1 = "1"
+    2 = "2"
 
 
 class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):

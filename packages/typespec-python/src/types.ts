@@ -273,10 +273,11 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         return typesMap.get(type)!;
     }
     const values: Record<string, any>[] = [];
+    const name = type.generatedName ?? type.name;
     const newValue = {
-        name: type.name,
-        snakeCaseName: camelToSnakeCase(type.name),
-        description: type.description || `Type of ${type.name}`,
+        name: name,
+        snakeCaseName: camelToSnakeCase(name),
+        description: type.description || `Type of ${name}`,
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
