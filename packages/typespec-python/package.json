@@ -56,7 +56,8 @@
     },
     "dependencies": {
         "@autorest/python": "workspace:^",
-        "js-yaml": "~4.1.0"
+        "js-yaml": "~4.1.0",
+        "@typespec/openapi3": "latest"
     },
     "devDependencies": {
         "@azure-tools/typespec-azure-resource-manager": ">=0.39.0 <1.0.0",
