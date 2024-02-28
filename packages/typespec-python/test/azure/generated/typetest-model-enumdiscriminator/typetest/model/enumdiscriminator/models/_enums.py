@@ -14,6 +14,7 @@ class DogKind(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """extensible enum type for discriminator."""
 
     GOLDEN = "golden"
+    """Species golden"""
 
 
 class SnakeKind(str, Enum, metaclass=CaseInsensitiveEnumMeta):
