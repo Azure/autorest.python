@@ -417,16 +417,16 @@ class FloatLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Default value is 42.42.
+    :ivar property: Property. Required. Default value is 43.125.
     :vartype property: float
     """
 
     property: float = rest_field()
-    """Property. Required. Default value is 42.42."""
+    """Property. Required. Default value is 43.125."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.property: float = 42.42
+        self.property: float = 43.125
 
 
 class FloatProperty(_model_base.Model):

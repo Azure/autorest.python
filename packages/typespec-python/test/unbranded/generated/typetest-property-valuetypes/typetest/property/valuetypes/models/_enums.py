@@ -20,7 +20,7 @@ class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum that will be used as a property for model EnumProperty. Non-extensible."""
+    """Enum that will be used as a property for model EnumProperty. Extensible."""
 
     VALUE_ONE = "ValueOne"
     """First value."""

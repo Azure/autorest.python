@@ -21,12 +21,14 @@ azure-core==1.30.0
 -e ./generated/authentication-http-custom
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
+-e ./generated/client-naming
 -e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
 -e ./generated/projection-projected-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
+-e ./generated/serialization-encoded-name-json
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/server-versions-versioned
