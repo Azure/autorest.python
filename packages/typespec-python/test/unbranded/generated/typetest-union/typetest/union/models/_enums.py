@@ -10,51 +10,11 @@ from enum import Enum
 from corehttp.utils import CaseInsensitiveEnumMeta
 
 
-class EnumsOnlyCasesLr(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of EnumsOnlyCasesLr."""
+class LR(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of LR."""
 
     LEFT = "left"
     RIGHT = "right"
-    UP = "up"
-    DOWN = "down"
-
-
-class EnumsOnlyCasesUd(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of EnumsOnlyCasesUd."""
-
-    UP = "up"
-    DOWN = "down"
-
-
-class GetResponseProp2(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp2."""
-
-    1.1 = "1.1"
-    2.2 = "2.2"
-    3.3 = "3.3"
-
-
-class GetResponseProp3(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp3."""
-
-    1 = "1"
-    2 = "2"
-    3 = "3"
-
-
-class GetResponseProp4(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp4."""
-
-    B = "b"
-    C = "c"
-
-
-class GetResponseProp5(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp5."""
-
-    A = "a"
-    B = "b"
-    C = "c"
 
 
 class StringExtensibleNamedUnion(str, Enum, metaclass=CaseInsensitiveEnumMeta):
@@ -62,3 +22,10 @@ class StringExtensibleNamedUnion(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     OPTION_B = "b"
     C = "c"
+
+
+class UD(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of UD."""
+
+    UP = "up"
+    DOWN = "down"

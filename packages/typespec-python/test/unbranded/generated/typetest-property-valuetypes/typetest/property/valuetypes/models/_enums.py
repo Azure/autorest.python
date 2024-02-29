@@ -26,24 +26,3 @@ class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """First value."""
     VALUE_TWO = "ValueTwo"
     """Second value."""
-
-
-class UnionFloatLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of UnionFloatLiteralPropertyProperty."""
-
-    43.125 = "43.125"
-    46.875 = "46.875"
-
-
-class UnionIntLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of UnionIntLiteralPropertyProperty."""
-
-    42 = "42"
-    43 = "43"
-
-
-class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of UnionStringLiteralPropertyProperty."""
-
-    HELLO = "hello"
-    WORLD = "world"
