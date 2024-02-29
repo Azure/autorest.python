@@ -349,20 +349,19 @@ class StringProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with union of float literal property.
 
-    :ivar property: Property. Known values are: 1.2 and 2.3.
-    :vartype property: float or
-     ~typetest.property.optional.models.UnionFloatLiteralPropertyProperty
+    :ivar property: Property. Known values are: "1.2" and "2.3".
+    :vartype property: str or ~typetest.property.optional.models.UnionFloatLiteralPropertyProperty
     """
 
-    property: Optional[Union[float, "_models.UnionFloatLiteralPropertyProperty"]] = rest_field()
-    """Property. Known values are: 1.2 and 2.3."""
+    property: Optional[Union[str, "_models.UnionFloatLiteralPropertyProperty"]] = rest_field()
+    """Property. Known values are: \"1.2\" and \"2.3\"."""
 
     @overload
     def __init__(
         self,
         *,
         property: Optional[
-            Union[float, "_models.UnionFloatLiteralPropertyProperty"]
+            Union[str, "_models.UnionFloatLiteralPropertyProperty"]
         ] = None,  # pylint: disable=redefined-builtin
     ):
         ...
@@ -381,19 +380,19 @@ class UnionFloatLiteralProperty(_model_base.Model):
 class UnionIntLiteralProperty(_model_base.Model):
     """Model with union of int literal property.
 
-    :ivar property: Property. Known values are: 1 and 2.
-    :vartype property: int or ~typetest.property.optional.models.UnionIntLiteralPropertyProperty
+    :ivar property: Property. Known values are: "1" and "2".
+    :vartype property: str or ~typetest.property.optional.models.UnionIntLiteralPropertyProperty
     """
 
-    property: Optional[Union[int, "_models.UnionIntLiteralPropertyProperty"]] = rest_field()
-    """Property. Known values are: 1 and 2."""
+    property: Optional[Union[str, "_models.UnionIntLiteralPropertyProperty"]] = rest_field()
+    """Property. Known values are: \"1\" and \"2\"."""
 
     @overload
     def __init__(
         self,
         *,
         property: Optional[
-            Union[int, "_models.UnionIntLiteralPropertyProperty"]
+            Union[str, "_models.UnionIntLiteralPropertyProperty"]
         ] = None,  # pylint: disable=redefined-builtin
     ):
         ...

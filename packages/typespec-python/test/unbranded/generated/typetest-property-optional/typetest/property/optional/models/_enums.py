@@ -10,18 +10,18 @@ from enum import Enum
 from corehttp.utils import CaseInsensitiveEnumMeta
 
 
-class UnionFloatLiteralPropertyProperty(float, Enum, metaclass=CaseInsensitiveEnumMeta):
+class UnionFloatLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    _1_2 = 1.2
-    _2_3 = 2.3
+    1.2 = "1.2"
+    2.3 = "2.3"
 
 
-class UnionIntLiteralPropertyProperty(int, Enum, metaclass=CaseInsensitiveEnumMeta):
+class UnionIntLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionIntLiteralPropertyProperty."""
 
-    _1 = 1
-    _2 = 2
+    1 = "1"
+    2 = "2"
 
 
 class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):

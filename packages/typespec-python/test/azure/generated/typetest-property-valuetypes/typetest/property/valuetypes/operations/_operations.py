@@ -6026,7 +6026,7 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": "str"  # Property. Required. Known values are: "42" and "43".
                 }
         """
         error_map = {
@@ -6091,7 +6091,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": "str"  # Property. Required. Known values are: "42" and "43".
                 }
         """
 
@@ -6145,7 +6145,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": "str"  # Property. Required. Known values are: "42" and "43".
                 }
         """
         error_map = {
@@ -6225,7 +6225,8 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": "str"  # Property. Required. Known values are: "43.125" and
+                      "46.875".
                 }
         """
         error_map = {
@@ -6290,7 +6291,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": "str"  # Property. Required. Known values are: "43.125" and
+                      "46.875".
                 }
         """
 
@@ -6344,7 +6346,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": "str"  # Property. Required. Known values are: "43.125" and
+                      "46.875".
                 }
         """
         error_map = {

@@ -26,7 +26,7 @@ def client():
         ("models_only", models.Cat(name="test"), models.GetResponse5),
         (
             "enums_only",
-            models.EnumsOnlyCases(lr=models.EnumsOnlyCasesLr.RIGHT, ud=models.EnumsOnlyCasesLr.UP),
+            models.EnumsOnlyCases(lr=models.LR.RIGHT, ud=models.UD.UP),
             models.GetResponse6,
         ),
         (

@@ -631,19 +631,19 @@ class UnionFloatLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Known values are: 43.125 and 46.875.
-    :vartype property: float or
+    :ivar property: Property. Required. Known values are: "43.125" and "46.875".
+    :vartype property: str or
      ~typetest.property.valuetypes.models.UnionFloatLiteralPropertyProperty
     """
 
-    property: Union[float, "_models.UnionFloatLiteralPropertyProperty"] = rest_field()
-    """Property. Required. Known values are: 43.125 and 46.875."""
+    property: Union[str, "_models.UnionFloatLiteralPropertyProperty"] = rest_field()
+    """Property. Required. Known values are: \"43.125\" and \"46.875\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[float, "_models.UnionFloatLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
+        property: Union[str, "_models.UnionFloatLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -663,18 +663,18 @@ class UnionIntLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Known values are: 42 and 43.
-    :vartype property: int or ~typetest.property.valuetypes.models.UnionIntLiteralPropertyProperty
+    :ivar property: Property. Required. Known values are: "42" and "43".
+    :vartype property: str or ~typetest.property.valuetypes.models.UnionIntLiteralPropertyProperty
     """
 
-    property: Union[int, "_models.UnionIntLiteralPropertyProperty"] = rest_field()
-    """Property. Required. Known values are: 42 and 43."""
+    property: Union[str, "_models.UnionIntLiteralPropertyProperty"] = rest_field()
+    """Property. Required. Known values are: \"42\" and \"43\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[int, "_models.UnionIntLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
+        property: Union[str, "_models.UnionIntLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
     ):
         ...
 
