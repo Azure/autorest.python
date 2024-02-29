@@ -209,7 +209,6 @@ def _regenerate(
     special_flags={},
 ):
     generated_folder = Path(f"{PLUGIN_DIR}/test/{category}/generated")
-    special_flags.update({"generate-test": "true"})
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
@@ -248,7 +247,8 @@ def regenerate_azure(c, name=None, debug=False):
         specs,
         "azure",
         name,
-        debug
+        debug,
+        special_flags={"generate-test": "true"}
     )
 
 
