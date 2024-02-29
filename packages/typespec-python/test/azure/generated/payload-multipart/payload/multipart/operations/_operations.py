@@ -138,7 +138,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
 
@@ -171,7 +171,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
         error_map = {
@@ -237,13 +237,13 @@ class FormDataOperations:
                         "city": "str"  # Required.
                     },
                     "id": "str",  # Required.
-                    "pictures": [filetype],
+                    "pictures": ["filetype"],
                     "previousAddresses": [
                         {
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
 
@@ -279,13 +279,13 @@ class FormDataOperations:
                         "city": "str"  # Required.
                     },
                     "id": "str",  # Required.
-                    "pictures": [filetype],
+                    "pictures": ["filetype"],
                     "previousAddresses": [
                         {
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
         error_map = {
@@ -350,7 +350,7 @@ class FormDataOperations:
                     "address": {
                         "city": "str"  # Required.
                     },
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
 
@@ -385,7 +385,7 @@ class FormDataOperations:
                     "address": {
                         "city": "str"  # Required.
                     },
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
         error_map = {
@@ -448,7 +448,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "pictures": [filetype]
+                    "pictures": ["filetype"]
                 }
         """
 
@@ -481,7 +481,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "pictures": [filetype]
+                    "pictures": ["filetype"]
                 }
         """
         error_map = {
@@ -548,7 +548,7 @@ class FormDataOperations:
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
 
@@ -585,7 +585,7 @@ class FormDataOperations:
                             "city": "str"  # Required.
                         }
                     ],
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
         error_map = {
@@ -647,8 +647,8 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "profileImage": filetype,
-                    "picture": filetype
+                    "profileImage": "filetype",
+                    "picture": "filetype"
                 }
         """
 
@@ -680,8 +680,8 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "profileImage": filetype,
-                    "picture": filetype
+                    "profileImage": "filetype",
+                    "picture": "filetype"
                 }
         """
         error_map = {
@@ -744,7 +744,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
 
@@ -779,7 +779,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Required.
-                    "profileImage": filetype
+                    "profileImage": "filetype"
                 }
         """
         error_map = {
