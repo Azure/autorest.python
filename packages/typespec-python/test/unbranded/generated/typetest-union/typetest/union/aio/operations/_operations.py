@@ -709,7 +709,7 @@ class IntsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Known values are: "1", "2", and "3".
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
         error_map = {
@@ -774,18 +774,18 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "1", "2", and "3".
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[int, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: "1", "2", and "3". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp3
+        :keyword prop: Known values are: 1, 2, and 3. Required.
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -814,15 +814,15 @@ class IntsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.GetResponseProp3] = _Unset,
+        prop: Union[int, _models.GetResponseProp3] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: "1", "2", and "3". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp3
+        :keyword prop: Known values are: 1, 2, and 3. Required.
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -832,7 +832,7 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "1", "2", and "3".
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
         error_map = {
@@ -915,7 +915,7 @@ class FloatsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Known values are: "1.1", "2.2", and "3.3".
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
         error_map = {
@@ -980,18 +980,18 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "1.1", "2.2", and "3.3".
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp2], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[float, _models.GetResponseProp2], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: "1.1", "2.2", and "3.3". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp2
+        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1020,15 +1020,15 @@ class FloatsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.GetResponseProp2] = _Unset,
+        prop: Union[float, _models.GetResponseProp2] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: "1.1", "2.2", and "3.3". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp2
+        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1038,7 +1038,7 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "1.1", "2.2", and "3.3".
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
         error_map = {
