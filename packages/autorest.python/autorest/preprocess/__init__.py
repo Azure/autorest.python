@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from .._utils import to_snake_case, update_enum_value
+from .._utils import to_snake_case
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -269,7 +269,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values"):
                 # we're enums
-                values_to_add = []
                 for value in type["values"]:
                     padded_name = self.pad_reserved_words(
                         value["name"].lower(), PadType.ENUM
