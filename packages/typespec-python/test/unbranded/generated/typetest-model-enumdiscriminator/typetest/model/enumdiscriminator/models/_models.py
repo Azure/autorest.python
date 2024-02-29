@@ -11,7 +11,7 @@ from typing import Any, Dict, Literal, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
-from ._enums import DogKind, SnakeKind
+from ._enums import SnakeKind
 
 
 class Snake(_model_base.Model):
@@ -134,12 +134,12 @@ class Golden(Dog, discriminator="golden"):
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
-    :ivar kind: discriminator property. Required. Species golden
-    :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
+    :ivar kind: discriminator property. Required. Default value is "golden".
+    :vartype kind: str
     """
 
-    kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Species golden"""
+    kind: Literal["golden"] = rest_discriminator(name="kind")  # type: ignore
+    """discriminator property. Required. Default value is \"golden\"."""
 
     @overload
     def __init__(
@@ -157,4 +157,4 @@ class Golden(Dog, discriminator="golden"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)
+        super().__init__(*args, kind="golden", **kwargs)
