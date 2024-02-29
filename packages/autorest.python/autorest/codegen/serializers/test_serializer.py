@@ -123,6 +123,10 @@ class TestGeneralSerializer(BaseSerializer):
         self.is_async = is_async
 
     @property
+    def aio_str(self) -> str:
+        return ".aio" if self.is_async else ""
+
+    @property
     def test_names(self) -> List[TestName]:
         return [
             TestName(c.name, is_async=self.is_async) for c in self.code_model.clients
@@ -143,10 +147,9 @@ class TestGeneralSerializer(BaseSerializer):
             imports.add_submodule_import(
                 "devtools_testutils", "PowerShellPreparer", ImportType.STDLIB
             )
-        aio_str = ".aio" if self.is_async else ""
         for client in self.code_model.clients:
             imports.add_submodule_import(
-                namespace + aio_str, client.name, ImportType.STDLIB
+                namespace + self.aio_str, client.name, ImportType.STDLIB
             )
         return FileImportSerializer(imports, self.is_async)
 
@@ -182,7 +185,6 @@ class TestSerializer(TestGeneralSerializer):
     def import_test(self) -> FileImportSerializer:
         imports = self.init_file_import()
         test_name = TestName(self.client.name, is_async=self.is_async)
-        aio_str = ".aio" if self.is_async else ""
         async_suffix = "_async" if self.is_async else ""
         imports.add_submodule_import(
             "testpreparer" + async_suffix,
@@ -193,7 +195,7 @@ class TestSerializer(TestGeneralSerializer):
             "testpreparer", test_name.preparer_name, ImportType.LOCAL
         )
         imports.add_submodule_import(
-            "devtools_testutils" + aio_str,
+            "devtools_testutils" + self.aio_str,
             "recorded_by_proxy" + async_suffix,
             ImportType.LOCAL,
         )
