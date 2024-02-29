@@ -1090,16 +1090,18 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
+        no_stream_logic = False
         if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
-                retval.append(f"{'await ' if self.async_mode else ''}response.read()")
-                deserialized = "response.content"
+                deserialized = f"{'await ' if self.async_mode else ''}response.read()"
             else:
-                deserialized = (
-                    "response.iter_bytes()"
-                    if self.code_model.options["version_tolerant"]
-                    else f"response.stream_download(self._client.{self.pipeline_name})"
-                )
+                no_stream_logic = True
+                if self.code_model.options["version_tolerant"]:
+                    deserialized = "response.iter_bytes()"
+                else:
+                    deserialized = (
+                        f"response.stream_download(self._client.{self.pipeline_name})"
+                    )
             deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
@@ -1147,7 +1149,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword and not builder.has_stream_response:
+            if builder.expose_stream_keyword and not no_stream_logic:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
