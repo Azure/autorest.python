@@ -163,6 +163,7 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
+    'AzureBodyComplex': 'body-complex.json',
     'AzureBodyDuration': 'body-duration.json',
     'AzureReport': 'azure-report.json',
     'AzureParameterGrouping': 'azure-parameter-grouping.json',
