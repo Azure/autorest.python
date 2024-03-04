@@ -27,7 +27,7 @@ class TestAdditionalPropertiesIsUnknownDiscriminatedOperationsAsync(AdditionalPr
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.is_unknown_discriminated.put(
-            body=is_unknown_additional_properties_discriminated,
+            body={"index": 0, "kind": "derived", "name": "str", "age": 0.0},
         )
 
         # please add some check logic here by yourself

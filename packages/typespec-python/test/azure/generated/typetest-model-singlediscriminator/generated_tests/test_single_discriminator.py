@@ -26,7 +26,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
     def test_put_model(self, singlediscriminator_endpoint):
         client = self.create_client(endpoint=singlediscriminator_endpoint)
         response = client.put_model(
-            input=bird,
+            input={"kind": "eagle", "wingspan": 0, "friends": ["bird"], "hate": {"str": "bird"}, "partner": "bird"},
         )
 
         # please add some check logic here by yourself
@@ -46,7 +46,7 @@ class TestSingleDiscriminator(SingleDiscriminatorClientTestBase):
     def test_put_recursive_model(self, singlediscriminator_endpoint):
         client = self.create_client(endpoint=singlediscriminator_endpoint)
         response = client.put_recursive_model(
-            input=bird,
+            input={"kind": "eagle", "wingspan": 0, "friends": ["bird"], "hate": {"str": "bird"}, "partner": "bird"},
         )
 
         # please add some check logic here by yourself

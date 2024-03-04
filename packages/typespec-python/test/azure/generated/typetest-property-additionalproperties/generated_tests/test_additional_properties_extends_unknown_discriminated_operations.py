@@ -26,7 +26,7 @@ class TestAdditionalPropertiesExtendsUnknownDiscriminatedOperations(AdditionalPr
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_unknown_discriminated.put(
-            body=extends_unknown_additional_properties_discriminated,
+            body={"index": 0, "kind": "derived", "name": "str", "age": 0.0},
         )
 
         # please add some check logic here by yourself

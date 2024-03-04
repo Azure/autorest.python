@@ -116,13 +116,13 @@ class ConstantType(BaseType):
         # pylint: disable=unused-argument
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        need_comment: Optional[bool] = True,
+        for_test: Optional[bool] = False,
     ) -> Any:
         return self.value_type.get_json_template_representation(
             optional=optional,
             client_default_value_declaration=self.get_declaration(),
             description=description,
-            need_comment=need_comment,
+            for_test=for_test,
         )
 
     def _imports_shared(self, **kwargs: Any):

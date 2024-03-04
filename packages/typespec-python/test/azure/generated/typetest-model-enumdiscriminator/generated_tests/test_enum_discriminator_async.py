@@ -27,7 +27,7 @@ class TestEnumDiscriminatorAsync(EnumDiscriminatorClientTestBaseAsync):
     async def test_put_extensible_model(self, enumdiscriminator_endpoint):
         client = self.create_async_client(endpoint=enumdiscriminator_endpoint)
         response = await client.put_extensible_model(
-            input=dog,
+            input={"kind": "golden", "weight": 0},
         )
 
         # please add some check logic here by yourself
@@ -65,7 +65,7 @@ class TestEnumDiscriminatorAsync(EnumDiscriminatorClientTestBaseAsync):
     async def test_put_fixed_model(self, enumdiscriminator_endpoint):
         client = self.create_async_client(endpoint=enumdiscriminator_endpoint)
         response = await client.put_fixed_model(
-            input=snake,
+            input={"kind": "cobra", "length": 0},
         )
 
         # please add some check logic here by yourself

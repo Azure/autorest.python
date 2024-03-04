@@ -138,7 +138,7 @@ class ModelType(  # pylint: disable=abstract-method
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        need_comment: Optional[bool] = True,
+        for_test: Optional[bool] = False,
     ) -> Any:
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
@@ -146,7 +146,7 @@ class ModelType(  # pylint: disable=abstract-method
         if self.discriminated_subtypes:
             # we will instead print the discriminated subtypes
             self._created_json_template_representation = False
-            return self.snake_case_name
+            return f'"{self.snake_case_name}"' if for_test else self.snake_case_name
 
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
@@ -155,7 +155,7 @@ class ModelType(  # pylint: disable=abstract-method
                 optional=optional,
                 client_default_value_declaration=client_default_value_declaration,
                 description=description,
-                need_comment=need_comment,
+                for_test=for_test,
             )
             for prop in [
                 p
@@ -164,9 +164,9 @@ class ModelType(  # pylint: disable=abstract-method
             ]
         }
         if self.discriminator and self.discriminator_value:
-            representation[
-                f'"{self.discriminator.wire_name}"'
-            ] = f'"{self.discriminator_value}"'
+            representation[f'"{self.discriminator.wire_name}"'] = (
+                f'"{self.discriminator_value}"'
+            )
 
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
@@ -332,18 +332,22 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
+                typing_section=(
+                    TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR
+                ),
             )
             if self.is_form_data:
                 file_import.add_submodule_import(
                     relative_path,
                     "_model_base",
                     ImportType.LOCAL,
-                    typing_section=TypingSection.TYPING
-                    if kwargs.get("model_typing")
-                    else TypingSection.REGULAR,
+                    typing_section=(
+                        TypingSection.TYPING
+                        if kwargs.get("model_typing")
+                        else TypingSection.REGULAR
+                    ),
                 )
         return file_import
 

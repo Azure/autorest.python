@@ -59,14 +59,14 @@ class EnumValue(BaseType):
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        need_comment: Optional[bool] = True,
+        for_test: Optional[bool] = False,
     ) -> Any:
         # for better display effect, use the only value instead of var type
         return self.value_type.get_json_template_representation(
             optional=optional,
             client_default_value_declaration=client_default_value_declaration,
             description=description,
-            need_comment=need_comment,
+            for_test=for_test,
         )
 
     @property
@@ -205,14 +205,14 @@ class EnumType(BaseType):
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        need_comment: Optional[bool] = True,
+        for_test: Optional[bool] = False,
     ) -> Any:
         # for better display effect, use the only value instead of var type
         return self.value_type.get_json_template_representation(
             optional=optional,
             client_default_value_declaration=client_default_value_declaration,
             description=description,
-            need_comment=need_comment,
+            for_test=for_test,
         )
 
     @property
@@ -258,8 +258,10 @@ class EnumType(BaseType):
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
+                typing_section=(
+                    TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR
+                ),
             )
         return file_import

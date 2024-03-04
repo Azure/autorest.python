@@ -165,7 +165,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        need_comment: Optional[bool] = True,
+        for_test: Optional[bool] = False,
     ) -> Any:
         """Template of what this schema would look like as JSON input"""
 
