@@ -274,7 +274,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                         value["name"].lower(), PadType.ENUM
                     ).upper()
                     if padded_name[0] in "0123456789":
-                        padded_name = "_" + padded_name
+                        padded_name = "ENUM_" + padded_name
                     value["name"] = padded_name
 
         # add type for reference

@@ -29,17 +29,17 @@ class EnumsOnlyCasesUd(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 class GetResponseProp2(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of GetResponseProp2."""
 
-    _1_1 = 1.1
-    _2_2 = 2.2
-    _3_3 = 3.3
+    ENUM_1_1 = 1.1
+    ENUM_2_2 = 2.2
+    ENUM_3_3 = 3.3
 
 
 class GetResponseProp3(int, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of GetResponseProp3."""
 
-    _1 = 1
-    _2 = 2
-    _3 = 3
+    ENUM_1 = 1
+    ENUM_2 = 2
+    ENUM_3 = 3
 
 
 class GetResponseProp4(str, Enum, metaclass=CaseInsensitiveEnumMeta):

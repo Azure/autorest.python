@@ -13,15 +13,15 @@ from azure.core import CaseInsensitiveEnumMeta
 class UnionFloatLiteralPropertyProperty(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    _1_2 = 1.2
-    _2_3 = 2.3
+    ENUM_1_2 = 1.2
+    ENUM_2_3 = 2.3
 
 
 class UnionIntLiteralPropertyProperty(int, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionIntLiteralPropertyProperty."""
 
-    _1 = 1
-    _2 = 2
+    ENUM_1 = 1
+    ENUM_2 = 2
 
 
 class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):

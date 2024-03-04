@@ -31,15 +31,15 @@ class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 class UnionFloatLiteralPropertyProperty(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    _43_125 = 43.125
-    _46_875 = 46.875
+    ENUM_43_125 = 43.125
+    ENUM_46_875 = 46.875
 
 
 class UnionIntLiteralPropertyProperty(int, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionIntLiteralPropertyProperty."""
 
-    _42 = 42
-    _43 = 43
+    ENUM_42 = 42
+    ENUM_43 = 43
 
 
 class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
