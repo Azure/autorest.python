@@ -4649,7 +4649,7 @@ class FloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 42.42  # Default value is 42.42. Property. Required.
+                    "property": 43.125  # Default value is 43.125. Property. Required.
                 }
         """
         error_map = {
@@ -4714,7 +4714,7 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 42.42  # Default value is 42.42. Property. Required.
+                    "property": 43.125  # Default value is 43.125. Property. Required.
                 }
         """
 
@@ -4767,7 +4767,7 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 42.42  # Default value is 42.42. Property. Required.
+                    "property": 43.125  # Default value is 43.125. Property. Required.
                 }
         """
         error_map = {
@@ -5445,8 +5445,8 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 42.42  # Default value is 42.42. Property. Required. Is either a
-                      float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
         error_map = {
@@ -5511,8 +5511,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 42.42  # Default value is 42.42. Property. Required. Is either a
-                      float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
 
@@ -5565,8 +5565,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 42.42  # Default value is 42.42. Property. Required. Is either a
-                      float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
         error_map = {

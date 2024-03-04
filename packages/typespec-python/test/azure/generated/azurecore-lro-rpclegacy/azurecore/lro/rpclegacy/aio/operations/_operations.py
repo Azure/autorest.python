@@ -78,7 +78,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
                     "status": "str",  # The status of the processing job. Required. Known values
-                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      are: "notStarted", "running", "Succeeded", "Failed", "canceled", and
                       "partiallyCompleted".
                     "errors": [
                         {
@@ -230,7 +230,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
                     "status": "str",  # The status of the processing job. Required. Known values
-                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      are: "notStarted", "running", "Succeeded", "Failed", "canceled", and
                       "partiallyCompleted".
                     "errors": [
                         {
@@ -282,7 +282,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
                     "status": "str",  # The status of the processing job. Required. Known values
-                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      are: "notStarted", "running", "Succeeded", "Failed", "canceled", and
                       "partiallyCompleted".
                     "errors": [
                         {
@@ -334,7 +334,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
                     "status": "str",  # The status of the processing job. Required. Known values
-                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      are: "notStarted", "running", "Succeeded", "Failed", "canceled", and
                       "partiallyCompleted".
                     "errors": [
                         {
@@ -388,7 +388,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
                     "status": "str",  # The status of the processing job. Required. Known values
-                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      are: "notStarted", "running", "Succeeded", "Failed", "canceled", and
                       "partiallyCompleted".
                     "errors": [
                         {

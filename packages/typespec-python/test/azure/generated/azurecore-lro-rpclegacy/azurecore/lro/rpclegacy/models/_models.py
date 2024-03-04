@@ -179,7 +179,7 @@ class JobResult(_model_base.Model):
     :ivar comment: Comment. Required.
     :vartype comment: str
     :ivar status: The status of the processing job. Required. Known values are: "notStarted",
-     "running", "succeeded", "failed", "canceled", and "partiallyCompleted".
+     "running", "Succeeded", "Failed", "canceled", and "partiallyCompleted".
     :vartype status: str or ~azurecore.lro.rpclegacy.models.JobStatus
     :ivar errors: Error objects that describes the error when status is "Failed".
     :vartype errors: list[~azurecore.lro.rpclegacy.models.ErrorResponse]
@@ -193,7 +193,7 @@ class JobResult(_model_base.Model):
     """Comment. Required."""
     status: Union[str, "_models.JobStatus"] = rest_field(visibility=["read"])
     """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
-     \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
+     \"Succeeded\", \"Failed\", \"canceled\", and \"partiallyCompleted\"."""
     errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])
     """Error objects that describes the error when status is \"Failed\"."""
     results: Optional[List[str]] = rest_field(visibility=["read"])
