@@ -242,7 +242,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         params = self.code_model.options["packaging_files_config"] or {}
         for template_name in package_files:
             if (
-                self.code_model.options["unbranded"]
+                self.code_model.options["flavor"] != "azure"
                 and template_name == "dev_requirements.txt.jinja2"
             ):
                 continue

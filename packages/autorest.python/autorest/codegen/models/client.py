@@ -214,7 +214,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                "runtime" if self.code_model.options["unbranded"] else "",
+                "runtime" if self.code_model.options["flavor"] != "azure" else "",
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -240,7 +240,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            (
+                "runtime"
+                if self.code_model.options["flavor"] != "azure"
+                else "pipeline"
+            ),
             "policies",
             ImportType.SDKCORE,
         )
@@ -428,7 +432,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            "runtime" if self.code_model.options["flavor"] != "azure" else "pipeline",
             "policies",
             ImportType.SDKCORE,
         )

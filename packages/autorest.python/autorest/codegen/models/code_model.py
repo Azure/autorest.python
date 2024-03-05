@@ -210,7 +210,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def core_library(self) -> Literal["azure.core", "corehttp"]:
-        return "azure.core" if not self.options["unbranded"] else "corehttp"
+        return "azure.core" if self.options["flavor"] == "azure" else "corehttp"
 
     def _sort_model_types_helper(
         self,

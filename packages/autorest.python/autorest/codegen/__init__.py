@@ -26,7 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 class OptionsRetriever:
     OPTIONS_TO_DEFAULT = {
         "azure-arm": False,
-        "unbranded": False,
+        "flavor": "unbranded",
         "no-async": False,
         "low-level-client": False,
         "version-tolerant": True,
@@ -49,14 +49,16 @@ class OptionsRetriever:
 
     @property
     def company_name(self) -> str:
-        return self.options.get("company-name", "" if self.unbranded else "Microsoft")
+        return self.options.get(
+            "company-name", "Microsoft" if self.flavor == "azure" else ""
+        )
 
     @property
     def license_header(self) -> str:
         license_header = self.options.get(
             "header-text",
             ""
-            if self.unbranded and not self.company_name
+            if self.flavor != "azure" and not self.company_name
             else DEFAULT_HEADER_TEXT.format(company_name=self.company_name),
         )
         if license_header:
@@ -96,7 +98,7 @@ class OptionsRetriever:
     def tracing(self) -> bool:
         return self.options.get(
             "tracing",
-            self.show_operations and not self.unbranded,
+            self.show_operations and self.flavor == "azure",
         )
 
     @property
@@ -264,10 +266,8 @@ class CodeGenerator(Plugin):
                 "Please read https://aka.ms/azsdk/dpcodegen for more details."
             )
 
-        if self.options_retriever.unbranded and self.options_retriever.tracing:
-            raise ValueError(
-                "Can not set --unbranded=true and --tracing=true at the same time."
-            )
+        if self.options_retriever.flavor != "azure" and self.options_retriever.tracing:
+            raise ValueError("--tracing=true can only be set with --flavor=azure")
 
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
@@ -324,7 +324,7 @@ class CodeGenerator(Plugin):
             "generate_sample",
             "default_api_version",
             "from_typespec",
-            "unbranded",
+            "flavor",
             "company_name",
         ]
         return {f: getattr(self.options_retriever, f) for f in flags}
@@ -347,10 +347,10 @@ class CodeGenerator(Plugin):
             self.remove_cloud_errors(yaml_data)
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
-        if self.options_retriever.unbranded and any(
+        if self.options_retriever.flavor != "azure" and any(
             client.lro_operations for client in code_model.clients
         ):
-            raise ValueError("Do not support LRO when --unbranded=true")
+            raise ValueError("Support LRO only when --flavor=azure")
         serializer = self.get_serializer(code_model)
         serializer.serialize()
 

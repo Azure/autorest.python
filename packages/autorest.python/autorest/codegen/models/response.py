@@ -180,7 +180,7 @@ class PagingResponse(Response):
             or f"{self.code_model.core_library}.paging.ItemPaged"
         )
         default_paging_submodule = (
-            f"{'' if self.code_model.options['unbranded'] else 'async_'}paging"
+            f"{'' if self.code_model.options['flavor'] != 'azure' else 'async_'}paging"
         )
         self.pager_async: str = (
             self.yaml_data.get("pagerAsync")
@@ -231,7 +231,7 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                f"{'' if self.code_model.options['unbranded'] else 'async_'}paging",
+                f"{'' if self.code_model.options['flavor'] != 'azure' else 'async_'}paging",
                 "AsyncList",
                 ImportType.SDKCORE,
             )

@@ -3,6 +3,7 @@ import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 export interface PythonEmitterOptions {
     "package-version"?: string;
     "package-name"?: string;
+    "package-dir"?: string;
     "output-dir"?: string;
     "generate-packaging-files"?: boolean;
     "packaging-files-dir"?: string;
@@ -11,6 +12,7 @@ export interface PythonEmitterOptions {
     "head-as-boolean"?: boolean;
     "models-mode"?: string;
     "unbranded"?: boolean;
+    "flavor"?: string;
     "tracing"?: boolean;
     "company-name"?: string;
     "debug"?: boolean;
@@ -22,6 +24,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
     properties: {
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
+        "package-dir": { type: "string", nullable: true },
         "output-dir": { type: "string", nullable: true },
         "generate-packaging-files": { type: "boolean", nullable: true },
         "packaging-files-dir": { type: "string", nullable: true },
@@ -30,6 +33,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "head-as-boolean": { type: "boolean", nullable: true },
         "models-mode": { type: "string", nullable: true },
         "unbranded": { type: "boolean", nullable: true },
+        "flavor": { type: "string", nullable: true },
         "tracing": { type: "boolean", nullable: true },
         "company-name": { type: "string", nullable: true },
         "debug": { type: "boolean", nullable: true },

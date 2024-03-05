@@ -67,8 +67,23 @@ interface HttpServerParameter {
 const defaultOptions = {
     "package-version": "1.0.0b1",
     "generate-packaging-files": true,
-    "unbranded": false,
+    "unbranded": true,
 };
+
+// case insensitive, known values are "azure" and others
+let flavor: string;
+
+function CalculateFlavor(options: PythonEmitterOptions & InternalPythonEmitterOptions): string {
+    if (options["flavor"] !== undefined) {
+        return options["flavor"].toLowerCase();
+    } else if (options["package-dir"] !== undefined) {
+        if (options["package-dir"].toLowerCase().includes("azure")) {
+            return "azure";
+        }
+        return "unbranded";
+    }
+    return options["unbranded"] ? "unbranded" : "azure";
+}
 
 export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
@@ -95,6 +110,7 @@ function addDefaultCalculatedOptions(
     if (!options["package-name"]) {
         options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
     }
+    options["flavor"] = flavor;
 }
 
 interface InternalPythonEmitterOptions {
@@ -107,6 +123,8 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         ...defaultOptions,
         ...context.options,
     };
+
+    flavor = CalculateFlavor(resolvedOptions);
 
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
     const clients = listClients(sdkContext);
@@ -865,7 +883,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                     types: credential_types,
                 };
             }
-            const service = context.emitContext.options["unbranded"] ? "cloud service" : "Azure";
+            const service = flavor === "azure" ? "Azure" : "cloud service";
             return {
                 type: getType(context, type),
                 optional: false,

@@ -107,7 +107,7 @@ class GeneralSerializer(BaseSerializer):
                 ImportType.STDLIB,
             )
             file_import.add_submodule_import(
-                "runtime" if self.code_model.options["unbranded"] else "",
+                "runtime" if self.code_model.options["flavor"] != "azure" else "",
                 f"{'Async' if self.async_mode else ''}PipelineClient",
                 ImportType.SDKCORE,
                 TypingSection.TYPING,

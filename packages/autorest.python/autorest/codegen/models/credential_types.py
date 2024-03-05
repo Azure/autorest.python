@@ -87,7 +87,7 @@ class KeyCredentialPolicyType(_CredentialPolicyBaseType):
     def credential_name(self) -> str:
         return (
             "ServiceKeyCredential"
-            if self.code_model.options["unbranded"]
+            if self.code_model.options["flavor"] != "azure"
             else "AzureKeyCredential"
         )
 
@@ -190,7 +190,7 @@ class TokenCredentialType(
     def credentials_subfolder(self) -> str:
         return (
             "credentials"
-            if self.code_model.options["unbranded"]
+            if self.code_model.options["flavor"] != "azure"
             else "credentials_async"
         )
 
