@@ -7,27 +7,29 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils.aio import recorded_by_proxy_async
-from testpreparer import ValueTypesPreparer
-from testpreparer_async import ValueTypesClientTestBaseAsync
+from testpreparer import NamingPreparer
+from testpreparer_async import NamingClientTestBaseAsync
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestValueTypesFloatLiteralOperationsAsync(ValueTypesClientTestBaseAsync):
-    @ValueTypesPreparer()
+class TestNamingModelOperationsAsync(NamingClientTestBaseAsync):
+    @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, valuetypes_endpoint):
-        client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = await client.float_literal.get()
+    async def test_client(self, naming_endpoint):
+        client = self.create_async_client(endpoint=naming_endpoint)
+        response = await client.model.client(
+            body={"defaultName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @ValueTypesPreparer()
+    @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, valuetypes_endpoint):
-        client = self.create_async_client(endpoint=valuetypes_endpoint)
-        response = await client.float_literal.put(
-            body={"property": 43.125},
+    async def test_language(self, naming_endpoint):
+        client = self.create_async_client(endpoint=naming_endpoint)
+        response = await client.model.language(
+            body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself

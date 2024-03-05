@@ -7,26 +7,28 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
+from testpreparer import NamingClientTestBase, NamingPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestValueTypesUnionFloatLiteralOperations(ValueTypesClientTestBase):
-    @ValueTypesPreparer()
+class TestNamingModelOperations(NamingClientTestBase):
+    @NamingPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
-        client = self.create_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.get()
+    def test_client(self, naming_endpoint):
+        client = self.create_client(endpoint=naming_endpoint)
+        response = client.model.client(
+            body={"defaultName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @ValueTypesPreparer()
+    @NamingPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
-        client = self.create_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.put(
-            body={"property": 43.125},
+    def test_language(self, naming_endpoint):
+        client = self.create_client(endpoint=naming_endpoint)
+        response = client.model.language(
+            body={"defaultName": bool},
         )
 
         # please add some check logic here by yourself

@@ -7,27 +7,27 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
+from testpreparer import JsonClientTestBase, JsonPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestValueTypesUnionFloatLiteralOperations(ValueTypesClientTestBase):
-    @ValueTypesPreparer()
+class TestJsonPropertyOperations(JsonClientTestBase):
+    @JsonPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
-        client = self.create_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.get()
+    def test_send(self, json_endpoint):
+        client = self.create_client(endpoint=json_endpoint)
+        response = client.property.send(
+            body={"wireName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @ValueTypesPreparer()
+    @JsonPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
-        client = self.create_client(endpoint=valuetypes_endpoint)
-        response = client.union_float_literal.put(
-            body={"property": 43.125},
-        )
+    def test_get(self, json_endpoint):
+        client = self.create_client(endpoint=json_endpoint)
+        response = client.property.get()
 
         # please add some check logic here by yourself
         # ...
