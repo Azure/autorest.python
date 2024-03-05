@@ -57,5 +57,4 @@ async def test_operation_with_url(client):
 
 @pytest.mark.asyncio
 async def test_operation_with_enum(client):
-    await client.reserved_enum(models.MyEnum.IMPORT)
     await client.reserved_enum(models.MyEnum.IMPORT_ENUM)

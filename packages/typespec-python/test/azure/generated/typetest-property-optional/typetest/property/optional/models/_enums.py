@@ -10,36 +10,18 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum that will be used as a property for model EnumProperty. Non-extensible."""
-
-    VALUE_ONE = "ValueOne"
-    """First value."""
-    VALUE_TWO = "ValueTwo"
-    """Second value."""
-
-
-class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum that will be used as a property for model EnumProperty. Extensible."""
-
-    VALUE_ONE = "ValueOne"
-    """First value."""
-    VALUE_TWO = "ValueTwo"
-    """Second value."""
-
-
 class UnionFloatLiteralPropertyProperty(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    ENUM_43_125 = 43.125
-    ENUM_46_875 = 46.875
+    ENUM_1_2 = 1.2
+    ENUM_2_3 = 2.3
 
 
 class UnionIntLiteralPropertyProperty(int, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionIntLiteralPropertyProperty."""
 
-    ENUM_42 = 42
-    ENUM_43 = 43
+    ENUM_1 = 1
+    ENUM_2 = 2
 
 
 class UnionStringLiteralPropertyProperty(str, Enum, metaclass=CaseInsensitiveEnumMeta):
