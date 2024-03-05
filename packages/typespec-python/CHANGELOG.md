@@ -1,5 +1,46 @@
 # Release
 
+## 2023-03-XX - 0.21.3
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0-dev.21`|
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix unused code in `_vendor.py` for multipart #2434
+
+
+## 2023-03-01 - 0.21.2
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0-dev.21`|
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix empty enum name generation issue #2426
+
 ## 2023-02-27 - 0.21.1
 
 | Library                                                                 | Min Version   |

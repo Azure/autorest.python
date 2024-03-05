@@ -23,9 +23,13 @@ from ._models import MixedLiteralsCases
 from ._models import MixedTypesCases
 from ._models import StringAndArrayCases
 
-from ._enums import LR
+from ._enums import EnumsOnlyCasesLr
+from ._enums import EnumsOnlyCasesUd
+from ._enums import GetResponseProp2
+from ._enums import GetResponseProp3
+from ._enums import GetResponseProp4
+from ._enums import GetResponseProp5
 from ._enums import StringExtensibleNamedUnion
-from ._enums import UD
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -47,9 +51,13 @@ __all__ = [
     "MixedLiteralsCases",
     "MixedTypesCases",
     "StringAndArrayCases",
-    "LR",
+    "EnumsOnlyCasesLr",
+    "EnumsOnlyCasesUd",
+    "GetResponseProp2",
+    "GetResponseProp3",
+    "GetResponseProp4",
+    "GetResponseProp5",
     "StringExtensibleNamedUnion",
-    "UD",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

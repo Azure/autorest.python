@@ -631,18 +631,19 @@ class UnionFloatLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Is either a float type or a float type.
-    :vartype property: float or float
+    :ivar property: Property. Required. Known values are: 43.125 and 46.875.
+    :vartype property: float or
+     ~typetest.property.valuetypes.models.UnionFloatLiteralPropertyProperty
     """
 
-    property: float = rest_field()
-    """Property. Required. Is either a float type or a float type."""
+    property: Union[float, "_models.UnionFloatLiteralPropertyProperty"] = rest_field()
+    """Property. Required. Known values are: 43.125 and 46.875."""
 
     @overload
     def __init__(
         self,
         *,
-        property: float,  # pylint: disable=redefined-builtin
+        property: Union[float, "_models.UnionFloatLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -662,18 +663,18 @@ class UnionIntLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Is either a Literal[42] type or a Literal[43] type.
-    :vartype property: int or int
+    :ivar property: Property. Required. Known values are: 42 and 43.
+    :vartype property: int or ~typetest.property.valuetypes.models.UnionIntLiteralPropertyProperty
     """
 
-    property: Literal[42, 43] = rest_field()
-    """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
+    property: Union[int, "_models.UnionIntLiteralPropertyProperty"] = rest_field()
+    """Property. Required. Known values are: 42 and 43."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Literal[42, 43],  # pylint: disable=redefined-builtin
+        property: Union[int, "_models.UnionIntLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -693,19 +694,19 @@ class UnionStringLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
-     type.
-    :vartype property: str or str
+    :ivar property: Property. Required. Known values are: "hello" and "world".
+    :vartype property: str or
+     ~typetest.property.valuetypes.models.UnionStringLiteralPropertyProperty
     """
 
-    property: Literal["hello", "world"] = rest_field()
-    """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
+    property: Union[str, "_models.UnionStringLiteralPropertyProperty"] = rest_field()
+    """Property. Required. Known values are: \"hello\" and \"world\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Literal["hello", "world"],  # pylint: disable=redefined-builtin
+        property: Union[str, "_models.UnionStringLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
     ):
         ...
 
