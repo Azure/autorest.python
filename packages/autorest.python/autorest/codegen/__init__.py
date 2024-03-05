@@ -37,6 +37,7 @@ class OptionsRetriever:
         "multiapi": False,
         "polymorphic-examples": 5,
         "generate-sample": False,
+        "generate-test": False,
         "from-typespec": False,
     }
 
@@ -55,9 +56,11 @@ class OptionsRetriever:
     def license_header(self) -> str:
         license_header = self.options.get(
             "header-text",
-            ""
-            if self.unbranded and not self.company_name
-            else DEFAULT_HEADER_TEXT.format(company_name=self.company_name),
+            (
+                ""
+                if self.unbranded and not self.company_name
+                else DEFAULT_HEADER_TEXT.format(company_name=self.company_name)
+            ),
         )
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
@@ -322,6 +325,7 @@ class CodeGenerator(Plugin):
             "packaging_files_config",
             "default_optional_constants_to_none",
             "generate_sample",
+            "generate_test",
             "default_api_version",
             "from_typespec",
             "unbranded",
@@ -425,6 +429,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 "default-optional-constants-to-none"
             ),
             "generate-sample": self._autorestapi.get_boolean_value("generate-sample"),
+            "generate-test": self._autorestapi.get_boolean_value("generate-test"),
             "default-api-version": self._autorestapi.get_value("default-api-version"),
         }
         return {k: v for k, v in options.items() if v is not None}

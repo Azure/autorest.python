@@ -247,7 +247,8 @@ def regenerate_azure(c, name=None, debug=False):
         specs,
         "azure",
         name,
-        debug
+        debug,
+        special_flags={"generate-test": "true"}
     )
 
 
