@@ -26,7 +26,7 @@ class TestValueTypesUnionFloatLiteralOperations(ValueTypesClientTestBase):
     def test_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.union_float_literal.put(
-            body={"property": 43.125},
+            body={"property": 0.0},
         )
 
         # please add some check logic here by yourself

@@ -27,7 +27,7 @@ class TestValueTypesUnionFloatLiteralOperationsAsync(ValueTypesClientTestBaseAsy
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.union_float_literal.put(
-            body={"property": 43.125},
+            body={"property": 0.0},
         )
 
         # please add some check logic here by yourself

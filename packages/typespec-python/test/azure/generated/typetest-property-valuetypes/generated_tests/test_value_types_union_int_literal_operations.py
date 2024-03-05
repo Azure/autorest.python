@@ -26,7 +26,7 @@ class TestValueTypesUnionIntLiteralOperations(ValueTypesClientTestBase):
     def test_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.union_int_literal.put(
-            body={"property": 42},
+            body={"property": 0},
         )
 
         # please add some check logic here by yourself

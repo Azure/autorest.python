@@ -27,8 +27,8 @@ class TestUnionFloatsOnlyOperationsAsync(UnionClientTestBaseAsync):
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.floats_only.send(
-            body={"prop": 1.1},
-            prop=1.1,
+            body={"prop": 0.0},
+            prop=0.0,
         )
 
         # please add some check logic here by yourself

@@ -26,8 +26,8 @@ class TestUnionIntsOnlyOperations(UnionClientTestBase):
     def test_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.ints_only.send(
-            body={"prop": 1},
-            prop=1,
+            body={"prop": 0},
+            prop=0,
         )
 
         # please add some check logic here by yourself

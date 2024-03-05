@@ -36,7 +36,7 @@ class TestOptionalUnionStringLiteralOperationsAsync(OptionalClientTestBaseAsync)
     async def test_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_string_literal.put_all(
-            body={"property": "hello"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself
@@ -47,7 +47,7 @@ class TestOptionalUnionStringLiteralOperationsAsync(OptionalClientTestBaseAsync)
     async def test_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_string_literal.put_default(
-            body={"property": "hello"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself

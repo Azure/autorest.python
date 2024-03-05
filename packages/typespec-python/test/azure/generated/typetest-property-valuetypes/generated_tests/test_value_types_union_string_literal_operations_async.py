@@ -27,7 +27,7 @@ class TestValueTypesUnionStringLiteralOperationsAsync(ValueTypesClientTestBaseAs
     async def test_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.union_string_literal.put(
-            body={"property": "hello"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself
