@@ -67,7 +67,6 @@ interface HttpServerParameter {
 const defaultOptions = {
     "package-version": "1.0.0b1",
     "generate-packaging-files": true,
-    "unbranded": true,
 };
 
 // case insensitive, known values are "azure" and others
@@ -76,13 +75,13 @@ let flavor: string;
 function CalculateFlavor(options: PythonEmitterOptions & InternalPythonEmitterOptions): string {
     if (options["flavor"] !== undefined) {
         return options["flavor"].toLowerCase();
-    } else if (options["package-dir"] !== undefined) {
+    } else if (options["package-dir"] !== undefined && options["unbranded"] === undefined) {
         if (options["package-dir"].toLowerCase().includes("azure")) {
             return "azure";
         }
         return "unbranded";
     }
-    return options["unbranded"] ? "unbranded" : "azure";
+    return options["unbranded"] === false ? "azure" : "unbranded";
 }
 
 export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {

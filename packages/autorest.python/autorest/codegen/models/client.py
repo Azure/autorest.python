@@ -240,11 +240,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            (
-                "runtime"
-                if self.code_model.options["flavor"] != "azure"
-                else "pipeline"
-            ),
+            ("runtime" if self.code_model.options["flavor"] != "azure" else "pipeline"),
             "policies",
             ImportType.SDKCORE,
         )
