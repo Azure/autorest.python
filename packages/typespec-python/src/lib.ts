@@ -14,6 +14,7 @@ export interface PythonEmitterOptions {
     "tracing"?: boolean;
     "company-name"?: string;
     "debug"?: boolean;
+    "flavor"?: "azure";
 }
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
@@ -33,6 +34,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "tracing": { type: "boolean", nullable: true },
         "company-name": { type: "string", nullable: true },
         "debug": { type: "boolean", nullable: true },
+        "flavor": { type: "string", nullable: true },
     },
     required: [],
 };

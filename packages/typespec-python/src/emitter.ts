@@ -47,7 +47,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
+import { InternalPythonEmitterOptions, camelToSnakeCase, removeUnderscoresFromNamespace, userProvidedFlag } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -67,7 +67,6 @@ interface HttpServerParameter {
 const defaultOptions = {
     "package-version": "1.0.0b1",
     "generate-packaging-files": true,
-    "unbranded": false,
 };
 
 export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
@@ -95,11 +94,32 @@ function addDefaultCalculatedOptions(
     if (!options["package-name"]) {
         options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
     }
+    if (options.flavor !== "azure") {
+        // if they pass in a flavor other than azure, we want to ignore the value
+        options.flavor = undefined;
+    }
+    if (options.flavor) {
+        // if a user passed in value "azure" for options.flavor
+        if (options.unbranded !== undefined) {
+            // if both are set, we ignore unbranded and say we are generating azure code
+            options.unbranded = false;
+        }
+    } else {
+        if (options.unbranded === false) {
+            // this means that a user explicitly passed in unbranded false
+            // we want to get rid of the unbranded flag when passing to the generator
+            // so we just set options.flavor to none, which will do the same thing
+            options.flavor = "azure";
+        }
+        if (sdkContext.emitContext.emitterOutputDir.startsWith("azure")) {
+            // if the package-dir starts with "azure", we automatically set flavor to azure
+            options.flavor = "azure";
+        }
+    }
+    options.unbranded = undefined; // we don't want to pass the unbranded flag to the generator, since we will deprecate it
 }
 
-interface InternalPythonEmitterOptions {
-    "package-mode"?: string;
-}
+
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
@@ -107,7 +127,6 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         ...defaultOptions,
         ...context.options,
     };
-
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
     const clients = listClients(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
@@ -865,7 +884,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                     types: credential_types,
                 };
             }
-            const service = context.emitContext.options["unbranded"] ? "cloud service" : "Azure";
+            const service = context.emitContext.options.flavor ? "Azure" : "cloud service";
             return {
                 type: getType(context, type),
                 optional: false,

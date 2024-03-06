@@ -45,7 +45,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             default_version_metadata["global_parameters"]
         )
         self.user_specified_default_api = user_specified_default_api
-        self.options: Dict[str, Any] = {"unbranded": False, "company_name": "Microsoft"}
+        self.options: Dict[str, Any] = {}
         self.core_library = "azure.core"
 
     @property
