@@ -81,6 +81,7 @@ function addDefaultOptions(sdkContext: SdkContext) {
     const defaultOptions = {
         "package-version": "1.0.0b1",
         "generate-packaging-files": true,
+        "flavor": undefined,
     };
     sdkContext.emitContext.options = {
         ...defaultOptions,
@@ -149,9 +150,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        if (value !== undefined) {
-            commandArgs.push(`--${key}=${value}`);
-        }
+        commandArgs.push(`--${key}=${value}`);
     }
     if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
