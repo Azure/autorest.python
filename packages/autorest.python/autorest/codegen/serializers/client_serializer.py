@@ -121,7 +121,12 @@ class ClientSerializer:
             result.append(
                 f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
             )
-        policies = build_policies(self.client.code_model, async_mode)
+        policies = build_policies(
+            self.client.code_model.options["azure_arm"],
+            async_mode,
+            is_azure_flavor=self.client.code_model.is_azure_flavor,
+            tracing=self.client.code_model.options["tracing"],
+        )
         result.extend(
             [
                 "_policies = kwargs.pop('policies', None)",

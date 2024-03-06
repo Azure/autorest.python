@@ -3,12 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Tuple, List, TYPE_CHECKING
+from typing import Any, Dict, Tuple, List
 import re
 import argparse
-
-if TYPE_CHECKING:
-    from .codegen.models.code_model import CodeModel
 
 
 def update_enum_value(
@@ -124,10 +121,13 @@ JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
 def build_policies(
-    code_model: "CodeModel",
+    is_arm: bool,
     async_mode: bool,
+    *,
+    is_azure_flavor: bool = False,
+    tracing: bool = True,
 ) -> List[str]:
-    if code_model.is_azure_flavor:
+    if is_azure_flavor:
         # for Azure
         async_prefix = "Async" if async_mode else ""
         policies = [
@@ -137,16 +137,14 @@ def build_policies(
             "self._config.proxy_policy",
             "policies.ContentDecodePolicy(**kwargs)",
             f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()"
-            if code_model.options["azure_arm"]
+            if is_arm
             else None,
             "self._config.redirect_policy",
             "self._config.retry_policy",
             "self._config.authentication_policy",
             "self._config.custom_hook_policy",
             "self._config.logging_policy",
-            "policies.DistributedTracingPolicy(**kwargs)"
-            if code_model.options["tracing"]
-            else None,
+            "policies.DistributedTracingPolicy(**kwargs)" if tracing else None,
             "policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None",
             "self._config.http_logging_policy",
         ]
