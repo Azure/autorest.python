@@ -26,6 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 class OptionsRetriever:
     OPTIONS_TO_DEFAULT = {
         "azure-arm": False,
+        "flavor": "azure",  # need to default to azure in shared code so we don't break swagger generation
         "no-async": False,
         "low-level-client": False,
         "version-tolerant": True,
