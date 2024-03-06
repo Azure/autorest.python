@@ -1,6 +1,6 @@
 # Release
 
-## 2024-03-XX - 6.13.4
+## 2024-03-06 - 6.13.4
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,10 @@
 **Bug Fixes**
 
 - Fix unused code in `_vendor.py` for multipart #2434
+
+**Other Changes**
+
+- Add support for `--flavor` flag for tsp #2440
 
 ## 2024-03-01 - 6.13.3
 

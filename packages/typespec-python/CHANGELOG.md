@@ -16,6 +16,10 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
 
+**New Features**
+
+- Add support for `--flavor` flag. Only special value right now is the `"azure"` flag. When `--flavor=azure` is passed in, we generate an SDK following Microsoft Azure guidelines #2440
+
 **Bug Fixes**
 
 - Fix unused code in `_vendor.py` for multipart #2434
@@ -23,6 +27,7 @@
 **Other Changes**
 
 - Bump `typespec` dependencies to `0.54.0` and `0.40.0` #2441
+- Remove support for `--unbranded` flag #2440
 
 
 ## 2023-03-01 - 0.21.2

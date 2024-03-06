@@ -450,7 +450,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            f"{'runtime.' if self.code_model.options['unbranded'] else ''}pipeline",
+            f"{'' if self.code_model.is_azure_flavor else 'runtime.'}pipeline",
             "PipelineResponse",
             ImportType.SDKCORE,
         )

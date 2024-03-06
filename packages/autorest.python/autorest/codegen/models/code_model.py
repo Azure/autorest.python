@@ -120,6 +120,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
+    def is_azure_flavor(self) -> bool:
+        return self.options["flavor"] == "azure"
+
+    @property
     def rest_layer_name(self) -> str:
         """If we have a separate rest layer, what is its name?"""
         return "rest" if self.options["builders_visibility"] == "public" else "_rest"
@@ -210,7 +214,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def core_library(self) -> Literal["azure.core", "corehttp"]:
-        return "azure.core" if not self.options["unbranded"] else "corehttp"
+        return "azure.core" if self.is_azure_flavor else "corehttp"
 
     def _sort_model_types_helper(
         self,

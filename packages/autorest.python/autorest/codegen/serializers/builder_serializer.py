@@ -451,7 +451,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     def pipeline_name(self) -> str:
-        return f"{'' if self.code_model.options['unbranded'] else '_'}pipeline"
+        return f"{'_' if self.code_model.is_azure_flavor else ''}pipeline"
 
 
 ############################## REQUEST BUILDERS ##############################
