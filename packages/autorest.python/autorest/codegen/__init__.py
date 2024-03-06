@@ -26,7 +26,6 @@ _LOGGER = logging.getLogger(__name__)
 class OptionsRetriever:
     OPTIONS_TO_DEFAULT = {
         "azure-arm": False,
-        "flavor": None,
         "no-async": False,
         "low-level-client": False,
         "version-tolerant": True,
