@@ -112,7 +112,7 @@ export function getType(
         case "guid":
         case "url":
         case "uuid":
-        case "etag":
+        case "eTag":
         case "armId":
         case "ipAddress":
         case "azureLocation":

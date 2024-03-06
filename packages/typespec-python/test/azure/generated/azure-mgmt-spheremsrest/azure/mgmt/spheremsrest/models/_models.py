@@ -291,6 +291,8 @@ class Catalog(TrackedResourceBase):
 class CatalogListResult(_serialization.Model):
     """The response of a Catalog list operation.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to server.
 
     :ivar value: The Catalog items on this page. Required.
@@ -470,6 +472,8 @@ class CertificateChainResponse(_serialization.Model):
 
 class CertificateListResult(_serialization.Model):
     """The response of a Certificate list operation.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to server.
 
@@ -698,6 +702,8 @@ class Deployment(ProxyResourceBase):
 class DeploymentListResult(_serialization.Model):
     """The response of a Deployment list operation.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to server.
 
     :ivar value: The Deployment items on this page. Required.
@@ -899,6 +905,8 @@ class DeviceGroup(ProxyResourceBase):
 
 class DeviceGroupListResult(_serialization.Model):
     """The response of a DeviceGroup list operation.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to server.
 
@@ -1182,6 +1190,8 @@ class DeviceInsight(_serialization.Model):
 
 class DeviceListResult(_serialization.Model):
     """The response of a Device list operation.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to server.
 
@@ -1517,6 +1527,8 @@ class Image(ProxyResourceBase):
 class ImageListResult(_serialization.Model):
     """The response of a Image list operation.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to server.
 
     :ivar value: The Image items on this page. Required.
@@ -1788,6 +1800,8 @@ class OperationDisplay(_serialization.Model):
 class PagedDeviceInsight(_serialization.Model):
     """Paged collection of DeviceInsight items.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to server.
 
     :ivar value: The DeviceInsight items on this page. Required.
@@ -1820,6 +1834,8 @@ class PagedDeviceInsight(_serialization.Model):
 class PagedOperation(_serialization.Model):
     """A list of REST API operations supported by an Azure Resource Provider. It contains an URL link
     to get the next set of results.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to server.
 
@@ -1912,6 +1928,8 @@ class Product(ProxyResourceBase):
 
 class ProductListResult(_serialization.Model):
     """The response of a Product list operation.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to server.
 

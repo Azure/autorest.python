@@ -277,6 +277,7 @@ function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     if (!defaultApiVersion) {
         if (context.arm) {
             const services = listServices(context.program);
+            // eslint-disable-next-line deprecation/deprecation
             return services.length > 0 ? services[0].version : undefined;
         }
         return defaultApiVersion;
