@@ -10,7 +10,7 @@ import yaml
 
 
 from .. import Plugin, PluginAutorest
-from .._utils import parse_args
+from .._utils import parse_args, is_azure_flavor
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
@@ -50,7 +50,7 @@ class OptionsRetriever:
     @property
     def company_name(self) -> str:
         return self.options.get(
-            "company-name", "Microsoft" if self.flavor == "azure" else ""
+            "company-name", "Microsoft" if is_azure_flavor(self.flavor) else ""
         )
 
     @property
@@ -58,7 +58,7 @@ class OptionsRetriever:
         license_header = self.options.get(
             "header-text",
             ""
-            if self.flavor != "azure" and not self.company_name
+            if not is_azure_flavor(self.flavor) and not self.company_name
             else DEFAULT_HEADER_TEXT.format(company_name=self.company_name),
         )
         if license_header:
@@ -98,7 +98,7 @@ class OptionsRetriever:
     def tracing(self) -> bool:
         return self.options.get(
             "tracing",
-            self.show_operations and self.flavor == "azure",
+            self.show_operations and is_azure_flavor(self.flavor),
         )
 
     @property
@@ -266,7 +266,10 @@ class CodeGenerator(Plugin):
                 "Please read https://aka.ms/azsdk/dpcodegen for more details."
             )
 
-        if self.options_retriever.flavor != "azure" and self.options_retriever.tracing:
+        if (
+            not is_azure_flavor(self.options_retriever.flavor)
+            and self.options_retriever.tracing
+        ):
             raise ValueError("--tracing=true can only be set with --flavor=azure")
 
     @staticmethod
@@ -347,7 +350,7 @@ class CodeGenerator(Plugin):
             self.remove_cloud_errors(yaml_data)
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
-        if self.options_retriever.flavor != "azure" and any(
+        if not is_azure_flavor(self.options_retriever.flavor) and any(
             client.lro_operations for client in code_model.clients
         ):
             raise ValueError("Support LRO only when --flavor=azure")

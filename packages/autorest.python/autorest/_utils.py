@@ -120,10 +120,14 @@ KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
+def is_azure_flavor(flavor: str) -> bool:
+    return flavor == "azure"
+
+
 def build_policies(
     is_arm: bool, async_mode: bool, flavor: str = "azure", tracing: bool = True
 ) -> List[str]:
-    if flavor == "azure":
+    if is_azure_flavor(flavor):
         # for Azure
         async_prefix = "Async" if async_mode else ""
         policies = [

@@ -11,6 +11,7 @@ from .model_type import ModelType
 from .combined_type import CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
+from ..._utils import is_azure_flavor
 
 
 def _is_legacy(options) -> bool:
@@ -210,7 +211,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def core_library(self) -> Literal["azure.core", "corehttp"]:
-        return "azure.core" if self.options["flavor"] == "azure" else "corehttp"
+        return "azure.core" if self.is_azure_flavor else "corehttp"
 
     def _sort_model_types_helper(
         self,
@@ -281,3 +282,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         if self.options["models_mode"] == "dpg":
             return True
         return False
+
+    @property
+    def is_azure_flavor(self) -> bool:
+        return is_azure_flavor(self.options["flavor"])

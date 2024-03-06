@@ -111,9 +111,7 @@ class ClientSerializer:
         result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
         endpoint_name = (
-            "endpoint"
-            if self.client.code_model.options["flavor"] != "azure"
-            else "base_url"
+            "endpoint" if not self.client.code_model.is_azure_flavor else "base_url"
         )
         params = {
             endpoint_name: self.host_variable_name,

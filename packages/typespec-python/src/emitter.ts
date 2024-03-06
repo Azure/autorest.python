@@ -69,19 +69,18 @@ const defaultOptions = {
     "generate-packaging-files": true,
 };
 
-// case insensitive, known values are "azure" and others
+// case insensitive, known values are "azure" and "non-azure"
 let flavor: string;
 
 function CalculateFlavor(options: PythonEmitterOptions & InternalPythonEmitterOptions): string {
     if (options["flavor"] !== undefined) {
         return options["flavor"].toLowerCase();
-    } else if (options["package-dir"] !== undefined && options["unbranded"] === undefined) {
+    } else if (options["package-dir"] !== undefined) {
         if (options["package-dir"].toLowerCase().includes("azure")) {
             return "azure";
         }
-        return "unbranded";
     }
-    return options["unbranded"] === false ? "azure" : "unbranded";
+    return "non-azure";
 }
 
 export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {

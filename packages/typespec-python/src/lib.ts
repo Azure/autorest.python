@@ -11,7 +11,6 @@ export interface PythonEmitterOptions {
     "package-pprint-name"?: string;
     "head-as-boolean"?: boolean;
     "models-mode"?: string;
-    "unbranded"?: boolean;
     "flavor"?: string;
     "tracing"?: boolean;
     "company-name"?: string;
@@ -32,7 +31,6 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "package-pprint-name": { type: "string", nullable: true },
         "head-as-boolean": { type: "boolean", nullable: true },
         "models-mode": { type: "string", nullable: true },
-        "unbranded": { type: "boolean", nullable: true },
         "flavor": { type: "string", nullable: true },
         "tracing": { type: "boolean", nullable: true },
         "company-name": { type: "string", nullable: true },
