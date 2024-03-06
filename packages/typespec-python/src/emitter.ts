@@ -47,7 +47,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { InternalPythonEmitterOptions, camelToSnakeCase, removeUnderscoresFromNamespace, userProvidedFlag } from "./utils.js";
+import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -121,13 +121,15 @@ function addDefaultOptions(
     options.unbranded = undefined; // we don't want to pass the unbranded flag to the generator, since we will deprecate it
 }
 
-
+interface InternalPythonEmitterOptions {
+    "package-mode"?: string;
+}
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
-    addDefaultOptions(sdkContext);
     const clients = listClients(sdkContext);
+    addDefaultOptions(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext, clients);
