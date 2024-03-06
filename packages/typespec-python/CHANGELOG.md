@@ -22,7 +22,7 @@
 
 **Other Changes**
 
-- Bump `typespec` dependencies to `0.54.0` and `0.40.0`
+- Bump `typespec` dependencies to `0.54.0` and `0.40.0` #2441
 
 
 ## 2023-03-01 - 0.21.2
