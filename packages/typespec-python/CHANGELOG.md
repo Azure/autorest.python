@@ -1,15 +1,15 @@
 # Release
 
-## 2023-03-XX - 0.21.3
+## 2023-03-06 - 0.22.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.53.0`      |
-| `@typespec/http`                                                        | `0.53.0`      |
-| `@typespec/rest`                                                        | `0.53.0`      |
-| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@typespec/compiler`                                                    | `0.54.0`      |
+| `@typespec/http`                                                        | `0.54.0`      |
+| `@typespec/rest`                                                        | `0.54.0`      |
+| `@typespec/versioning`                                                  | `0.54.0`      |
 | `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.40.0-dev.21`|
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0`      |
 | `azure-core` dep of generated code                                      | `1.30.0`      |
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
@@ -19,6 +19,10 @@
 **Bug Fixes**
 
 - Fix unused code in `_vendor.py` for multipart #2434
+
+**Other Changes**
+
+- Bump `typespec` dependencies to `0.54.0` and `0.40.0`
 
 
 ## 2023-03-01 - 0.21.2
