@@ -242,12 +242,14 @@ def regenerate_azure(c, name=None, debug=False):
         for s in _all_specification_folders("azure")
         if not is_invalid_folder(s)
     ]
+    special_flags = {"flavor": "azure"}
     _regenerate(
         c,
         specs,
         "azure",
         name,
-        debug
+        debug,
+        special_flags=special_flags,
     )
 
 
@@ -260,7 +262,7 @@ def regenerate_unbranded(c, name=None, debug=False):
         for s in _all_specification_folders("unbranded")
         if not is_invalid_folder(s, invalid_folders=["azure", "client-request-id"])
     ]
-    special_flags = {"unbranded": "true", "company-name": "Unbranded"}
+    special_flags = {"company-name": "Unbranded"}
     _regenerate(
         c,
         specs,
@@ -276,13 +278,11 @@ def regenerate(
     c,
     name=None,
     debug=False,
-    azure=False,
-    unbranded=False,
-):
-    if azure ^ unbranded:
-        # this means that only azure or only unbranded is true
-        if azure:
-            return regenerate_azure(c, name, debug)
+    flavor: Optional[Literal["azure", "unbranded"]] = None,
+):  
+    if flavor == "azure":
+        return regenerate_azure(c, name, debug)
+    if flavor == "unbranded":
         return regenerate_unbranded(c, name, debug)
     regenerate_azure(c, name, debug)
     regenerate_unbranded(c, name, debug)
