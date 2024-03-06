@@ -18,7 +18,7 @@
 
 **New Features**
 
-- Add support for `--flavor` flag. Only valid value right now is the `"azure"` flag. When `--flavor=azure` is passed in, we generate an SDK following Microsoft Azure guidelines #2440
+- Add support for `--flavor` flag. Only special value right now is the `"azure"` flag. When `--flavor=azure` is passed in, we generate an SDK following Microsoft Azure guidelines #2440
 
 **Bug Fixes**
 
@@ -27,6 +27,7 @@
 **Other Changes**
 
 - Bump `typespec` dependencies to `0.54.0` and `0.40.0` #2441
+- Remove support for `--unbranded` flag #2440
 
 
 ## 2023-03-01 - 0.21.2

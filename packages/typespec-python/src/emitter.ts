@@ -99,25 +99,9 @@ function addDefaultOptions(sdkContext: SdkContext) {
         // if they pass in a flavor other than azure, we want to ignore the value
         options.flavor = undefined;
     }
-    if (options.flavor) {
-        // if a user passed in value "azure" for options.flavor
-        if (options.unbranded !== undefined) {
-            // if both are set, we ignore unbranded and say we are generating azure code
-            options.unbranded = false;
-        }
-    } else {
-        if (options.unbranded === false) {
-            // this means that a user explicitly passed in unbranded false
-            // we want to get rid of the unbranded flag when passing to the generator
-            // so we just set options.flavor to none, which will do the same thing
-            options.flavor = "azure";
-        }
-        if (sdkContext.emitContext.emitterOutputDir.includes("azure/")) {
-            // if the package-dir starts with "azure", we automatically set flavor to azure
-            options.flavor = "azure";
-        }
+    if (!options.flavor && sdkContext.emitContext.emitterOutputDir.includes("azure/")) {
+        options.flavor = "azure";
     }
-    options.unbranded = undefined; // we don't want to pass the unbranded flag to the generator, since we will deprecate it
 }
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
