@@ -188,11 +188,7 @@ class TokenCredentialType(
 
     @property
     def credentials_subfolder(self) -> str:
-        return (
-            "credentials_async"
-            if self.code_model.is_azure_flavor
-            else "credentials"
-        )
+        return "credentials_async" if self.code_model.is_azure_flavor else "credentials"
 
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):

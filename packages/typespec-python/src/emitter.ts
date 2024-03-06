@@ -77,17 +77,15 @@ export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
     return "dpg";
 }
 
-function addDefaultOptions(
-    sdkContext: SdkContext,
-) {
+function addDefaultOptions(sdkContext: SdkContext) {
     const defaultOptions = {
         "package-version": "1.0.0b1",
         "generate-packaging-files": true,
-    }
+    };
     sdkContext.emitContext.options = {
         ...defaultOptions,
         ...sdkContext.emitContext.options,
-    }
+    };
     const options = sdkContext.emitContext.options;
     options["models-mode"] = getModelsMode(sdkContext);
     if (options["generate-packaging-files"]) {
@@ -120,11 +118,6 @@ function addDefaultOptions(
     }
     options.unbranded = undefined; // we don't want to pass the unbranded flag to the generator, since we will deprecate it
 }
-
-interface InternalPythonEmitterOptions {
-    "package-mode"?: string;
-}
-
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");

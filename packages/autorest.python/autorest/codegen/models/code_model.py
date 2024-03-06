@@ -118,7 +118,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             except KeyError:
                 pass
         raise KeyError(f"No request builder with id {request_builder_id} found.")
-    
+
     @property
     def is_azure_flavor(self) -> bool:
         return self.options["flavor"] == "azure"

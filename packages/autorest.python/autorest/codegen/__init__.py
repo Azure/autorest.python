@@ -53,14 +53,17 @@ class OptionsRetriever:
 
     @property
     def company_name(self) -> str:
-        return self.options.get("company-name", "Microsoft" if self.is_azure_flavor else "")
+        return self.options.get(
+            "company-name", "Microsoft" if self.is_azure_flavor else ""
+        )
 
     @property
     def license_header(self) -> str:
         license_header = self.options.get(
             "header-text",
             DEFAULT_HEADER_TEXT.format(company_name=self.company_name)
-            if self.company_name else ""
+            if self.company_name
+            else "",
         )
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
@@ -267,10 +270,11 @@ class CodeGenerator(Plugin):
                 "Please read https://aka.ms/azsdk/dpcodegen for more details."
             )
 
-        if not self.options_retriever.is_azure_flavor and self.options_retriever.tracing:
-            raise ValueError(
-                "Can only have tracing turned on for Azure SDKs."
-            )
+        if (
+            not self.options_retriever.is_azure_flavor
+            and self.options_retriever.tracing
+        ):
+            raise ValueError("Can only have tracing turned on for Azure SDKs.")
 
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
