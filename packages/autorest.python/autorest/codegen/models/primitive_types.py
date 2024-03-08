@@ -33,7 +33,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
         return self.docstring_type(**kwargs)
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return self.docstring_type()
+        return self.docstring_type(**kwargs)
 
     def get_json_template_representation(
         self,

@@ -1722,7 +1722,7 @@ class ResponseBodyOperations:
     def octet_stream(self, **kwargs: Any) -> Iterable[bytes]:
         """octet_stream.
 
-        :return: bytes
+        :return: Iterable[bytes]
         :rtype: Iterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -1771,7 +1771,7 @@ class ResponseBodyOperations:
     def custom_content_type(self, **kwargs: Any) -> Iterable[bytes]:
         """custom_content_type.
 
-        :return: bytes
+        :return: Iterable[bytes]
         :rtype: Iterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """

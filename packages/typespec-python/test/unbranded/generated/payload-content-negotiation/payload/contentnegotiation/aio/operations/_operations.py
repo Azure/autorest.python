@@ -53,7 +53,7 @@ class SameBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """get_avatar_as_png.
 
-        :return: bytes
+        :return: AsyncIterable[bytes]
         :rtype: AsyncIterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -104,7 +104,7 @@ class SameBodyOperations:
     async def get_avatar_as_jpeg(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """get_avatar_as_jpeg.
 
-        :return: bytes
+        :return: AsyncIterable[bytes]
         :rtype: AsyncIterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -173,7 +173,7 @@ class DifferentBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """get_avatar_as_png.
 
-        :return: bytes
+        :return: AsyncIterable[bytes]
         :rtype: AsyncIterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """

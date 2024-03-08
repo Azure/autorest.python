@@ -1460,7 +1460,7 @@ class ResponseBodyOperations:
     async def octet_stream(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """octet_stream.
 
-        :return: bytes
+        :return: AsyncIterable[bytes]
         :rtype: AsyncIterable[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1510,7 +1510,7 @@ class ResponseBodyOperations:
     async def custom_content_type(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """custom_content_type.
 
-        :return: bytes
+        :return: AsyncIterable[bytes]
         :rtype: AsyncIterable[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
