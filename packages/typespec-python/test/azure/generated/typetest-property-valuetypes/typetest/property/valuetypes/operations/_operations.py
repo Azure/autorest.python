@@ -1248,7 +1248,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Property. Required.
                 }
         """
         error_map = {
@@ -1313,7 +1313,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Property. Required.
                 }
         """
 
@@ -1366,7 +1366,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                    "property": bytes("bytes", encoding="utf-8")  # Property. Required.
                 }
         """
         error_map = {

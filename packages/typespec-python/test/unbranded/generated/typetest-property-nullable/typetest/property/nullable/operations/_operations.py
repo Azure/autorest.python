@@ -782,8 +782,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -841,8 +840,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -908,8 +906,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -962,8 +959,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -1032,8 +1028,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -1086,8 +1081,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("Iterator[bytes]", encoding="utf-8"),  # Property.
-                      Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
@@ -1923,7 +1917,7 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }
@@ -1983,7 +1977,7 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }
@@ -2055,7 +2049,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }
@@ -2110,7 +2104,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }
@@ -2185,7 +2179,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }
@@ -2240,7 +2234,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")  # Property. Required.
                     ],
                     "requiredProperty": "str"  # Required property. Required.
                 }

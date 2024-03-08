@@ -55,7 +55,7 @@ class SameBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """get_avatar_as_png.
 
-        :return: Async iterator of the response bytes
+        :return: bytes
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -107,7 +107,7 @@ class SameBodyOperations:
     async def get_avatar_as_jpeg(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """get_avatar_as_jpeg.
 
-        :return: Async iterator of the response bytes
+        :return: bytes
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -177,7 +177,7 @@ class DifferentBodyOperations:
     async def get_avatar_as_png(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """get_avatar_as_png.
 
-        :return: Async iterator of the response bytes
+        :return: bytes
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -238,7 +238,7 @@ class DifferentBodyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "content": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
+                    "content": bytes("bytes", encoding="utf-8")  # Required.
                 }
         """
         error_map = {

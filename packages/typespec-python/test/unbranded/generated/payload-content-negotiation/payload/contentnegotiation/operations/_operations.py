@@ -103,7 +103,7 @@ class SameBodyOperations:
     def get_avatar_as_png(self, **kwargs: Any) -> Iterator[bytes]:
         """get_avatar_as_png.
 
-        :return: Iterator of the response bytes
+        :return: bytes
         :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -154,7 +154,7 @@ class SameBodyOperations:
     def get_avatar_as_jpeg(self, **kwargs: Any) -> Iterator[bytes]:
         """get_avatar_as_jpeg.
 
-        :return: Iterator of the response bytes
+        :return: bytes
         :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -223,7 +223,7 @@ class DifferentBodyOperations:
     def get_avatar_as_png(self, **kwargs: Any) -> Iterator[bytes]:
         """get_avatar_as_png.
 
-        :return: Iterator of the response bytes
+        :return: bytes
         :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
@@ -283,7 +283,7 @@ class DifferentBodyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "content": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
+                    "content": bytes("bytes", encoding="utf-8")  # Required.
                 }
         """
         error_map = {

@@ -1234,7 +1234,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
         error_map = {
@@ -1292,7 +1292,7 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
         error_map = {
@@ -1357,7 +1357,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
 
@@ -1410,7 +1410,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
         error_map = {
@@ -1478,7 +1478,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
 
@@ -1531,7 +1531,7 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
         error_map = {
@@ -2363,7 +2363,7 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2423,7 +2423,7 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2490,7 +2490,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2545,7 +2545,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2615,7 +2615,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """
@@ -2670,7 +2670,7 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": [
-                        bytes("Iterator[bytes]", encoding="utf-8")  # Optional. Property.
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
                     ]
                 }
         """

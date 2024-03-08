@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import decimal
-from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING, cast
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
@@ -629,7 +629,7 @@ class ByteArraySchema(BinaryIteratorType):
 
     def docstring_type(self, **kwargs: Any) -> str:
         return (
-            super().docstring_type(**kwargs)
+            BinaryIteratorType.docstring_type(cast(BinaryIteratorType, self), **kwargs)
             if kwargs.get("for_stream_response")
             else "bytes"
         )
@@ -643,7 +643,7 @@ class ByteArraySchema(BinaryIteratorType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         return (
-            super().imports(**kwargs)
+            BinaryIteratorType.imports(cast(BinaryIteratorType, self), **kwargs)
             if kwargs.get("operation")
             else super(PrimitiveType, self).imports(**kwargs)
         )
