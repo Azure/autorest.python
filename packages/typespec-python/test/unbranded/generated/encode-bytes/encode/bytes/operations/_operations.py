@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -1719,11 +1719,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    def octet_stream(self, **kwargs: Any) -> Iterator[bytes]:
+    def octet_stream(self, **kwargs: Any) -> Iterable[bytes]:
         """octet_stream.
 
         :return: bytes
-        :rtype: Iterator[bytes]
+        :rtype: Iterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1737,7 +1737,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[Iterable[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_octet_stream_request(
             headers=_headers,
@@ -1768,11 +1768,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    def custom_content_type(self, **kwargs: Any) -> Iterator[bytes]:
+    def custom_content_type(self, **kwargs: Any) -> Iterable[bytes]:
         """custom_content_type.
 
         :return: bytes
-        :rtype: Iterator[bytes]
+        :rtype: Iterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1786,7 +1786,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[Iterable[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_custom_content_type_request(
             headers=_headers,

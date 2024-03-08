@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -1437,11 +1437,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    async def octet_stream(self, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def octet_stream(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """octet_stream.
 
         :return: bytes
-        :rtype: AsyncIterator[bytes]
+        :rtype: AsyncIterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1455,7 +1455,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterable[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_octet_stream_request(
             headers=_headers,
@@ -1486,11 +1486,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    async def custom_content_type(self, **kwargs: Any) -> AsyncIterator[bytes]:
+    async def custom_content_type(self, **kwargs: Any) -> AsyncIterable[bytes]:
         """custom_content_type.
 
         :return: bytes
-        :rtype: AsyncIterator[bytes]
+        :rtype: AsyncIterable[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1504,7 +1504,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterable[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_custom_content_type_request(
             headers=_headers,

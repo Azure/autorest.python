@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import decimal
-from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING, cast
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
@@ -628,11 +628,11 @@ class ByteArraySchema(PrimitiveType):
         return "bytearray"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return (
-            BinaryIteratorType.docstring_type(cast(BinaryIteratorType, self), **kwargs)
-            if kwargs.get("for_stream_response")
-            else "bytes"
-        )
+        if kwargs.get("for_stream_response"):
+            if kwargs.get("async_mode"):
+                return "AsyncIterable[bytes]"
+            return "Iterable[bytes]"
+        return "bytes"
 
     def get_declaration(self, value: str) -> str:
         return f'bytes("{value}", encoding="utf-8")'
@@ -642,11 +642,12 @@ class ByteArraySchema(PrimitiveType):
         return "isinstance({}, bytes)"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        return (
-            BinaryIteratorType.imports(cast(BinaryIteratorType, self), **kwargs)
-            if getattr(kwargs.get("operation"), "for_stream_response", False)
-            else super(PrimitiveType, self).imports(**kwargs)
-        )
+        file_import = super().imports(**kwargs)
+        if getattr(kwargs.get("operation"), "for_stream_response", False):
+            iterable = "AsyncIterable" if kwargs.get("async_mode") else "Iterable"
+            file_import.add_submodule_import("typing", iterable, ImportType.STDLIB)
+
+        return file_import
 
 
 class SdkCoreType(PrimitiveType):
