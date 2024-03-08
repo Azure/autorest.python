@@ -616,7 +616,7 @@ class DurationType(PrimitiveType):
         return f"isodate.parse_duration({repr(value)})"
 
 
-class ByteArraySchema(BinaryIteratorType):
+class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.encode = yaml_data.get("encode", "base64")
@@ -644,7 +644,7 @@ class ByteArraySchema(BinaryIteratorType):
     def imports(self, **kwargs: Any) -> FileImport:
         return (
             BinaryIteratorType.imports(cast(BinaryIteratorType, self), **kwargs)
-            if kwargs.get("operation")
+            if getattr(kwargs.get("operation"), "for_stream_response", False)
             else super(PrimitiveType, self).imports(**kwargs)
         )
 
