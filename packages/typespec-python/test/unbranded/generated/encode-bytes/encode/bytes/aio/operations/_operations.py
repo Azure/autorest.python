@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -296,12 +296,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -325,7 +325,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -349,7 +349,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -369,12 +369,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
         error_map = {
@@ -449,12 +449,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -478,7 +478,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -502,7 +502,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -522,12 +522,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
         error_map = {
@@ -602,12 +602,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -631,7 +631,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -655,7 +655,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
 
@@ -675,12 +675,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                 }
         """
         error_map = {
@@ -757,14 +757,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
         """
@@ -791,7 +791,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
         """
@@ -818,7 +818,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
         """
@@ -842,14 +842,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("Iterator[bytes]", encoding="utf-8")  # Required.
                     ]
                 }
         """
@@ -1388,11 +1388,11 @@ class ResponseBodyOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(self, **kwargs: Any) -> bytes:
+    async def default(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """default.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Async iterator of the response bytes
+        :rtype: AsyncIterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1406,7 +1406,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_default_request(
             headers=_headers,
@@ -1414,7 +1414,7 @@ class ResponseBodyOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = kwargs.pop("stream", True)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1430,18 +1430,18 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+            deserialized = await response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    async def octet_stream(self, **kwargs: Any) -> bytes:
+    async def octet_stream(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """octet_stream.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Async iterator of the response bytes
+        :rtype: AsyncIterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1455,7 +1455,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_octet_stream_request(
             headers=_headers,
@@ -1486,11 +1486,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    async def custom_content_type(self, **kwargs: Any) -> bytes:
+    async def custom_content_type(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """custom_content_type.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Async iterator of the response bytes
+        :rtype: AsyncIterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1504,7 +1504,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_custom_content_type_request(
             headers=_headers,
@@ -1535,11 +1535,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    async def base64(self, **kwargs: Any) -> bytes:
+    async def base64(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """base64.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Async iterator of the response bytes
+        :rtype: AsyncIterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1553,7 +1553,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_base64_request(
             headers=_headers,
@@ -1561,7 +1561,7 @@ class ResponseBodyOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = kwargs.pop("stream", True)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1577,18 +1577,18 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+            deserialized = await response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    async def base64url(self, **kwargs: Any) -> bytes:
+    async def base64url(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """base64url.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Async iterator of the response bytes
+        :rtype: AsyncIterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1602,7 +1602,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_base64url_request(
             headers=_headers,
@@ -1610,7 +1610,7 @@ class ResponseBodyOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = kwargs.pop("stream", True)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1626,7 +1626,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64url")
+            deserialized = await response.read()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

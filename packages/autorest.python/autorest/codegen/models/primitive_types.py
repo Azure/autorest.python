@@ -616,7 +616,7 @@ class DurationType(PrimitiveType):
         return f"isodate.parse_duration({repr(value)})"
 
 
-class ByteArraySchema(PrimitiveType):
+class ByteArraySchema(BinaryIteratorType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.encode = yaml_data.get("encode", "base64")
@@ -628,7 +628,11 @@ class ByteArraySchema(PrimitiveType):
         return "bytearray"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return "bytes"
+        return (
+            super().docstring_type(**kwargs)
+            if kwargs.get("for_stream_response")
+            else "bytes"
+        )
 
     def get_declaration(self, value: str) -> str:
         return f'bytes("{value}", encoding="utf-8")'
@@ -636,6 +640,13 @@ class ByteArraySchema(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, bytes)"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        return (
+            super().imports(**kwargs)
+            if kwargs.get("operation")
+            else super(PrimitiveType, self).imports(**kwargs)
+        )
 
 
 class SdkCoreType(PrimitiveType):
