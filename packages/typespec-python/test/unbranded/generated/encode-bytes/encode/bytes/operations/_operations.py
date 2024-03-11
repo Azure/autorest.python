@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -1719,11 +1719,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    def octet_stream(self, **kwargs: Any) -> Iterable[bytes]:
+    def octet_stream(self, **kwargs: Any) -> Iterator[bytes]:
         """octet_stream.
 
-        :return: Iterable[bytes]
-        :rtype: Iterable[bytes]
+        :return: Iterator[bytes]
+        :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1737,7 +1737,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterable[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_octet_stream_request(
             headers=_headers,
@@ -1758,21 +1758,18 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = response.read()
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    def custom_content_type(self, **kwargs: Any) -> Iterable[bytes]:
+    def custom_content_type(self, **kwargs: Any) -> Iterator[bytes]:
         """custom_content_type.
 
-        :return: Iterable[bytes]
-        :rtype: Iterable[bytes]
+        :return: Iterator[bytes]
+        :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1786,7 +1783,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterable[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_custom_content_type_request(
             headers=_headers,
@@ -1807,10 +1804,7 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = response.read()
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

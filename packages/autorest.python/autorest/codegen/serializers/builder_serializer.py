@@ -363,7 +363,6 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             )
             docstring_type = param.docstring_type(
                 async_mode=self.async_mode,
-                for_stream_response=getattr(builder, "for_stream_response", False),
             )
             description_list.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
@@ -737,8 +736,12 @@ class _OperationSerializer(
         return kwargs
 
     def response_docstring(self, builder: OperationType) -> List[str]:
-        response_str = f":return: {builder.response_docstring_text(async_mode=self.async_mode, for_stream_response=builder.for_stream_response)}"  # pylint: disable=line-too-long
-        rtype_str = f":rtype: {builder.response_docstring_type(async_mode=self.async_mode, for_stream_response=builder.for_stream_response)}"  # pylint: disable=line-too-long
+        response_str = (
+            f":return: {builder.response_docstring_text(async_mode=self.async_mode)}"
+        )
+        rtype_str = (
+            f":rtype: {builder.response_docstring_type(async_mode=self.async_mode)}"
+        )
         return [
             response_str,
             rtype_str,

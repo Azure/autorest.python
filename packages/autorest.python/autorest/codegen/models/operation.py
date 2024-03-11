@@ -121,9 +121,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             return "bool"
         response_type_annotations: OrderedSet[str] = {
-            response.type_annotation(
-                for_stream_response=self.for_stream_response, **kwargs
-            ): None
+            response.type_annotation(**kwargs): None
             for response in self.responses
             if response.type
         }
@@ -133,9 +131,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.has_optional_return_type:
             return f"Optional[{response_str}]"
         if self.responses:
-            return self.responses[0].type_annotation(
-                for_stream_response=self.for_stream_response, **kwargs
-            )
+            return self.responses[0].type_annotation(**kwargs)
         return "None"
 
     @property
@@ -518,10 +514,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     @property
     def has_stream_response(self) -> bool:
         return any(r.is_stream_response for r in self.responses)
-
-    @property
-    def for_stream_response(self) -> bool:
-        return self.has_stream_response and self.expose_stream_keyword
 
     @classmethod
     def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
