@@ -1,8 +1,8 @@
 azure-pylint-guidelines-checker==0.0.8
 invoke==2.2.0
 colorama==0.4.6
-debugpy==1.8.0
-pytest==8.0.0
-tox==4.12.0
+debugpy==1.8.1
+pytest==8.1.1
+tox==4.14.1
 coverage==7.4.1
 black==22.12.0

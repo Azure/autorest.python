@@ -335,8 +335,8 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     async def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
         """Operation that accepts a reserved enum value.
 
-        :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and
-         "import". Required.
+        :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import" and "other".
+         Required.
         :type enum_parameter: str or ~reservedwords.models.MyEnum
         :return: JSON or the result of cls(response)
         :rtype: JSON

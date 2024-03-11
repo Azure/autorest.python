@@ -3,7 +3,6 @@ import {
     getDoc,
     getSummary,
     ignoreDiagnostics,
-    isErrorModel,
     ModelProperty,
     Namespace,
     Operation,
@@ -40,6 +39,7 @@ import {
     getEffectivePayloadType,
     getAccess,
     SdkOperationGroup,
+    isErrorOrChildOfError,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -64,12 +64,6 @@ interface HttpServerParameter {
     param: ModelProperty;
 }
 
-const defaultOptions = {
-    "package-version": "1.0.0b1",
-    "generate-packaging-files": true,
-    "unbranded": false,
-};
-
 export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
     if (specifiedModelsMode) {
@@ -83,44 +77,48 @@ export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
     return "dpg";
 }
 
-function addDefaultCalculatedOptions(
-    sdkContext: SdkContext,
-    options: PythonEmitterOptions & InternalPythonEmitterOptions,
-    yamlMap: Record<string, any>,
-) {
+function addDefaultOptions(sdkContext: SdkContext) {
+    const defaultOptions = {
+        "package-version": "1.0.0b1",
+        "generate-packaging-files": true,
+        "flavor": undefined,
+    };
+    sdkContext.emitContext.options = {
+        ...defaultOptions,
+        ...sdkContext.emitContext.options,
+    };
+    const options = sdkContext.emitContext.options;
     options["models-mode"] = getModelsMode(sdkContext);
     if (options["generate-packaging-files"]) {
         options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
     }
     if (!options["package-name"]) {
-        options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
+        options["package-name"] = getClientNamespaceStringHelper(sdkContext).replace(/\./g, "-");
+    }
+    if (options.flavor !== "azure") {
+        // if they pass in a flavor other than azure, we want to ignore the value
+        options.flavor = undefined;
+    }
+    if (!options.flavor && sdkContext.emitContext.emitterOutputDir.includes("azure/")) {
+        options.flavor = "azure";
     }
 }
-
-interface InternalPythonEmitterOptions {
-    "package-mode"?: string;
-}
-
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
-    const resolvedOptions: PythonEmitterOptions & InternalPythonEmitterOptions = {
-        ...defaultOptions,
-        ...context.options,
-    };
-
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
     const clients = listClients(sdkContext);
+    addDefaultOptions(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext, clients);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
-    addDefaultCalculatedOptions(sdkContext, resolvedOptions, yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run_cadl.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
+    const resolvedOptions = sdkContext.emitContext.options;
     if (resolvedOptions["packaging-files-config"]) {
         const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
             return `${key}:${value}`;
@@ -136,12 +134,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        if (value !== undefined) {
-            commandArgs.push(`--${key}=${value}`);
-        }
-    }
-    if (resolvedOptions.debug) {
-        commandArgs.push("--debug");
+        commandArgs.push(`--${key}=${value}`);
     }
     if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
@@ -282,6 +275,7 @@ function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     if (!defaultApiVersion) {
         if (context.arm) {
             const services = listServices(context.program);
+            // eslint-disable-next-line deprecation/deprecation
             return services.length > 0 ? services[0].version : undefined;
         }
         return defaultApiVersion;
@@ -632,7 +626,9 @@ function emitPagingOperation(
 
 function isAbstract(operation: HttpOperation): boolean {
     const body = operation.parameters.body;
-    return body !== undefined && body.contentTypes.length > 1;
+    const multipleContentTypes = body !== undefined && body.contentTypes.length > 1;
+    if (!multipleContentTypes) return false;
+    return body.contentTypes.some((x) => x.includes("json"));
 }
 
 function addAcceptParameter(
@@ -682,7 +678,7 @@ function emitBasicOperation(
     for (const response of httpOperation.responses) {
         const emittedResponse = emitResponse(context, response);
         addAcceptParameter(context, operation, parameters, emittedResponse.defaultContentType);
-        if (isErrorModel(context.program, response.type)) {
+        if (response.type && response.type.kind === "Model" && isErrorOrChildOfError(context, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
             if (response.statusCodes === "*") {
                 exceptions.push(emittedResponse);
@@ -868,7 +864,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                     types: credential_types,
                 };
             }
-            const service = context.emitContext.options["unbranded"] ? "cloud service" : "Azure";
+            const service = context.emitContext.options.flavor ? "Azure" : "cloud service";
             return {
                 type: getType(context, type),
                 optional: false,
@@ -954,7 +950,7 @@ function getNamespace(context: SdkContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return removeUnderscoresFromNamespace(getClientNamespaceString(context)!.toLowerCase());
+        return getClientNamespaceStringHelper(context);
     }
     return removeUnderscoresFromNamespace(submodule);
 }
@@ -967,8 +963,12 @@ function getNamespaces(context: SdkContext): Set<string> {
     return namespaces;
 }
 
+function getClientNamespaceStringHelper(context: SdkContext): string {
+    return removeUnderscoresFromNamespace(getClientNamespaceString(context)?.toLowerCase());
+}
+
 function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
-    const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
+    const clientNamespaceString = getClientNamespaceStringHelper(sdkContext);
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,

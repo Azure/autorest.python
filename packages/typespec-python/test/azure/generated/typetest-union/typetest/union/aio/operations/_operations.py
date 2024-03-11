@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, TYPE_CHECKING, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -53,10 +53,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from ... import _types
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -82,7 +78,6 @@ class StringsOnlyOperations:
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> _models.GetResponse9:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
@@ -94,8 +89,7 @@ class StringsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
                 }
         """
         error_map = {
@@ -144,7 +138,6 @@ class StringsOnlyOperations:
     async def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -161,24 +154,18 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]],
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, *, prop: Union[str, _models.GetResponseProp5], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-         Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "a", "b", and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -208,17 +195,15 @@ class StringsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]] = _Unset,
+        prop: Union[str, _models.GetResponseProp5] = _Unset,
         **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-         Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "a", "b", and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -228,8 +213,7 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
                 }
         """
         error_map = {
@@ -313,8 +297,7 @@ class StringExtensibleOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -379,19 +362,18 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, Literal["b"], Literal["c"]], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[str, _models.GetResponseProp4], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -421,15 +403,15 @@ class StringExtensibleOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, Literal["b"], Literal["c"]] = _Unset,
+        prop: Union[str, _models.GetResponseProp4] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -439,8 +421,7 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -524,8 +505,7 @@ class StringExtensibleNamedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -590,19 +570,22 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: "_types.StringExtensibleNamedUnion", content_type: str = "application/json", **kwargs: Any
+        self,
+        *,
+        prop: Union[str, _models.StringExtensibleNamedUnion],
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -632,15 +615,15 @@ class StringExtensibleNamedOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: "_types.StringExtensibleNamedUnion" = _Unset,
+        prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
+        :keyword prop: Known values are: "b" and "c". Required.
+        :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -650,8 +633,7 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
+                    "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
         error_map = {
@@ -735,8 +717,7 @@ class IntsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
         error_map = {
@@ -801,19 +782,18 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[Literal[1], Literal[2], Literal[3]], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[int, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
-        :paramtype prop: int or int or int
+        :keyword prop: Known values are: 1, 2, and 3. Required.
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -843,15 +823,15 @@ class IntsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[Literal[1], Literal[2], Literal[3]] = _Unset,
+        prop: Union[int, _models.GetResponseProp3] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
-        :paramtype prop: int or int or int
+        :keyword prop: Known values are: 1, 2, and 3. Required.
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -861,8 +841,7 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 0  # Required. Known values are: 1, 2, and 3.
                 }
         """
         error_map = {
@@ -946,8 +925,7 @@ class FloatsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
         error_map = {
@@ -1012,19 +990,18 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[float, float, float], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[float, _models.GetResponseProp2], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: float, float, float Required.
-        :paramtype prop: float or float or float
+        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1051,14 +1028,18 @@ class FloatsOnlyOperations:
 
     @distributed_trace_async
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Union[float, float, float] = _Unset, **kwargs: Any
+        self,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        prop: Union[float, _models.GetResponseProp2] = _Unset,
+        **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: float, float, float Required.
-        :paramtype prop: float or float or float
+        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1068,8 +1049,7 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
                 }
         """
         error_map = {
@@ -1366,10 +1346,9 @@ class EnumsOnlyOperations:
                 response == {
                     "prop": {
                         "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
+                          Required. Known values are: "left", "right", "up", and "down".
                         "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
+                          Known values are: "up" and "down".
                     }
                 }
         """
@@ -1438,10 +1417,9 @@ class EnumsOnlyOperations:
                 body = {
                     "prop": {
                         "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
+                          Required. Known values are: "left", "right", "up", and "down".
                         "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
+                          Known values are: "up" and "down".
                     }
                 }
         """
@@ -1500,10 +1478,9 @@ class EnumsOnlyOperations:
                 body = {
                     "prop": {
                         "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
+                          Required. Known values are: "left", "right", "up", and "down".
                         "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
+                          Known values are: "up" and "down".
                     }
                 }
         """

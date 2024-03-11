@@ -3,13 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import TYPE_CHECKING, Any, Dict, Union
+from typing import TYPE_CHECKING, Any, Dict
 from .parameter import (
     ParameterLocation,
     ParameterMethodLocation,
     Parameter,
     BodyParameter,
-    _MultipartBodyParameter,
 )
 from .base import BaseType
 from .primitive_types import BinaryType, StringType
@@ -65,32 +64,6 @@ class RequestBuilderBodyParameter(BodyParameter):
         if self.client_name == "json":
             return "_json"
         return "_content"
-
-
-class RequestBuilderMultipartBodyParameter(
-    _MultipartBodyParameter[  # pylint: disable=unsubscriptable-object
-        RequestBuilderBodyParameter
-    ]
-):
-    """Multipart body parameter for Request BUilders"""
-
-    @property
-    def name_in_high_level_operation(self) -> str:
-        return f"_{self.client_name}"
-
-    @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "RequestBuilderMultipartBodyParameter":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
-            entries=[
-                RequestBuilderBodyParameter.from_yaml(entry, code_model)
-                for entry in yaml_data["entries"]
-            ],
-        )
 
 
 class RequestBuilderParameter(Parameter):
@@ -149,12 +122,3 @@ class RequestBuilderParameter(Parameter):
         if self.implementation == "Client":
             return f"self._config.{self.client_name}"
         return self.client_name
-
-
-def get_request_body_parameter(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
-) -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
-    """Get body parameter for a request builder"""
-    if yaml_data.get("entries"):
-        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, code_model)
-    return RequestBuilderBodyParameter.from_yaml(yaml_data, code_model)

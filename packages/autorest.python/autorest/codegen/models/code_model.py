@@ -11,7 +11,6 @@ from .model_type import ModelType
 from .combined_type import CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
-from .constant_type import ConstantType
 
 
 def _is_legacy(options) -> bool:
@@ -121,6 +120,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
+    def is_azure_flavor(self) -> bool:
+        return self.options["flavor"] == "azure"
+
+    @property
     def rest_layer_name(self) -> str:
         """If we have a separate rest layer, what is its name?"""
         return "rest" if self.options["builders_visibility"] == "public" else "_rest"
@@ -211,7 +214,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def core_library(self) -> Literal["azure.core", "corehttp"]:
-        return "azure.core" if not self.options["unbranded"] else "corehttp"
+        return "azure.core" if self.is_azure_flavor else "corehttp"
 
     def _sort_model_types_helper(
         self,
@@ -279,25 +282,6 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def need_typing_extensions(self) -> bool:
-        if self.options["models_mode"] and any(
-            isinstance(p.type, ConstantType)
-            and (p.optional or self.options["models_mode"] == "dpg")
-            for model in self.model_types
-            for p in model.properties
-        ):
-            return True
-        if any(
-            isinstance(parameter.type, ConstantType)
-            for client in self.clients
-            for og in client.operation_groups
-            for op in og.operations
-            for parameter in op.parameters.method
-        ):
-            return True
-        if any(
-            isinstance(parameter.type, ConstantType)
-            for client in self.clients
-            for parameter in client.config.parameters.kwargs_to_pop
-        ):
+        if self.options["models_mode"] == "dpg":
             return True
         return False

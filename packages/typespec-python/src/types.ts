@@ -15,6 +15,7 @@ import {
     SdkDatetimeType,
     SdkDurationType,
     getClientType,
+    shouldFlattenProperty,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
@@ -80,30 +81,41 @@ export function getType(
         case "array":
         case "dict":
             return emitArrayOrDict(context, type)!;
-        case "datetime":
+        case "utcDateTime":
+        case "offsetDateTime":
         case "duration":
             return emitDurationOrDateType(type);
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
         case "bytes":
         case "boolean":
-        case "date":
-        case "time":
+        case "plainDate":
+        case "plainTime":
+        case "numeric":
+        case "integer":
+        case "safeint":
+        case "int8":
+        case "uint8":
+        case "int16":
+        case "uint16":
         case "int32":
+        case "uint32":
         case "int64":
+        case "uint64":
+        case "float":
         case "float32":
         case "float64":
         case "decimal":
         case "decimal128":
         case "string":
+        case "password":
         case "guid":
         case "url":
         case "uuid":
-        case "password":
+        case "eTag":
         case "armId":
         case "ipAddress":
         case "azureLocation":
-        case "etag":
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
@@ -204,6 +216,8 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         addedOn: type.apiVersions[0],
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
+        flatten: shouldFlattenProperty(context, type.__raw!),
+        isMultipartFileInput: type.isMultipartFileInput,
     };
 }
 
@@ -259,10 +273,11 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         return typesMap.get(type)!;
     }
     const values: Record<string, any>[] = [];
+    const name = type.generatedName ?? type.name;
     const newValue = {
-        name: type.name,
-        snakeCaseName: camelToSnakeCase(type.name),
-        description: type.description || `Type of ${type.name}`,
+        name: name,
+        snakeCaseName: camelToSnakeCase(name),
+        description: type.description || `Type of ${name}`,
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
@@ -318,20 +333,31 @@ function emitConstant(type: SdkConstantType) {
 }
 
 const sdkScalarKindToPythonKind: Record<string, string> = {
+    numeric: "integer",
+    integer: "integer",
+    safeint: "integer",
+    int8: "integer",
+    uint8: "integer",
+    int16: "integer",
+    uint16: "integer",
     int32: "integer",
+    uint32: "integer",
     int64: "integer",
+    uint64: "integer",
+    float: "float",
     float32: "float",
     float64: "float",
     decimal: "decimal",
     decimal128: "decimal",
+    string: "string",
+    password: "string",
     guid: "string",
     url: "string",
     uuid: "string",
-    password: "string",
+    etag: "string",
     armId: "string",
     ipAddress: "string",
     azureLocation: "string",
-    etag: "string",
 };
 
 function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {

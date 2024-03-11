@@ -22,7 +22,7 @@ def client():
         ("string", "hello"),
         ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
         ("int_operations", 42),
-        ("float", 42.42),
+        ("float", 43.125),
         ("decimal", decimal.Decimal("0.33333")),
         ("decimal128", decimal.Decimal("0.33333")),
         ("datetime", '2022-08-26T18:38:00Z'),
@@ -41,9 +41,9 @@ def client():
         ("boolean_literal", True),
         ("int_literal", 42),
         ("string_literal", "hello"),
-        ("float_literal", 42.42),
+        ("float_literal", 43.125),
         ("union_string_literal", "world"),
-        ("union_float_literal", 43.43),
+        ("union_float_literal", 46.875),
         ("union_int_literal", 42),
     ]
 )
@@ -60,7 +60,7 @@ def test_json(client, og_name, val):
         ("string", models.StringProperty, "hello"),
         ("bytes", models.BytesProperty, b'hello, world!'),
         ("int_operations", models.IntProperty, 42),
-        ("float", models.FloatProperty, 42.42),
+        ("float", models.FloatProperty, 43.125),
         ("decimal", models.DecimalProperty, decimal.Decimal("0.33333")),
         ("decimal128", models.Decimal128Property, decimal.Decimal("0.33333")),
         ("enum", models.EnumProperty, models.InnerEnum.VALUE_ONE),
@@ -80,9 +80,9 @@ def test_json(client, og_name, val):
         ("boolean_literal", models.BooleanLiteralProperty, True),
         ("int_literal", models.IntLiteralProperty, 42),
         ("string_literal", models.StringLiteralProperty, "hello"),
-        ("float_literal", models.FloatLiteralProperty, 42.42),
+        ("float_literal", models.FloatLiteralProperty, 43.125),
         ("union_string_literal", models.UnionStringLiteralProperty, "world"),
-        ("union_float_literal", models.UnionFloatLiteralProperty, 43.43),
+        ("union_float_literal", models.UnionFloatLiteralProperty, 46.875),
         ("union_int_literal", models.UnionIntLiteralProperty, 42),
     ]
 )
@@ -121,3 +121,10 @@ def test_model_deserialization(client: ValueTypesClient):
     assert body.property[0].property == body["property"][0]["property"]
     resp = client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
+
+
+def test_enum_property():
+    for prop in ["ValueOne", models.FixedInnerEnum.VALUE_ONE]:
+        string_type = models.EnumProperty(property=prop)
+        assert isinstance(string_type.property, models.FixedInnerEnum)
+        assert isinstance(string_type["property"], str)

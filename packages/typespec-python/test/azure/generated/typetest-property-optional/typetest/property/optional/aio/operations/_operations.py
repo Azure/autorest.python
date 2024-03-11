@@ -3911,7 +3911,6 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
-        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
@@ -3924,8 +3923,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -3972,7 +3971,6 @@ class UnionStringLiteralOperations:
 
     @distributed_trace_async
     async def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
-        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
@@ -3985,8 +3983,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -4035,7 +4033,6 @@ class UnionStringLiteralOperations:
     async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4052,8 +4049,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
 
@@ -4093,7 +4090,6 @@ class UnionStringLiteralOperations:
     async def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4108,8 +4104,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -4161,7 +4157,6 @@ class UnionStringLiteralOperations:
     async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -4178,8 +4173,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
 
@@ -4219,7 +4214,6 @@ class UnionStringLiteralOperations:
     async def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4234,8 +4228,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -4314,8 +4308,7 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -4373,8 +4366,7 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -4439,8 +4431,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
 
@@ -4493,8 +4484,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -4562,8 +4552,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
 
@@ -4616,8 +4605,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -4697,8 +4685,7 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -4757,8 +4744,7 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -4823,8 +4809,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
 
@@ -4878,8 +4863,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -4947,8 +4931,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
 
@@ -5002,8 +4985,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {

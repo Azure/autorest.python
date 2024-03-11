@@ -107,7 +107,7 @@ class GeneralSerializer(BaseSerializer):
                 ImportType.STDLIB,
             )
             file_import.add_submodule_import(
-                "runtime" if self.code_model.options["unbranded"] else "",
+                "" if self.code_model.is_azure_flavor else "runtime",
                 f"{'Async' if self.async_mode else ''}PipelineClient",
                 ImportType.SDKCORE,
                 TypingSection.TYPING,
@@ -130,18 +130,30 @@ class GeneralSerializer(BaseSerializer):
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
-        if self.code_model.has_form_data:
+        if (
+            self.code_model.has_form_data
+            and self.code_model.options["models_mode"] == "dpg"
+        ):
+            file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Sequence", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
-            file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
-            file_import.add_submodule_import("io", "BytesIO", ImportType.STDLIB)
-            file_import.add_import("uuid", ImportType.STDLIB)
-            file_import.add_import("json", ImportType.STDLIB)
-            file_import.add_mutable_mapping_import()
-            file_import.add_submodule_import("._model_base", "Model", ImportType.LOCAL)
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "._model_base", "SdkJSONEncoder", ImportType.LOCAL
+                "._model_base",
+                "SdkJSONEncoder",
+                ImportType.LOCAL,
             )
+            file_import.add_submodule_import(
+                "._model_base",
+                "Model",
+                ImportType.LOCAL,
+            )
+            file_import.add_import("json", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,
