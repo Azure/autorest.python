@@ -155,7 +155,11 @@ class Response(BaseModel):
             else None
         )
         # use ByteIteratorType if we are returning a binary type
-        if isinstance(type, BinaryType):
+        default_content_type = yaml_data.get("defaultContentType", "application/json")
+        if isinstance(type, BinaryType) or (
+            isinstance(type, ByteArraySchema)
+            and default_content_type != "application/json"
+        ):
             type = BinaryIteratorType(type.yaml_data, type.code_model)
         return cls(
             yaml_data=yaml_data,

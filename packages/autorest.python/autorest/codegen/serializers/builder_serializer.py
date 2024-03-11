@@ -361,7 +361,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                     "\n"
                 )
             )
-            docstring_type = param.docstring_type(async_mode=self.async_mode)
+            docstring_type = param.docstring_type(
+                async_mode=self.async_mode,
+            )
             description_list.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
             )
@@ -1112,12 +1114,12 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
-        no_stream_logic = False
+        stream_logic = True
         if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
                 deserialized = f"{'await ' if self.async_mode else ''}response.read()"
             else:
-                no_stream_logic = True
+                stream_logic = False
                 if self.code_model.options["version_tolerant"]:
                     deserialized = "response.iter_bytes()"
                 else:
@@ -1171,7 +1173,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword and not no_stream_logic:
+            if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
