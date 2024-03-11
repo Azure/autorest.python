@@ -81,7 +81,7 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
 
         :param file_content: File to upload. Required.
         :type file_content: IO[bytes]
-        :return: Iterator of the response bytes
+        :return: Iterator[bytes]
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
