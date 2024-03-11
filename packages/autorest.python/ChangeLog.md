@@ -1,6 +1,6 @@
 # Release
 
-## 2024-03-XX - 6.13.5
+## 2024-03-21 - 6.13.5
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,7 +14,7 @@
 
 **Other Changes**
 
-- Change typing annotation and document type of binary response from `bytes` to `Iterable[bytes]` #2427
+- Change typing annotation and document type of binary response from `bytes` to `Iterator[bytes]` #2427
 
 ## 2024-03-06 - 6.13.4
 
