@@ -99,7 +99,7 @@ function addDefaultOptions(sdkContext: SdkContext) {
         // if they pass in a flavor other than azure, we want to ignore the value
         options.flavor = undefined;
     }
-    if (!options.flavor && sdkContext.emitContext.emitterOutputDir.includes("azure/")) {
+    if (!options.flavor && sdkContext.emitContext.emitterOutputDir.includes("azure")) {
         options.flavor = "azure";
     }
 }
