@@ -1,5 +1,25 @@
 # Release
 
+## 2023-03-12 - 0.22.2
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.54.0`      |
+| `@typespec/http`                                                        | `0.54.0`      |
+| `@typespec/rest`                                                        | `0.54.0`      |
+| `@typespec/versioning`                                                  | `0.54.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Automatically set `--flavor` to `azure` if we detect `"azure"`in the output directory #2446
+
 ## 2023-03-11 - 0.22.1
 
 | Library                                                                 | Min Version   |
