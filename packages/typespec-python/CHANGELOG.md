@@ -1,5 +1,250 @@
 # Release
 
+## 2023-03-12 - 0.22.2
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.54.0`      |
+| `@typespec/http`                                                        | `0.54.0`      |
+| `@typespec/rest`                                                        | `0.54.0`      |
+| `@typespec/versioning`                                                  | `0.54.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Automatically set `--flavor` to `azure` if we detect `"azure"`in the output directory #2446
+
+## 2023-03-11 - 0.22.1
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.54.0`      |
+| `@typespec/http`                                                        | `0.54.0`      |
+| `@typespec/rest`                                                        | `0.54.0`      |
+| `@typespec/versioning`                                                  | `0.54.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Change typing annotation and document type of binary response from `bytes` to `Iterator[bytes]` #2427
+
+## 2023-03-06 - 0.22.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.54.0`      |
+| `@typespec/http`                                                        | `0.54.0`      |
+| `@typespec/rest`                                                        | `0.54.0`      |
+| `@typespec/versioning`                                                  | `0.54.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add support for `--flavor` flag. Only special value right now is the `"azure"` flag. When `--flavor=azure` is passed in, we generate an SDK following Microsoft Azure guidelines #2440
+
+**Bug Fixes**
+
+- Fix unused code in `_vendor.py` for multipart #2434
+
+**Other Changes**
+
+- Bump `typespec` dependencies to `0.54.0` and `0.40.0` #2441
+- Remove support for `--unbranded` flag #2440
+
+
+## 2023-03-01 - 0.21.2
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0-dev.21`|
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix empty enum name generation issue #2426
+
+## 2023-02-27 - 0.21.1
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.40.0-dev.14`|
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix reading of some stream responses #2416
+
+## 2023-02-12 - 0.21.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.39.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add support for legacy @flattened decorator #2362
+- Generate operations that have multiple binary content types  #2401
+
+## 2023-02-09 - 0.20.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.53.0`      |
+| `@typespec/http`                                                        | `0.53.0`      |
+| `@typespec/rest`                                                        | `0.53.0`      |
+| `@typespec/versioning`                                                  | `0.53.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.39.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.39.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!)  #2351
+- Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
+
+**Bug Fixes**
+
+- Fix serialization and deserialization of enum types in models #2399
+
+**Other Changes**
+
+- Update `typespec` dependencies to `0.53.0` and `typespec-azure` depedencies to `0.39.0` #2397
+
+## 2023-02-01 - 0.19.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.52.0`      |
+| `@typespec/http`                                                        | `0.52.0`      |
+| `@typespec/rest`                                                        | `0.52.0`      |
+| `@typespec/versioning`                                                  | `0.52.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.38.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.38.0`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add support for complete tuple input for file types #2380
+
+**Other Changes**
+
+- Bump min dep of `azure-core` to `1.30.0` #2380
+- Bump min dep of `corehttp` to `1.0.0b3` #2380
+
+## 2023-01-24 - 0.18.3
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.52.0`      |
+| `@typespec/http`                                                        | `0.52.0`      |
+| `@typespec/rest`                                                        | `0.52.0`      |
+| `@typespec/versioning`                                                  | `0.52.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.38.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.38.0`      |
+| `azure-core` dep of generated code                                      | `1.29.5`      |
+| `corehttp` dep of generated code                                        | `1.0.0b2`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Update typespec dependencies to `0.52.0` #2382
+
+## 2023-01-19 - 0.18.2
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.51.0`      |
+| `@typespec/http`                                                        | `0.51.0`      |
+| `@typespec/rest`                                                        | `0.51.0`      |
+| `@typespec/versioning`                                                  | `0.51.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.37.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.37.0`      |
+| `azure-core` dep of generated code                                      | `1.29.5`      |
+| `corehttp` dep of generated code                                        | `1.0.0b2`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix missing tzinfo for `Repeatability-First-Sent` setting #2373
+
+## 2023-01-11 - 0.18.1
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.51.0`      |
+| `@typespec/http`                                                        | `0.51.0`      |
+| `@typespec/rest`                                                        | `0.51.0`      |
+| `@typespec/versioning`                                                  | `0.51.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.37.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.37.0`      |
+| `azure-core` dep of generated code                                      | `1.29.5`      |
+| `corehttp` dep of generated code                                        | `1.0.0b2`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix enum value wrap comments #2359
+
 ## 2023-01-04 - 0.18.0
 
 | Library                                                                 | Min Version   |

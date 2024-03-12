@@ -34,7 +34,6 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

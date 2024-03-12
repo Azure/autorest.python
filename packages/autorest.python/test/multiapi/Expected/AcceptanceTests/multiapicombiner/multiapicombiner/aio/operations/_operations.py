@@ -88,10 +88,6 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[bytes] type.
          Default value is None.
         :type parameter_one: ~multiapicombiner.v3.models.ModelThree or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapicombiner.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -160,7 +156,6 @@ class OperationGroupOneOperations:
     async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -210,7 +205,6 @@ class OperationGroupOneOperations:
     def test_operation_group_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapicombiner.v3.models.ModelThree]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -316,10 +310,6 @@ class OperationGroupTwoOperations:
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
         :type input: ~multiapicombiner.v3.models.SourcePath or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -384,7 +374,6 @@ class OperationGroupTwoOperations:
     async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestFive should be in OperationGroupTwoOperations.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -558,17 +547,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~multiapicombiner.v1.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicombiner.v1.models.Product]
@@ -634,14 +612,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type test_lro_and_paging_options: ~multiapicombiner.v1.models.TestLroAndPagingOptions
         :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
@@ -783,7 +753,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :paramtype greeting_in_chinese: str
         :keyword greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :paramtype greeting_in_french: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -842,7 +811,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :paramtype id: int
         :keyword message: An optional string parameter. Default value is None.
         :paramtype message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -900,7 +868,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def test_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ModelThree or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapicombiner.v3.models.ModelThree]
         :raises ~azure.core.exceptions.HttpResponseError:

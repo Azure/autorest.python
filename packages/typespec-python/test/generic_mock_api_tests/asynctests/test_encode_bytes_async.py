@@ -117,5 +117,5 @@ async def test_response_body(client: BytesClient, png_data: bytes):
     assert expected == await client.response_body.default()
     assert expected == await client.response_body.base64()
     assert expected == await client.response_body.base64url()
-    assert await client.response_body.octet_stream() == png_data
-    assert await client.response_body.custom_content_type() == png_data
+    assert b"".join([d async for d in (await client.response_body.octet_stream())]) == png_data
+    assert b"".join([d async for d in (await client.response_body.custom_content_type())]) == png_data

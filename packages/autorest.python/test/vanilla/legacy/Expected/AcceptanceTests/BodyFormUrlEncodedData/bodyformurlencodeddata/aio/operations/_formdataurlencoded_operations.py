@@ -81,7 +81,6 @@ class FormdataurlencodedOperations:
         :type name: str
         :param status: Updated status of the pet. Default value is None.
         :type status: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -147,10 +146,6 @@ class FormdataurlencodedOperations:
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token. Required.
         :type access_token: str
-        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype grant_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

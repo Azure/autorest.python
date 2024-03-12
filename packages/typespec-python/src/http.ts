@@ -105,8 +105,8 @@ function addPagingInformation(
     name: camelToSnakeCase(method.name),
     discriminator: "paging",
     exposeStreamKeyword: false,
-    itemName: method.response.responsePath,
-    continuationTokenName: method.nextLinkLogicalPath?.join("."),
+    itemName: method.getResponseMapping(),
+    continuationTokenName: method.nextLinkPath,
     itemType,
     description: getDescriptionAndSummary(method).description,
     summary: getDescriptionAndSummary(method).summary,
@@ -323,7 +323,7 @@ function emitHttpResponse(
     type,
     contentTypes: response.contentTypes,
     defaultContentType: response.defaultContentType,
-    resultProperty: method?.response.responsePath,
+    resultProperty: method?.getResponseMapping(),
   };
 }
 

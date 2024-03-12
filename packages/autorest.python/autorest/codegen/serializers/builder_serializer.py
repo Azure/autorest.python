@@ -26,7 +26,6 @@ from ..models import (
     ParameterMethodLocation,
     RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
-    MultipartBodyParameter,
     Property,
     RequestBuilderType,
     CombinedType,
@@ -207,7 +206,7 @@ def _serialize_json_model_body(
 
 def _serialize_multipart_body(builder: BuilderType) -> List[str]:
     retval: List[str] = []
-    body_param = cast(MultipartBodyParameter, builder.parameters.body_parameter)
+    body_param = builder.parameters.body_parameter
     # we have to construct our form data before passing to the request as well
     retval.append("# Construct form data")
     retval.append(f"_{body_param.client_name} = {{")
@@ -349,7 +348,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
-            if not param.in_docstring or param.hide_in_operation_signature:
+            if (
+                not param.in_docstring
+                or param.hide_in_operation_signature
+                or param.method_location == ParameterMethodLocation.KWARG
+            ):
                 continue
             description_list.extend(
                 f":{param.description_keyword} {param.client_name}: {param.description}".replace(
@@ -358,7 +361,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                     "\n"
                 )
             )
-            docstring_type = param.docstring_type(async_mode=self.async_mode)
+            docstring_type = param.docstring_type(
+                async_mode=self.async_mode,
+            )
             description_list.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
             )
@@ -448,7 +453,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     def pipeline_name(self) -> str:
-        return f"{'' if self.code_model.options['unbranded'] else '_'}pipeline"
+        return f"{'_' if self.code_model.is_azure_flavor else ''}pipeline"
 
 
 ############################## REQUEST BUILDERS ##############################
@@ -700,19 +705,6 @@ class _OperationSerializer(
             retval.append(_api_version_validation(builder))
         return retval
 
-    def param_description(self, builder: OperationType) -> List[str]:
-        description_list = super().param_description(builder)
-        if builder.expose_stream_keyword and builder.has_response_body:
-            description_list.append(
-                ":keyword bool stream: Whether to stream the response of this operation. "
-                "Defaults to False. You will have to context manage the returned stream."
-            )
-        if not self.code_model.options["version_tolerant"]:
-            description_list.append(
-                ":keyword callable cls: A custom type or function that will be passed the direct response"
-            )
-        return description_list
-
     def pop_kwargs_from_signature(self, builder: OperationType) -> List[str]:
         kwargs_to_pop = builder.parameters.kwargs_to_pop
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(
@@ -761,17 +753,39 @@ class _OperationSerializer(
 
         This function serializes the body params that need to be serialized.
         """
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if body_param.is_form_data:
-            return [
-                f"if isinstance({body_param.client_name}, _model_base.Model):",
-                f"    _body = handle_multipart_form_data_model({body_param.client_name})",
-                "else:",
-                f"    _body = {body_param.client_name}",
-                "_files = {k: multipart_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
-                "_data = {k: multipart_data(v) for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
-            ]
         retval: List[str] = []
+        body_param = builder.parameters.body_parameter
+        if body_param.is_form_data:
+            model_type = cast(
+                ModelType,
+                (
+                    body_param.type.target_model_subtype((JSONModelType, DPGModelType))
+                    if isinstance(body_param.type, CombinedType)
+                    else body_param.type
+                ),
+            )
+            file_fields = [
+                p.wire_name for p in model_type.properties if p.is_multipart_file_input
+            ]
+            data_fields = [
+                p.wire_name
+                for p in model_type.properties
+                if not p.is_multipart_file_input
+            ]
+            retval.extend(
+                [
+                    "_body = (",
+                    f"    {body_param.client_name}.as_dict()",
+                    f"    if isinstance({body_param.client_name}, _model_base.Model) else",
+                    f"    {body_param.client_name}",
+                    ")",
+                    f"_file_fields: List[str] = {file_fields}",
+                    f"_data_fields: List[str] = {data_fields}",
+                    "_files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)",
+                ]
+            )
+            return retval
+
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
@@ -823,8 +837,8 @@ class _OperationSerializer(
     ) -> List[str]:
         """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if hasattr(body_param, "entries"):
+        body_param = builder.parameters.body_parameter
+        if body_param.entries:
             return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         body_param_type = body_param.type
@@ -985,9 +999,13 @@ class _OperationSerializer(
                 f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
-        if request_builder.has_form_data_body:
-            retval.append("    data=_data,")
+        if builder.parameters.has_body and builder.parameters.body_parameter.entries:
+            # this is for legacy
+            client_name = builder.parameters.body_parameter.client_name
+            retval.append(f"    {client_name}=_{client_name},")
+        elif request_builder.has_form_data_body:
             retval.append("    files=_files,")
+            retval.append("    data=_data,")
         elif request_builder.overloads:
             seen_body_params = set()
             for overload in request_builder.overloads:
@@ -1096,16 +1114,18 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
+        stream_logic = True
         if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
-                retval.append(f"{'await ' if self.async_mode else ''}response.read()")
-                deserialized = "response.content"
+                deserialized = f"{'await ' if self.async_mode else ''}response.read()"
             else:
-                deserialized = (
-                    "response.iter_bytes()"
-                    if self.code_model.options["version_tolerant"]
-                    else f"response.stream_download(self._client.{self.pipeline_name})"
-                )
+                stream_logic = False
+                if self.code_model.options["version_tolerant"]:
+                    deserialized = "response.iter_bytes()"
+                else:
+                    deserialized = (
+                        f"response.stream_download(self._client.{self.pipeline_name})"
+                    )
             deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
@@ -1153,7 +1173,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword and not builder.has_stream_response:
+            if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
@@ -1542,25 +1562,6 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         self.code_model = code_model
         self.async_mode = async_mode
         self.parameter_serializer = ParameterSerializer()
-
-    def param_description(self, builder: LROOperationType) -> List[str]:
-        retval = super().param_description(builder)
-        retval.append(
-            ":keyword str continuation_token: A continuation token to restart a poller from a saved state."
-        )
-        retval.append(
-            f":keyword polling: By default, your polling method will be {builder.get_polling_method(self.async_mode)}. "
-            "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
-            " personal polling strategy."
-        )
-        retval.append(
-            f":paramtype polling: bool or ~{builder.get_base_polling_method_path(self.async_mode)}"
-        )
-        retval.append(
-            ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
-            "if no Retry-After header is present."
-        )
-        return retval
 
     def serialize_path(self, builder: LROOperationType) -> List[str]:
         return self.parameter_serializer.serialize_path(

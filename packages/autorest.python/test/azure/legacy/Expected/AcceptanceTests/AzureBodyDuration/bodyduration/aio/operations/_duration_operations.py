@@ -59,7 +59,6 @@ class DurationOperations:
     async def get_null(self, **kwargs: Any) -> Optional[datetime.timedelta]:
         """Get null duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or None or the result of cls(response)
         :rtype: ~datetime.timedelta or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -111,7 +110,6 @@ class DurationOperations:
 
         :param duration_body: duration body. Required.
         :type duration_body: ~datetime.timedelta
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -160,7 +158,6 @@ class DurationOperations:
     async def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
         """Get a positive duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -208,7 +205,6 @@ class DurationOperations:
     async def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
         """Get an invalid duration value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises ~azure.core.exceptions.HttpResponseError:

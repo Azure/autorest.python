@@ -523,8 +523,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Required. Note that overriding this default value may result in unsupported behavior.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -574,8 +572,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Required. Note that overriding this default value may result in unsupported behavior.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -611,8 +607,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Required. Note that overriding this default value may result in unsupported behavior.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -646,11 +640,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: This request has a JSON Merge Patch body. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -764,8 +761,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -817,8 +812,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -856,8 +849,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -891,11 +882,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1000,8 +994,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1427,9 +1419,12 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword another: Another query parameter. Known values are: "First" and "Second". Default
          value is None.
         :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1682,8 +1677,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :type id: int
         :keyword format: The format of the data. Required.
         :paramtype format: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:

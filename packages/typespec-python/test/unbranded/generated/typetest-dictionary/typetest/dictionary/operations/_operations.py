@@ -362,8 +362,6 @@ class Int32ValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -465,9 +463,12 @@ class Int32ValueOperations:
 
         :param body: Is either a {str: int} type or a IO[bytes] type. Required.
         :type body: dict[str, int] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -538,8 +539,6 @@ class Int64ValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, int]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -641,9 +640,12 @@ class Int64ValueOperations:
 
         :param body: Is either a {str: int} type or a IO[bytes] type. Required.
         :type body: dict[str, int] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -714,8 +716,6 @@ class BooleanValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, bool]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -817,9 +817,12 @@ class BooleanValueOperations:
 
         :param body: Is either a {str: bool} type or a IO[bytes] type. Required.
         :type body: dict[str, bool] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -890,8 +893,6 @@ class StringValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, str]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -993,9 +994,12 @@ class StringValueOperations:
 
         :param body: Is either a {str: str} type or a IO[bytes] type. Required.
         :type body: dict[str, str] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1066,8 +1070,6 @@ class Float32ValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1169,9 +1171,12 @@ class Float32ValueOperations:
 
         :param body: Is either a {str: float} type or a IO[bytes] type. Required.
         :type body: dict[str, float] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1242,8 +1247,6 @@ class DatetimeValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1345,9 +1348,12 @@ class DatetimeValueOperations:
 
         :param body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
         :type body: dict[str, ~datetime.datetime] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1418,8 +1424,6 @@ class DurationValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1521,9 +1525,12 @@ class DurationValueOperations:
 
         :param body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
         :type body: dict[str, ~datetime.timedelta] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1594,8 +1601,6 @@ class UnknownValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, Any]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to any
         :rtype: dict[str, any]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1697,9 +1702,12 @@ class UnknownValueOperations:
 
         :param body: Is either a {str: Any} type or a IO[bytes] type. Required.
         :type body: dict[str, any] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1770,8 +1778,6 @@ class ModelValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1883,9 +1889,12 @@ class ModelValueOperations:
 
         :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1956,8 +1965,6 @@ class RecursiveModelValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2069,9 +2076,12 @@ class RecursiveModelValueOperations:
 
         :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2142,8 +2152,6 @@ class NullableFloatValueOperations:
     def get(self, **kwargs: Any) -> Dict[str, float]:
         """get.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2245,9 +2253,12 @@ class NullableFloatValueOperations:
 
         :param body: Is either a {str: float} type or a IO[bytes] type. Required.
         :type body: dict[str, float] or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

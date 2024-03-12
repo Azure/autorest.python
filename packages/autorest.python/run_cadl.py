@@ -22,7 +22,7 @@ if __name__ == "__main__":
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
 
-    if "--debug" in sys.argv:
+    if "--debug" in sys.argv or "--debug=true" in sys.argv:
         try:
             import debugpy  # pylint: disable=import-outside-toplevel
         except ImportError:

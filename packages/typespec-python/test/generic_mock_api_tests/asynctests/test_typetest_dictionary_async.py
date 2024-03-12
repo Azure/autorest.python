@@ -19,7 +19,7 @@ async def client():
         ("int64_value",  {"k1": 2**53-1, "k2": -(2**53-1)}),
         ("boolean_value", {"k1": True, "k2": False}),
         ("string_value", {"k1": "hello", "k2": ""}),
-        ("float32_value", {"k1": 42.42}),
+        ("float32_value", {"k1": 43.125}),
         ("datetime_value",  {"k1": isodate.parse_datetime("2022-08-26T18:38:00Z")}),
         ("duration_value", {"k1": isodate.parse_duration("P123DT22H14M12.011S")}),
         ("unknown_value", {"k1": 1, "k2": "hello", "k3": None}),

@@ -19,7 +19,7 @@ async def client():
         ("int64_value",  [2**53-1, -(2**53-1)]),
         ("boolean_value", [True, False]),
         ("string_value", ["hello", ""]),
-        ("float32_value", [42.42]),
+        ("float32_value", [43.125]),
         ("datetime_value",  [isodate.parse_datetime("2022-08-26T18:38:00Z")]),
         ("duration_value", [isodate.parse_duration("P123DT22H14M12.011S")]),
         ("unknown_value", [1, "hello", None]),

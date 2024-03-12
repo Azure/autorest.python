@@ -459,7 +459,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -503,7 +502,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -547,7 +545,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 400 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -596,7 +593,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -653,7 +649,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -710,7 +705,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -767,7 +761,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -819,7 +812,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 401 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -863,7 +855,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 402 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -907,7 +898,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 403 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -951,7 +941,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 403 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1000,7 +989,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1057,7 +1045,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1114,7 +1101,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1171,7 +1157,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1228,7 +1213,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1280,7 +1264,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 410 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1324,7 +1307,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 411 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1368,7 +1350,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 412 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1412,7 +1393,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 412 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1461,7 +1441,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1518,7 +1497,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1575,7 +1553,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1627,7 +1604,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 416 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1676,7 +1652,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1728,7 +1703,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 429 status code - should be represented in the client as an error.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

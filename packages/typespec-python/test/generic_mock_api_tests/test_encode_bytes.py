@@ -113,5 +113,5 @@ def test_response_body(client: BytesClient, png_data: bytes):
     assert expected == client.response_body.default()
     assert expected == client.response_body.base64()
     assert expected == client.response_body.base64url()
-    assert client.response_body.octet_stream() == png_data
-    assert client.response_body.custom_content_type() == png_data
+    assert b"".join(client.response_body.octet_stream()) == png_data
+    assert b"".join(client.response_body.custom_content_type()) == png_data

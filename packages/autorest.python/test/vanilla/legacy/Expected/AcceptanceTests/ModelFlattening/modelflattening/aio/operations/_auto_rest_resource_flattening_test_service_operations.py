@@ -65,7 +65,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -85,7 +84,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -103,10 +101,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
          IO[bytes] type. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -168,7 +162,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         .. seealso::
            - http://tempuri.org
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of FlattenedProduct or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -231,7 +224,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -252,7 +244,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -271,10 +262,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
          or a IO[bytes] type. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -337,7 +324,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         .. seealso::
            - http://tempuri.org
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of ProductWrapper or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -399,7 +385,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -419,7 +404,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -437,10 +421,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
          FlattenedProduct} type or a IO[bytes] type. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -502,7 +482,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         .. seealso::
            - http://tempuri.org
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to FlattenedProduct or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -565,7 +544,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -590,7 +568,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -608,10 +585,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          ResourceCollection type or a IO[bytes] type. Default value is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -673,7 +646,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         .. seealso::
            - http://tempuri.org
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -735,7 +707,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -755,7 +726,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -773,10 +743,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a
          IO[bytes] type. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -866,7 +832,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :type generic_value: str
         :param odata_value: URL value. Default value is None.
         :type odata_value: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -937,7 +902,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         :param flatten_parameter_group: Parameter group. Required.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:

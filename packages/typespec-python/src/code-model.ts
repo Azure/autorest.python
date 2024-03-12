@@ -196,7 +196,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
   sdkContext: PythonSdkContext<TServiceOperation>,
 ) {
   // Get types
-  const sdkPackage = sdkContext.sdkPackage;
+  const sdkPackage = sdkContext.experimental_sdkPackage;
   const codeModel: Record<string, any> = {
     namespace: removeUnderscoresFromNamespace(sdkPackage.rootNamespace).toLowerCase(),
     clients: [],

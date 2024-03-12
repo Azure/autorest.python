@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
+import sys
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -20,16 +21,23 @@ from azure.core.exceptions import (
 )
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
+from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._serialization import Serializer
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1668,8 +1676,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1721,87 +1727,9 @@ class CatalogsOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        resource: _models.Catalog,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Catalog:
-        """Create a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Catalog
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Catalog
-        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Catalog:
-        """Create a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Catalog
-        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO[bytes]], **kwargs: Any
-    ) -> _models.Catalog:
-        """Create a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param resource: Resource create parameters. Is either a Catalog type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Catalog
-        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1814,7 +1742,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1837,7 +1765,7 @@ class CatalogsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1853,23 +1781,133 @@ class CatalogsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Catalog", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Catalog", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        resource: _models.Catalog,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Catalog]:
+        """Create a Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Catalog
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Catalog
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Catalog]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Catalog]:
+        """Create a Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Catalog
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Catalog]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO[bytes]], **kwargs: Any
+    ) -> LROPoller[_models.Catalog]:
+        """Create a Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param resource: Resource create parameters. Is either a Catalog type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO[bytes]
+        :return: An instance of LROPoller that returns Catalog
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Catalog]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Catalog", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Catalog].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Catalog](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @overload
     def update(
@@ -1893,8 +1931,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1922,8 +1958,6 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1947,11 +1981,6 @@ class CatalogsOperations:
         :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Catalog
         :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2015,21 +2044,9 @@ class CatalogsOperations:
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> None:
-        """Delete a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2074,6 +2091,62 @@ class CatalogsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
+
+    @distributed_trace
+    def begin_delete(
+        self, resource_group_name: str, catalog_name: str, **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.Catalog"]:
@@ -2240,8 +2313,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2702,9 +2773,6 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2826,8 +2894,6 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Image
         :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2983,100 +3049,14 @@ class ImagesOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        image_name: str,
-        resource: _models.Image,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Image:
-        """Create a Image.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Image
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Image
-        :rtype: ~azure.mgmt.spheremsrest.models.Image
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        image_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Image:
-        """Create a Image.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Image
-        :rtype: ~azure.mgmt.spheremsrest.models.Image
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
         resource: Union[_models.Image, IO[bytes]],
         **kwargs: Any
-    ) -> _models.Image:
-        """Create a Image.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :param resource: Resource create parameters. Is either a Image type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Image or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Image
-        :rtype: ~azure.mgmt.spheremsrest.models.Image
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3089,7 +3069,7 @@ class ImagesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Image] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3113,7 +3093,7 @@ class ImagesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3129,29 +3109,30 @@ class ImagesOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Image", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Image", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> None:
-        """Delete a Image.
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        image_name: str,
+        resource: _models.Image,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Image]:
+        """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -3160,10 +3141,119 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :return: None
-        :rtype: None
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Image
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Image
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Image]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        image_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Image]:
+        """Create a Image.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param image_name: Image name. Use .default for image creation. Required.
+        :type image_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Image
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Image]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        image_name: str,
+        resource: Union[_models.Image, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.Image]:
+        """Create a Image.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param image_name: Image name. Use .default for image creation. Required.
+        :type image_name: str
+        :param resource: Resource create parameters. Is either a Image type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Image or IO[bytes]
+        :return: An instance of LROPoller that returns Image
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Image]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Image] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                image_name=image_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Image", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Image].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Image](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3209,6 +3299,65 @@ class ImagesOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
+
+    @distributed_trace
+    def begin_delete(
+        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a Image.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param image_name: Image name. Use .default for image creation. Required.
+        :type image_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                image_name=image_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
 
 class DeviceGroupsOperations:
@@ -3354,8 +3503,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DeviceGroup
         :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3409,80 +3556,7 @@ class DeviceGroupsOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        resource: _models.DeviceGroup,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.DeviceGroup:
-        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.DeviceGroup:
-        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3490,31 +3564,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         resource: Union[_models.DeviceGroup, IO[bytes]],
         **kwargs: Any
-    ) -> _models.DeviceGroup:
-        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3527,7 +3577,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3552,7 +3602,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3568,29 +3618,31 @@ class DeviceGroupsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("DeviceGroup", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("DeviceGroup", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> None:
-        """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        resource: _models.DeviceGroup,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3602,10 +3654,128 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: None
-        :rtype: None
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        resource: Union[_models.DeviceGroup, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO[bytes]
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("DeviceGroup", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.DeviceGroup].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.DeviceGroup](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3653,80 +3823,70 @@ class DeviceGroupsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: _models.DeviceGroupUpdate,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.DeviceGroup]:
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup or None
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.DeviceGroup]:
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup or None
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
     @distributed_trace
-    def update(
+    def begin_delete(
+        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3734,31 +3894,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         properties: Union[_models.DeviceGroupUpdate, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.DeviceGroup]:
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
-         a IO[bytes] type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup or None
-        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3771,7 +3907,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.DeviceGroup]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3796,7 +3932,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3813,10 +3949,7 @@ class DeviceGroupsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("DeviceGroup", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3826,6 +3959,149 @@ class DeviceGroupsOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
+
+    @overload
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: _models.DeviceGroupUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: Union[_models.DeviceGroupUpdate, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.DeviceGroup]:
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
+         a IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO[bytes]
+        :return: An instance of LROPoller that returns DeviceGroup
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                properties=properties,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("DeviceGroup", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.DeviceGroup].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.DeviceGroup](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def count_devices(
@@ -3843,8 +4119,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3991,9 +4265,6 @@ class DeviceGroupsOperations:
         :param claim_devices_request: Bulk claim devices request body. Is either a ClaimDevicesRequest
          type or a IO[bytes] type. Required.
         :type claim_devices_request: ~azure.mgmt.spheremsrest.models.ClaimDevicesRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4089,8 +4360,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Certificate
         :rtype: ~azure.mgmt.spheremsrest.models.Certificate
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4260,8 +4529,6 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CertificateChainResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CertificateChainResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4340,8 +4607,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4373,8 +4638,6 @@ class CertificatesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4402,11 +4665,6 @@ class CertificatesOperations:
         :param parameters: Proof of possession nonce request body. Is either a
          ProofOfPossessionNonceRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4516,8 +4774,6 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Deployment
         :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4684,88 +4940,7 @@ class DeploymentsOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        deployment_name: str,
-        resource: _models.Deployment,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Deployment:
-        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
-         current deployment for the associated device group. Required.
-        :type deployment_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Deployment
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Deployment
-        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        deployment_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Deployment:
-        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
-         current deployment for the associated device group. Required.
-        :type deployment_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Deployment
-        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4774,34 +4949,7 @@ class DeploymentsOperations:
         deployment_name: str,
         resource: Union[_models.Deployment, IO[bytes]],
         **kwargs: Any
-    ) -> _models.Deployment:
-        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
-         current deployment for the associated device group. Required.
-        :type deployment_name: str
-        :param resource: Resource create parameters. Is either a Deployment type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Deployment
-        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4814,7 +4962,7 @@ class DeploymentsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4840,7 +4988,7 @@ class DeploymentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4856,35 +5004,32 @@ class DeploymentsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Deployment", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Deployment", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
+    @overload
+    def begin_create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         device_group_name: str,
         deployment_name: str,
+        resource: _models.Deployment,
+        *,
+        content_type: str = "application/json",
         **kwargs: Any
-    ) -> None:
-        """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
+    ) -> LROPoller[_models.Deployment]:
+        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4899,10 +5044,143 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :return: None
-        :rtype: None
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Deployment
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Deployment
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        deployment_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Deployment]:
+        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
+         current deployment for the associated device group. Required.
+        :type deployment_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Deployment
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Deployment]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        deployment_name: str,
+        resource: Union[_models.Deployment, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.Deployment]:
+        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
+         current deployment for the associated device group. Required.
+        :type deployment_name: str
+        :param resource: Resource create parameters. Is either a Deployment type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO[bytes]
+        :return: An instance of LROPoller that returns Deployment
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Deployment]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                deployment_name=deployment_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Deployment", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Deployment].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Deployment](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        deployment_name: str,
+        **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4951,6 +5229,79 @@ class DeploymentsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
+    @distributed_trace
+    def begin_delete(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        deployment_name: str,
+        **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
+         current deployment for the associated device group. Required.
+        :type deployment_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                deployment_name=deployment_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
 
 class DevicesOperations:
     """
@@ -4995,8 +5346,6 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device
         :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5051,86 +5400,7 @@ class DevicesOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        resource: _models.Device,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
-        claim a device to the catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Device
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Device
-        :rtype: ~azure.mgmt.spheremsrest.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
-        claim a device to the catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Device
-        :rtype: ~azure.mgmt.spheremsrest.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5139,33 +5409,7 @@ class DevicesOperations:
         device_name: str,
         resource: Union[_models.Device, IO[bytes]],
         **kwargs: Any
-    ) -> _models.Device:
-        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
-        claim a device to the catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param resource: Resource create parameters. Is either a Device type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Device or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Device
-        :rtype: ~azure.mgmt.spheremsrest.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5178,7 +5422,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -5204,7 +5448,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5220,23 +5464,170 @@ class DevicesOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Device", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Device", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        resource: _models.Device,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Device]:
+        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
+        claim a device to the catalog only.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Device
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Device
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Device]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Device]:
+        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
+        claim a device to the catalog only.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Device
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Device]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        resource: Union[_models.Device, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.Device]:
+        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
+        claim a device to the catalog only.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param resource: Resource create parameters. Is either a Device type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Device or IO[bytes]
+        :return: An instance of LROPoller that returns Device
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Device]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                device_name=device_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Device", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Device].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Device](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def list_by_device_group(
@@ -5330,8 +5721,7 @@ class DevicesOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5340,23 +5730,6 @@ class DevicesOperations:
         device_name: str,
         **kwargs: Any
     ) -> None:
-        """Delete a Device.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5405,6 +5778,77 @@ class DevicesOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
+    @distributed_trace
+    def begin_delete(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a Device.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                device_name=device_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
     @overload
     def update(
         self,
@@ -5437,8 +5881,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5476,8 +5918,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5511,11 +5951,6 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a
          IO[bytes] type. Required.
         :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Device or None
         :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5621,8 +6056,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5661,8 +6094,6 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5697,11 +6128,6 @@ class DevicesOperations:
         :param parameters: Generate capability image request body. Is either a
          GenerateCapabilityImageRequest type or a IO[bytes] type. Required.
         :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheremsrest.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5891,8 +6317,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Product
         :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5945,103 +6369,14 @@ class ProductsOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: _models.Product,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Product:
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Product
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product
-        :rtype: ~azure.mgmt.spheremsrest.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Product:
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product
-        :rtype: ~azure.mgmt.spheremsrest.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def create_or_update(
+    def _create_or_update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         resource: Union[_models.Product, IO[bytes]],
         **kwargs: Any
-    ) -> _models.Product:
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Is either a Product type or a IO[bytes] type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.Product or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product
-        :rtype: ~azure.mgmt.spheremsrest.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6054,7 +6389,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -6078,7 +6413,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -6094,30 +6429,31 @@ class ProductsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def delete(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> None:
-        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name'.
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: _models.Product,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -6126,10 +6462,121 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :return: None
-        :rtype: None
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Product
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
+
+    @overload
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: Union[_models.Product, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Is either a Product type or a IO[bytes] type.
+         Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Product or IO[bytes]
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Product", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Product].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6176,103 +6623,74 @@ class ProductsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: _models.ProductUpdate,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.Product]:
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product or None
-        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.Product]:
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product or None
-        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
     @distributed_trace
-    def update(
+    def begin_delete(
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> LROPoller[_models.ArmOperationStatus]:
+        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name'.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :return: An instance of LROPoller that returns ArmOperationStatus
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.ArmOperationStatus]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("ArmOperationStatus", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.ArmOperationStatus].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.ArmOperationStatus](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    def _update_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         properties: Union[_models.ProductUpdate, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.Product]:
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
-         IO[bytes] type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product or None
-        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+    ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6285,7 +6703,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -6309,7 +6727,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -6326,10 +6744,7 @@ class ProductsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("object", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -6339,6 +6754,139 @@ class ProductsOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
+
+    @overload
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: _models.ProductUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: Union[_models.ProductUpdate, IO[bytes]],
+        **kwargs: Any
+    ) -> LROPoller[_models.Product]:
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
+         IO[bytes] type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO[bytes]
+        :return: An instance of LROPoller that returns Product
+        :rtype: ~azure.core.polling.LROPoller[~azure.mgmt.spheremsrest.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = self._update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                properties=properties,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize("Product", pipeline_response)
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(PollingMethod, NoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return LROPoller[_models.Product].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return LROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def generate_default_device_groups(
@@ -6443,8 +6991,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheremsrest.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:

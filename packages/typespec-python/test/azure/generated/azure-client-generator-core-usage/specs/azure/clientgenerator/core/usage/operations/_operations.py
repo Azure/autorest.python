@@ -177,9 +177,12 @@ class ModelInOperationOperations:
 
         :param body: Is one of the following types: InputModel, JSON, IO[bytes] Required.
         :type body: ~specs.azure.clientgenerator.core.usage.models.InputModel or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -247,8 +250,6 @@ class ModelInOperationOperations:
              "name": <any string>
            }.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:

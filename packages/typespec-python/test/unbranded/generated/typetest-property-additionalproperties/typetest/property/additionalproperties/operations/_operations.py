@@ -451,8 +451,6 @@ class ExtendsUnknownOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalProperties. The ExtendsUnknownAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
@@ -573,9 +571,12 @@ class ExtendsUnknownOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
          or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -654,8 +655,6 @@ class ExtendsUnknownDerivedOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDerived:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalPropertiesDerived. The
          ExtendsUnknownAdditionalPropertiesDerived is compatible with MutableMapping
         :rtype:
@@ -787,9 +786,6 @@ class ExtendsUnknownDerivedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -870,8 +866,6 @@ class ExtendsUnknownDiscriminatedOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsUnknownAdditionalPropertiesDiscriminated:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsUnknownAdditionalPropertiesDiscriminated. The
          ExtendsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
         :rtype:
@@ -1016,9 +1010,6 @@ class ExtendsUnknownDiscriminatedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
          or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1106,8 +1097,6 @@ class IsUnknownOperations:
     def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalProperties. The IsUnknownAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
@@ -1228,9 +1217,12 @@ class IsUnknownOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties or
          JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1309,8 +1301,6 @@ class IsUnknownDerivedOperations:
     def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDerived:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalPropertiesDerived. The IsUnknownAdditionalPropertiesDerived is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
@@ -1439,9 +1429,6 @@ class IsUnknownDerivedOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
          or JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1522,8 +1509,6 @@ class IsUnknownDiscriminatedOperations:
     def get(self, **kwargs: Any) -> _models.IsUnknownAdditionalPropertiesDiscriminated:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsUnknownAdditionalPropertiesDiscriminated. The
          IsUnknownAdditionalPropertiesDiscriminated is compatible with MutableMapping
         :rtype:
@@ -1668,9 +1653,6 @@ class IsUnknownDiscriminatedOperations:
         :type body:
          ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated or
          JSON or IO[bytes]
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1758,8 +1740,6 @@ class ExtendsStringOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsStringAdditionalProperties. The ExtendsStringAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
@@ -1880,9 +1860,12 @@ class ExtendsStringOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties or
          JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1961,8 +1944,6 @@ class IsStringOperations:
     def get(self, **kwargs: Any) -> _models.IsStringAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsStringAdditionalProperties. The IsStringAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
@@ -2083,9 +2064,12 @@ class IsStringOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties or JSON
          or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2164,8 +2148,6 @@ class ExtendsFloatOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsFloatAdditionalProperties. The ExtendsFloatAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
@@ -2286,9 +2268,12 @@ class ExtendsFloatOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties or
          JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2367,8 +2352,6 @@ class IsFloatOperations:
     def get(self, **kwargs: Any) -> _models.IsFloatAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsFloatAdditionalProperties. The IsFloatAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
@@ -2489,9 +2472,12 @@ class IsFloatOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties or JSON
          or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2570,8 +2556,6 @@ class ExtendsModelOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelAdditionalProperties. The ExtendsModelAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
@@ -2682,9 +2666,12 @@ class ExtendsModelOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties or
          JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2761,8 +2748,6 @@ class IsModelOperations:
     def get(self, **kwargs: Any) -> _models.IsModelAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelAdditionalProperties. The IsModelAdditionalProperties is compatible with
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
@@ -2873,9 +2858,12 @@ class IsModelOperations:
          Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties or JSON
          or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2952,8 +2940,6 @@ class ExtendsModelArrayOperations:
     def get(self, **kwargs: Any) -> _models.ExtendsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: ExtendsModelArrayAdditionalProperties. The ExtendsModelArrayAdditionalProperties is
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
@@ -3070,9 +3056,12 @@ class ExtendsModelArrayOperations:
         :type body:
          ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties or JSON or
          IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3149,8 +3138,6 @@ class IsModelArrayOperations:
     def get(self, **kwargs: Any) -> _models.IsModelArrayAdditionalProperties:
         """Get call.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IsModelArrayAdditionalProperties. The IsModelArrayAdditionalProperties is compatible
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties
@@ -3261,9 +3248,12 @@ class IsModelArrayOperations:
          IO[bytes] Required.
         :type body: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties or
          JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

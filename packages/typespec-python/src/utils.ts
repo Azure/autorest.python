@@ -1,5 +1,4 @@
 import {
-  SdkContext,
   SdkHeaderParameter,
   SdkHttpParameter,
   SdkMethod,
@@ -12,6 +11,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
+import { PythonSdkContext } from "./lib.js";
 
 export function camelToSnakeCase(name: string): string {
   if (!name) return name;
@@ -71,16 +71,16 @@ type ParamBase = {
 };
 
 export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
   parameter: SdkModelPropertyType,
 ): string | undefined {
   // We only want added on if it's not the same as the client's added on
-  if (parameter.apiVersions[0] === context.sdkPackage.clients[0].apiVersions[0]) return undefined;
+  if (parameter.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
   return parameter.apiVersions[0];
 }
 
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
-  context: SdkContext<TServiceOperation>,
+  context: PythonSdkContext<TServiceOperation>,
   parameter: SdkParameter | SdkHttpParameter,
   fromBody: boolean = false,
 ): ParamBase {

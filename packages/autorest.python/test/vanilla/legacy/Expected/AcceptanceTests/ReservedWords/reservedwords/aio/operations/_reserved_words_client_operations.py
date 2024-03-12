@@ -51,7 +51,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         :param content: Pass in b'hello, world'. Required.
         :type content: IO[bytes]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -105,7 +104,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         :param json: Pass in {'hello': 'world'}. Required.
         :type json: any
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -161,7 +159,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :type data: str
         :param world: Pass in 'world'. Required.
         :type world: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -223,7 +220,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :type files: IO[bytes]
         :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -290,7 +286,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :param query_parameters: Query args that uses same name as queryParameters in generated code.
          Pass in ['one', 'two'] to pass test. Default value is None.
         :type query_parameters: list[str]
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -340,10 +335,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     async def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
         """Operation that accepts a reserved enum value.
 
-        :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and
-         "import". Required.
+        :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import" and "other".
+         Required.
         :type enum_parameter: str or ~reservedwords.models.MyEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

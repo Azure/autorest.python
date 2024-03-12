@@ -68,7 +68,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -85,7 +84,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -99,10 +97,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a PetAPTrue type or a IO[bytes] type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPTrue or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -169,7 +163,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -186,7 +179,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -200,10 +192,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a CatAPTrue type or a IO[bytes] type. Required.
         :type create_parameters: ~additionalproperties.models.CatAPTrue or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -270,7 +258,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -287,7 +274,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -301,10 +287,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a PetAPObject type or a IO[bytes] type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPObject or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -371,7 +353,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -388,7 +369,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -402,10 +382,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a PetAPString type or a IO[bytes] type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPString or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -472,7 +448,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -489,7 +464,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -503,10 +477,6 @@ class PetsOperations:
 
         :param create_parameters: Is either a PetAPInProperties type or a IO[bytes] type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPInProperties or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -577,7 +547,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -594,7 +563,6 @@ class PetsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -610,10 +578,6 @@ class PetsOperations:
          Required.
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString or
          IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises ~azure.core.exceptions.HttpResponseError:

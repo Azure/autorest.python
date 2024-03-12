@@ -269,8 +269,6 @@ class StringOperations:
     def get(self, **kwargs: Any) -> str:
         """get string value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: str
         :rtype: str
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -322,9 +320,12 @@ class StringOperations:
 
         :param body: _. Required.
         :type body: str
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -390,8 +391,6 @@ class BooleanOperations:
     def get(self, **kwargs: Any) -> bool:
         """get boolean value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -443,9 +442,12 @@ class BooleanOperations:
 
         :param body: _. Required.
         :type body: bool
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -511,8 +513,6 @@ class UnknownOperations:
     def get(self, **kwargs: Any) -> Any:
         """get unknown value.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: any
         :rtype: any
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -564,9 +564,12 @@ class UnknownOperations:
 
         :param body: _. Required.
         :type body: any
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -632,8 +635,6 @@ class DecimalTypeOperations:
     def response_body(self, **kwargs: Any) -> decimal.Decimal:
         """response_body.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: decimal.Decimal
         :rtype: ~decimal.Decimal
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -687,9 +688,12 @@ class DecimalTypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -802,8 +806,6 @@ class Decimal128TypeOperations:
     def response_body(self, **kwargs: Any) -> decimal.Decimal:
         """response_body.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: decimal.Decimal
         :rtype: ~decimal.Decimal
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -857,9 +859,12 @@ class Decimal128TypeOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -972,8 +977,6 @@ class DecimalVerifyOperations:
     def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
         """prepare_verify.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1033,9 +1036,12 @@ class DecimalVerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1101,8 +1107,6 @@ class Decimal128VerifyOperations:
     def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
         """prepare_verify.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1162,9 +1166,12 @@ class Decimal128VerifyOperations:
 
         :param body: Required.
         :type body: ~decimal.Decimal
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is "application/json".
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

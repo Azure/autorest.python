@@ -53,7 +53,6 @@ class ReadonlypropertyOperations:
     async def get_valid(self, **kwargs: Any) -> _models.ReadonlyObj:
         """Get complex types that have readonly properties.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ReadonlyObj or the result of cls(response)
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -105,7 +104,6 @@ class ReadonlypropertyOperations:
 
         :param size: Default value is None.
         :type size: int
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

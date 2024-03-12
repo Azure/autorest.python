@@ -150,7 +150,6 @@ class EnumOperations:
     def get_not_expandable(self, **kwargs: Any) -> Union[str, _models.Colors]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -203,7 +202,6 @@ class EnumOperations:
         :param string_body: string body. Known values are: "red color", "green-color", and
          "blue_color". Required.
         :type string_body: str or ~bodystring.models.Colors
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -252,7 +250,6 @@ class EnumOperations:
     def get_referenced(self, **kwargs: Any) -> Union[str, _models.Colors]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -305,7 +302,6 @@ class EnumOperations:
         :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
          "blue_color". Required.
         :type enum_string_body: str or ~bodystring.models.Colors
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -354,7 +350,6 @@ class EnumOperations:
     def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
         """Get value 'green-color' from the constant.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -406,10 +401,6 @@ class EnumOperations:
 
         :param field1: Sample string. Default value is None.
         :type field1: str
-        :keyword color_constant: Referenced Color Constant Description. Default value is "green-color".
-         Note that overriding this default value may result in unsupported behavior.
-        :paramtype color_constant: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

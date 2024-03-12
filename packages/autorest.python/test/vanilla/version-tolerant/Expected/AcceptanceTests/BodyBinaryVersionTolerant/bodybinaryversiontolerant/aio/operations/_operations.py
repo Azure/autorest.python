@@ -174,7 +174,7 @@ class DownloadOperations:
     async def error_stream(self, **kwargs: Any) -> AsyncIterator[bytes]:
         """Get binary error stream.
 
-        :return: Async iterator of the response bytes
+        :return: AsyncIterator[bytes]
         :rtype: AsyncIterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """

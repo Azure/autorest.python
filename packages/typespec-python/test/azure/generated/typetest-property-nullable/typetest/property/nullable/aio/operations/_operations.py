@@ -87,8 +87,6 @@ class StringOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -148,8 +146,6 @@ class StringOperations:
     async def get_null(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -285,9 +281,12 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -428,9 +427,12 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -513,8 +515,6 @@ class BytesOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -574,8 +574,6 @@ class BytesOperations:
     async def get_null(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -711,9 +709,12 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -854,9 +855,12 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -939,8 +943,6 @@ class DatetimeOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1000,8 +1002,6 @@ class DatetimeOperations:
     async def get_null(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1137,9 +1137,12 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1280,9 +1283,12 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1365,8 +1371,6 @@ class DurationOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1426,8 +1430,6 @@ class DurationOperations:
     async def get_null(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1563,9 +1565,12 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1706,9 +1711,12 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1791,8 +1799,6 @@ class CollectionsByteOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1854,8 +1860,6 @@ class CollectionsByteOperations:
     async def get_null(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1995,9 +1999,12 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2142,9 +2149,12 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2229,8 +2239,6 @@ class CollectionsModelOperations:
     async def get_non_null(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
@@ -2295,8 +2303,6 @@ class CollectionsModelOperations:
     async def get_null(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
@@ -2441,9 +2447,12 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2592,9 +2601,12 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: content-type is application/merge-patch+json. Known values are
          "application/merge-patch+json" and None. Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

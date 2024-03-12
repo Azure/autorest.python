@@ -155,7 +155,11 @@ class Response(BaseModel):
             else None
         )
         # use ByteIteratorType if we are returning a binary type
-        if isinstance(type, BinaryType):
+        default_content_type = yaml_data.get("defaultContentType", "application/json")
+        if isinstance(type, BinaryType) or (
+            isinstance(type, ByteArraySchema)
+            and default_content_type != "application/json"
+        ):
             type = BinaryIteratorType(type.yaml_data, type.code_model)
         return cls(
             yaml_data=yaml_data,
@@ -180,7 +184,7 @@ class PagingResponse(Response):
             or f"{self.code_model.core_library}.paging.ItemPaged"
         )
         default_paging_submodule = (
-            f"{'' if self.code_model.options['unbranded'] else 'async_'}paging"
+            f"{'async_' if self.code_model.is_azure_flavor else ''}paging"
         )
         self.pager_async: str = (
             self.yaml_data.get("pagerAsync")
@@ -231,7 +235,7 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                f"{'' if self.code_model.options['unbranded'] else 'async_'}paging",
+                f"{'async_' if self.code_model.is_azure_flavor else ''}paging",
                 "AsyncList",
                 ImportType.SDKCORE,
             )

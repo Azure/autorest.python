@@ -61,7 +61,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :paramtype id: int
         :keyword message: An optional string parameter. Default value is None.
         :paramtype message: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -177,14 +176,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicombiner.v1.models.Product]
@@ -202,14 +193,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicombiner.v1.models.Product]
@@ -225,17 +208,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
         :type product: ~multiapicombiner.v1.models.Product or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns either Product or the result of
          cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicombiner.v1.models.Product]
@@ -351,14 +323,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :type test_lro_and_paging_options: ~multiapicombiner.v1.models.TestLroAndPagingOptions
         :keyword client_request_id: Default value is None.
         :paramtype client_request_id: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of either PagingResult
          or the result of cls(response)
         :rtype:
@@ -484,7 +448,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         :keyword greeting_in_english: pass in 'hello' to pass test. Required.
         :paramtype greeting_in_english: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -554,7 +517,6 @@ class OperationGroupOneOperations:
     async def test_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestTwo should be in OperationGroupOneOperations.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

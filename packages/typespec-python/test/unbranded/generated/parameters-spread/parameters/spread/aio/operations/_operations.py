@@ -122,9 +122,12 @@ class ModelOperations:
 
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
         :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -265,9 +268,12 @@ class AliasOperations:
         :type body: JSON or IO[bytes]
         :keyword name: Required.
         :paramtype name: str
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -417,9 +423,12 @@ class AliasOperations:
         :paramtype x_ms_test_header: str
         :keyword name: Required.
         :paramtype name: str
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -612,9 +621,12 @@ class AliasOperations:
         :paramtype prop5: str
         :keyword prop6: Required.
         :paramtype prop6: str
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

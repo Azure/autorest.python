@@ -944,9 +944,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO[bytes]
          type. Required.
         :type parameters: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1230,10 +1227,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test. Required.
         :paramtype required_query_parameter: int
-        :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2332,13 +2325,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Default value is 30.
         :paramtype timeout: int
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[JSON]]
         :raises ~azure.core.exceptions.HttpResponseError:

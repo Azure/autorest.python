@@ -136,8 +136,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -306,9 +304,12 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         :param input: Is one of the following types: Fish, JSON, IO[bytes] Required.
         :type input: ~typetest.model.nesteddiscriminator.models.Fish or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -395,8 +396,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     def get_recursive_model(self, **kwargs: Any) -> _models.Fish:
         """get_recursive_model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -565,9 +564,12 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         :param input: Is one of the following types: Fish, JSON, IO[bytes] Required.
         :type input: ~typetest.model.nesteddiscriminator.models.Fish or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -654,8 +656,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     def get_missing_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_missing_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -738,8 +738,6 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
     def get_wrong_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_wrong_discriminator.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:

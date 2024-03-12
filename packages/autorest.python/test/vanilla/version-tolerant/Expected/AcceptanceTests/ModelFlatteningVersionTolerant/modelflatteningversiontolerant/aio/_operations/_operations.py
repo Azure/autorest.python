@@ -116,9 +116,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
          IO[bytes] type. Default value is None.
         :type resource_array: list[JSON] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -314,9 +311,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
          IO[bytes] type. Default value is None.
         :type resource_array: list[JSON] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -516,9 +510,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
          type or a IO[bytes] type. Default value is None.
         :type resource_dictionary: dict[str, JSON] or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -778,9 +769,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          JSON type or a IO[bytes] type. Default value is None.
         :type resource_complex_object: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1140,9 +1128,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO[bytes]
          type. Default value is None.
         :type simple_body_product: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1356,9 +1341,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param simple_body_product: Simple body product to post. Is either a JSON type or a IO[bytes]
          type. Default value is None.
         :type simple_body_product: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1588,9 +1570,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO[bytes]
          type. Default value is None.
         :type simple_body_product: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

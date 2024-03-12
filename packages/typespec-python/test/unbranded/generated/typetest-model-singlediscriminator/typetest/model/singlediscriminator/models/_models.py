@@ -32,7 +32,7 @@ class Bird(_model_base.Model):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
     wingspan: int = rest_field()
     """Required."""
@@ -41,6 +41,7 @@ class Bird(_model_base.Model):
     def __init__(
         self,
         *,
+        kind: str,
         wingspan: int,
     ):
         ...
@@ -52,9 +53,8 @@ class Bird(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
 
 
 class Dinosaur(_model_base.Model):
@@ -75,7 +75,7 @@ class Dinosaur(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     size: int = rest_field()
     """Required."""
-    kind: Literal[None] = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
 
     @overload
@@ -83,6 +83,7 @@ class Dinosaur(_model_base.Model):
         self,
         *,
         size: int,
+        kind: str,
     ):
         ...
 
@@ -93,9 +94,8 @@ class Dinosaur(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.kind: Literal[None] = None
 
 
 class Eagle(Bird, discriminator="eagle"):
@@ -140,9 +140,8 @@ class Eagle(Bird, discriminator="eagle"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["eagle"] = "eagle"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="eagle", **kwargs)
 
 
 class Goose(Bird, discriminator="goose"):
@@ -174,9 +173,8 @@ class Goose(Bird, discriminator="goose"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["goose"] = "goose"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="goose", **kwargs)
 
 
 class SeaGull(Bird, discriminator="seagull"):
@@ -208,9 +206,8 @@ class SeaGull(Bird, discriminator="seagull"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["seagull"] = "seagull"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="seagull", **kwargs)
 
 
 class Sparrow(Bird, discriminator="sparrow"):
@@ -242,9 +239,8 @@ class Sparrow(Bird, discriminator="sparrow"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["sparrow"] = "sparrow"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="sparrow", **kwargs)
 
 
 class TRex(Dinosaur, discriminator="t-rex"):
@@ -276,6 +272,5 @@ class TRex(Dinosaur, discriminator="t-rex"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind: Literal["t-rex"] = "t-rex"
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, kind="t-rex", **kwargs)

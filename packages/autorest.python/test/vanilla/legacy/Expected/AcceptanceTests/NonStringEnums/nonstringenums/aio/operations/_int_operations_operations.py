@@ -54,7 +54,6 @@ class IntOperations:
         :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
          None.
         :type input: int or ~nonstringenums.models.IntEnum
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -109,7 +108,6 @@ class IntOperations:
     async def get(self, **kwargs: Any) -> Union[int, _models.IntEnum]:
         """Get an int enum.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntEnum or the result of cls(response)
         :rtype: int or ~nonstringenums.models.IntEnum
         :raises ~azure.core.exceptions.HttpResponseError:

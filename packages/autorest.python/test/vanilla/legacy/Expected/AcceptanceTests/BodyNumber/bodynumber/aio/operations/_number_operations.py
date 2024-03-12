@@ -78,7 +78,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_null(self, **kwargs: Any) -> Optional[float]:
         """Get null Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or None or the result of cls(response)
         :rtype: float or None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -126,7 +125,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_invalid_float(self, **kwargs: Any) -> float:
         """Get invalid float Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -174,7 +172,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_invalid_double(self, **kwargs: Any) -> float:
         """Get invalid double Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -222,7 +219,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_invalid_decimal(self, **kwargs: Any) -> float:
         """Get invalid decimal Number value.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -274,7 +270,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -323,7 +318,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_float(self, **kwargs: Any) -> float:
         """Get big float value 3.402823e+20.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -375,7 +369,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -424,7 +417,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e+101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -474,10 +466,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value 99999999.99.
 
-        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -527,7 +515,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
         """Get big double value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -577,10 +564,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value -99999999.99.
 
-        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -630,7 +613,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
         """Get big double value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -682,7 +664,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -731,7 +712,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 2.5976931e+101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -781,10 +761,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value 99999999.99.
 
-        :keyword number_body: Default value is 99999999.99. Note that overriding this default value may
-         result in unsupported behavior.
-        :paramtype number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -834,7 +810,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value 99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -884,10 +859,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value -99999999.99.
 
-        :keyword number_body: Default value is -99999999.99. Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -937,7 +908,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
         """Get big decimal value -99999999.99.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -989,7 +959,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1038,7 +1007,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_small_float(self, **kwargs: Any) -> float:
         """Get big double value 3.402823e-20.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1090,7 +1058,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1139,7 +1106,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_small_double(self, **kwargs: Any) -> float:
         """Get big double value 2.5976931e-101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1191,7 +1157,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         :param number_body: number body. Required.
         :type number_body: float
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1240,7 +1205,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     async def get_small_decimal(self, **kwargs: Any) -> float:
         """Get small decimal value 2.5976931e-101.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:

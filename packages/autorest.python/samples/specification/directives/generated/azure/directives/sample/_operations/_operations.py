@@ -144,13 +144,6 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of CustomPoller that returns JSON object
         :rtype: ~my.library.CustomPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -186,13 +179,6 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of CustomPoller that returns JSON object
         :rtype: ~my.library.CustomPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -218,16 +204,6 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
          None.
         :type product: JSON or IO[bytes]
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
         :return: An instance of CustomPoller that returns JSON object
         :rtype: ~my.library.CustomPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:

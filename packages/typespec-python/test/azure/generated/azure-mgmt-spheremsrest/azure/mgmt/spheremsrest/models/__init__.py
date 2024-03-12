@@ -6,7 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._models import ArmOperationStatus
 from ._models import ArmResource
+from ._models import ArmResourceBase
 from ._models import Catalog
 from ._models import CatalogListResult
 from ._models import CatalogProperties
@@ -66,13 +68,16 @@ from ._enums import OSFeedType
 from ._enums import Origin
 from ._enums import ProvisioningState
 from ._enums import RegionalDataBoundary
+from ._enums import ResourceProvisioningState
 from ._enums import UpdatePolicy
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "ArmOperationStatus",
     "ArmResource",
+    "ArmResourceBase",
     "Catalog",
     "CatalogListResult",
     "CatalogProperties",
@@ -131,6 +136,7 @@ __all__ = [
     "Origin",
     "ProvisioningState",
     "RegionalDataBoundary",
+    "ResourceProvisioningState",
     "UpdatePolicy",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])

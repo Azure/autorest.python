@@ -70,8 +70,7 @@ class DownloadOperations:
     def error_stream(self, **kwargs: Any) -> Iterator[bytes]:
         """Get binary error stream.
 
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Iterator of the response bytes or the result of cls(response)
+        :return: Iterator[bytes] or the result of cls(response)
         :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """

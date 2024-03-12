@@ -1,7 +1,6 @@
 import { Type } from "@typespec/compiler";
 import { HttpAuth, Visibility } from "@typespec/http";
 import {
-    SdkContext,
     SdkEnumValueType,
     SdkType,
     SdkModelType,
@@ -15,10 +14,12 @@ import {
     SdkDatetimeType,
     SdkDurationType,
     SdkCredentialType,
+    SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase, getAddedOn } from "./utils.js";
 import { getModelsMode } from "./emitter.js";
+import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
@@ -56,8 +57,8 @@ export function getSimpleTypeResult(result: Record<string, any>): Record<string,
     return result;
 }
 
-export function getType(
-    context: SdkContext,
+export function getType<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
     fromBody = false,
 ): Record<string, any> {
@@ -73,7 +74,8 @@ export function getType(
         case "array":
         case "dict":
             return emitArrayOrDict(context, type)!;
-        case "datetime":
+        case "utcDateTime":
+        case "offsetDateTime":
         case "duration":
             return emitDurationOrDateType(type);
         case "enumvalue":
@@ -82,23 +84,33 @@ export function getType(
             return emitCredential(type);
         case "bytes":
         case "boolean":
-        case "date":
-        case "time":
+        case "plainDate":
+        case "plainTime":
+        case "numeric":
+        case "integer":
+        case "safeint":
+        case "int8":
+        case "uint8":
+        case "int16":
+        case "uint16":
         case "int32":
+        case "uint32":
         case "int64":
+        case "uint64":
+        case "float":
         case "float32":
         case "float64":
         case "decimal":
         case "decimal128":
         case "string":
+        case "password":
         case "guid":
         case "url":
         case "uuid":
-        case "password":
+        case "eTag":
         case "armId":
         case "ipAddress":
         case "azureLocation":
-        case "etag":
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
@@ -168,7 +180,7 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
-function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Record<string, any> {
+function emitProperty<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkBodyModelPropertyType): Record<string, any> {
     return {
         clientName: camelToSnakeCase(type.nameInClient),
         wireName: type.serializedName,
@@ -178,10 +190,12 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         addedOn: getAddedOn(context, type),
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
+        flatten: type.flatten,
+        isMultipartFileInput: type.isMultipartFileInput,
     };
 }
 
-function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
+function emitModel<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
             type: "any",
@@ -233,10 +247,11 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         return typesMap.get(type)!;
     }
     const values: Record<string, any>[] = [];
+    const name = type.generatedName ?? type.name;
     const newValue = {
-        name: type.name,
-        snakeCaseName: camelToSnakeCase(type.name),
-        description: type.description || `Type of ${type.name}`,
+        name: name,
+        snakeCaseName: camelToSnakeCase(name),
+        description: type.description || `Type of ${name}`,
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
@@ -275,7 +290,7 @@ function emitDurationOrDateType(type: SdkDurationType | SdkDatetimeType): Record
     });
 }
 
-function emitArrayOrDict(context: SdkContext, type: SdkArrayType | SdkDictionaryType): Record<string, any> {
+function emitArrayOrDict<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkArrayType | SdkDictionaryType): Record<string, any> {
     const kind = type.kind === "array" ? "list" : type.kind;
     return getSimpleTypeResult({
         type: kind,
@@ -292,20 +307,31 @@ function emitConstant(type: SdkConstantType) {
 }
 
 const sdkScalarKindToPythonKind: Record<string, string> = {
+    numeric: "integer",
+    integer: "integer",
+    safeint: "integer",
+    int8: "integer",
+    uint8: "integer",
+    int16: "integer",
+    uint16: "integer",
     int32: "integer",
+    uint32: "integer",
     int64: "integer",
+    uint64: "integer",
+    float: "float",
     float32: "float",
     float64: "float",
     decimal: "decimal",
     decimal128: "decimal",
+    string: "string",
+    password: "string",
     guid: "string",
     url: "string",
     uuid: "string",
-    password: "string",
+    etag: "string",
     armId: "string",
     ipAddress: "string",
     azureLocation: "string",
-    etag: "string",
 };
 
 function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
@@ -327,7 +353,7 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
     });
 }
 
-function emitUnion(context: SdkContext, type: SdkUnionType): Record<string, any> {
+function emitUnion<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkUnionType): Record<string, any> {
     return getSimpleTypeResult({
         name: type.name,
         snakeCaseName: camelToSnakeCase(type.name || ""),

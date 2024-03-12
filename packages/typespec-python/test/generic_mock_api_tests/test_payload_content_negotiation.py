@@ -15,13 +15,13 @@ def client():
         yield client
 
 def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    assert client.same_body.get_avatar_as_png() == png_data
+    assert b"".join(client.same_body.get_avatar_as_png()) == png_data
 
 def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
-    assert client.same_body.get_avatar_as_jpeg() == jpg_data
+    assert b"".join(client.same_body.get_avatar_as_jpeg()) == jpg_data
 
 def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    assert client.different_body.get_avatar_as_png() == png_data
+    assert b"".join(client.different_body.get_avatar_as_png()) == png_data
 
 def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):
     result = client.different_body.get_avatar_as_json()

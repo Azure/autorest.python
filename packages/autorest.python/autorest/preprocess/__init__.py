@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from .._utils import to_snake_case, update_enum_value
+from .._utils import to_snake_case
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -270,23 +270,15 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     type.get("description", ""), type["name"]
                 )
                 type["snakeCaseName"] = to_snake_case(type["name"])
-            if type.get("values") and not self.version_tolerant:
+            if type.get("values"):
                 # we're enums
-                values_to_add = []
                 for value in type["values"]:
                     padded_name = self.pad_reserved_words(
                         value["name"].lower(), PadType.ENUM
                     ).upper()
-                    if value["name"] != padded_name:
-                        values_to_add.append(
-                            update_enum_value(
-                                name=padded_name,
-                                value=value["value"],
-                                description=value["description"],
-                                enum_type=value["enumType"],
-                            )
-                        )
-                type["values"].extend(values_to_add)
+                    if padded_name[0] in "0123456789":
+                        padded_name = "ENUM_" + padded_name
+                    value["name"] = padded_name
 
         # add type for reference
         for v in HEADERS_CONVERT_IN_METHOD.values():

@@ -849,8 +849,6 @@ class StringOperations:
     def get_all(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -909,8 +907,6 @@ class StringOperations:
     def get_default(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1029,9 +1025,12 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1153,9 +1152,12 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1235,8 +1237,6 @@ class BytesOperations:
     def get_all(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1295,8 +1295,6 @@ class BytesOperations:
     def get_default(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1415,9 +1413,12 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1539,9 +1540,12 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1621,8 +1625,6 @@ class DatetimeOperations:
     def get_all(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1681,8 +1683,6 @@ class DatetimeOperations:
     def get_default(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1801,9 +1801,12 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1925,9 +1928,12 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2007,8 +2013,6 @@ class DurationOperations:
     def get_all(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2067,8 +2071,6 @@ class DurationOperations:
     def get_default(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2187,9 +2189,12 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2311,9 +2316,12 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2393,8 +2401,6 @@ class CollectionsByteOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2455,8 +2461,6 @@ class CollectionsByteOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2579,9 +2583,12 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2707,9 +2714,12 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2791,8 +2801,6 @@ class CollectionsModelOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
@@ -2856,8 +2864,6 @@ class CollectionsModelOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
@@ -2985,9 +2991,12 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3117,9 +3126,12 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3203,8 +3215,6 @@ class StringLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.StringLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3263,8 +3273,6 @@ class StringLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.StringLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3383,9 +3391,12 @@ class StringLiteralOperations:
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3507,9 +3518,12 @@ class StringLiteralOperations:
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3589,8 +3603,6 @@ class IntLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.IntLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3649,8 +3661,6 @@ class IntLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.IntLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3769,9 +3779,12 @@ class IntLiteralOperations:
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3893,9 +3906,12 @@ class IntLiteralOperations:
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3975,8 +3991,6 @@ class FloatLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.FloatLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4035,8 +4049,6 @@ class FloatLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.FloatLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4155,9 +4167,12 @@ class FloatLiteralOperations:
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4279,9 +4294,12 @@ class FloatLiteralOperations:
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4361,8 +4379,6 @@ class BooleanLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.BooleanLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4421,8 +4437,6 @@ class BooleanLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.BooleanLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4541,9 +4555,12 @@ class BooleanLiteralOperations:
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4665,9 +4682,12 @@ class BooleanLiteralOperations:
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4745,11 +4765,8 @@ class UnionStringLiteralOperations:
 
     @distributed_trace
     def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
-        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
@@ -4760,8 +4777,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -4808,11 +4825,8 @@ class UnionStringLiteralOperations:
 
     @distributed_trace
     def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
-        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
@@ -4823,8 +4837,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -4873,7 +4887,6 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4890,8 +4903,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
 
@@ -4931,15 +4944,17 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4949,8 +4964,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -5002,7 +5017,6 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -5019,8 +5033,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
 
@@ -5060,15 +5074,17 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5078,8 +5094,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Optional. Default value is "hello". Property. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "str"  # Optional. Property. Known values are: "hello" and
+                      "world".
                 }
         """
         error_map = {
@@ -5149,8 +5165,6 @@ class UnionIntLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.UnionIntLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5160,8 +5174,7 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -5210,8 +5223,6 @@ class UnionIntLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.UnionIntLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5221,8 +5232,7 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -5287,8 +5297,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
 
@@ -5332,9 +5341,12 @@ class UnionIntLiteralOperations:
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5344,8 +5356,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -5413,8 +5424,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
 
@@ -5458,9 +5468,12 @@ class UnionIntLiteralOperations:
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5470,8 +5483,7 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1  # Optional. Default value is 1. Property. Is either a
-                      Literal[1] type or a Literal[2] type.
+                    "property": 0  # Optional. Property. Known values are: 1 and 2.
                 }
         """
         error_map = {
@@ -5541,8 +5553,6 @@ class UnionFloatLiteralOperations:
     def get_all(self, **kwargs: Any) -> _models.UnionFloatLiteralProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionFloatLiteralProperty. The UnionFloatLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
@@ -5553,8 +5563,7 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -5603,8 +5612,6 @@ class UnionFloatLiteralOperations:
     def get_default(self, **kwargs: Any) -> _models.UnionFloatLiteralProperty:
         """Get models that will return the default object.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: UnionFloatLiteralProperty. The UnionFloatLiteralProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
@@ -5615,8 +5622,7 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -5681,8 +5687,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
 
@@ -5727,9 +5732,12 @@ class UnionFloatLiteralOperations:
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5739,8 +5747,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -5808,8 +5815,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
 
@@ -5854,9 +5860,12 @@ class UnionFloatLiteralOperations:
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5866,8 +5875,7 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property. Is either a
-                      float type or a float type.
+                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
                 }
         """
         error_map = {
@@ -5937,8 +5945,6 @@ class RequiredAndOptionalOperations:
     def get_all(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return all properties in the model.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
@@ -5999,8 +6005,6 @@ class RequiredAndOptionalOperations:
     def get_required_only(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return only the required properties.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
@@ -6123,9 +6127,12 @@ class RequiredAndOptionalOperations:
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6250,9 +6257,12 @@ class RequiredAndOptionalOperations:
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
+<<<<<<< HEAD
         :keyword content_type: Body parameter's content type. Known values are application/json.
          Default value is None.
         :paramtype content_type: str
+=======
+>>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

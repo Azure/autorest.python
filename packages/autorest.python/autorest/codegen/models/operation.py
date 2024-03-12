@@ -14,6 +14,7 @@ from typing import (
     Generic,
     TypeVar,
     cast,
+    Sequence,
 )
 
 from .request_builder_parameter import RequestBuilderParameter
@@ -30,7 +31,6 @@ from .response import (
 )
 from .parameter import (
     BodyParameter,
-    MultipartBodyParameter,
     Parameter,
     ParameterLocation,
 )
@@ -55,7 +55,7 @@ def is_internal(target: Optional[BaseType]) -> bool:
 
 
 class OperationBase(  # pylint: disable=too-many-public-methods
-    Generic[ResponseType], BaseBuilder[ParameterList]
+    Generic[ResponseType], BaseBuilder[ParameterList, List["Operation"]]
 ):
     def __init__(
         self,
@@ -290,7 +290,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 Parameter,
                 RequestBuilderParameter,
                 BodyParameter,
-                MultipartBodyParameter,
             ]
         ],
         location: ParameterLocation,
@@ -451,7 +450,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            f"{'runtime.' if self.code_model.options['unbranded'] else ''}pipeline",
+            f"{'' if self.code_model.is_azure_flavor else 'runtime.'}pipeline",
             "PipelineResponse",
             ImportType.SDKCORE,
         )
@@ -496,7 +495,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             ) from exc
 
     @property
-    def success_status_codes(self) -> List[Union[str, int]]:
+    def success_status_codes(self) -> Sequence[Union[str, int]]:
         """The list of all successfull status code."""
         return sorted(
             [code for response in self.responses for code in response.status_codes]
@@ -579,33 +578,13 @@ class Operation(OperationBase[Response]):
         relative_path = "..." if async_mode else ".."
         if self.code_model.options["models_mode"] == "dpg":
             if self.parameters.has_body:
-                if not self.parameters.body_parameter.is_form_data:
+                if not self.has_form_data_body:
                     file_import.add_submodule_import(
                         f"{relative_path}_model_base",
                         "SdkJSONEncoder",
                         ImportType.LOCAL,
                     )
                     file_import.add_import("json", ImportType.STDLIB)
-                else:
-                    file_import.add_submodule_import(
-                        relative_path, "_model_base", ImportType.LOCAL
-                    )
-                    file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "multipart_file",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "multipart_data",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_submodule_import(
-                        f"{relative_path}_vendor",
-                        "handle_multipart_form_data_model",
-                        ImportType.LOCAL,
-                    )
             if self.default_error_deserialization or any(
                 r.type for r in self.responses
             ):

@@ -33,7 +33,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
         return self.docstring_type(**kwargs)
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return self.docstring_type()
+        return self.docstring_type(**kwargs)
 
     def get_json_template_representation(
         self,
@@ -125,35 +125,36 @@ class BinaryType(PrimitiveType):
 
 
 class BinaryIteratorType(PrimitiveType):
-    """Type returned by response if response is a streamed response"""
+    def _iterator_name(self, **kwargs: Any) -> str:
+        return "AsyncIterator" if kwargs.pop("async_mode") else "Iterator"
 
     @property
     def serialization_type(self) -> str:
         return "IO"
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return "AsyncIterator[bytes]" if kwargs.get("async_mode") else "Iterator[bytes]"
+        return f"{self._iterator_name(**kwargs)}[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return self.docstring_type(**kwargs)
+        return f"{self._iterator_name(**kwargs)}[bytes]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        iterator = "Async iterator" if kwargs.get("async_mode") else "Iterator"
-        return f"{iterator} of the response bytes"
+        return f"{self._iterator_name(**kwargs)}[bytes]"
 
     @property
     def default_template_representation_declaration(self) -> str:
-        return self.get_declaration("Iterator[bytes]")
+        return self.get_declaration(b"bytes")
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
-        iterator = "AsyncIterator" if kwargs.get("async_mode") else "Iterator"
-        file_import.add_submodule_import("typing", iterator, ImportType.STDLIB)
+        file_import.add_submodule_import(
+            "typing", self._iterator_name(**kwargs), ImportType.STDLIB
+        )
         return file_import
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, Iterator)"
+        return "getattr({}, '__aiter__', None) is not None or getattr({}, '__iter__', None) is not None"
 
 
 class AnyType(PrimitiveType):

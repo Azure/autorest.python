@@ -235,8 +235,6 @@ class PublicOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: NoDecoratorModelInPublic. The NoDecoratorModelInPublic is compatible with
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInPublic
@@ -299,8 +297,6 @@ class PublicOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: PublicDecoratorModelInPublic. The PublicDecoratorModelInPublic is compatible with
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic
@@ -383,8 +379,6 @@ class InternalOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: NoDecoratorModelInInternal. The NoDecoratorModelInInternal is compatible with
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInInternal
@@ -453,8 +447,6 @@ class InternalOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: InternalDecoratorModelInInternal. The InternalDecoratorModelInInternal is compatible
          with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.InternalDecoratorModelInInternal
@@ -521,8 +513,6 @@ class InternalOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: PublicDecoratorModelInInternal. The PublicDecoratorModelInInternal is compatible with
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInInternal
@@ -603,8 +593,6 @@ class SharedModelInOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -666,8 +654,6 @@ class SharedModelInOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -758,8 +744,6 @@ class RelativeModelInOperationOperations:
 
         :keyword name: Required.
         :paramtype name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: OuterModel. The OuterModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.OuterModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -834,8 +818,6 @@ class RelativeModelInOperationOperations:
 
         :keyword kind: Required.
         :paramtype kind: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: AbstractModel. The AbstractModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.AbstractModel
         :raises ~azure.core.exceptions.HttpResponseError:

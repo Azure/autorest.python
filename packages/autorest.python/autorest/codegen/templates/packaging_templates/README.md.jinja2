@@ -1,4 +1,4 @@
-{% if not code_model.options["unbranded"] %}
+{% if code_model.is_azure_flavor %}
 {% if package_mode == "mgmtplane" -%}
 # Microsoft Azure SDK for Python
 
