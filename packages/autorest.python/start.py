@@ -23,7 +23,7 @@ def main():
 
     assert venv_prexists  # Otherwise install was not done
 
-    env_builder = venv.EnvBuilder(with_pip=True)
+    env_builder = venv.EnvBuilder(with_pip=True, upgrade_deps=True)
     venv_context = env_builder.ensure_directories(venv_path)
     python_run(venv_context, "autorest.jsonrpc.server", command=sys.argv[1:])
 
