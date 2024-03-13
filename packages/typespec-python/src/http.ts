@@ -26,6 +26,10 @@ import {
 import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
 
+function isContentTypeParameter(parameter: SdkHeaderParameter) {
+    return parameter.serializedName.toLowerCase() === "content-type";
+}
+
 export function emitBasicHttpMethod(
   context: PythonSdkContext<SdkHttpOperation>,
   rootClient: SdkClientType<SdkHttpOperation>,
@@ -231,6 +235,14 @@ function emitHttpHeaderParameter(
 ): Record<string, any> {
   const base = emitParamBase(context, parameter);
   const [delimiter, explode] = getDelimeterAndExplode(parameter);
+  let clientDefaultValue = parameter.clientDefaultValue;
+  if (isContentTypeParameter(parameter)) {
+    // we switch to string type for content-type header
+    if (!clientDefaultValue && parameter.type.kind === "constant") {
+        clientDefaultValue = parameter.type.value;
+    }
+    base.type = KnownTypes.string;
+}
   return {
     ...base,
     wireName: parameter.serializedName,
@@ -238,7 +250,7 @@ function emitHttpHeaderParameter(
     implementation: getImplementation(parameter),
     delimiter,
     explode,
-    clientDefaultValue: parameter.clientDefaultValue,
+    clientDefaultValue,
   };
 }
 
