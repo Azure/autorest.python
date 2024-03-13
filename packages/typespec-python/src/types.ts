@@ -223,10 +223,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
 
 function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
-        return {
-            type: "any",
-            description: type.description,
-        };
+        return KnownTypes.any;
     }
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
