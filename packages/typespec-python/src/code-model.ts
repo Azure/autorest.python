@@ -9,6 +9,7 @@ import {
   SdkPagingServiceMethod,
   SdkServiceMethod,
   SdkServiceOperation,
+  UsageFlags,
 } from "@azure-tools/typespec-client-generator-core";
 import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
@@ -89,6 +90,8 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
   if (parameter.kind === "endpoint") {
     const endpointParameter = {
       ...base,
+      clientDefaultValue: base.type.value,
+      type: KnownTypes.string,
       skipUrlEncoding: !parameter.urlEncode,
       wireName: client.hasParameterizedEndpoint ? parameter.nameInClient : "$host",
       location: client.hasParameterizedEndpoint ? "endpointPath" : "path",
@@ -203,11 +206,15 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
     subnamespaceToClients: {},
   };
   for (const model of sdkPackage.models) {
-    if (model.name !== "") {
-      getType(sdkContext, model);
+    if (model.name === "") {
+        continue;
     }
+    getType(sdkContext, model);
   }
   for (const sdkEnum of sdkPackage.enums) {
+    if(sdkEnum.usage === UsageFlags.Versioning) {
+        continue;
+    }
     getType(sdkContext, sdkEnum);
   }
   for (const client of sdkPackage.clients) {

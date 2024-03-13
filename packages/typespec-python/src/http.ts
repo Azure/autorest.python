@@ -231,9 +231,6 @@ function emitHttpHeaderParameter(
 ): Record<string, any> {
   const base = emitParamBase(context, parameter);
   const [delimiter, explode] = getDelimeterAndExplode(parameter);
-  if (parameter.serializedName === "Accept") {
-    base.type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: base.type });
-  }
   return {
     ...base,
     wireName: parameter.serializedName,

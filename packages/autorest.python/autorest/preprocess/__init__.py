@@ -393,7 +393,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             and wire_name_lower in HEADERS_CONVERT_IN_METHOD
         ):
             headers_convert(yaml_data, HEADERS_CONVERT_IN_METHOD[wire_name_lower])
-        if wire_name_lower in ["content-type", "accept"] and yaml_data["type"]["type"] == "constant":
+        if wire_name_lower in ["$host", "content-type", "accept"] and yaml_data["type"]["type"] == "constant":
             yaml_data["clientDefaultValue"] = yaml_data["type"]["value"]
 
     def update_operation(
