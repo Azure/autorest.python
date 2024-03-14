@@ -197,10 +197,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(context: Py
 
 function emitModel<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
-        return {
-            type: "any",
-            description: type.description,
-        };
+        return KnownTypes.any;
     }
     if (typesMap.has(type)) {
         return typesMap.get(type)!;

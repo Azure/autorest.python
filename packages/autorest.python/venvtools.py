@@ -21,6 +21,9 @@ class ExtendedEnvBuilder(venv.EnvBuilder):
 
     def __init__(self, *args, **kwargs):
         self.context = None
+        if sys.version_info < (3, 9, 0):
+            # Not supported on Python 3.8, and we don't need it
+            kwargs.pop("upgrade_deps", None)
         super().__init__(*args, **kwargs)
 
     def ensure_directories(self, env_dir):
@@ -29,11 +32,11 @@ class ExtendedEnvBuilder(venv.EnvBuilder):
 
 
 def create(env_dir, system_site_packages=False, clear=False,
-                    symlinks=False, with_pip=False, prompt=None):
+                    symlinks=False, with_pip=False, prompt=None, upgrade_deps=False):
     """Create a virtual environment in a directory."""
     builder = ExtendedEnvBuilder(system_site_packages=system_site_packages,
                                  clear=clear, symlinks=symlinks, with_pip=with_pip,
-                                 prompt=prompt)
+                                 prompt=prompt, upgrade_deps=upgrade_deps)
     builder.create(env_dir)
     return builder.context
 
@@ -44,7 +47,7 @@ def create_venv_with_package(packages):
     packages should be an iterable of pip version instructio (e.g. package~=1.2.3)
     """
     with tempfile.TemporaryDirectory() as tempdir:
-        myenv = create(tempdir, with_pip=True)
+        myenv = create(tempdir, with_pip=True, upgrade_deps=True)
         pip_call = [
             myenv.env_exe,
             "-m",
