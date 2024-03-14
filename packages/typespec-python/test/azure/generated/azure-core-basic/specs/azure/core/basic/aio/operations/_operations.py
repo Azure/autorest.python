@@ -48,10 +48,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -243,7 +239,9 @@ class TwoModelsAsPageItemOperations:
 
 class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
-    async def create_or_update(self, id: int, resource: _models.User, **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -253,7 +251,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Required.
         :type resource: ~specs.azure.core.basic.models.User
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Required. Note that overriding this default value may result in unsupported behavior.
+         Default value is "application/merge-patch+json".
         :paramtype content_type: str
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
@@ -292,7 +290,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @overload
-    async def create_or_update(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -302,7 +302,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Required.
         :type resource: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Required. Note that overriding this default value may result in unsupported behavior.
+         Default value is "application/merge-patch+json".
         :paramtype content_type: str
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
@@ -327,7 +327,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @overload
-    async def create_or_update(self, id: int, resource: IO[bytes], **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -337,7 +339,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Required.
         :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Required. Note that overriding this default value may result in unsupported behavior.
+         Default value is "application/merge-patch+json".
         :paramtype content_type: str
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
@@ -374,14 +376,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: This request has a JSON Merge Patch body. Known values are
-         "application/merge-patch+json" and None. Default value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -428,12 +422,10 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[Literal["application/merge-patch+json"]] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None)
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/merge-patch+json"
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
@@ -618,14 +610,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
          Required.
         :type resource: ~specs.azure.core.basic.models.User or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1155,12 +1139,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :keyword another: Another query parameter. Known values are: "First" and "Second". Default
          value is None.
         :paramtype another: str or ~specs.azure.core.basic.models.ListItemInputExtensibleEnum
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
