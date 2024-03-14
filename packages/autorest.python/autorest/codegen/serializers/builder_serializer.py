@@ -1433,7 +1433,7 @@ class _PagingOperationSerializer(
             )
             api_version = (
                 "self._api_version"
-                if self.code_model.options["multiapi"]
+                if self.code_model.options["multiapi"] and builder.group_name
                 else api_version_param.full_client_name
             )
             retval.append(f'_next_request_params["api-version"] = {api_version}')
