@@ -22,6 +22,7 @@ import {
   getImplementation,
   isAbstract,
   isAzureCoreModel,
+  isSubscriptionId,
 } from "./utils.js";
 import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
@@ -224,7 +225,7 @@ function emitHttpPathParameter(context: PythonSdkContext<SdkHttpOperation>, para
     ...base,
     wireName: parameter.serializedName,
     location: parameter.kind,
-    implementation: getImplementation(parameter),
+    implementation: getImplementation(context, parameter),
     clientDefaultValue: parameter.clientDefaultValue,
     skipUrlEncoding: parameter.urlEncode === false,
   };
@@ -247,7 +248,7 @@ function emitHttpHeaderParameter(
     ...base,
     wireName: parameter.serializedName,
     location: parameter.kind,
-    implementation: getImplementation(parameter),
+    implementation: getImplementation(context, parameter),
     delimiter,
     explode,
     clientDefaultValue,
@@ -264,7 +265,7 @@ function emitHttpQueryParameter(
     ...base,
     wireName: parameter.serializedName,
     location: parameter.kind,
-    implementation: getImplementation(parameter),
+    implementation: getImplementation(context, parameter),
     delimiter,
     explode,
     clientDefaultValue: parameter.clientDefaultValue,
@@ -291,6 +292,9 @@ function emitHttpParameters(
         parameters.push(emitHttpPathParameter(context, parameter));
         break;
     }
+    if(isSubscriptionId(context, parameter) && context.__subscriptionIdPathParameter === undefined) {
+        context.__subscriptionIdPathParameter = parameters[parameters.length - 1];
+    }
   }
   return parameters;
 }
@@ -306,7 +310,7 @@ function emitHttpBodyParameter(
     contentTypes: bodyParam.contentTypes,
     location: bodyParam.kind,
     wireName: bodyParam.nameInClient,
-    implementation: getImplementation(bodyParam),
+    implementation: getImplementation(context, bodyParam),
     clientDefaultValue: bodyParam.clientDefaultValue,
     defaultContentType: bodyParam.defaultContentType,
   };

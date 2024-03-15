@@ -83,7 +83,7 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
 ): Record<string, any> {
   const base = {
     ...emitParamBase(context, parameter),
-    implementation: getImplementation(parameter),
+    implementation: getImplementation(context, parameter),
     clientDefaultValue: parameter.clientDefaultValue,
     location: parameter.kind,
   };
@@ -95,6 +95,7 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
       skipUrlEncoding: !parameter.urlEncode,
       wireName: client.hasParameterizedEndpoint ? parameter.nameInClient : "$host",
       location: client.hasParameterizedEndpoint ? "endpointPath" : "path",
+      clientName: context.arm ? "base_url" : "endpoint",
     };
     if (client.hasParameterizedEndpoint) {
       if (!context.__endpointPathParameters[client.name]) {
@@ -184,11 +185,16 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
   context: PythonSdkContext<TServiceOperation>,
   client: SdkClientType<TServiceOperation>,
 ): Record<string, any> {
+  const operationGroups = emitOperationGroups(context, client, client, "");
+  const parameters = client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)) ?? [];
+  if(context.__subscriptionIdPathParameter) {
+    parameters.push(context.__subscriptionIdPathParameter);
+  }
   return {
     name: client.name,
     description: client.description ?? "",
-    parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)),
-    operationGroups: emitOperationGroups(context, client, client, ""),
+    parameters,
+    operationGroups,
     url: client.endpoint,
     apiVersions: client.apiVersions,
     arm: client.arm,

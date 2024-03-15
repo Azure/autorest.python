@@ -19,6 +19,7 @@ export interface PythonEmitterOptions {
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation> extends SdkContext<PythonEmitterOptions, TServiceOperation> {
   __endpointPathParameters: Record<string, Record<string, any>[]>;
+  __subscriptionIdPathParameter: Record<string, any> | undefined;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {

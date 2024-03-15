@@ -29,8 +29,9 @@ export function removeUnderscoresFromNamespace(name?: string): string {
   return (name || "").replace(/_/g, "");
 }
 
-export function getImplementation(parameter: SdkParameter | SdkHttpParameter): "Client" | "Method" {
+export function getImplementation<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): "Client" | "Method" {
   if (parameter.onClient) return "Client";
+  if (isSubscriptionId(context, parameter)) return "Client";
   return "Method";
 }
 
@@ -77,6 +78,10 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
   // We only want added on if it's not the same as the client's added on
   if (parameter.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
   return parameter.apiVersions[0];
+}
+
+export function isSubscriptionId<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): boolean {
+    return Boolean(context.arm) && (parameter.kind === "query" || parameter.kind === "path" || parameter.kind === "header") && parameter.serializedName === "subscriptionId";
 }
 
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(

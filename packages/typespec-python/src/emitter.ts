@@ -59,6 +59,7 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
   return {
     ...createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python"),
     __endpointPathParameters: {},
+    __subscriptionIdPathParameter: undefined,
   };
 }
 
