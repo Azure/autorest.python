@@ -2,61 +2,70 @@
 trigger: none
 pr: none
 
-pool:
-    vmImage: "ubuntu-latest"
+extends: 
+  template: /eng/pipelines/templates/stages/1es-redirect.yml
+  parameters:
+    stages: 
+      - stage: Release
+        jobs:
+          - job: Release
+            pool:
+                name: azsdk-pool-mms-ubuntu-2204-1es-pt
+                image: azsdk-pool-mms-ubuntu-2204-1espt
+                os: linux
+            variables:
+                NodeVersion: "14.x"
+                AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
-variables:
-    NodeVersion: "14.x"
-    AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
+            steps:
+                - script: npm install -g pnpm@8.3.1
+                  displayName: Install PNPM 8.3.1
 
-steps:
-    - script: npm install -g pnpm@8.3.1
-      displayName: Install PNPM 8.3.1
+                - script: npm install -g @azure-tools/cadl-ranch
+                  displayName: Install cadl ranch
 
-    - script: npm install -g @azure-tools/cadl-ranch
-      displayName: Install cadl ranch
+                - script: pnpm install
+                  displayName: Install dependencies
 
-    - script: pnpm install
-      displayName: Install dependencies
+                - script: pnpm run build
+                  displayName: Build
 
-    - script: pnpm run build
-      displayName: Build
+                - script: pip install -r dev_requirements.txt
+                  displayName: Install Autorest Python dev requirements
+                  workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
 
-    - script: pip install -r dev_requirements.txt
-      displayName: Install Autorest Python dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+                - script: pip install -r dev_requirements.txt
+                  displayName: Install Cadl dev requirements
+                  workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
-    - script: pip install -r dev_requirements.txt
-      displayName: Install Cadl dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
+                - script: |
+                      cd $(AutorestTestFolder)/azure/version-tolerant
+                      tox run -e ci
+                  displayName: Execute Autorest Azure Version Tolerant Tests
+                  workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+                - script: |
+                      cd $(AutorestTestFolder)/vanilla/version-tolerant
+                      tox run -e ci
+                  displayName: Execute Autorest Vanilla Version Tolerant Tests
+                  workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+                - script: |
+                      cd $(AutorestTestFolder)/dpg/version-tolerant
+                      tox run -e ci
+                  displayName: Execute Autorest DPG Version Tolerant Tests
+                  workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
+                - script: |
+                      cd test/azure
+                      tox run -e ci
+                  displayName: Execute Typespec Azure Tests
+                  workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
+                - script: |
+                      cd test/unbranded
+                      tox run -e ci
+                  displayName: Execute Typespec Unbranded Tests
+                  workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
-    - script: |
-          cd $(AutorestTestFolder)/azure/version-tolerant
-          tox run -e ci
-      displayName: Execute Autorest Azure Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-    - script: |
-          cd $(AutorestTestFolder)/vanilla/version-tolerant
-          tox run -e ci
-      displayName: Execute Autorest Vanilla Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-    - script: |
-          cd $(AutorestTestFolder)/dpg/version-tolerant
-          tox run -e ci
-      displayName: Execute Autorest DPG Version Tolerant Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-    - script: |
-          cd test/azure
-          tox run -e ci
-      displayName: Execute Typespec Azure Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
-    - script: |
-          cd test/unbranded
-          tox run -e ci
-      displayName: Execute Typespec Unbranded Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
-
-    - script: |
-          pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-          pnpm -r publish --access public --no-git-checks
-      displayName: Publish packages
+                # TODO: Enable for publishing
+                # - script: |
+                #       pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                #       pnpm -r publish --access public --no-git-checks
+                #   displayName: Publish packages
