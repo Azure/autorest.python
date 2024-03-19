@@ -73,7 +73,6 @@ export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
         }
         throw new Error(`Need to specify models mode with the following values: ${modelModes.join(", ")}`);
     }
-    if (context.arm) return "msrest";
     return "dpg";
 }
 
