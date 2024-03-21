@@ -14,7 +14,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Other Changes**
 
@@ -34,7 +34,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Bug Fixes**
 
@@ -54,7 +54,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Bug Fixes**
 
@@ -74,7 +74,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Bug Fixes**
 
@@ -94,7 +94,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Other Changes**
 
@@ -114,7 +114,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **New Features**
 
@@ -144,7 +144,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Bug Fixes**
 
@@ -164,7 +164,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **Bug Fixes**
 
@@ -184,7 +184,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **New Features**
 
@@ -205,7 +205,7 @@
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
 
 **New Features**
 
