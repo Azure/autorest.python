@@ -91,11 +91,11 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
     const endpointParameter = {
       ...base,
       clientDefaultValue: base.type.value,
-      type: KnownTypes.string,
+      type: client.hasParameterizedEndpoint ? base.type : KnownTypes.string,
       skipUrlEncoding: !parameter.urlEncode,
       wireName: client.hasParameterizedEndpoint ? parameter.nameInClient : "$host",
       location: client.hasParameterizedEndpoint ? "endpointPath" : "path",
-      clientName: context.arm ? "base_url" : "endpoint",
+      clientName: context.arm ? "base_url" : base.clientName,
     };
     if (client.hasParameterizedEndpoint) {
       if (!context.__endpointPathParameters[client.name]) {

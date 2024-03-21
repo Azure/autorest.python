@@ -58,19 +58,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
-            ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -119,19 +107,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
-            ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -179,19 +155,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
-            ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access

@@ -158,12 +158,12 @@ class StringsOnlyOperations:
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp5], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[str, _models.GetResponseProp6], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Known values are: "a", "b", and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp6
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -192,24 +192,15 @@ class StringsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.GetResponseProp5] = _Unset,
+        prop: Union[str, _models.GetResponseProp6] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-         Required.
-        :paramtype prop: str or str or str
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
         :keyword prop: Known values are: "a", "b", and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp6
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -373,12 +364,12 @@ class StringExtensibleOperations:
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp4], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[str, _models.GetResponseProp5], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Known values are: "b" and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -407,23 +398,15 @@ class StringExtensibleOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.GetResponseProp4] = _Unset,
+        prop: Union[str, _models.GetResponseProp5] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
         :keyword prop: Known values are: "b" and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
+        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -632,16 +615,8 @@ class StringExtensibleNamedOperations:
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
-        :paramtype prop: str or str or str
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
         :keyword prop: Known values are: "b" and "c". Required.
         :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -805,12 +780,12 @@ class IntsOnlyOperations:
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[int, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[int, _models.GetResponseProp4], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Known values are: 1, 2, and 3. Required.
-        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp4
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -839,23 +814,15 @@ class IntsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[int, _models.GetResponseProp3] = _Unset,
+        prop: Union[int, _models.GetResponseProp4] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
-        :paramtype prop: int or int or int
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
         :keyword prop: Known values are: 1, 2, and 3. Required.
-        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
+        :paramtype prop: int or ~typetest.union.models.GetResponseProp4
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1019,12 +986,12 @@ class FloatsOnlyOperations:
 
     @overload
     async def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[float, _models.GetResponseProp2], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[float, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
-        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp3
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1053,23 +1020,15 @@ class FloatsOnlyOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[float, _models.GetResponseProp2] = _Unset,
+        prop: Union[float, _models.GetResponseProp3] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword prop: Is one of the following types: float, float, float Required.
-        :paramtype prop: float or float or float
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
         :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
-        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
+        :paramtype prop: float or ~typetest.union.models.GetResponseProp3
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1276,12 +1235,6 @@ class ModelsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Is either a Cat type or a Dog type. Required.
         :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1499,12 +1452,6 @@ class EnumsOnlyOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.EnumsOnlyCases
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1725,12 +1672,6 @@ class StringAndArrayOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.StringAndArrayCases
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1967,12 +1908,6 @@ class MixedLiteralsOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedLiteralsCases
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2214,12 +2149,6 @@ class MixedTypesOperations:
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
         :paramtype prop: ~typetest.union.models.MixedTypesCases
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

@@ -21,7 +21,7 @@ from ._serialization import Deserializer, Serializer
 class VersionedClient(VersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates versioned server.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Service host. Required.
     :type endpoint: str
     :keyword api_version: Default value is "2022-12-01-preview". Note that overriding this default
      value may result in unsupported behavior.

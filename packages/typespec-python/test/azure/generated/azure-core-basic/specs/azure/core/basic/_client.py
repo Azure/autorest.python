@@ -24,8 +24,7 @@ class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts
     :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations
     :vartype two_models_as_page_item:
      specs.azure.core.basic.operations.TwoModelsAsPageItemOperations
-    :keyword endpoint: Illustrates bodies templated with Azure Core. Default value is
-     "http://localhost:3000".
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2022-12-01-preview". Note that overriding this default value may result in unsupported

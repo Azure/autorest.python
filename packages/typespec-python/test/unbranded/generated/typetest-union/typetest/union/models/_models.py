@@ -286,17 +286,17 @@ class GetResponse5(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Known values are: 1.1, 2.2, and 3.3.
-    :vartype prop: float or ~typetest.union.models.GetResponseProp2
+    :vartype prop: float or ~typetest.union.models.GetResponseProp3
     """
 
-    prop: Union[float, "_models.GetResponseProp2"] = rest_field()
+    prop: Union[float, "_models.GetResponseProp3"] = rest_field()
     """Required. Known values are: 1.1, 2.2, and 3.3."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[float, "_models.GetResponseProp2"],
+        prop: Union[float, "_models.GetResponseProp3"],
     ):
         ...
 
@@ -317,17 +317,17 @@ class GetResponse6(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Known values are: 1, 2, and 3.
-    :vartype prop: int or ~typetest.union.models.GetResponseProp3
+    :vartype prop: int or ~typetest.union.models.GetResponseProp4
     """
 
-    prop: Union[int, "_models.GetResponseProp3"] = rest_field()
+    prop: Union[int, "_models.GetResponseProp4"] = rest_field()
     """Required. Known values are: 1, 2, and 3."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[int, "_models.GetResponseProp3"],
+        prop: Union[int, "_models.GetResponseProp4"],
     ):
         ...
 
@@ -379,17 +379,17 @@ class GetResponse8(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Known values are: "b" and "c".
-    :vartype prop: str or ~typetest.union.models.GetResponseProp4
+    :vartype prop: str or ~typetest.union.models.GetResponseProp5
     """
 
-    prop: Union[str, "_models.GetResponseProp4"] = rest_field()
+    prop: Union[str, "_models.GetResponseProp5"] = rest_field()
     """Required. Known values are: \"b\" and \"c\"."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, "_models.GetResponseProp4"],
+        prop: Union[str, "_models.GetResponseProp5"],
     ):
         ...
 
@@ -410,17 +410,17 @@ class GetResponse9(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Known values are: "a", "b", and "c".
-    :vartype prop: str or ~typetest.union.models.GetResponseProp5
+    :vartype prop: str or ~typetest.union.models.GetResponseProp6
     """
 
-    prop: Union[str, "_models.GetResponseProp5"] = rest_field()
+    prop: Union[str, "_models.GetResponseProp6"] = rest_field()
     """Required. Known values are: \"a\", \"b\", and \"c\"."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, "_models.GetResponseProp5"],
+        prop: Union[str, "_models.GetResponseProp6"],
     ):
         ...
 

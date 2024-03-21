@@ -26,31 +26,31 @@ class EnumsOnlyCasesUd(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     DOWN = "down"
 
 
-class GetResponseProp2(float, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp2."""
+class GetResponseProp3(float, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of GetResponseProp3."""
 
     ENUM_1_1 = 1.1
     ENUM_2_2 = 2.2
     ENUM_3_3 = 3.3
 
 
-class GetResponseProp3(int, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp3."""
+class GetResponseProp4(int, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of GetResponseProp4."""
 
     ENUM_1 = 1
     ENUM_2 = 2
     ENUM_3 = 3
 
 
-class GetResponseProp4(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp4."""
+class GetResponseProp5(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of GetResponseProp5."""
 
     B = "b"
     C = "c"
 
 
-class GetResponseProp5(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of GetResponseProp5."""
+class GetResponseProp6(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of GetResponseProp6."""
 
     A = "a"
     B = "b"

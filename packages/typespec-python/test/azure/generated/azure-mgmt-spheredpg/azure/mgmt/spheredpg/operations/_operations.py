@@ -116,9 +116,9 @@ def build_catalogs_create_or_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -147,9 +147,9 @@ def build_catalogs_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -157,9 +157,12 @@ def build_catalogs_update_request(
 def build_catalogs_delete_request(
     resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -173,7 +176,10 @@ def build_catalogs_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_catalogs_list_by_resource_group_request(  # pylint: disable=name-too-long
@@ -429,9 +435,9 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
         _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -534,9 +540,9 @@ def build_images_create_or_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -544,9 +550,12 @@ def build_images_create_or_update_request(
 def build_images_delete_request(
     resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -561,7 +570,10 @@ def build_images_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_device_groups_list_by_product_request(  # pylint: disable=name-too-long
@@ -676,9 +688,9 @@ def build_device_groups_create_or_update_request(  # pylint: disable=name-too-lo
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -691,9 +703,12 @@ def build_device_groups_delete_request(
     subscription_id: str,
     **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -709,7 +724,10 @@ def build_device_groups_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_device_groups_update_request(
@@ -743,9 +761,9 @@ def build_device_groups_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -798,6 +816,8 @@ def build_device_groups_claim_devices_request(  # pylint: disable=name-too-long
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -816,6 +836,7 @@ def build_device_groups_claim_devices_request(  # pylint: disable=name-too-long
     # Construct headers
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -947,9 +968,9 @@ def build_certificates_retrieve_proof_of_possession_nonce_request(  # pylint: di
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1072,9 +1093,9 @@ def build_deployments_create_or_update_request(  # pylint: disable=name-too-long
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1088,9 +1109,12 @@ def build_deployments_delete_request(
     subscription_id: str,
     **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1107,7 +1131,10 @@ def build_deployments_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_devices_get_request(
@@ -1180,9 +1207,9 @@ def build_devices_create_or_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1231,9 +1258,12 @@ def build_devices_delete_request(
     subscription_id: str,
     **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1250,7 +1280,10 @@ def build_devices_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_devices_update_request(
@@ -1286,9 +1319,9 @@ def build_devices_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1326,9 +1359,9 @@ def build_devices_generate_capability_image_request(  # pylint: disable=name-too
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1415,9 +1448,9 @@ def build_products_create_or_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -1425,9 +1458,12 @@ def build_products_create_or_update_request(
 def build_products_delete_request(
     resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1442,7 +1478,10 @@ def build_products_delete_request(
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_products_update_request(
@@ -1470,9 +1509,9 @@ def build_products_update_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -2637,7 +2676,7 @@ class CatalogsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -2682,7 +2721,7 @@ class CatalogsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4780,7 +4819,7 @@ class ImagesOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -4826,7 +4865,7 @@ class ImagesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5739,7 +5778,7 @@ class DeviceGroupsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -5786,7 +5825,7 @@ class DeviceGroupsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5934,7 +5973,7 @@ class DeviceGroupsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -6016,7 +6055,7 @@ class DeviceGroupsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -6098,7 +6137,7 @@ class DeviceGroupsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -6192,7 +6231,7 @@ class DeviceGroupsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -8498,7 +8537,7 @@ class DeploymentsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -8546,7 +8585,7 @@ class DeploymentsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9465,7 +9504,7 @@ class DevicesOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -9513,7 +9552,7 @@ class DevicesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9547,7 +9586,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -9568,8 +9607,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9582,7 +9621,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9636,7 +9675,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -9657,14 +9696,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9718,7 +9757,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -9739,14 +9778,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9798,7 +9837,7 @@ class DevicesOperations:
         device_name: str,
         properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -9817,8 +9856,8 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          DeviceUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9831,7 +9870,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9884,7 +9923,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Device]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -9922,7 +9961,6 @@ class DevicesOperations:
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
             if _stream:
@@ -9932,6 +9970,11 @@ class DevicesOperations:
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -9950,7 +9993,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -9971,9 +10014,9 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9986,7 +10029,7 @@ class DevicesOperations:
                     ]
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -10005,7 +10048,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -10026,15 +10069,15 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -10053,7 +10096,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -10074,15 +10117,15 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -10099,7 +10142,7 @@ class DevicesOperations:
         device_name: str,
         parameters: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -10119,9 +10162,9 @@ class DevicesOperations:
          GenerateCapabilityImageRequest, JSON, IO[bytes] Required.
         :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or
          IO[bytes]
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -10134,7 +10177,7 @@ class DevicesOperations:
                     ]
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -10152,7 +10195,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.SignedCapabilityImageResponse]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SignedCapabilityImageResponse] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -10190,7 +10233,6 @@ class DevicesOperations:
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
             if _stream:
@@ -10200,6 +10242,11 @@ class DevicesOperations:
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -10963,7 +11010,7 @@ class ProductsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -11009,7 +11056,7 @@ class ProductsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -11143,7 +11190,7 @@ class ProductsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -11211,7 +11258,7 @@ class ProductsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -11279,7 +11326,7 @@ class ProductsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -11350,7 +11397,7 @@ class ProductsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.

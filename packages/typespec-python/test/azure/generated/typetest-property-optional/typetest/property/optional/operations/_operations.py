@@ -1025,12 +1025,6 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1152,12 +1146,6 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1413,12 +1401,6 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1540,12 +1522,6 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BytesProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1801,12 +1777,6 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1928,12 +1898,6 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DatetimeProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2189,12 +2153,6 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2316,12 +2274,6 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.DurationProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2583,12 +2535,6 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2714,12 +2660,6 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsByteProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2991,12 +2931,6 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3126,12 +3060,6 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.CollectionsModelProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3391,12 +3319,6 @@ class StringLiteralOperations:
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3518,12 +3440,6 @@ class StringLiteralOperations:
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.StringLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3779,12 +3695,6 @@ class IntLiteralOperations:
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3906,12 +3816,6 @@ class IntLiteralOperations:
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.IntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4167,12 +4071,6 @@ class FloatLiteralOperations:
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4294,12 +4192,6 @@ class FloatLiteralOperations:
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.FloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4555,12 +4447,6 @@ class BooleanLiteralOperations:
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4682,12 +4568,6 @@ class BooleanLiteralOperations:
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.BooleanLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4949,12 +4829,6 @@ class UnionStringLiteralOperations:
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5079,12 +4953,6 @@ class UnionStringLiteralOperations:
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionStringLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5341,12 +5209,6 @@ class UnionIntLiteralOperations:
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5468,12 +5330,6 @@ class UnionIntLiteralOperations:
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.optional.models.UnionIntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5732,12 +5588,6 @@ class UnionFloatLiteralOperations:
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5860,12 +5710,6 @@ class UnionFloatLiteralOperations:
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.UnionFloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6127,12 +5971,6 @@ class RequiredAndOptionalOperations:
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6257,12 +6095,6 @@ class RequiredAndOptionalOperations:
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.optional.models.RequiredAndOptionalProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

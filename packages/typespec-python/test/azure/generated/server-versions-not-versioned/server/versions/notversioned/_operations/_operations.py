@@ -38,10 +38,11 @@ def build_not_versioned_without_api_version_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_not_versioned_with_query_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_not_versioned_with_query_api_version_request(  # pylint: disable=name-too-long
+    *, api_version: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
     # Construct URL
     _url = "/server/versions/not-versioned/with-query-api-version"
 
@@ -51,8 +52,9 @@ def build_not_versioned_with_query_api_version_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-def build_not_versioned_with_path_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
-    api_version: str = kwargs.pop("api_version", "1.0.0")
+def build_not_versioned_with_path_api_version_request(  # pylint: disable=name-too-long
+    api_version: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/server/versions/not-versioned/with-path-api-version/{apiVersion}"
     path_format_arguments = {
@@ -90,10 +92,7 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -138,10 +137,7 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -186,10 +182,7 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

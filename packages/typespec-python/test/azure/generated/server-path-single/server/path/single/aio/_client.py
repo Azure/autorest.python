@@ -21,7 +21,7 @@ from ._operations import SingleClientOperationsMixin
 class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates server with a single path parameter @server.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Service host. Required.
     :type endpoint: str
     """
 
