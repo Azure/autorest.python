@@ -52,7 +52,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             env_builder = EnvBuilder(with_pip=True)
             self.venv_context = env_builder.ensure_directories(venv_path)
         else:
-            env_builder = ExtendedEnvBuilder(with_pip=True)
+            env_builder = ExtendedEnvBuilder(with_pip=True, upgrade_deps=True)
             env_builder.create(venv_path)
             self.venv_context = env_builder.context
             python_run(

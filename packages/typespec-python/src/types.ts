@@ -18,7 +18,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase, getAddedOn } from "./utils.js";
-import { getModelsMode } from "./emitter.js";
 import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
@@ -197,10 +196,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(context: Py
 
 function emitModel<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
-        return {
-            type: "any",
-            description: type.description,
-        };
+        return KnownTypes.any;
     }
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
@@ -215,7 +211,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(context: Pytho
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        base: type.name === "" && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
     };
 

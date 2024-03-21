@@ -13,17 +13,16 @@ import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
 
-export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
-  const specifiedModelsMode = context.emitContext.options["models-mode"];
-  if (specifiedModelsMode) {
-    const modelModes = ["msrest", "dpg", "none"];
-    if (modelModes.includes(specifiedModelsMode)) {
-      return specifiedModelsMode;
+export function getModelsMode(context: SdkContext): "dpg" | "none" {
+    const specifiedModelsMode = context.emitContext.options["models-mode"];
+    if (specifiedModelsMode) {
+        const modelModes = ["dpg", "none"];
+        if (modelModes.includes(specifiedModelsMode)) {
+            return specifiedModelsMode;
+        }
+        throw new Error(`Need to specify models mode with the following values: ${modelModes.join(", ")}`);
     }
-    throw new Error(`Need to specify models mode with the following values: ${modelModes.join(", ")}`);
-  }
-  if (context.arm) return "msrest";
-  return "dpg";
+    return "dpg";
 }
 
 function addDefaultOptions(sdkContext: SdkContext) {

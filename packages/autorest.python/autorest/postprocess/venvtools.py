@@ -20,7 +20,10 @@ class ExtendedEnvBuilder(venv.EnvBuilder):
 
     def __init__(self, *args, **kwargs):
         self.context = None
-        super(ExtendedEnvBuilder, self).__init__(*args, **kwargs)
+        if sys.version_info < (3, 9, 0):
+            # Not supported on Python 3.8, and we don't need it
+            kwargs.pop("upgrade_deps", None)
+        super().__init__(*args, **kwargs)
 
     def ensure_directories(self, env_dir):
         self.context = super(ExtendedEnvBuilder, self).ensure_directories(env_dir)
@@ -34,6 +37,7 @@ def create(
     symlinks=False,
     with_pip=False,
     prompt=None,
+    upgrade_deps=False,
 ):
     """Create a virtual environment in a directory."""
     builder = ExtendedEnvBuilder(
@@ -42,6 +46,7 @@ def create(
         symlinks=symlinks,
         with_pip=with_pip,
         prompt=prompt,
+        upgrade_deps=upgrade_deps,
     )
     builder.create(env_dir)
     return builder.context
