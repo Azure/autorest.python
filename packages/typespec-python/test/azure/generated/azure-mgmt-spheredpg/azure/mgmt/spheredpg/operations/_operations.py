@@ -2721,7 +2721,7 @@ class CatalogsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4865,7 +4865,7 @@ class ImagesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5825,7 +5825,7 @@ class DeviceGroupsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -8585,7 +8585,7 @@ class DeploymentsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9552,7 +9552,7 @@ class DevicesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9974,7 +9974,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Device, response.text())
+                deserialized = _deserialize(_models.Device, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -10246,7 +10246,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.text())
+                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -11056,7 +11056,7 @@ class ProductsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.text())
+            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

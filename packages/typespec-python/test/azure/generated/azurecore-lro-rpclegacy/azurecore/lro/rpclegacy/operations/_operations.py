@@ -485,7 +485,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.JobResult, response.text())
+            deserialized = _deserialize(_models.JobResult, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized

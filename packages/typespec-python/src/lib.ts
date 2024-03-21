@@ -18,8 +18,8 @@ export interface PythonEmitterOptions {
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation> extends SdkContext<PythonEmitterOptions, TServiceOperation> {
-  __endpointPathParameters: Record<string, Record<string, any>[]>;
-  __subscriptionIdPathParameter: Record<string, any> | undefined;
+    __endpointPathParameters: Record<string, Record<string, any>[]>;
+    __subscriptionIdPathParameter: Record<string, any> | undefined;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
@@ -44,11 +44,11 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
 };
 
 const libDef = {
-  name: "@azure-tools/typespec-python",
-  diagnostics: {},
-  emitter: {
-    options: EmitterOptionsSchema as JSONSchemaType<PythonEmitterOptions>,
-  },
+    name: "@azure-tools/typespec-python",
+    diagnostics: {},
+    emitter: {
+        options: EmitterOptionsSchema as JSONSchemaType<PythonEmitterOptions>,
+    },
 } as const;
 
 export const $lib = createTypeSpecLibrary(libDef);

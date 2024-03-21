@@ -1,9 +1,9 @@
 import { EmitContext } from "@typespec/compiler";
 import {
-  createSdkContext,
-  SdkContext,
-  SdkHttpOperation,
-  SdkServiceOperation,
+    createSdkContext,
+    SdkContext,
+    SdkHttpOperation,
+    SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
@@ -53,53 +53,53 @@ function addDefaultOptions(sdkContext: SdkContext) {
 }
 
 function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
-  context: EmitContext<PythonEmitterOptions>,
+    context: EmitContext<PythonEmitterOptions>,
 ): PythonSdkContext<TServiceOperation> {
-  return {
-    ...createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python"),
-    __endpointPathParameters: {},
-    __subscriptionIdPathParameter: undefined,
-  };
+    return {
+        ...createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python"),
+        __endpointPathParameters: {},
+        __subscriptionIdPathParameter: undefined,
+    };
 }
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
-  const program = context.program;
-  const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
-  const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
-  const outputDir = context.emitterOutputDir;
-  const yamlMap = emitCodeModel(sdkContext);
-  addDefaultOptions(sdkContext);
-  const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
-  const commandArgs = [
-    `${root}/run-python3.js`,
-    `${root}/run_cadl.py`,
-    `--output-folder=${outputDir}`,
-    `--cadl-file=${yamlPath}`,
-];
-const resolvedOptions = sdkContext.emitContext.options;
-if (resolvedOptions["packaging-files-config"]) {
-    const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
-        return `${key}:${value}`;
-    });
-    commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
-    resolvedOptions["packaging-files-config"] = undefined;
-}
-if (
-    resolvedOptions["package-pprint-name"] !== undefined &&
-    !resolvedOptions["package-pprint-name"].startsWith('"')
-) {
-    resolvedOptions["package-pprint-name"] = `"${resolvedOptions["package-pprint-name"]}"`;
-}
+    const program = context.program;
+    const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
+    const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
+    const outputDir = context.emitterOutputDir;
+    const yamlMap = emitCodeModel(sdkContext);
+    addDefaultOptions(sdkContext);
+    const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
+    const commandArgs = [
+        `${root}/run-python3.js`,
+        `${root}/run_cadl.py`,
+        `--output-folder=${outputDir}`,
+        `--cadl-file=${yamlPath}`,
+    ];
+    const resolvedOptions = sdkContext.emitContext.options;
+    if (resolvedOptions["packaging-files-config"]) {
+        const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
+            return `${key}:${value}`;
+        });
+        commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
+        resolvedOptions["packaging-files-config"] = undefined;
+    }
+    if (
+        resolvedOptions["package-pprint-name"] !== undefined &&
+        !resolvedOptions["package-pprint-name"].startsWith('"')
+    ) {
+        resolvedOptions["package-pprint-name"] = `"${resolvedOptions["package-pprint-name"]}"`;
+    }
 
-for (const [key, value] of Object.entries(resolvedOptions)) {
-    commandArgs.push(`--${key}=${value}`);
-}
-if (sdkContext.arm === true) {
-    commandArgs.push("--azure-arm=true");
-}
-commandArgs.push("--from-typespec=true");
-if (!program.compilerOptions.noEmit && !program.hasError()) {
-    execFileSync(process.execPath, commandArgs);
-}
+    for (const [key, value] of Object.entries(resolvedOptions)) {
+        commandArgs.push(`--${key}=${value}`);
+    }
+    if (sdkContext.arm === true) {
+        commandArgs.push("--azure-arm=true");
+    }
+    commandArgs.push("--from-typespec=true");
+    if (!program.compilerOptions.noEmit && !program.hasError()) {
+        execFileSync(process.execPath, commandArgs);
+    }
 
 }
