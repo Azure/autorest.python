@@ -19,7 +19,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
-import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
