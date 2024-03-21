@@ -64,10 +64,10 @@ interface HttpServerParameter {
     param: ModelProperty;
 }
 
-export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
+export function getModelsMode(context: SdkContext): "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
     if (specifiedModelsMode) {
-        const modelModes = ["msrest", "dpg", "none"];
+        const modelModes = ["dpg", "none"];
         if (modelModes.includes(specifiedModelsMode)) {
             return specifiedModelsMode;
         }
@@ -465,11 +465,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                if (getModelsMode(context) === "msrest") {
-                    type = getType(context, body);
-                } else {
-                    type = getType(context, Array.from(body.properties.values())[0]);
-                }
+                type = getType(context, Array.from(body.properties.values())[0]);
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
             }

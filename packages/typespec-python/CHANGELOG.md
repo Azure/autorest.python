@@ -19,6 +19,7 @@
 **Other Changes**
 
 - Generate new DPG model instead of msrest model for Mgmt SDK generated from TSP #2461
+- `msrest` is not available anymore for `--models-mode` #2464
 
 ## 2023-03-14 - 0.22.4
 
