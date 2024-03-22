@@ -38,6 +38,7 @@ class OptionsRetriever:
         "polymorphic-examples": 5,
         "generate-sample": False,
         "from-typespec": False,
+        "emit-cross-language-definition-file": False,
     }
 
     @property

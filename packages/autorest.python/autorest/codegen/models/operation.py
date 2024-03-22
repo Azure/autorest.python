@@ -91,6 +91,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.internal:
             self.name = "_" + self.name
         self.has_etag: bool = self.yaml_data.get("hasEtag", False)
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
 
     @property
     def has_form_data_body(self):

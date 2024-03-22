@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import json
 from typing import Any, List
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
@@ -196,3 +197,33 @@ class GeneralSerializer(BaseSerializer):
     def serialize_validation_file(self) -> str:
         template = self.env.get_template("validation.py.jinja2")
         return template.render(code_model=self.code_model)
+    
+    def serialize_cross_language_definition_file(self) -> str:
+        cross_langauge_def_dict = {
+            f"{self.code_model.namespace}.models.{model.name}": model.cross_language_definition_id
+            for model in self.code_model.model_types
+        }
+        cross_langauge_def_dict.update(
+            {
+                f"{self.code_model.namespace}.models.{enum.name}": enum.cross_language_definition_id
+                for enum in self.code_model.enums
+            }
+        )
+        cross_langauge_def_dict.update(
+            {
+                (
+                    f"{self.code_model.namespace}.{client.name}."
+                    f"{operation_group.class_name}." if operation_group.class_name else ""
+                    f"{operation.name}"
+                ): operation.cross_language_definition_id
+                for client in self.code_model.clients
+                for operation_group in client.operation_groups
+                for operation in operation_group.operations
+            }
+        )
+        return json.dumps(
+            {   
+                "CrossLanguagePackageId": self.code_model.cross_language_package_id,
+                "CrossLanguageDefinitionId": cross_langauge_def_dict
+            }
+        )
