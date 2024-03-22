@@ -38,6 +38,7 @@ class OptionsRetriever:
         "polymorphic-examples": 5,
         "generate-sample": False,
         "from-typespec": False,
+        "emit-cross-language-definition-file": False,
     }
 
     @property
@@ -333,6 +334,7 @@ class CodeGenerator(Plugin):
             "from_typespec",
             "flavor",
             "company_name",
+            "emit_cross_language_definition_file",
         ]
         return {f: getattr(self.options_retriever, f) for f in flags}
 
