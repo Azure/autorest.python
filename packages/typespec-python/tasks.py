@@ -171,6 +171,7 @@ def _add_options(
             for k, v in item.items():
                 emitter_option += f" --option @azure-tools/typespec-python.{k}={v}"
         emitter_configs.append(emitter_option)
+    # emitter_configs.append(f"--option @azure-tools/typespec-python.emit-cross-language-definition-file=true")
     return emitter_configs
 
 

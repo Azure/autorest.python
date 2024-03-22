@@ -522,6 +522,10 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 namespace_path / Path("_validation.py"),
                 general_serializer.serialize_validation_file(),
             )
+        self.write_file(
+            namespace_path / Path("apiview_mapping_python.json"),
+            general_serializer.serialize_cross_language_definition_file()
+        )
 
         # Write the setup file
         if self.code_model.options["basic_setup_py"]:

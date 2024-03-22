@@ -75,6 +75,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
+        self.cross_language_package_id = self.yaml_data.get("crossLanguagePackageId")
 
     @property
     def has_form_data(self) -> bool:

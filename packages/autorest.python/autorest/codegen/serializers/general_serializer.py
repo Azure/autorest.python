@@ -212,18 +212,20 @@ class GeneralSerializer(BaseSerializer):
         cross_langauge_def_dict.update(
             {
                 (
-                    f"{self.code_model.namespace}.{client.name}."
-                    f"{operation_group.class_name}." if operation_group.class_name else ""
+                    f"{self.code_model.namespace}.{client.name}." +
+                    ("" if operation_group.is_mixin else f"{operation_group.property_name}.") +
                     f"{operation.name}"
                 ): operation.cross_language_definition_id
                 for client in self.code_model.clients
                 for operation_group in client.operation_groups
                 for operation in operation_group.operations
+                if not operation.name.startswith("_")
             }
         )
         return json.dumps(
             {   
                 "CrossLanguagePackageId": self.code_model.cross_language_package_id,
                 "CrossLanguageDefinitionId": cross_langauge_def_dict
-            }
+            },
+            indent=4
         )
