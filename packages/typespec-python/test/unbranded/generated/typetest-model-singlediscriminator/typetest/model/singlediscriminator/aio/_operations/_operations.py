@@ -55,6 +55,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -327,6 +328,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -599,6 +601,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -687,6 +690,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -775,6 +779,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
