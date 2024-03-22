@@ -15,10 +15,10 @@ export interface PythonEmitterOptions {
     "company-name"?: string;
     "debug"?: boolean;
     "flavor"?: "azure";
-}
+}`1`
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation> extends SdkContext<PythonEmitterOptions, TServiceOperation> {
-    __endpointPathParameters: Record<string, Record<string, any>[]>;
+    __endpointPathParameters: Record<string, any>[];
     __subscriptionIdPathParameter: Record<string, any> | undefined;
 }
 

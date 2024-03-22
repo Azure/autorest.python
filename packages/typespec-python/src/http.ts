@@ -277,9 +277,7 @@ function emitHttpParameters(
     rootClient: SdkClientType<SdkHttpOperation>,
     operation: SdkHttpOperation,
 ): Record<string, any>[] {
-    const parameters: Record<string, any>[] = context.__endpointPathParameters[rootClient.name]
-        ? [...context.__endpointPathParameters[rootClient.name]]
-        : [];
+    const parameters: Record<string, any>[] = [...context.__endpointPathParameters];
     for (const parameter of operation.parameters) {
         switch (parameter.kind) {
             case "header":

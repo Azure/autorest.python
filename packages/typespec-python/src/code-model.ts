@@ -98,10 +98,7 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
             clientName: context.arm ? "base_url" : base.clientName,
         };
         if (client.hasParameterizedEndpoint) {
-            if (!context.__endpointPathParameters[client.name]) {
-                context.__endpointPathParameters[client.name] = [];
-            }
-            context.__endpointPathParameters[client.name].push(endpointParameter);
+            context.__endpointPathParameters!.push(endpointParameter);
         }
         return endpointParameter;
     }
@@ -185,11 +182,14 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     client: SdkClientType<TServiceOperation>,
 ): Record<string, any> {
-    const operationGroups = emitOperationGroups(context, client, client, "");
+    if (client.initialization) {
+        context.__endpointPathParameters = [];
+    }
     const parameters = client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)) ?? [];
     if (context.__subscriptionIdPathParameter) {
         parameters.push(context.__subscriptionIdPathParameter);
     }
+    const operationGroups = emitOperationGroups(context, client, client, "");
     return {
         name: client.name,
         description: client.description ?? "",
