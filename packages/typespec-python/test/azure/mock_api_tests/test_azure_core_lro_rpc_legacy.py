@@ -23,3 +23,10 @@ def test_begin_create_job(client: LegacyClient, polling_method):
         status=models.JobStatus.SUCCEEDED,
         results=["job1 result"],
     )
+
+def test_begin_create_model(client: LegacyClient, polling_method):
+    expected = {"modelId": "123", "description": "hello"}
+    result = client.create_resource_poll_via_operation_location_and_resource_location.begin_build_model(
+        models.DocumentModel(expected), polling_interval=0, polling=polling_method
+    ).result()
+    assert result == models.DocumentModelDetails(expected)

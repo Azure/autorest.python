@@ -10,11 +10,83 @@
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
-from .._model_base import rest_field
+from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+
+
+class DocumentModel(_model_base.Model):
+    """Request body to build a new custom document model.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar model_id: Unique document model name. Required.
+    :vartype model_id: str
+    :ivar description: Document model description. Required.
+    :vartype description: str
+    """
+
+    model_id: str = rest_field(name="modelId")
+    """Unique document model name. Required."""
+    description: str = rest_field()
+    """Document model description. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        model_id: str,
+        description: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DocumentModelDetails(_model_base.Model):
+    """Document model info.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar model_id: Required.
+    :vartype model_id: str
+    :ivar description: Required.
+    :vartype description: str
+    """
+
+    model_id: str = rest_field(name="modelId", visibility=["read", "create"])
+    """Required."""
+    description: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        model_id: str,
+        description: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class Error(_model_base.Model):
@@ -198,3 +270,39 @@ class JobResult(_model_base.Model):
     """Error objects that describes the error when status is \"Failed\"."""
     results: Optional[List[str]] = rest_field(visibility=["read"])
     """The results."""
+
+
+class OperationDetails(_model_base.Model):
+    """Operation info.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar operation_id: Operation ID. Required.
+    :vartype operation_id: str
+    :ivar status: The status of the processing job. Required. Known values are: "notStarted",
+     "running", "succeeded", "failed", "canceled", and "partiallyCompleted".
+    :vartype status: str or ~azurecore.lro.rpclegacy.models.JobStatus
+    :ivar resource_location: URL of the resource targeted by this operation. Required.
+    :vartype resource_location: str
+    :ivar result:
+    :vartype result: ~azurecore.lro.rpclegacy.models.DocumentModelDetails
+    :ivar kind: Required.
+    :vartype kind: str
+    """
+
+    operation_id: str = rest_field(name="operationId", visibility=["read", "create"])
+    """Operation ID. Required."""
+    status: Union[str, "_models.JobStatus"] = rest_field(visibility=["read"])
+    """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
+     \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
+    resource_location: str = rest_field(name="resourceLocation")
+    """URL of the resource targeted by this operation. Required."""
+    result: Optional["_models.DocumentModelDetails"] = rest_field()
+    kind: str = rest_discriminator(name="kind")
+    """Required."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.kind: str = "None"
