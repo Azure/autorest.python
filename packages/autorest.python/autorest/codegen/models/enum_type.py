@@ -134,7 +134,9 @@ class EnumType(BaseType):
         self.values = values
         self.value_type = value_type
         self.internal: bool = self.yaml_data.get("internal", False)
-        self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
+            "crossLanguageDefinitionId"
+        )
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()

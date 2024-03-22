@@ -75,7 +75,9 @@ class ModelType(  # pylint: disable=abstract-method
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
-        self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
+            "crossLanguageDefinitionId"
+        )
 
     @property
     def flattened_property(self) -> Optional[Property]:

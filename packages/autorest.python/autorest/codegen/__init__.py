@@ -334,7 +334,7 @@ class CodeGenerator(Plugin):
             "from_typespec",
             "flavor",
             "company_name",
-            "emit_cross_language_definition_file"
+            "emit_cross_language_definition_file",
         ]
         return {f: getattr(self.options_retriever, f) for f in flags}
 
