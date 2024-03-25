@@ -1,6 +1,6 @@
 # Release
 
-## 2023-03-XX - 0.22.5
+## 2023-03-22 - 0.22.5
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -20,6 +20,7 @@
 
 - Generate new DPG model instead of msrest model for Mgmt SDK generated from TSP #2461
 - `msrest` is not available anymore for `--models-mode` #2464
+- Add support for apiview flag `emit-cross-language-definition-file` #2468
 
 ## 2023-03-14 - 0.22.4
 

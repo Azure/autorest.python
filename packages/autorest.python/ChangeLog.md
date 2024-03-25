@@ -1,6 +1,6 @@
 # Release
 
-## 2024-03-XX - 6.13.8
+## 2024-03-22 - 6.13.8
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,10 @@
 **Bug Fixes**
 
 - Fix misspelled word in README template #2456
+
+**Other Changes**
+
+- Add support for `emit-cross-language-definition-file` in tsp emitter #2468
 
 ## 2024-03-14 - 6.13.7
 

@@ -40,6 +40,8 @@ import {
     getAccess,
     SdkOperationGroup,
     isErrorOrChildOfError,
+    getCrossLanguagePackageId,
+    getCrossLanguageDefinitionId,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -724,6 +726,7 @@ function emitBasicOperation(
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
             internal: isInternal(context, operation) || getAccess(context, operation) === "internal", // eslint-disable-line deprecation/deprecation
+            crossLanguageDefinitionId: getCrossLanguageDefinitionId(operation),
         },
     ];
 }
@@ -982,5 +985,6 @@ function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+    codeModel["crossLanguagePackageId"] = ignoreDiagnostics(getCrossLanguagePackageId(sdkContext));
     return codeModel;
 }
