@@ -21,8 +21,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "isodate<1.0.0,>=0.6.1",
-        "azure-core<2.0.0,>=1.30.0",
+        "isodate>=0.6.1",
+        "azure-core>=1.30.0",
     ],
     long_description="""\
     Service client for testing basic type: object swaggers.
