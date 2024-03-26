@@ -99,16 +99,16 @@ options:
 |Option|Type|Description|
 |-|-|-|
 |`package-version`|string|Specify the package version. Default version: `1.0.0b1`|
-|`package-name`|string|The client library name, this will be the package name on PyPi.|
-|`output-dir`|string|optionally specify an output directory.|
-|`generate-packaging-files`|boolean|indicate if packaging files should be generated. For example: setup.py.|
-|`package-pprint-name`|string|specify the package name to be used on PyPi.|
-|`models-mode`|string|indicate if models should be generated. Default: `true`.|
-|`flavor`||"azure"|
+|`package-name`|string|Specify the package name.|
+|`output-dir`|string|Specify an output directory.|
+|`generate-packaging-files`|boolean|Indicate if packaging files, such as setup.py, should be generated.|
+|`package-pprint-name`|string|Specify the pretty print name for the package.|
+|`models-mode`|string|Indicate if models should be generated. Default: `true`.|
+|`flavor`|"azure"|"azure"|
 |`emit-cross-language-definition-file`|boolean|
 |`head-as-boolean`|boolean|
 |`packaging-files-dir`|string|
 |`packaging-files-config`|object|
-|`tracing`|boolean|
+|`tracing`|boolean|Enable tracing.|
 |`company-name`|string|
-|`debug`|boolean|
+|`debug`|boolean|Enable debugging.|
