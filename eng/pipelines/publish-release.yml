@@ -69,8 +69,7 @@ extends:
                   displayName: Execute Typespec Unbranded Tests
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
-                # TODO: Enable for publishing
-                # - script: |
-                #       pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                #       pnpm -r publish --access public --no-git-checks
-                #   displayName: Publish packages
+                - script: |
+                      pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                      pnpm -r publish --access public --no-git-checks
+                  displayName: Publish packages
