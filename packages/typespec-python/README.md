@@ -46,10 +46,11 @@ Add the following configuration in tspconfig.yaml:
 
 ```diff
 emit:
-  - "@azure-tools/typespec-csharp"
+  - "@azure-tools/typespec-python"
 options:
-  "@azure-tools/typespec-csharp":
-+    namespace: Azure.Template.MyTypeSpecProject
+  "@azure-tools/typespec-python":
++    package-dir: "azure-contoso"
++    package-name: "azure-contoso"
 ```
 
 Run the command to generate your library:
@@ -66,9 +67,9 @@ npx tsp compile client.tsp
 
 ## Configure the generated library
 
-You can further configure the generated client library using the emitter options on @azure-tools/typespec-python.
+You can further configure the generated client library using the emitter options provided through @azure-tools/typespec-python.
 
-You can set options in the command line directly via `--option @azure-tools/typespec-python.<optionName>=XXX`, e.g. `--option @azure-tools/typespec-python.package-name=azure-contoso`
+You can set options in the command line directly via `--option @azure-tools/typespec-python.<optionName>=XXX`, e.g. `--option @azure-tools/typespec-python.package-name="azure-contoso"`
 
 or
 
@@ -79,8 +80,8 @@ emit:
   - "@azure-tools/typespec-python"
 options:
   "@azure-tools/typespec-python":
-+    package-dir: azure-contoso
-+    package-name: {package-dir}
++    package-dir: "azure-contoso"
++    package-name: "{package-dir}"
 ```
 
 ### Supported Emitter options
