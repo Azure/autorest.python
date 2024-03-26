@@ -24,7 +24,7 @@ Run `npm install` to install the dependency.
 
 You can either specify typespec-python on the commandline or through tspconfig.yaml.
 
-#### Generate with command
+#### Generate with `--emit` command
 
 Run command `npx tsp compile --emit @azure-tools/typespec-python <path-to-typespec-file>`
 
