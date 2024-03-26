@@ -7,12 +7,17 @@ extends:
   parameters:
     stages: 
       - stage: Release
+
+        variables:
+          - template: /eng/pipelines/templates/variables/image.yml
+
         jobs:
           - job: Release
             pool:
-                name: azsdk-pool-mms-ubuntu-2204-1es-pt
-                image: azsdk-pool-mms-ubuntu-2204-1espt
+                name: $(LINUXPOOL)
+                image: $(LINUXVMIMAGE)
                 os: linux
+
             variables:
                 NodeVersion: "14.x"
                 AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
