@@ -100,7 +100,7 @@ options:
 |-|-|-|
 |`package-version`|string|Specify the package version. Default version: `1.0.0b1`.|
 |`package-name`|string|Specify the package name.|
-|`output-dir`|string|Specify an output directory.|
+|`package-dir`|string|Specify the output directory for the package.|
 |`generate-packaging-files`|boolean|Indicate if packaging files, such as setup.py, should be generated.|
 |`package-pprint-name`|string|Specify the pretty print name for the package.|
 |`flavor`|string|Represents the type of SDK that will be generated. By default, there will be no branding in the generated client library. Specify `"azure"` to generate an SDK following Azure guidelines.|
