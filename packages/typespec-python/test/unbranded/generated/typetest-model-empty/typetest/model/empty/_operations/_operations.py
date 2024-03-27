@@ -78,9 +78,9 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
     _url = "/type/model/empty/round-trip"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 

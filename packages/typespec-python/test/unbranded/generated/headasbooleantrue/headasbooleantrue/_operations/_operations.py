@@ -50,9 +50,9 @@ def build_visibility_get_model_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/model/visibility"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 

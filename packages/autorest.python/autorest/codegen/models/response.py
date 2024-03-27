@@ -37,10 +37,12 @@ class ResponseHeader(BaseModel):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ResponseHeader":
+        from . import build_type
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
+            type=build_type(yaml_data["type"], code_model),
         )
 
 

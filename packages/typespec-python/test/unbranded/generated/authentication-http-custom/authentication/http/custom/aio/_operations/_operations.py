@@ -19,6 +19,8 @@ from corehttp.exceptions import (
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 
+from ... import models as _models
+from ..._model_base import _deserialize
 from ..._operations._operations import build_custom_invalid_request, build_custom_valid_request
 from .._vendor import CustomClientMixinABC
 
@@ -81,6 +83,9 @@ class CustomClientOperationsMixin(CustomClientMixinABC):
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
+            403: lambda response: HttpResponseError(
+                response=response, model=_deserialize(_models.InvalidAuth, response.json())
+            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 

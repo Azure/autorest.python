@@ -14,7 +14,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ModelOperations, NamingClientOperationsMixin
+from .operations import ModelOperations, NamingClientOperationsMixin, UnionEnumOperations
 
 
 class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -22,6 +22,8 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
 
     :ivar model: ModelOperations operations
     :vartype model: client.naming.aio.operations.ModelOperations
+    :ivar union_enum: UnionEnumOperations operations
+    :vartype union_enum: client.naming.aio.operations.UnionEnumOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -47,6 +49,7 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.union_enum = UnionEnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

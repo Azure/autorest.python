@@ -51,9 +51,9 @@ def build_json_merge_patch_create_resource_request(**kwargs: Any) -> HttpRequest
     _url = "/json-merge-patch/create/resource"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 

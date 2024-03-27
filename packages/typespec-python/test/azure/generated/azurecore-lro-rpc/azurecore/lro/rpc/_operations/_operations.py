@@ -58,9 +58,9 @@ def build_rpc_long_running_rpc_request(**kwargs: Any) -> HttpRequest:
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 

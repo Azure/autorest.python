@@ -49,13 +49,12 @@ def build_string_get_known_value_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_known_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/enum/fixed/string/known-value"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -63,13 +62,12 @@ def build_string_put_known_value_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_unknown_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: str = kwargs.pop("content_type")
     # Construct URL
     _url = "/type/enum/fixed/string/unknown-value"
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 

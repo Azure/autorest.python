@@ -66,24 +66,24 @@ class Dinosaur(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar size: Required.
-    :vartype size: int
     :ivar kind: Required. Default value is None.
     :vartype kind: str
+    :ivar size: Required.
+    :vartype size: int
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    size: int = rest_field()
-    """Required."""
     kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
+    size: int = rest_field()
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        size: int,
         kind: str,
+        size: int,
     ):
         ...
 

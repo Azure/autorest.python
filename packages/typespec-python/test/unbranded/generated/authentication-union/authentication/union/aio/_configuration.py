@@ -24,7 +24,7 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to cloud service. Is either a
+    :param credential: Credential used to authenticate requests to the service. Is either a
      ServiceKeyCredential type or a TokenCredential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.AsyncTokenCredential

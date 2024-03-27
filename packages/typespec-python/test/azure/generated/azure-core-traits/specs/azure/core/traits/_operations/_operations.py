@@ -115,9 +115,9 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
         _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(
             datetime.datetime.now(datetime.timezone.utc), "rfc-1123"
         )
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 

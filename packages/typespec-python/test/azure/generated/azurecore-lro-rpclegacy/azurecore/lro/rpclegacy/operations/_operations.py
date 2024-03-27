@@ -76,6 +76,8 @@ def build_create_resource_poll_via_operation_location_create_job_request(  # pyl
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs"
 
@@ -85,6 +87,7 @@ def build_create_resource_poll_via_operation_location_create_job_request(  # pyl
     # Construct headers
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 

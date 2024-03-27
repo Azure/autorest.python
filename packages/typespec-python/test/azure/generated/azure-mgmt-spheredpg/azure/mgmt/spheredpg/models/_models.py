@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmOperationStatus(_model_base.Model):
+class ArmOperationStatusNeverResourceProvisioningState(_model_base.Model):  # pylint: disable=name-too-long
     """Standard Azure Resource Manager operation status response.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.

@@ -1174,7 +1174,7 @@ class CatalogsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1182,15 +1182,17 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -1218,7 +1220,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -1235,7 +1237,7 @@ class CatalogsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1247,13 +1249,13 @@ class CatalogsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -3317,7 +3319,7 @@ class ImagesOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3327,15 +3329,17 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -3363,7 +3367,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -3381,7 +3385,7 @@ class ImagesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3393,13 +3397,13 @@ class ImagesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -4273,7 +4277,7 @@ class DeviceGroupsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -4286,15 +4290,17 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -4322,7 +4328,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -4341,7 +4347,7 @@ class DeviceGroupsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4353,13 +4359,13 @@ class DeviceGroupsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -4489,7 +4495,7 @@ class DeviceGroupsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -4571,7 +4577,7 @@ class DeviceGroupsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -4653,7 +4659,7 @@ class DeviceGroupsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -4747,7 +4753,7 @@ class DeviceGroupsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -7029,7 +7035,7 @@ class DeploymentsOperations:
         device_group_name: str,
         deployment_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7045,15 +7051,17 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -7081,7 +7089,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -7101,7 +7109,7 @@ class DeploymentsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -7113,13 +7121,13 @@ class DeploymentsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -7998,7 +8006,7 @@ class DevicesOperations:
         device_group_name: str,
         device_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a Device.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -8012,15 +8020,17 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -8048,7 +8058,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -8068,7 +8078,7 @@ class DevicesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -8080,13 +8090,13 @@ class DevicesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -8102,7 +8112,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -8123,8 +8133,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8137,7 +8147,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -8191,7 +8201,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -8212,14 +8222,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -8273,7 +8283,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -8294,14 +8304,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -8353,7 +8363,7 @@ class DevicesOperations:
         device_name: str,
         properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.Device]:
+    ) -> _models.Device:
         # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
@@ -8372,8 +8382,8 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          DeviceUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8386,7 +8396,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -8439,7 +8449,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Device]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -8477,7 +8487,6 @@ class DevicesOperations:
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
             if _stream:
@@ -8487,6 +8496,11 @@ class DevicesOperations:
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -8505,7 +8519,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -8526,9 +8540,9 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8541,7 +8555,7 @@ class DevicesOperations:
                     ]
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -8560,7 +8574,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -8581,15 +8595,15 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -8608,7 +8622,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -8629,15 +8643,15 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -8654,7 +8668,7 @@ class DevicesOperations:
         device_name: str,
         parameters: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
+    ) -> _models.SignedCapabilityImageResponse:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
         group and product names to generate the image for a device that does not belong to a specific
         device group and product.
@@ -8674,9 +8688,9 @@ class DevicesOperations:
          GenerateCapabilityImageRequest, JSON, IO[bytes] Required.
         :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or
          IO[bytes]
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
+        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8689,7 +8703,7 @@ class DevicesOperations:
                     ]
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
                       encoded base 64 string.
@@ -8707,7 +8721,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.SignedCapabilityImageResponse]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SignedCapabilityImageResponse] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -8745,7 +8759,6 @@ class DevicesOperations:
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
             if _stream:
@@ -8755,6 +8768,11 @@ class DevicesOperations:
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -9501,7 +9519,7 @@ class ProductsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatus]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
         """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name'.
 
@@ -9512,15 +9530,17 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :return: An instance of AsyncLROPoller that returns ArmOperationStatus. The ArmOperationStatus
-         is compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatus]
+        :return: An instance of AsyncLROPoller that returns
+         ArmOperationStatusNeverResourceProvisioningState. The
+         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202, 204
                 response == {
                     "status": "str",  # The operation status. Required. Known values are:
                       "Succeeded", "Failed", and "Canceled".
@@ -9548,7 +9568,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatus] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -9566,7 +9586,7 @@ class ProductsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatus, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9578,13 +9598,13 @@ class ProductsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatus].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatus](
+        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -9700,7 +9720,7 @@ class ProductsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9768,7 +9788,7 @@ class ProductsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9836,7 +9856,7 @@ class ProductsOperations:
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -9907,7 +9927,7 @@ class ProductsOperations:
                     }
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.

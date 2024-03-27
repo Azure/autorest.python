@@ -31,7 +31,7 @@ async def client():
             "k1": models.InnerModel(property="hello", children={}),
             "k2": models.InnerModel(property="world", children={"k2.1": models.InnerModel(property="inner world")}),
         }),
-        ("nullable_float_value", {"k1": 1.2, "k2": 0.5, "k3": None}),
+        ("nullable_float_value", {"k1": 1.25, "k2": 0.5, "k3": None}),
     ]
 )
 @pytest.mark.asyncio

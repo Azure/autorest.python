@@ -20,10 +20,6 @@ from ._models import StringProperty
 from ._models import UnionFloatLiteralProperty
 from ._models import UnionIntLiteralProperty
 from ._models import UnionStringLiteralProperty
-
-from ._enums import UnionFloatLiteralPropertyProperty
-from ._enums import UnionIntLiteralPropertyProperty
-from ._enums import UnionStringLiteralPropertyProperty
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -43,9 +39,6 @@ __all__ = [
     "UnionFloatLiteralProperty",
     "UnionIntLiteralProperty",
     "UnionStringLiteralProperty",
-    "UnionFloatLiteralPropertyProperty",
-    "UnionIntLiteralPropertyProperty",
-    "UnionStringLiteralPropertyProperty",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

@@ -18,7 +18,10 @@ from corehttp.exceptions import (
 )
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
+from corehttp.utils import case_insensitive_dict
 
+from .. import models as _models
+from .._model_base import _deserialize
 from .._serialization import Serializer
 from .._vendor import ApiKeyClientMixinABC
 
@@ -37,10 +40,17 @@ def build_api_key_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_api_key_invalid_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/authentication/api-key/invalid"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
@@ -98,6 +108,9 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
+            403: lambda response: HttpResponseError(
+                response=response, model=_deserialize(_models.InvalidAuth, response.json())
+            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
