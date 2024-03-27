@@ -84,7 +84,7 @@ options:
 +    package-name: "{package-dir}"
 ```
 
-### Supported Emitter options
+### Supported emitter options
 
 Common emitter configuration example:
 ```yaml
@@ -93,22 +93,25 @@ emit:
 options:
   "@azure-tools/typespec-python":
     package-dir: "azure-contoso"
-    package-name: "{package-dir}"
+    package-name: "azure-contoso"
 ```
 
 |Option|Type|Description|
 |-|-|-|
-|`package-version`|string|Specify the package version. Default version: `1.0.0b1`|
+|`package-version`|string|Specify the package version. Default version: `1.0.0b1`.|
 |`package-name`|string|Specify the package name.|
 |`output-dir`|string|Specify an output directory.|
 |`generate-packaging-files`|boolean|Indicate if packaging files, such as setup.py, should be generated.|
 |`package-pprint-name`|string|Specify the pretty print name for the package.|
-|`models-mode`|string|Indicate if models should be generated. Default: `true`.|
-|`flavor`|"azure"|"azure"|
-|`emit-cross-language-definition-file`|boolean|
-|`head-as-boolean`|boolean|
-|`packaging-files-dir`|string|
-|`packaging-files-config`|object|
-|`tracing`|boolean|Enable tracing.|
-|`company-name`|string|
+|`flavor`|string|Represents the type of SDK that will be generated. By default, there will be no branding in the generated client library. Specify `"azure"` to generate an SDK following Azure guidelines.|
+|`company-name`|string|Specify the company name to be inserted into licensing data. For `"azure"` flavor, the default value inserted is `Microsoft`.|
+
+**Advanced emitter options**
+
+|Option|Type|Description|
+|-|-|-|
+|`head-as-boolean`|boolean|Generate head calls to return a boolean. Default: `true`.|
+|`packaging-files-dir`|string|Pass in the path to a custom directory with SDK packaging files.|
+|`packaging-files-config`|object|Specify configuration options that will be passed directly into the packaging files specified by the `packaging-files-dir` option.|
+|`tracing`|boolean|Only available for the `"azure"` flavor of SDKs, provide tracing support in the generated client library. Default: `true`.|
 |`debug`|boolean|Enable debugging.|
