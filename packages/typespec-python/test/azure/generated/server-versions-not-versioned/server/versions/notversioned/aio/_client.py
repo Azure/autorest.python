@@ -21,7 +21,7 @@ from ._operations import NotVersionedClientOperationsMixin
 class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-versioned server.
 
-    :param endpoint: Service host. Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
     :param api_version: Required.
     :type api_version: str

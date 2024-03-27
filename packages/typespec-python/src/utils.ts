@@ -73,11 +73,11 @@ type ParamBase = {
 
 export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
-    parameter: SdkModelPropertyType,
+    type: SdkModelPropertyType | SdkMethod<TServiceOperation>,
 ): string | undefined {
     // We only want added on if it's not the same as the client's added on
-    if (parameter.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
-    return parameter.apiVersions[0];
+    if (type.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
+    return type.apiVersions[0];
 }
 
 export function isSubscriptionId<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): boolean {

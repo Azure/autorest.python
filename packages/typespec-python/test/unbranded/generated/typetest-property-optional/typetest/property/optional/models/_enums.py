@@ -13,8 +13,8 @@ from corehttp.utils import CaseInsensitiveEnumMeta
 class UnionFloatLiteralPropertyProperty(float, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of UnionFloatLiteralPropertyProperty."""
 
-    ENUM_1_2 = 1.2
-    ENUM_2_3 = 2.3
+    ENUM_1_25 = 1.25
+    ENUM_2_375 = 2.375
 
 
 class UnionIntLiteralPropertyProperty(int, Enum, metaclass=CaseInsensitiveEnumMeta):

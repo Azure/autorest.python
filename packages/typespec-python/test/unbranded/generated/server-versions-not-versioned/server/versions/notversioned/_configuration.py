@@ -19,7 +19,7 @@ class NotVersionedClientConfiguration:  # pylint: disable=too-many-instance-attr
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Service host. Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
     :param api_version: Required.
     :type api_version: str

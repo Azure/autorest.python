@@ -91,26 +91,27 @@ class EnumsOnlyCases(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar lr: This should be receive/send the left variant. Required. Known values are: "left",
-     "right", "up", and "down".
-    :vartype lr: str or ~typetest.union.models.EnumsOnlyCasesLr
-    :ivar ud: This should be receive/send the up variant. Required. Known values are: "up" and
-     "down".
-    :vartype ud: str or ~typetest.union.models.EnumsOnlyCasesUd
+    :ivar lr: This should be receive/send the left variant. Required. Is one of the following
+     types: Literal["left"], Literal["right"], Literal["up"], Literal["down"]
+    :vartype lr: str or str or str or str
+    :ivar ud: This should be receive/send the up variant. Required. Is either a Literal["up"] type
+     or a Literal["down"] type.
+    :vartype ud: str or str
     """
 
-    lr: Union[str, "_models.EnumsOnlyCasesLr"] = rest_field()
-    """This should be receive/send the left variant. Required. Known values are: \"left\", \"right\",
-     \"up\", and \"down\"."""
-    ud: Union[str, "_models.EnumsOnlyCasesUd"] = rest_field()
-    """This should be receive/send the up variant. Required. Known values are: \"up\" and \"down\"."""
+    lr: Literal["left", "right", "up", "down"] = rest_field()
+    """This should be receive/send the left variant. Required. Is one of the following types:
+     Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
+    ud: Literal["up", "down"] = rest_field()
+    """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
+     Literal[\"down\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        lr: Union[str, "_models.EnumsOnlyCasesLr"],
-        ud: Union[str, "_models.EnumsOnlyCasesUd"],
+        lr: Literal["left", "right", "up", "down"],
+        ud: Literal["up", "down"],
     ):
         ...
 
@@ -285,18 +286,18 @@ class GetResponse5(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Known values are: 1.1, 2.2, and 3.3.
-    :vartype prop: float or ~typetest.union.models.GetResponseProp3
+    :ivar prop: Required. Is one of the following types: float, float, float
+    :vartype prop: float or float or float
     """
 
-    prop: Union[float, "_models.GetResponseProp3"] = rest_field()
-    """Required. Known values are: 1.1, 2.2, and 3.3."""
+    prop: float = rest_field()
+    """Required. Is one of the following types: float, float, float"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[float, "_models.GetResponseProp3"],
+        prop: float,
     ):
         ...
 
@@ -316,18 +317,18 @@ class GetResponse6(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Known values are: 1, 2, and 3.
-    :vartype prop: int or ~typetest.union.models.GetResponseProp4
+    :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
+    :vartype prop: int or int or int
     """
 
-    prop: Union[int, "_models.GetResponseProp4"] = rest_field()
-    """Required. Known values are: 1, 2, and 3."""
+    prop: Literal[1, 2, 3] = rest_field()
+    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[int, "_models.GetResponseProp4"],
+        prop: Literal[1, 2, 3],
     ):
         ...
 
@@ -378,18 +379,18 @@ class GetResponse8(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Known values are: "b" and "c".
-    :vartype prop: str or ~typetest.union.models.GetResponseProp5
+    :ivar prop: Required. Is one of the following types: Literal["b"], Literal["c"], str
+    :vartype prop: str or str or str
     """
 
-    prop: Union[str, "_models.GetResponseProp5"] = rest_field()
-    """Required. Known values are: \"b\" and \"c\"."""
+    prop: Union[Literal["b"], Literal["c"], str] = rest_field()
+    """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, "_models.GetResponseProp5"],
+        prop: Union[Literal["b"], Literal["c"], str],
     ):
         ...
 
@@ -409,18 +410,18 @@ class GetResponse9(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Known values are: "a", "b", and "c".
-    :vartype prop: str or ~typetest.union.models.GetResponseProp6
+    :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
+    :vartype prop: str or str or str
     """
 
-    prop: Union[str, "_models.GetResponseProp6"] = rest_field()
-    """Required. Known values are: \"a\", \"b\", and \"c\"."""
+    prop: Literal["a", "b", "c"] = rest_field()
+    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, "_models.GetResponseProp6"],
+        prop: Literal["a", "b", "c"],
     ):
         ...
 

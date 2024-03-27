@@ -35,6 +35,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
     ResiliencyServiceDrivenClientMixinABC
 ):
+    @api_version_validation(
+        method_added_on="v2",
+    )  # pylint: disable=inconsistent-return-statements
     async def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Added operation.
 
@@ -62,14 +65,9 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -122,14 +120,9 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -189,14 +182,9 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -255,14 +243,9 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

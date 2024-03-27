@@ -101,11 +101,10 @@ class EnumValue(BaseType):
         """
         from . import build_type
 
-        enum_type = cast(EnumType, code_model.lookup_type(id(yaml_data["enumType"])))
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            enum_type=enum_type,
+            enum_type=build_type(yaml_data["enumType"], code_model),
             value_type=build_type(yaml_data["valueType"], code_model),
         )
 

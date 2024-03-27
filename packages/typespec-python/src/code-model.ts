@@ -80,37 +80,51 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     client: SdkClientType<TServiceOperation>,
     parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
-): Record<string, any> {
+): Record<string, any>[] {
+    if (parameter.kind === "endpoint") {
+        if (parameter.type.serverUrl && parameter.type.templateArguments.length > 0) {
+            const params: Record<string, any>[] = [];
+            for (const param of parameter.type.templateArguments) {
+                params.push({
+                    ...emitParamBase(context, param),
+                    wireName: param.name,
+                    location: "endpointPath",
+                    implementation: getImplementation(context, param),
+                    clientDefaultValue: param.clientDefaultValue,
+                    skipUrlEncoding: param.urlEncode === false,
+                });
+                context.__endpointPathParameters!.push(params.at(-1)!);
+            }
+            return params;
+        } else {
+            return [{
+                optional: parameter.optional,
+                description: parameter.description || "",
+                clientName: context.arm ? "base_url" : "endpoint",
+                clientDefaultValue: parameter.type.serverUrl,
+                wireName: "$host",
+                location: "path",
+                type: KnownTypes.string,
+                implementation: getImplementation(context, parameter),
+                inOverload: false,
+            }];
+        }
+    }
     const base = {
         ...emitParamBase(context, parameter),
         implementation: getImplementation(context, parameter),
         clientDefaultValue: parameter.clientDefaultValue,
         location: parameter.kind,
     };
-    if (parameter.kind === "endpoint") {
-        const endpointParameter = {
-            ...base,
-            clientDefaultValue: base.type.value,
-            type: client.hasParameterizedEndpoint ? base.type : KnownTypes.string,
-            skipUrlEncoding: !parameter.urlEncode,
-            wireName: client.hasParameterizedEndpoint ? parameter.nameInClient : "$host",
-            location: client.hasParameterizedEndpoint ? "endpointPath" : "path",
-            clientName: context.arm ? "base_url" : base.clientName,
-        };
-        if (client.hasParameterizedEndpoint) {
-            context.__endpointPathParameters!.push(endpointParameter);
-        }
-        return endpointParameter;
-    }
     if (parameter.isApiVersionParam) {
-        return {
+        return [{
             ...base,
             location: "query",
             wireName: "api-version",
             in_docstring: false,
-        };
+        }];
     }
-    return base;
+    return [base];
 }
 
 function emitMethod<TServiceOperation extends SdkServiceOperation>(
@@ -185,17 +199,18 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     if (client.initialization) {
         context.__endpointPathParameters = [];
     }
-    const parameters = client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)) ?? [];
+    const parameters = client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)).reduce((a, b) => [...a, ...b]) ?? [];
     if (context.__subscriptionIdPathParameter) {
         parameters.push(context.__subscriptionIdPathParameter);
     }
+    const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as SdkEndpointParameter | undefined;
     const operationGroups = emitOperationGroups(context, client, client, "");
     return {
         name: client.name,
         description: client.description ?? "",
         parameters,
         operationGroups,
-        url: client.endpoint,
+        url: endpointParameter?.type.serverUrl ?? "",
         apiVersions: client.apiVersions,
         arm: client.arm,
     };
@@ -218,7 +233,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         getType(sdkContext, model);
     }
     for (const sdkEnum of sdkPackage.enums) {
-        if (sdkEnum.usage === UsageFlags.Versioning) {
+        if (sdkEnum.usage === UsageFlags.ApiVersionEnum) {
             continue;
         }
         getType(sdkContext, sdkEnum);

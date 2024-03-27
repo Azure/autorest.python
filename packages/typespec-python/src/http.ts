@@ -17,6 +17,7 @@ import {
     camelToSnakeCase,
     capitalize,
     emitParamBase,
+    getAddedOn,
     getDelimeterAndExplode,
     getDescriptionAndSummary,
     getImplementation,
@@ -172,7 +173,7 @@ function emitHttpOperation(
         responses,
         exceptions,
         groupName: operationGroupName,
-        addedOn: "",
+        addedOn: method ? getAddedOn(context, method) : "",
         discriminator: "basic",
         isOverload: false,
         overloads: [],
@@ -180,12 +181,10 @@ function emitHttpOperation(
         wantTracing: true,
         exposeStreamKeyword: true,
     };
-    if (result.bodyParameter?.type.type === "model" && result.bodyParameter?.type.name === "") {
-        result.bodyParameter.type.name = capitalize(operation.__raw.operation.name) + "Request";
-    }
-    if (result.bodyParameter?.type.type === "model" && result.bodyParameter.type.base === "json") {
+    if (result.bodyParameter && operation.bodyParams[0]?.type.kind === "model" && operation.bodyParams[0]?.type.generatedName) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
+        result.bodyParameter.type.base = "json";
         for (const property of result.bodyParameter.type.properties) {
             result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
             result.parameters.push(emitFlattenedParameter(result.bodyParameter, property));

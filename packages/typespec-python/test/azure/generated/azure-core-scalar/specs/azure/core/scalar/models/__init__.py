@@ -6,12 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
-from azure.core import CaseInsensitiveEnumMeta
+from ._models import AzureLocationModel
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import patch_sdk as _patch_sdk
 
-
-class ImmediateSuccessResponse(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of ImmediateSuccessResponse."""
-
-    ACCEPTED = "accepted"
-    REJECTED = "rejected"
+__all__ = [
+    "AzureLocationModel",
+]
+__all__.extend([p for p in _patch_all if p not in __all__])
+_patch_sdk()
