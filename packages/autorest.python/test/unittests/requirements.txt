@@ -1,4 +1,4 @@
-isodate<1.0.0,>=0.6.1
+isodate>=0.6.1
 requests==2.28.2
 pytest
 pytest-cov

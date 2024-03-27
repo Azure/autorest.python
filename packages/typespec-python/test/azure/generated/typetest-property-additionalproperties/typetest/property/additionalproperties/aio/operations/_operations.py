@@ -508,6 +508,7 @@ class ExtendsUnknownDiscriminatedOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -1151,6 +1152,7 @@ class IsUnknownDiscriminatedOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 

@@ -101,5 +101,4 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
-
 }

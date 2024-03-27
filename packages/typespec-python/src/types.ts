@@ -213,6 +213,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(context: Pytho
         snakeCaseName: camelToSnakeCase(type.name),
         base: type.generatedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
 
     typesMap.set(type, newValue);
@@ -273,6 +274,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         valueType: emitBuiltInType(type.valueType),
         values,
         xmlMetadata: {},
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
     for (const value of type.values) {
         newValue.values.push(emitEnumMember(value, newValue));
