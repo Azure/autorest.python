@@ -99,7 +99,7 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
         optional: parameter.optional,
         description: parameter.description || "",
         addedOn: getAddedOn(context, parameter),
-        clientName: camelToSnakeCase(parameter.nameInClient),
+        clientName: camelToSnakeCase(parameter.name),
         inOverload: false,
         isApiVersion: parameter.isApiVersionParam,
         type,

@@ -15,7 +15,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
-    capitalize,
     emitParamBase,
     getAddedOn,
     getDelimeterAndExplode,
@@ -25,7 +24,7 @@ import {
     isAzureCoreModel,
     isSubscriptionId,
 } from "./utils.js";
-import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
+import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
 
 function isContentTypeParameter(parameter: SdkHeaderParameter) {
@@ -306,7 +305,7 @@ function emitHttpBodyParameter(
         ...emitParamBase(context, bodyParam, true),
         contentTypes: bodyParam.contentTypes,
         location: bodyParam.kind,
-        wireName: bodyParam.nameInClient,
+        wireName: bodyParam.name,
         implementation: getImplementation(context, bodyParam),
         clientDefaultValue: bodyParam.clientDefaultValue,
         defaultContentType: bodyParam.defaultContentType,

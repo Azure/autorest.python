@@ -212,7 +212,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         operationGroups,
         url: endpointParameter?.type.serverUrl ?? "",
         apiVersions: client.apiVersions,
-        arm: client.arm,
+        arm: context.arm,
     };
 }
 
