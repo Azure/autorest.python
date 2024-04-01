@@ -104,7 +104,7 @@ class EnumValue(BaseType):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            enum_type=build_type(yaml_data["enumType"], code_model),
+            enum_type=cast(EnumType, build_type(yaml_data["enumType"], code_model)),
             value_type=build_type(yaml_data["valueType"], code_model),
         )
 
