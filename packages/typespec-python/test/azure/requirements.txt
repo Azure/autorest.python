@@ -5,7 +5,6 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.30.0
 # only for azure
 -e ./generated/azure-mgmt-spheredpg
--e ./generated/azure-mgmt-spheremsrest
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-usage
 -e ./generated/azure-client-generator-core-flatten

@@ -104,12 +104,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
         :param input: Is one of the following types: Extension, JSON, IO[bytes] Required.
         :type input: ~typetest.model.recursive.models.Extension or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

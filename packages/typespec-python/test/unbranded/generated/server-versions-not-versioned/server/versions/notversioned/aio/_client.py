@@ -20,18 +20,17 @@ from ._operations import NotVersionedClientOperationsMixin
 class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-versioned server.
 
-    :param endpoint: Service host. Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
-    :keyword api_version: Default value is "1.0.0". Note that overriding this default value may
-     result in unsupported behavior.
-    :paramtype api_version: str
+    :param api_version: Required.
+    :type api_version: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, **kwargs: Any
+        self, endpoint: str, api_version: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = NotVersionedClientConfiguration(endpoint=endpoint, **kwargs)
+        self._config = NotVersionedClientConfiguration(endpoint=endpoint, api_version=api_version, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

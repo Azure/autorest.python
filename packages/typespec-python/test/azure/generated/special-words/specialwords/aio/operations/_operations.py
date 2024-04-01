@@ -220,12 +220,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: AndModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.AndModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -347,12 +341,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: AsModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.AsModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -474,12 +462,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: AssertModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.AssertModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -601,12 +583,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: AsyncModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.AsyncModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -728,12 +704,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: AwaitModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.AwaitModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -855,12 +825,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: BreakModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.BreakModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -982,12 +946,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ClassModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ClassModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1109,12 +1067,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: Constructor, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.Constructor or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1236,12 +1188,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ContinueModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ContinueModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1363,12 +1309,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: DefModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.DefModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1490,12 +1430,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: DelModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.DelModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1617,12 +1551,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ElifModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ElifModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1744,12 +1672,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ElseModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ElseModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1871,12 +1793,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ExceptModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ExceptModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1998,12 +1914,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ExecModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ExecModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2125,12 +2035,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: FinallyModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.FinallyModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2252,12 +2156,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ForModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ForModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2379,12 +2277,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: FromModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.FromModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2506,12 +2398,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: GlobalModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.GlobalModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2633,12 +2519,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: IfModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.IfModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2760,12 +2640,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ImportModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ImportModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2887,12 +2761,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: InModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.InModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3014,12 +2882,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: IsModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.IsModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3141,12 +3003,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: LambdaModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.LambdaModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3268,12 +3124,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: NotModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.NotModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3395,12 +3245,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: OrModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.OrModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3522,12 +3366,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: PassModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.PassModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3649,12 +3487,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: RaiseModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.RaiseModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3776,12 +3608,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: ReturnModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.ReturnModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3903,12 +3729,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: TryModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.TryModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4030,12 +3850,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: WhileModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.WhileModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4157,12 +3971,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: WithModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.WithModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4284,12 +4092,6 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         :param body: Is one of the following types: YieldModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.YieldModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4429,12 +4231,6 @@ class ModelPropertiesOperations:
 
         :param body: Is one of the following types: SameAsModel, JSON, IO[bytes] Required.
         :type body: ~specialwords.models.SameAsModel or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

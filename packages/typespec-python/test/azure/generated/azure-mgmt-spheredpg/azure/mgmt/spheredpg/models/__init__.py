@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import ArmOperationStatus
+from ._models import ArmOperationStatusNeverResourceProvisioningState
 from ._models import ArmResource
 from ._models import ArmResourceBase
 from ._models import Catalog
@@ -66,7 +66,7 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ArmOperationStatus",
+    "ArmOperationStatusNeverResourceProvisioningState",
     "ArmResource",
     "ArmResourceBase",
     "Catalog",

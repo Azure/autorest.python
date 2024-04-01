@@ -34,6 +34,7 @@ from ._operations import BooleanLiteralOperations
 from ._operations import UnionStringLiteralOperations
 from ._operations import UnionIntLiteralOperations
 from ._operations import UnionFloatLiteralOperations
+from ._operations import UnionEnumValueOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -68,6 +69,7 @@ __all__ = [
     "UnionStringLiteralOperations",
     "UnionIntLiteralOperations",
     "UnionFloatLiteralOperations",
+    "UnionEnumValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

@@ -76,6 +76,8 @@ def build_create_resource_poll_via_operation_location_create_job_request(  # pyl
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs"
 
@@ -418,19 +420,6 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
 
         :param body: Is one of the following types: JobData, JSON, IO[bytes] Required.
         :type body: ~azurecore.lro.rpclegacy.models.JobData or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
          MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]

@@ -28,6 +28,7 @@ from ._models import ModelProperty
 from ._models import NeverProperty
 from ._models import StringLiteralProperty
 from ._models import StringProperty
+from ._models import UnionEnumValueProperty
 from ._models import UnionFloatLiteralProperty
 from ._models import UnionIntLiteralProperty
 from ._models import UnionStringLiteralProperty
@@ -36,11 +37,9 @@ from ._models import UnknownDictProperty
 from ._models import UnknownIntProperty
 from ._models import UnknownStringProperty
 
+from ._enums import ExtendedEnum
 from ._enums import FixedInnerEnum
 from ._enums import InnerEnum
-from ._enums import UnionFloatLiteralPropertyProperty
-from ._enums import UnionIntLiteralPropertyProperty
-from ._enums import UnionStringLiteralPropertyProperty
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -68,6 +67,7 @@ __all__ = [
     "NeverProperty",
     "StringLiteralProperty",
     "StringProperty",
+    "UnionEnumValueProperty",
     "UnionFloatLiteralProperty",
     "UnionIntLiteralProperty",
     "UnionStringLiteralProperty",
@@ -75,11 +75,9 @@ __all__ = [
     "UnknownDictProperty",
     "UnknownIntProperty",
     "UnknownStringProperty",
+    "ExtendedEnum",
     "FixedInnerEnum",
     "InnerEnum",
-    "UnionFloatLiteralPropertyProperty",
-    "UnionIntLiteralPropertyProperty",
-    "UnionStringLiteralPropertyProperty",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

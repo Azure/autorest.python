@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -196,12 +196,12 @@ class DurationProperty(_model_base.Model):
 class FloatLiteralProperty(_model_base.Model):
     """Model with float literal property.
 
-    :ivar property: Property. Default value is 1.2.
+    :ivar property: Property. Default value is 1.25.
     :vartype property: float
     """
 
     property: Optional[float] = rest_field()
-    """Property. Default value is 1.2."""
+    """Property. Default value is 1.25."""
 
     @overload
     def __init__(
@@ -349,21 +349,18 @@ class StringProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with union of float literal property.
 
-    :ivar property: Property. Known values are: 1.2 and 2.3.
-    :vartype property: float or
-     ~typetest.property.optional.models.UnionFloatLiteralPropertyProperty
+    :ivar property: Property. Is either a float type or a float type.
+    :vartype property: float or float
     """
 
-    property: Optional[Union[float, "_models.UnionFloatLiteralPropertyProperty"]] = rest_field()
-    """Property. Known values are: 1.2 and 2.3."""
+    property: Optional[float] = rest_field()
+    """Property. Is either a float type or a float type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[
-            Union[float, "_models.UnionFloatLiteralPropertyProperty"]
-        ] = None,  # pylint: disable=redefined-builtin
+        property: Optional[float] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -381,20 +378,18 @@ class UnionFloatLiteralProperty(_model_base.Model):
 class UnionIntLiteralProperty(_model_base.Model):
     """Model with union of int literal property.
 
-    :ivar property: Property. Known values are: 1 and 2.
-    :vartype property: int or ~typetest.property.optional.models.UnionIntLiteralPropertyProperty
+    :ivar property: Property. Is either a Literal[1] type or a Literal[2] type.
+    :vartype property: int or int
     """
 
-    property: Optional[Union[int, "_models.UnionIntLiteralPropertyProperty"]] = rest_field()
-    """Property. Known values are: 1 and 2."""
+    property: Optional[Literal[1, 2]] = rest_field()
+    """Property. Is either a Literal[1] type or a Literal[2] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[
-            Union[int, "_models.UnionIntLiteralPropertyProperty"]
-        ] = None,  # pylint: disable=redefined-builtin
+        property: Optional[Literal[1, 2]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -412,20 +407,18 @@ class UnionIntLiteralProperty(_model_base.Model):
 class UnionStringLiteralProperty(_model_base.Model):
     """Model with union of string literal property.
 
-    :ivar property: Property. Known values are: "hello" and "world".
-    :vartype property: str or ~typetest.property.optional.models.UnionStringLiteralPropertyProperty
+    :ivar property: Property. Is either a Literal["hello"] type or a Literal["world"] type.
+    :vartype property: str or str
     """
 
-    property: Optional[Union[str, "_models.UnionStringLiteralPropertyProperty"]] = rest_field()
-    """Property. Known values are: \"hello\" and \"world\"."""
+    property: Optional[Literal["hello", "world"]] = rest_field()
+    """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[
-            Union[str, "_models.UnionStringLiteralPropertyProperty"]
-        ] = None,  # pylint: disable=redefined-builtin
+        property: Optional[Literal["hello", "world"]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 

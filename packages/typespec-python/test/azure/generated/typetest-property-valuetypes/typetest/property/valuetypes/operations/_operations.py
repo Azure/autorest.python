@@ -824,6 +824,34 @@ def build_union_float_literal_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+def build_union_enum_value_get_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/property/value-types/union-enum-value"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_union_enum_value_put_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/property/value-types/union-enum-value"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
 class BooleanOperations:
     """
     .. warning::
@@ -963,12 +991,6 @@ class BooleanOperations:
 
         :param body: body. Is one of the following types: BooleanProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.BooleanProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1166,12 +1188,6 @@ class StringOperations:
 
         :param body: body. Is one of the following types: StringProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.StringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1369,12 +1385,6 @@ class BytesOperations:
 
         :param body: body. Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.BytesProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1572,12 +1582,6 @@ class IntOperations:
 
         :param body: body. Is one of the following types: IntProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.IntProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1775,12 +1779,6 @@ class FloatOperations:
 
         :param body: body. Is one of the following types: FloatProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.FloatProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1978,12 +1976,6 @@ class DecimalOperations:
 
         :param body: body. Is one of the following types: DecimalProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DecimalProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2181,12 +2173,6 @@ class Decimal128Operations:
 
         :param body: body. Is one of the following types: Decimal128Property, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.Decimal128Property or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2384,12 +2370,6 @@ class DatetimeOperations:
 
         :param body: body. Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DatetimeProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2587,12 +2567,6 @@ class DurationOperations:
 
         :param body: body. Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.DurationProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2792,12 +2766,6 @@ class EnumOperations:
 
         :param body: body. Is one of the following types: EnumProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.EnumProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2999,12 +2967,6 @@ class ExtensibleEnumOperations:
         :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.ExtensibleEnumProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3207,12 +3169,6 @@ class ModelOperations:
 
         :param body: body. Is one of the following types: ModelProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.ModelProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3418,12 +3374,6 @@ class CollectionsStringOperations:
         :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsStringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3628,12 +3578,6 @@ class CollectionsIntOperations:
         :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsIntProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3843,12 +3787,6 @@ class CollectionsModelOperations:
         :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsModelProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4056,12 +3994,6 @@ class DictionaryStringOperations:
         :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.DictionaryStringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4251,12 +4183,6 @@ class NeverOperations:
 
         :param body: body. Is one of the following types: NeverProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.NeverProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4453,12 +4379,6 @@ class UnknownStringOperations:
         :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownStringProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4656,12 +4576,6 @@ class UnknownIntOperations:
 
         :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.UnknownIntProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4860,12 +4774,6 @@ class UnknownDictOperations:
         :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownDictProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5064,12 +4972,6 @@ class UnknownArrayOperations:
         :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnknownArrayProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5268,12 +5170,6 @@ class StringLiteralOperations:
         :param body: body. Is one of the following types: StringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.StringLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5471,12 +5367,6 @@ class IntLiteralOperations:
 
         :param body: body. Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
         :type body: ~typetest.property.valuetypes.models.IntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5675,12 +5565,6 @@ class FloatLiteralOperations:
         :param body: body. Is one of the following types: FloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.FloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5879,12 +5763,6 @@ class BooleanLiteralOperations:
         :param body: body. Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.BooleanLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5962,6 +5840,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get call.
 
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
@@ -5974,8 +5853,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "str"  # Property. Required. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Default value is "hello". Property. Required. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
         error_map = {
@@ -6024,6 +5903,7 @@ class UnionStringLiteralOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put operation.
 
         :param body: body. Required.
@@ -6040,8 +5920,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Property. Required. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Default value is "hello". Property. Required. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
 
@@ -6081,18 +5961,13 @@ class UnionStringLiteralOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put operation.
 
         :param body: body. Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionStringLiteralProperty or JSON or
          IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6102,8 +5977,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Property. Required. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Default value is "hello". Property. Required. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
         error_map = {
@@ -6182,7 +6057,8 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": 42  # Default value is 42. Property. Required. Is either a
+                      Literal[42] type or a Literal[43] type.
                 }
         """
         error_map = {
@@ -6247,7 +6123,8 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": 42  # Default value is 42. Property. Required. Is either a
+                      Literal[42] type or a Literal[43] type.
                 }
         """
 
@@ -6292,12 +6169,6 @@ class UnionIntLiteralOperations:
         :param body: body. Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionIntLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6307,7 +6178,8 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Property. Required. Known values are: 42 and 43.
+                    "property": 42  # Default value is 42. Property. Required. Is either a
+                      Literal[42] type or a Literal[43] type.
                 }
         """
         error_map = {
@@ -6387,7 +6259,8 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
         error_map = {
@@ -6452,7 +6325,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
 
@@ -6497,12 +6371,6 @@ class UnionFloatLiteralOperations:
         :param body: body. Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
          Required.
         :type body: ~typetest.property.valuetypes.models.UnionFloatLiteralProperty or JSON or IO[bytes]
-<<<<<<< HEAD
-        :keyword content_type: Body parameter's content type. Known values are application/json.
-         Default value is None.
-        :paramtype content_type: str
-=======
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6512,7 +6380,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Property. Required. Known values are: 43.125 and 46.875.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
+                      a float type or a float type.
                 }
         """
         error_map = {
@@ -6537,6 +6406,204 @@ class UnionFloatLiteralOperations:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_union_float_literal_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class UnionEnumValueOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.valuetypes.ValueTypesClient`'s
+        :attr:`union_enum_value` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(self, **kwargs: Any) -> _models.UnionEnumValueProperty:
+        """Get call.
+
+        :return: UnionEnumValueProperty. The UnionEnumValueProperty is compatible with MutableMapping
+        :rtype: ~typetest.property.valuetypes.models.UnionEnumValueProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Property. Required.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.UnionEnumValueProperty] = kwargs.pop("cls", None)
+
+        _request = build_union_enum_value_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.UnionEnumValueProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.UnionEnumValueProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.valuetypes.models.UnionEnumValueProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Property. Required.
+                }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.UnionEnumValueProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: UnionEnumValueProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.UnionEnumValueProperty or JSON or IO[bytes]
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Property. Required.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_enum_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

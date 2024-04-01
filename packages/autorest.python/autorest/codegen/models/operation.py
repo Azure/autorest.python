@@ -54,7 +54,7 @@ def is_internal(target: Optional[BaseType]) -> bool:
     return isinstance(target, ModelType) and target.base == "dpg" and target.internal
 
 
-class OperationBase(  # pylint: disable=too-many-public-methods
+class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instance-attributes
     Generic[ResponseType], BaseBuilder[ParameterList, List["Operation"]]
 ):
     def __init__(
@@ -91,6 +91,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.internal:
             self.name = "_" + self.name
         self.has_etag: bool = self.yaml_data.get("hasEtag", False)
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
+            "crossLanguageDefinitionId"
+        )
 
     @property
     def has_form_data_body(self):

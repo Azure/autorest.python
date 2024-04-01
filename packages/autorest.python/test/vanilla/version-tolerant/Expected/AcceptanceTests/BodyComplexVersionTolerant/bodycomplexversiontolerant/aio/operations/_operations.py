@@ -3587,6 +3587,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4011,6 +4012,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4079,6 +4081,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4166,6 +4169,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4252,6 +4256,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4487,6 +4492,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4524,6 +4530,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4575,6 +4582,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4975,6 +4983,7 @@ class PolymorphicrecursiveOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -5663,6 +5672,7 @@ class FlattencomplexOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 

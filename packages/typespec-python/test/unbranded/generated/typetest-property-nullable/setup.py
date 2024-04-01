@@ -60,13 +60,9 @@ setup(
         "typetest.property.nullable": ["py.typed"],
     },
     install_requires=[
-        "isodate<1.0.0,>=0.6.1",
+        "isodate>=0.6.1",
         "corehttp[requests]",
-<<<<<<< HEAD
-        "typing-extensions>=4.3.0; python_version<'3.8.0'",
-=======
         "typing-extensions>=4.6.0",
->>>>>>> bbd3ee4e036543be9ce5c9dc7dc99d6e9c80d07a
     ],
     python_requires=">=3.8",
 )

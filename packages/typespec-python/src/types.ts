@@ -18,7 +18,6 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase, getAddedOn } from "./utils.js";
-import { getModelsMode } from "./emitter.js";
 import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
@@ -42,7 +41,7 @@ function isEmptyModel(type: SdkType): boolean {
         !type.baseModel &&
         !type.discriminatedSubtypes &&
         !type.discriminatorValue &&
-        (type.name === "" || type.name === "object")
+        (type.generatedName || type.name === "object")
     );
 }
 
@@ -182,7 +181,7 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 
 function emitProperty<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkBodyModelPropertyType): Record<string, any> {
     return {
-        clientName: camelToSnakeCase(type.nameInClient),
+        clientName: camelToSnakeCase(type.name),
         wireName: type.serializedName,
         type: getType(context, type.type),
         optional: type.optional,
@@ -205,15 +204,16 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(context: Pytho
     const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
-        name: type.generatedName ?? type.name,
+        name: type.name,
         description: type.description,
         parents: parents,
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
-        snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        snakeCaseName: camelToSnakeCase(type.name),
+        base: type.generatedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
 
     typesMap.set(type, newValue);
@@ -243,8 +243,28 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    if (type.generatedName) {
+        const types = [];
+        for (const value of type.values) {
+            types.push(getSimpleTypeResult({
+                type: "constant",
+                value: value.value,
+                valueType: emitBuiltInType(type.valueType),
+            }));
+        }
+        if (!type.isFixed) {
+            types.push(emitBuiltInType(type.valueType));
+        }
+        return {
+            description: "",
+            internal: true,
+            type: "combined",
+            types,
+            xmlMetadata: {},
+        };
+    }
     const values: Record<string, any>[] = [];
-    const name = type.generatedName ?? type.name;
+    const name = type.name;
     const newValue = {
         name: name,
         snakeCaseName: camelToSnakeCase(name),
@@ -254,6 +274,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         valueType: emitBuiltInType(type.valueType),
         values,
         xmlMetadata: {},
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
     for (const value of type.values) {
         newValue.values.push(emitEnumMember(value, newValue));
@@ -352,9 +373,9 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
 
 function emitUnion<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkUnionType): Record<string, any> {
     return getSimpleTypeResult({
-        name: type.name,
-        snakeCaseName: camelToSnakeCase(type.name || ""),
-        description: `Type of ${type.name}`,
+        name: type.generatedName ? undefined : type.name,
+        snakeCaseName: type.generatedName ? undefined : camelToSnakeCase(type.name),
+        description: type.generatedName ? "" : `Type of ${type.name}`,
         internal: true,
         type: "combined",
         types: type.values.map((x) => getType(context, x)),
