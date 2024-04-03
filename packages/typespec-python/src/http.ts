@@ -112,7 +112,7 @@ function addPagingInformation(
         name: camelToSnakeCase(method.name),
         discriminator: "paging",
         exposeStreamKeyword: false,
-        itemName: method.getResponseMapping(),
+        itemName: method.response.resultPath,
         continuationTokenName: method.nextLinkPath,
         itemType,
         description: getDescriptionAndSummary(method).description,
@@ -183,7 +183,11 @@ function emitHttpOperation(
         exposeStreamKeyword: true,
         crossLanguageDefinitionId: method ? getCrossLanguageDefinitionId(method) : undefined,
     };
-    if (result.bodyParameter && operation.bodyParam?.type.kind === "model" && operation.bodyParam?.type.isGeneratedName) {
+    if (
+        result.bodyParameter &&
+        operation.bodyParam?.type.kind === "model" &&
+        operation.bodyParam?.type.isGeneratedName
+    ) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
         result.bodyParameter.type.base = "json";
@@ -330,12 +334,17 @@ function emitHttpResponse(
     }
     return {
         headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
-        statusCodes: typeof statusCodes === "object" ? [(statusCodes as HttpStatusCodeRange).start] : statusCodes === "*" ? ["default"] : [statusCodes],
+        statusCodes:
+            typeof statusCodes === "object"
+                ? [(statusCodes as HttpStatusCodeRange).start]
+                : statusCodes === "*"
+                ? ["default"]
+                : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,
         defaultContentType: response.defaultContentType ?? "application/json",
-        resultProperty: method?.getResponseMapping(),
+        resultProperty: method?.response.resultPath,
     };
 }
 

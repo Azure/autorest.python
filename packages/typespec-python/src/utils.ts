@@ -29,7 +29,10 @@ export function removeUnderscoresFromNamespace(name?: string): string {
     return (name || "").replace(/_/g, "");
 }
 
-export function getImplementation<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): "Client" | "Method" {
+export function getImplementation<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    parameter: SdkParameter | SdkHttpParameter,
+): "Client" | "Method" {
     if (parameter.onClient) return "Client";
     if (isSubscriptionId(context, parameter)) return "Client";
     return "Method";
@@ -80,8 +83,15 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
     return type.apiVersions[0];
 }
 
-export function isSubscriptionId<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, parameter: SdkParameter | SdkHttpParameter): boolean {
-    return Boolean(context.arm) && (parameter.kind === "query" || parameter.kind === "path" || parameter.kind === "header") && parameter.serializedName === "subscriptionId";
+export function isSubscriptionId<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    parameter: SdkParameter | SdkHttpParameter,
+): boolean {
+    return (
+        Boolean(context.arm) &&
+        (parameter.kind === "query" || parameter.kind === "path" || parameter.kind === "header") &&
+        parameter.serializedName === "subscriptionId"
+    );
 }
 
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(

@@ -18,7 +18,8 @@ export interface PythonEmitterOptions {
     "emit-cross-language-definition-file"?: boolean;
 }
 
-export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation> extends SdkContext<PythonEmitterOptions, TServiceOperation> {
+export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
+    extends SdkContext<PythonEmitterOptions, TServiceOperation> {
     __endpointPathParameters: Record<string, any>[];
     __subscriptionIdPathParameter: Record<string, any> | undefined;
 }

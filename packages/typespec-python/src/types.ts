@@ -118,9 +118,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
     }
 }
 
-function emitCredential(
-    credential: SdkCredentialType
-): Record<string, any> {
+function emitCredential(credential: SdkCredentialType): Record<string, any> {
     let credential_type: Record<string, any> = {};
     const scheme = credential.scheme;
     if (scheme.type === "oauth2") {
@@ -179,7 +177,10 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
-function emitProperty<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkBodyModelPropertyType): Record<string, any> {
+function emitProperty<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkBodyModelPropertyType,
+): Record<string, any> {
     return {
         clientName: camelToSnakeCase(type.name),
         wireName: type.serializedName,
@@ -194,7 +195,11 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(context: Py
     };
 }
 
-function emitModel<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkModelType, fromBody: boolean): Record<string, any> {
+function emitModel<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkModelType,
+    fromBody: boolean,
+): Record<string, any> {
     if (isEmptyModel(type)) {
         return KnownTypes.any;
     }
@@ -246,11 +251,13 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (type.isGeneratedName) {
         const types = [];
         for (const value of type.values) {
-            types.push(getSimpleTypeResult({
-                type: "constant",
-                value: value.value,
-                valueType: emitBuiltInType(type.valueType),
-            }));
+            types.push(
+                getSimpleTypeResult({
+                    type: "constant",
+                    value: value.value,
+                    valueType: emitBuiltInType(type.valueType),
+                }),
+            );
         }
         if (!type.isFixed) {
             types.push(emitBuiltInType(type.valueType));
@@ -308,7 +315,10 @@ function emitDurationOrDateType(type: SdkDurationType | SdkDatetimeType): Record
     });
 }
 
-function emitArrayOrDict<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkArrayType | SdkDictionaryType): Record<string, any> {
+function emitArrayOrDict<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkArrayType | SdkDictionaryType,
+): Record<string, any> {
     const kind = type.kind === "array" ? "list" : type.kind;
     return getSimpleTypeResult({
         type: kind,
@@ -371,7 +381,10 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
     });
 }
 
-function emitUnion<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkUnionType): Record<string, any> {
+function emitUnion<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkUnionType,
+): Record<string, any> {
     return getSimpleTypeResult({
         name: type.isGeneratedName ? undefined : type.name,
         snakeCaseName: type.isGeneratedName ? undefined : camelToSnakeCase(type.name),

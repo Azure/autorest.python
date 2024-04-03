@@ -99,17 +99,19 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
             }
             return params;
         } else {
-            return [{
-                optional: parameter.optional,
-                description: parameter.description || "",
-                clientName: context.arm ? "base_url" : "endpoint",
-                clientDefaultValue: parameter.type.serverUrl,
-                wireName: "$host",
-                location: "path",
-                type: KnownTypes.string,
-                implementation: getImplementation(context, parameter),
-                inOverload: false,
-            }];
+            return [
+                {
+                    optional: parameter.optional,
+                    description: parameter.description || "",
+                    clientName: context.arm ? "base_url" : "endpoint",
+                    clientDefaultValue: parameter.type.serverUrl,
+                    wireName: "$host",
+                    location: "path",
+                    type: KnownTypes.string,
+                    implementation: getImplementation(context, parameter),
+                    inOverload: false,
+                },
+            ];
         }
     }
     const base = {
@@ -119,12 +121,14 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
         location: parameter.kind,
     };
     if (parameter.isApiVersionParam) {
-        return [{
-            ...base,
-            location: "query",
-            wireName: "api-version",
-            in_docstring: false,
-        }];
+        return [
+            {
+                ...base,
+                location: "query",
+                wireName: "api-version",
+                in_docstring: false,
+            },
+        ];
     }
     return [base];
 }
@@ -201,11 +205,16 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     if (client.initialization) {
         context.__endpointPathParameters = [];
     }
-    const parameters = client.initialization?.properties.map((x) => emitMethodParameter(context, client, x)).reduce((a, b) => [...a, ...b]) ?? [];
+    const parameters =
+        client.initialization?.properties
+            .map((x) => emitMethodParameter(context, client, x))
+            .reduce((a, b) => [...a, ...b]) ?? [];
     if (context.__subscriptionIdPathParameter) {
         parameters.push(context.__subscriptionIdPathParameter);
     }
-    const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as SdkEndpointParameter | undefined;
+    const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as
+        | SdkEndpointParameter
+        | undefined;
     const operationGroups = emitOperationGroups(context, client, client, "");
     return {
         name: client.name,

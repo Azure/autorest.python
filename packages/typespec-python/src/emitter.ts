@@ -41,7 +41,9 @@ function addDefaultOptions(sdkContext: SdkContext) {
         options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
     }
     if (!options["package-name"]) {
-        options["package-name"] = removeUnderscoresFromNamespace(sdkContext.experimental_sdkPackage.rootNamespace.toLowerCase()).replace(/\./g, "-");
+        options["package-name"] = removeUnderscoresFromNamespace(
+            sdkContext.experimental_sdkPackage.rootNamespace.toLowerCase(),
+        ).replace(/\./g, "-");
     }
     if (options.flavor !== "azure") {
         // if they pass in a flavor other than azure, we want to ignore the value
