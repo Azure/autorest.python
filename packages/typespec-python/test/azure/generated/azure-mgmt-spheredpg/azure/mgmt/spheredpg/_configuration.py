@@ -26,14 +26,14 @@ class AzureSphereClientConfiguration:  # pylint: disable=too-many-instance-attri
 
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword api_version: The API version to use for this operation. Default value is
-     "2022-09-01-preview". Note that overriding this default value may result in unsupported
+    :keyword api_version: The default api-version parameter type. Default value is
+     ApiVersionParameter(). Note that overriding this default value may result in unsupported
      behavior.
-    :paramtype api_version: str
+    :paramtype api_version: ~azure.mgmt.spheredpg.models.ApiVersionParameter
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        api_version: str = kwargs.pop("api_version", "2022-09-01-preview")
+        api_version: str = kwargs.pop("api_version", ApiVersionParameter())
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

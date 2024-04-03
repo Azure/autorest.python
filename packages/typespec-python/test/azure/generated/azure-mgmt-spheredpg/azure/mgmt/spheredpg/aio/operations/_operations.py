@@ -1165,8 +1165,8 @@ class CatalogsOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1174,7 +1174,7 @@ class CatalogsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1183,10 +1183,10 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -1220,7 +1220,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -1237,7 +1237,7 @@ class CatalogsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1249,13 +1249,13 @@ class CatalogsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -3310,8 +3310,8 @@ class ImagesOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -3319,7 +3319,7 @@ class ImagesOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3330,10 +3330,10 @@ class ImagesOperations:
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -3367,7 +3367,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -3385,7 +3385,7 @@ class ImagesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3397,13 +3397,13 @@ class ImagesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -4268,8 +4268,8 @@ class DeviceGroupsOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -4277,7 +4277,7 @@ class DeviceGroupsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -4291,10 +4291,10 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4328,7 +4328,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -4347,7 +4347,7 @@ class DeviceGroupsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4359,13 +4359,13 @@ class DeviceGroupsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -4433,8 +4433,8 @@ class DeviceGroupsOperations:
             deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -7020,8 +7020,8 @@ class DeploymentsOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -7035,7 +7035,7 @@ class DeploymentsOperations:
         device_group_name: str,
         deployment_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7052,10 +7052,10 @@ class DeploymentsOperations:
          current deployment for the associated device group. Required.
         :type deployment_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -7089,7 +7089,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -7109,7 +7109,7 @@ class DeploymentsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -7121,13 +7121,13 @@ class DeploymentsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -7991,8 +7991,8 @@ class DevicesOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -8006,7 +8006,7 @@ class DevicesOperations:
         device_group_name: str,
         device_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a Device.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -8021,10 +8021,10 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8058,7 +8058,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -8078,7 +8078,7 @@ class DevicesOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -8090,13 +8090,13 @@ class DevicesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -9510,8 +9510,8 @@ class ProductsOperations:
 
         response_headers = {}
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -9519,7 +9519,7 @@ class ProductsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState]:
+    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
         """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name'.
 
@@ -9531,10 +9531,10 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusNeverResourceProvisioningState. The
-         ArmOperationStatusNeverResourceProvisioningState is compatible with MutableMapping
+         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
+         compatible with MutableMapping
         :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusNeverResourceProvisioningState]
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9568,7 +9568,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusNeverResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -9586,7 +9586,7 @@ class ProductsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusNeverResourceProvisioningState, response.json())
+            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -9598,13 +9598,13 @@ class ProductsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusNeverResourceProvisioningState](
+        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -9670,8 +9670,8 @@ class ProductsOperations:
             deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

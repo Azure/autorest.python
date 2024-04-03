@@ -274,7 +274,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -311,7 +311,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -348,7 +348,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -397,7 +397,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -508,7 +508,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -545,7 +545,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -582,7 +582,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.
@@ -631,7 +631,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "etag": "str",  # The entity tag for this resource. Required.
                     "id": 0,  # The user's id. Required.

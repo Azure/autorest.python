@@ -215,7 +215,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                     "role": "str"  # The role of user. Required.
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -244,7 +244,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -273,7 +273,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.
@@ -306,7 +306,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                     "role": "str"  # The role of user. Required.
                 }
 
-                # response body for status code(s): 200, 201
+                # response body for status code(s): 201, 200
                 response == {
                     "name": "str",  # The name of user. Required.
                     "role": "str"  # The role of user. Required.

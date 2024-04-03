@@ -38,7 +38,7 @@ export function getImplementation<TServiceOperation extends SdkServiceOperation>
 export function isAbstract<TServiceOperation extends SdkServiceOperation>(
     method: SdkServiceMethod<TServiceOperation>,
 ): boolean {
-    return method.operation.bodyParams[0]?.contentTypes.length > 1;
+    return (method.operation.bodyParam?.contentTypes.length ?? 0) > 1;
 }
 
 export function getDelimeterAndExplode(
@@ -99,7 +99,7 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
         optional: parameter.optional,
         description: parameter.description || "",
         addedOn: getAddedOn(context, parameter),
-        clientName: camelToSnakeCase(parameter.nameInClient),
+        clientName: camelToSnakeCase(parameter.name),
         inOverload: false,
         isApiVersion: parameter.isApiVersionParam,
         type,

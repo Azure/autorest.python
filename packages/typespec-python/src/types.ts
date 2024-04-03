@@ -41,7 +41,7 @@ function isEmptyModel(type: SdkType): boolean {
         !type.baseModel &&
         !type.discriminatedSubtypes &&
         !type.discriminatorValue &&
-        (type.generatedName || type.name === "object")
+        (type.isGeneratedName || type.name === "object")
     );
 }
 
@@ -211,7 +211,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(context: Pytho
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: camelToSnakeCase(type.name),
-        base: type.generatedName && fromBody ? "json" : "dpg",
+        base: type.isGeneratedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
@@ -243,7 +243,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
-    if (type.generatedName) {
+    if (type.isGeneratedName) {
         const types = [];
         for (const value of type.values) {
             types.push(getSimpleTypeResult({
@@ -373,9 +373,9 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
 
 function emitUnion<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkUnionType): Record<string, any> {
     return getSimpleTypeResult({
-        name: type.generatedName ? undefined : type.name,
-        snakeCaseName: type.generatedName ? undefined : camelToSnakeCase(type.name),
-        description: type.generatedName ? "" : `Type of ${type.name}`,
+        name: type.isGeneratedName ? undefined : type.name,
+        snakeCaseName: type.isGeneratedName ? undefined : camelToSnakeCase(type.name),
+        description: type.isGeneratedName ? "" : `Type of ${type.name}`,
         internal: true,
         type: "combined",
         types: type.values.map((x) => getType(context, x)),

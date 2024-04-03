@@ -18,7 +18,11 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmOperationStatusNeverResourceProvisioningState(_model_base.Model):  # pylint: disable=name-too-long
+class ApiVersionParameter(_model_base.Model):
+    """The default api-version parameter type."""
+
+
+class ArmOperationStatusResourceProvisioningState(_model_base.Model):  # pylint: disable=name-too-long
     """Standard Azure Resource Manager operation status response.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
@@ -203,6 +207,42 @@ class Catalog(TrackedResourceBase):
         super().__init__(*args, **kwargs)
 
 
+class CatalogListResult(_model_base.Model):
+    """The response of a Catalog list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Catalog items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Catalog]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Catalog"] = rest_field()
+    """The Catalog items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Catalog"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class CatalogProperties(_model_base.Model):
     """Catalog properties.
 
@@ -323,6 +363,42 @@ class CertificateChainResponse(_model_base.Model):
 
     certificate_chain: Optional[str] = rest_field(name="certificateChain", visibility=["read"])
     """The certificate chain."""
+
+
+class CertificateListResult(_model_base.Model):
+    """The response of a Certificate list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Certificate items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Certificate]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Certificate"] = rest_field()
+    """The Certificate items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Certificate"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class CertificateProperties(_model_base.Model):
@@ -501,6 +577,42 @@ class Deployment(ProxyResourceBase):
         super().__init__(*args, **kwargs)
 
 
+class DeploymentListResult(_model_base.Model):
+    """The response of a Deployment list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Deployment items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Deployment]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Deployment"] = rest_field()
+    """The Deployment items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Deployment"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class DeploymentProperties(_model_base.Model):
     """The properties of deployment.
 
@@ -623,6 +735,42 @@ class DeviceGroup(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.DeviceGroupProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroupListResult(_model_base.Model):
+    """The response of a DeviceGroup list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The DeviceGroup items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.DeviceGroup]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.DeviceGroup"] = rest_field()
+    """The DeviceGroup items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.DeviceGroup"],
+        next_link: Optional[str] = None,
     ):
         ...
 
@@ -853,6 +1001,42 @@ class DeviceInsight(_model_base.Model):
         event_class: str,
         event_type: str,
         event_count: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceListResult(_model_base.Model):
+    """The response of a Device list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Device items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Device]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Device"] = rest_field()
+    """The Device items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Device"],
+        next_link: Optional[str] = None,
     ):
         ...
 
@@ -1139,6 +1323,42 @@ class Image(ProxyResourceBase):
         super().__init__(*args, **kwargs)
 
 
+class ImageListResult(_model_base.Model):
+    """The response of a Image list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Image items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Image]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Image"] = rest_field()
+    """The Image items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Image"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class ImageProperties(_model_base.Model):
     """The properties of image.
 
@@ -1363,6 +1583,43 @@ class OperationDisplay(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class PagedOperation(_model_base.Model):
+    """A list of REST API operations supported by an Azure Resource Provider. It contains an URL link
+    to get the next set of results.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Operation items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Operation]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Operation"] = rest_field()
+    """The Operation items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Operation"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class Product(ProxyResourceBase):
     """An product resource belonging to a catalog resource.
 
@@ -1392,6 +1649,42 @@ class Product(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.ProductProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProductListResult(_model_base.Model):
+    """The response of a Product list operation.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The Product items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.Product]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.Product"] = rest_field()
+    """The Product items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.Product"],
+        next_link: Optional[str] = None,
     ):
         ...
 

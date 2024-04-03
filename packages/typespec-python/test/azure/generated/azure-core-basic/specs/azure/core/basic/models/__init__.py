@@ -10,6 +10,7 @@ from ._models import FirstItem
 from ._models import ListItemInputBody
 from ._models import SecondItem
 from ._models import User
+from ._models import UserListResults
 from ._models import UserOrder
 
 from ._enums import ListItemInputExtensibleEnum
@@ -22,6 +23,7 @@ __all__ = [
     "ListItemInputBody",
     "SecondItem",
     "User",
+    "UserListResults",
     "UserOrder",
     "ListItemInputExtensibleEnum",
 ]

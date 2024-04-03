@@ -10,11 +10,13 @@ import {
     SdkServiceMethod,
     SdkServiceOperation,
     UsageFlags,
+    getCrossLanguagePackageId,
 } from "@azure-tools/typespec-client-generator-core";
 import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
 import { PythonSdkContext } from "./lib.js";
+import { ignoreDiagnostics } from "@typespec/compiler";
 
 function emitBasicMethod<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
@@ -210,9 +212,9 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         description: client.description ?? "",
         parameters,
         operationGroups,
-        url: endpointParameter?.type.serverUrl ?? "",
+        url: endpointParameter?.type.serverUrl,
         apiVersions: client.apiVersions,
-        arm: client.arm,
+        arm: context.arm,
     };
 }
 
@@ -239,7 +241,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         getType(sdkContext, sdkEnum);
     }
     for (const client of sdkPackage.clients) {
-        if (client.initialization) {
+        if (client.initialization.access === "public") {
             // right now to keep python changes minimal, we're just supporting top level clients
             codeModel["clients"].push(emitClient(sdkContext, client));
         }
@@ -249,5 +251,6 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+    codeModel["crossLanguagePackageId"] = ignoreDiagnostics(getCrossLanguagePackageId(sdkContext));
     return codeModel;
 }

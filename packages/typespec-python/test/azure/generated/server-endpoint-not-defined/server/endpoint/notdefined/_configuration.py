@@ -18,10 +18,16 @@ class NotDefinedClientConfiguration:  # pylint: disable=too-many-instance-attrib
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :param endpoint: Service host. Required.
+    :type endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
 
+        self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "server-endpoint-notdefined/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

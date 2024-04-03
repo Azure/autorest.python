@@ -12,10 +12,10 @@ import {
     SdkQueryParameter,
     SdkServiceMethod,
     SdkServiceResponseHeader,
+    getCrossLanguageDefinitionId,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
-    capitalize,
     emitParamBase,
     getAddedOn,
     getDelimeterAndExplode,
@@ -25,8 +25,9 @@ import {
     isAzureCoreModel,
     isSubscriptionId,
 } from "./utils.js";
-import { KnownTypes, getSimpleTypeResult, getType } from "./types.js";
+import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
+import { HttpStatusCodeRange } from "@typespec/http";
 
 function isContentTypeParameter(parameter: SdkHeaderParameter) {
     return parameter.serializedName.toLowerCase() === "content-type";
@@ -56,9 +57,9 @@ function emitInitialLroHttpMethod(
     method: SdkLroServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
     operationGroupName: string,
 ): Record<string, any> {
-    const initialOperation = emitHttpOperation(context, rootClient, operationGroupName, method.initialOperation);
+    const initialOperation = emitHttpOperation(context, rootClient, operationGroupName, method.operation);
     initialOperation.responses.forEach((resp: Record<string, any>) => {
-        if (method.initialOperation.responses[resp.statusCodes[0]]?.type) {
+        if (method.operation.responses.get(resp.statusCodes[0])?.type) {
             resp["type"] = KnownTypes.anyObject;
         }
     });
@@ -159,17 +160,17 @@ function emitHttpOperation(
 ): Record<string, any> {
     const responses: Record<string, any>[] = [];
     const exceptions: Record<string, any>[] = [];
-    for (const [statusCodes, response] of Object.entries(operation.responses)) {
+    for (const [statusCodes, response] of operation.responses) {
         responses.push(emitHttpResponse(context, statusCodes, response, method)!);
     }
-    for (const [statusCodes, exception] of Object.entries(operation.exceptions)) {
+    for (const [statusCodes, exception] of operation.exceptions) {
         exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
     }
     const result = {
         url: operation.path,
         method: operation.verb.toUpperCase(),
         parameters: emitHttpParameters(context, rootClient, operation),
-        bodyParameter: emitHttpBodyParameter(context, operation.bodyParams),
+        bodyParameter: emitHttpBodyParameter(context, operation.bodyParam),
         responses,
         exceptions,
         groupName: operationGroupName,
@@ -180,8 +181,9 @@ function emitHttpOperation(
         apiVersions: [],
         wantTracing: true,
         exposeStreamKeyword: true,
+        crossLanguageDefinitionId: method ? getCrossLanguageDefinitionId(method) : undefined,
     };
-    if (result.bodyParameter && operation.bodyParams[0]?.type.kind === "model" && operation.bodyParams[0]?.type.generatedName) {
+    if (result.bodyParameter && operation.bodyParam?.type.kind === "model" && operation.bodyParam?.type.isGeneratedName) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
         result.bodyParameter.type.base = "json";
@@ -298,15 +300,15 @@ function emitHttpParameters(
 
 function emitHttpBodyParameter(
     context: PythonSdkContext<SdkHttpOperation>,
-    bodyParams: SdkBodyParameter[],
+    bodyParam?: SdkBodyParameter,
 ): Record<string, any> | undefined {
-    if (bodyParams.length === 0) return undefined;
-    const bodyParam = bodyParams[0];
+    if (bodyParam === undefined) return undefined;
     return {
         ...emitParamBase(context, bodyParam, true),
         contentTypes: bodyParam.contentTypes,
         location: bodyParam.kind,
-        wireName: bodyParam.nameInClient,
+        clientName: bodyParam.isGeneratedName ? "body" : camelToSnakeCase(bodyParam.name),
+        wireName: bodyParam.isGeneratedName ? "body" : bodyParam.name,
         implementation: getImplementation(context, bodyParam),
         clientDefaultValue: bodyParam.clientDefaultValue,
         defaultContentType: bodyParam.defaultContentType,
@@ -315,7 +317,7 @@ function emitHttpBodyParameter(
 
 function emitHttpResponse(
     context: PythonSdkContext<SdkHttpOperation>,
-    statusCodes: string,
+    statusCodes: HttpStatusCodeRange | number | "*",
     response: SdkHttpResponse,
     method?: SdkServiceMethod<SdkHttpOperation>,
 ): Record<string, any> | undefined {
@@ -328,7 +330,7 @@ function emitHttpResponse(
     }
     return {
         headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
-        statusCodes: statusCodes === "*" ? ["default"] : statusCodes.split(",").map((x) => parseInt(x)),
+        statusCodes: typeof statusCodes === "object" ? [(statusCodes as HttpStatusCodeRange).start] : statusCodes === "*" ? ["default"] : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,
