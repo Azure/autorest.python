@@ -18,10 +18,6 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ApiVersionParameter(_model_base.Model):
-    """The default api-version parameter type."""
-
-
 class ArmOperationStatusResourceProvisioningState(_model_base.Model):  # pylint: disable=name-too-long
     """Standard Azure Resource Manager operation status response.
 

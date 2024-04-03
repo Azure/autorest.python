@@ -59,10 +59,10 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service host. Default value is "https://management.azure.com".
     :type base_url: str
-    :keyword api_version: The default api-version parameter type. Default value is
-     ApiVersionParameter(). Note that overriding this default value may result in unsupported
+    :keyword api_version: The API version to use for this operation. Default value is
+     "2022-09-01-preview". Note that overriding this default value may result in unsupported
      behavior.
-    :paramtype api_version: ~azure.mgmt.spheredpg.models.ApiVersionParameter
+    :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """

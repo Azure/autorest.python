@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import ApiVersionParameter
 from ._models import ArmOperationStatusResourceProvisioningState
 from ._models import ArmResource
 from ._models import ArmResourceBase
@@ -75,7 +74,6 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ApiVersionParameter",
     "ArmOperationStatusResourceProvisioningState",
     "ArmResource",
     "ArmResourceBase",
