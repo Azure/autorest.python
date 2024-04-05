@@ -1,5 +1,25 @@
 # Release
 
+## 2023-04-05 - 0.23.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.55.0`      |
+| `@typespec/http`                                                        | `0.55.0`      |
+| `@typespec/rest`                                                        | `0.55.0`      |
+| `@typespec/versioning`                                                  | `0.55.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.1`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+**Other Changes**
+
+- Refactor code to use the type ecosystem from "@azure-tools/typespec-client-generator-core" #2476
+
 ## 2023-03-22 - 0.22.5
 
 | Library                                                                 | Min Version   |

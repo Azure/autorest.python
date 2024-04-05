@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.22.5",
+  "version": "0.23.0",
   "author": "Microsoft Corporation",
   "description": "TypeSpec emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
