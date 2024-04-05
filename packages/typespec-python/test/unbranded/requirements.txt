@@ -13,7 +13,6 @@ corehttp==1.0.0b3
 -e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
--e ./generated/projection-projected-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/serialization-encoded-name-json

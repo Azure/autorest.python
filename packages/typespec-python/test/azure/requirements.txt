@@ -24,7 +24,6 @@ azure-core==1.30.0
 -e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
--e ./generated/projection-projected-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/serialization-encoded-name-json
