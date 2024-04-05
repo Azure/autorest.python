@@ -1331,7 +1331,8 @@ class _OperationSerializer(
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
                         retval.append(
-                            f"    {status_code}: cast(Type[HttpResponseError], lambda response: HttpResponseError(response=response"
+                            f"    {status_code}: cast(Type[HttpResponseError], "
+                            "lambda response: HttpResponseError(response=response"
                             f"{error_model_str}{error_format_str})),"
                         )
         else:
