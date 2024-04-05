@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -154,7 +154,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -201,7 +201,7 @@ class CreateResourcePollViaOperationLocationOperations:  # pylint: disable=name-
     def _create_job_initial(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

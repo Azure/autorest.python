@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -410,7 +410,7 @@ class StringOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -469,7 +469,7 @@ class StringOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -589,7 +589,7 @@ class StringOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -712,7 +712,7 @@ class StringOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -792,7 +792,7 @@ class BytesOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -851,7 +851,7 @@ class BytesOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -971,7 +971,7 @@ class BytesOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1094,7 +1094,7 @@ class BytesOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1174,7 +1174,7 @@ class DatetimeOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1233,7 +1233,7 @@ class DatetimeOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1353,7 +1353,7 @@ class DatetimeOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1476,7 +1476,7 @@ class DatetimeOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1556,7 +1556,7 @@ class DurationOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1615,7 +1615,7 @@ class DurationOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1735,7 +1735,7 @@ class DurationOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1858,7 +1858,7 @@ class DurationOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1940,7 +1940,7 @@ class CollectionsByteOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2001,7 +2001,7 @@ class CollectionsByteOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2129,7 +2129,7 @@ class CollectionsByteOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2260,7 +2260,7 @@ class CollectionsByteOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2345,7 +2345,7 @@ class CollectionsModelOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2409,7 +2409,7 @@ class CollectionsModelOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2541,7 +2541,7 @@ class CollectionsModelOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2676,7 +2676,7 @@ class CollectionsModelOperations:
                     "requiredProperty": "str"  # Required property. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

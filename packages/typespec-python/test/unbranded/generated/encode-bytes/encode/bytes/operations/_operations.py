@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterator, List, Mapping, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -364,7 +364,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -409,7 +409,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -454,7 +454,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -501,7 +501,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -656,7 +656,7 @@ class PropertyOperations:
                     "value": bytes("bytes", encoding="utf-8")  # Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -809,7 +809,7 @@ class PropertyOperations:
                     "value": bytes("bytes", encoding="utf-8")  # Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -962,7 +962,7 @@ class PropertyOperations:
                     "value": bytes("bytes", encoding="utf-8")  # Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1132,7 +1132,7 @@ class PropertyOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1211,7 +1211,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1256,7 +1256,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1301,7 +1301,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1348,7 +1348,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1411,7 +1411,7 @@ class RequestBodyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1460,7 +1460,7 @@ class RequestBodyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1511,7 +1511,7 @@ class RequestBodyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1560,7 +1560,7 @@ class RequestBodyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1609,7 +1609,7 @@ class RequestBodyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1674,7 +1674,7 @@ class ResponseBodyOperations:
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1723,7 +1723,7 @@ class ResponseBodyOperations:
         :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1769,7 +1769,7 @@ class ResponseBodyOperations:
         :rtype: Iterator[bytes]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1815,7 +1815,7 @@ class ResponseBodyOperations:
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1864,7 +1864,7 @@ class ResponseBodyOperations:
         :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

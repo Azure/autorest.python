@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -121,7 +121,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -181,7 +181,7 @@ class StorageAccountsOperations:
         parameters: Union[_models.StorageAccountCreateParameters, IO[bytes]],
         **kwargs: Any
     ) -> Optional[_models.StorageAccount]:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -395,7 +395,7 @@ class StorageAccountsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -453,7 +453,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -599,7 +599,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -667,7 +667,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -725,7 +725,7 @@ class StorageAccountsOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))
         cls: ClsType[_models.StorageAccountListResult] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -807,7 +807,7 @@ class StorageAccountsOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._config.api_version))
         cls: ClsType[_models.StorageAccountListResult] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -893,7 +893,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

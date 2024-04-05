@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Mapping, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -129,7 +129,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -176,7 +176,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -223,7 +223,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -306,7 +306,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -361,7 +361,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -444,7 +444,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -499,7 +499,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -546,7 +546,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -593,7 +593,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -676,7 +676,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -731,7 +731,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -778,7 +778,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -825,7 +825,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -908,7 +908,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -963,7 +963,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1010,7 +1010,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1057,7 +1057,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1140,7 +1140,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1195,7 +1195,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1242,7 +1242,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1289,7 +1289,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1372,7 +1372,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1427,7 +1427,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1474,7 +1474,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1521,7 +1521,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1604,7 +1604,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1659,7 +1659,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str or ~vanilla.body.array.models.FooEnum]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1743,7 +1743,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1798,7 +1798,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str or ~vanilla.body.array.models.Enum0]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1882,7 +1882,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1937,7 +1937,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1984,7 +1984,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2032,7 +2032,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2118,7 +2118,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2173,7 +2173,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2220,7 +2220,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2303,7 +2303,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2358,7 +2358,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2405,7 +2405,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2453,7 +2453,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2539,7 +2539,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2594,7 +2594,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2641,7 +2641,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2689,7 +2689,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2775,7 +2775,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2830,7 +2830,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2913,7 +2913,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2969,7 +2969,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3055,7 +3055,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3110,7 +3110,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3158,7 +3158,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3205,7 +3205,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~vanilla.body.array.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3252,7 +3252,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~vanilla.body.array.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3300,7 +3300,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~vanilla.body.array.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3348,7 +3348,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~vanilla.body.array.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3396,7 +3396,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[~vanilla.body.array.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3482,7 +3482,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3537,7 +3537,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3584,7 +3584,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3631,7 +3631,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3678,7 +3678,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3725,7 +3725,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3808,7 +3808,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3863,7 +3863,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3910,7 +3910,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3958,7 +3958,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4006,7 +4006,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4054,7 +4054,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4140,7 +4140,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

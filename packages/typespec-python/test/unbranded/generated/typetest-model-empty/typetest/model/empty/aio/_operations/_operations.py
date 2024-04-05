@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -113,7 +113,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {}
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -165,7 +165,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: ~typetest.model.empty.models.EmptyOutput
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -278,7 +278,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

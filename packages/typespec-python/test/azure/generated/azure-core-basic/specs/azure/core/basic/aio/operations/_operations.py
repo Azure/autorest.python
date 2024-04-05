@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, List, Mapping, Optional, Type, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -92,7 +92,7 @@ class TwoModelsAsPageItemOperations:
 
         cls: ClsType[List[_models.FirstItem]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -175,7 +175,7 @@ class TwoModelsAsPageItemOperations:
 
         cls: ClsType[List[_models.SecondItem]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -411,7 +411,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -645,7 +645,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -735,7 +735,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -836,7 +836,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -934,7 +934,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1171,7 +1171,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1271,7 +1271,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1344,7 +1344,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1412,7 +1412,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

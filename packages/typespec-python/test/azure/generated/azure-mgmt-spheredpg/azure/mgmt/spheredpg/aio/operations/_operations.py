@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, List, Mapping, Optional, Type, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -150,7 +150,7 @@ class Operations:
 
         cls: ClsType[List[_models.Operation]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -300,7 +300,7 @@ class CatalogsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -354,7 +354,7 @@ class CatalogsOperations:
         resource: Union[_models.Catalog, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1066,7 +1066,7 @@ class CatalogsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1126,7 +1126,7 @@ class CatalogsOperations:
     async def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1314,7 +1314,7 @@ class CatalogsOperations:
 
         cls: ClsType[List[_models.Catalog]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1430,7 +1430,7 @@ class CatalogsOperations:
 
         cls: ClsType[List[_models.Catalog]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1516,7 +1516,7 @@ class CatalogsOperations:
                     "value": 0  # Number of children resources in parent resource. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1613,7 +1613,7 @@ class CatalogsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceInsight]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1761,7 +1761,7 @@ class CatalogsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1957,7 +1957,7 @@ class CatalogsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2371,7 +2371,7 @@ class CatalogsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2532,7 +2532,7 @@ class ImagesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2665,7 +2665,7 @@ class ImagesOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2742,7 +2742,7 @@ class ImagesOperations:
         resource: Union[_models.Image, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3270,7 +3270,7 @@ class ImagesOperations:
     async def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3510,7 +3510,7 @@ class DeviceGroupsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3647,7 +3647,7 @@ class DeviceGroupsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3705,7 +3705,7 @@ class DeviceGroupsOperations:
         resource: Union[_models.DeviceGroup, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4227,7 +4227,7 @@ class DeviceGroupsOperations:
     async def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4378,7 +4378,7 @@ class DeviceGroupsOperations:
         properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> Optional[JSON]:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4871,7 +4871,7 @@ class DeviceGroupsOperations:
                     "value": 0  # Number of children resources in parent resource. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5072,7 +5072,7 @@ class DeviceGroupsOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5208,7 +5208,7 @@ class CertificatesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5335,7 +5335,7 @@ class CertificatesOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5431,7 +5431,7 @@ class CertificatesOperations:
                     "certificateChain": "str"  # Optional. The certificate chain.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5693,7 +5693,7 @@ class CertificatesOperations:
                     "thumbprint": "str"  # Optional. The certificate thumbprint.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5891,7 +5891,7 @@ class DeploymentsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6075,7 +6075,7 @@ class DeploymentsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6156,7 +6156,7 @@ class DeploymentsOperations:
         resource: Union[_models.Deployment, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6978,7 +6978,7 @@ class DeploymentsOperations:
         deployment_name: str,
         **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7222,7 +7222,7 @@ class DevicesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7282,7 +7282,7 @@ class DevicesOperations:
         resource: Union[_models.Device, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7873,7 +7873,7 @@ class DevicesOperations:
 
         cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7949,7 +7949,7 @@ class DevicesOperations:
         device_name: str,
         **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8437,7 +8437,7 @@ class DevicesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8709,7 +8709,7 @@ class DevicesOperations:
                       encoded base 64 string.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8853,7 +8853,7 @@ class ProductsOperations:
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8972,7 +8972,7 @@ class ProductsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9028,7 +9028,7 @@ class ProductsOperations:
         resource: Union[_models.Product, JSON, IO[bytes]],
         **kwargs: Any
     ) -> JSON:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9470,7 +9470,7 @@ class ProductsOperations:
     async def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> None:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9616,7 +9616,7 @@ class ProductsOperations:
         properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> Optional[JSON]:
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10075,7 +10075,7 @@ class ProductsOperations:
 
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10167,7 +10167,7 @@ class ProductsOperations:
                     "value": 0  # Number of children resources in parent resource. Required.
                 }
         """
-        error_map = {
+        error_map: Mapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
