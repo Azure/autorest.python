@@ -209,13 +209,14 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         client.initialization?.properties
             .map((x) => emitMethodParameter(context, client, x))
             .reduce((a, b) => [...a, ...b]) ?? [];
-    if (context.__subscriptionIdPathParameter) {
-        parameters.push(context.__subscriptionIdPathParameter);
-    }
+    
     const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as
         | SdkEndpointParameter
         | undefined;
     const operationGroups = emitOperationGroups(context, client, client, "");
+    if (context.__subscriptionIdPathParameter) {
+        parameters.push(context.__subscriptionIdPathParameter);
+    }
     return {
         name: client.name,
         description: client.description ?? "",
