@@ -389,6 +389,17 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             file_import.add_submodule_import(
                 "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
             )
+        if self.non_default_error_status_codes:
+            file_import.add_submodule_import(
+                "typing",
+                "cast",
+                ImportType.STDLIB,
+            )
+            file_import.add_submodule_import(
+                "typing",
+                "Type",
+                ImportType.STDLIB,
+            )
 
         if self.has_kwargs_to_pop_with_default(
             self.parameters.kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
