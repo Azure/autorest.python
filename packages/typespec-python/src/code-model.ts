@@ -209,7 +209,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         client.initialization?.properties
             .map((x) => emitMethodParameter(context, client, x))
             .reduce((a, b) => [...a, ...b]) ?? [];
-    
+
     const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as
         | SdkEndpointParameter
         | undefined;
