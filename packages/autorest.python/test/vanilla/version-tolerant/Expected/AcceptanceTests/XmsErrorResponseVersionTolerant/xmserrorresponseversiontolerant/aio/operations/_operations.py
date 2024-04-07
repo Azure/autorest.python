@@ -77,7 +77,7 @@ class PetOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response),
+            404: lambda response: ResourceNotFoundError(response=response),  # type: ignore
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})

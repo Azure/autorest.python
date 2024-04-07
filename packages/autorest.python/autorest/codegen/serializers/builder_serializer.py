@@ -1310,22 +1310,22 @@ class _OperationSerializer(
                     if status_code == 401:
                         retval.append(
                             "    401: lambda response: ClientAuthenticationError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"{error_model_str}{error_format_str}), # type: ignore"
                         )
                     elif status_code == 404:
                         retval.append(
                             "    404: lambda response: ResourceNotFoundError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"{error_model_str}{error_format_str}), # type: ignore"
                         )
                     elif status_code == 409:
                         retval.append(
                             "    409: lambda response: ResourceExistsError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"{error_model_str}{error_format_str}), # type: ignore"
                         )
                     elif status_code == 304:
                         retval.append(
                             "    304: lambda response: ResourceNotModifiedError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"{error_model_str}{error_format_str}), # type: ignore"
                         )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
@@ -1333,7 +1333,7 @@ class _OperationSerializer(
                         retval.append(
                             f"    {status_code}: cast(Type[HttpResponseError], "
                             "lambda response: HttpResponseError(response=response"
-                            f"{error_model_str}{error_format_str})),"
+                            f"{error_model_str}{error_format_str})), # type: ignore"
                         )
         else:
             retval.append(
