@@ -8,7 +8,21 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    Iterable,
+    List,
+    MutableMapping,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -256,7 +270,7 @@ class QuestionAnsweringProjectsOperations:
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -325,7 +339,7 @@ class QuestionAnsweringProjectsOperations:
     def _update_qnas_initial(
         self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> Optional[JSON]:
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -798,7 +812,7 @@ class QuestionAnsweringProjectsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

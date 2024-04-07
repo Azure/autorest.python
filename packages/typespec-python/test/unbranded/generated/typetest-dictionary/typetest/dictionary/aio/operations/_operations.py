@@ -9,7 +9,7 @@
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -86,7 +86,7 @@ class Int32ValueOperations:
                     "str": 0  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -179,7 +179,7 @@ class Int32ValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -257,7 +257,7 @@ class Int64ValueOperations:
                     "str": 0  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -350,7 +350,7 @@ class Int64ValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -428,7 +428,7 @@ class BooleanValueOperations:
                     "str": bool  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -521,7 +521,7 @@ class BooleanValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -599,7 +599,7 @@ class StringValueOperations:
                     "str": "str"  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -692,7 +692,7 @@ class StringValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -770,7 +770,7 @@ class Float32ValueOperations:
                     "str": 0.0  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -863,7 +863,7 @@ class Float32ValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -941,7 +941,7 @@ class DatetimeValueOperations:
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1034,7 +1034,7 @@ class DatetimeValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1112,7 +1112,7 @@ class DurationValueOperations:
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1205,7 +1205,7 @@ class DurationValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1283,7 +1283,7 @@ class UnknownValueOperations:
                     "str": {}  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1376,7 +1376,7 @@ class UnknownValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1459,7 +1459,7 @@ class ModelValueOperations:
                     }
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1557,7 +1557,7 @@ class ModelValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1640,7 +1640,7 @@ class RecursiveModelValueOperations:
                     }
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1738,7 +1738,7 @@ class RecursiveModelValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1816,7 +1816,7 @@ class NullableFloatValueOperations:
                     "str": 0.0  # Optional.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1909,7 +1909,7 @@ class NullableFloatValueOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

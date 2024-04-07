@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -141,7 +141,7 @@ class ModelOperations:
                     "defaultName": bool  # Pass in true. Required.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -261,7 +261,7 @@ class ModelOperations:
                     "defaultName": bool  # Pass in true. Required.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -335,7 +335,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -386,7 +386,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -435,7 +435,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -481,7 +481,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -592,7 +592,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
                     "defaultName": bool  # Pass in true. Required.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -712,7 +712,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
                     "defaultName": bool  # Pass in true. Required.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -833,7 +833,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
                     "wireName": bool  # Pass in true. Required.
                 }
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -889,7 +889,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -932,7 +932,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

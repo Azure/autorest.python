@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -67,7 +67,7 @@ def build_rpc_long_running_rpc_request(**kwargs: Any) -> HttpRequest:
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
     def _long_running_rpc_initial(self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any) -> JSON:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

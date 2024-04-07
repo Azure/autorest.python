@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, MutableMapping, Optional, Type, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -72,7 +72,7 @@ class PetOperations:
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
@@ -137,7 +137,7 @@ class PetOperations:
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -195,7 +195,7 @@ class PetOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

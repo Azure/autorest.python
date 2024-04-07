@@ -7,7 +7,20 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    AsyncIterable,
+    Callable,
+    Dict,
+    IO,
+    MutableMapping,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -53,7 +66,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -151,7 +164,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -221,7 +234,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[_models._models.ProductResult] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -274,7 +287,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     async def _lro_initial(self, mode: str, **kwargs: Any) -> _models.LROProduct:
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

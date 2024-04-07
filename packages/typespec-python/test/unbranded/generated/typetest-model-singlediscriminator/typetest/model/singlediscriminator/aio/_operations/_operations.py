@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -93,7 +93,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -274,7 +274,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template you can fill out and use as your body input.
                 input = bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -366,7 +366,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -547,7 +547,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template you can fill out and use as your body input.
                 input = bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -639,7 +639,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -728,7 +728,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == bird
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -792,7 +792,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == dinosaur
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

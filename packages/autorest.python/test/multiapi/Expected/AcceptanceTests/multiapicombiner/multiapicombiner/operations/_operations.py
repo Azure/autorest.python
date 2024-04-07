@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterable, MutableMapping, Optional, Type, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -38,10 +38,10 @@ _SERIALIZER.client_side_validation = False
 
 
 
-from typing import Any, Callable, Dict, IO, Iterable, Mapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
 from .._validation import api_version_validation
 
 def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
@@ -136,7 +136,7 @@ class OperationGroupOneOperations:
         :rtype: ~multiapicombiner.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -204,7 +204,7 @@ class OperationGroupOneOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -258,7 +258,7 @@ class OperationGroupOneOperations:
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -397,7 +397,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -461,7 +461,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -610,7 +610,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> _models.PagingResult:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -661,7 +661,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -806,7 +806,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -939,7 +939,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -997,7 +997,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1059,7 +1059,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

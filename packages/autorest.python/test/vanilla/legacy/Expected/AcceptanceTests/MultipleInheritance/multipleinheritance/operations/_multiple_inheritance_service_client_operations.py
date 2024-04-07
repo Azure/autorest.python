@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -200,7 +200,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: ~multipleinheritance.models.Horse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -278,7 +278,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -336,7 +336,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: ~multipleinheritance.models.Pet
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -385,7 +385,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -437,7 +437,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: ~multipleinheritance.models.Feline
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -515,7 +515,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -573,7 +573,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: ~multipleinheritance.models.Cat
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -653,7 +653,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -712,7 +712,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: ~multipleinheritance.models.Kitten
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -795,7 +795,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

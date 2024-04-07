@@ -1281,7 +1281,7 @@ class _OperationSerializer(
         return retval
 
     def error_map(self, builder: OperationType) -> List[str]:
-        retval = ["error_map: Mapping[int, Type[HttpResponseError]] = {"]
+        retval = ["error_map: MutableMapping[int, Type[HttpResponseError]] = {"]
         if builder.non_default_errors:
             if not 401 in builder.non_default_error_status_codes:
                 retval.append("    401: ClientAuthenticationError,")

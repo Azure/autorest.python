@@ -8,7 +8,20 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    AsyncIterable,
+    Callable,
+    Dict,
+    IO,
+    MutableMapping,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
@@ -47,7 +60,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
     async def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -272,7 +285,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

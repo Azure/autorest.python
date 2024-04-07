@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Literal, Mapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Literal, MutableMapping, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -277,7 +277,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -338,7 +338,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -438,7 +438,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -500,7 +500,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -597,7 +597,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -658,7 +658,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -761,7 +761,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -822,7 +822,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: ~modelflattening.models.ResourceCollection
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -919,7 +919,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1008,7 +1008,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1078,7 +1078,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: ~modelflattening.models.SimpleProduct
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

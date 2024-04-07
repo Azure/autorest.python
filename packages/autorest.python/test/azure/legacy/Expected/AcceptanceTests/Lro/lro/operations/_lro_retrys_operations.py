@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Mapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -171,7 +171,7 @@ class LRORetrysOperations:
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -324,7 +324,7 @@ class LRORetrysOperations:
     def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -488,7 +488,7 @@ class LRORetrysOperations:
     def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -583,7 +583,7 @@ class LRORetrysOperations:
         )
 
     def _delete202_retry200_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -665,7 +665,7 @@ class LRORetrysOperations:
     def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -752,7 +752,7 @@ class LRORetrysOperations:
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -894,7 +894,7 @@ class LRORetrysOperations:
     def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
-        error_map: Mapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

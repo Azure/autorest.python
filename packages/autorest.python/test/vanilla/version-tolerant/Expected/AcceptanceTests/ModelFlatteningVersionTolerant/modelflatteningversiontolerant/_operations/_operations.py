@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, List, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -313,7 +313,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -399,7 +399,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 ]
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -508,7 +508,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -582,7 +582,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 ]
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -707,7 +707,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -793,7 +793,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1035,7 +1035,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1166,7 +1166,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1362,7 +1362,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1575,7 +1575,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1804,7 +1804,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
