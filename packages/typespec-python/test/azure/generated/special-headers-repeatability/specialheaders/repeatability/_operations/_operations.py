@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, MutableMapping, Optional, Type, TypeVar
+import sys
+from typing import Any, Callable, Dict, Optional, Type, TypeVar
 import uuid
 
 from azure.core.exceptions import (
@@ -26,6 +27,10 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 from .._vendor import RepeatabilityClientMixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

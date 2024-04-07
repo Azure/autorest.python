@@ -8,21 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    IO,
-    Iterable,
-    Literal,
-    MutableMapping,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    cast,
-    overload,
-)
+from typing import Any, Callable, Dict, IO, Iterable, Literal, Optional, Type, TypeVar, Union, cast, overload
 import urllib.parse
 
 from custompollerpagerdefinitions import CustomPager, CustomPoller

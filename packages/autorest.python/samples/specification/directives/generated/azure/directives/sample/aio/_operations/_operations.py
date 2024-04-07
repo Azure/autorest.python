@@ -8,20 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import (
-    Any,
-    AsyncIterable,
-    Callable,
-    Dict,
-    IO,
-    MutableMapping,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    cast,
-    overload,
-)
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 

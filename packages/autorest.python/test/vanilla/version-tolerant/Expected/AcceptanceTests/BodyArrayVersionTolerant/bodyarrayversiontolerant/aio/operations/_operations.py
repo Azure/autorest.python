@@ -9,7 +9,7 @@
 import datetime
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,

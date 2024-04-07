@@ -394,11 +394,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             "Type",
             ImportType.STDLIB,
         )
-        file_import.add_submodule_import(
-            "typing",
-            "MutableMapping",
-            ImportType.STDLIB,
-        )
+        file_import.add_mutable_mapping_import()
         if self.non_default_error_status_codes:
             file_import.add_submodule_import(
                 "typing",

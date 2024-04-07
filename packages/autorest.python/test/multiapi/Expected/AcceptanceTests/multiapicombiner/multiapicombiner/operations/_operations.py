@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, MutableMapping, Optional, Type, TypeVar, Union, overload
+import sys
+from typing import Any, Callable, Dict, IO, Iterable, Optional, Type, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -30,6 +31,10 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -38,10 +43,10 @@ _SERIALIZER.client_side_validation = False
 
 
 
-from typing import Any, Callable, Dict, IO, Iterable, MutableMapping, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, Type, TypeVar, Union, cast, overload
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 from .._validation import api_version_validation
 
 def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long

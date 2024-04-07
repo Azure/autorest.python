@@ -8,7 +8,8 @@
 # --------------------------------------------------------------------------
 import datetime
 from io import IOBase
-from typing import Any, Callable, Dict, IO, MutableMapping, Optional, Type, TypeVar, Union, overload
+import sys
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -51,6 +52,10 @@ from ...operations._primitive_operations import (
     build_put_string_request,
 )
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

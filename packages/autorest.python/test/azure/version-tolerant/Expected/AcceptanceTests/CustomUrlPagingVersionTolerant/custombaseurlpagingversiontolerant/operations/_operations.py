@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, MutableMapping, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Iterable, Optional, Type, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,

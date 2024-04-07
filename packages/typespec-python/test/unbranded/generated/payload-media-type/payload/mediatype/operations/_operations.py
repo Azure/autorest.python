@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import json
-from typing import Any, Callable, Dict, MutableMapping, Optional, Type, TypeVar
+import sys
+from typing import Any, Callable, Dict, Optional, Type, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -24,6 +25,10 @@ from corehttp.utils import case_insensitive_dict
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

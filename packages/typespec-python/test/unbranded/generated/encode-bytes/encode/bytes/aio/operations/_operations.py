@@ -9,20 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import (
-    Any,
-    AsyncIterator,
-    Callable,
-    Dict,
-    IO,
-    List,
-    MutableMapping,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    overload,
-)
+from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,

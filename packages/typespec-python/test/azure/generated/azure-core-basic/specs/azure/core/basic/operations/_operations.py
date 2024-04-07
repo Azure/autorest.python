@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, MutableMapping, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterable, List, Optional, Type, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
