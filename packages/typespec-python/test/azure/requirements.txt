@@ -28,6 +28,7 @@ azure-core==1.30.0
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/serialization-encoded-name-json
+-e ./generated/server-endpoint-not-defined
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/server-versions-versioned

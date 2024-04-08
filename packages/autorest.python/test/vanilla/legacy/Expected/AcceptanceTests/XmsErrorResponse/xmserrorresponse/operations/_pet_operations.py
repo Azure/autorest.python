@@ -129,8 +129,11 @@ class PetOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(
-                response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
+            404: cast(
+                Type[HttpResponseError],
+                lambda response: ResourceNotFoundError(
+                    response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
+                ),
             ),
             501: HttpResponseError,
         }
