@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -861,7 +861,7 @@ class StringOperations:
                     "property": "str"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -919,7 +919,7 @@ class StringOperations:
                     "property": "str"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1037,7 +1037,7 @@ class StringOperations:
                     "property": "str"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1158,7 +1158,7 @@ class StringOperations:
                     "property": "str"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1237,7 +1237,7 @@ class BytesOperations:
                     "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1295,7 +1295,7 @@ class BytesOperations:
                     "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1413,7 +1413,7 @@ class BytesOperations:
                     "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1534,7 +1534,7 @@ class BytesOperations:
                     "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1613,7 +1613,7 @@ class DatetimeOperations:
                     "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1671,7 +1671,7 @@ class DatetimeOperations:
                     "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1789,7 +1789,7 @@ class DatetimeOperations:
                     "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1910,7 +1910,7 @@ class DatetimeOperations:
                     "property": "2020-02-20 00:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1989,7 +1989,7 @@ class DurationOperations:
                     "property": "1 day, 0:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2047,7 +2047,7 @@ class DurationOperations:
                     "property": "1 day, 0:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2165,7 +2165,7 @@ class DurationOperations:
                     "property": "1 day, 0:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2286,7 +2286,7 @@ class DurationOperations:
                     "property": "1 day, 0:00:00"  # Optional. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2367,7 +2367,7 @@ class CollectionsByteOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2427,7 +2427,7 @@ class CollectionsByteOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2549,7 +2549,7 @@ class CollectionsByteOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2674,7 +2674,7 @@ class CollectionsByteOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2758,7 +2758,7 @@ class CollectionsModelOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2821,7 +2821,7 @@ class CollectionsModelOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2947,7 +2947,7 @@ class CollectionsModelOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3076,7 +3076,7 @@ class CollectionsModelOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3155,7 +3155,7 @@ class StringLiteralOperations:
                     "property": "hello"  # Optional. Default value is "hello". Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3213,7 +3213,7 @@ class StringLiteralOperations:
                     "property": "hello"  # Optional. Default value is "hello". Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3331,7 +3331,7 @@ class StringLiteralOperations:
                     "property": "hello"  # Optional. Default value is "hello". Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3452,7 +3452,7 @@ class StringLiteralOperations:
                     "property": "hello"  # Optional. Default value is "hello". Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3531,7 +3531,7 @@ class IntLiteralOperations:
                     "property": 1  # Optional. Default value is 1. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3589,7 +3589,7 @@ class IntLiteralOperations:
                     "property": 1  # Optional. Default value is 1. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3707,7 +3707,7 @@ class IntLiteralOperations:
                     "property": 1  # Optional. Default value is 1. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3828,7 +3828,7 @@ class IntLiteralOperations:
                     "property": 1  # Optional. Default value is 1. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3904,10 +3904,10 @@ class FloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3962,10 +3962,10 @@ class FloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4027,7 +4027,7 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
 
@@ -4080,10 +4080,10 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4148,7 +4148,7 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
 
@@ -4201,10 +4201,10 @@ class FloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 1.2  # Optional. Default value is 1.2. Property.
+                    "property": 1.25  # Optional. Default value is 1.25. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4283,7 +4283,7 @@ class BooleanLiteralOperations:
                     "property": True  # Optional. Default value is True. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4341,7 +4341,7 @@ class BooleanLiteralOperations:
                     "property": True  # Optional. Default value is True. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4459,7 +4459,7 @@ class BooleanLiteralOperations:
                     "property": True  # Optional. Default value is True. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4580,7 +4580,7 @@ class BooleanLiteralOperations:
                     "property": True  # Optional. Default value is True. Property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4645,6 +4645,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace
     def get_all(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return all properties in the model.
 
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
@@ -4657,11 +4658,11 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4705,6 +4706,7 @@ class UnionStringLiteralOperations:
 
     @distributed_trace
     def get_default(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
+        # pylint: disable=line-too-long
         """Get models that will return the default object.
 
         :return: UnionStringLiteralProperty. The UnionStringLiteralProperty is compatible with
@@ -4717,11 +4719,11 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4767,6 +4769,7 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4783,8 +4786,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
 
@@ -4824,6 +4827,7 @@ class UnionStringLiteralOperations:
     def put_all(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4838,11 +4842,11 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4891,6 +4895,7 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Required.
@@ -4907,8 +4912,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
 
@@ -4948,6 +4953,7 @@ class UnionStringLiteralOperations:
     def put_default(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4962,11 +4968,11 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "str"  # Optional. Property. Known values are: "hello" and
-                      "world".
+                    "property": "hello"  # Optional. Default value is "hello". Property. Is
+                      either a Literal["hello"] type or a Literal["world"] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5042,10 +5048,11 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5100,10 +5107,11 @@ class UnionIntLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5165,7 +5173,8 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
 
@@ -5218,10 +5227,11 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5286,7 +5296,8 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
 
@@ -5339,10 +5350,11 @@ class UnionIntLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0  # Optional. Property. Known values are: 1 and 2.
+                    "property": 1  # Optional. Default value is 1. Property. Is either a
+                      Literal[1] type or a Literal[2] type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5419,10 +5431,11 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5478,10 +5491,11 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5543,7 +5557,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
 
@@ -5597,10 +5612,11 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5665,7 +5681,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
 
@@ -5719,10 +5736,11 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 0.0  # Optional. Property. Known values are: 1.2 and 2.3.
+                    "property": 1.25  # Optional. Default value is 1.25. Property. Is either a
+                      float type or a float type.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5803,7 +5821,7 @@ class RequiredAndOptionalOperations:
                     "optionalProperty": "str"  # Optional. optional string property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5863,7 +5881,7 @@ class RequiredAndOptionalOperations:
                     "optionalProperty": "str"  # Optional. optional string property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5984,7 +6002,7 @@ class RequiredAndOptionalOperations:
                     "optionalProperty": "str"  # Optional. optional string property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6108,7 +6126,7 @@ class RequiredAndOptionalOperations:
                     "optionalProperty": "str"  # Optional. optional string property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

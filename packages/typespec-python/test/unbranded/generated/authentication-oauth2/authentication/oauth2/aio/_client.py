@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with OAuth2 authentication.
 
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~corehttp.credentials.AsyncTokenCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str

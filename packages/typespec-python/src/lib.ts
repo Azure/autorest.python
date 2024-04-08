@@ -1,3 +1,4 @@
+import { SdkContext, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
 import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 
 export interface PythonEmitterOptions {
@@ -15,6 +16,12 @@ export interface PythonEmitterOptions {
     "debug"?: boolean;
     "flavor"?: "azure";
     "emit-cross-language-definition-file"?: boolean;
+}
+
+export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
+    extends SdkContext<PythonEmitterOptions, TServiceOperation> {
+    __endpointPathParameters: Record<string, any>[];
+    __subscriptionIdPathParameter: Record<string, any> | undefined;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {

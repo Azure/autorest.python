@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -142,7 +142,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -273,7 +273,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                     "received": "str"  # Required. Known values are: "raw" and "model".
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -354,7 +354,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -405,7 +405,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         return ItemPaged(get_next, extract_data)
 
     def _lro_initial(self, mode: str, **kwargs: Any) -> JSON:
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
