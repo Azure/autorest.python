@@ -3,6 +3,6 @@ invoke==2.2.0
 colorama==0.4.6
 debugpy==1.8.1
 pytest==8.1.1
-tox==4.14.1
-coverage==7.4.1
+tox==4.14.2
+coverage==7.4.4
 black==22.12.0
