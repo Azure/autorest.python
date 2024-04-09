@@ -37,7 +37,15 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
                 [
                     Path(f)
                     for f in self.list_file()
-                    if all(item not in f for item in ("__pycache__", "node_modules"))
+                    if all(
+                        item not in f
+                        for item in (
+                            "__pycache__",
+                            "node_modules",
+                            ".tox",
+                            ".mypy_cache",
+                        )
+                    )
                     and Path(f).suffix == ".py"
                 ],
             )
@@ -45,8 +53,8 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         return True
 
     def format_file(self, file: Path) -> None:
-        file_content = self.read_file(file)
         try:
+            file_content = self.read_file(file)
             file_content = black.format_file_contents(
                 file_content, fast=True, mode=_BLACK_MODE
             )

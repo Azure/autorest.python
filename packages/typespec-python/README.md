@@ -1,1 +1,1 @@
-# Cadl Python Client Emitter
+# Typespec Python Client Emitter
