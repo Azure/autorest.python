@@ -54,7 +54,7 @@ def is_internal(target: Optional[BaseType]) -> bool:
     return isinstance(target, ModelType) and target.base == "dpg" and target.internal
 
 
-class OperationBase(  # pylint: disable=too-many-public-methods
+class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instance-attributes
     Generic[ResponseType], BaseBuilder[ParameterList, List["Operation"]]
 ):
     def __init__(
@@ -91,6 +91,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.internal:
             self.name = "_" + self.name
         self.has_etag: bool = self.yaml_data.get("hasEtag", False)
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
+            "crossLanguageDefinitionId"
+        )
 
     @property
     def has_form_data_body(self):
@@ -386,6 +389,18 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
             )
+        file_import.add_submodule_import(
+            "typing",
+            "Type",
+            ImportType.STDLIB,
+        )
+        file_import.add_mutable_mapping_import()
+        if self.non_default_error_status_codes:
+            file_import.add_submodule_import(
+                "typing",
+                "cast",
+                ImportType.STDLIB,
+            )
 
         if self.has_kwargs_to_pop_with_default(
             self.parameters.kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
@@ -478,6 +493,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+        if self.non_default_errors and self.code_model.options["models_mode"] == "dpg":
+            file_import.add_submodule_import(
+                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+            )
         return file_import
 
     def get_response_from_status(

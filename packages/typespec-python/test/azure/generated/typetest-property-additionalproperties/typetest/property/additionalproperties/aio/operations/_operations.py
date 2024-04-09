@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -100,7 +100,7 @@ class ExtendsUnknownOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -220,7 +220,7 @@ class ExtendsUnknownOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -303,7 +303,7 @@ class ExtendsUnknownDerivedOperations:
                     "age": 0.0  # Optional. The age property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -433,7 +433,7 @@ class ExtendsUnknownDerivedOperations:
                     "age": 0.0  # Optional. The age property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -508,6 +508,7 @@ class ExtendsUnknownDiscriminatedOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -522,7 +523,7 @@ class ExtendsUnknownDiscriminatedOperations:
                 # response body for status code(s): 200
                 response == extends_unknown_additional_properties_discriminated
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -666,7 +667,7 @@ class ExtendsUnknownDiscriminatedOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = extends_unknown_additional_properties_discriminated
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -746,7 +747,7 @@ class IsUnknownOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -866,7 +867,7 @@ class IsUnknownOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -948,7 +949,7 @@ class IsUnknownDerivedOperations:
                     "age": 0.0  # Optional. The age property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1076,7 +1077,7 @@ class IsUnknownDerivedOperations:
                     "age": 0.0  # Optional. The age property.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1151,6 +1152,7 @@ class IsUnknownDiscriminatedOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -1165,7 +1167,7 @@ class IsUnknownDiscriminatedOperations:
                 # response body for status code(s): 200
                 response == is_unknown_additional_properties_discriminated
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1309,7 +1311,7 @@ class IsUnknownDiscriminatedOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = is_unknown_additional_properties_discriminated
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1389,7 +1391,7 @@ class ExtendsStringOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1509,7 +1511,7 @@ class ExtendsStringOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1589,7 +1591,7 @@ class IsStringOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1709,7 +1711,7 @@ class IsStringOperations:
                     "name": "str"  # The name property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1789,7 +1791,7 @@ class ExtendsFloatOperations:
                     "id": 0.0  # The id property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1909,7 +1911,7 @@ class ExtendsFloatOperations:
                     "id": 0.0  # The id property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1989,7 +1991,7 @@ class IsFloatOperations:
                     "id": 0.0  # The id property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2109,7 +2111,7 @@ class IsFloatOperations:
                     "id": 0.0  # The id property. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2181,7 +2183,7 @@ class ExtendsModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2297,7 +2299,7 @@ class ExtendsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2369,7 +2371,7 @@ class IsModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2485,7 +2487,7 @@ class IsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2557,7 +2559,7 @@ class ExtendsModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2679,7 +2681,7 @@ class ExtendsModelArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2751,7 +2753,7 @@ class IsModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2867,7 +2869,7 @@ class IsModelArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

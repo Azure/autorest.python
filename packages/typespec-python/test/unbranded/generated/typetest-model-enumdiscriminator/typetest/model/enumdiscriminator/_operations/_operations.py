@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -174,6 +174,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -186,7 +187,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == dog
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -317,7 +318,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = dog
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -371,6 +372,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -383,7 +385,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == dog
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -434,6 +436,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -446,7 +449,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == dog
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -497,6 +500,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -509,7 +513,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == snake
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -640,7 +644,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = snake
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -694,6 +698,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -706,7 +711,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == snake
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -757,6 +762,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -769,7 +775,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # response body for status code(s): 200
                 response == snake
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

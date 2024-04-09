@@ -87,12 +87,12 @@ setup(
         {% if code_model.is_legacy %}
         "msrest>=0.7.1",
         {% else %}
-        "isodate<1.0.0,>=0.6.1",
+        "isodate>=0.6.1",
         {% endif %}
         {% if azure_arm %}
-        "azure-mgmt-core<2.0.0,>=1.3.2",
+        "azure-mgmt-core>=1.3.2",
         {% elif code_model.is_azure_flavor %}
-        "azure-core<2.0.0,>=1.30.0",
+        "azure-core>=1.30.0",
         {% else %}
         "corehttp[requests]",
         {% endif %}

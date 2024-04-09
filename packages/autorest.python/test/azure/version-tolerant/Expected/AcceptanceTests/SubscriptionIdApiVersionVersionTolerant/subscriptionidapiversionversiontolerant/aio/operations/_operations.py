@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -69,7 +69,7 @@ class GroupOperations:
                     "name": "str"  # Optional. resource group name 'testgroup101'.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

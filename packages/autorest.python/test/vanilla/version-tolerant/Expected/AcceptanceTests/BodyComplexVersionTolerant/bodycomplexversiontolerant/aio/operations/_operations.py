@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -128,7 +128,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -241,7 +241,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -310,7 +310,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -373,7 +373,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -436,7 +436,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -499,7 +499,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -576,7 +576,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -680,7 +680,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -744,7 +744,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -849,7 +849,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -913,7 +913,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1018,7 +1018,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1084,7 +1084,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1196,7 +1196,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1260,7 +1260,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1365,7 +1365,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1430,7 +1430,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1537,7 +1537,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1601,7 +1601,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1706,7 +1706,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1770,7 +1770,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1877,7 +1877,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1941,7 +1941,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2048,7 +2048,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2111,7 +2111,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2214,7 +2214,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2277,7 +2277,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2382,7 +2382,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2465,7 +2465,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2574,7 +2574,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2639,7 +2639,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2746,7 +2746,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2811,7 +2811,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2889,7 +2889,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2999,7 +2999,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3064,7 +3064,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3171,7 +3171,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3236,7 +3236,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3296,7 +3296,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3382,7 +3382,7 @@ class InheritanceOperations:
                     "name": "str"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3511,7 +3511,7 @@ class InheritanceOperations:
                     "name": "str"  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3587,6 +3587,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -3646,7 +3647,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3954,7 +3955,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4011,6 +4012,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4025,7 +4027,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == dot_fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4079,6 +4081,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4112,7 +4115,7 @@ class PolymorphismOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4166,6 +4169,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
@@ -4199,7 +4203,7 @@ class PolymorphismOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4252,6 +4256,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4271,7 +4276,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4404,7 +4409,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4487,6 +4492,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4524,6 +4530,7 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4575,6 +4582,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4594,7 +4602,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4899,7 +4907,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4975,6 +4983,7 @@ class PolymorphicrecursiveOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -5034,7 +5043,7 @@ class PolymorphicrecursiveOperations:
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5402,7 +5411,7 @@ class PolymorphicrecursiveOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5484,7 +5493,7 @@ class ReadonlypropertyOperations:
                     "size": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5588,7 +5597,7 @@ class ReadonlypropertyOperations:
                     "size": 0  # Optional.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5663,6 +5672,7 @@ class FlattencomplexOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -5679,7 +5689,7 @@ class FlattencomplexOperations:
                 # response body for status code(s): 200
                 response == my_base_type
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

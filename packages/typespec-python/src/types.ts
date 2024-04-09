@@ -1,7 +1,6 @@
 import { Type } from "@typespec/compiler";
 import { HttpAuth, Visibility } from "@typespec/http";
 import {
-    SdkContext,
     SdkEnumValueType,
     SdkType,
     SdkModelType,
@@ -14,12 +13,12 @@ import {
     SdkConstantType,
     SdkDatetimeType,
     SdkDurationType,
-    getClientType,
-    shouldFlattenProperty,
+    SdkCredentialType,
+    SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
-import { camelToSnakeCase } from "./utils.js";
-import { getModelsMode } from "./emitter.js";
+import { camelToSnakeCase, getAddedOn } from "./utils.js";
+import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
@@ -42,11 +41,11 @@ function isEmptyModel(type: SdkType): boolean {
         !type.baseModel &&
         !type.discriminatedSubtypes &&
         !type.discriminatorValue &&
-        (type.name === "" || type.name === "object")
+        (type.isGeneratedName || type.name === "object")
     );
 }
 
-function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
+export function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
     const key = dump(result, { sortKeys: true });
     const value = simpleTypesMap.get(key);
     if (value) {
@@ -57,18 +56,11 @@ function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
     return result;
 }
 
-export function getType(
-    context: SdkContext,
+export function getType<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
     fromBody = false,
 ): Record<string, any> {
-    if (type.kind === "Credential") {
-        return emitCredential(type.scheme);
-    }
-    if (type.kind === "CredentialTypeUnion") {
-        return emitCredentialUnion(type);
-    }
-
     switch (type.kind) {
         case "model":
             return emitModel(context, type, fromBody);
@@ -87,6 +79,8 @@ export function getType(
             return emitDurationOrDateType(type);
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
+        case "credential":
+            return emitCredential(type);
         case "bytes":
         case "boolean":
         case "plainDate":
@@ -119,26 +113,15 @@ export function getType(
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
-        case "String":
-        case "Number":
-        case "Boolean":
-        case "Intrinsic":
-        case "Scalar":
-        case "Enum":
-        case "Union":
-        case "ModelProperty":
-        case "UnionVariant":
-            return getType(context, getClientType(context, type));
-        case "Model":
-            return getType(context, getClientType(context, type), fromBody);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
 }
 
-function emitCredential(auth: HttpAuth): Record<string, any> {
+function emitCredential(credential: SdkCredentialType): Record<string, any> {
     let credential_type: Record<string, any> = {};
-    if (auth.type === "oauth2") {
+    const scheme = credential.scheme;
+    if (scheme.type === "oauth2") {
         credential_type = {
             type: "OAuth2",
             policy: {
@@ -146,43 +129,31 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
                 credentialScopes: [],
             },
         };
-        for (const flow of auth.flows) {
+        for (const flow of scheme.flows) {
             for (const scope of flow.scopes) {
                 credential_type.policy.credentialScopes.push(scope.value);
             }
             credential_type.policy.credentialScopes.push();
         }
-    } else if (auth.type === "apiKey") {
+    } else if (scheme.type === "apiKey") {
         credential_type = {
             type: "Key",
             policy: {
                 type: "KeyCredentialPolicy",
-                key: auth.name,
+                key: scheme.name,
             },
         };
-    } else if (auth.type === "http") {
+    } else if (scheme.type === "http") {
         credential_type = {
             type: "Key",
             policy: {
                 type: "KeyCredentialPolicy",
                 key: "Authorization",
-                scheme: auth.scheme[0].toUpperCase() + auth.scheme.slice(1),
+                scheme: scheme.scheme[0].toUpperCase() + scheme.scheme.slice(1),
             },
         };
     }
     return getSimpleTypeResult(credential_type);
-}
-
-function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, any> {
-    const result: Record<string, any> = {};
-    // Export as CombinedType, which is already a Union Type in autorest codegen
-    result.type = "combined";
-    result.types = [];
-    for (const cred_type of cred_types.types) {
-        result.types.push(emitCredential(cred_type.scheme));
-    }
-
-    return getSimpleTypeResult(result);
 }
 
 function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
@@ -206,22 +177,29 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
-function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Record<string, any> {
+function emitProperty<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkBodyModelPropertyType,
+): Record<string, any> {
     return {
-        clientName: camelToSnakeCase(type.nameInClient),
+        clientName: camelToSnakeCase(type.name),
         wireName: type.serializedName,
         type: getType(context, type.type),
         optional: type.optional,
         description: type.description,
-        addedOn: type.apiVersions[0],
+        addedOn: getAddedOn(context, type),
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
-        flatten: shouldFlattenProperty(context, type.__raw!),
+        flatten: type.flatten,
         isMultipartFileInput: type.isMultipartFileInput,
     };
 }
 
-function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
+function emitModel<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkModelType,
+    fromBody: boolean,
+): Record<string, any> {
     if (isEmptyModel(type)) {
         return KnownTypes.any;
     }
@@ -231,15 +209,16 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
     const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
-        name: type.generatedName ?? type.name,
+        name: type.name,
         description: type.description,
         parents: parents,
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
-        snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        snakeCaseName: camelToSnakeCase(type.name),
+        base: type.isGeneratedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
 
     typesMap.set(type, newValue);
@@ -269,8 +248,30 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    if (type.isGeneratedName) {
+        const types = [];
+        for (const value of type.values) {
+            types.push(
+                getSimpleTypeResult({
+                    type: "constant",
+                    value: value.value,
+                    valueType: emitBuiltInType(type.valueType),
+                }),
+            );
+        }
+        if (!type.isFixed) {
+            types.push(emitBuiltInType(type.valueType));
+        }
+        return {
+            description: "",
+            internal: true,
+            type: "combined",
+            types,
+            xmlMetadata: {},
+        };
+    }
     const values: Record<string, any>[] = [];
-    const name = type.generatedName ?? type.name;
+    const name = type.name;
     const newValue = {
         name: name,
         snakeCaseName: camelToSnakeCase(name),
@@ -280,6 +281,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         valueType: emitBuiltInType(type.valueType),
         values,
         xmlMetadata: {},
+        crossLanguageDefinitionId: type.crossLanguageDefinitionId,
     };
     for (const value of type.values) {
         newValue.values.push(emitEnumMember(value, newValue));
@@ -313,7 +315,10 @@ function emitDurationOrDateType(type: SdkDurationType | SdkDatetimeType): Record
     });
 }
 
-function emitArrayOrDict(context: SdkContext, type: SdkArrayType | SdkDictionaryType): Record<string, any> {
+function emitArrayOrDict<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkArrayType | SdkDictionaryType,
+): Record<string, any> {
     const kind = type.kind === "array" ? "list" : type.kind;
     return getSimpleTypeResult({
         type: kind,
@@ -376,11 +381,14 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
     });
 }
 
-function emitUnion(context: SdkContext, type: SdkUnionType): Record<string, any> {
+function emitUnion<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkUnionType,
+): Record<string, any> {
     return getSimpleTypeResult({
-        name: type.name,
-        snakeCaseName: camelToSnakeCase(type.name || ""),
-        description: `Type of ${type.name}`,
+        name: type.isGeneratedName ? undefined : type.name,
+        snakeCaseName: type.isGeneratedName ? undefined : camelToSnakeCase(type.name),
+        description: type.isGeneratedName ? "" : `Type of ${type.name}`,
         internal: true,
         type: "combined",
         types: type.values.map((x) => getType(context, x)),

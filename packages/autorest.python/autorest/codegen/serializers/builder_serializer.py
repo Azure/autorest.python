@@ -639,6 +639,7 @@ class _OperationSerializer(
                 discriminator_name = cast(
                     Property, polymorphic_subtypes[0].discriminator
                 ).wire_name
+                retval.append("")
                 retval.append(
                     "# The response is polymorphic. The following are possible polymorphic "
                     f'responses based off discriminator "{discriminator_name}":'
@@ -1280,7 +1281,7 @@ class _OperationSerializer(
         return retval
 
     def error_map(self, builder: OperationType) -> List[str]:
-        retval = ["error_map = {"]
+        retval = ["error_map: MutableMapping[int, Type[HttpResponseError]] = {"]
         if builder.non_default_errors:
             if not 401 in builder.non_default_error_status_codes:
                 retval.append("    401: ClientAuthenticationError,")
@@ -1308,30 +1309,35 @@ class _OperationSerializer(
                 for status_code in excep.status_codes:
                     if status_code == 401:
                         retval.append(
-                            "    401: lambda response: ClientAuthenticationError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    401:  cast(Type[HttpResponseError], "
+                            "lambda response: ClientAuthenticationError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 404:
                         retval.append(
-                            "    404: lambda response: ResourceNotFoundError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    404:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceNotFoundError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 409:
                         retval.append(
-                            "    409: lambda response: ResourceExistsError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    409:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceExistsError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 304:
                         retval.append(
-                            "    304: lambda response: ResourceNotModifiedError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    304:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceNotModifiedError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
                         retval.append(
-                            f"    {status_code}: lambda response: HttpResponseError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"    {status_code}: cast(Type[HttpResponseError], "
+                            "lambda response: HttpResponseError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
         else:
             retval.append(

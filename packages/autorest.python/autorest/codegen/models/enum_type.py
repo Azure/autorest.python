@@ -101,11 +101,10 @@ class EnumValue(BaseType):
         """
         from . import build_type
 
-        enum_type = cast(EnumType, code_model.lookup_type(id(yaml_data["enumType"])))
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            enum_type=enum_type,
+            enum_type=cast(EnumType, build_type(yaml_data["enumType"], code_model)),
             value_type=build_type(yaml_data["valueType"], code_model),
         )
 
@@ -134,6 +133,9 @@ class EnumType(BaseType):
         self.values = values
         self.value_type = value_type
         self.internal: bool = self.yaml_data.get("internal", False)
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
+            "crossLanguageDefinitionId"
+        )
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
