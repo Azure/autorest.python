@@ -80,19 +80,20 @@ emit:
   - "@azure-tools/typespec-python"
 options:
   "@azure-tools/typespec-python":
-+    package-dir: "azure-contoso"
-+    package-name: "{package-dir}"
++    package-dir: "{package-dir}"
++    package-name: "azure-contoso"
 ```
 
 ### Supported emitter options
 
 Common emitter configuration example:
+
 ```yaml
 emit:
   - "@azure-tools/typespec-python"
 options:
   "@azure-tools/typespec-python":
-    package-dir: "azure-contoso"
+    package-dir: "{package-dir}"
     package-name: "azure-contoso"
 ```
 

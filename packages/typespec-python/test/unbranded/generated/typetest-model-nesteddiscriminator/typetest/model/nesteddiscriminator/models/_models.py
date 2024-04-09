@@ -25,24 +25,24 @@ class Fish(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar age: Required.
-    :vartype age: int
     :ivar kind: Required. Default value is None.
     :vartype kind: str
+    :ivar age: Required.
+    :vartype age: int
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    age: int = rest_field()
-    """Required."""
     kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
+    age: int = rest_field()
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        age: int,
         kind: str,
+        age: int,
     ):
         ...
 

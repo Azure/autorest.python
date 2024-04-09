@@ -25,15 +25,18 @@ def update_overload_section(
     yaml_data: Dict[str, Any],
     section: str,
 ):
-    for overload_s, original_s in zip(overload[section], yaml_data[section]):
-        if overload_s.get("type"):
-            overload_s["type"] = original_s["type"]
-        if overload_s.get("headers"):
-            for overload_h, original_h in zip(
-                overload_s["headers"], original_s["headers"]
-            ):
-                if overload_h.get("type"):
-                    overload_h["type"] = original_h["type"]
+    try:
+        for overload_s, original_s in zip(overload[section], yaml_data[section]):
+            if overload_s.get("type"):
+                overload_s["type"] = original_s["type"]
+            if overload_s.get("headers"):
+                for overload_h, original_h in zip(
+                    overload_s["headers"], original_s["headers"]
+                ):
+                    if overload_h.get("type"):
+                        overload_h["type"] = original_h["type"]
+    except KeyError as exc:
+        raise ValueError(overload["name"]) from exc
 
 
 def add_overload(
@@ -390,6 +393,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             and wire_name_lower in HEADERS_CONVERT_IN_METHOD
         ):
             headers_convert(yaml_data, HEADERS_CONVERT_IN_METHOD[wire_name_lower])
+        if (
+            wire_name_lower in ["$host", "content-type", "accept"]
+            and yaml_data["type"]["type"] == "constant"
+        ):
+            yaml_data["clientDefaultValue"] = yaml_data["type"]["value"]
 
     def update_operation(
         self,
