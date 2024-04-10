@@ -15,7 +15,6 @@ export interface PythonEmitterOptions {
     "company-name"?: string;
     "debug"?: boolean;
     "flavor"?: "azure";
-    "emit-cross-language-definition-file"?: boolean;
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
@@ -41,7 +40,6 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "company-name": { type: "string", nullable: true },
         "debug": { type: "boolean", nullable: true },
         "flavor": { type: "string", nullable: true },
-        "emit-cross-language-definition-file": { type: "boolean", nullable: true },
     },
     required: [],
 };

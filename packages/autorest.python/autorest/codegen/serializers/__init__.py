@@ -522,7 +522,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 namespace_path / Path("_validation.py"),
                 general_serializer.serialize_validation_file(),
             )
-        if self.code_model.options.get("emit_cross_language_definition_file"):
+        if self.code_model.is_azure_flavor:
             self.write_file(
                 namespace_path / Path("apiview_mapping_python.json"),
                 general_serializer.serialize_cross_language_definition_file(),
