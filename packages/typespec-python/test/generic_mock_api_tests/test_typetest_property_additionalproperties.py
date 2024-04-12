@@ -25,10 +25,10 @@ def client():
         ("is_string", {'name': 'IsStringAdditionalProperties', 'prop': 'abc'}, models.IsStringAdditionalProperties),
         ("extends_float", {'id': 43.125, 'prop': 43.125}, models.ExtendsFloatAdditionalProperties),
         ("is_float", {'id': 43.125, 'prop': 43.125}, models.IsFloatAdditionalProperties),
-        ("extends_model", {'prop': { 'state': 'ok' }}, models.ExtendsModelAdditionalProperties),
-        ("is_model", {'prop': { 'state': 'ok' }}, models.IsModelAdditionalProperties),
-        ("extends_model_array", {'prop': [{ 'state': 'ok' }, { 'state': 'ok' }]}, models.ExtendsModelArrayAdditionalProperties),
-        ("is_model_array", {'prop': [{ 'state': 'ok' }, { 'state': 'ok' }]}, models.IsModelArrayAdditionalProperties),
+        ("extends_model", {'knownProp': {'state': 'ok'}, 'prop': {'state': 'ok'}}, models.ExtendsModelAdditionalProperties),
+        ("is_model", {'knownProp': {'state': 'ok'}, 'prop': {'state': 'ok'}}, models.IsModelAdditionalProperties),
+        ("extends_model_array", {'knownProp': [{'state': 'ok'}, {'state': 'ok'}], 'prop': [{'state': 'ok'}, {'state': 'ok'}]}, models.ExtendsModelArrayAdditionalProperties),
+        ("is_model_array", {'knownProp': [{'state': 'ok'}, {'state': 'ok'}], 'prop': [{'state': 'ok'}, {'state': 'ok'}]}, models.IsModelArrayAdditionalProperties),
     ]
 )
 def test_json(client, og_name, val, model_name):
