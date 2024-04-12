@@ -703,6 +703,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
 
             return functools.partial(_deserialize_with_optional, if_obj_deserializer)
     except AttributeError:
+        if rf:
+            rf._is_optional = False
         pass
 
     if getattr(annotation, "__origin__", None) is typing.Union:
@@ -826,6 +828,7 @@ class _RestField:
         self._default = default
         self._format = format
         self._is_multipart_file_input = is_multipart_file_input
+        self._is_optional = True
 
     @property
     def _class_type(self) -> typing.Any:
