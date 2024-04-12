@@ -40,9 +40,14 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: "AsyncTokenCredential",
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
-        self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
+        self._config = AutoRestPagingTestServiceConfiguration(
+            credential=credential, **kwargs
+        )
         kwargs["request_id_header_name"] = "client-request-id"
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -59,15 +64,23 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.paging = PagingOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paging = PagingOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

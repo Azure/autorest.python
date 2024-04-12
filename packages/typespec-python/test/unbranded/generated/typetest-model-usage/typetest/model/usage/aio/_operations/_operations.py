@@ -42,6 +42,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class UsageClientOperationsMixin(UsageClientMixinABC):
+
     @overload
     async def input(  # pylint: disable=inconsistent-return-statements
         self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any

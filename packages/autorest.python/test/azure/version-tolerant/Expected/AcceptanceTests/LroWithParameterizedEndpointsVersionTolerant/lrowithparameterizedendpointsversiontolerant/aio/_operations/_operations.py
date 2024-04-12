@@ -34,7 +34,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
@@ -61,8 +63,12 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "accountName": self._serialize.url(
+                "account_name", account_name, "str", skip_quote=True
+            ),
+            "host": self._serialize.url(
+                "self._config.host", self._config.host, "str", skip_quote=True
+            ),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -76,7 +82,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         if response.status_code not in [200, 202]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         deserialized = None
@@ -88,7 +96,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 deserialized = None
 
         if response.status_code == 202:
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize(
+                "str", response.headers.get("Location")
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -96,7 +106,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
+    async def begin_poll_with_parameterized_endpoints(
+        self, account_name: str, **kwargs: Any
+    ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
@@ -114,7 +126,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._poll_with_parameterized_endpoints_initial(
-                account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+                account_name=account_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -129,8 +145,12 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             return deserialized
 
         path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "accountName": self._serialize.url(
+                "account_name", account_name, "str", skip_quote=True
+            ),
+            "host": self._serialize.url(
+                "self._config.host", self._config.host, "str", skip_quote=True
+            ),
         }
 
         if polling is True:
@@ -170,7 +190,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
+        constant_parameter: Literal["iAmConstant"] = kwargs.pop(
+            "constant_parameter", "iAmConstant"
+        )
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
         _request = build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
@@ -179,8 +201,12 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "accountName": self._serialize.url(
+                "account_name", account_name, "str", skip_quote=True
+            ),
+            "host": self._serialize.url(
+                "self._config.host", self._config.host, "str", skip_quote=True
+            ),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -194,7 +220,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         if response.status_code not in [200, 202]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         deserialized = None
@@ -206,7 +234,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 deserialized = None
 
         if response.status_code == 202:
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Location"] = self._deserialize(
+                "str", response.headers.get("Location")
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -228,7 +258,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
+        constant_parameter: Literal["iAmConstant"] = kwargs.pop(
+            "constant_parameter", "iAmConstant"
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -255,14 +287,20 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             return deserialized
 
         path_format_arguments = {
-            "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "accountName": self._serialize.url(
+                "account_name", account_name, "str", skip_quote=True
+            ),
+            "host": self._serialize.url(
+                "self._config.host", self._config.host, "str", skip_quote=True
+            ),
         }
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(
                 AsyncPollingMethod,
-                AsyncLROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs),
+                AsyncLROBasePolling(
+                    lro_delay, path_format_arguments=path_format_arguments, **kwargs
+                ),
             )
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())

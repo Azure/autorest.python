@@ -21,7 +21,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_auto_rest_report_service_for_azure_get_report_request
+from ..._operations._operations import (
+    build_auto_rest_report_service_for_azure_get_report_request,
+)
 from .._vendor import AutoRestReportServiceForAzureMixinABC
 
 if sys.version_info >= (3, 9):
@@ -29,14 +31,18 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
     AutoRestReportServiceForAzureMixinABC
 ):
     @distributed_trace_async
-    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+    async def get_report(
+        self, *, qualifier: Optional[str] = None, **kwargs: Any
+    ) -> Dict[str, int]:
         """Get test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
@@ -85,7 +91,9 @@ class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

@@ -21,7 +21,9 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         return Product(**response)
 
     def get_pages(self, mode: str, **kwargs) -> AsyncIterable[Product]:
-        pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
+        pages = super().get_pages(
+            mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs
+        )
         return cast(AsyncIterable[Product], pages)
 
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[LROProduct]:  # type: ignore

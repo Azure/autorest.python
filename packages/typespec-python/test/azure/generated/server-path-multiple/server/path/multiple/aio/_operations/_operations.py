@@ -36,6 +36,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MultipleClientOperationsMixin(MultipleClientMixinABC):
+
     @distributed_trace_async
     async def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """no_operation_params.

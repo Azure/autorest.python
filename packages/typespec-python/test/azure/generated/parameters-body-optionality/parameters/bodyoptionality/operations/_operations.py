@@ -364,6 +364,7 @@ class OptionalExplicitOperations:
 
 
 class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
+
     @overload
     def required_explicit(  # pylint: disable=inconsistent-return-statements
         self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any

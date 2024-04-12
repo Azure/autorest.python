@@ -75,27 +75,47 @@ class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.primitive = PrimitiveOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.inheritance = InheritanceOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.polymorphism = PolymorphismOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.basic = BasicOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.primitive = PrimitiveOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array = ArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary = DictionaryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.inheritance = InheritanceOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.polymorphism = PolymorphismOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.polymorphicrecursive = PolymorphicrecursiveOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.readonlyproperty = ReadonlypropertyOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.flattencomplex = FlattencomplexOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

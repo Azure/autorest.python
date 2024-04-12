@@ -30,8 +30,7 @@ class Pet(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -64,8 +63,7 @@ class Cat(Pet):
         *,
         name: str,
         age: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -101,8 +99,7 @@ class Siamese(Cat):
         name: str,
         age: int,
         smart: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

@@ -30,8 +30,7 @@ class AzureLocationModel(_model_base.Model):
         self,
         *,
         location: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

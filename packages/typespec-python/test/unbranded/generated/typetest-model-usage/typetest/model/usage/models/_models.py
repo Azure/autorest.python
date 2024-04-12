@@ -30,8 +30,7 @@ class InputOutputRecord(_model_base.Model):
         self,
         *,
         required_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -61,8 +60,7 @@ class InputRecord(_model_base.Model):
         self,
         *,
         required_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -92,8 +90,7 @@ class OutputRecord(_model_base.Model):
         self,
         *,
         required_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

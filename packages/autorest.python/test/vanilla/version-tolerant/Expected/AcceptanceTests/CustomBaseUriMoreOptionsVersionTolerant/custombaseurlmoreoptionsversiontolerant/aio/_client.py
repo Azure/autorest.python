@@ -51,15 +51,23 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(
+            base_url=_endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -84,11 +92,16 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         request_copy = deepcopy(request)
         path_format_arguments = {
             "dnsSuffix": self._serialize.url(
-                "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
+                "self._config.dns_suffix",
+                self._config.dns_suffix,
+                "str",
+                skip_quote=True,
             ),
         }
 
-        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
+        request_copy.url = self._client.format_url(
+            request_copy.url, **path_format_arguments
+        )
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:

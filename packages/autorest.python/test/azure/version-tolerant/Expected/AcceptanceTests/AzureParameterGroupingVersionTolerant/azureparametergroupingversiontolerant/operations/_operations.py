@@ -29,19 +29,28 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_parameter_grouping_post_required_request(  # pylint: disable=name-too-long
-    path: str, *, json: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+    path: str,
+    *,
+    json: int,
+    custom_header: Optional[str] = None,
+    query: int = 30,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -58,12 +67,18 @@ def build_parameter_grouping_post_required_request(  # pylint: disable=name-too-
 
     # Construct headers
     if custom_header is not None:
-        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+        _headers["customHeader"] = _SERIALIZER.header(
+            "custom_header", custom_header, "str"
+        )
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs)
+    return HttpRequest(
+        method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs
+    )
 
 
 def build_parameter_grouping_post_optional_request(  # pylint: disable=name-too-long
@@ -83,14 +98,21 @@ def build_parameter_grouping_post_optional_request(  # pylint: disable=name-too-
 
     # Construct headers
     if custom_header is not None:
-        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+        _headers["customHeader"] = _SERIALIZER.header(
+            "custom_header", custom_header, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_parameter_grouping_post_reserved_words_request(  # pylint: disable=name-too-long
-    *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+    *,
+    from_parameter: Optional[str] = None,
+    accept_parameter: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -101,7 +123,9 @@ def build_parameter_grouping_post_reserved_words_request(  # pylint: disable=nam
     if from_parameter is not None:
         _params["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
     if accept_parameter is not None:
-        _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
+        _params["accept"] = _SERIALIZER.query(
+            "accept_parameter", accept_parameter, "str"
+        )
 
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
@@ -135,7 +159,9 @@ def build_parameter_grouping_post_multi_param_groups_request(  # pylint: disable
         _headers["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_parameter_grouping_post_shared_parameter_group_object_request(  # pylint: disable=name-too-long
@@ -158,11 +184,16 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(  # pyli
         _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="POST", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_parameter_grouping_group_with_constant_request(  # pylint: disable=name-too-long
-    *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
+    *,
+    grouped_constant: Optional[Literal["foo"]] = None,
+    grouped_parameter: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -173,9 +204,13 @@ def build_parameter_grouping_group_with_constant_request(  # pylint: disable=nam
 
     # Construct headers
     if grouped_constant is not None:
-        _headers["groupedConstant"] = _SERIALIZER.header("grouped_constant", grouped_constant, "str")
+        _headers["groupedConstant"] = _SERIALIZER.header(
+            "grouped_constant", grouped_constant, "str"
+        )
     if grouped_parameter is not None:
-        _headers["groupedParameter"] = _SERIALIZER.header("grouped_parameter", grouped_parameter, "str")
+        _headers["groupedParameter"] = _SERIALIZER.header(
+            "grouped_parameter", grouped_parameter, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -196,11 +231,19 @@ class ParameterGroupingOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
     @distributed_trace
     def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+        self,
+        path: str,
+        body: int,
+        *,
+        custom_header: Optional[str] = None,
+        query: int = 30,
+        **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -227,7 +270,9 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = body
@@ -244,8 +289,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -253,7 +300,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -295,8 +344,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -304,7 +355,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -312,7 +365,11 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_reserved_words(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        from_parameter: Optional[str] = None,
+        accept_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
@@ -348,8 +405,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -357,7 +416,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -411,8 +472,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -420,7 +483,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -462,8 +527,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -471,7 +538,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -520,8 +589,10 @@ class ParameterGroupingOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -529,7 +600,9 @@ class ParameterGroupingOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

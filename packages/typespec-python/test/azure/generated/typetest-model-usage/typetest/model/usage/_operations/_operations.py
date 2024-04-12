@@ -87,6 +87,7 @@ def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
 
 
 class UsageClientOperationsMixin(UsageClientMixinABC):
+
     @overload
     def input(  # pylint: disable=inconsistent-return-statements
         self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any

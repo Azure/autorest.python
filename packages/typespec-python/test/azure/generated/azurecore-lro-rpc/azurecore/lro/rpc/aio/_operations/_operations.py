@@ -41,6 +41,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
+
     async def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:

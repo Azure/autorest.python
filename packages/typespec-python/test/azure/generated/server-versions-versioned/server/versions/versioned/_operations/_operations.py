@@ -70,6 +70,7 @@ def build_versioned_with_path_api_version_request(**kwargs: Any) -> HttpRequest:
 
 
 class VersionedClientOperationsMixin(VersionedClientMixinABC):
+
     @distributed_trace
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

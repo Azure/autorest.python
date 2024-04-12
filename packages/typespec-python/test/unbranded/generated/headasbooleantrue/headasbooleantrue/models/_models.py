@@ -51,8 +51,7 @@ class VisibilityModel(_model_base.Model):
         create_prop: List[str],
         update_prop: List[int],
         delete_prop: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

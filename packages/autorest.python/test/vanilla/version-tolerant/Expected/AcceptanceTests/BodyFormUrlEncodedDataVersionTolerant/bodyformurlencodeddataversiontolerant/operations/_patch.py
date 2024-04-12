@@ -25,9 +25,14 @@ from ._operations import FormdataurlencodedOperations as _FormdataurlencodedOper
 
 class Helpers:
     @staticmethod
-    def _update_pet_with_form_request(pet_id: int, *, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    def _update_pet_with_form_request(
+        pet_id: int, *, data: Dict[str, Any], **kwargs: Any
+    ) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
+        content_type = kwargs.pop(
+            "content_type",
+            _headers.pop("Content-Type", "application/x-www-form-urlencoded"),
+        )
         # Construct URL
         _url = "/formsdataurlencoded/pet/add/{petId}"
         path_format_arguments = {
@@ -39,7 +44,11 @@ class Helpers:
         if content_type is not None:
             _headers["Content-Type"] = content_type
         return HttpRequest(
-            method="POST", url=cast(str, _url), headers=_headers, data=data, params=kwargs.pop("params", {})
+            method="POST",
+            url=cast(str, _url),
+            headers=_headers,
+            data=data,
+            params=kwargs.pop("params", {}),
         )
 
     @staticmethod
@@ -48,34 +57,51 @@ class Helpers:
     ) -> None:
         cls = kwargs.pop("cls", None)
 
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
         response = pipeline_response.http_response
         if response.status_code not in [200, 405]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
         if cls:
             return cls(pipeline_response, None, {})
 
     @staticmethod
-    def _partial_constant_body_request(*, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    def _partial_constant_body_request(
+        *, data: Dict[str, Any], **kwargs: Any
+    ) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
+        content_type = kwargs.pop(
+            "content_type",
+            _headers.pop("Content-Type", "application/x-www-form-urlencoded"),
+        )
         # Construct URL
         _url = "/formsdataurlencoded/partialConstantBody"
 
         # Construct headers
         if content_type is not None:
             _headers["Content-Type"] = content_type
-        return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
+        return HttpRequest(
+            method="POST", url=_url, headers=_headers, data=data, params=_params
+        )
 
     @staticmethod
     def _partial_constant_body_deserialize(  # pylint: disable=inconsistent-return-statements
         pipeline_response: PipelineResponse, **kwargs: Any
     ) -> None:
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         cls = kwargs.pop("cls", None)
@@ -83,15 +109,21 @@ class Helpers:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
         if cls:
             return cls(pipeline_response, None, {})
 
 
 class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
-    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> PipelineResponse:
-        return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+    def _send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> PipelineResponse:
+        return self._client._pipeline.run(
+            request, stream=stream, **kwargs
+        )  # pylint: disable=protected-access
 
     @distributed_trace
     def update_pet_with_form(
@@ -125,7 +157,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         """
         request = self._update_pet_with_form_request(pet_id=pet_id, data=data, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._update_pet_with_form_deserialize(self._send_request(request, **kwargs))
+        return self._update_pet_with_form_deserialize(
+            self._send_request(request, **kwargs)
+        )
 
     @distributed_trace
     def partial_constant_body(
@@ -155,7 +189,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         """
         request = self._partial_constant_body_request(data=data, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._partial_constant_body_deserialize(self._send_request(request, **kwargs))
+        return self._partial_constant_body_deserialize(
+            self._send_request(request, **kwargs)
+        )
 
 
 __all__: List[str] = [

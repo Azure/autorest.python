@@ -33,6 +33,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class SingleClientOperationsMixin(SingleClientMixinABC):
+
     @distributed_trace_async
     async def my_op(self, **kwargs: Any) -> bool:
         """my_op.

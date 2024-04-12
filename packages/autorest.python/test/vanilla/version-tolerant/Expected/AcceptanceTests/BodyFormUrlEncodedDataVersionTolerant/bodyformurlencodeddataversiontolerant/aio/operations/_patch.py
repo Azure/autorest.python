@@ -17,11 +17,17 @@ from ...operations._patch import Helpers
 
 
 class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
-    async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> PipelineResponse:
-        return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+    async def _send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> PipelineResponse:
+        return await self._client._pipeline.run(
+            request, stream=stream, **kwargs
+        )  # pylint: disable=protected-access
 
     @distributed_trace_async
-    async def update_pet_with_form(self, pet_id: int, data: Dict[str, Any], **kwargs: Any) -> None:
+    async def update_pet_with_form(
+        self, pet_id: int, data: Dict[str, Any], **kwargs: Any
+    ) -> None:
         """Updates a pet in the store with form data.
 
         Updates a pet in the store with form data.
@@ -51,7 +57,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         """
         request = self._update_pet_with_form_request(pet_id=pet_id, data=data, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._update_pet_with_form_deserialize(await self._send_request(request, **kwargs))
+        return self._update_pet_with_form_deserialize(
+            await self._send_request(request, **kwargs)
+        )
 
     @distributed_trace_async
     async def partial_constant_body(self, data: Dict[str, Any], **kwargs: Any) -> None:
@@ -79,7 +87,9 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         """
         request = self._partial_constant_body_request(data=data, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._partial_constant_body_deserialize(await self._send_request(request, **kwargs))
+        return self._partial_constant_body_deserialize(
+            await self._send_request(request, **kwargs)
+        )
 
 
 __all__: List[str] = [

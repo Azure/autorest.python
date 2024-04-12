@@ -30,8 +30,7 @@ class JsonEncodedNameModel(_model_base.Model):
         self,
         *,
         default_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

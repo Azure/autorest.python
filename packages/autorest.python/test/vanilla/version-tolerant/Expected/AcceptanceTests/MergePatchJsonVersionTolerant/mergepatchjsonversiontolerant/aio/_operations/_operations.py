@@ -31,12 +31,16 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
     @distributed_trace_async
-    async def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def patch_single(
+        self, body: JSON, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.
 
         :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
@@ -56,7 +60,9 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/merge-patch+json"))
+        content_type: str = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/merge-patch+json")
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = body
@@ -79,7 +85,9 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

@@ -433,6 +433,7 @@ class UnionEnumOperations:
 
 
 class NamingClientOperationsMixin(NamingClientMixinABC):
+
     @distributed_trace_async
     async def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """client_name.

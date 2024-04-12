@@ -31,13 +31,17 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_client_with_enum_head_request(*, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any) -> HttpRequest:
+def build_client_with_enum_head_request(
+    *, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -51,7 +55,9 @@ def build_client_with_enum_head_request(*, x_ms_enum: Union[str, _models.Enum0],
 
 class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
     @distributed_trace
-    def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def head(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a head request to the service. Should have header ``x-ms-enum`` with value ``single``.
 
         :return: None
@@ -79,8 +85,10 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -88,7 +96,9 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

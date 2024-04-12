@@ -19,7 +19,9 @@ from ._configuration import ClientWithEnumConfiguration
 from ._operations import ClientWithEnumOperationsMixin
 
 
-class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientWithEnum(
+    ClientWithEnumOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test client with enum variable.
 
     :param x_ms_enum: Enum client parameter. "single" Required.
@@ -29,7 +31,11 @@ class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-a
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, x_ms_enum: Union[str, _models.Enum0], *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        x_ms_enum: Union[str, _models.Enum0],
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
         self._config = ClientWithEnumConfiguration(x_ms_enum=x_ms_enum, **kwargs)
         _policies = kwargs.pop("policies", None)
@@ -46,12 +52,20 @@ class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-a
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
-        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        client_models = {
+            k: v for k, v in _models.__dict__.items() if isinstance(v, type)
+        }
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

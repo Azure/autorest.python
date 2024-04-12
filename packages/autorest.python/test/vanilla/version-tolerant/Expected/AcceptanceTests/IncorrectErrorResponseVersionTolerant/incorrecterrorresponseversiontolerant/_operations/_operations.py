@@ -29,7 +29,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -44,9 +46,13 @@ def build_incorrect_returned_error_model_get_incorrect_error_from_server_request
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):  # pylint: disable=name-too-long
+class IncorrectReturnedErrorModelOperationsMixin(
+    IncorrectReturnedErrorModelMixinABC
+):  # pylint: disable=name-too-long
     @distributed_trace
-    def get_incorrect_error_from_server(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get_incorrect_error_from_server(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Get an error response from the server that is not as described in our Error object. Want to
         swallow the deserialization error and still return an HttpResponseError to the users.
 
@@ -74,8 +80,10 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -83,7 +91,9 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

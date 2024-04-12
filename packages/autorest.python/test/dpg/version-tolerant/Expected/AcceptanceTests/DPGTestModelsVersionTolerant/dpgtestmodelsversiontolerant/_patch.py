@@ -13,11 +13,15 @@ from ._client import DPGClient as DPGClientGenerated
 
 class DPGClient(DPGClientGenerated):
     @staticmethod
-    def added_method() -> str:  # pylint: disable=client-method-should-not-use-static-method
+    def added_method() -> (
+        str
+    ):  # pylint: disable=client-method-should-not-use-static-method
         return super().added_method()  # type: ignore
 
 
-__all__: List[str] = ["DPGClient"]  # Add all objects you want publicly available to users at this package level
+__all__: List[str] = [
+    "DPGClient"
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

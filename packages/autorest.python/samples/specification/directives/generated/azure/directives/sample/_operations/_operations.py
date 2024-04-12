@@ -73,6 +73,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
+
     def _basic_polling_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

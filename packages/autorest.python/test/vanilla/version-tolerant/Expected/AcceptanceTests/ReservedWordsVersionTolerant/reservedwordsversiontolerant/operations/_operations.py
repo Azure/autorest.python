@@ -31,7 +31,9 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -54,7 +56,9 @@ def build_import_operations_operation_one_request(  # pylint: disable=name-too-l
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_reserved_words_operation_with_content_param_request(  # pylint: disable=name-too-long
@@ -62,7 +66,9 @@ def build_reserved_words_operation_with_content_param_request(  # pylint: disabl
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -70,10 +76,14 @@ def build_reserved_words_operation_with_content_param_request(  # pylint: disabl
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT", url=_url, headers=_headers, content=content, **kwargs
+    )
 
 
 def build_reserved_words_operation_with_json_param_request(  # pylint: disable=name-too-long
@@ -81,7 +91,9 @@ def build_reserved_words_operation_with_json_param_request(  # pylint: disable=n
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -89,14 +101,20 @@ def build_reserved_words_operation_with_json_param_request(  # pylint: disable=n
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_reserved_words_operation_with_url_request(  # pylint: disable=name-too-long
-    url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+    url: str,
+    *,
+    header_parameters: str,
+    query_parameters: Optional[List[str]] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -114,14 +132,19 @@ def build_reserved_words_operation_with_url_request(  # pylint: disable=name-too
     # Construct parameters
     if query_parameters is not None:
         _params["queryParameters"] = [
-            _SERIALIZER.query("query_parameters", q, "str") if q is not None else "" for q in query_parameters
+            _SERIALIZER.query("query_parameters", q, "str") if q is not None else ""
+            for q in query_parameters
         ]
 
     # Construct headers
-    _headers["headerParameters"] = _SERIALIZER.header("header_parameters", header_parameters, "str")
+    _headers["headerParameters"] = _SERIALIZER.header(
+        "header_parameters", header_parameters, "str"
+    )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_reserved_words_reserved_enum_request(  # pylint: disable=name-too-long
@@ -135,7 +158,9 @@ def build_reserved_words_reserved_enum_request(  # pylint: disable=name-too-long
     _url = "/reservedWords/enum"
 
     # Construct headers
-    _headers["enumParameter"] = _SERIALIZER.header("enum_parameter", enum_parameter, "str")
+    _headers["enumParameter"] = _SERIALIZER.header(
+        "enum_parameter", enum_parameter, "str"
+    )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -156,7 +181,9 @@ class ImportOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
     @distributed_trace
     def operation_one(self, *, parameter1: str, **kwargs: Any) -> JSON:
@@ -189,8 +216,10 @@ class ImportOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -198,7 +227,9 @@ class ImportOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -212,7 +243,9 @@ class ImportOperations:
         return cast(JSON, deserialized)  # type: ignore
 
 
-class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
+class ReservedWordsClientOperationsMixin(
+    ReservedWordsClientMixinABC
+):  # pylint: disable=abstract-class-instantiated
     def __init__(self):
         raise_if_not_implemented(
             self.__class__,
@@ -243,7 +276,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: str = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/octet-stream")
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _content = content
@@ -257,8 +292,10 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -266,7 +303,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -300,7 +339,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _json = json
@@ -314,8 +355,10 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -323,7 +366,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -338,7 +383,12 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
     @distributed_trace
     def operation_with_url(
-        self, url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+        self,
+        url: str,
+        *,
+        header_parameters: str,
+        query_parameters: Optional[List[str]] = None,
+        **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
@@ -378,8 +428,10 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -387,7 +439,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -432,8 +486,10 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -441,7 +497,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

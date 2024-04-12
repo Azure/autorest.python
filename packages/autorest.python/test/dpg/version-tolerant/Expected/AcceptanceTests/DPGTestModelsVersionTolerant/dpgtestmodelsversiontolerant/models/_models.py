@@ -59,7 +59,9 @@ class Product(_serialization.Model):
         "received": {"key": "received", "type": "str"},
     }
 
-    def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs: Any) -> None:
+    def __init__(
+        self, *, received: Union[str, "_models.ProductReceived"], **kwargs: Any
+    ) -> None:
         """
         :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
@@ -90,7 +92,11 @@ class LROProduct(Product):
     }
 
     def __init__(
-        self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs: Any
+        self,
+        *,
+        received: Union[str, "_models.ProductReceived"],
+        provisioning_state: str,
+        **kwargs: Any
     ) -> None:
         """
         :keyword received: Required. Known values are: "raw" and "model".
@@ -117,7 +123,11 @@ class ProductResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        values: Optional[List["_models.Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """
         :keyword values:

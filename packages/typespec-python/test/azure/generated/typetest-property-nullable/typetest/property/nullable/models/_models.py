@@ -41,8 +41,7 @@ class BytesProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: bytes,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -77,8 +76,7 @@ class CollectionsByteProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: List[bytes],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -113,8 +111,7 @@ class CollectionsModelProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: List["_models.InnerModel"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -149,8 +146,7 @@ class DatetimeProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: datetime.datetime,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -185,8 +181,7 @@ class DurationProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: datetime.timedelta,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -216,8 +211,7 @@ class InnerModel(_model_base.Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -253,8 +247,7 @@ class StringProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

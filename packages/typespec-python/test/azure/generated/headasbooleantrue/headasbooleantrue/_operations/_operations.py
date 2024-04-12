@@ -129,6 +129,7 @@ def build_visibility_delete_model_request(**kwargs: Any) -> HttpRequest:
 
 
 class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
+
     @overload
     def get_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any

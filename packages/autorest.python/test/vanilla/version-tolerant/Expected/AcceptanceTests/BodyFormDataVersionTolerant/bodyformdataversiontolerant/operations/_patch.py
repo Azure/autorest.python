@@ -47,12 +47,18 @@ def _upload_file_request(files: Dict[str, Any], **kwargs: Any):
 
 def _upload_file_deserialize(pipeline_response, **kwargs):
     cls = kwargs.pop("cls", None)
-    error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+    error_map = {
+        401: ClientAuthenticationError,
+        404: ResourceNotFoundError,
+        409: ResourceExistsError,
+    }
     error_map.update(kwargs.pop("error_map", {}) or {})
     response = pipeline_response.http_response
 
     if response.status_code not in [200]:
-        map_error(status_code=response.status_code, response=response, error_map=error_map)
+        map_error(
+            status_code=response.status_code, response=response, error_map=error_map
+        )
         raise HttpResponseError(response=response)
     deserialized = response.iter_bytes()
 
@@ -81,12 +87,18 @@ def _upload_files_request(files: Dict[str, Any], **kwargs):
 
 def _upload_files_deserialize(pipeline_response, **kwargs):
     cls = kwargs.pop("cls", None)
-    error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+    error_map = {
+        401: ClientAuthenticationError,
+        404: ResourceNotFoundError,
+        409: ResourceExistsError,
+    }
     error_map.update(kwargs.pop("error_map", {}) or {})
     response = pipeline_response.http_response
 
     if response.status_code not in [200]:
-        map_error(status_code=response.status_code, response=response, error_map=error_map)
+        map_error(
+            status_code=response.status_code, response=response, error_map=error_map
+        )
         raise HttpResponseError(response=response)
     deserialized = response.iter_bytes()
 
@@ -96,10 +108,14 @@ def _upload_files_deserialize(pipeline_response, **kwargs):
 
 
 class FormdataOperations(_FormdataOperations):
-    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
+    def _send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs
+    ) -> PipelineResponse:
         kwargs.pop("cls", None)
         request.url = self._client.format_url(request.url)
-        return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+        return self._client._pipeline.run(
+            request, stream=stream, **kwargs
+        )  # pylint: disable=protected-access
 
     @distributed_trace
     def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> Iterator[bytes]:
@@ -123,7 +139,9 @@ class FormdataOperations(_FormdataOperations):
         """
         request = _upload_file_request(files=files, **kwargs)
         request.url = self._client.format_url(request.url)
-        return _upload_file_deserialize(self._send_request(request, stream=True, **kwargs), **kwargs)
+        return _upload_file_deserialize(
+            self._send_request(request, stream=True, **kwargs), **kwargs
+        )
 
     @distributed_trace
     def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> Iterator[bytes]:
@@ -147,7 +165,9 @@ class FormdataOperations(_FormdataOperations):
         """
         request = _upload_files_request(files=files, **kwargs)
         request.url = self._client.format_url(request.url)
-        return _upload_files_deserialize(self._send_request(request, stream=True, **kwargs), **kwargs)
+        return _upload_files_deserialize(
+            self._send_request(request, stream=True, **kwargs), **kwargs
+        )
 
 
 __all__: List[str] = [

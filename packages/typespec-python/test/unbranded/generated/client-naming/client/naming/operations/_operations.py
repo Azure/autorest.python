@@ -553,6 +553,7 @@ class UnionEnumOperations:
 
 
 class NamingClientOperationsMixin(NamingClientMixinABC):
+
     def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """client_name.
 

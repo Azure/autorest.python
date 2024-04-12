@@ -8,7 +8,18 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -32,13 +43,17 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_multiple_inheritance_service_get_horse_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_get_horse_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -52,10 +67,14 @@ def build_multiple_inheritance_service_get_horse_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_horse_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_put_horse_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -63,13 +82,17 @@ def build_multiple_inheritance_service_put_horse_request(**kwargs: Any) -> HttpR
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_pet_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_get_pet_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -83,10 +106,14 @@ def build_multiple_inheritance_service_get_pet_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_pet_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_put_pet_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -94,7 +121,9 @@ def build_multiple_inheritance_service_put_pet_request(**kwargs: Any) -> HttpReq
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -121,7 +150,9 @@ def build_multiple_inheritance_service_put_feline_request(  # pylint: disable=na
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -129,13 +160,17 @@ def build_multiple_inheritance_service_put_feline_request(  # pylint: disable=na
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_cat_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_get_cat_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -149,10 +184,14 @@ def build_multiple_inheritance_service_get_cat_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_cat_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_inheritance_service_put_cat_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -160,7 +199,9 @@ def build_multiple_inheritance_service_put_cat_request(**kwargs: Any) -> HttpReq
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -187,7 +228,9 @@ def build_multiple_inheritance_service_put_kitten_request(  # pylint: disable=na
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -195,7 +238,9 @@ def build_multiple_inheritance_service_put_kitten_request(  # pylint: disable=na
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -241,8 +286,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -250,7 +297,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -264,7 +313,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_horse(
+        self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
@@ -287,7 +338,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_horse(self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_horse(
+        self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
@@ -331,7 +384,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -352,8 +407,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -361,7 +418,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -410,8 +469,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -419,7 +480,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -433,7 +496,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_pet(
+        self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
@@ -455,7 +520,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_pet(self, pet: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_pet(
+        self, pet: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
@@ -497,7 +564,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -518,8 +587,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -527,7 +598,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -577,8 +650,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -586,7 +661,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -600,7 +677,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_feline(
+        self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
@@ -623,7 +702,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_feline(self, feline: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_feline(
+        self,
+        feline: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
+    ) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
@@ -667,7 +752,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -688,8 +775,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -697,7 +786,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -749,8 +840,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -758,7 +851,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -772,7 +867,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_cat(
+        self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -798,7 +895,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_cat(self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_cat(
+        self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -845,7 +944,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -866,8 +967,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -875,7 +978,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -929,8 +1034,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -938,7 +1045,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -952,7 +1061,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_kitten(
+        self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -980,7 +1091,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def put_kitten(
+        self,
+        kitten: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
+    ) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -1030,7 +1147,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1051,8 +1170,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1060,7 +1181,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

@@ -45,7 +45,9 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         **kwargs: Any
     ) -> None:
         self._config = AutoRestUrlTestServiceConfiguration(
-            global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
+            global_string_path=global_string_path,
+            global_string_query=global_string_query,
+            **kwargs
         )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -61,19 +63,33 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.queries = QueriesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.path_items = PathItemsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

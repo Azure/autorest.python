@@ -8,7 +8,19 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    Literal,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,12 +49,16 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
+    async def validation_of_method_parameters(
+        self, resource_group_name: str, id: int, **kwargs: Any
+    ) -> JSON:
         # pylint: disable=line-too-long
         """Validates input parameters on the method. See swagger for details.
 
@@ -97,13 +113,15 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _request = build_auto_rest_validation_test_validation_of_method_parameters_request(
-            resource_group_name=resource_group_name,
-            id=id,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_validation_test_validation_of_method_parameters_request(
+                resource_group_name=resource_group_name,
+                id=id,
+                subscription_id=self._config.subscription_id,
+                api_version=self._config.api_version,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
@@ -117,7 +135,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -272,7 +292,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[Union[JSON, IO[bytes]]] = None,
+        **kwargs: Any
     ) -> JSON:
         # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
@@ -354,7 +378,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -391,7 +417,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -405,7 +433,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_with_constant_in_path(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
         :return: None
@@ -443,7 +473,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -451,7 +483,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     async def post_with_constant_in_body(
-        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> JSON:
         # pylint: disable=line-too-long
         """post_with_constant_in_body.
@@ -523,7 +559,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     async def post_with_constant_in_body(
-        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        body: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> JSON:
         # pylint: disable=line-too-long
         """post_with_constant_in_body.
@@ -568,7 +608,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+    async def post_with_constant_in_body(
+        self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+    ) -> JSON:
         # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
@@ -645,7 +687,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -679,7 +723,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

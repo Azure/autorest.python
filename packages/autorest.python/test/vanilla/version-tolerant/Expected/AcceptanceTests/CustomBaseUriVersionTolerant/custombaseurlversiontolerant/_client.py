@@ -32,7 +32,9 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
         self, host: str = "host", **kwargs: Any
     ) -> None:
         _endpoint = "http://{accountName}{host}"
-        self._config = AutoRestParameterizedHostTestClientConfiguration(host=host, **kwargs)
+        self._config = AutoRestParameterizedHostTestClientConfiguration(
+            host=host, **kwargs
+        )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -47,17 +49,27 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(
+            base_url=_endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.paths = PathsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -77,10 +89,14 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+            "host": self._serialize.url(
+                "self._config.host", self._config.host, "str", skip_quote=True
+            ),
         }
 
-        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
+        request_copy.url = self._client.format_url(
+            request_copy.url, **path_format_arguments
+        )
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:

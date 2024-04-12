@@ -94,10 +94,16 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -120,8 +126,12 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
         self.skip_url_encoding = SkipUrlEncodingOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.odata = OdataOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.odata = OdataOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.header = HeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

@@ -29,7 +29,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -269,12 +271,18 @@ def build_contants_put_model_as_string_required_one_value_default_request(  # py
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_contants_put_client_constants_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_constant: Literal[True] = kwargs.pop("header_constant", _headers.pop("header-constant", True))
-    query_constant: Literal[100] = kwargs.pop("query_constant", _params.pop("query-constant", 100))
+    header_constant: Literal[True] = kwargs.pop(
+        "header_constant", _headers.pop("header-constant", True)
+    )
+    query_constant: Literal[100] = kwargs.pop(
+        "query_constant", _params.pop("query-constant", 100)
+    )
     path_constant: Literal["path"] = kwargs.pop("path_constant", "path")
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"
@@ -285,12 +293,18 @@ def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:  
     _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
-    _params["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")
+    _params["query-constant"] = _SERIALIZER.query(
+        "query_constant", query_constant, "int"
+    )
 
     # Construct headers
-    _headers["header-constant"] = _SERIALIZER.header("header_constant", header_constant, "bool")
+    _headers["header-constant"] = _SERIALIZER.header(
+        "header_constant", header_constant, "bool"
+    )
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 class ContantsOperations:
@@ -308,7 +322,9 @@ class ContantsOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -345,8 +361,10 @@ class ContantsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -354,7 +372,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -387,16 +407,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_no_required_two_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -404,7 +428,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -445,8 +471,10 @@ class ContantsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -454,7 +482,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -487,16 +517,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_no_required_one_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -504,7 +538,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -537,16 +573,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_required_two_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -554,7 +594,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -587,16 +629,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_required_two_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_required_two_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -604,7 +650,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -636,16 +684,20 @@ class ContantsOperations:
         input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_required_one_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -653,7 +705,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -685,16 +739,20 @@ class ContantsOperations:
         input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_no_model_as_string_required_one_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_no_model_as_string_required_one_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -702,7 +760,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -735,16 +795,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_no_required_two_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -752,7 +816,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -785,16 +851,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_no_required_two_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_no_required_two_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -802,7 +872,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -835,16 +907,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_no_required_one_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -852,7 +928,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -885,16 +963,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_no_required_one_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_no_required_one_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -902,7 +984,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -935,16 +1019,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_required_two_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_required_two_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -952,7 +1040,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -985,16 +1075,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_required_two_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_required_two_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1002,7 +1096,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -1035,16 +1131,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_required_one_value_no_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_required_one_value_no_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1052,7 +1152,9 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -1085,16 +1187,20 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_contants_put_model_as_string_required_one_value_default_request(
-            input=input,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_contants_put_model_as_string_required_one_value_default_request(
+                input=input,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1102,14 +1208,18 @@ class ContantsOperations:
         if response.status_code not in [201]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_client_constants(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Pass constants from the client to this function. Will pass in constant path, query, and header
         parameters.
 
@@ -1140,8 +1250,10 @@ class ContantsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1149,7 +1261,9 @@ class ContantsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

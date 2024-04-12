@@ -36,6 +36,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
+
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
         """List users.

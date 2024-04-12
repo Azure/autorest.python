@@ -29,12 +29,18 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
-class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):  # pylint: disable=name-too-long
+class ParmaterizedEndpointClientOperationsMixin(
+    ParmaterizedEndpointClientMixinABC
+):  # pylint: disable=name-too-long
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.
 
         :return: None
@@ -59,7 +65,9 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url(
+                "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+            ),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -73,7 +81,9 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

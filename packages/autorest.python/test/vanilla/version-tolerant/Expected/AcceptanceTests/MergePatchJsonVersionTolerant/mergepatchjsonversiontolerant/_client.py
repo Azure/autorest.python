@@ -18,7 +18,9 @@ from ._operations import MergePatchJsonClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MergePatchJsonClient(
+    MergePatchJsonClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing merge patch json.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -43,16 +45,24 @@ class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disa
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

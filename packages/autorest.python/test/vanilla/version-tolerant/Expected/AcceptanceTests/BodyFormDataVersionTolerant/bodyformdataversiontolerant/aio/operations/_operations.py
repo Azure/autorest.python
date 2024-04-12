@@ -30,7 +30,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class FormdataOperations:  # pylint: disable=abstract-class-instantiated
@@ -48,7 +50,9 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
         raise_if_not_implemented(
             self.__class__,
@@ -59,7 +63,9 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         )
 
     @distributed_trace_async
-    async def upload_file_via_body(self, file_content: IO[bytes], **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file_via_body(
+        self, file_content: IO[bytes], **kwargs: Any
+    ) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param file_content: File to upload. Required.
@@ -79,7 +85,9 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: str = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/octet-stream")
+        )
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _content = file_content
@@ -93,8 +101,10 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         _request.url = self._client.format_url(_request.url)
 
         _stream = True
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -102,7 +112,9 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         deserialized = response.iter_bytes()

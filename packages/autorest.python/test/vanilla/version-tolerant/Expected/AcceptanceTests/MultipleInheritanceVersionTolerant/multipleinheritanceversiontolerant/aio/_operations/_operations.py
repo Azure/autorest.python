@@ -8,7 +8,18 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -43,7 +54,9 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
@@ -95,7 +108,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -109,7 +124,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_horse(
+        self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
@@ -132,7 +149,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_horse(self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_horse(
+        self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
@@ -176,7 +195,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -206,7 +227,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -264,7 +287,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -278,7 +303,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_pet(
+        self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
@@ -300,7 +327,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_pet(self, pet: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_pet(
+        self, pet: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
@@ -342,7 +371,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -372,7 +403,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -431,7 +464,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -445,7 +480,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_feline(
+        self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
@@ -468,7 +505,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_feline(self, feline: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_feline(
+        self,
+        feline: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
@@ -512,7 +555,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -542,7 +587,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -603,7 +650,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -617,7 +666,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_cat(
+        self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -643,7 +694,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_cat(self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_cat(
+        self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -690,7 +743,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -720,7 +775,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -783,7 +840,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -797,7 +856,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_kitten(
+        self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -825,7 +886,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_kitten(
+        self,
+        kitten: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
@@ -875,7 +942,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -905,7 +974,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

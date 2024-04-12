@@ -8,7 +8,19 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    List,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +44,9 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -43,7 +57,9 @@ def build_auto_rest_resource_flattening_test_service_put_array_request(  # pylin
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -51,7 +67,9 @@ def build_auto_rest_resource_flattening_test_service_put_array_request(  # pylin
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -78,7 +96,9 @@ def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request( 
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -86,7 +106,9 @@ def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request( 
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -113,7 +135,9 @@ def build_auto_rest_resource_flattening_test_service_put_dictionary_request(  # 
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -121,7 +145,9 @@ def build_auto_rest_resource_flattening_test_service_put_dictionary_request(  # 
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -148,7 +174,9 @@ def build_auto_rest_resource_flattening_test_service_put_resource_collection_req
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -156,7 +184,9 @@ def build_auto_rest_resource_flattening_test_service_put_resource_collection_req
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -183,7 +213,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_request(
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -191,7 +223,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_request(
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -202,7 +236,9 @@ def build_auto_rest_resource_flattening_test_service_post_flattened_simple_produ
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -210,7 +246,9 @@ def build_auto_rest_resource_flattening_test_service_post_flattened_simple_produ
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -221,7 +259,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -234,7 +274,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
@@ -245,7 +287,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 ):
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_array: Optional[List[JSON]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as an Array.
 
@@ -280,7 +326,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_array: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as an Array.
 
@@ -299,7 +349,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any
+        self,
+        resource_array: Optional[Union[List[JSON], IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as an Array.
 
@@ -324,7 +376,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -348,8 +402,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -357,7 +413,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -419,8 +477,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -428,7 +488,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -443,7 +505,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_array: Optional[List[JSON]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -473,7 +539,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_array: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -493,7 +563,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any
+        self,
+        resource_array: Optional[Union[List[JSON], IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -519,7 +591,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -533,18 +607,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        _request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
+                content_type=content_type,
+                json=_json,
+                content=_content,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -552,7 +630,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -595,15 +675,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        _request = build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -611,7 +695,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -674,7 +760,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_dictionary: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -693,7 +783,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Union[Dict[str, JSON], IO[bytes]]] = None, **kwargs: Any
+        self,
+        resource_dictionary: Optional[Union[Dict[str, JSON], IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -718,7 +810,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -732,18 +826,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        _request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_resource_flattening_test_service_put_dictionary_request(
+                content_type=content_type,
+                json=_json,
+                content=_content,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -751,7 +849,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -806,15 +906,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
-        _request = build_auto_rest_resource_flattening_test_service_get_dictionary_request(
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_resource_flattening_test_service_get_dictionary_request(
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -822,7 +926,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -837,7 +943,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_complex_object: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
@@ -951,7 +1061,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+        self,
+        resource_complex_object: Optional[Union[JSON, IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> None:
         # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
@@ -1046,7 +1158,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1070,8 +1184,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1079,7 +1195,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -1186,8 +1304,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1195,7 +1315,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -1210,7 +1332,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        simple_body_product: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
@@ -1269,7 +1395,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        simple_body_product: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
@@ -1309,7 +1439,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @distributed_trace
-    def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
+    def put_simple_product(
+        self,
+        simple_body_product: Optional[Union[JSON, IO[bytes]]] = None,
+        **kwargs: Any,
+    ) -> JSON:
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
@@ -1373,7 +1507,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1387,18 +1523,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        _request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
-            content_type=content_type,
-            json=_json,
-            content=_content,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_auto_rest_resource_flattening_test_service_put_simple_product_request(
+                content_type=content_type,
+                json=_json,
+                content=_content,
+                headers=_headers,
+                params=_params,
+            )
         )
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1406,7 +1546,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -1421,7 +1563,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        simple_body_product: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -1480,7 +1626,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        simple_body_product: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -1521,7 +1671,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+        self,
+        simple_body_product: Optional[Union[JSON, IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -1586,7 +1738,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1610,8 +1764,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1619,7 +1775,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -1748,7 +1906,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
+        self,
+        name: str,
+        simple_body_product: Optional[Union[JSON, IO[bytes]]] = None,
+        **kwargs: Any,
     ) -> JSON:
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
@@ -1815,7 +1976,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1840,8 +2003,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -1849,7 +2014,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

@@ -23,7 +23,9 @@ class Input(Dict[str, Any]):
     def hello(self, val: str) -> None:
         self.__setitem__("hello", val)
 
-    def __init__(self, *, hello: str, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(
+        self, *, hello: str, **kwargs
+    ):  # pylint: disable=useless-super-delegation
         super().__init__(hello=hello, **kwargs)
 
 
@@ -42,7 +44,9 @@ class Product(Dict[str, Any]):
     def received(self, val: str) -> None:
         self.__setitem__("received", val)
 
-    def __init__(self, *, received: str, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(
+        self, *, received: str, **kwargs
+    ):  # pylint: disable=useless-super-delegation
         super().__init__(received=received, **kwargs)
 
 
@@ -64,8 +68,14 @@ class LROProduct(Product):
         self.__setitem__("provisioningState", val)
 
     def __init__(self, *, received: str, provisioning_state: str, **kwargs):
-        super().__init__(received=received, provisioningState=provisioning_state, **kwargs)
+        super().__init__(
+            received=received, provisioningState=provisioning_state, **kwargs
+        )
 
     @classmethod
     def _from_dict(cls, **kwargs):
-        return cls(received=kwargs.pop("received"), provisioning_state=kwargs.pop("provisioningState"), **kwargs)
+        return cls(
+            received=kwargs.pop("received"),
+            provisioning_state=kwargs.pop("provisioningState"),
+            **kwargs
+        )

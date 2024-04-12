@@ -21,7 +21,9 @@ from azure.core.utils import case_insensitive_dict
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
-from ._operations import MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixin
+from ._operations import (
+    MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixin,
+)
 from .._serialization import Serializer
 
 _SERIALIZER = Serializer()
@@ -31,7 +33,9 @@ _SERIALIZER.client_side_validation = False
 def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -39,7 +43,9 @@ def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -52,7 +58,9 @@ class MediaTypesSharedMixin:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         _json = None
         _content: Optional[Union[IO, str, bytes]] = None
         if isinstance(message, (IO, bytes)):
@@ -75,11 +83,15 @@ class MediaTypesSharedMixin:
         return request, kwargs
 
     @staticmethod
-    def _handle_body_three_types_response(pipeline_response: PipelineResponse, error_map, cls):
+    def _handle_body_three_types_response(
+        pipeline_response: PipelineResponse, error_map, cls
+    ):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
         if response.content:
             deserialized = response.json()
@@ -90,9 +102,13 @@ class MediaTypesSharedMixin:
         return cast(str, deserialized)
 
 
-class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTypesSharedMixin):
+class MediaTypesClientOperationsMixin(
+    _MediaTypesClientOperationsMixin, MediaTypesSharedMixin
+):
     @overload
-    def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    def body_three_types(
+        self, message: Any, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
@@ -109,7 +125,11 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
 
     @overload
     def body_three_types(  # type: ignore
-        self, message: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
+        self,
+        message: IO,
+        *,
+        content_type: str = "application/octet-stream",
+        **kwargs: Any
     ) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
@@ -127,7 +147,9 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
         """
 
     @overload
-    def body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def body_three_types(
+        self, message: str, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
@@ -155,12 +177,18 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         cls = kwargs.pop("cls", None)
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+        }
         error_map.update(kwargs.pop("error_map", {}) or {})
         request, kwargs = self._prepare_body_three_types(message, **kwargs)
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+        pipeline_response = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
         )
         return self._handle_body_three_types_response(pipeline_response, error_map, cls)
 

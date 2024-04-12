@@ -22,7 +22,9 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AutorestSecurityAad(
+    AutorestSecurityAadOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
@@ -32,7 +34,11 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: "AsyncTokenCredential",
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityAadConfiguration(credential=credential, **kwargs)
         _policies = kwargs.pop("policies", None)
@@ -49,10 +55,16 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

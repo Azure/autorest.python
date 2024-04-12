@@ -31,13 +31,17 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_pages_partial_url_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -51,7 +55,9 @@ def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_pages_partial_url_operation_request(
+    **kwargs: Any,
+) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -101,7 +107,9 @@ class PagingOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
     @distributed_trace
     def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> Iterable[JSON]:
@@ -146,18 +154,30 @@ class PagingOperations:
                     params=_params,
                 )
                 path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                    "accountName": self._serialize.url(
+                        "account_name", account_name, "str", skip_quote=True
+                    ),
+                    "host": self._serialize.url(
+                        "self._config.host", self._config.host, "str", skip_quote=True
+                    ),
                 }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+                _request.url = self._client.format_url(
+                    _request.url, **path_format_arguments
+                )
 
             else:
                 _request = HttpRequest("GET", next_link)
                 path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                    "accountName": self._serialize.url(
+                        "account_name", account_name, "str", skip_quote=True
+                    ),
+                    "host": self._serialize.url(
+                        "self._config.host", self._config.host, "str", skip_quote=True
+                    ),
                 }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+                _request.url = self._client.format_url(
+                    _request.url, **path_format_arguments
+                )
 
             return _request
 
@@ -172,15 +192,21 @@ class PagingOperations:
             _request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
+            pipeline_response: PipelineResponse = (
+                self._client._pipeline.run(  # pylint: disable=protected-access
+                    _request, stream=_stream, **kwargs
+                )
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                map_error(
+                    status_code=response.status_code,
+                    response=response,
+                    error_map=error_map,
+                )
                 raise HttpResponseError(response=response)
 
             return pipeline_response
@@ -188,7 +214,9 @@ class PagingOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable[JSON]:
+    def get_pages_partial_url_operation(
+        self, account_name: str, **kwargs: Any
+    ) -> Iterable[JSON]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name. Required.
@@ -229,10 +257,16 @@ class PagingOperations:
                     params=_params,
                 )
                 path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                    "accountName": self._serialize.url(
+                        "account_name", account_name, "str", skip_quote=True
+                    ),
+                    "host": self._serialize.url(
+                        "self._config.host", self._config.host, "str", skip_quote=True
+                    ),
                 }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+                _request.url = self._client.format_url(
+                    _request.url, **path_format_arguments
+                )
 
             else:
 
@@ -242,10 +276,16 @@ class PagingOperations:
                     params=_params,
                 )
                 path_format_arguments = {
-                    "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
-                    "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
+                    "accountName": self._serialize.url(
+                        "account_name", account_name, "str", skip_quote=True
+                    ),
+                    "host": self._serialize.url(
+                        "self._config.host", self._config.host, "str", skip_quote=True
+                    ),
                 }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+                _request.url = self._client.format_url(
+                    _request.url, **path_format_arguments
+                )
 
             return _request
 
@@ -260,15 +300,21 @@ class PagingOperations:
             _request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
+            pipeline_response: PipelineResponse = (
+                self._client._pipeline.run(  # pylint: disable=protected-access
+                    _request, stream=_stream, **kwargs
+                )
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                map_error(
+                    status_code=response.status_code,
+                    response=response,
+                    error_map=error_map,
+                )
                 raise HttpResponseError(response=response)
 
             return pipeline_response

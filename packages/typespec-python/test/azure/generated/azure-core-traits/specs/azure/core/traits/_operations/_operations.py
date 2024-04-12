@@ -123,6 +123,7 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
 
 
 class TraitsClientOperationsMixin(TraitsClientMixinABC):
+
     @distributed_trace
     def smoke_test(
         self,

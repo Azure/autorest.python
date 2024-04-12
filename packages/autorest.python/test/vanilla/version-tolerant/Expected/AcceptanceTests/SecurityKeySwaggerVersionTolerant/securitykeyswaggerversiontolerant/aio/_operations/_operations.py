@@ -29,12 +29,16 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
     @distributed_trace_async
-    async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.
 
         :return: None
@@ -70,7 +74,9 @@ class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

@@ -504,6 +504,7 @@ class TwoModelsAsPageItemOperations:
 
 
 class BasicClientOperationsMixin(BasicClientMixinABC):
+
     @overload
     def create_or_update(
         self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any

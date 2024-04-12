@@ -55,8 +55,7 @@ class Error(_model_base.Model):
         target: Optional[str] = None,
         details: Optional[List["_models.Error"]] = None,
         innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -86,8 +85,7 @@ class GenerationOptions(_model_base.Model):
         self,
         *,
         prompt: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -135,8 +133,7 @@ class GenerationResponse(_model_base.Model):
         status: Union[str, "_models.OperationState"],
         error: Optional["_models.Error"] = None,
         result: Optional["_models.GenerationResult"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -166,8 +163,7 @@ class GenerationResult(_model_base.Model):
         self,
         *,
         data: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -202,8 +198,7 @@ class InnerError(_model_base.Model):
         *,
         code: Optional[str] = None,
         innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

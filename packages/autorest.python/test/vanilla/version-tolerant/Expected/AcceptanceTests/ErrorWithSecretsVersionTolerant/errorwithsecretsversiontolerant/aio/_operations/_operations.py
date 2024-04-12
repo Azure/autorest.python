@@ -33,7 +33,9 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
 class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
@@ -83,7 +85,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -97,7 +101,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_error_with_secrets(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Gets an error response containing secrets and PII.
 
         :return: None
@@ -133,7 +139,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         if response.status_code not in [204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

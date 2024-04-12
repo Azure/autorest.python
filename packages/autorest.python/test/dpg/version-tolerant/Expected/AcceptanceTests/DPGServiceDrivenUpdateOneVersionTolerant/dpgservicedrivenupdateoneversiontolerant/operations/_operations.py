@@ -8,7 +8,18 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    IO,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,13 +42,17 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
+]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_params_head_no_params_request(*, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_params_head_no_params_request(
+    *, new_parameter: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -48,12 +63,16 @@ def build_params_head_no_params_request(*, new_parameter: Optional[str] = None, 
 
     # Construct parameters
     if new_parameter is not None:
-        _params["new_parameter"] = _SERIALIZER.query("new_parameter", new_parameter, "str")
+        _params["new_parameter"] = _SERIALIZER.query(
+            "new_parameter", new_parameter, "str"
+        )
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="HEAD", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="HEAD", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_params_get_required_request(
@@ -70,16 +89,24 @@ def build_params_get_required_request(
     # Construct parameters
     _params["parameter"] = _SERIALIZER.query("parameter", parameter, "str")
     if new_parameter is not None:
-        _params["new_parameter"] = _SERIALIZER.query("new_parameter", new_parameter, "str")
+        _params["new_parameter"] = _SERIALIZER.query(
+            "new_parameter", new_parameter, "str"
+        )
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_params_put_required_optional_request(  # pylint: disable=name-too-long
-    *, required_param: str, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
+    *,
+    required_param: str,
+    optional_param: Optional[str] = None,
+    new_parameter: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -90,22 +117,32 @@ def build_params_put_required_optional_request(  # pylint: disable=name-too-long
     _url = "/serviceDriven/parameters"
 
     # Construct parameters
-    _params["requiredParam"] = _SERIALIZER.query("required_param", required_param, "str")
+    _params["requiredParam"] = _SERIALIZER.query(
+        "required_param", required_param, "str"
+    )
     if optional_param is not None:
-        _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+        _params["optionalParam"] = _SERIALIZER.query(
+            "optional_param", optional_param, "str"
+        )
     if new_parameter is not None:
-        _params["new_parameter"] = _SERIALIZER.query("new_parameter", new_parameter, "str")
+        _params["new_parameter"] = _SERIALIZER.query(
+            "new_parameter", new_parameter, "str"
+        )
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    content_type: Optional[str] = kwargs.pop(
+        "content_type", _headers.pop("Content-Type", None)
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -113,7 +150,9 @@ def build_params_post_parameters_request(**kwargs: Any) -> HttpRequest:
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header(
+            "content_type", content_type, "str"
+        )
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
@@ -127,7 +166,10 @@ def build_params_delete_parameters_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_params_get_optional_request(
-    *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
+    *,
+    optional_param: Optional[str] = None,
+    new_parameter: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -139,14 +181,20 @@ def build_params_get_optional_request(
 
     # Construct parameters
     if optional_param is not None:
-        _params["optionalParam"] = _SERIALIZER.query("optional_param", optional_param, "str")
+        _params["optionalParam"] = _SERIALIZER.query(
+            "optional_param", optional_param, "str"
+        )
     if new_parameter is not None:
-        _params["new_parameter"] = _SERIALIZER.query("new_parameter", new_parameter, "str")
+        _params["new_parameter"] = _SERIALIZER.query(
+            "new_parameter", new_parameter, "str"
+        )
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET", url=_url, params=_params, headers=_headers, **kwargs
+    )
 
 
 def build_params_get_new_operation_request(**kwargs: Any) -> HttpRequest:
@@ -178,10 +226,14 @@ class ParamsOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._deserialize = (
+            input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        )
 
     @distributed_trace
-    def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
+    def head_no_params(
+        self, *, new_parameter: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
         """Head request, no params. Initially has no query parameters. After evolution, a new optional
         query parameter is added.
 
@@ -212,8 +264,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -221,7 +275,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -235,7 +291,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
-    def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
+    def get_required(
+        self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
@@ -270,8 +328,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -279,7 +339,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -337,8 +399,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -346,7 +410,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -360,7 +426,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def post_parameters(
+        self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
@@ -383,7 +451,9 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: IO[bytes], *, content_type: str, **kwargs: Any) -> JSON:
+    def post_parameters(
+        self, parameter: IO[bytes], *, content_type: str, **kwargs: Any
+    ) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
@@ -427,7 +497,9 @@ class ParamsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", None)
+        )
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _json = None
@@ -453,8 +525,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -462,7 +536,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -476,7 +552,9 @@ class ParamsOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
-    def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def delete_parameters(
+        self, **kwargs: Any
+    ) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
          Initially the path exists but there is no delete method. After evolution this is a new method
         in a known path.
@@ -505,8 +583,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -514,7 +594,9 @@ class ParamsOperations:
         if response.status_code not in [204]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:
@@ -522,7 +604,11 @@ class ParamsOperations:
 
     @distributed_trace
     def get_optional(
-        self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        optional_param: Optional[str] = None,
+        new_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> JSON:
         """Get true Boolean value on path.
          Initially has one optional query parameter. After evolution, a new optional query parameter is
@@ -558,8 +644,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -567,7 +655,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:
@@ -610,8 +700,10 @@ class ParamsOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = (
+            self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
         )
 
         response = pipeline_response.http_response
@@ -619,7 +711,9 @@ class ParamsOperations:
         if response.status_code not in [200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if response.content:

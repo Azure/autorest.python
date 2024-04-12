@@ -19,7 +19,9 @@ from ._operations import DPGClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class DPGClient(
+    DPGClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """DPG Swagger that tests our ability to grow up.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
@@ -46,18 +48,30 @@ class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
-        client_models = {k: v for k, v in _models._models.__dict__.items() if isinstance(v, type)}
-        client_models.update({k: v for k, v in _models.__dict__.items() if isinstance(v, type)})
+        client_models = {
+            k: v for k, v in _models._models.__dict__.items() if isinstance(v, type)
+        }
+        client_models.update(
+            {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        )
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

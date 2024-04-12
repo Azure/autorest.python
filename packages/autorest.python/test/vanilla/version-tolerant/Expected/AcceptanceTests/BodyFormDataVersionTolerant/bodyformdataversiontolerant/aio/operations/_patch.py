@@ -22,13 +22,19 @@ from ...operations._patch import (
 
 
 class FormdataOperations(_FormdataOperations):
-    async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
+    async def _send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs
+    ) -> PipelineResponse:
         kwargs.pop("cls", None)
         request.url = self._client.format_url(request.url)
-        return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
+        return await self._client._pipeline.run(
+            request, stream=stream, **kwargs
+        )  # pylint: disable=protected-access
 
     @distributed_trace_async
-    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_file(
+        self, files: Dict[str, Any], **kwargs: Any
+    ) -> AsyncIterator[bytes]:
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
@@ -54,7 +60,9 @@ class FormdataOperations(_FormdataOperations):
         )  # type: ignore
 
     @distributed_trace_async
-    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> AsyncIterator[bytes]:
+    async def upload_files(
+        self, files: Dict[str, Any], **kwargs: Any
+    ) -> AsyncIterator[bytes]:
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input

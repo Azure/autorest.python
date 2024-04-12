@@ -18,7 +18,9 @@ from ._configuration import ReservedWordsClientConfiguration
 from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 
-class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ReservedWordsClient(
+    ReservedWordsClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations
@@ -46,15 +48,23 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disabl
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                (
+                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
+                    if self._config.redirect_policy
+                    else None
+                ),
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(
+            base_url=endpoint, policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.import_operations = ImportOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.import_operations = ImportOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

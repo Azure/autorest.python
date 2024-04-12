@@ -12,18 +12,24 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.rest import HttpRequest
 from azure.core.pipeline import PipelineResponse
 
-from ._operations import ReservedWordsClientOperationsMixin as _ReservedWordsClientOperationsMixin
+from ._operations import (
+    ReservedWordsClientOperationsMixin as _ReservedWordsClientOperationsMixin,
+)
 from ...operations._patch import Helpers
 
 
 class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, Helpers):
-    async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
+    async def _send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs
+    ) -> PipelineResponse:
         return await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=stream, **kwargs
         )
 
     @distributed_trace_async
-    async def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:
+    async def operation_with_data_param(
+        self, data: Dict[str, Any], **kwargs: Any
+    ) -> Any:
         """Operation with urlencoded body param called 'data'.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
@@ -43,10 +49,14 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         """
         request = self._operation_with_data_param_request(data=data, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._operation_with_data_param_deserialize(await self._send_request(request), **kwargs)
+        return self._operation_with_data_param_deserialize(
+            await self._send_request(request), **kwargs
+        )
 
     @distributed_trace_async
-    async def operation_with_files_param(self, files: Dict[str, Any], **kwargs: Any) -> Any:
+    async def operation_with_files_param(
+        self, files: Dict[str, Any], **kwargs: Any
+    ) -> Any:
         """Operation with multipart body param called 'files'.
         :param files: Multipart input for files. See the template in our example to find the input
          shape.
@@ -64,7 +74,9 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         """
         request = self._operation_with_files_param_request(files=files, **kwargs)
         request.url = self._client.format_url(request.url)
-        return self._operation_with_files_param_deserialize(await self._send_request(request), **kwargs)
+        return self._operation_with_files_param_deserialize(
+            await self._send_request(request), **kwargs
+        )
 
 
 __all__: List[str] = [

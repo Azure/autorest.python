@@ -42,7 +42,14 @@ class AccessPolicy(_serialization.Model):
         "permission": {"key": "Permission", "type": "str"},
     }
 
-    def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        *,
+        start: datetime.datetime,
+        expiry: datetime.datetime,
+        permission: str,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword start: the date-time the policy is active. Required.
         :paramtype start: ~datetime.datetime
@@ -67,12 +74,24 @@ class AppleBarrel(_serialization.Model):
     """
 
     _attribute_map = {
-        "good_apples": {"key": "GoodApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
-        "bad_apples": {"key": "BadApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
+        "good_apples": {
+            "key": "GoodApples",
+            "type": "[str]",
+            "xml": {"wrapped": True, "itemsName": "Apple"},
+        },
+        "bad_apples": {
+            "key": "BadApples",
+            "type": "[str]",
+            "xml": {"wrapped": True, "itemsName": "Apple"},
+        },
     }
 
     def __init__(
-        self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs: Any
+        self,
+        *,
+        good_apples: Optional[List[str]] = None,
+        bad_apples: Optional[List[str]] = None,
+        **kwargs: Any
     ) -> None:
         """
         :keyword good_apples:
@@ -99,7 +118,11 @@ class Banana(_serialization.Model):
     _attribute_map = {
         "name": {"key": "name", "type": "str", "xml": {"name": "name"}},
         "flavor": {"key": "flavor", "type": "str", "xml": {"name": "flavor"}},
-        "expiration": {"key": "expiration", "type": "iso-8601", "xml": {"name": "expiration"}},
+        "expiration": {
+            "key": "expiration",
+            "type": "iso-8601",
+            "xml": {"name": "expiration"},
+        },
     }
     _xml_map = {"name": "banana"}
 
@@ -214,7 +237,9 @@ class BlobPrefix(_serialization.Model):
         self.name = name
 
 
-class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance-attributes
+class BlobProperties(
+    _serialization.Model
+):  # pylint: disable=too-many-instance-attributes
     """Properties of a blob.
 
     All required parameters must be populated in order to send to server.
@@ -484,7 +509,9 @@ class ComplexTypeNoMeta(_serialization.Model):
         "id": {"key": "ID", "type": "str"},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: Optional[str] = None, **kwargs: Any
+    ) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -505,7 +532,9 @@ class ComplexTypeWithMeta(_serialization.Model):
     }
     _xml_map = {"name": "XMLComplexTypeWithMeta"}
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: Optional[str] = None, **kwargs: Any
+    ) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -726,7 +755,13 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -749,7 +784,9 @@ class JSONInput(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: Optional[int] = None, **kwargs: Any
+    ) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -769,7 +806,9 @@ class JSONOutput(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: Optional[int] = None, **kwargs: Any
+    ) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -812,8 +851,16 @@ class ListBlobsResponse(_serialization.Model):
     }
 
     _attribute_map = {
-        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
-        "container_name": {"key": "ContainerName", "type": "str", "xml": {"attr": True}},
+        "service_endpoint": {
+            "key": "ServiceEndpoint",
+            "type": "str",
+            "xml": {"attr": True},
+        },
+        "container_name": {
+            "key": "ContainerName",
+            "type": "str",
+            "xml": {"attr": True},
+        },
         "prefix": {"key": "Prefix", "type": "str"},
         "marker": {"key": "Marker", "type": "str"},
         "max_results": {"key": "MaxResults", "type": "int"},
@@ -892,11 +939,19 @@ class ListContainersResponse(_serialization.Model):
     }
 
     _attribute_map = {
-        "service_endpoint": {"key": "ServiceEndpoint", "type": "str", "xml": {"attr": True}},
+        "service_endpoint": {
+            "key": "ServiceEndpoint",
+            "type": "str",
+            "xml": {"attr": True},
+        },
         "prefix": {"key": "Prefix", "type": "str"},
         "marker": {"key": "Marker", "type": "str"},
         "max_results": {"key": "MaxResults", "type": "int"},
-        "containers": {"key": "Containers", "type": "[Container]", "xml": {"wrapped": True}},
+        "containers": {
+            "key": "Containers",
+            "type": "[Container]",
+            "xml": {"wrapped": True},
+        },
         "next_marker": {"key": "NextMarker", "type": "str"},
     }
     _xml_map = {"name": "EnumerationResults"}
@@ -1102,12 +1157,22 @@ class ObjectWithXMsTextProperty(_serialization.Model):
     """
 
     _attribute_map = {
-        "language": {"key": "language", "type": "str", "xml": {"name": "language", "attr": True}},
+        "language": {
+            "key": "language",
+            "type": "str",
+            "xml": {"name": "language", "attr": True},
+        },
         "content": {"key": "content", "type": "str", "xml": {"text": True}},
     }
     _xml_map = {"name": "Data"}
 
-    def __init__(self, *, language: Optional[str] = None, content: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        *,
+        language: Optional[str] = None,
+        content: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword language: Returned value should be 'english'.
         :paramtype language: str
@@ -1142,7 +1207,9 @@ class RetentionPolicy(_serialization.Model):
         "days": {"key": "Days", "type": "int"},
     }
 
-    def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs: Any) -> None:
+    def __init__(
+        self, *, enabled: bool, days: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword enabled: Indicates whether a retention policy is enabled for the storage service.
          Required.
@@ -1243,7 +1310,11 @@ class SignedIdentifier(_serialization.Model):
     _xml_map = {"name": "SignedIdentifier"}
 
     def __init__(
-        self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs: Any  # pylint: disable=redefined-builtin
+        self,
+        *,
+        id: str,
+        access_policy: "_models.AccessPolicy",
+        **kwargs: Any  # pylint: disable=redefined-builtin
     ) -> None:
         """
         :keyword id: a unique id. Required.
@@ -1368,9 +1439,16 @@ class StorageServiceProperties(_serialization.Model):
         "logging": {"key": "Logging", "type": "Logging"},
         "hour_metrics": {"key": "HourMetrics", "type": "Metrics"},
         "minute_metrics": {"key": "MinuteMetrics", "type": "Metrics"},
-        "cors": {"key": "Cors", "type": "[CorsRule]", "xml": {"wrapped": True, "itemsName": "CorsRule"}},
+        "cors": {
+            "key": "Cors",
+            "type": "[CorsRule]",
+            "xml": {"wrapped": True, "itemsName": "CorsRule"},
+        },
         "default_service_version": {"key": "DefaultServiceVersion", "type": "str"},
-        "delete_retention_policy": {"key": "DeleteRetentionPolicy", "type": "RetentionPolicy"},
+        "delete_retention_policy": {
+            "key": "DeleteRetentionPolicy",
+            "type": "RetentionPolicy",
+        },
     }
 
     def __init__(

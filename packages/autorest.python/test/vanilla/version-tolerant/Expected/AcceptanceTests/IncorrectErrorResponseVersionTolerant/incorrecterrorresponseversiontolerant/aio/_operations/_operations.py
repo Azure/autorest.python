@@ -21,7 +21,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_incorrect_returned_error_model_get_incorrect_error_from_server_request
+from ..._operations._operations import (
+    build_incorrect_returned_error_model_get_incorrect_error_from_server_request,
+)
 from .._vendor import IncorrectReturnedErrorModelMixinABC
 
 if sys.version_info >= (3, 9):
@@ -29,10 +31,14 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[
+    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
+]
 
 
-class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):  # pylint: disable=name-too-long
+class IncorrectReturnedErrorModelOperationsMixin(
+    IncorrectReturnedErrorModelMixinABC
+):  # pylint: disable=name-too-long
     @distributed_trace_async
     async def get_incorrect_error_from_server(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -73,7 +79,9 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         if response.status_code not in [200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            map_error(
+                status_code=response.status_code, response=response, error_map=error_map
+            )
             raise HttpResponseError(response=response)
 
         if cls:

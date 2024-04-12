@@ -56,6 +56,7 @@ def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
 
 
 class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
+
     @distributed_trace
     def immediate_success(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
