@@ -151,5 +151,4 @@ class LROOperationBase(OperationBase[LROResponseType]):
         return file_import
 
 
-class LROOperation(LROOperationBase[LROResponse]):
-    ...
+class LROOperation(LROOperationBase[LROResponse]): ...

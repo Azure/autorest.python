@@ -100,16 +100,13 @@ class BaseBuilder(
         return ""
 
     @abstractmethod
-    def response_type_annotation(self, **kwargs) -> str:
-        ...
+    def response_type_annotation(self, **kwargs) -> str: ...
 
     @abstractmethod
-    def response_docstring_text(self, **kwargs) -> str:
-        ...
+    def response_docstring_text(self, **kwargs) -> str: ...
 
     @abstractmethod
-    def response_docstring_type(self, **kwargs) -> str:
-        ...
+    def response_docstring_type(self, **kwargs) -> str: ...
 
     @property
     def description(self) -> str:
