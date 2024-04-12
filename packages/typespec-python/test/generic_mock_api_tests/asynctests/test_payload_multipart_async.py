@@ -75,6 +75,13 @@ async def client():
             {"profileImage": JPG},
             {"content_type": "image/jpg", "file_name": "hello.jpg"},
         ),
+        (
+            "anonymous_model",
+            dict,
+            {},
+            {"profileImage": JPG},
+            {},
+        ),
     ],
 )
 async def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, file_info):
@@ -98,6 +105,8 @@ async def test_multi_part(client: MultiPartClient, op_name, model_class, data, f
 
     # test io (model)
     body = convert()
-    with pytest.raises(TypeError):
-        # caused by deepcopy when DPG model init
-        await op(model_class(body))
+    if issubclass(model_class, Model):
+        # https://github.com/Azure/autorest.python/issues/2516
+        with pytest.raises(TypeError):
+            # caused by deepcopy when DPG model init
+            await op(model_class(body))

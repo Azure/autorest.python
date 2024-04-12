@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import uuid
-from typing import Dict, Any
+from typing import Dict, Any, Type
 from pathlib import Path
 import pytest
 from payload.multipart import MultiPartClient, models
@@ -73,6 +73,13 @@ def client():
             {"profileImage": JPG},
             {"content_type": "image/jpg", "file_name": "hello.jpg"},
         ),
+        (
+            "anonymous_model",
+            dict,
+            {},
+            {"profileImage": JPG},
+            {},
+        ),
     ],
 )
 def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, file_info):
@@ -96,9 +103,11 @@ def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, f
 
     # test io (model)
     body = convert()
-    with pytest.raises(TypeError):
-        # caused by deepcopy when DPG model init
-        op(model_class(body))
+    if issubclass(model_class, Model):
+        # https://github.com/Azure/autorest.python/issues/2516
+        with pytest.raises(TypeError):
+            # caused by deepcopy when DPG model init
+            op(model_class(body))
 
 def _test_sample_single_file(client: MultiPartClient):
     # Python SDK support several kinds of file format for multipart/form-data and users can choose any of them
