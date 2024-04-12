@@ -23,6 +23,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ... import _model_base, models as _models
 from ..._vendor import prepare_multipart_form_data
 from ...operations._operations import (
+    build_form_data_anonymous_model_request,
     build_form_data_basic_request,
     build_form_data_binary_array_parts_request,
     build_form_data_check_file_name_and_content_type_request,
@@ -37,6 +38,7 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -738,6 +740,108 @@ class FormDataOperations:
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_check_file_name_and_content_type_request(
+            files=_files,
+            data=_data,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Required.
+        :type body: JSON
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "profileImage": filetype
+                }
+        """
+
+    @overload
+    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
+        self, *, profile_image: bytes, **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :keyword profile_image: Required.
+        :paramtype profile_image: bytes
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON = _Unset, *, profile_image: bytes = _Unset, **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data.
+
+        :param body: Is one of the following types: JSON Required.
+        :type body: JSON
+        :keyword profile_image: Required.
+        :paramtype profile_image: bytes
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "profileImage": filetype
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        if body is _Unset:
+            if profile_image is _Unset:
+                raise TypeError("missing required argument: profile_image")
+            body = {"profileimage": profile_image}
+            body = {k: v for k, v in body.items() if v is not None}
+        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = []
+        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+
+        _request = build_form_data_anonymous_model_request(
             files=_files,
             data=_data,
             headers=_headers,
