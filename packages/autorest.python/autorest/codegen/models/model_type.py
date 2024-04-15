@@ -357,13 +357,13 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 )
         return file_import
 
-    @property
-    def serialization_type(self) -> str:
-        return self.typing_name()
-
 
 class MsrestModelType(GeneratedModelType):
     base = "msrest"
+
+    @property
+    def serialization_type(self) -> str:
+        return self.typing_name() if self.internal else self.name
 
     @property
     def instance_check_template(self) -> str:
@@ -379,6 +379,10 @@ class MsrestModelType(GeneratedModelType):
 
 class DPGModelType(GeneratedModelType):
     base = "dpg"
+
+    @property
+    def serialization_type(self) -> str:
+        return self.typing_name() if self.internal else self.typing_name(False)
 
     @property
     def instance_check_template(self) -> str:
