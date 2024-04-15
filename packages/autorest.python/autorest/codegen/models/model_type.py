@@ -84,8 +84,12 @@ class ModelType(  # pylint: disable=abstract-method
         )
 
     def typing_name(self, need_module_name: bool = True) -> str:
-        module = "_models." if need_module_name else ""
-        return f"{module}{typing_name(self.code_model.models_filename, self.internal)}{self.name}"
+        return typing_name(
+            file_name=self.code_model.models_filename,
+            internal=self.internal,
+            need_module_name=need_module_name,
+            type_name=self.name,
+        )
 
     @property
     def flattened_property(self) -> Optional[Property]:

@@ -23,5 +23,8 @@ def add_to_pylint_disable(curr_str: str, entry: str) -> str:
     return f"  # pylint: disable={entry}"
 
 
-def typing_name(file_name: str, internal: bool) -> str:
-    return f"{file_name}." if internal else ""
+def typing_name(
+    file_name: str, internal: bool, need_module_name: bool, type_name: str
+) -> str:
+    module = "_models." if need_module_name else ""
+    return module + (f"{file_name}." if internal else "") + type_name
