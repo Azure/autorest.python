@@ -18,12 +18,45 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class DifferentSpreadFloatDerived(_model_base.Model):
+class DifferentSpreadFloatRecord(_model_base.Model):
+    """The model spread Record:code:`<float32>` with the different known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The id property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The id property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
     """The model extends from a model that spread Record:code:`<float32>` with the different known
     property type.
 
     All required parameters must be populated in order to send to server.
 
+    :ivar name: The id property. Required.
+    :vartype name: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: float
     """
@@ -35,6 +68,7 @@ class DifferentSpreadFloatDerived(_model_base.Model):
     def __init__(
         self,
         *,
+        name: str,
         derived_prop: float,
     ):
         ...
@@ -50,12 +84,45 @@ class DifferentSpreadFloatDerived(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadModelArrayDerived(_model_base.Model):
+class DifferentSpreadModelArrayRecord(_model_base.Model):
+    """The model spread Record<ModelForRecord[]> with the different known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: str
+    """
+
+    known_prop: str = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     """The model extends from a model that spread Record<ModelForRecord[]> with the different known
     property type.
 
     All required parameters must be populated in order to send to server.
 
+    :ivar known_prop: Required.
+    :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
@@ -67,6 +134,7 @@ class DifferentSpreadModelArrayDerived(_model_base.Model):
     def __init__(
         self,
         *,
+        known_prop: str,
         derived_prop: List["_models.ModelForRecord"],
     ):
         ...
@@ -82,12 +150,45 @@ class DifferentSpreadModelArrayDerived(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadModelDerived(_model_base.Model):
+class DifferentSpreadModelRecord(_model_base.Model):
+    """The model spread Record:code:`<ModelForRecord>` with the different known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: str
+    """
+
+    known_prop: str = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
     """The model extends from a model that spread Record:code:`<ModelForRecord>` with the different
     known property type.
 
     All required parameters must be populated in order to send to server.
 
+    :ivar known_prop: Required.
+    :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
@@ -99,6 +200,7 @@ class DifferentSpreadModelDerived(_model_base.Model):
     def __init__(
         self,
         *,
+        known_prop: str,
         derived_prop: "_models.ModelForRecord",
     ):
         ...
@@ -114,12 +216,45 @@ class DifferentSpreadModelDerived(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadStringDerived(_model_base.Model):
+class DifferentSpreadStringRecord(_model_base.Model):
+    """The model spread Record:code:`<string>` with the different known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar id: The name property. Required.
+    :vartype id: float
+    """
+
+    id: float = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
     """The model extends from a model that spread Record:code:`<string>` with the different known
     property type.
 
     All required parameters must be populated in order to send to server.
 
+    :ivar id: The name property. Required.
+    :vartype id: float
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: str
     """
@@ -131,6 +266,7 @@ class DifferentSpreadStringDerived(_model_base.Model):
     def __init__(
         self,
         *,
+        id: float,  # pylint: disable=redefined-builtin
         derived_prop: str,
     ):
         ...
@@ -721,6 +857,316 @@ class ModelForRecord(_model_base.Model):
         self,
         *,
         state: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class MultipleSpreadRecord(_model_base.Model):
+    """The model spread Record:code:`<string>` and Record:code:`<float32>`.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar flag: The name property. Required.
+    :vartype flag: bool
+    """
+
+    flag: bool = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        flag: bool,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadFloatRecord(_model_base.Model):
+    """The model spread Record:code:`<float32>` with the same known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar id: The id property. Required.
+    :vartype id: float
+    """
+
+    id: float = rest_field()
+    """The id property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadModelArrayRecord(_model_base.Model):
+    """SpreadModelArrayRecord.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
+    """
+
+    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: List["_models.ModelForRecord"],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadModelRecord(_model_base.Model):
+    """The model spread Record:code:`<ModelForRecord>` with the same known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
+    """
+
+    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: "_models.ModelForRecord",
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadRecordForDiscriminatedUnion(_model_base.Model):
+    """The model spread Record:code:`<WidgetData>`.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
+    """The model spread Record<WidgetData0 | WidgetData1>.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
+    """The model spread Record<WidgetData2 | WidgetData1>.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
+    """The model spread Record<WidgetData2[] | WidgetData1>.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadRecordForUnion(_model_base.Model):
+    """The model spread Record<string | float32>.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar flag: The name property. Required.
+    :vartype flag: bool
+    """
+
+    flag: bool = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        flag: bool,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SpreadStringRecord(_model_base.Model):
+    """The model spread Record:code:`<string>` with the same known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
     ):
         ...
 

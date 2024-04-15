@@ -7,9 +7,13 @@
 # --------------------------------------------------------------------------
 
 from ._models import DifferentSpreadFloatDerived
+from ._models import DifferentSpreadFloatRecord
 from ._models import DifferentSpreadModelArrayDerived
+from ._models import DifferentSpreadModelArrayRecord
 from ._models import DifferentSpreadModelDerived
+from ._models import DifferentSpreadModelRecord
 from ._models import DifferentSpreadStringDerived
+from ._models import DifferentSpreadStringRecord
 from ._models import ExtendsFloatAdditionalProperties
 from ._models import ExtendsModelAdditionalProperties
 from ._models import ExtendsModelArrayAdditionalProperties
@@ -27,6 +31,16 @@ from ._models import IsUnknownAdditionalPropertiesDerived
 from ._models import IsUnknownAdditionalPropertiesDiscriminated
 from ._models import IsUnknownAdditionalPropertiesDiscriminatedDerived
 from ._models import ModelForRecord
+from ._models import MultipleSpreadRecord
+from ._models import SpreadFloatRecord
+from ._models import SpreadModelArrayRecord
+from ._models import SpreadModelRecord
+from ._models import SpreadRecordForDiscriminatedUnion
+from ._models import SpreadRecordForNonDiscriminatedUnion
+from ._models import SpreadRecordForNonDiscriminatedUnion2
+from ._models import SpreadRecordForNonDiscriminatedUnion3
+from ._models import SpreadRecordForUnion
+from ._models import SpreadStringRecord
 from ._models import WidgetData0
 from ._models import WidgetData1
 from ._models import WidgetData2
@@ -36,9 +50,13 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "DifferentSpreadFloatDerived",
+    "DifferentSpreadFloatRecord",
     "DifferentSpreadModelArrayDerived",
+    "DifferentSpreadModelArrayRecord",
     "DifferentSpreadModelDerived",
+    "DifferentSpreadModelRecord",
     "DifferentSpreadStringDerived",
+    "DifferentSpreadStringRecord",
     "ExtendsFloatAdditionalProperties",
     "ExtendsModelAdditionalProperties",
     "ExtendsModelArrayAdditionalProperties",
@@ -56,6 +74,16 @@ __all__ = [
     "IsUnknownAdditionalPropertiesDiscriminated",
     "IsUnknownAdditionalPropertiesDiscriminatedDerived",
     "ModelForRecord",
+    "MultipleSpreadRecord",
+    "SpreadFloatRecord",
+    "SpreadModelArrayRecord",
+    "SpreadModelRecord",
+    "SpreadRecordForDiscriminatedUnion",
+    "SpreadRecordForNonDiscriminatedUnion",
+    "SpreadRecordForNonDiscriminatedUnion2",
+    "SpreadRecordForNonDiscriminatedUnion3",
+    "SpreadRecordForUnion",
+    "SpreadStringRecord",
     "WidgetData0",
     "WidgetData1",
     "WidgetData2",

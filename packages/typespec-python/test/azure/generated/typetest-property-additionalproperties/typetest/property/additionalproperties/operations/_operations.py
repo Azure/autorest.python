@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TYPE_CHECKING, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -32,10 +32,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from .. import _types
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -2665,11 +2661,11 @@ class SpreadStringOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, str]:
+    def get(self, **kwargs: Any) -> _models.SpreadStringRecord:
         """Get call.
 
-        :return: dict mapping str to str
-        :rtype: dict[str, str]
+        :return: SpreadStringRecord. The SpreadStringRecord is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadStringRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -2677,7 +2673,7 @@ class SpreadStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "str"  # Optional.
+                    "name": "str"  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2691,7 +2687,7 @@ class SpreadStringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadStringRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_string_get_request(
             headers=_headers,
@@ -2715,7 +2711,7 @@ class SpreadStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, str], response.json())
+            deserialized = _deserialize(_models.SpreadStringRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2724,12 +2720,12 @@ class SpreadStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, str]
+        :type body: ~typetest.property.additionalproperties.models.SpreadStringRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2742,8 +2738,24 @@ class SpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "str"  # Optional.
+                    "name": "str"  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -2764,15 +2776,24 @@ class SpreadStringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: str} type or a IO[bytes] type. Required.
-        :type body: dict[str, str] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadStringRecord, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadStringRecord or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -3238,11 +3259,11 @@ class SpreadFloatOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, float]:
+    def get(self, **kwargs: Any) -> _models.SpreadFloatRecord:
         """Get call.
 
-        :return: dict mapping str to float
-        :rtype: dict[str, float]
+        :return: SpreadFloatRecord. The SpreadFloatRecord is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadFloatRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -3250,7 +3271,7 @@ class SpreadFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0.0  # Optional.
+                    "id": 0.0  # The id property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3264,7 +3285,7 @@ class SpreadFloatOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadFloatRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_float_get_request(
             headers=_headers,
@@ -3288,7 +3309,7 @@ class SpreadFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json())
+            deserialized = _deserialize(_models.SpreadFloatRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3297,12 +3318,12 @@ class SpreadFloatOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, float]
+        :type body: ~typetest.property.additionalproperties.models.SpreadFloatRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3315,8 +3336,24 @@ class SpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0.0  # Optional.
+                    "id": 0.0  # The id property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -3337,15 +3374,24 @@ class SpreadFloatOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: float} type or a IO[bytes] type. Required.
-        :type body: dict[str, float] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadFloatRecord, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadFloatRecord or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The id property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -3823,11 +3869,11 @@ class SpreadModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, _models.ModelForRecord]:
+    def get(self, **kwargs: Any) -> _models.SpreadModelRecord:
         """Get call.
 
-        :return: dict mapping str to ModelForRecord
-        :rtype: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord]
+        :return: SpreadModelRecord. The SpreadModelRecord is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadModelRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -3835,7 +3881,7 @@ class SpreadModelOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
+                    "knownProp": {
                         "state": "str"  # The state property. Required.
                     }
                 }
@@ -3851,7 +3897,7 @@ class SpreadModelOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, _models.ModelForRecord]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadModelRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_model_get_request(
             headers=_headers,
@@ -3875,7 +3921,7 @@ class SpreadModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.ModelForRecord], response.json())
+            deserialized = _deserialize(_models.SpreadModelRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3884,12 +3930,12 @@ class SpreadModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, _models.ModelForRecord], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord]
+        :type body: ~typetest.property.additionalproperties.models.SpreadModelRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3902,10 +3948,26 @@ class SpreadModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {
+                    "knownProp": {
                         "state": "str"  # The state property. Required.
                     }
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -3926,16 +3988,26 @@ class SpreadModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.ModelForRecord], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: ModelForRecord} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord] or
+        :param body: body. Is one of the following types: SpreadModelRecord, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadModelRecord or JSON or
          IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "knownProp": {
+                        "state": "str"  # The state property. Required.
+                    }
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -4431,11 +4503,11 @@ class SpreadModelArrayOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, List[_models.ModelForRecord]]:
+    def get(self, **kwargs: Any) -> _models.SpreadModelArrayRecord:
         """Get call.
 
-        :return: dict mapping str to list of ModelForRecord
-        :rtype: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]]
+        :return: SpreadModelArrayRecord. The SpreadModelArrayRecord is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadModelArrayRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4443,7 +4515,7 @@ class SpreadModelArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": [
+                    "knownProp": [
                         {
                             "state": "str"  # The state property. Required.
                         }
@@ -4461,7 +4533,7 @@ class SpreadModelArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, List[_models.ModelForRecord]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadModelArrayRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_model_array_get_request(
             headers=_headers,
@@ -4485,7 +4557,7 @@ class SpreadModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, List[_models.ModelForRecord]], response.json())
+            deserialized = _deserialize(_models.SpreadModelArrayRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4494,12 +4566,12 @@ class SpreadModelArrayOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, List[_models.ModelForRecord]], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]]
+        :type body: ~typetest.property.additionalproperties.models.SpreadModelArrayRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4512,12 +4584,28 @@ class SpreadModelArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": [
+                    "knownProp": [
                         {
                             "state": "str"  # The state property. Required.
                         }
                     ]
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -4538,16 +4626,29 @@ class SpreadModelArrayOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, List[_models.ModelForRecord]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: [ModelForRecord]} type or a IO[bytes] type. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]] or
+        :param body: body. Is one of the following types: SpreadModelArrayRecord, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadModelArrayRecord or JSON or
          IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "knownProp": [
+                        {
+                            "state": "str"  # The state property. Required.
+                        }
+                    ]
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -4613,11 +4714,12 @@ class SpreadDifferentStringOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, str]:
+    def get(self, **kwargs: Any) -> _models.DifferentSpreadStringRecord:
         """Get call.
 
-        :return: dict mapping str to str
-        :rtype: dict[str, str]
+        :return: DifferentSpreadStringRecord. The DifferentSpreadStringRecord is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadStringRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4625,7 +4727,7 @@ class SpreadDifferentStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "str"  # Optional.
+                    "id": 0.0  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4639,7 +4741,7 @@ class SpreadDifferentStringOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DifferentSpreadStringRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_different_string_get_request(
             headers=_headers,
@@ -4663,7 +4765,7 @@ class SpreadDifferentStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, str], response.json())
+            deserialized = _deserialize(_models.DifferentSpreadStringRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4672,12 +4774,12 @@ class SpreadDifferentStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DifferentSpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, str]
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadStringRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4690,8 +4792,24 @@ class SpreadDifferentStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "str"  # Optional.
+                    "id": 0.0  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -4712,15 +4830,25 @@ class SpreadDifferentStringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DifferentSpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: str} type or a IO[bytes] type. Required.
-        :type body: dict[str, str] or IO[bytes]
+        :param body: body. Is one of the following types: DifferentSpreadStringRecord, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadStringRecord or JSON
+         or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": 0.0  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -4786,11 +4914,12 @@ class SpreadDifferentFloatOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, float]:
+    def get(self, **kwargs: Any) -> _models.DifferentSpreadFloatRecord:
         """Get call.
 
-        :return: dict mapping str to float
-        :rtype: dict[str, float]
+        :return: DifferentSpreadFloatRecord. The DifferentSpreadFloatRecord is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadFloatRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4798,7 +4927,7 @@ class SpreadDifferentFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0.0  # Optional.
+                    "name": "str"  # The id property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4812,7 +4941,7 @@ class SpreadDifferentFloatOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DifferentSpreadFloatRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_different_float_get_request(
             headers=_headers,
@@ -4836,7 +4965,7 @@ class SpreadDifferentFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json())
+            deserialized = _deserialize(_models.DifferentSpreadFloatRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4845,12 +4974,12 @@ class SpreadDifferentFloatOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DifferentSpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, float]
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadFloatRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4863,8 +4992,24 @@ class SpreadDifferentFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0.0  # Optional.
+                    "name": "str"  # The id property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -4885,15 +5030,25 @@ class SpreadDifferentFloatOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DifferentSpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: float} type or a IO[bytes] type. Required.
-        :type body: dict[str, float] or IO[bytes]
+        :param body: body. Is one of the following types: DifferentSpreadFloatRecord, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadFloatRecord or JSON
+         or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The id property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -4959,11 +5114,12 @@ class SpreadDifferentModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, _models.ModelForRecord]:
+    def get(self, **kwargs: Any) -> _models.DifferentSpreadModelRecord:
         """Get call.
 
-        :return: dict mapping str to ModelForRecord
-        :rtype: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord]
+        :return: DifferentSpreadModelRecord. The DifferentSpreadModelRecord is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4971,9 +5127,7 @@ class SpreadDifferentModelOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
-                        "state": "str"  # The state property. Required.
-                    }
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4987,7 +5141,7 @@ class SpreadDifferentModelOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, _models.ModelForRecord]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DifferentSpreadModelRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_different_model_get_request(
             headers=_headers,
@@ -5011,7 +5165,7 @@ class SpreadDifferentModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.ModelForRecord], response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5020,12 +5174,12 @@ class SpreadDifferentModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, _models.ModelForRecord], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DifferentSpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord]
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadModelRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5038,10 +5192,24 @@ class SpreadDifferentModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {
-                        "state": "str"  # The state property. Required.
-                    }
+                    "knownProp": "str"  # Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -5062,16 +5230,25 @@ class SpreadDifferentModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.ModelForRecord], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DifferentSpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: ModelForRecord} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.ModelForRecord] or
-         IO[bytes]
+        :param body: body. Is one of the following types: DifferentSpreadModelRecord, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadModelRecord or JSON
+         or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "knownProp": "str"  # Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -5137,11 +5314,12 @@ class SpreadDifferentModelArrayOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, List[_models.ModelForRecord]]:
+    def get(self, **kwargs: Any) -> _models.DifferentSpreadModelArrayRecord:
         """Get call.
 
-        :return: dict mapping str to list of ModelForRecord
-        :rtype: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]]
+        :return: DifferentSpreadModelArrayRecord. The DifferentSpreadModelArrayRecord is compatible
+         with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -5149,11 +5327,7 @@ class SpreadDifferentModelArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": [
-                        {
-                            "state": "str"  # The state property. Required.
-                        }
-                    ]
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5167,7 +5341,7 @@ class SpreadDifferentModelArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, List[_models.ModelForRecord]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DifferentSpreadModelArrayRecord] = kwargs.pop("cls", None)
 
         _request = build_spread_different_model_array_get_request(
             headers=_headers,
@@ -5191,7 +5365,7 @@ class SpreadDifferentModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, List[_models.ModelForRecord]], response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelArrayRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5200,12 +5374,12 @@ class SpreadDifferentModelArrayOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, List[_models.ModelForRecord]], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DifferentSpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]]
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5218,12 +5392,24 @@ class SpreadDifferentModelArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": [
-                        {
-                            "state": "str"  # The state property. Required.
-                        }
-                    ]
+                    "knownProp": "str"  # Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -5244,16 +5430,25 @@ class SpreadDifferentModelArrayOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, List[_models.ModelForRecord]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DifferentSpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: [ModelForRecord]} type or a IO[bytes] type. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.ModelForRecord]] or
-         IO[bytes]
+        :param body: body. Is one of the following types: DifferentSpreadModelArrayRecord, JSON,
+         IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayRecord or
+         JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "knownProp": "str"  # Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -5332,7 +5527,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "derivedProp": "str"  # The index property. Required.
+                    "derivedProp": "str",  # The index property. Required.
+                    "id": 0.0  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5397,7 +5593,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": "str"  # The index property. Required.
+                    "derivedProp": "str",  # The index property. Required.
+                    "id": 0.0  # The name property. Required.
                 }
         """
 
@@ -5452,7 +5649,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": "str"  # The index property. Required.
+                    "derivedProp": "str",  # The index property. Required.
+                    "id": 0.0  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5532,7 +5730,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "derivedProp": 0.0  # The index property. Required.
+                    "derivedProp": 0.0,  # The index property. Required.
+                    "name": "str"  # The id property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5597,7 +5796,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": 0.0  # The index property. Required.
+                    "derivedProp": 0.0,  # The index property. Required.
+                    "name": "str"  # The id property. Required.
                 }
         """
 
@@ -5652,7 +5852,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": 0.0  # The index property. Required.
+                    "derivedProp": 0.0,  # The index property. Required.
+                    "name": "str"  # The id property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5734,7 +5935,8 @@ class ExtendsDifferentSpreadModelOperations:
                 response == {
                     "derivedProp": {
                         "state": "str"  # The state property. Required.
-                    }
+                    },
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5801,7 +6003,8 @@ class ExtendsDifferentSpreadModelOperations:
                 body = {
                     "derivedProp": {
                         "state": "str"  # The state property. Required.
-                    }
+                    },
+                    "knownProp": "str"  # Required.
                 }
         """
 
@@ -5858,7 +6061,8 @@ class ExtendsDifferentSpreadModelOperations:
                 body = {
                     "derivedProp": {
                         "state": "str"  # The state property. Required.
-                    }
+                    },
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5942,7 +6146,8 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                         {
                             "state": "str"  # The state property. Required.
                         }
-                    ]
+                    ],
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6011,7 +6216,8 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                         {
                             "state": "str"  # The state property. Required.
                         }
-                    ]
+                    ],
+                    "knownProp": "str"  # Required.
                 }
         """
 
@@ -6070,7 +6276,8 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                         {
                             "state": "str"  # The state property. Required.
                         }
-                    ]
+                    ],
+                    "knownProp": "str"  # Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6137,11 +6344,11 @@ class MultipleSpreadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, Union[str, float]]:
+    def get(self, **kwargs: Any) -> _models.MultipleSpreadRecord:
         """Get call.
 
-        :return: dict mapping str to str or float
-        :rtype: dict[str, str or float]
+        :return: MultipleSpreadRecord. The MultipleSpreadRecord is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.MultipleSpreadRecord
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -6149,7 +6356,7 @@ class MultipleSpreadOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "str"  # Optional.
+                    "flag": bool  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6163,7 +6370,7 @@ class MultipleSpreadOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Union[str, float]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.MultipleSpreadRecord] = kwargs.pop("cls", None)
 
         _request = build_multiple_spread_get_request(
             headers=_headers,
@@ -6187,7 +6394,7 @@ class MultipleSpreadOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Union[str, float]], response.json())
+            deserialized = _deserialize(_models.MultipleSpreadRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6196,12 +6403,12 @@ class MultipleSpreadOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, Union[str, float]], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.MultipleSpreadRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, str or float]
+        :type body: ~typetest.property.additionalproperties.models.MultipleSpreadRecord
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6214,8 +6421,24 @@ class MultipleSpreadOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "str"  # Optional.
+                    "flag": bool  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -6236,15 +6459,25 @@ class MultipleSpreadOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Union[str, float]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.MultipleSpreadRecord, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: Union[str, float]} type or a IO[bytes] type. Required.
-        :type body: dict[str, str or float] or IO[bytes]
+        :param body: body. Is one of the following types: MultipleSpreadRecord, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.MultipleSpreadRecord or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "flag": bool  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -6310,11 +6543,11 @@ class SpreadRecordUnionOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, Union[str, float]]:
+    def get(self, **kwargs: Any) -> _models.SpreadRecordForUnion:
         """Get call.
 
-        :return: dict mapping str to str or float
-        :rtype: dict[str, str or float]
+        :return: SpreadRecordForUnion. The SpreadRecordForUnion is compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForUnion
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -6322,7 +6555,7 @@ class SpreadRecordUnionOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "str"  # Optional.
+                    "flag": bool  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6336,7 +6569,7 @@ class SpreadRecordUnionOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Union[str, float]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadRecordForUnion] = kwargs.pop("cls", None)
 
         _request = build_spread_record_union_get_request(
             headers=_headers,
@@ -6360,7 +6593,7 @@ class SpreadRecordUnionOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Union[str, float]], response.json())
+            deserialized = _deserialize(_models.SpreadRecordForUnion, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6369,12 +6602,12 @@ class SpreadRecordUnionOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, Union[str, float]], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadRecordForUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, str or float]
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6387,8 +6620,24 @@ class SpreadRecordUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "str"  # Optional.
+                    "flag": bool  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -6409,15 +6658,25 @@ class SpreadRecordUnionOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Union[str, float]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadRecordForUnion, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: Union[str, float]} type or a IO[bytes] type. Required.
-        :type body: dict[str, str or float] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadRecordForUnion, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForUnion or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "flag": bool  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -6483,12 +6742,12 @@ class SpreadRecordDiscriminatedUnionOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, "_types.WidgetData"]:
+    def get(self, **kwargs: Any) -> _models.SpreadRecordForDiscriminatedUnion:
         """Get call.
 
-        :return: dict mapping str to WidgetData0 or WidgetData1
-        :rtype: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :return: SpreadRecordForDiscriminatedUnion. The SpreadRecordForDiscriminatedUnion is compatible
+         with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForDiscriminatedUnion
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -6496,10 +6755,7 @@ class SpreadRecordDiscriminatedUnionOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
-                        "fooProp": "str",  # Required.
-                        "kind": "kind0"  # Default value is "kind0". Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6513,7 +6769,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, "_types.WidgetData"]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadRecordForDiscriminatedUnion] = kwargs.pop("cls", None)
 
         _request = build_spread_record_discriminated_union_get_request(
             headers=_headers,
@@ -6537,7 +6793,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, "_types.WidgetData"], response.json())
+            deserialized = _deserialize(_models.SpreadRecordForDiscriminatedUnion, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6546,13 +6802,12 @@ class SpreadRecordDiscriminatedUnionOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, "_types.WidgetData"], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SpreadRecordForDiscriminatedUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForDiscriminatedUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6565,11 +6820,24 @@ class SpreadRecordDiscriminatedUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {
-                        "fooProp": "str",  # Required.
-                        "kind": "kind0"  # Default value is "kind0". Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -6590,16 +6858,25 @@ class SpreadRecordDiscriminatedUnionOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, "_types.WidgetData"], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadRecordForDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: "_types.WidgetData"} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadRecordForDiscriminatedUnion, JSON,
+         IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForDiscriminatedUnion or
+         JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -6665,12 +6942,12 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, Union[_models.WidgetData0, _models.WidgetData1]]:
+    def get(self, **kwargs: Any) -> _models.SpreadRecordForNonDiscriminatedUnion:
         """Get call.
 
-        :return: dict mapping str to WidgetData0 or WidgetData1
-        :rtype: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :return: SpreadRecordForNonDiscriminatedUnion. The SpreadRecordForNonDiscriminatedUnion is
+         compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -6678,10 +6955,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
-                        "fooProp": "str",  # Required.
-                        "kind": "kind0"  # Default value is "kind0". Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6695,7 +6969,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Union[_models.WidgetData0, _models.WidgetData1]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion] = kwargs.pop("cls", None)
 
         _request = build_spread_record_non_discriminated_union_get_request(
             headers=_headers,
@@ -6719,7 +6993,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Union[_models.WidgetData0, _models.WidgetData1]], response.json())
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6729,7 +7003,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
         self,
-        body: Dict[str, Union[_models.WidgetData0, _models.WidgetData1]],
+        body: _models.SpreadRecordForNonDiscriminatedUnion,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -6737,8 +7011,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6751,11 +7024,24 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {
-                        "fooProp": "str",  # Required.
-                        "kind": "kind0"  # Default value is "kind0". Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -6776,17 +7062,25 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Union[_models.WidgetData0, _models.WidgetData1]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: Union["_models.WidgetData0", "_models.WidgetData1"]} type
-         or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData0 or
-         ~typetest.property.additionalproperties.models.WidgetData1] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadRecordForNonDiscriminatedUnion, JSON,
+         IO[bytes] Required.
+        :type body: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion
+         or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -6852,12 +7146,12 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, Union[_models.WidgetData2, _models.WidgetData1]]:
+    def get(self, **kwargs: Any) -> _models.SpreadRecordForNonDiscriminatedUnion2:
         """Get call.
 
-        :return: dict mapping str to WidgetData2 or WidgetData1
-        :rtype: dict[str, ~typetest.property.additionalproperties.models.WidgetData2 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :return: SpreadRecordForNonDiscriminatedUnion2. The SpreadRecordForNonDiscriminatedUnion2 is
+         compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion2
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -6865,10 +7159,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
-                        "kind": "kind1",  # Default value is "kind1". Required.
-                        "start": "str"  # Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6882,7 +7173,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Union[_models.WidgetData2, _models.WidgetData1]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion2] = kwargs.pop("cls", None)
 
         _request = build_spread_record_non_discriminated_union2_get_request(
             headers=_headers,
@@ -6906,7 +7197,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Union[_models.WidgetData2, _models.WidgetData1]], response.json())
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion2, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6916,7 +7207,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
         self,
-        body: Dict[str, Union[_models.WidgetData2, _models.WidgetData1]],
+        body: _models.SpreadRecordForNonDiscriminatedUnion2,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -6924,8 +7215,8 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData2 or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :type body:
+         ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion2
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6938,11 +7229,24 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {
-                        "kind": "kind1",  # Default value is "kind1". Required.
-                        "start": "str"  # Required.
-                    }
+                    "name": "str"  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -6963,17 +7267,26 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Union[_models.WidgetData2, _models.WidgetData1]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion2, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: Union["_models.WidgetData2", "_models.WidgetData1"]} type
-         or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.property.additionalproperties.models.WidgetData2 or
-         ~typetest.property.additionalproperties.models.WidgetData1] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadRecordForNonDiscriminatedUnion2, JSON,
+         IO[bytes] Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion2 or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -7039,12 +7352,12 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> Dict[str, Union[List[_models.WidgetData2], _models.WidgetData1]]:
+    def get(self, **kwargs: Any) -> _models.SpreadRecordForNonDiscriminatedUnion3:
         """Get call.
 
-        :return: dict mapping str to list of WidgetData2 or WidgetData1
-        :rtype: dict[str, list[~typetest.property.additionalproperties.models.WidgetData2] or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :return: SpreadRecordForNonDiscriminatedUnion3. The SpreadRecordForNonDiscriminatedUnion3 is
+         compatible with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion3
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -7052,12 +7365,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
                 # response body for status code(s): 200
                 response == {
-                    "str": [
-                        {
-                            "kind": "kind1",  # Default value is "kind1". Required.
-                            "start": "str"  # Required.
-                        }
-                    ]
+                    "name": "str"  # The name property. Required.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7071,7 +7379,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Union[List[_models.WidgetData2], _models.WidgetData1]]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion3] = kwargs.pop("cls", None)
 
         _request = build_spread_record_non_discriminated_union3_get_request(
             headers=_headers,
@@ -7095,9 +7403,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(
-                Dict[str, Union[List[_models.WidgetData2], _models.WidgetData1]], response.json()
-            )
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion3, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -7107,7 +7413,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
         self,
-        body: Dict[str, Union[List[_models.WidgetData2], _models.WidgetData1]],
+        body: _models.SpreadRecordForNonDiscriminatedUnion3,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -7115,8 +7421,8 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """Put operation.
 
         :param body: body. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.WidgetData2] or
-         ~typetest.property.additionalproperties.models.WidgetData1]
+        :type body:
+         ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion3
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -7129,13 +7435,24 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": [
-                        {
-                            "kind": "kind1",  # Default value is "kind1". Required.
-                            "start": "str"  # Required.
-                        }
-                    ]
+                    "name": "str"  # The name property. Required.
                 }
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
@@ -7156,17 +7473,26 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Union[List[_models.WidgetData2], _models.WidgetData1]], IO[bytes]], **kwargs: Any
+        self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion3, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is either a {str: Union[List["_models.WidgetData2"], "_models.WidgetData1"]}
-         type or a IO[bytes] type. Required.
-        :type body: dict[str, list[~typetest.property.additionalproperties.models.WidgetData2] or
-         ~typetest.property.additionalproperties.models.WidgetData1] or IO[bytes]
+        :param body: body. Is one of the following types: SpreadRecordForNonDiscriminatedUnion3, JSON,
+         IO[bytes] Required.
+        :type body:
+         ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion3 or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # The name property. Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
