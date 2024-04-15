@@ -6,7 +6,11 @@
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
-from autorest.codegen.models.utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
+from autorest.codegen.models.utils import (
+    add_to_pylint_disable,
+    NAME_LENGTH_LIMIT,
+    typing_name,
+)
 from .base import BaseType
 from .constant_type import ConstantType
 from .property import Property
@@ -78,6 +82,10 @@ class ModelType(  # pylint: disable=abstract-method
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
             "crossLanguageDefinitionId"
         )
+
+    @property
+    def typing_name(self) -> str:
+        return f"_models.{typing_name(self.code_model.models_filename, self.internal)}{self.name}"
 
     @property
     def flattened_property(self) -> Optional[Property]:
@@ -308,10 +316,7 @@ class JSONModelType(ModelType):
 class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
-        retval = f"_models.{self.name}"
-        if self.internal:
-            retval = f"{self.code_model.models_filename}.{retval}"
-        return retval if is_operation_file else f'"{retval}"'
+        return self.typing_name if is_operation_file else f'"{self.typing_name}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
         return f"~{self.code_model.namespace}.models.{self.name}"
@@ -348,14 +353,13 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 )
         return file_import
 
+    @property
+    def serialization_type(self) -> str:
+        return self.typing_name
+
 
 class MsrestModelType(GeneratedModelType):
     base = "msrest"
-
-    @property
-    def serialization_type(self) -> str:
-        private_model_path = f"_models.{self.code_model.models_filename}."
-        return f"{private_model_path if self.internal else ''}{self.name}"
 
     @property
     def instance_check_template(self) -> str:
@@ -371,10 +375,6 @@ class MsrestModelType(GeneratedModelType):
 
 class DPGModelType(GeneratedModelType):
     base = "dpg"
-
-    @property
-    def serialization_type(self) -> str:
-        return f"{'_models.' if self.internal else ''}_models.{self.name}"
 
     @property
     def instance_check_template(self) -> str:

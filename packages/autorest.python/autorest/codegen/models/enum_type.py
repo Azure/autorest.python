@@ -7,6 +7,7 @@ from typing import Any, Dict, List, TYPE_CHECKING, Optional, cast
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
+from .utils import typing_name
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -168,6 +169,10 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         return enum_description
 
+    @property
+    def typing_name(self) -> str:
+        return f"_models.{typing_name(self.code_model.enums_filename, self.internal)}{self.name}"
+
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
@@ -175,7 +180,7 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            model_name = f"_models.{self.name}"
+            model_name = self.typing_name
             # we don't need quoted annotation in operation files, and need it in model folder files.
             if not kwargs.get("is_operation_file", False):
                 model_name = f'"{model_name}"'

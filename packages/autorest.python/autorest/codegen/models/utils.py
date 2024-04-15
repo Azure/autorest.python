@@ -21,3 +21,7 @@ def add_to_pylint_disable(curr_str: str, entry: str) -> str:
     if curr_str:
         return f"{curr_str},{entry}"
     return f"  # pylint: disable={entry}"
+
+
+def typing_name(file_name: str, internal: bool) -> str:
+    return f"{file_name}." if internal else ""
