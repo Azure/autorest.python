@@ -212,7 +212,7 @@ class InternalOperationOperations:
         :paramtype name: str
         :return: NoDecoratorModelInInternal. The NoDecoratorModelInInternal is compatible with
          MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInInternal
+        :rtype: ~specs.azure.clientgenerator.core.access.models._models.NoDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -280,7 +280,8 @@ class InternalOperationOperations:
         :paramtype name: str
         :return: InternalDecoratorModelInInternal. The InternalDecoratorModelInInternal is compatible
          with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.InternalDecoratorModelInInternal
+        :rtype:
+         ~specs.azure.clientgenerator.core.access.models._models.InternalDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -580,7 +581,7 @@ class RelativeModelInOperationOperations:
         :keyword name: Required.
         :paramtype name: str
         :return: OuterModel. The OuterModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.OuterModel
+        :rtype: ~specs.azure.clientgenerator.core.access.models._models.OuterModel
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -654,7 +655,7 @@ class RelativeModelInOperationOperations:
         :keyword kind: Required.
         :paramtype kind: str
         :return: AbstractModel. The AbstractModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.AbstractModel
+        :rtype: ~specs.azure.clientgenerator.core.access.models._models.AbstractModel
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:

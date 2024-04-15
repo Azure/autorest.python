@@ -83,9 +83,9 @@ class ModelType(  # pylint: disable=abstract-method
             "crossLanguageDefinitionId"
         )
 
-    @property
-    def typing_name(self) -> str:
-        return f"_models.{typing_name(self.code_model.models_filename, self.internal)}{self.name}"
+    def typing_name(self, need_module_name: bool = True) -> str:
+        module = "_models." if need_module_name else ""
+        return f"{module}{typing_name(self.code_model.models_filename, self.internal)}{self.name}"
 
     @property
     def flattened_property(self) -> Optional[Property]:
@@ -316,10 +316,10 @@ class JSONModelType(ModelType):
 class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
-        return self.typing_name if is_operation_file else f'"{self.typing_name}"'
+        return self.typing_name() if is_operation_file else f'"{self.typing_name()}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.code_model.namespace}.models.{self.name}"
+        return f"~{self.code_model.namespace}.models.{self.typing_name(False)}"
 
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
@@ -355,7 +355,7 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
 
     @property
     def serialization_type(self) -> str:
-        return self.typing_name
+        return self.typing_name()
 
 
 class MsrestModelType(GeneratedModelType):

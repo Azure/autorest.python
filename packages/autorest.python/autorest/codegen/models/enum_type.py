@@ -169,9 +169,9 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         return enum_description
 
-    @property
-    def typing_name(self) -> str:
-        return f"_models.{typing_name(self.code_model.enums_filename, self.internal)}{self.name}"
+    def typing_name(self, need_module_name: bool = True) -> str:
+        module = "_models." if need_module_name else ""
+        return f"{module}{typing_name(self.code_model.enums_filename, self.internal)}{self.name}"
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
@@ -180,7 +180,7 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            model_name = self.typing_name
+            model_name = self.typing_name()
             # we don't need quoted annotation in operation files, and need it in model folder files.
             if not kwargs.get("is_operation_file", False):
                 model_name = f'"{model_name}"'

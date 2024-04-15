@@ -129,7 +129,7 @@ class OuterModel(BaseModel):
     :ivar name: Required.
     :vartype name: str
     :ivar inner: Required.
-    :vartype inner: ~specs.azure.clientgenerator.core.access.models.InnerModel
+    :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
     """
 
     inner: "_models._models.InnerModel" = rest_field()
