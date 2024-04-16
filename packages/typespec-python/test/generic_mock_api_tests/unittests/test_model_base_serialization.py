@@ -3985,7 +3985,9 @@ def test_additional_properties_serialization():
         "boolProp": True,
         "listProp": [1, 2, 3],
         "dictProp": {"key": "value"},
-        "noneProp": None
+        "noneProp": None,
+        "datetimeProp": "2023-06-27T06:11:09Z",
+        "durationProp": "P1D"
     }
 
     class NormalModel(Model):
@@ -4004,5 +4006,7 @@ def test_additional_properties_serialization():
     model["listProp"] = [1, 2, 3]
     model["dictProp"] = {"key": "value"}
     model["noneProp"] = None
+    model["datetimeProp"] = datetime.datetime(2023, 6, 27, 6, 11, 9, tzinfo=datetime.timezone.utc)
+    model["durationProp"] = datetime.timedelta(days=1)
 
     assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
