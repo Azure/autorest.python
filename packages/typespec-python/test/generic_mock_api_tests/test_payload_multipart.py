@@ -101,13 +101,13 @@ def test_multi_part(client: MultiPartClient, op_name, model_class, data, file, f
     body = convert()
     op(body)
 
+    # test bytes (model)
+    body = convert(True)
+    op(model_class(body))
+
     # test io (model)
     body = convert()
-    if issubclass(model_class, Model):
-        # https://github.com/Azure/autorest.python/issues/2516
-        with pytest.raises(TypeError):
-            # caused by deepcopy when DPG model init
-            op(model_class(body))
+    op(model_class(body))
 
 def _test_sample_single_file(client: MultiPartClient):
     # Python SDK support several kinds of file format for multipart/form-data and users can choose any of them

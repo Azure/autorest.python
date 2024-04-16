@@ -103,10 +103,10 @@ async def test_multi_part(client: MultiPartClient, op_name, model_class, data, f
     body = convert()
     await op(body)
 
+    # test bytes (model)
+    body = convert(True)
+    await op(model_class(body))
+
     # test io (model)
     body = convert()
-    if issubclass(model_class, Model):
-        # https://github.com/Azure/autorest.python/issues/2516
-        with pytest.raises(TypeError):
-            # caused by deepcopy when DPG model init
-            await op(model_class(body))
+    await op(model_class(body))
