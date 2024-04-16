@@ -39,9 +39,6 @@ class BooleanLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -72,9 +69,6 @@ class BytesProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -104,9 +98,6 @@ class CollectionsByteProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -136,9 +127,6 @@ class CollectionsModelProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -168,9 +156,6 @@ class DatetimeProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -200,9 +185,6 @@ class DurationProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -232,9 +214,6 @@ class FloatLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -264,9 +243,6 @@ class IntLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -303,9 +279,6 @@ class RequiredAndOptionalProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -335,9 +308,6 @@ class StringLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -368,9 +338,6 @@ class StringProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -400,9 +367,6 @@ class UnionFloatLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -432,9 +396,6 @@ class UnionIntLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -464,9 +425,6 @@ class UnionStringLiteralProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """

@@ -49,9 +49,6 @@ class Fish(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -95,9 +92,6 @@ class Shark(Fish, discriminator="shark"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -134,9 +128,6 @@ class GoblinShark(Shark, discriminator="goblin"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -183,9 +174,6 @@ class Salmon(Fish, discriminator="salmon"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -222,9 +210,6 @@ class SawShark(Shark, discriminator="saw"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
-        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
-        value of the model will be changed, too.
-
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
