@@ -20,6 +20,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
+
 class BasicResource(Model):
     platform_update_domain_count: int = rest_field(
         name="platformUpdateDomainCount")  # How many times the platform update domain has been counted
@@ -3952,10 +3953,12 @@ def test_decimal_serialization():
     assert json.dumps({"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")},
                       cls=SdkJSONEncoder) == '{"a": 0.33333, "b": 0.33333}'
 
+
 def test_deserialize():
     expected = {"name": "name", "role": "role"}
     result = _deserialize(JSON, expected)
     assert result == expected
+
 
 def test_enum_deserealization():
     class MyEnum(Enum):
@@ -3968,3 +3971,38 @@ def test_enum_deserealization():
     model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
     assert model.enum_property == MyEnum.A
     assert model["enumProperty"] == "a"
+
+
+def test_additional_properties_serialization():
+    value = {
+        "name": "test",
+        "modelProp": {
+            "name": "test"
+        },
+        "stringProp": "string",
+        "intProp": 1,
+        "floatProp": 1.0,
+        "boolProp": True,
+        "listProp": [1, 2, 3],
+        "dictProp": {"key": "value"},
+        "noneProp": None
+    }
+
+    class NormalModel(Model):
+        prop: str = rest_field(name="name")
+
+    class AdditionalPropertiesModel(Model):
+        name: str = rest_field(name="name")
+
+    model = AdditionalPropertiesModel(name="test")
+    prop = NormalModel(prop="test")
+    model["modelProp"] = prop
+    model["stringProp"] = "string"
+    model["intProp"] = 1
+    model["floatProp"] = 1.0
+    model["boolProp"] = True
+    model["listProp"] = [1, 2, 3]
+    model["dictProp"] = {"key": "value"}
+    model["noneProp"] = None
+
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
