@@ -35,7 +35,7 @@ pnpm clean
 
 **Semi-auto:**
 
-Branch `publish/auto-release` should be automatically updated with the latest changelog. Give it 5min after merging a PR or check the status of the [Release action](https://github.com/Azure/cadl-ranch/actions/workflows/prepare-auto-release-branch.yml)
+Branch `publish/auto-release` should be automatically updated with the latest changelog. Give it 5min after merging a PR or check the status of the [Release action](https://github.com/Azure/autorest.python/actions/workflows/prepare-auto-release-branch.yml)
 
 Then go to https://github.com/Azure/autorest.python/pull/new/publish/auto-release and create this PR. After PR created, please update `Minor Changes`/`Patch Changes` of changelog with existing items `New Features`/`Bug Fixes`/`Other Changes`.
 
