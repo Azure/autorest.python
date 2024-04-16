@@ -36,6 +36,9 @@ class AndModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -67,6 +70,9 @@ class AsModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -98,6 +104,9 @@ class AssertModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -129,6 +138,9 @@ class AsyncModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -160,6 +172,9 @@ class AwaitModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -191,6 +206,9 @@ class BreakModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -222,6 +240,9 @@ class ClassModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -253,6 +274,9 @@ class Constructor(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -284,6 +308,9 @@ class ContinueModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -315,6 +342,9 @@ class DefModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -346,6 +376,9 @@ class DelModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -377,6 +410,9 @@ class ElifModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -408,6 +444,9 @@ class ElseModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -439,6 +478,9 @@ class ExceptModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -470,6 +512,9 @@ class ExecModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -501,6 +546,9 @@ class FinallyModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -532,6 +580,9 @@ class ForModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -563,6 +614,9 @@ class FromModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -594,6 +648,9 @@ class GlobalModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -625,6 +682,9 @@ class IfModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -656,6 +716,9 @@ class ImportModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -687,6 +750,9 @@ class InModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -718,6 +784,9 @@ class IsModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -749,6 +818,9 @@ class LambdaModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -780,6 +852,9 @@ class NotModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -811,6 +886,9 @@ class OrModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -842,6 +920,9 @@ class PassModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -873,6 +954,9 @@ class RaiseModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -904,6 +988,9 @@ class ReturnModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -935,6 +1022,9 @@ class SameAsModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -966,6 +1056,9 @@ class TryModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -997,6 +1090,9 @@ class WhileModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -1028,6 +1124,9 @@ class WithModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -1059,6 +1158,9 @@ class YieldModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """

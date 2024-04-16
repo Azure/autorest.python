@@ -36,6 +36,9 @@ class JsonEncodedNameModel(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """

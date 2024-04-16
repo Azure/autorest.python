@@ -37,6 +37,9 @@ class DefaultDurationProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -68,6 +71,9 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -99,6 +105,9 @@ class FloatSecondsDurationProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -130,6 +139,9 @@ class Int32SecondsDurationProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -161,6 +173,9 @@ class ISO8601DurationProperty(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """

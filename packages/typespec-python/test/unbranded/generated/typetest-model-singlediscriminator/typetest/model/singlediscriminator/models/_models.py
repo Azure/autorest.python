@@ -49,6 +49,9 @@ class Bird(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -90,6 +93,9 @@ class Dinosaur(_model_base.Model):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -136,6 +142,9 @@ class Eagle(Bird, discriminator="eagle"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -169,6 +178,9 @@ class Goose(Bird, discriminator="goose"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -202,6 +214,9 @@ class SeaGull(Bird, discriminator="seagull"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -235,6 +250,9 @@ class Sparrow(Bird, discriminator="sparrow"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
@@ -268,6 +286,9 @@ class TRex(Dinosaur, discriminator="t-rex"):
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
+        Warning: we don't make deepcopy for mapping so if you change value of mapping after init,
+        value of the model will be changed, too.
+
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
