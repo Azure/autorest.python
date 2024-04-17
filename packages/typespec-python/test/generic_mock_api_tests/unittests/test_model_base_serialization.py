@@ -6,6 +6,7 @@ import copy
 import decimal
 import json
 import datetime
+from pathlib import Path
 from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, Tuple, Optional, overload, Union
 import pytest
 import isodate
@@ -3968,3 +3969,32 @@ def test_enum_deserealization():
     model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
     assert model.enum_property == MyEnum.A
     assert model["enumProperty"] == "a"
+
+def test_not_mutating_original_dict():
+    class MyInnerModel(Model):
+        property: str = rest_field()
+
+    class MyModel(Model):
+        property: MyInnerModel = rest_field()
+    
+    origin = {"property": {"property": "hello"}}
+
+    dpg_model = MyModel(origin)
+    assert dpg_model["property"]["property"] == "hello"
+
+    origin["property"]["property"] = "world"
+    assert dpg_model["property"]["property"] == "hello"
+
+def test_model_init_io():
+    class BytesModel(Model):
+        property: bytes = rest_field()
+
+    JPG = Path(__file__).parent.parent / "data/image.jpg"
+    with open(JPG, "rb") as f:
+        b = BytesModel({"property": f})
+        assert b.property == f
+        assert b["property"] == f
+    with open(JPG, "rb") as f:
+        b = BytesModel(property=f)
+        assert b.property == f
+        assert b["property"] == f
