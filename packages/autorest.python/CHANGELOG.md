@@ -1,16 +1,22 @@
 # Release
 
+## 6.13.13
+
+### Patch Changes
+
+- d773b87: add changesets to manage changelog #2524
+
 ## 2024-04-12 - 6.13.12
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -18,15 +24,15 @@
 
 ## 2024-04-09 - 6.13.11
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -34,15 +40,15 @@
 
 ## 2024-04-09 - 6.13.10
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -50,15 +56,15 @@
 
 ## 2024-04-05 - 6.13.9
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -66,15 +72,15 @@
 
 ## 2024-03-22 - 6.13.8
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -86,15 +92,15 @@
 
 ## 2024-03-14 - 6.13.7
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -102,15 +108,15 @@
 
 ## 2024-03-13 - 6.13.6
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -118,15 +124,15 @@
 
 ## 2024-03-12 - 6.13.5
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -134,15 +140,15 @@
 
 ## 2024-03-06 - 6.13.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -154,15 +160,15 @@
 
 ## 2024-03-01 - 6.13.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -170,66 +176,65 @@
 
 ## 2024-02-27 - 6.13.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
 - Fix reading of some stream responses #2416
 
-
 ## 2024-02-12 - 6.13.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
 - Add support for legacy @flattened decorator in tsp #2362
-- Generate operations that have multiple binary content types in tsp  #2401
+- Generate operations that have multiple binary content types in tsp #2401
 
 ## 2024-02-09 - 6.13.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
 - Add support for `next-pyright` in the `azure-sdk-for-python` repo (thank you @kristapratico!) #2351
-- Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!)  #2351
+- Improve polymorphic kind detection in returned polymorphic models (thank you @kristapratico!) #2351
 
 ## 2024-02-01 - 6.12.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.30.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.30.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -238,15 +243,15 @@
 
 ## 2023-01-19 - 6.12.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.29.5`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.29.5`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -254,15 +259,15 @@
 
 ## 2023-01-11 - 6.12.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.29.5`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.29.5`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -270,15 +275,15 @@
 
 ## 2023-01-09 - 6.12.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.29.5`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.29.5`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -287,15 +292,15 @@
 
 ## 2023-01-04 - 6.12.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.29.5`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.29.5`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -303,15 +308,15 @@
 
 ## 2023-12-22 - 6.11.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.29.5`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.29.5`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -319,15 +324,15 @@
 
 ## 2023-12-11 - 6.11.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -335,15 +340,15 @@
 
 ## 2023-12-06 - 6.10.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -351,15 +356,15 @@
 
 ## 2023-11-30 - 6.10.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -367,31 +372,31 @@
 
 ## 2023-11-29 - 6.10.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
-- Add decimal type support  #2269
+- Add decimal type support #2269
 
 ## 2023-11-13 - 6.9.9
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -399,15 +404,15 @@
 
 ## 2023-11-06 - 6.9.8
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -415,15 +420,15 @@
 
 ## 2023-11-03 - 6.9.7
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -431,15 +436,15 @@
 
 ## 2023-10-27 - 6.9.6
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -448,15 +453,15 @@
 
 ## 2023-10-26 - 6.9.5
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -464,15 +469,15 @@
 
 ## 2023-10-23 - 6.9.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -484,15 +489,15 @@
 
 ## 2023-10-18 - 6.9.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -500,15 +505,15 @@
 
 ## 2023-10-16 - 6.9.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -516,15 +521,15 @@
 
 ### 2023-10-12 - 6.9.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -532,15 +537,15 @@
 
 ### 2023-10-07 - 6.9.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -548,15 +553,15 @@
 
 ### 2023-10-05 - 6.8.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -564,15 +569,15 @@
 
 ### 2023-09-27 - 6.8.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -580,16 +585,15 @@
 
 ### 2023-09-26 - 6.7.8
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
-
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -597,113 +601,113 @@
 
 ### 2023-09-22 - 6.7.7
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
-
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
 - Skip quote for etag when it starts with `/W` # 2133
-- Remove operation metadata for Mgmt  # 2134
+- Remove operation metadata for Mgmt # 2134
 
 ### 2023-09-15 - 6.7.6
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Fix overload for lro paging operation  #2114
+- Fix overload for lro paging operation #2114
 
 ### 2023-09-12 - 6.7.5
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.28.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.28.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Add missing signature `match_condition` when only `if-match` is defined swagger or typespec  #2084
+- Add missing signature `match_condition` when only `if-match` is defined swagger or typespec #2084
 
 ### 2023-08-31 - 6.7.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
+
 - Fix base model generation and add support for `as_dict` on DPG models #2027
 
 ### 2023-08-21 - 6.7.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- encode `{}` of url even if skip_quoto is `True`  # 2063
+- encode `{}` of url even if skip_quoto is `True` # 2063
 
 ### 2023-08-09 - 6.7.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
-- Do not delete `models` and `operations` folder by default for multiapi package  #2024
-- Optimize log for `black` when error happens  #2041
+- Do not delete `models` and `operations` folder by default for multiapi package #2024
+- Optimize log for `black` when error happens #2041
 
 ### 2023-07-20 - 6.7.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -711,15 +715,15 @@
 
 ### 2023-07-10 - 6.7.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -731,15 +735,15 @@
 
 ### 2023-06-12 - 6.6.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -749,18 +753,17 @@
 
 - Optimize default value for `api_version` for better compatibility of multiapi package #1934
 
-
 ### 2023-06-08 - 6.5.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.27.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.27.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -768,15 +771,15 @@
 
 ### 2023-06-02 - 6.5.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -784,21 +787,21 @@
 
 **Bug Fixes**
 
-- Fix `x-ms-client-default` for model property  #1937
+- Fix `x-ms-client-default` for model property #1937
 - Added sub-namespace folder when generating samples #1920
 - Optimize logic to find related params in example files #1916
 
 ### 2023-05-19 - 6.4.15
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -806,15 +809,15 @@
 
 ### 2023-05-16 - 6.4.14
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -822,15 +825,15 @@
 
 ### 2023-05-15 - 6.4.13
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -838,31 +841,31 @@
 
 ### 2023-05-12 - 6.4.12
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
-- optimize output folder to avoid sample files are overwritten  #1875
+- optimize output folder to avoid sample files are overwritten #1875
 
 ### 2023-04-20 - 6.4.11
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -870,15 +873,15 @@
 
 ### 2023-04-19 - 6.4.10
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -886,15 +889,15 @@
 
 ### 2023-04-11 - 6.4.9
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -902,32 +905,32 @@
 
 ### 2023-04-10 - 6.4.8
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
-- set default vaule from `package-name` if `package-pprint-name` is not configured  #1841
+- set default vaule from `package-name` if `package-pprint-name` is not configured #1841
 - Optimize logic about `is_xml` when serialization #1835
 
 ### 2023-03-30 - 6.4.7
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -935,19 +938,19 @@
 
 **Other Changes**
 
-- Add support for generating internal models and operations  #1798
+- Add support for generating internal models and operations #1798
 
 ### 2023-03-27 - 6.4.6
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -957,15 +960,15 @@
 
 ### 2023-03-14 - 6.4.5
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -973,15 +976,15 @@
 
 ### 2023-03-14 - 6.4.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -989,15 +992,15 @@
 
 ### 2023-03-07 - 6.4.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -1005,15 +1008,15 @@
 
 ### 2023-03-06 - 6.4.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -1025,15 +1028,15 @@
 
 ### 2023-03-01 - 6.4.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -1041,19 +1044,19 @@
 
 ### 2023-02-01 - 6.4.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
-- Add support for `--generate-sample` with multiapi packages  #1681
+- Add support for `--generate-sample` with multiapi packages #1681
 
 **Bug Fixes**
 
@@ -1061,15 +1064,15 @@
 
 ### 2023-01-23 - 6.3.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
@@ -1077,15 +1080,15 @@
 
 ### 2023-01-23 - 6.3.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
@@ -1093,15 +1096,15 @@
 
 ### 2023-01-18 - 6.3.0
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -1111,18 +1114,17 @@
 
 - Fix JSON template description #1679
 
-
 ### 2023-01-11 - 6.2.16
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **New Features**
 
@@ -1131,30 +1133,30 @@
 
 ### 2023-01-069 - 6.2.15
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
-- Bump Pyright  #1653
+- Bump Pyright #1653
 
 ### 2023-01-06 - 6.2.14
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1167,14 +1169,14 @@
 
 ### 2022-12-16 - 6.2.13
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1183,14 +1185,14 @@
 
 ### 2022-12-15 - 6.2.12
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1199,14 +1201,14 @@
 
 ### 2022-12-07 - 6.2.11
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1215,14 +1217,14 @@
 
 ### 2022-12-05 - 6.2.10
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1231,14 +1233,14 @@
 
 ### 2022-11-17 - 6.2.9
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
@@ -1247,14 +1249,14 @@
 
 ### 2022-11-16 - 6.2.8
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
@@ -1263,81 +1265,81 @@
 
 ### 2022-11-15 - 6.2.7
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
 
 - Clean pyright issues #1547
-- Optimize rule about name of generated sample files to avoid too long path  #1540
+- Optimize rule about name of generated sample files to avoid too long path #1540
 
 ### 2022-11-07 - 6.2.6
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Fix clients with enum params  #1558
+- Fix clients with enum params #1558
 
 ### 2022-11-04 - 6.2.5
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Don't continue paging empty next links  #1557
-- Fix deserialization of msrest models containing private models  #1556
+- Don't continue paging empty next links #1557
+- Fix deserialization of msrest models containing private models #1556
 
 ### 2022-11-03 - 6.2.4
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Handle complex string for generated sample  #1546
+- Handle complex string for generated sample #1546
 - Allow `api-version` to be a path parameter #1551
 
 ### 2022-10-31 - 6.2.3
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Other Changes**
@@ -1347,35 +1349,35 @@
 
 ### 2022-10-26 - 6.2.2
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Make special `api-version` logic more generic to allow for path parameters  #1537
+- Make special `api-version` logic more generic to allow for path parameters #1537
 
 ### 2022-10-25 - 6.2.1
 
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.9.2`     |
-| `@autorest/modelerfour`                                                 | `4.24.3`    |
-| `azure-core` dep of generated code                                      | `1.24.0`    |
-| `isodate` dep of generated code                                         | `0.6.1`     |
-| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| Library                                                                  | Min Version |
+| ------------------------------------------------------------------------ | ----------- |
+| `@autorest/core`                                                         | `3.9.2`     |
+| `@autorest/modelerfour`                                                  | `4.24.3`    |
+| `azure-core` dep of generated code                                       | `1.24.0`    |
+| `isodate` dep of generated code                                          | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)               | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code)  | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
 **Bug Fixes**
 
-- Fixed lro operation name in auto-generated sample  #1521
+- Fixed lro operation name in auto-generated sample #1521
 
 **Other Changes**
 
@@ -1395,7 +1397,7 @@
 
 **New Features**
 
-- Add new flag `--generate-sample` to generate samples automatically  #1505
+- Add new flag `--generate-sample` to generate samples automatically #1505
 
 ### 2022-10-11 - 6.1.11
 
@@ -1410,8 +1412,8 @@
 
 **New Features**
 
-- Handle all unrecognized types as "string"  #1483
-- Make sure to urlencode next link when paging with multiple pages  #1504
+- Handle all unrecognized types as "string" #1483
+- Make sure to urlencode next link when paging with multiple pages #1504
 
 ### 2022-10-10 - 6.1.10
 
@@ -1427,7 +1429,7 @@
 **Bug Fixes**
 
 - Fix `--postprocess` for windows and embeded packages #1491
-- Be able to detect bodies with JSON content types with charsets as JSON requests  #1490
+- Be able to detect bodies with JSON content types with charsets as JSON requests #1490
 
 ### 2022-09-29 - 6.1.9
 
@@ -1442,8 +1444,8 @@
 
 **Bug Fixes**
 
-- Can now handle multiple pages when paging in a multiapi SDK  #1486
-- Fix bug for paging with a DPG SDK with `msrest` models  #1487
+- Can now handle multiple pages when paging in a multiapi SDK #1486
+- Fix bug for paging with a DPG SDK with `msrest` models #1487
 
 ### 2022-09-23 - 6.1.8
 
@@ -1488,7 +1490,7 @@
 
 **Bug Fixes**
 
-- Fix `--clear-output-folder` when `--black=true`  #1410
+- Fix `--clear-output-folder` when `--black=true` #1410
 
 ### 2022-09-06 - 6.1.5
 
@@ -1503,12 +1505,12 @@
 
 **Bug Fixes**
 
-- Fix `api_version` error when there are multi different `api-version`(not multiapi)   #1429
-- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation  #1425
+- Fix `api_version` error when there are multi different `api-version`(not multiapi) #1429
+- Fix generator raising `KeyError` in corner case when generating an LRO-paging operation #1425
 
 **Other Changes**
 
-- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s  #1415
+- Default `304` errors to throw `azure.core.exception.ResourceNotFoundError`s #1415
 
 ### 2022-08-31 - 6.1.4
 
@@ -1523,13 +1525,13 @@
 
 **Bug Fixes**
 
-- Fix generation failure for `format: password`  #1404
-- Fix `content_type` error when paging with body  #1407
-- Fix excessive warning level logging in vendored `failsafe_deserialize`  #1419
+- Fix generation failure for `format: password` #1404
+- Fix `content_type` error when paging with body #1407
+- Fix excessive warning level logging in vendored `failsafe_deserialize` #1419
 
 **Other Changes**
 
-- Upgrade min dependency for `azure-mgmt-core` to `1.3.2`  #1404
+- Upgrade min dependency for `azure-mgmt-core` to `1.3.2` #1404
 
 ### 2022-08-22 - 6.1.3
 
@@ -1544,7 +1546,7 @@
 
 **Bug Fixes**
 
-- Fix circular recursion for lropaging  #1400
+- Fix circular recursion for lropaging #1400
 
 ### 2022-08-16 - 6.1.2
 
@@ -1559,8 +1561,8 @@
 
 **Bug Fixes**
 
-- Correctly document polymorphic page responses  #1389
-- Add `__version__` to `__init__.py` for multiapi  #1393
+- Correctly document polymorphic page responses #1389
+- Add `__version__` to `__init__.py` for multiapi #1393
 
 ### 2022-07-20 - 6.1.1
 
@@ -1575,7 +1577,7 @@
 
 **Other Changes**
 
-- Get skeleton for cadl generation released  #1358
+- Get skeleton for cadl generation released #1358
 
 ### 2022-07-20 - 6.1.0
 
@@ -1590,16 +1592,16 @@
 
 **New Features**
 
-- Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client  #1328
+- Add new plugin `MultiClient` and new flag `--multiclientscript` to handle package structure of multi client #1328
 
 **Bug Fixes**
 
 - Fallback unrecognized type as string to avoid a fatal error. #1341
-- Fix regression in default namespace for SDKs generated without `--namespace` flag  #1354
+- Fix regression in default namespace for SDKs generated without `--namespace` flag #1354
 
 **Other Changes**
 
-- Generated code no longer supports Python 3.6  #1353
+- Generated code no longer supports Python 3.6 #1353
 - Order json input and response template entries by whether they are required or not #1335
 - Reduce extreme amount of `black` logs when running in `--debug` mode to just log errors
 
@@ -1616,7 +1618,7 @@
 
 **Bug Fixes**
 
-- Ignore linting error for clients with no credentials  #1333
+- Ignore linting error for clients with no credentials #1333
 
 ### 2022-06-24 - 6.0.0
 
@@ -1632,7 +1634,7 @@
 **Breaking Changes**
 
 - Don't generate paging variables `maxpagesize` for DPG generations. Users should pass in `maxpagesize` to the `by_page` method of their
-pager  #1320
+  pager #1320
 
 ### 2022-06-17 - 6.0.0-rc.1
 
@@ -1648,18 +1650,18 @@ pager  #1320
 **Breaking Changes**
 
 - Default to generating DPG SDKs with `--version-tolerant` now defaulting to `true`. For a list of flag default changes, please
-see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
-- Only generate Python3 SDKs  #1297
-- Don't reformat initial query parameters into the next link. However, we do append `api-version` parameters if they are not present in the next link  #1297  #1309
-- Don't generate operations with more than two body types. SDK authors need to implement this operation themselves  #1300
+  see [here](https://github.com/Azure/autorest.python/issues/1186) #1304
+- Only generate Python3 SDKs #1297
+- Don't reformat initial query parameters into the next link. However, we do append `api-version` parameters if they are not present in the next link #1297 #1309
+- Don't generate operations with more than two body types. SDK authors need to implement this operation themselves #1300
 
 **New Features**
 
-- Automatically format generated code with `black`. To not format, pass in `--black=false`  #1304
+- Automatically format generated code with `black`. To not format, pass in `--black=false` #1304
 
 **Other**
 
-- Remove testing support for `--low-level-client` SDKs  #1303
+- Remove testing support for `--low-level-client` SDKs #1303
 
 ### 2022-06-13 - 5.19.0
 
@@ -1668,12 +1670,12 @@ see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
 | `azure-core` dep of generated code                                      | `1.24.0`    |
-| `msrest` dep of generated code                                          | `0.7.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
 
-- Add _serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to _serialization.py #1236
+- Add \_serialization.py for `--client-side-validation=false` generation, and migrate serilization from msrest to \_serialization.py #1236
 
 ### 2022-06-09 - 5.18.0
 
@@ -1682,20 +1684,19 @@ see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 | `@autorest/core`                                                        | `3.8.1`     |
 | `@autorest/modelerfour`                                                 | `4.23.5`    |
 | `azure-core` dep of generated code                                      | `1.24.0`    |
-| `msrest` dep of generated code                                          | `0.7.0`    |
+| `msrest` dep of generated code                                          | `0.7.0`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Breaking Changes in Version Tolerant**
 
-- No longer allow users to specify `api_version` on the method level  #1281
-- Make `content_type` param required with no default if streaming with no `application/octet-stream`  #1288
+- No longer allow users to specify `api_version` on the method level #1281
+- Make `content_type` param required with no default if streaming with no `application/octet-stream` #1288
 
 **Bug Fixes**
 
-- Fix duplicate params in signature with `--payload-flattening-threshold`  #1289
-- Fix overloaded request builder signatures  #1289
-- Improve docstring templates, specifically for polymorphic bodies  #1279
-
+- Fix duplicate params in signature with `--payload-flattening-threshold` #1289
+- Fix overloaded request builder signatures #1289
+- Improve docstring templates, specifically for polymorphic bodies #1279
 
 ### 2022-06-02 - 5.17.0
 
@@ -1709,29 +1710,29 @@ see [here](https://github.com/Azure/autorest.python/issues/1186)  #1304
 
 **New Features**
 
-- Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
-- Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type.  #1230
+- Hide `api_version` in doc string for singleapi SDK even if contains multi api versions #1239
+- Add overloads for operations with different body types. We now sniff bodies and assign content type based off of body type. #1230
 - Add flag `--postprocess`. Run this after doing customizations for full mypy support
 
 **Breaking Changes in Version Tolerant**
 
-- Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object.  #1254
-- If generating with `--models-mode=msrest` in version tolerant, we hide paging models  #1259
+- Have stream responses directly return an iterator of bytes, so you don't need to call `.iter_bytes()` on the response object. #1254
+- If generating with `--models-mode=msrest` in version tolerant, we hide paging models #1259
 
 **Breaking Changes in Request Builders**
 
-- Request builders for LRO operations have the `_initial` suffix removed from their name  #1241
-- Request builders from groups with reserved words will now be padded with the word "Operations" instead of "Builders"  #1243
+- Request builders for LRO operations have the `_initial` suffix removed from their name #1241
+- Request builders from groups with reserved words will now be padded with the word "Operations" instead of "Builders" #1243
 
 **Bug Fixes**
 
-- Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
-- Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
+- Make sure `any-object` schemas from swagger are typed with `MutableMapping`s #1243
+- Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger #1244
 - Fix for render failure of `README.md` when `--package-mode==dataplane` #1247
-- Fix typing for stream responses to iterators of bytes.  #1254
-- Additional linting support  #1265
+- Fix typing for stream responses to iterators of bytes. #1254
+- Additional linting support #1265
 - Fix Sphinx documentation for raised exception #1264
-- Use `api_version` in `_config` as default value for operation function  #1268
+- Use `api_version` in `_config` as default value for operation function #1268
 
 **Other Changes**
 
