@@ -47,3 +47,4 @@ ignore:
 changedFiles:
   - "!**/*.md"
   - "!**/*.test.ts"
+  - "!**/test_*.py"
