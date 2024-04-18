@@ -13,7 +13,6 @@ import sys
 import logging
 import base64
 import re
-import copy
 import typing
 import enum
 import email.utils
@@ -339,7 +338,7 @@ _UNSET = object()
 
 class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=unsubscriptable-object
     def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-        self._data = copy.deepcopy(data)
+        self._data = data
 
     def __contains__(self, key: typing.Any) -> bool:
         return key in self._data
