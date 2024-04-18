@@ -45,6 +45,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
+    - script: npx chronus verify
+      displayName: Check changelog
+
     - script: pnpm install --no-frozen-lockfile
       displayName: Pnpm install
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
