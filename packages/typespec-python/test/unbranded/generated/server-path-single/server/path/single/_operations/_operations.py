@@ -42,6 +42,7 @@ def build_single_my_op_request(**kwargs: Any) -> HttpRequest:
 
 
 class SingleClientOperationsMixin(SingleClientMixinABC):
+
     def my_op(self, **kwargs: Any) -> bool:
         """my_op.
 

@@ -46,6 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
+
     @overload
     async def get_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any

@@ -38,8 +38,7 @@ class InnerModel(_model_base.Model):
         *,
         property: str,  # pylint: disable=redefined-builtin
         children: Optional[List["_models.InnerModel"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

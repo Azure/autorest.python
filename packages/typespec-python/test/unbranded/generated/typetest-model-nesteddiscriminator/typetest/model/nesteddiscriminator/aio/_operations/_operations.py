@@ -45,6 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC):
+
     async def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.
 
