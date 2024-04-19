@@ -38,3 +38,12 @@ class TestVersioned(VersionedClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @VersionedPreparer()
+    @recorded_by_proxy
+    def test_with_query_old_api_version(self, versioned_endpoint):
+        client = self.create_client(endpoint=versioned_endpoint)
+        response = client.with_query_old_api_version()
+
+        # please add some check logic here by yourself
+        # ...

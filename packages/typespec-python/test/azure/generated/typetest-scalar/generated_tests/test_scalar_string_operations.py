@@ -27,6 +27,7 @@ class TestScalarStringOperations(ScalarClientTestBase):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.string.put(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself

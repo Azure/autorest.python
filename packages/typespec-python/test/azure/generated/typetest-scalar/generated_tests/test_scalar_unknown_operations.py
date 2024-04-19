@@ -27,6 +27,7 @@ class TestScalarUnknownOperations(ScalarClientTestBase):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.unknown.put(
             body={},
+            content_type="str",
         )
 
         # please add some check logic here by yourself

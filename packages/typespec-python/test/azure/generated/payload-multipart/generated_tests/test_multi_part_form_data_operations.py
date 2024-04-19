@@ -94,3 +94,15 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy
+    def test_anonymous_model(self, multipart_endpoint):
+        client = self.create_client(endpoint=multipart_endpoint)
+        response = client.form_data.anonymous_model(
+            body={"profileImage": "filetype"},
+            profile_image=bytes("bytes", encoding="utf-8"),
+        )
+
+        # please add some check logic here by yourself
+        # ...

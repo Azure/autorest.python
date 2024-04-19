@@ -36,6 +36,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.put_known_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself
@@ -47,6 +48,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.put_unknown_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself

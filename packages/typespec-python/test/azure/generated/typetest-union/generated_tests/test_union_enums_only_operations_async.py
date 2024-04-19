@@ -27,8 +27,8 @@ class TestUnionEnumsOnlyOperationsAsync(UnionClientTestBaseAsync):
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.enums_only.send(
-            body={"prop": {"lr": "str", "ud": "str"}},
-            prop={"lr": "str", "ud": "str"},
+            body={"prop": {"lr": "left", "ud": "up"}},
+            prop={"lr": "left", "ud": "up"},
         )
 
         # please add some check logic here by yourself

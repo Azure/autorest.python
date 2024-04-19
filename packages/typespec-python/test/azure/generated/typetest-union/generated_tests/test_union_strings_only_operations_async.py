@@ -27,8 +27,8 @@ class TestUnionStringsOnlyOperationsAsync(UnionClientTestBaseAsync):
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.strings_only.send(
-            body={"prop": "str"},
-            prop="str",
+            body={"prop": "a"},
+            prop="a",
         )
 
         # please add some check logic here by yourself

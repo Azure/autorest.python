@@ -27,7 +27,7 @@ class TestAdditionalPropertiesExtendsModelOperationsAsync(AdditionalPropertiesCl
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_model.put(
-            body={},
+            body={"knownProp": {"state": "str"}},
         )
 
         # please add some check logic here by yourself

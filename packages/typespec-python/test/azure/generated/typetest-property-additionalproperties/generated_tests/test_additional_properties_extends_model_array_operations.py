@@ -26,7 +26,7 @@ class TestAdditionalPropertiesExtendsModelArrayOperations(AdditionalPropertiesCl
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_model_array.put(
-            body={},
+            body={"knownProp": [{"state": "str"}]},
         )
 
         # please add some check logic here by yourself

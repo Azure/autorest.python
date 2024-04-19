@@ -27,6 +27,7 @@ class TestScalarDecimal128VerifyOperations(ScalarClientTestBase):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal128_verify.verify(
             body=0.0,
+            content_type="str",
         )
 
         # please add some check logic here by yourself

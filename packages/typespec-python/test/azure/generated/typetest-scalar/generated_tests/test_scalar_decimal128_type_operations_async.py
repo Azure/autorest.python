@@ -28,6 +28,7 @@ class TestScalarDecimal128TypeOperationsAsync(ScalarClientTestBaseAsync):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_type.request_body(
             body=0.0,
+            content_type="str",
         )
 
         # please add some check logic here by yourself

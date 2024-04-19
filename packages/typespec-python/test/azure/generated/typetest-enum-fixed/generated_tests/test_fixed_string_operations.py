@@ -27,6 +27,7 @@ class TestFixedStringOperations(FixedClientTestBase):
         client = self.create_client(endpoint=fixed_endpoint)
         response = client.string.put_known_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself
@@ -38,6 +39,7 @@ class TestFixedStringOperations(FixedClientTestBase):
         client = self.create_client(endpoint=fixed_endpoint)
         response = client.string.put_unknown_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself

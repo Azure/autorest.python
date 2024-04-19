@@ -27,6 +27,7 @@ class TestScalarDecimalVerifyOperations(ScalarClientTestBase):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal_verify.verify(
             body=0.0,
+            content_type="str",
         )
 
         # please add some check logic here by yourself

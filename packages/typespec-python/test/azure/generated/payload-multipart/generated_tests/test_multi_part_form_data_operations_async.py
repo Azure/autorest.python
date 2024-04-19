@@ -95,3 +95,15 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_anonymous_model(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.anonymous_model(
+            body={"profileImage": "filetype"},
+            profile_image=bytes("bytes", encoding="utf-8"),
+        )
+
+        # please add some check logic here by yourself
+        # ...

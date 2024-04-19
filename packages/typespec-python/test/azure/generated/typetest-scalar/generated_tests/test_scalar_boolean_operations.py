@@ -27,6 +27,7 @@ class TestScalarBooleanOperations(ScalarClientTestBase):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.boolean.put(
             body=bool,
+            content_type="str",
         )
 
         # please add some check logic here by yourself

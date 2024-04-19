@@ -37,6 +37,7 @@ class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.put_known_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself
@@ -48,6 +49,7 @@ class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.put_unknown_value(
             body="str",
+            content_type="str",
         )
 
         # please add some check logic here by yourself

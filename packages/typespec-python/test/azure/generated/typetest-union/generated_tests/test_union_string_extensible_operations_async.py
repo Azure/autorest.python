@@ -27,8 +27,8 @@ class TestUnionStringExtensibleOperationsAsync(UnionClientTestBaseAsync):
     async def test_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.string_extensible.send(
-            body={"prop": "str"},
-            prop="str",
+            body={"prop": "b"},
+            prop="b",
         )
 
         # please add some check logic here by yourself

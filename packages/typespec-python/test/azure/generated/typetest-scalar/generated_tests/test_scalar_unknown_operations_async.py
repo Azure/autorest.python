@@ -28,6 +28,7 @@ class TestScalarUnknownOperationsAsync(ScalarClientTestBaseAsync):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.unknown.put(
             body={},
+            content_type="str",
         )
 
         # please add some check logic here by yourself

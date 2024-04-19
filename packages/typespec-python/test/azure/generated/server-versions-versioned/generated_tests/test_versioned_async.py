@@ -39,3 +39,12 @@ class TestVersionedAsync(VersionedClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @VersionedPreparer()
+    @recorded_by_proxy_async
+    async def test_with_query_old_api_version(self, versioned_endpoint):
+        client = self.create_async_client(endpoint=versioned_endpoint)
+        response = await client.with_query_old_api_version()
+
+        # please add some check logic here by yourself
+        # ...
