@@ -682,17 +682,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
     except AttributeError:
         pass
 
-    # is it optional?
-    try:
-        if any(a for a in annotation.__args__ if a == type(None)):  # pyright: ignore
-            if_obj_deserializer = _get_deserialize_callable_from_annotation(
-                next(a for a in annotation.__args__ if a != type(None)), module, rf  # pyright: ignore
-            )
-
-            return functools.partial(_deserialize_with_optional, if_obj_deserializer)
-    except AttributeError:
-        pass
-
+    # is it union?
     if getattr(annotation, "__origin__", None) is typing.Union:
         # initial ordering is we make `string` the last deserialization option, because it is often them most generic
         deserializers = [
@@ -703,6 +693,17 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         ]
 
         return functools.partial(_deserialize_with_union, deserializers)
+
+    # is it optional?
+    try:
+        if any(a for a in annotation.__args__ if a == type(None)):  # pyright: ignore
+            if_obj_deserializer = _get_deserialize_callable_from_annotation(
+                next(a for a in annotation.__args__ if a != type(None)), module, rf  # pyright: ignore
+            )
+
+            return functools.partial(_deserialize_with_optional, if_obj_deserializer)
+    except AttributeError:
+        pass
 
     try:
         if annotation._name == "Dict":  # pyright: ignore

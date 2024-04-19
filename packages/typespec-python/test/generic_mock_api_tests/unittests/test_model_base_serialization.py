@@ -3965,10 +3965,18 @@ def test_enum_deserealization():
 
     class ModelWithEnumProperty(Model):
         enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
+        enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptional")
 
-    model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
+    model = ModelWithEnumProperty({"enumProperty": MyEnum.A, "enumPropertyOptional": MyEnum.B})
     assert model.enum_property == MyEnum.A
     assert model["enumProperty"] == "a"
+    assert isinstance(model.enum_property, Enum)
+    assert isinstance(model["enumProperty"], str)
+
+    assert model.enum_property_optional == MyEnum.B
+    assert model["enumPropertyOptional"] == "b"
+    assert isinstance(model.enum_property_optional, Enum)
+    assert isinstance(model["enumPropertyOptional"], str)
 
 def test_not_mutating_original_dict():
     class MyInnerModel(Model):
