@@ -214,7 +214,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                "runtime" if self.code_model.options["unbranded"] else "",
+                "" if self.code_model.is_azure_flavor else "runtime",
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -240,7 +240,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            "pipeline" if self.code_model.is_azure_flavor else "runtime",
             "policies",
             ImportType.SDKCORE,
         )
@@ -350,9 +350,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
-            file_import.add_submodule_import(
-                "typing", "Dict", ImportType.STDLIB, TypingSection.TYPING
-            )
+            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
         file_import.add_submodule_import("copy", "deepcopy", ImportType.STDLIB)
         return file_import
 
@@ -428,7 +426,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            "pipeline" if self.code_model.is_azure_flavor else "runtime",
             "policies",
             ImportType.SDKCORE,
         )

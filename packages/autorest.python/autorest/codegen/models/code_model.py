@@ -75,6 +75,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
+        self.cross_language_package_id = self.yaml_data.get("crossLanguagePackageId")
 
     @property
     def has_form_data(self) -> bool:
@@ -118,6 +119,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             except KeyError:
                 pass
         raise KeyError(f"No request builder with id {request_builder_id} found.")
+
+    @property
+    def is_azure_flavor(self) -> bool:
+        return self.options["flavor"] == "azure"
 
     @property
     def rest_layer_name(self) -> str:
@@ -210,7 +215,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def core_library(self) -> Literal["azure.core", "corehttp"]:
-        return "azure.core" if not self.options["unbranded"] else "corehttp"
+        return "azure.core" if self.is_azure_flavor else "corehttp"
 
     def _sort_model_types_helper(
         self,

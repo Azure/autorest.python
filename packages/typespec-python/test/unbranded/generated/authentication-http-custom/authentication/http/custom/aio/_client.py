@@ -21,7 +21,7 @@ from ._operations import CustomClientOperationsMixin
 class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
 
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str

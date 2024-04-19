@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -79,9 +79,9 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
     _url = "/type/model/empty/round-trip"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -159,7 +159,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -212,7 +212,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: ~typetest.model.empty.models.EmptyOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -326,7 +326,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {}
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -25,17 +25,17 @@ class AbstractModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
     :ivar kind: Required. Default value is None.
     :vartype kind: str
+    :ivar name: Required.
+    :vartype name: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    name: str = rest_field()
-    """Required."""
     kind: str = rest_discriminator(name="kind")
     """Required. Default value is None."""
+    name: str = rest_field()
+    """Required."""
 
 
 class BaseModel(_model_base.Model):

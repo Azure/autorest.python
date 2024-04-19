@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 import uuid
 
 from azure.core import MatchConditions
@@ -115,9 +115,9 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
         _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(
             datetime.datetime.now(datetime.timezone.utc), "rfc-1123"
         )
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -165,7 +165,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
                     "name": "str"  # Optional. The user's name.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -337,7 +337,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
                     "userActionResult": "str"  # User action result. Required.
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

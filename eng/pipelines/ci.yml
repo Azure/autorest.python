@@ -42,6 +42,14 @@ jobs:
 
     strategy:
       matrix:
+        Linux_Python38:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu18.04"
+          PythonVersion: "3.8"
+        Windows_Python38:
+          OSName: "Windows"
+          OSVmImage: "MMS2020"
+          PythonVersion: "3.8"      
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -134,6 +142,14 @@ jobs:
 
     strategy:
       matrix:
+        Linux_Python38:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu18.04"
+          PythonVersion: "3.8"
+        Windows_Python38:
+          OSName: "Windows"
+          OSVmImage: "MMS2020"
+          PythonVersion: "3.8"
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"

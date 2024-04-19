@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -144,6 +144,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -175,7 +176,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -345,7 +346,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # JSON input template you can fill out and use as your body input.
                 input = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -400,6 +401,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -431,7 +433,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -601,7 +603,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # JSON input template you can fill out and use as your body input.
                 input = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -656,6 +658,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -687,7 +690,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -739,6 +742,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -770,7 +774,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

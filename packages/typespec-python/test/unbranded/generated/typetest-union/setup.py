@@ -59,7 +59,7 @@ setup(
         "typetest.union": ["py.typed"],
     },
     install_requires=[
-        "isodate<1.0.0,>=0.6.1",
+        "isodate>=0.6.1",
         "corehttp[requests]",
         "typing-extensions>=4.6.0",
     ],

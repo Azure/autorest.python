@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any, Dict
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -17,10 +17,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AutorestSecurityKeyConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import AutorestSecurityKeyOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

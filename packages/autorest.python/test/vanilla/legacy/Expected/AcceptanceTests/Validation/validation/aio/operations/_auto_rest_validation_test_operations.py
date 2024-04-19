@@ -7,7 +7,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
+import sys
+from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,6 +34,10 @@ from ...operations._auto_rest_validation_test_operations import (
 )
 from .._vendor import AutoRestValidationTestMixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -53,7 +58,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -168,7 +173,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -235,7 +240,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -315,7 +320,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :rtype: ~validation.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

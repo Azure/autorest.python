@@ -59,3 +59,13 @@ async def test_model_client(client: NamingClient):
 @pytest.mark.asyncio
 async def test_model_language(client: NamingClient):
     await client.model.language(models.PythonModel(default_name=True))
+
+
+@pytest.mark.asyncio
+async def test_union_enum_member_name(client: NamingClient):
+    await client.union_enum.union_enum_member_name(models.ExtensibleEnum.CLIENT_ENUM_VALUE1)
+
+
+@pytest.mark.asyncio
+async def test_union_enum_member_name(client: NamingClient):
+    await client.union_enum.union_enum_name(models.ClientExtensibleEnum.ENUM_VALUE1)

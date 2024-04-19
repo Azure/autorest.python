@@ -121,9 +121,13 @@ JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
 def build_policies(
-    is_arm: bool, async_mode: bool, unbranded: bool = False, tracing: bool = True
+    is_arm: bool,
+    async_mode: bool,
+    *,
+    is_azure_flavor: bool = False,
+    tracing: bool = True,
 ) -> List[str]:
-    if not unbranded:
+    if is_azure_flavor:
         # for Azure
         async_prefix = "Async" if async_mode else ""
         policies = [

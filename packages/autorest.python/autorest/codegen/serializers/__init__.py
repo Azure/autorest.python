@@ -251,7 +251,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         params = self.code_model.options["packaging_files_config"] or {}
         for template_name in package_files:
             if (
-                self.code_model.options["unbranded"]
+                not self.code_model.is_azure_flavor
                 and template_name == "dev_requirements.txt.jinja2"
             ):
                 continue
@@ -530,6 +530,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.write_file(
                 namespace_path / Path("_validation.py"),
                 general_serializer.serialize_validation_file(),
+            )
+        if self.code_model.options.get("emit_cross_language_definition_file"):
+            self.write_file(
+                namespace_path / Path("apiview_mapping_python.json"),
+                general_serializer.serialize_cross_language_definition_file(),
             )
 
         # Write the setup file

@@ -23,7 +23,7 @@ class MultipleClientConfiguration:  # pylint: disable=too-many-instance-attribut
     :type endpoint: str
     :keyword api_version: Pass in v1.0 for API version. Default value is "v1.0". Note that
      overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
+    :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:

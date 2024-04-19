@@ -15,7 +15,8 @@
     "format": "npx prettier **/*.ts --write",
     "check-format": "npx prettier **/*.ts --check --end-of-line auto",
     "check-version-mismatch": "syncpack list-mismatches --types prod,peer",
-    "fix-version-mismatch": "syncpack fix-mismatches"
+    "fix-version-mismatch": "syncpack fix-mismatches",
+    "change": "chronus"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -32,15 +33,17 @@
   },
   "homepage": "https://github.com/Azure/autorest.python#readme",
   "devDependencies": {
-    "@typespec/prettier-plugin-typespec": "~0.51.0",
-    "@azure-tools/cadl-ranch": "~0.11.2",
+    "@azure-tools/cadl-ranch": "~0.12.7",
+    "@chronus/chronus": "^0.10.1",
+    "@chronus/github": "^0.3.2",
+    "@typespec/prettier-plugin-typespec": "~0.55.0",
     "autorest": "3.6.3",
-    "eslint": "^8.44.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-unicorn": "^46.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-unicorn": "^46.0.1",
     "prettier": "^2.8.8",
-    "typescript": "~5.1.3",
-    "syncpack": "^9.8.6"
+    "syncpack": "^9.8.6",
+    "typescript": "~5.1.6"
   },
   "syncpack": {
     "dependencyTypes": [

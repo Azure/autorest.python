@@ -24,7 +24,7 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
     :type endpoint: str
     :keyword api_version: Pass in v1.0 for API version. Default value is "v1.0". Note that
      overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
+    :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
@@ -70,9 +70,7 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

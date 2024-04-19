@@ -2,7 +2,7 @@
 {{ code_model.options['license_header'] }}
 
 from enum import Enum
-from {{ code_model.core_library }}{{ ".utils" if code_model.options["unbranded"] else "" }} import CaseInsensitiveEnumMeta
+from {{ code_model.core_library }}{{ "" if code_model.is_azure_flavor else ".utils" }} import CaseInsensitiveEnumMeta
 
 {% for enum in code_model.enums | sort %}
 {% include "enum.py.jinja2" %}

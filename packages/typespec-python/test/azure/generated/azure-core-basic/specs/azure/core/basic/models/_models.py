@@ -124,6 +124,42 @@ class User(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class UserListResults(_model_base.Model):
+    """UserListResults.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar items_property: List of items. Required.
+    :vartype items_property: list[~specs.azure.core.basic.models.User]
+    :ivar next_link: Link to fetch more items.
+    :vartype next_link: str
+    """
+
+    items_property: List["_models.User"] = rest_field(name="items")
+    """List of items. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """Link to fetch more items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        items_property: List["_models.User"],
+        next_link: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class UserOrder(_model_base.Model):
     """UserOrder for testing list with expand.
 

@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Literal, Mapping, TYPE_CHECKING, Union, over
 
 from .. import _model_base
 from .._model_base import rest_field
+from ._enums import ExtendedEnum
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -626,24 +627,55 @@ class StringProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UnionFloatLiteralProperty(_model_base.Model):
-    """Model with a union of float literal as property.
+class UnionEnumValueProperty(_model_base.Model):
+    """Template type for testing models with specific properties. Pass in the type of the property you
+    are looking for.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Known values are: 43.125 and 46.875.
-    :vartype property: float or
-     ~typetest.property.valuetypes.models.UnionFloatLiteralPropertyProperty
+    :ivar property: Property. Required.
+    :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
     """
 
-    property: Union[float, "_models.UnionFloatLiteralPropertyProperty"] = rest_field()
-    """Property. Required. Known values are: 43.125 and 46.875."""
+    property: Literal[ExtendedEnum.ENUM_VALUE2] = rest_field()
+    """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[float, "_models.UnionFloatLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
+        property: Literal[ExtendedEnum.ENUM_VALUE2],  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionFloatLiteralProperty(_model_base.Model):
+    """Model with a union of float literal as property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Is either a float type or a float type.
+    :vartype property: float or float
+    """
+
+    property: float = rest_field()
+    """Property. Required. Is either a float type or a float type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: float,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -663,18 +695,18 @@ class UnionIntLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Known values are: 42 and 43.
-    :vartype property: int or ~typetest.property.valuetypes.models.UnionIntLiteralPropertyProperty
+    :ivar property: Property. Required. Is either a Literal[42] type or a Literal[43] type.
+    :vartype property: int or int
     """
 
-    property: Union[int, "_models.UnionIntLiteralPropertyProperty"] = rest_field()
-    """Property. Required. Known values are: 42 and 43."""
+    property: Literal[42, 43] = rest_field()
+    """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[int, "_models.UnionIntLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
+        property: Literal[42, 43],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -694,19 +726,19 @@ class UnionStringLiteralProperty(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar property: Property. Required. Known values are: "hello" and "world".
-    :vartype property: str or
-     ~typetest.property.valuetypes.models.UnionStringLiteralPropertyProperty
+    :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
+     type.
+    :vartype property: str or str
     """
 
-    property: Union[str, "_models.UnionStringLiteralPropertyProperty"] = rest_field()
-    """Property. Required. Known values are: \"hello\" and \"world\"."""
+    property: Literal["hello", "world"] = rest_field()
+    """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.UnionStringLiteralPropertyProperty"],  # pylint: disable=redefined-builtin
+        property: Literal["hello", "world"],  # pylint: disable=redefined-builtin
     ):
         ...
 

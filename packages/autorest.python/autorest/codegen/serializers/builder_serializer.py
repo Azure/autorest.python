@@ -339,7 +339,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                     "\n"
                 )
             )
-            docstring_type = param.docstring_type(async_mode=self.async_mode)
+            docstring_type = param.docstring_type(
+                async_mode=self.async_mode,
+            )
             description_list.append(
                 f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
             )
@@ -429,7 +431,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     def pipeline_name(self) -> str:
-        return f"{'' if self.code_model.options['unbranded'] else '_'}pipeline"
+        return f"{'_' if self.code_model.is_azure_flavor else ''}pipeline"
 
 
 ############################## REQUEST BUILDERS ##############################
@@ -615,6 +617,7 @@ class _OperationSerializer(
                 discriminator_name = cast(
                     Property, polymorphic_subtypes[0].discriminator
                 ).wire_name
+                retval.append("")
                 retval.append(
                     "# The response is polymorphic. The following are possible polymorphic "
                     f'responses based off discriminator "{discriminator_name}":'
@@ -1090,12 +1093,12 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
-        no_stream_logic = False
+        stream_logic = True
         if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
                 deserialized = f"{'await ' if self.async_mode else ''}response.read()"
             else:
-                no_stream_logic = True
+                stream_logic = False
                 if self.code_model.options["version_tolerant"]:
                     deserialized = "response.iter_bytes()"
                 else:
@@ -1149,7 +1152,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword and not no_stream_logic:
+            if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
@@ -1256,7 +1259,7 @@ class _OperationSerializer(
         return retval
 
     def error_map(self, builder: OperationType) -> List[str]:
-        retval = ["error_map = {"]
+        retval = ["error_map: MutableMapping[int, Type[HttpResponseError]] = {"]
         if builder.non_default_errors:
             if not 401 in builder.non_default_error_status_codes:
                 retval.append("    401: ClientAuthenticationError,")
@@ -1284,30 +1287,35 @@ class _OperationSerializer(
                 for status_code in excep.status_codes:
                     if status_code == 401:
                         retval.append(
-                            "    401: lambda response: ClientAuthenticationError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    401:  cast(Type[HttpResponseError], "
+                            "lambda response: ClientAuthenticationError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 404:
                         retval.append(
-                            "    404: lambda response: ResourceNotFoundError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    404:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceNotFoundError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 409:
                         retval.append(
-                            "    409: lambda response: ResourceExistsError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    409:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceExistsError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif status_code == 304:
                         retval.append(
-                            "    304: lambda response: ResourceNotModifiedError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            "    304:  cast(Type[HttpResponseError], "
+                            "lambda response: ResourceNotModifiedError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
                     elif not error_model_str and not error_format_str:
                         retval.append(f"    {status_code}: HttpResponseError,")
                     else:
                         retval.append(
-                            f"    {status_code}: lambda response: HttpResponseError(response=response"
-                            f"{error_model_str}{error_format_str}),"
+                            f"    {status_code}: cast(Type[HttpResponseError], "
+                            "lambda response: HttpResponseError(response=response"
+                            f"{error_model_str}{error_format_str})),"
                         )
         else:
             retval.append(
@@ -1407,9 +1415,12 @@ class _PagingOperationSerializer(
                     "})",
                 ]
             )
-            retval.append(
-                f'_next_request_params["api-version"] = {api_version_param.full_client_name}'
+            api_version = (
+                "self._api_version"
+                if self.code_model.options["multiapi"] and builder.group_name
+                else api_version_param.full_client_name
             )
+            retval.append(f'_next_request_params["api-version"] = {api_version}')
             query_str = ", params=_next_request_params"
             next_link_str = "urllib.parse.urljoin(next_link, _parsed_next_link.path)"
         except StopIteration:

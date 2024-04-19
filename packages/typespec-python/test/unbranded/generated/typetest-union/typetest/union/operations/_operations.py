@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -338,6 +338,7 @@ class StringsOnlyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get(self, **kwargs: Any) -> _models.GetResponse9:
+        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
@@ -349,10 +350,11 @@ class StringsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
+                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
+                      Literal["a"], Literal["b"], Literal["c"]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -398,6 +400,7 @@ class StringsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -414,18 +417,20 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
+                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
+                      Literal["a"], Literal["b"], Literal["c"]
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp5], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: "a", "b", and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
+        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
+         Required.
+        :paramtype prop: str or str or str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -451,18 +456,16 @@ class StringsOnlyOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[str, _models.GetResponseProp5] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal["a", "b", "c"] = _Unset, **kwargs: Any
     ) -> None:
+        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: "a", "b", and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp5
+        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
+         Required.
+        :paramtype prop: str or str or str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -472,10 +475,11 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "a", "b", and "c".
+                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
+                      Literal["a"], Literal["b"], Literal["c"]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -555,10 +559,11 @@ class StringExtensibleOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
+                      Literal["b"], Literal["c"], str
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -620,18 +625,19 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
+                      Literal["b"], Literal["c"], str
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, _models.GetResponseProp4], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: "b" and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
+        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
+        :paramtype prop: str or str or str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -660,15 +666,15 @@ class StringExtensibleOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models.GetResponseProp4] = _Unset,
+        prop: Union[Literal["b"], Literal["c"], str] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: "b" and "c". Required.
-        :paramtype prop: str or ~typetest.union.models.GetResponseProp4
+        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
+        :paramtype prop: str or str or str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -678,10 +684,11 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
+                      Literal["b"], Literal["c"], str
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -764,7 +771,7 @@ class StringExtensibleNamedOperations:
                     "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -891,7 +898,7 @@ class StringExtensibleNamedOperations:
                     "prop": "str"  # Required. Known values are: "b" and "c".
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -971,10 +978,11 @@ class IntsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 0  # Required. Known values are: 1, 2, and 3.
+                    "prop": 1  # Default value is 1. Required. Is one of the following types:
+                      Literal[1], Literal[2], Literal[3]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1036,18 +1044,19 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 0  # Required. Known values are: 1, 2, and 3.
+                    "prop": 1  # Default value is 1. Required. Is one of the following types:
+                      Literal[1], Literal[2], Literal[3]
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[int, _models.GetResponseProp3], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: 1, 2, and 3. Required.
-        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
+        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
+        :paramtype prop: int or int or int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1073,18 +1082,14 @@ class IntsOnlyOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[int, _models.GetResponseProp3] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal[1, 2, 3] = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: 1, 2, and 3. Required.
-        :paramtype prop: int or ~typetest.union.models.GetResponseProp3
+        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
+        :paramtype prop: int or int or int
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1094,10 +1099,11 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 0  # Required. Known values are: 1, 2, and 3.
+                    "prop": 1  # Default value is 1. Required. Is one of the following types:
+                      Literal[1], Literal[2], Literal[3]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1177,10 +1183,11 @@ class FloatsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
+                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
+                      float, float, float
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1242,18 +1249,19 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
+                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
+                      float, float, float
                 }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[float, _models.GetResponseProp2], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: float, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
-        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
+        :keyword prop: Is one of the following types: float, float, float Required.
+        :paramtype prop: float or float or float
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1279,18 +1287,14 @@ class FloatsOnlyOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[float, _models.GetResponseProp2] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: float = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Known values are: 1.1, 2.2, and 3.3. Required.
-        :paramtype prop: float or ~typetest.union.models.GetResponseProp2
+        :keyword prop: Is one of the following types: float, float, float Required.
+        :paramtype prop: float or float or float
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1300,10 +1304,11 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 0.0  # Required. Known values are: 1.1, 2.2, and 3.3.
+                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
+                      float, float, float
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1388,7 +1393,7 @@ class ModelsOnlyOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1511,7 +1516,7 @@ class ModelsOnlyOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1593,14 +1598,16 @@ class EnumsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Known values are: "left", "right", "up", and "down".
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Known values are: "up" and "down".
+                        "lr": "left",  # Default value is "left". This should be receive/send
+                          the left variant. Required. Is one of the following types: Literal["left"],
+                          Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the
+                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
+                          type.
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1664,10 +1671,12 @@ class EnumsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Known values are: "left", "right", "up", and "down".
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Known values are: "up" and "down".
+                        "lr": "left",  # Default value is "left". This should be receive/send
+                          the left variant. Required. Is one of the following types: Literal["left"],
+                          Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the
+                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
+                          type.
                     }
                 }
         """
@@ -1724,14 +1733,16 @@ class EnumsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Known values are: "left", "right", "up", and "down".
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Known values are: "up" and "down".
+                        "lr": "left",  # Default value is "left". This should be receive/send
+                          the left variant. Required. Is one of the following types: Literal["left"],
+                          Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the
+                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
+                          type.
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1820,7 +1831,7 @@ class StringAndArrayOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1951,7 +1962,7 @@ class StringAndArrayOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2048,7 +2059,7 @@ class MixedLiteralsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2195,7 +2206,7 @@ class MixedLiteralsOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2291,7 +2302,7 @@ class MixedTypesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2436,7 +2447,7 @@ class MixedTypesOperations:
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

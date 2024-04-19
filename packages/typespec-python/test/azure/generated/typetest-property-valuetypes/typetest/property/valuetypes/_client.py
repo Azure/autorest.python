@@ -37,6 +37,7 @@ from .operations import (
     NeverOperations,
     StringLiteralOperations,
     StringOperations,
+    UnionEnumValueOperations,
     UnionFloatLiteralOperations,
     UnionIntLiteralOperations,
     UnionStringLiteralOperations,
@@ -109,6 +110,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :ivar union_float_literal: UnionFloatLiteralOperations operations
     :vartype union_float_literal:
      typetest.property.valuetypes.operations.UnionFloatLiteralOperations
+    :ivar union_enum_value: UnionEnumValueOperations operations
+    :vartype union_enum_value: typetest.property.valuetypes.operations.UnionEnumValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -179,6 +182,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.union_float_literal = UnionFloatLiteralOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.union_enum_value = UnionEnumValueOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

@@ -6,7 +6,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
-if not sys.version_info >= (3, 7, 0):
+if not sys.version_info >= (3, 8, 0):
     raise Exception("Autorest for Python extension requires Python 3.8 at least")
 
 from pathlib import Path

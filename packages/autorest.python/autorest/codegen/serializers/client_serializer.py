@@ -111,7 +111,7 @@ class ClientSerializer:
         result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
         endpoint_name = (
-            "endpoint" if self.client.code_model.options["unbranded"] else "base_url"
+            "base_url" if self.client.code_model.is_azure_flavor else "endpoint"
         )
         params = {
             endpoint_name: self.host_variable_name,
@@ -124,8 +124,8 @@ class ClientSerializer:
         policies = build_policies(
             self.client.code_model.options["azure_arm"],
             async_mode,
-            self.client.code_model.options["unbranded"],
-            self.client.code_model.options["tracing"],
+            is_azure_flavor=self.client.code_model.is_azure_flavor,
+            tracing=self.client.code_model.options["tracing"],
         )
         result.extend(
             [

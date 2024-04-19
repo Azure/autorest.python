@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Optional, TYPE_CHECKING
+from typing import Dict, Any, Optional, TYPE_CHECKING, Union
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
@@ -31,7 +31,7 @@ class ConstantType(BaseType):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         value_type: BaseType,
-        value: Optional[str],
+        value: Optional[Union[str, int, float]],
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.value_type = value_type

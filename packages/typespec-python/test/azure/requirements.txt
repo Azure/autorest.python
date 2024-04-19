@@ -5,11 +5,11 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.30.0
 # only for azure
 -e ./generated/azure-mgmt-spheredpg
--e ./generated/azure-mgmt-spheremsrest
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-usage
 -e ./generated/azure-client-generator-core-flatten
 -e ./generated/azure-core-basic
+-e ./generated/azure-core-scalar
 -e ./generated/azurecore-lro-rpclegacy
 -e ./generated/azurecore-lro-rpc
 -e ./generated/azure-core-lro-standard
@@ -25,10 +25,10 @@ azure-core==1.30.0
 -e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
--e ./generated/projection-projected-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/serialization-encoded-name-json
+-e ./generated/server-endpoint-not-defined
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/server-versions-versioned
