@@ -141,7 +141,6 @@ class ModelType(  # pylint: disable=abstract-method
         optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
-        for_test: Optional[bool] = False,
     ) -> Any:
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
@@ -149,7 +148,11 @@ class ModelType(  # pylint: disable=abstract-method
         if self.discriminated_subtypes:
             # we will instead print the discriminated subtypes
             self._created_json_template_representation = False
-            return f'"{self.snake_case_name}"' if for_test else self.snake_case_name
+            return (
+                f'"{self.snake_case_name}"'
+                if self.code_model.for_test
+                else self.snake_case_name
+            )
 
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
@@ -158,7 +161,6 @@ class ModelType(  # pylint: disable=abstract-method
                 optional=optional,
                 client_default_value_declaration=client_default_value_declaration,
                 description=description,
-                for_test=for_test,
             )
             for prop in [
                 p

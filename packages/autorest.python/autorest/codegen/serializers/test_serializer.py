@@ -236,7 +236,7 @@ class TestSerializer(TestGeneralSerializer):
             model_type = self.get_model_type(param.type)
             param_type = self.get_sub_type(model_type) if model_type else param.type
             operation_params[param.client_name] = json_dumps_template(
-                param_type.get_json_template_representation(for_test=True)
+                param_type.get_json_template_representation()
             )
         return operation_params
 

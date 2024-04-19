@@ -641,6 +641,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                             _LOGGER.error(log_error)
 
     def _serialize_and_write_test(self, env: Environment, namespace_path: Path):
+        self.code_model.for_test = True
         out_path = self._package_root_folder(namespace_path) / Path("generated_tests")
         general_serializer = TestGeneralSerializer(code_model=self.code_model, env=env)
         self.write_file(
@@ -671,6 +672,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         # test generation shall not block code generation, so just log error
                         log_error = f"error happens in test generation for operation group {og.class_name}: {e}"
                         _LOGGER.error(log_error)
+        self.code_model.for_test = False
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
