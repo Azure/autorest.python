@@ -62,6 +62,7 @@ class OptionsRetriever:
     @property
     def license_header(self) -> str:
         license_header = self.options.get(
+            "header-text",
             DEFAULT_HEADER_TEXT.format(company_name=self.company_name)
             if self.company_name
             else "",
