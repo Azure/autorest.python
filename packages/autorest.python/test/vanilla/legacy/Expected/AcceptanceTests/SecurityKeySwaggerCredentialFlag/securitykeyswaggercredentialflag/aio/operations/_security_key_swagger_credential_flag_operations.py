@@ -37,6 +37,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class SecurityKeySwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
     SecurityKeySwaggerCredentialFlagMixinABC
 ):
+
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.
