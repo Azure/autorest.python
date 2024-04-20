@@ -44,6 +44,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
+
     async def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[JSON]:

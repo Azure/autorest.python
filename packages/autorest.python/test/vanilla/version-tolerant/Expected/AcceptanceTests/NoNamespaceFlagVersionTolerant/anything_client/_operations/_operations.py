@@ -121,6 +121,7 @@ def build_anything_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest
 
 
 class AnythingClientOperationsMixin(AnythingClientMixinABC):
+
     @distributed_trace
     def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was

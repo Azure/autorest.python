@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
+
     @distributed_trace_async
     async def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.

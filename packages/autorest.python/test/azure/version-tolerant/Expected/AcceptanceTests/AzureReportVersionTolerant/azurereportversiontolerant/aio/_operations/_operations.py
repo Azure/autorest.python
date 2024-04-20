@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
     AutoRestReportServiceForAzureMixinABC
 ):
+
     @distributed_trace_async
     async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
