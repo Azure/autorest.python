@@ -227,8 +227,7 @@ class _ParameterBase(
 
     @property
     @abc.abstractmethod
-    def in_method_signature(self) -> bool:
-        ...
+    def in_method_signature(self) -> bool: ...
 
     def method_signature(self, async_mode: bool) -> str:
         type_annot = self.type_annotation(async_mode=async_mode)

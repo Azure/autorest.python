@@ -182,5 +182,4 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         return file_import
 
 
-class PagingOperation(PagingOperationBase[PagingResponse]):
-    ...
+class PagingOperation(PagingOperationBase[PagingResponse]): ...

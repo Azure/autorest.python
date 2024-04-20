@@ -262,8 +262,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     @abstractmethod
-    def _need_self_param(self) -> bool:
-        ...
+    def _need_self_param(self) -> bool: ...
 
     @property
     @abstractmethod
@@ -378,8 +377,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     @abstractmethod
-    def _json_response_template_name(self) -> str:
-        ...
+    def _json_response_template_name(self) -> str: ...
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
@@ -525,12 +523,16 @@ class RequestBuilderSerializer(
         return self.parameter_serializer.pop_kwargs_from_signature(
             builder.parameters.kwargs_to_pop,
             check_kwarg_dict=True,
-            pop_headers_kwarg=PopKwargType.CASE_INSENSITIVE
-            if bool(builder.parameters.headers)
-            else PopKwargType.NO,
-            pop_params_kwarg=PopKwargType.CASE_INSENSITIVE
-            if bool(builder.parameters.query)
-            else PopKwargType.NO,
+            pop_headers_kwarg=(
+                PopKwargType.CASE_INSENSITIVE
+                if bool(builder.parameters.headers)
+                else PopKwargType.NO
+            ),
+            pop_params_kwarg=(
+                PopKwargType.CASE_INSENSITIVE
+                if bool(builder.parameters.query)
+                else PopKwargType.NO
+            ),
         )
 
     @staticmethod
@@ -711,16 +713,20 @@ class _OperationSerializer(
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(
             kwargs_to_pop,
             check_kwarg_dict=True,
-            pop_headers_kwarg=PopKwargType.CASE_INSENSITIVE
-            if builder.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
-            )
-            else PopKwargType.SIMPLE,
-            pop_params_kwarg=PopKwargType.CASE_INSENSITIVE
-            if builder.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
-            )
-            else PopKwargType.SIMPLE,
+            pop_headers_kwarg=(
+                PopKwargType.CASE_INSENSITIVE
+                if builder.has_kwargs_to_pop_with_default(
+                    kwargs_to_pop, ParameterLocation.HEADER  # type: ignore
+                )
+                else PopKwargType.SIMPLE
+            ),
+            pop_params_kwarg=(
+                PopKwargType.CASE_INSENSITIVE
+                if builder.has_kwargs_to_pop_with_default(
+                    kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
+                )
+                else PopKwargType.SIMPLE
+            ),
             check_client_input=not self.code_model.options["multiapi"],
             operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
@@ -1217,9 +1223,11 @@ class _OperationSerializer(
         retval.append(
             "    raise HttpResponseError(response=response{}{})".format(
                 error_model,
-                ", error_format=ARMErrorFormat"
-                if self.code_model.options["azure_arm"]
-                else "",
+                (
+                    ", error_format=ARMErrorFormat"
+                    if self.code_model.options["azure_arm"]
+                    else ""
+                ),
             )
         )
         return retval
@@ -1364,8 +1372,7 @@ class _OperationSerializer(
         return "await " if self.async_mode else ""
 
 
-class OperationSerializer(_OperationSerializer[Operation]):
-    ...
+class OperationSerializer(_OperationSerializer[Operation]): ...
 
 
 ############################## PAGING OPERATIONS ##############################
@@ -1552,8 +1559,7 @@ class _PagingOperationSerializer(
         return retval
 
 
-class PagingOperationSerializer(_PagingOperationSerializer[PagingOperation]):
-    ...
+class PagingOperationSerializer(_PagingOperationSerializer[PagingOperation]): ...
 
 
 ############################## LRO OPERATIONS ##############################
@@ -1682,12 +1688,16 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("    if cls:")
         retval.append(
             "        return cls(pipeline_response, {}, {}){}".format(
-                "deserialized"
-                if builder.lro_response and builder.lro_response.type
-                else "None",
-                "response_headers"
-                if builder.lro_response and builder.lro_response.headers
-                else "{}",
+                (
+                    "deserialized"
+                    if builder.lro_response and builder.lro_response.type
+                    else "None"
+                ),
+                (
+                    "response_headers"
+                    if builder.lro_response and builder.lro_response.headers
+                    else "{}"
+                ),
                 " # type: ignore",
             )
         )
@@ -1696,8 +1706,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         return retval
 
 
-class LROOperationSerializer(_LROOperationSerializer[LROOperation]):
-    ...
+class LROOperationSerializer(_LROOperationSerializer[LROOperation]): ...
 
 
 ############################## LRO PAGING OPERATIONS ##############################
