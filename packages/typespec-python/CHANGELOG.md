@@ -1,6 +1,27 @@
 # Release
 
-## 2023-04-10 - 0.23.3
+## 2023-04-22 - 0.23.4
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.55.0`      |
+| `@typespec/http`                                                        | `0.55.0`      |
+| `@typespec/rest`                                                        | `0.55.0`      |
+| `@typespec/versioning`                                                  | `0.55.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+**Other Changes**
+
+- Bump `@azure-tools/typespec-client-generator-core` to `0.41.2` #2521
+- Generate apiview mapping for all azure generations #2504
+
+## 2023-04-12 - 0.23.3
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -18,7 +39,7 @@
 
 **Other Changes**
 
-- Generate apiview mapping for all azure generations #2504
+- Reformat deserialization files for generated models to allow more insight into deserialization #2512
 
 ## 2023-04-09 - 0.23.2
 

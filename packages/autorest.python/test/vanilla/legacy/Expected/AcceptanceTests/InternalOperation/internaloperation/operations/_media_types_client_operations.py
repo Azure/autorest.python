@@ -160,6 +160,7 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
+
     @overload
     def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
@@ -521,18 +522,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def _body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
-        ...
-
+    def _body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str: ...
     @overload
     def _body_three_types(
         self, message: IO[bytes], *, content_type: str = "application/octet-stream", **kwargs: Any
-    ) -> str:
-        ...
-
+    ) -> str: ...
     @overload
-    def _body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
-        ...
+    def _body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str: ...
 
     @distributed_trace
     def _body_three_types(self, message: Union[Any, IO[bytes], str], **kwargs: Any) -> str:

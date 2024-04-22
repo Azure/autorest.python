@@ -71,6 +71,7 @@ def build_not_versioned_with_path_api_version_request(  # pylint: disable=name-t
 
 
 class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
+
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.
 

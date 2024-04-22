@@ -40,8 +40,7 @@ class Snake(_model_base.Model):
         *,
         kind: str,
         length: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -73,8 +72,7 @@ class Cobra(Snake, discriminator="cobra"):
         self,
         *,
         length: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -113,8 +111,7 @@ class Dog(_model_base.Model):
         *,
         kind: str,
         weight: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -146,8 +143,7 @@ class Golden(Dog, discriminator="golden"):
         self,
         *,
         weight: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

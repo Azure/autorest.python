@@ -165,9 +165,9 @@ class ModelType(  # pylint: disable=abstract-method
             ]
         }
         if self.discriminator and self.discriminator_value:
-            representation[
-                f'"{self.discriminator.wire_name}"'
-            ] = f'"{self.discriminator_value}"'
+            representation[f'"{self.discriminator.wire_name}"'] = (
+                f'"{self.discriminator_value}"'
+            )
 
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
@@ -333,18 +333,22 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
+                typing_section=(
+                    TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR
+                ),
             )
             if self.is_form_data:
                 file_import.add_submodule_import(
                     relative_path,
                     "_model_base",
                     ImportType.LOCAL,
-                    typing_section=TypingSection.TYPING
-                    if kwargs.get("model_typing")
-                    else TypingSection.REGULAR,
+                    typing_section=(
+                        TypingSection.TYPING
+                        if kwargs.get("model_typing")
+                        else TypingSection.REGULAR
+                    ),
                 )
         return file_import
 

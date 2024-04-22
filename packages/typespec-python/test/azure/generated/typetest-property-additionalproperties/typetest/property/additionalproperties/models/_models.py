@@ -7,10 +7,139 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, Literal, Mapping, Optional, overload
+import datetime
+from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
+
+
+class DifferentSpreadFloatDerived(_model_base.Model):
+    """The model extends from a model that spread Record:code:`<float32>` with the different known
+    property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar derived_prop: The index property. Required.
+    :vartype derived_prop: float
+    """
+
+    derived_prop: float = rest_field(name="derivedProp")
+    """The index property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        derived_prop: float,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadModelArrayDerived(_model_base.Model):
+    """The model extends from a model that spread Record<ModelForRecord[]> with the different known
+    property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar derived_prop: The index property. Required.
+    :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
+    """
+
+    derived_prop: List["_models.ModelForRecord"] = rest_field(name="derivedProp")
+    """The index property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        derived_prop: List["_models.ModelForRecord"],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadModelDerived(_model_base.Model):
+    """The model extends from a model that spread Record:code:`<ModelForRecord>` with the different
+    known property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar derived_prop: The index property. Required.
+    :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
+    """
+
+    derived_prop: "_models.ModelForRecord" = rest_field(name="derivedProp")
+    """The index property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        derived_prop: "_models.ModelForRecord",
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DifferentSpreadStringDerived(_model_base.Model):
+    """The model extends from a model that spread Record:code:`<string>` with the different known
+    property type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar derived_prop: The index property. Required.
+    :vartype derived_prop: str
+    """
+
+    derived_prop: str = rest_field(name="derivedProp")
+    """The index property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        derived_prop: str,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ExtendsFloatAdditionalProperties(_model_base.Model):
@@ -30,8 +159,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -45,11 +173,63 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
 
 
 class ExtendsModelAdditionalProperties(_model_base.Model):
-    """The model extends from Record:code:`<ModelForRecord>` type."""
+    """The model extends from Record:code:`<ModelForRecord>` type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
+    """
+
+    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: "_models.ModelForRecord",
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ExtendsModelArrayAdditionalProperties(_model_base.Model):
-    """The model extends from Record<ModelForRecord[]> type."""
+    """The model extends from Record<ModelForRecord[]> type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
+    """
+
+    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: List["_models.ModelForRecord"],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ExtendsStringAdditionalProperties(_model_base.Model):
@@ -69,8 +249,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -100,8 +279,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -139,8 +317,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -179,8 +356,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -224,8 +400,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -255,8 +430,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -270,11 +444,63 @@ class IsFloatAdditionalProperties(_model_base.Model):
 
 
 class IsModelAdditionalProperties(_model_base.Model):
-    """The model is from Record:code:`<ModelForRecord>` type."""
+    """The model is from Record:code:`<ModelForRecord>` type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
+    """
+
+    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: "_models.ModelForRecord",
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class IsModelArrayAdditionalProperties(_model_base.Model):
-    """The model is from Record<ModelForRecord[]> type."""
+    """The model is from Record<ModelForRecord[]> type.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar known_prop: Required.
+    :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
+    """
+
+    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        known_prop: List["_models.ModelForRecord"],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class IsStringAdditionalProperties(_model_base.Model):
@@ -294,8 +520,7 @@ class IsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -325,8 +550,7 @@ class IsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -364,8 +588,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -404,8 +627,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -449,8 +671,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -480,8 +701,7 @@ class ModelForRecord(_model_base.Model):
         self,
         *,
         state: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -492,3 +712,118 @@ class ModelForRecord(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class WidgetData0(_model_base.Model):
+    """WidgetData0.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar kind: Required. Default value is "kind0".
+    :vartype kind: str
+    :ivar foo_prop: Required.
+    :vartype foo_prop: str
+    """
+
+    kind: Literal["kind0"] = rest_field()
+    """Required. Default value is \"kind0\"."""
+    foo_prop: str = rest_field(name="fooProp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        foo_prop: str,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.kind: Literal["kind0"] = "kind0"
+
+
+class WidgetData1(_model_base.Model):
+    """WidgetData1.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar kind: Required. Default value is "kind1".
+    :vartype kind: str
+    :ivar start: Required.
+    :vartype start: ~datetime.datetime
+    :ivar end:
+    :vartype end: ~datetime.datetime
+    """
+
+    kind: Literal["kind1"] = rest_field()
+    """Required. Default value is \"kind1\"."""
+    start: datetime.datetime = rest_field(format="rfc3339")
+    """Required."""
+    end: Optional[datetime.datetime] = rest_field(format="rfc3339")
+
+    @overload
+    def __init__(
+        self,
+        *,
+        start: datetime.datetime,
+        end: Optional[datetime.datetime] = None,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.kind: Literal["kind1"] = "kind1"
+
+
+class WidgetData2(_model_base.Model):
+    """WidgetData2.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar kind: Required. Default value is "kind1".
+    :vartype kind: str
+    :ivar start: Required.
+    :vartype start: str
+    """
+
+    kind: Literal["kind1"] = rest_field()
+    """Required. Default value is \"kind1\"."""
+    start: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        start: str,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.kind: Literal["kind1"] = "kind1"

@@ -6,6 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._models import DifferentSpreadFloatDerived
+from ._models import DifferentSpreadModelArrayDerived
+from ._models import DifferentSpreadModelDerived
+from ._models import DifferentSpreadStringDerived
 from ._models import ExtendsFloatAdditionalProperties
 from ._models import ExtendsModelAdditionalProperties
 from ._models import ExtendsModelArrayAdditionalProperties
@@ -23,11 +27,18 @@ from ._models import IsUnknownAdditionalPropertiesDerived
 from ._models import IsUnknownAdditionalPropertiesDiscriminated
 from ._models import IsUnknownAdditionalPropertiesDiscriminatedDerived
 from ._models import ModelForRecord
+from ._models import WidgetData0
+from ._models import WidgetData1
+from ._models import WidgetData2
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "DifferentSpreadFloatDerived",
+    "DifferentSpreadModelArrayDerived",
+    "DifferentSpreadModelDerived",
+    "DifferentSpreadStringDerived",
     "ExtendsFloatAdditionalProperties",
     "ExtendsModelAdditionalProperties",
     "ExtendsModelArrayAdditionalProperties",
@@ -45,6 +56,9 @@ __all__ = [
     "IsUnknownAdditionalPropertiesDiscriminated",
     "IsUnknownAdditionalPropertiesDiscriminatedDerived",
     "ModelForRecord",
+    "WidgetData0",
+    "WidgetData1",
+    "WidgetData2",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

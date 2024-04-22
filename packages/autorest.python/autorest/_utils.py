@@ -136,9 +136,11 @@ def build_policies(
             "self._config.user_agent_policy",
             "self._config.proxy_policy",
             "policies.ContentDecodePolicy(**kwargs)",
-            f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()"
-            if is_arm
-            else None,
+            (
+                f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()"
+                if is_arm
+                else None
+            ),
             "self._config.redirect_policy",
             "self._config.retry_policy",
             "self._config.authentication_policy",
