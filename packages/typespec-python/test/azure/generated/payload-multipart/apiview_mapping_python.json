@@ -2,6 +2,7 @@
     "CrossLanguagePackageId": "Payload.MultiPart",
     "CrossLanguageDefinitionId": {
         "payload.multipart.models.Address": "Payload.MultiPart.Address",
+        "payload.multipart.models.AnonymousModelRequest": "AnonymousModelRequest",
         "payload.multipart.models.BinaryArrayPartsRequest": "Payload.MultiPart.BinaryArrayPartsRequest",
         "payload.multipart.models.ComplexPartsRequest": "Payload.MultiPart.ComplexPartsRequest",
         "payload.multipart.models.JsonArrayPartsRequest": "Payload.MultiPart.JsonArrayPartsRequest",
@@ -14,6 +15,7 @@
         "payload.multipart.MultiPartClient.form_data.binary_array_parts": "binaryArrayParts",
         "payload.multipart.MultiPartClient.form_data.json_array_parts": "jsonArrayParts",
         "payload.multipart.MultiPartClient.form_data.multi_binary_parts": "multiBinaryParts",
-        "payload.multipart.MultiPartClient.form_data.check_file_name_and_content_type": "checkFileNameAndContentType"
+        "payload.multipart.MultiPartClient.form_data.check_file_name_and_content_type": "checkFileNameAndContentType",
+        "payload.multipart.MultiPartClient.form_data.anonymous_model": "anonymousModel"
     }
 }
