@@ -23,7 +23,6 @@ import {
     getImplementation,
     isAbstract,
     isAzureCoreModel,
-    isSubscriptionId,
 } from "./utils.js";
 import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
