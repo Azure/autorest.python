@@ -8,7 +8,7 @@
 | `@typespec/http`                                                        | `0.55.0`      |
 | `@typespec/rest`                                                        | `0.55.0`      |
 | `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.4`      |
 | `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
 | `azure-core` dep of generated code                                      | `1.30.0`      |
 | `corehttp` dep of generated code                                        | `1.0.0b3`     |
@@ -18,7 +18,7 @@
 
 **Other Changes**
 
-- Bump `@azure-tools/typespec-client-generator-core` to `0.41.2` #2521
+- Bump `@azure-tools/typespec-client-generator-core` to `0.41.4`. By default, we just generate the api surface for the latest API version #2540
 - Generate apiview mapping for all azure generations #2504
 
 ## 2023-04-12 - 0.23.3
