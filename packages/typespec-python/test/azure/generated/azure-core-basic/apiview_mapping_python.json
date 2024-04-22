@@ -1,0 +1,23 @@
+{
+    "CrossLanguagePackageId": "_Specs_.Azure.Core.Basic",
+    "CrossLanguageDefinitionId": {
+        "specs.azure.core.basic.models.FirstItem": "_Specs_.Azure.Core.Basic.FirstItem",
+        "specs.azure.core.basic.models.ListItemInputBody": "_Specs_.Azure.Core.Basic.ListItemInputBody",
+        "specs.azure.core.basic.models.SecondItem": "_Specs_.Azure.Core.Basic.SecondItem",
+        "specs.azure.core.basic.models.User": "_Specs_.Azure.Core.Basic.User",
+        "specs.azure.core.basic.models.UserListResults": "_Specs_.Azure.Core.Basic.CustomPageModel",
+        "specs.azure.core.basic.models.UserOrder": "_Specs_.Azure.Core.Basic.UserOrder",
+        "specs.azure.core.basic.models.ListItemInputExtensibleEnum": "_Specs_.Azure.Core.Basic.ListItemInputExtensibleEnum",
+        "specs.azure.core.basic.BasicClient.two_models_as_page_item.list_first_item": "listFirstItem",
+        "specs.azure.core.basic.BasicClient.two_models_as_page_item.list_second_item": "listSecondItem",
+        "specs.azure.core.basic.BasicClient.create_or_update": "createOrUpdate",
+        "specs.azure.core.basic.BasicClient.create_or_replace": "createOrReplace",
+        "specs.azure.core.basic.BasicClient.get": "get",
+        "specs.azure.core.basic.BasicClient.list": "list",
+        "specs.azure.core.basic.BasicClient.list_with_page": "listWithPage",
+        "specs.azure.core.basic.BasicClient.list_with_parameters": "listWithParameters",
+        "specs.azure.core.basic.BasicClient.list_with_custom_page_model": "listWithCustomPageModel",
+        "specs.azure.core.basic.BasicClient.delete": "delete",
+        "specs.azure.core.basic.BasicClient.export": "export"
+    }
+}

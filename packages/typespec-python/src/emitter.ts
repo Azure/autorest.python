@@ -99,6 +99,9 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
     }
+    if (resolvedOptions.flavor === "azure") {
+        commandArgs.push("--emit-cross-language-definition-file=true");
+    }
     commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
