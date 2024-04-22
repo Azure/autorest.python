@@ -1,0 +1,13 @@
+{
+    "CrossLanguagePackageId": "_Specs_.Azure.Core.Lro.Rpc.Legacy",
+    "CrossLanguageDefinitionId": {
+        "azurecore.lro.rpclegacy.models.Error": "Azure.Core.Foundations.Error",
+        "azurecore.lro.rpclegacy.models.ErrorResponse": "Azure.Core.Foundations.ErrorResponse",
+        "azurecore.lro.rpclegacy.models.InnerError": "Azure.Core.Foundations.InnerError",
+        "azurecore.lro.rpclegacy.models.JobData": "_Specs_.Azure.Core.Lro.Rpc.Legacy.JobData",
+        "azurecore.lro.rpclegacy.models.JobResult": "_Specs_.Azure.Core.Lro.Rpc.Legacy.JobResult",
+        "azurecore.lro.rpclegacy.models.JobStatus": "_Specs_.Azure.Core.Lro.Rpc.Legacy.JobStatus",
+        "azurecore.lro.rpclegacy.LegacyClient.create_resource_poll_via_operation_location.get_job": "getJob",
+        "azurecore.lro.rpclegacy.LegacyClient.create_resource_poll_via_operation_location.begin_create_job": "createJob"
+    }
+}
