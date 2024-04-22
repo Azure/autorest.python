@@ -37,8 +37,7 @@ class BodyParameter(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

@@ -857,7 +857,9 @@ def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))
+    string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop(
+        "string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -3397,7 +3399,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))
+        string_query: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop(
+            "string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩")
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_queries_string_unicode_request(

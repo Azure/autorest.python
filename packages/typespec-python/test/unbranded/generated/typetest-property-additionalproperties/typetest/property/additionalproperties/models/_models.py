@@ -36,8 +36,7 @@ class DifferentSpreadFloatDerived(_model_base.Model):
         self,
         *,
         derived_prop: float,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -68,8 +67,7 @@ class DifferentSpreadModelArrayDerived(_model_base.Model):
         self,
         *,
         derived_prop: List["_models.ModelForRecord"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -100,8 +98,7 @@ class DifferentSpreadModelDerived(_model_base.Model):
         self,
         *,
         derived_prop: "_models.ModelForRecord",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -132,8 +129,7 @@ class DifferentSpreadStringDerived(_model_base.Model):
         self,
         *,
         derived_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -163,8 +159,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -194,8 +189,7 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -225,8 +219,7 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -256,8 +249,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -287,8 +279,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -326,8 +317,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -366,8 +356,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -411,8 +400,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -442,8 +430,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -473,8 +460,7 @@ class IsModelAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -504,8 +490,7 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -535,8 +520,7 @@ class IsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -566,8 +550,7 @@ class IsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -605,8 +588,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -645,8 +627,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         *,
         name: str,
         kind: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -690,8 +671,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -721,8 +701,7 @@ class ModelForRecord(_model_base.Model):
         self,
         *,
         state: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -758,8 +737,7 @@ class WidgetData0(_model_base.Model):
         self,
         *,
         foo_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -800,8 +778,7 @@ class WidgetData1(_model_base.Model):
         *,
         start: datetime.datetime,
         end: Optional[datetime.datetime] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -838,8 +815,7 @@ class WidgetData2(_model_base.Model):
         self,
         *,
         start: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

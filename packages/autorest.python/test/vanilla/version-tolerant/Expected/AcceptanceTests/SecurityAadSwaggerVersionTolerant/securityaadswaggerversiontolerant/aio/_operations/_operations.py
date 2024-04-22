@@ -33,6 +33,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
+
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

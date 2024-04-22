@@ -67,6 +67,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
 
 
 class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
+
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> _models.SecretResponse:
         """Creates a secret.

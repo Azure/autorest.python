@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
+
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully

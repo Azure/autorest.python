@@ -50,6 +50,7 @@ def build_client_with_enum_head_request(*, x_ms_enum: Union[str, _models.Enum0],
 
 
 class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
+
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a head request to the service. Should have header ``x-ms-enum`` with value ``single``.

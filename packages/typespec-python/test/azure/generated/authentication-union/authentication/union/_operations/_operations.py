@@ -50,6 +50,7 @@ def build_union_valid_token_request(**kwargs: Any) -> HttpRequest:
 
 
 class UnionClientOperationsMixin(UnionClientMixinABC):
+
     @distributed_trace
     def valid_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

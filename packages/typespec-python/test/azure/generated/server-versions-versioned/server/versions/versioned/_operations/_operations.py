@@ -83,6 +83,7 @@ def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpReq
 
 
 class VersionedClientOperationsMixin(VersionedClientMixinABC):
+
     @distributed_trace
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

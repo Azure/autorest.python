@@ -96,6 +96,7 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
     ResiliencyServiceDrivenClientMixinABC
 ):
+
     @api_version_validation(
         method_added_on="v2",
     )  # pylint: disable=inconsistent-return-statements

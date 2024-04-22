@@ -160,6 +160,7 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
+
     @overload
     def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any

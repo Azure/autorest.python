@@ -58,8 +58,7 @@ class ArmOperationStatusResourceProvisioningState(_model_base.Model):  # pylint:
         self,
         *,
         status: Union[str, "_models.ResourceProvisioningState"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -140,8 +139,7 @@ class TrackedResourceBase(ArmResource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -189,8 +187,7 @@ class Catalog(TrackedResourceBase):
         location: str,
         tags: Optional[Dict[str, str]] = None,
         properties: Optional["_models.CatalogProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -225,8 +222,7 @@ class CatalogListResult(_model_base.Model):
         *,
         value: List["_models.Catalog"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -271,8 +267,7 @@ class CatalogUpdate(_model_base.Model):
         self,
         *,
         tags: Optional[Dict[str, str]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -334,8 +329,7 @@ class Certificate(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.CertificateProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -383,8 +377,7 @@ class CertificateListResult(_model_base.Model):
         *,
         value: List["_models.Certificate"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -457,8 +450,7 @@ class ClaimDevicesRequest(_model_base.Model):
         self,
         *,
         device_identifiers: List[str],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -488,8 +480,7 @@ class CountElementsResponse(_model_base.Model):
         self,
         *,
         value: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -516,8 +507,7 @@ class CountDeviceResponse(CountElementsResponse):
         self,
         *,
         value: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -559,8 +549,7 @@ class Deployment(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.DeploymentProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -595,8 +584,7 @@ class DeploymentListResult(_model_base.Model):
         *,
         value: List["_models.Deployment"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -645,8 +633,7 @@ class DeploymentProperties(_model_base.Model):
         *,
         deployment_id: Optional[str] = None,
         deployed_images: Optional[List["_models.Image"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -688,8 +675,7 @@ class Device(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.DeviceProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -731,8 +717,7 @@ class DeviceGroup(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.DeviceGroupProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -767,8 +752,7 @@ class DeviceGroupListResult(_model_base.Model):
         *,
         value: List["_models.DeviceGroup"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -842,8 +826,7 @@ class DeviceGroupProperties(_model_base.Model):
         update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
         allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -870,8 +853,7 @@ class DeviceGroupUpdate(_model_base.Model):
         self,
         *,
         properties: Optional["_models.DeviceGroupUpdateProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -931,8 +913,7 @@ class DeviceGroupUpdateProperties(_model_base.Model):
         update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
         allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -997,8 +978,7 @@ class DeviceInsight(_model_base.Model):
         event_class: str,
         event_type: str,
         event_count: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1033,8 +1013,7 @@ class DeviceListResult(_model_base.Model):
         *,
         value: List["_models.Device"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1096,8 +1075,7 @@ class DeviceProperties(_model_base.Model):
         self,
         *,
         device_id: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1124,8 +1102,7 @@ class DeviceUpdate(_model_base.Model):
         self,
         *,
         properties: Optional["_models.DeviceUpdateProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1153,8 +1130,7 @@ class DeviceUpdateProperties(_model_base.Model):
         self,
         *,
         device_group_id: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1231,8 +1207,7 @@ class ErrorResponse(_model_base.Model):
         self,
         *,
         error: Optional["_models.ErrorDetail"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1262,8 +1237,7 @@ class GenerateCapabilityImageRequest(_model_base.Model):
         self,
         *,
         capabilities: List[Union[str, "_models.CapabilityType"]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1305,8 +1279,7 @@ class Image(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.ImageProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1341,8 +1314,7 @@ class ImageListResult(_model_base.Model):
         *,
         value: List["_models.Image"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1425,8 +1397,7 @@ class ImageProperties(_model_base.Model):
         image: Optional[str] = None,
         image_id: Optional[str] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1454,8 +1425,7 @@ class ListDeviceGroupsRequest(_model_base.Model):
         self,
         *,
         device_group_name: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1513,8 +1483,7 @@ class Operation(_model_base.Model):
         *,
         display: Optional["_models.OperationDisplay"] = None,
         action_type: Optional[Union[str, "_models.ActionType"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1565,8 +1534,7 @@ class OperationDisplay(_model_base.Model):
         resource: Optional[str] = None,
         operation: Optional[str] = None,
         description: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1602,8 +1570,7 @@ class PagedOperation(_model_base.Model):
         *,
         value: List["_models.Operation"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1645,8 +1612,7 @@ class Product(ProxyResourceBase):
         self,
         *,
         properties: Optional["_models.ProductProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1681,8 +1647,7 @@ class ProductListResult(_model_base.Model):
         *,
         value: List["_models.Product"],
         next_link: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1722,8 +1687,7 @@ class ProductProperties(_model_base.Model):
         self,
         *,
         description: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1750,8 +1714,7 @@ class ProductUpdate(_model_base.Model):
         self,
         *,
         properties: Optional["_models.ProductUpdateProperties"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1779,8 +1742,7 @@ class ProductUpdateProperties(_model_base.Model):
         self,
         *,
         description: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1810,8 +1772,7 @@ class ProofOfPossessionNonceRequest(_model_base.Model):
         self,
         *,
         proof_of_possession_nonce: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

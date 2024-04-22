@@ -204,6 +204,7 @@ def build_multiple_inheritance_service_put_kitten_request(  # pylint: disable=na
 class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
     MultipleInheritanceServiceClientMixinABC
 ):
+
     @distributed_trace
     def get_horse(self, **kwargs: Any) -> JSON:
         """Get a horse with name 'Fred' and isAShowHorse true.
