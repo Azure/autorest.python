@@ -577,6 +577,43 @@ def test_list_deserialization():
     assert model['prop'] == [val_str, val_str]
     assert model.prop == [val, val]
 
+def test_list_model_property_enum():
+    class MyEnum(Enum):
+        A = "a"
+        B = "b"
+    
+    class MyModel(Model):
+        prop: Union[str, MyEnum] = rest_field()
+
+        @overload
+        def __init__(self, *, prop: Union[str, MyEnum]):
+            ...
+
+        @overload
+        def __init__(self, mapping: Mapping[str, Any], /):
+            ...
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+    class ListModel(Model):
+        prop: List[MyModel] = rest_field()
+
+        @overload
+        def __init__(self, *, prop: List[MyModel]):
+            ...
+
+        @overload
+        def __init__(self, mapping: Mapping[str, Any], /):
+            ...
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+    model = ListModel({"prop": [{"prop": "a"}, {"prop": "b"}]})
+    assert isinstance(model.prop[0], Model)
+    assert isinstance(model.prop[0].prop, Enum)
+    assert isinstance(model.prop[0]["prop"], str)
 
 def test_list_deserialization_model():
     class ListModel(Model):
