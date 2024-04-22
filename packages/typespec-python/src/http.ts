@@ -295,9 +295,6 @@ function emitHttpParameters(
                 parameters.push(emitHttpPathParameter(context, parameter));
                 break;
         }
-        if (isSubscriptionId(context, parameter) && context.__subscriptionIdPathParameter === undefined) {
-            context.__subscriptionIdPathParameter = parameters[parameters.length - 1];
-        }
     }
     return parameters;
 }

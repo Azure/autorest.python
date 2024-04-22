@@ -214,9 +214,6 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         | SdkEndpointParameter
         | undefined;
     const operationGroups = emitOperationGroups(context, client, client, "");
-    if (context.__subscriptionIdPathParameter) {
-        parameters.push(context.__subscriptionIdPathParameter);
-    }
     return {
         name: client.name,
         description: client.description ?? "",
