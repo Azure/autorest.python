@@ -80,7 +80,6 @@ function emitLroPagingMethod<TServiceOperation extends SdkServiceOperation>(
 
 function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
-    client: SdkClientType<TServiceOperation>,
     parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
 ): Record<string, any>[] {
     if (parameter.kind === "endpoint") {
@@ -206,9 +205,8 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         context.__endpointPathParameters = [];
     }
     const parameters =
-        client.initialization?.properties
-            .map((x) => emitMethodParameter(context, client, x))
-            .reduce((a, b) => [...a, ...b]) ?? [];
+        client.initialization?.properties.map((x) => emitMethodParameter(context, x)).reduce((a, b) => [...a, ...b]) ??
+        [];
 
     const endpointParameter = client.initialization?.properties.find((x) => x.kind === "endpoint") as
         | SdkEndpointParameter
