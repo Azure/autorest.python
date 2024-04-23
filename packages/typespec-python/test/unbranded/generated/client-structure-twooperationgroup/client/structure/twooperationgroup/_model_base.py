@@ -639,6 +639,13 @@ def _deserialize_sequence(
     return type(obj)(_deserialize(deserializer, entry, module) for entry in obj)
 
 
+def _sorted_annotations(types: typing.List[typing.Any]) -> typing.List[typing.Any]:
+    return sorted(
+        types,
+        key=lambda x: hasattr(x, "__name__") and x.__name__.lower() in ("str", "float", "int", "bool", "nonetype"),
+    )
+
+
 def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
     annotation: typing.Any,
     module: typing.Optional[str],
@@ -677,28 +684,26 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
     except AttributeError:
         pass
 
-    # is it union?
-    if getattr(annotation, "__origin__", None) is typing.Union:
-        # initial ordering is we make `string` the last deserialization option, because it is often them most generic
-        deserializers = [
-            _get_deserialize_callable_from_annotation(arg, module, rf)
-            for arg in sorted(
-                annotation.__args__, key=lambda x: hasattr(x, "__name__") and x.__name__ == "str"  # pyright: ignore
-            )
-        ]
-
-        return functools.partial(_deserialize_with_union, deserializers)
-
     # is it optional?
     try:
         if any(a for a in annotation.__args__ if a == type(None)):  # pyright: ignore
             if_obj_deserializer = _get_deserialize_callable_from_annotation(
-                next(a for a in annotation.__args__ if a != type(None)), module, rf  # pyright: ignore
+                _sorted_annotations(annotation.__args__)[0], module, rf  # pyright: ignore
             )
 
             return functools.partial(_deserialize_with_optional, if_obj_deserializer)
     except AttributeError:
         pass
+
+    # is it union?
+    if getattr(annotation, "__origin__", None) is typing.Union:
+        # initial ordering is we make `string` the last deserialization option, because it is often them most generic
+        deserializers = [
+            _get_deserialize_callable_from_annotation(arg, module, rf)
+            for arg in _sorted_annotations(annotation.__args__)  # pyright: ignore
+        ]
+
+        return functools.partial(_deserialize_with_union, deserializers)
 
     try:
         if annotation._name == "Dict":  # pyright: ignore
