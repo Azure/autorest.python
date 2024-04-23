@@ -59,6 +59,10 @@ OperationType = TypeVar(
 )
 
 
+def _json_serializable(content_type: str) -> bool:
+    return bool(JSON_REGEXP.match(content_type.split(";")[0].strip().lower()))
+
+
 def _need_type_ignore(builder: OperationType) -> bool:
     for excep in builder.non_default_errors:
         for status_code in excep.status_codes:
@@ -813,7 +817,7 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if JSON_REGEXP.match(body_param.default_content_type):
+            if _json_serializable(body_param.default_content_type):
                 if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
                     create_body_call = (
                         f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
@@ -1157,7 +1161,7 @@ class _OperationSerializer(
                     )
                     response_attr = (
                         "json"
-                        if JSON_REGEXP.match(str(response.default_content_type))
+                        if _json_serializable(str(response.default_content_type))
                         else "text"
                     )
                     deserialize_code.append("deserialized = _deserialize(")
