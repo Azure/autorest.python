@@ -67,5 +67,5 @@ async def test_union_enum_member_name(client: NamingClient):
 
 
 @pytest.mark.asyncio
-async def test_union_enum_member_name(client: NamingClient):
+async def test_union_enum_name(client: NamingClient):
     await client.union_enum.union_enum_name(models.ClientExtensibleEnum.ENUM_VALUE1)
