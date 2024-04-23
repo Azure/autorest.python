@@ -493,6 +493,8 @@ class MixedTypesCases(_model_base.Model):
     :ivar boolean: This should be receive/send the boolean variant. Required. Is one of the
      following types: Cat, Literal["a"], int, bool
     :vartype boolean: ~typetest.union.models.Cat or str or int or bool
+    :ivar array: This should be receive/send 4 element with Cat, "a", int, and boolean. Required.
+    :vartype array: list[~typetest.union.models.Cat or str or int or bool]
     """
 
     model: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
@@ -507,6 +509,8 @@ class MixedTypesCases(_model_base.Model):
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
+    array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field()
+    """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
 
     @overload
     def __init__(
@@ -516,6 +520,7 @@ class MixedTypesCases(_model_base.Model):
         literal: Union["_models.Cat", Literal["a"], int, bool],
         int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
+        array: List[Union["_models.Cat", Literal["a"], int, bool]],
     ): ...
 
     @overload

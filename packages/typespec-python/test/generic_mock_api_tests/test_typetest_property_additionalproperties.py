@@ -46,6 +46,7 @@ def client():
         ("spread_record_non_discriminated_union", {'name': 'abc', 'prop1': {'kind': 'kind0', 'fooProp': 'abc'}, 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
         ("spread_record_non_discriminated_union2", {'name': 'abc', 'prop1': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
         ("spread_record_non_discriminated_union3", {'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
+        ("spread_record_union", {'flag': True, 'prop1': 'abc', 'prop2': 43.125}, dict),
     ]
 )
 def test_json(client, og_name, val, model_name):

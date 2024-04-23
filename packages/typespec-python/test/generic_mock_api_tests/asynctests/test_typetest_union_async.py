@@ -8,10 +8,12 @@ import pytest
 from typetest.union.aio import UnionClient
 from typetest.union import models
 
+
 @pytest.fixture
 async def client():
     async with UnionClient() as client:
         yield client
+
 
 @pytest.mark.parametrize(
     "og_name,value,res_model_type",
@@ -45,14 +47,20 @@ async def client():
         (
             "mixed_types",
             models.MixedTypesCases(
-                model=models.Cat(name="test"), literal="a", int_property=2, boolean=True
+                model=models.Cat(name="test"),
+                literal="a",
+                int_property=2,
+                boolean=True,
+                array=[models.Cat(name="test"), "a", 2, True],
             ),
             models.GetResponse9,
         ),
     ],
 )
 @pytest.mark.asyncio
-async def test_union(client: UnionClient, og_name: str, value: Any, res_model_type: Type):
+async def test_union(
+    client: UnionClient, og_name: str, value: Any, res_model_type: Type
+):
     og_group = getattr(client, og_name)
     assert await og_group.get() == res_model_type(prop=value)
     await og_group.send(prop=value)
