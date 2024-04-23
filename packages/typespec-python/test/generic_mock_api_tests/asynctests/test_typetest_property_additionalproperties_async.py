@@ -13,9 +13,6 @@ async def client():
     async with AdditionalPropertiesClient() as client:
         yield client
 
-
-# Commented tests are because of https://github.com/Azure/autorest.python/issues/2515
-
 @pytest.mark.parametrize(
     "og_name,val, model_name", [
         ("extends_unknown", {'name': 'ExtendsUnknownAdditionalProperties', 'prop1': 32, 'prop2': True, 'prop3': 'abc'}, models.ExtendsUnknownAdditionalProperties),
@@ -36,19 +33,19 @@ async def client():
         ("spread_float", {'id': 43.125, 'prop': 43.125}, dict),
         ("spread_model", {'knownProp': {'state': 'ok'}, 'prop': {'state': 'ok'}}, dict),
         ("spread_model_array", {'knownProp': [{'state': 'ok'}, {'state': 'ok'}], 'prop': [{'state': 'ok'}, {'state': 'ok'}]}, dict),
-#        ("spread_different_string", {'id': 43.125, 'prop': 'abc'}, dict),
+        ("spread_different_string", {'id': 43.125, 'prop': 'abc'}, dict),
         ("spread_different_float", {'name': 'abc', 'prop': 43.125}, dict),
         ("spread_different_model", {'knownProp': 'abc', 'prop': {'state': 'ok'}}, dict),
-#        ("spread_different_model_array", {}, dict),
+        ("spread_different_model_array", {'knownProp': 'abc', 'prop': [{'state': 'ok'}, {'state': 'ok'}]}, dict),
         ("extends_different_spread_string", {'id': 43.125, 'prop': 'abc', 'derivedProp': 'abc'}, models.DifferentSpreadStringDerived),
         ("extends_different_spread_float", {'name': 'abc', 'prop': 43.125, 'derivedProp': 43.125}, models.DifferentSpreadFloatDerived),
         ("extends_different_spread_model", {'knownProp': 'abc', 'prop': {'state': 'ok'}, 'derivedProp': {'state': 'ok'}}, models.DifferentSpreadModelDerived),
         ("extends_different_spread_model_array", {'knownProp': 'abc', 'prop': [{'state': 'ok'}, {'state': 'ok'}], 'derivedProp': [{'state': 'ok'}, {'state': 'ok'}]}, models.DifferentSpreadModelArrayDerived),
         ("multiple_spread", {'flag': True, 'prop1': 'abc', 'prop2': 43.125}, dict),
         ("spread_record_discriminated_union", {'name': 'abc', 'prop1': {'fooProp': 'abc', 'kind': 'kind0'}, 'prop2': {'end': '2021-01-02T00:00:00Z', 'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}}, dict),
-#        ("spread_record_non_discriminated_union", {'name': 'abc', 'prop1': {'kind': 'kind0', 'fooProp': 'abc'}, 'prop2': {'kind': 'kind0', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
+        ("spread_record_non_discriminated_union", {'name': 'abc', 'prop1': {'kind': 'kind0', 'fooProp': 'abc'}, 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
         ("spread_record_non_discriminated_union2", {'name': 'abc', 'prop1': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
-#        ("spread_record_non_discriminated_union3", {}, dict),
+        ("spread_record_non_discriminated_union3", {'name': 'abc', 'prop1': [{'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}, {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z'}], 'prop2': {'kind': 'kind1', 'start': '2021-01-01T00:00:00Z', 'end': '2021-01-02T00:00:00Z'}}, dict),
     ]
 )
 @pytest.mark.asyncio
