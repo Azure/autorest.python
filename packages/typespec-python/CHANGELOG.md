@@ -1,5 +1,25 @@
 # Release
 
+## 2023-04-23 - 0.23.5
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.55.0`      |
+| `@typespec/http`                                                        | `0.55.0`      |
+| `@typespec/rest`                                                        | `0.55.0`      |
+| `@typespec/versioning`                                                  | `0.55.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.4`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+**Bug Fixes**
+
+- Json serialize input bodies whose default content type is a JSON type with a charset encoding section #2542
+
 ## 2023-04-22 - 0.23.4
 
 | Library                                                                 | Min Version   |
