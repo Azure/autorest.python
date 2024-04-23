@@ -35,8 +35,7 @@ class DifferentSpreadFloatRecord(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -100,8 +99,7 @@ class DifferentSpreadModelArrayRecord(_model_base.Model):
         self,
         *,
         known_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -165,8 +163,7 @@ class DifferentSpreadModelRecord(_model_base.Model):
         self,
         *,
         known_prop: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -230,8 +227,7 @@ class DifferentSpreadStringRecord(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -867,8 +863,7 @@ class MultipleSpreadRecord(_model_base.Model):
         self,
         *,
         flag: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -898,8 +893,7 @@ class SpreadFloatRecord(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -929,8 +923,7 @@ class SpreadModelArrayRecord(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -960,8 +953,7 @@ class SpreadModelRecord(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -991,8 +983,7 @@ class SpreadRecordForDiscriminatedUnion(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1022,8 +1013,7 @@ class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1053,8 +1043,7 @@ class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1084,8 +1073,7 @@ class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1115,8 +1103,7 @@ class SpreadRecordForUnion(_model_base.Model):
         self,
         *,
         flag: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -1146,8 +1133,7 @@ class SpreadStringRecord(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
