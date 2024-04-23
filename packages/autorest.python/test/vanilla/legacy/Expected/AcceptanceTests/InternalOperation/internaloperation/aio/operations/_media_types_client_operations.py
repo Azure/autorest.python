@@ -46,6 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
+
     @overload
     async def analyze_body(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
@@ -407,18 +408,15 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def _body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
-        ...
-
+    async def _body_three_types(
+        self, message: Any, *, content_type: str = "application/json", **kwargs: Any
+    ) -> str: ...
     @overload
     async def _body_three_types(
         self, message: IO[bytes], *, content_type: str = "application/octet-stream", **kwargs: Any
-    ) -> str:
-        ...
-
+    ) -> str: ...
     @overload
-    async def _body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
-        ...
+    async def _body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str: ...
 
     @distributed_trace_async
     async def _body_three_types(self, message: Union[Any, IO[bytes], str], **kwargs: Any) -> str:

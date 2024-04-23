@@ -44,6 +44,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
 
 
 class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
+
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

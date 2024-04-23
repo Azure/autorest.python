@@ -42,6 +42,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
+
     @overload
     async def create_resource(
         self, body: _models.Resource, *, content_type: str = "application/json", **kwargs: Any

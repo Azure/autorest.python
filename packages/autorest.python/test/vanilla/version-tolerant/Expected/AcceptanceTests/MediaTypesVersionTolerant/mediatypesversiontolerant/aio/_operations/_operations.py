@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disable=abstract-class-instantiated
+
     def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,

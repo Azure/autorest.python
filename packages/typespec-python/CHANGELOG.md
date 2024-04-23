@@ -1,6 +1,6 @@
 # Release
 
-## 2023-04-15 - 0.23.4
+## 2023-04-22 - 0.23.4
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -19,6 +19,7 @@
 **Other Changes**
 
 - Bump `@azure-tools/typespec-client-generator-core` to `0.41.2` #2521
+- Generate apiview mapping for all azure generations #2504
 
 ## 2023-04-12 - 0.23.3
 

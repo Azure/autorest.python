@@ -31,8 +31,7 @@ class DefaultDatetimeProperty(_model_base.Model):
         self,
         *,
         value: datetime.datetime,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -62,8 +61,7 @@ class Rfc3339DatetimeProperty(_model_base.Model):
         self,
         *,
         value: datetime.datetime,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -93,8 +91,7 @@ class Rfc7231DatetimeProperty(_model_base.Model):
         self,
         *,
         value: datetime.datetime,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -124,8 +121,7 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
         self,
         *,
         value: List[datetime.datetime],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -155,8 +151,7 @@ class UnixTimestampDatetimeProperty(_model_base.Model):
         self,
         *,
         value: datetime.datetime,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
