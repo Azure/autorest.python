@@ -60,7 +60,6 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
     return {
         ...createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python"),
         __endpointPathParameters: [],
-        __subscriptionIdPathParameter: undefined,
     };
 }
 
@@ -98,6 +97,9 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
     if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
+    }
+    if (resolvedOptions.flavor === "azure") {
+        commandArgs.push("--emit-cross-language-definition-file=true");
     }
     commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {

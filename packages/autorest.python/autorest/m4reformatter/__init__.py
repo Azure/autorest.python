@@ -1143,9 +1143,11 @@ class M4Reformatter(
             "name": yaml_data["language"]["default"]["name"],
             "description": yaml_data["info"].get("description"),
             "parameters": parameters,
-            "url": update_client_url(yaml_data)
-            if yaml_data.get("globalParameters")
-            else "",
+            "url": (
+                update_client_url(yaml_data)
+                if yaml_data.get("globalParameters")
+                else ""
+            ),
         }
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:

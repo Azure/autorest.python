@@ -32,6 +32,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class NotDefinedClientOperationsMixin(NotDefinedClientMixinABC):
+
     async def valid(self, **kwargs: Any) -> bool:
         """valid.
 

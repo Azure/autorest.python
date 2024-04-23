@@ -2025,6 +2025,11 @@ class MixedTypesOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
+                        "array": [
+                            {
+                                "name": "str"  # Required.
+                            }
+                        ],
                         "boolean": {
                             "name": "str"  # Required.
                         },
@@ -2103,6 +2108,11 @@ class MixedTypesOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
+                        "array": [
+                            {
+                                "name": "str"  # Required.
+                            }
+                        ],
                         "boolean": {
                             "name": "str"  # Required.
                         },
@@ -2170,6 +2180,11 @@ class MixedTypesOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
+                        "array": [
+                            {
+                                "name": "str"  # Required.
+                            }
+                        ],
                         "boolean": {
                             "name": "str"  # Required.
                         },

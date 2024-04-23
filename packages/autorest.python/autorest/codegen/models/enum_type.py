@@ -256,8 +256,10 @@ class EnumType(BaseType):
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
+                typing_section=(
+                    TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR
+                ),
             )
         return file_import

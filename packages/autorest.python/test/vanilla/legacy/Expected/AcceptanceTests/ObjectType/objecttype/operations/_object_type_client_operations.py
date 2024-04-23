@@ -70,6 +70,7 @@ def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
 
 
 class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
+
     @distributed_trace
     def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully

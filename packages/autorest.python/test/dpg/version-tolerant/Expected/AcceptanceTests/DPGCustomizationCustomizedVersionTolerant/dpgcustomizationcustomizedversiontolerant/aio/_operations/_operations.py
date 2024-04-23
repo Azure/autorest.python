@@ -45,6 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class DPGClientOperationsMixin(DPGClientMixinABC):
+
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> JSON:
         """Get models that you will either return to end users as a raw body, or with a model added during

@@ -42,6 +42,7 @@ def build_not_defined_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 class NotDefinedClientOperationsMixin(NotDefinedClientMixinABC):
+
     def valid(self, **kwargs: Any) -> bool:
         """valid.
 

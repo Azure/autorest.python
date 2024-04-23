@@ -150,6 +150,7 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
+
     @distributed_trace
     def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.

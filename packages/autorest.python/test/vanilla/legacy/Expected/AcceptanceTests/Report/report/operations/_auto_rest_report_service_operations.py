@@ -77,6 +77,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
 
 
 class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
+
     @distributed_trace
     def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.

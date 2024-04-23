@@ -1,10 +1,20 @@
 # Release
 
-## 6.13.13
+## 2024-04-22 - 6.13.13
 
-### Patch Changes
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
-- d773b87: add changesets to manage changelog #2524
+**Other Changes**
+
+- Generate apiview mapping for all azure generations #2504
 
 ## 2024-04-12 - 6.13.12
 

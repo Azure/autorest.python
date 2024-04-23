@@ -47,7 +47,11 @@ def client():
         (
             "mixed_types",
             models.MixedTypesCases(
-                model=models.Cat(name="test"), literal="a", int_property=2, boolean=True
+                model=models.Cat(name="test"),
+                literal="a",
+                int_property=2,
+                boolean=True,
+                array=[models.Cat(name="test"), "a", 2, True],
             ),
             models.GetResponse9,
         ),
