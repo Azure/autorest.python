@@ -3966,8 +3966,9 @@ def test_enum_deserealization():
     class ModelWithEnumProperty(Model):
         enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
         enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptional")
+        enum_property_optional_none: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptionalNone")
 
-    raw_input = {"enumProperty": "a", "enumPropertyOptional": "b"}
+    raw_input = {"enumProperty": "a", "enumPropertyOptional": "b", "enumPropertyOptionalNone": None}
 
     def check_func(target: ModelWithEnumProperty):
         assert target.enum_property == MyEnum.A
@@ -3979,6 +3980,9 @@ def test_enum_deserealization():
         assert target["enumPropertyOptional"] == "b"
         assert isinstance(target.enum_property_optional, Enum)
         assert isinstance(target["enumPropertyOptional"], str)
+
+        assert target.enum_property_optional_none is None
+        assert target["enumPropertyOptionalNone"] is None
     
     model = ModelWithEnumProperty(raw_input)
     check_func(model)
