@@ -40,6 +40,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ClientAClientOperationsMixin(ClientAClientMixinABC):
+
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_one.
@@ -183,6 +184,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
 
 class ClientBClientOperationsMixin(ClientBClientMixinABC):
+
     @distributed_trace_async
     async def renamed_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_two.

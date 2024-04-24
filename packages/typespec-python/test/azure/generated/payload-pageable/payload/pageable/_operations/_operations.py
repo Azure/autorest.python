@@ -59,6 +59,7 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
+
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable["_models.User"]:
         """List users.

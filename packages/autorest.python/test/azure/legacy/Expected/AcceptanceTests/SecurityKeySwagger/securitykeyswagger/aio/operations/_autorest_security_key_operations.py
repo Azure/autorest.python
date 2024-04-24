@@ -36,6 +36,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
+
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> bool:
         """Operation.

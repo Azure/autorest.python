@@ -48,6 +48,7 @@ def build_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
 
 
 class ClientRequestIdClientOperationsMixin(ClientRequestIdClientMixinABC):
+
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get operation with azure client request id header.

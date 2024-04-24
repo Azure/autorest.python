@@ -354,6 +354,7 @@ class BarOperations:
 
 
 class ServiceClientOperationsMixin(ServiceClientMixinABC):
+
     @distributed_trace_async
     async def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """one.

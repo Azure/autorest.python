@@ -121,6 +121,7 @@ def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
 
 
 class DPGClientOperationsMixin(DPGClientMixinABC):
+
     @distributed_trace
     def get_model(self, mode: str, **kwargs: Any) -> JSON:
         """Get models that you will either return to end users as a raw body, or with a model added during

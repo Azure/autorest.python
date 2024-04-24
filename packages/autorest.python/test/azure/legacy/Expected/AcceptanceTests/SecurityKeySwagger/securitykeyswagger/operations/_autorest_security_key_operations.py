@@ -45,6 +45,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
 
 
 class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
+
     @distributed_trace
     def head(self, **kwargs: Any) -> bool:
         """Operation.

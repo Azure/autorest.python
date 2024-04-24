@@ -43,6 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
     LROWithParamaterizedEndpointsMixinABC
 ):
+
     async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:

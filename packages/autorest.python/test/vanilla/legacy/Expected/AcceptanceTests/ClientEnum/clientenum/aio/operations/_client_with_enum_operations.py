@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
+
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a head request to the service. Should have header ``x-ms-enum`` with value ``single``.

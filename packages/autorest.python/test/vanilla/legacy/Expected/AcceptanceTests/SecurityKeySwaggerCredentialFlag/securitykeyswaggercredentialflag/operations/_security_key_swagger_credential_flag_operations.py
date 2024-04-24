@@ -46,6 +46,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
 class SecurityKeySwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
     SecurityKeySwaggerCredentialFlagMixinABC
 ):
+
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

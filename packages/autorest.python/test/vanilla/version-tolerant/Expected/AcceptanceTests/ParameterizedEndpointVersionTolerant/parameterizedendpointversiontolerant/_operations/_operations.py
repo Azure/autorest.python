@@ -43,6 +43,7 @@ def build_parmaterized_endpoint_get_request(**kwargs: Any) -> HttpRequest:
 
 
 class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):  # pylint: disable=name-too-long
+
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.
