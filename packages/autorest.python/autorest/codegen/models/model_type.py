@@ -312,17 +312,17 @@ class JSONModelType(ModelType):
 class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
-        in_doc = kwargs.get("in_doc", False)
+        skip_quote = kwargs.get("skip_quote", False)
         retval = typing_name(
             file_name=self.code_model.models_filename,
             internal=self.internal,
             need_module_name=kwargs.get("need_module_name", True),
             type_name=self.name,
         )
-        return retval if is_operation_file or in_doc else f'"{retval}"'
+        return retval if is_operation_file or skip_quote else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, in_doc=True)}"
+        return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, skip_quote=True)}"
 
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
@@ -366,7 +366,7 @@ class MsrestModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        return self.type_annotation() if self.internal else self.name
+        return self.type_annotation(skip_quote=True) if self.internal else self.name
 
     @property
     def instance_check_template(self) -> str:
@@ -386,9 +386,9 @@ class DPGModelType(GeneratedModelType):
     @property
     def serialization_type(self) -> str:
         return (
-            self.type_annotation()
+            self.type_annotation(skip_quote=True)
             if self.internal
-            else self.type_annotation(need_module_name=False)
+            else self.type_annotation(need_module_name=False, skip_quote=True)
         )
 
     @property
