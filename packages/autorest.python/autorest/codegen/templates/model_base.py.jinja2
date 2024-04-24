@@ -709,11 +709,10 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
                 )
 
                 return functools.partial(_deserialize_with_optional, if_obj_deserializer)
-            else:
-                # the type is Optional[Union[...]], we need to remove the None type from the Union
-                annotation_copy = copy.copy(annotation)
-                annotation_copy.__args__ = [a for a in annotation_copy.__args__ if a != type(None)] # pyright: ignore
-                return _get_deserialize_callable_from_annotation(annotation_copy, module, rf)
+            # the type is Optional[Union[...]], we need to remove the None type from the Union
+            annotation_copy = copy.copy(annotation)
+            annotation_copy.__args__ = [a for a in annotation_copy.__args__ if a != type(None)] # pyright: ignore
+            return _get_deserialize_callable_from_annotation(annotation_copy, module, rf)
     except AttributeError:
         pass
 
