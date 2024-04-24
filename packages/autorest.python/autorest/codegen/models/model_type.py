@@ -83,14 +83,6 @@ class ModelType(  # pylint: disable=abstract-method
             "crossLanguageDefinitionId"
         )
 
-    def typing_name(self, need_module_name: bool = True) -> str:
-        return typing_name(
-            file_name=self.code_model.models_filename,
-            internal=self.internal,
-            need_module_name=need_module_name,
-            type_name=self.name,
-        )
-
     @property
     def flattened_property(self) -> Optional[Property]:
         try:
@@ -320,10 +312,17 @@ class JSONModelType(ModelType):
 class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
-        return self.typing_name() if is_operation_file else f'"{self.typing_name()}"'
+        in_doc = kwargs.get("in_doc", False)
+        retval = typing_name(
+            file_name=self.code_model.models_filename,
+            internal=self.internal,
+            need_module_name=kwargs.get("need_module_name", True),
+            type_name=self.name,
+        )
+        return retval if is_operation_file or in_doc else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.code_model.namespace}.models.{self.typing_name(False)}"
+        return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, in_doc=True)}"
 
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
@@ -367,7 +366,7 @@ class MsrestModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        return self.typing_name() if self.internal else self.name
+        return self.type_annotation() if self.internal else self.name
 
     @property
     def instance_check_template(self) -> str:
@@ -386,7 +385,11 @@ class DPGModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        return self.typing_name() if self.internal else self.typing_name(False)
+        return (
+            self.type_annotation()
+            if self.internal
+            else self.type_annotation(need_module_name=False)
+        )
 
     @property
     def instance_check_template(self) -> str:

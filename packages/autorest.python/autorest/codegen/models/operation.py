@@ -217,7 +217,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             return None
         excep_schema = default_exceptions[0].type
         if isinstance(excep_schema, ModelType):
-            return excep_schema.typing_name()
+            return excep_schema.type_annotation(is_operation_file=True)
         # in this case, it's just an AnyType
         return "'object'"
 
