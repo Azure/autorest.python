@@ -27,6 +27,7 @@ from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
+from .test_serializer import TestSerializer, TestGeneralSerializer
 from .types_serializer import TypesSerializer
 from ..._utils import to_snake_case
 from .._utils import VALID_PACKAGE_MODE
@@ -145,6 +146,14 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             and self.code_model.options["generate_sample"]
         ):
             self._serialize_and_write_sample(env, namespace_path)
+
+        if (
+            self.code_model.options["show_operations"]
+            and self.code_model.has_operations
+            and self.code_model.options["generate_test"]
+            and not self.code_model.options["azure_arm"]
+        ):
+            self._serialize_and_write_test(env, namespace_path)
 
     def serialize(self) -> None:
         env = Environment(
@@ -630,6 +639,40 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                             # sample generation shall not block code generation, so just log error
                             log_error = f"error happens in sample {file}: {e}"
                             _LOGGER.error(log_error)
+
+    def _serialize_and_write_test(self, env: Environment, namespace_path: Path):
+        self.code_model.for_test = True
+        out_path = self._package_root_folder(namespace_path) / Path("generated_tests")
+        general_serializer = TestGeneralSerializer(code_model=self.code_model, env=env)
+        self.write_file(
+            out_path / "conftest.py", general_serializer.serialize_conftest()
+        )
+        for is_async in (True, False):
+            async_suffix = "_async" if is_async else ""
+            general_serializer.is_async = is_async
+            self.write_file(
+                out_path / f"testpreparer{async_suffix}.py",
+                general_serializer.serialize_testpreparer(),
+            )
+
+        for client in self.code_model.clients:
+            for og in client.operation_groups:
+                test_serializer = TestSerializer(
+                    self.code_model, env, client=client, operation_group=og
+                )
+                for is_async in (True, False):
+                    try:
+                        test_serializer.is_async = is_async
+                        self.write_file(
+                            out_path
+                            / f"{to_snake_case(test_serializer.test_class_name)}.py",
+                            test_serializer.serialize_test(),
+                        )
+                    except Exception as e:  # pylint: disable=broad-except
+                        # test generation shall not block code generation, so just log error
+                        log_error = f"error happens in test generation for operation group {og.class_name}: {e}"
+                        _LOGGER.error(log_error)
+        self.code_model.for_test = False
 
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
