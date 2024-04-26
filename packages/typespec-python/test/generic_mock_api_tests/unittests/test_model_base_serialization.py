@@ -3968,10 +3968,31 @@ def test_enum_deserealization():
 
     class ModelWithEnumProperty(Model):
         enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
+        enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptional")
+        enum_property_optional_none: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptionalNone")
 
-    model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
-    assert model.enum_property == MyEnum.A
-    assert model["enumProperty"] == "a"
+    raw_input = {"enumProperty": "a", "enumPropertyOptional": "b", "enumPropertyOptionalNone": None}
+
+    def check_func(target: ModelWithEnumProperty):
+        assert target.enum_property == MyEnum.A
+        assert target["enumProperty"] == "a"
+        assert isinstance(target.enum_property, Enum)
+        assert isinstance(target["enumProperty"], str)
+
+        assert target.enum_property_optional == MyEnum.B
+        assert target["enumPropertyOptional"] == "b"
+        assert isinstance(target.enum_property_optional, Enum)
+        assert isinstance(target["enumPropertyOptional"], str)
+
+        assert target.enum_property_optional_none is None
+        assert target["enumPropertyOptionalNone"] is None
+    
+    model = ModelWithEnumProperty(raw_input)
+    check_func(model)
+
+    result = _deserialize(List[ModelWithEnumProperty], [raw_input])
+    for item in result:
+        check_func(item)
 
 
 def test_not_mutating_original_dict():
