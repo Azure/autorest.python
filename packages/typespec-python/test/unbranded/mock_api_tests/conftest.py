@@ -9,15 +9,13 @@ import signal
 import pytest
 from pathlib import Path
 
-CURRENT_DIR = Path(os.path.dirname(__file__))
-
 
 def start_server_process():
-    path = CURRENT_DIR / Path(
+    path = Path(os.path.dirname(__file__)) / Path(
         "../../../node_modules/@azure-tools/cadl-ranch-specs"
     )
     os.chdir(path.resolve())
-    cmd = f"cadl-ranch serve ./http --config {CURRENT_DIR}/cadl-ranch-config.yaml"
+    cmd = f"cadl-ranch serve ./http"
     if os.name == "nt":
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
