@@ -142,6 +142,7 @@ def build_auto_rest_validation_test_post_with_constant_in_body_request(  # pylin
 
 
 class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
+
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
         # pylint: disable=line-too-long

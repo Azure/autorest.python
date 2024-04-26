@@ -1,3 +1,4 @@
+# pylint: disable=multiple-statements
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
@@ -151,5 +152,4 @@ class LROOperationBase(OperationBase[LROResponseType]):
         return file_import
 
 
-class LROOperation(LROOperationBase[LROResponse]):
-    ...
+class LROOperation(LROOperationBase[LROResponse]): ...

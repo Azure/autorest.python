@@ -533,7 +533,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             )
         if self.code_model.options.get("emit_cross_language_definition_file"):
             self.write_file(
-                namespace_path / Path("apiview_mapping_python.json"),
+                Path("./apiview_mapping_python.json"),
                 general_serializer.serialize_cross_language_definition_file(),
             )
 

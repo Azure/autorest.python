@@ -10,7 +10,6 @@ azure-core==1.30.0
 -e ./generated/azure-client-generator-core-flatten
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-scalar
--e ./generated/azurecore-lro-rpclegacy
 -e ./generated/azurecore-lro-rpc
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits

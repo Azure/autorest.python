@@ -1172,9 +1172,7 @@ class CatalogsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete(
-        self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    async def begin_delete(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> AsyncLROPoller[None]:
         """Delete a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1182,45 +1180,14 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -1235,12 +1202,9 @@ class CatalogsOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -1249,15 +1213,13 @@ class CatalogsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable["_models.Catalog"]:
@@ -3319,7 +3281,7 @@ class ImagesOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    ) -> AsyncLROPoller[None]:
         """Delete a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3329,45 +3291,14 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -3383,12 +3314,9 @@ class ImagesOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -3397,15 +3325,13 @@ class ImagesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
 
 class DeviceGroupsOperations:
@@ -4277,7 +4203,7 @@ class DeviceGroupsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    ) -> AsyncLROPoller[None]:
         """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -4290,45 +4216,14 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -4345,12 +4240,9 @@ class DeviceGroupsOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -4359,15 +4251,13 @@ class DeviceGroupsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _update_initial(
         self,
@@ -7035,7 +6925,7 @@ class DeploymentsOperations:
         device_group_name: str,
         deployment_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    ) -> AsyncLROPoller[None]:
         """Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7051,45 +6941,14 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -7107,12 +6966,9 @@ class DeploymentsOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -7121,15 +6977,13 @@ class DeploymentsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
 
 class DevicesOperations:
@@ -8006,7 +7860,7 @@ class DevicesOperations:
         device_group_name: str,
         device_name: str,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    ) -> AsyncLROPoller[None]:
         """Delete a Device.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -8020,45 +7874,14 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -8076,12 +7899,9 @@ class DevicesOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -8090,15 +7910,13 @@ class DevicesOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @overload
     async def update(
@@ -9519,7 +9337,7 @@ class ProductsOperations:
     @distributed_trace_async
     async def begin_delete(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState]:
+    ) -> AsyncLROPoller[None]:
         """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name'.
 
@@ -9530,45 +9348,14 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :return: An instance of AsyncLROPoller that returns
-         ArmOperationStatusResourceProvisioningState. The ArmOperationStatusResourceProvisioningState is
-         compatible with MutableMapping
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.ArmOperationStatusResourceProvisioningState]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202, 204
-                response == {
-                    "status": "str",  # The operation status. Required. Known values are:
-                      "Succeeded", "Failed", and "Canceled".
-                    "endTime": "2020-02-20 00:00:00",  # Optional. Operation complete time.
-                    "error": {
-                        "additionalInfo": [
-                            {
-                                "info": {},  # Optional. The additional info.
-                                "type": "str"  # Optional. The additional info type.
-                            }
-                        ],
-                        "code": "str",  # Optional. The error code.
-                        "details": [
-                            ...
-                        ],
-                        "message": "str",  # Optional. The error message.
-                        "target": "str"  # Optional. The error target.
-                    },
-                    "name": "str",  # Optional. The name of the  operationStatus resource.
-                    "percentComplete": 0.0,  # Optional. The progress made toward completing the
-                      operation.
-                    "startTime": "2020-02-20 00:00:00"  # Optional. Operation start time.
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ArmOperationStatusResourceProvisioningState] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -9584,12 +9371,9 @@ class ProductsOperations:
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.ArmOperationStatusResourceProvisioningState, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
@@ -9598,15 +9382,13 @@ class ProductsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState].from_continuation_token(
+            return AsyncLROPoller[None].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.ArmOperationStatusResourceProvisioningState](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _update_initial(
         self,

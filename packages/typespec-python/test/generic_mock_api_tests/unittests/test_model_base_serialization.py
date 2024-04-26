@@ -21,6 +21,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
+
 class BasicResource(Model):
     platform_update_domain_count: int = rest_field(
         name="platformUpdateDomainCount")  # How many times the platform update domain has been counted
@@ -3953,10 +3954,12 @@ def test_decimal_serialization():
     assert json.dumps({"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")},
                       cls=SdkJSONEncoder) == '{"a": 0.33333, "b": 0.33333}'
 
+
 def test_deserialize():
     expected = {"name": "name", "role": "role"}
     result = _deserialize(JSON, expected)
     assert result == expected
+
 
 def test_enum_deserealization():
     class MyEnum(Enum):
@@ -3965,10 +3968,32 @@ def test_enum_deserealization():
 
     class ModelWithEnumProperty(Model):
         enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
+        enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptional")
+        enum_property_optional_none: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptionalNone")
 
-    model = ModelWithEnumProperty({"enumProperty": MyEnum.A})
-    assert model.enum_property == MyEnum.A
-    assert model["enumProperty"] == "a"
+    raw_input = {"enumProperty": "a", "enumPropertyOptional": "b", "enumPropertyOptionalNone": None}
+
+    def check_func(target: ModelWithEnumProperty):
+        assert target.enum_property == MyEnum.A
+        assert target["enumProperty"] == "a"
+        assert isinstance(target.enum_property, Enum)
+        assert isinstance(target["enumProperty"], str)
+
+        assert target.enum_property_optional == MyEnum.B
+        assert target["enumPropertyOptional"] == "b"
+        assert isinstance(target.enum_property_optional, Enum)
+        assert isinstance(target["enumPropertyOptional"], str)
+
+        assert target.enum_property_optional_none is None
+        assert target["enumPropertyOptionalNone"] is None
+    
+    model = ModelWithEnumProperty(raw_input)
+    check_func(model)
+
+    result = _deserialize(List[ModelWithEnumProperty], [raw_input])
+    for item in result:
+        check_func(item)
+
 
 def test_not_mutating_original_dict():
     class MyInnerModel(Model):
@@ -3976,7 +4001,7 @@ def test_not_mutating_original_dict():
 
     class MyModel(Model):
         property: MyInnerModel = rest_field()
-    
+
     origin = {"property": {"property": "hello"}}
 
     dpg_model = MyModel(origin)
@@ -3984,6 +4009,7 @@ def test_not_mutating_original_dict():
 
     origin["property"]["property"] = "world"
     assert dpg_model["property"]["property"] == "hello"
+
 
 def test_model_init_io():
     class BytesModel(Model):
@@ -3998,3 +4024,42 @@ def test_model_init_io():
         b = BytesModel(property=f)
         assert b.property == f
         assert b["property"] == f
+
+
+def test_additional_properties_serialization():
+    value = {
+        "name": "test",
+        "modelProp": {
+            "name": "test"
+        },
+        "stringProp": "string",
+        "intProp": 1,
+        "floatProp": 1.0,
+        "boolProp": True,
+        "listProp": [1, 2, 3],
+        "dictProp": {"key": "value"},
+        "noneProp": None,
+        "datetimeProp": "2023-06-27T06:11:09Z",
+        "durationProp": "P1D"
+    }
+
+    class NormalModel(Model):
+        prop: str = rest_field(name="name")
+
+    class AdditionalPropertiesModel(Model):
+        name: str = rest_field(name="name")
+
+    model = AdditionalPropertiesModel(name="test")
+    prop = NormalModel(prop="test")
+    model["modelProp"] = prop
+    model["stringProp"] = "string"
+    model["intProp"] = 1
+    model["floatProp"] = 1.0
+    model["boolProp"] = True
+    model["listProp"] = [1, 2, 3]
+    model["dictProp"] = {"key": "value"}
+    model["noneProp"] = None
+    model["datetimeProp"] = datetime.datetime(2023, 6, 27, 6, 11, 9, tzinfo=datetime.timezone.utc)
+    model["durationProp"] = datetime.timedelta(days=1)
+
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value

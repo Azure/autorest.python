@@ -68,6 +68,7 @@ def build_error_with_secrets_get_error_with_secrets_request(  # pylint: disable=
 
 
 class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
+
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> JSON:
         """Creates a secret.

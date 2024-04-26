@@ -35,6 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):  # pylint: disable=name-too-long
+
     @distributed_trace_async
     async def get_incorrect_error_from_server(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any

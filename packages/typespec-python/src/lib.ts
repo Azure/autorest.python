@@ -16,13 +16,11 @@ export interface PythonEmitterOptions {
     "generate-test"?: boolean;
     "debug"?: boolean;
     "flavor"?: "azure";
-    "emit-cross-language-definition-file"?: boolean;
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
     extends SdkContext<PythonEmitterOptions, TServiceOperation> {
     __endpointPathParameters: Record<string, any>[];
-    __subscriptionIdPathParameter: Record<string, any> | undefined;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
@@ -43,7 +41,6 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "generate-test": { type: "boolean", nullable: true },
         "debug": { type: "boolean", nullable: true },
         "flavor": { type: "string", nullable: true },
-        "emit-cross-language-definition-file": { type: "boolean", nullable: true },
     },
     required: [],
 };
