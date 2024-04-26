@@ -12,7 +12,6 @@ import {
     SdkQueryParameter,
     SdkServiceMethod,
     SdkServiceResponseHeader,
-    getCrossLanguageDefinitionId,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -180,7 +179,7 @@ function emitHttpOperation(
         apiVersions: [],
         wantTracing: true,
         exposeStreamKeyword: true,
-        crossLanguageDefinitionId: method ? getCrossLanguageDefinitionId(method) : undefined,
+        crossLanguageDefinitionId: method?.crossLanguageDefintionId,
     };
     if (
         result.bodyParameter &&
