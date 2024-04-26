@@ -9,7 +9,6 @@ import sys
 from autorest.codegen.models.utils import (
     add_to_pylint_disable,
     NAME_LENGTH_LIMIT,
-    typing_name,
 )
 from .base import BaseType
 from .constant_type import ConstantType
@@ -313,12 +312,9 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
         skip_quote = kwargs.get("skip_quote", False)
-        retval = typing_name(
-            file_name=self.code_model.models_filename,
-            internal=self.internal,
-            need_module_name=kwargs.get("need_module_name", True),
-            type_name=self.name,
-        )
+        module_name = "_models." if kwargs.get("need_module_name", True) else ""
+        file_name = f"{self.code_model.models_filename}." if self.internal else ""
+        retval = module_name + file_name + self.name
         return retval if is_operation_file or skip_quote else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:

@@ -7,7 +7,6 @@ from typing import Any, Dict, List, TYPE_CHECKING, Optional, cast
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .utils import typing_name
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -176,12 +175,9 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            model_name = typing_name(
-                file_name=self.code_model.enums_filename,
-                internal=self.internal,
-                need_module_name=kwargs.get("need_module_name", True),
-                type_name=self.name,
-            )
+            module_name = "_models." if kwargs.get("need_module_name", True) else ""
+            file_name = f"{self.code_model.enums_filename}." if self.internal else ""
+            model_name = module_name + file_name + self.name
             # we don't need quoted annotation in operation files, and need it in model folder files.
             if not kwargs.get("is_operation_file", False):
                 model_name = f'"{model_name}"'
