@@ -7,6 +7,7 @@ import os
 import subprocess
 import signal
 import pytest
+import re
 from pathlib import Path
 
 
@@ -15,7 +16,7 @@ def start_server_process():
         "../../../node_modules/@azure-tools/cadl-ranch-specs"
     )
     os.chdir(path.resolve())
-    cmd = f"cadl-ranch serve ./http"
+    cmd = "cadl-ranch serve ./http"
     if os.name == "nt":
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
