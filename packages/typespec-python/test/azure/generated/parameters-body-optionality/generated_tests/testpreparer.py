@@ -11,6 +11,7 @@ from parameters.bodyoptionality import BodyOptionalityClient
 
 
 class BodyOptionalityClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(BodyOptionalityClient)
         return self.create_client_from_credential(

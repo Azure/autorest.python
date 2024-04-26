@@ -10,6 +10,7 @@ from specs.azure.core.traits.aio import TraitsClient
 
 
 class TraitsClientTestBaseAsync(AzureRecordedTestCase):
+
     def create_async_client(self, endpoint):
         credential = self.get_credential(TraitsClient, is_async=True)
         return self.create_client_from_credential(

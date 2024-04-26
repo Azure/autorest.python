@@ -29,6 +29,7 @@ class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
         response = await client.mixed_types.send(
             body={
                 "prop": {
+                    "array": [{"name": "str"}],
                     "boolean": {"name": "str"},
                     "int": {"name": "str"},
                     "literal": {"name": "str"},
@@ -36,6 +37,7 @@ class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
                 }
             },
             prop={
+                "array": [{"name": "str"}],
                 "boolean": {"name": "str"},
                 "int": {"name": "str"},
                 "literal": {"name": "str"},

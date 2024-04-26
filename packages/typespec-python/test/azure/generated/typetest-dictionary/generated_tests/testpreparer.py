@@ -11,6 +11,7 @@ from typetest.dictionary import DictionaryClient
 
 
 class DictionaryClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(DictionaryClient)
         return self.create_client_from_credential(

@@ -11,6 +11,7 @@ from payload.contentnegotiation import ContentNegotiationClient
 
 
 class ContentNegotiationClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ContentNegotiationClient)
         return self.create_client_from_credential(

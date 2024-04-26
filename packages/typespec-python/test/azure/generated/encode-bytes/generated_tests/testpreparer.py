@@ -11,6 +11,7 @@ import functools
 
 
 class BytesClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(BytesClient)
         return self.create_client_from_credential(

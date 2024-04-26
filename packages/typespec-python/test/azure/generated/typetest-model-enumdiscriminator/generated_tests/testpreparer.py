@@ -11,6 +11,7 @@ from typetest.model.enumdiscriminator import EnumDiscriminatorClient
 
 
 class EnumDiscriminatorClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(EnumDiscriminatorClient)
         return self.create_client_from_credential(

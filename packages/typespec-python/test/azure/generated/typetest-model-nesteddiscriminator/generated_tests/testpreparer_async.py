@@ -10,6 +10,7 @@ from typetest.model.nesteddiscriminator.aio import NestedDiscriminatorClient
 
 
 class NestedDiscriminatorClientTestBaseAsync(AzureRecordedTestCase):
+
     def create_async_client(self, endpoint):
         credential = self.get_credential(NestedDiscriminatorClient, is_async=True)
         return self.create_client_from_credential(

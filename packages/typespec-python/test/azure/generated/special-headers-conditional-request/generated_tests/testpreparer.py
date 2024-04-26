@@ -11,6 +11,7 @@ from specialheaders.conditionalrequest import ConditionalRequestClient
 
 
 class ConditionalRequestClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ConditionalRequestClient)
         return self.create_client_from_credential(

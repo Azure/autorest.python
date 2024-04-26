@@ -11,6 +11,7 @@ from typetest.array import ArrayClient
 
 
 class ArrayClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ArrayClient)
         return self.create_client_from_credential(

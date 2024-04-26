@@ -27,7 +27,7 @@ class TestAdditionalPropertiesExtendsDifferentSpreadFloatOperationsAsync(Additio
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_different_spread_float.put(
-            body={"derivedProp": 0.0},
+            body={"derivedProp": 0.0, "name": "str"},
         )
 
         # please add some check logic here by yourself

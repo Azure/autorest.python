@@ -11,6 +11,7 @@ from specs.azure.clientgenerator.core.access import AccessClient
 
 
 class AccessClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(AccessClient)
         return self.create_client_from_credential(

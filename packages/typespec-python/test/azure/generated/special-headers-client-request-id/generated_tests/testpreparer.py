@@ -11,6 +11,7 @@ from specialheaders.clientrequestid import ClientRequestIdClient
 
 
 class ClientRequestIdClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ClientRequestIdClient)
         return self.create_client_from_credential(

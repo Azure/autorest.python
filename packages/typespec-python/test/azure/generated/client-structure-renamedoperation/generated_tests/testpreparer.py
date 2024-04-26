@@ -11,6 +11,7 @@ import functools
 
 
 class RenamedOperationClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(RenamedOperationClient)
         return self.create_client_from_credential(

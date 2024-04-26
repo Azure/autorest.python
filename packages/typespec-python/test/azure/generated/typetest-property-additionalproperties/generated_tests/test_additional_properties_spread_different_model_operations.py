@@ -26,7 +26,7 @@ class TestAdditionalPropertiesSpreadDifferentModelOperations(AdditionalPropertie
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_different_model.put(
-            body={"str": {"state": "str"}},
+            body={"knownProp": "str"},
         )
 
         # please add some check logic here by yourself

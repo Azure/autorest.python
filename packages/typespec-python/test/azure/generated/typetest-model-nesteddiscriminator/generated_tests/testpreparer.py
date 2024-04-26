@@ -11,6 +11,7 @@ from typetest.model.nesteddiscriminator import NestedDiscriminatorClient
 
 
 class NestedDiscriminatorClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(NestedDiscriminatorClient)
         return self.create_client_from_credential(

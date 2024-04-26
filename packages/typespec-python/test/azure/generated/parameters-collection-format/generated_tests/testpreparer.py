@@ -11,6 +11,7 @@ from parameters.collectionformat import CollectionFormatClient
 
 
 class CollectionFormatClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(CollectionFormatClient)
         return self.create_client_from_credential(

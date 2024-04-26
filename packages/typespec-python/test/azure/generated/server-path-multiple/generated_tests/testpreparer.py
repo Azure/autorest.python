@@ -11,6 +11,7 @@ from server.path.multiple import MultipleClient
 
 
 class MultipleClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(MultipleClient)
         return self.create_client_from_credential(

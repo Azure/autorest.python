@@ -11,6 +11,7 @@ from typetest.model.singlediscriminator import SingleDiscriminatorClient
 
 
 class SingleDiscriminatorClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(SingleDiscriminatorClient)
         return self.create_client_from_credential(

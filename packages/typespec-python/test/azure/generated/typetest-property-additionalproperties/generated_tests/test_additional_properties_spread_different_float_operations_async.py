@@ -27,7 +27,7 @@ class TestAdditionalPropertiesSpreadDifferentFloatOperationsAsync(AdditionalProp
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.spread_different_float.put(
-            body={"str": 0.0},
+            body={"name": "str"},
         )
 
         # please add some check logic here by yourself

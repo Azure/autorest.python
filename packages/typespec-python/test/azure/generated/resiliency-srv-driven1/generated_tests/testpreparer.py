@@ -11,6 +11,7 @@ from resiliency.srv.driven1 import ResiliencyServiceDrivenClient
 
 
 class ResiliencyServiceDrivenClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ResiliencyServiceDrivenClient)
         return self.create_client_from_credential(

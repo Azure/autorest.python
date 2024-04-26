@@ -11,6 +11,7 @@ from server.versions.notversioned import NotVersionedClient
 
 
 class NotVersionedClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(NotVersionedClient)
         return self.create_client_from_credential(

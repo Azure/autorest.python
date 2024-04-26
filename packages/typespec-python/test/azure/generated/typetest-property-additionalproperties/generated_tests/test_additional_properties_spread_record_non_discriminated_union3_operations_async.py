@@ -29,7 +29,7 @@ class TestAdditionalPropertiesSpreadRecordNonDiscriminatedUnion3OperationsAsync(
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.spread_record_non_discriminated_union3.put(
-            body={"str": [{"kind": "kind1", "start": "str"}]},
+            body={"name": "str"},
         )
 
         # please add some check logic here by yourself

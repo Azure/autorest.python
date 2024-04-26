@@ -26,7 +26,7 @@ class TestAdditionalPropertiesExtendsDifferentSpreadFloatOperations(AdditionalPr
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_different_spread_float.put(
-            body={"derivedProp": 0.0},
+            body={"derivedProp": 0.0, "name": "str"},
         )
 
         # please add some check logic here by yourself

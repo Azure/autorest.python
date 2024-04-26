@@ -11,6 +11,7 @@ from type.model.flatten import FlattenClient
 
 
 class FlattenClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(FlattenClient)
         return self.create_client_from_credential(

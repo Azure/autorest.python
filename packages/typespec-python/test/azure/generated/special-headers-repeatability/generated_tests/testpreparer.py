@@ -11,6 +11,7 @@ from specialheaders.repeatability import RepeatabilityClient
 
 
 class RepeatabilityClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(RepeatabilityClient)
         return self.create_client_from_credential(

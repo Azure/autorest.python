@@ -11,6 +11,7 @@ from typetest.enum.fixed import FixedClient
 
 
 class FixedClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(FixedClient)
         return self.create_client_from_credential(

@@ -26,7 +26,7 @@ class TestAdditionalPropertiesMultipleSpreadOperations(AdditionalPropertiesClien
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.multiple_spread.put(
-            body={"str": "str"},
+            body={"flag": bool},
         )
 
         # please add some check logic here by yourself

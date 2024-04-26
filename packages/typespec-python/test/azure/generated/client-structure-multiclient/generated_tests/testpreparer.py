@@ -11,6 +11,7 @@ import functools
 
 
 class ClientAClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ClientAClient)
         return self.create_client_from_credential(
@@ -24,6 +25,7 @@ APreparer = functools.partial(PowerShellPreparer, "a", a_endpoint="https://fake_
 
 
 class ClientBClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ClientBClient)
         return self.create_client_from_credential(

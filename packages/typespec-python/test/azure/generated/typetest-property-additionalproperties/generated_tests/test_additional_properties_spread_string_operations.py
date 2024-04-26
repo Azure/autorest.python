@@ -26,7 +26,7 @@ class TestAdditionalPropertiesSpreadStringOperations(AdditionalPropertiesClientT
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_string.put(
-            body={"str": "str"},
+            body={"name": "str"},
         )
 
         # please add some check logic here by yourself

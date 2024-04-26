@@ -11,6 +11,7 @@ from typetest.property.valuetypes import ValueTypesClient
 
 
 class ValueTypesClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(ValueTypesClient)
         return self.create_client_from_credential(

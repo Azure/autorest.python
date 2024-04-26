@@ -10,6 +10,7 @@ from typetest.model.usage.aio import UsageClient
 
 
 class UsageClientTestBaseAsync(AzureRecordedTestCase):
+
     def create_async_client(self, endpoint):
         credential = self.get_credential(UsageClient, is_async=True)
         return self.create_client_from_credential(

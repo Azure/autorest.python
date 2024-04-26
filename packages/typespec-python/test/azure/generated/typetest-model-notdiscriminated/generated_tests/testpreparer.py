@@ -11,6 +11,7 @@ from typetest.model.notdiscriminated import NotDiscriminatedClient
 
 
 class NotDiscriminatedClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(NotDiscriminatedClient)
         return self.create_client_from_credential(

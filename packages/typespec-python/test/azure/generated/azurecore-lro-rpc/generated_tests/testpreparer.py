@@ -11,6 +11,7 @@ import functools
 
 
 class RpcClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(RpcClient)
         return self.create_client_from_credential(

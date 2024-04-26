@@ -11,6 +11,7 @@ from payload.pageable import PageableClient
 
 
 class PageableClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(PageableClient)
         return self.create_client_from_credential(

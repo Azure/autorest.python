@@ -28,6 +28,7 @@ class TestUnionMixedTypesOperations(UnionClientTestBase):
         response = client.mixed_types.send(
             body={
                 "prop": {
+                    "array": [{"name": "str"}],
                     "boolean": {"name": "str"},
                     "int": {"name": "str"},
                     "literal": {"name": "str"},
@@ -35,6 +36,7 @@ class TestUnionMixedTypesOperations(UnionClientTestBase):
                 }
             },
             prop={
+                "array": [{"name": "str"}],
                 "boolean": {"name": "str"},
                 "int": {"name": "str"},
                 "literal": {"name": "str"},

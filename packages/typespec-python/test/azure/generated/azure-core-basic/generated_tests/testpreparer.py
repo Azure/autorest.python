@@ -11,6 +11,7 @@ from specs.azure.core.basic import BasicClient
 
 
 class BasicClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(BasicClient)
         return self.create_client_from_credential(

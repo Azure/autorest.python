@@ -26,7 +26,7 @@ class TestAdditionalPropertiesSpreadRecordDiscriminatedUnionOperations(Additiona
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_record_discriminated_union.put(
-            body={"str": {"fooProp": "str", "kind": "kind0"}},
+            body={"name": "str"},
         )
 
         # please add some check logic here by yourself

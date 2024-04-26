@@ -27,7 +27,7 @@ class TestAdditionalPropertiesExtendsDifferentSpreadModelOperationsAsync(Additio
     async def test_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_different_spread_model.put(
-            body={"derivedProp": {"state": "str"}},
+            body={"derivedProp": {"state": "str"}, "knownProp": "str"},
         )
 
         # please add some check logic here by yourself

@@ -11,6 +11,7 @@ from payload.multipart import MultiPartClient
 
 
 class MultiPartClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(MultiPartClient)
         return self.create_client_from_credential(

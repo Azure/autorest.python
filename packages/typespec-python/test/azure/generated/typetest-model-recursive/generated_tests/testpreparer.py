@@ -11,6 +11,7 @@ from typetest.model.recursive import RecursiveClient
 
 
 class RecursiveClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(RecursiveClient)
         return self.create_client_from_credential(

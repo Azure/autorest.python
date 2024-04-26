@@ -11,6 +11,7 @@ import functools
 
 
 class DatetimeClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(DatetimeClient)
         return self.create_client_from_credential(

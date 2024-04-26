@@ -10,6 +10,7 @@ from encode.datetime.aio import DatetimeClient
 
 
 class DatetimeClientTestBaseAsync(AzureRecordedTestCase):
+
     def create_async_client(self, endpoint):
         credential = self.get_credential(DatetimeClient, is_async=True)
         return self.create_client_from_credential(

@@ -11,6 +11,7 @@ from typetest.property.additionalproperties import AdditionalPropertiesClient
 
 
 class AdditionalPropertiesClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(AdditionalPropertiesClient)
         return self.create_client_from_credential(

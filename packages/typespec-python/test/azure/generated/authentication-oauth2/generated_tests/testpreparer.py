@@ -11,6 +11,7 @@ import functools
 
 
 class OAuth2ClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(OAuth2Client)
         return self.create_client_from_credential(

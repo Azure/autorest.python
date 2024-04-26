@@ -11,6 +11,7 @@ from typetest.property.optional import OptionalClient
 
 
 class OptionalClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(OptionalClient)
         return self.create_client_from_credential(

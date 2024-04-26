@@ -11,6 +11,7 @@ from specialwords import SpecialWordsClient
 
 
 class SpecialWordsClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(SpecialWordsClient)
         return self.create_client_from_credential(

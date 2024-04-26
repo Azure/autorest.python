@@ -11,6 +11,7 @@ from serialization.encodedname.json import JsonClient
 
 
 class JsonClientTestBase(AzureRecordedTestCase):
+
     def create_client(self, endpoint):
         credential = self.get_credential(JsonClient)
         return self.create_client_from_credential(

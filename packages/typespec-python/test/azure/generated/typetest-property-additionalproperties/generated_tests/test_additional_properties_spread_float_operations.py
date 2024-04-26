@@ -26,7 +26,7 @@ class TestAdditionalPropertiesSpreadFloatOperations(AdditionalPropertiesClientTe
     def test_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_float.put(
-            body={"str": 0.0},
+            body={"id": 0.0},
         )
 
         # please add some check logic here by yourself
