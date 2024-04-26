@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from type.model.flatten.aio import FlattenClient
-from type.model.flatten.models import FlattenModel, ChildModel, NestedFlattenModel, ChildFlattenModel
+from typetest.model.flatten.aio import FlattenClient
+from typetest.model.flatten.models import FlattenModel, ChildModel, NestedFlattenModel, ChildFlattenModel
 
 
 @pytest.fixture
