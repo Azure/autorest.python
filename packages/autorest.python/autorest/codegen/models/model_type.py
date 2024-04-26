@@ -151,7 +151,11 @@ class ModelType(  # pylint: disable=abstract-method
         if self.discriminated_subtypes:
             # we will instead print the discriminated subtypes
             self._created_json_template_representation = False
-            return self.snake_case_name
+            return (
+                f'"{self.snake_case_name}"'
+                if self.code_model.for_test
+                else self.snake_case_name
+            )
 
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
