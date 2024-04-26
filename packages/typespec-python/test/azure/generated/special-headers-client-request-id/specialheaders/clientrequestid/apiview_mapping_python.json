@@ -1,6 +1,0 @@
-{
-    "CrossLanguagePackageId": "SpecialHeaders.ClientRequestId",
-    "CrossLanguageDefinitionId": {
-        "specialheaders.clientrequestid.ClientRequestIdClient.get": "get"
-    }
-}
