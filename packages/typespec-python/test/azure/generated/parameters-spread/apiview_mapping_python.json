@@ -5,9 +5,9 @@
         "parameters.spread.models.SpreadAsRequestBodyRequest": "Parameters.Spread.Alias.SpreadAsRequestBodyRequest",
         "parameters.spread.models.SpreadAsRequestParameterRequest": "SpreadAsRequestParameterRequest",
         "parameters.spread.models.SpreadWithMultipleParametersRequest": "SpreadWithMultipleParametersRequest",
-        "parameters.spread.SpreadClient.model.spread_as_request_body": "spreadAsRequestBody",
-        "parameters.spread.SpreadClient.alias.spread_as_request_body": "spreadAsRequestBody",
-        "parameters.spread.SpreadClient.alias.spread_as_request_parameter": "spreadAsRequestParameter",
-        "parameters.spread.SpreadClient.alias.spread_with_multiple_parameters": "spreadWithMultipleParameters"
+        "parameters.spread.SpreadClient.model.spread_as_request_body": "Parameters.Spread.Model.spreadAsRequestBody",
+        "parameters.spread.SpreadClient.alias.spread_as_request_body": "Parameters.Spread.Alias.spreadAsRequestBody",
+        "parameters.spread.SpreadClient.alias.spread_as_request_parameter": "Parameters.Spread.Alias.spreadAsRequestParameter",
+        "parameters.spread.SpreadClient.alias.spread_with_multiple_parameters": "Parameters.Spread.Alias.spreadWithMultipleParameters"
     }
 }

@@ -12,8 +12,8 @@
         "specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic": "_Specs_.Azure.ClientGenerator.Core.Access.PublicOperation.PublicDecoratorModelInPublic",
         "specs.azure.clientgenerator.core.access.models.RealModel": "_Specs_.Azure.ClientGenerator.Core.Access.RelativeModelInOperation.RealModel",
         "specs.azure.clientgenerator.core.access.models.SharedModel": "_Specs_.Azure.ClientGenerator.Core.Access.SharedModelInOperation.SharedModel",
-        "specs.azure.clientgenerator.core.access.AccessClient.public_operation.no_decorator_in_public": "noDecoratorInPublic",
-        "specs.azure.clientgenerator.core.access.AccessClient.public_operation.public_decorator_in_public": "publicDecoratorInPublic",
-        "specs.azure.clientgenerator.core.access.AccessClient.shared_model_in_operation.public": "public"
+        "specs.azure.clientgenerator.core.access.AccessClient.public_operation.no_decorator_in_public": "_Specs_.Azure.ClientGenerator.Core.Access.PublicOperation.noDecoratorInPublic",
+        "specs.azure.clientgenerator.core.access.AccessClient.public_operation.public_decorator_in_public": "_Specs_.Azure.ClientGenerator.Core.Access.PublicOperation.publicDecoratorInPublic",
+        "specs.azure.clientgenerator.core.access.AccessClient.shared_model_in_operation.public": "_Specs_.Azure.ClientGenerator.Core.Access.SharedModelInOperation.public"
     }
 }

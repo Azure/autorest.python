@@ -1,6 +1,6 @@
 {
     "CrossLanguagePackageId": "SpecialHeaders.Repeatability",
     "CrossLanguageDefinitionId": {
-        "specialheaders.repeatability.RepeatabilityClient.immediate_success": "immediateSuccess"
+        "specialheaders.repeatability.RepeatabilityClient.immediate_success": "SpecialHeaders.Repeatability.immediateSuccess"
     }
 }

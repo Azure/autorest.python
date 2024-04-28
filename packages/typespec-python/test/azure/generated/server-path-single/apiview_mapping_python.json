@@ -1,6 +1,6 @@
 {
     "CrossLanguagePackageId": "Server.Path.Single",
     "CrossLanguageDefinitionId": {
-        "server.path.single.SingleClient.my_op": "myOp"
+        "server.path.single.SingleClient.my_op": "Server.Path.Single.myOp"
     }
 }
