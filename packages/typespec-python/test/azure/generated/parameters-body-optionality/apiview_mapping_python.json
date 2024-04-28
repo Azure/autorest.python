@@ -2,9 +2,9 @@
     "CrossLanguagePackageId": "Parameters.BodyOptionality",
     "CrossLanguageDefinitionId": {
         "parameters.bodyoptionality.models.BodyModel": "Parameters.BodyOptionality.BodyModel",
-        "parameters.bodyoptionality.BodyOptionalityClient.optional_explicit.set": "set",
-        "parameters.bodyoptionality.BodyOptionalityClient.optional_explicit.omit": "omit",
-        "parameters.bodyoptionality.BodyOptionalityClient.required_explicit": "requiredExplicit",
-        "parameters.bodyoptionality.BodyOptionalityClient.required_implicit": "requiredImplicit"
+        "parameters.bodyoptionality.BodyOptionalityClient.optional_explicit.set": "Parameters.BodyOptionality.OptionalExplicit.set",
+        "parameters.bodyoptionality.BodyOptionalityClient.optional_explicit.omit": "Parameters.BodyOptionality.OptionalExplicit.omit",
+        "parameters.bodyoptionality.BodyOptionalityClient.required_explicit": "Parameters.BodyOptionality.requiredExplicit",
+        "parameters.bodyoptionality.BodyOptionalityClient.required_implicit": "Parameters.BodyOptionality.requiredImplicit"
     }
 }

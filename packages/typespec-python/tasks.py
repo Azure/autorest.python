@@ -59,6 +59,9 @@ EMITTER_OPTIONS = {
     "type/model/empty": {
         "package-name": "typetest-model-empty",
     },
+    "type/model/flatten": {
+        "package-name": "typetest-model-flatten",
+    },
     "type/model/inheritance/enum-discriminator": {
         "package-name": "typetest-model-enumdiscriminator",
     },
