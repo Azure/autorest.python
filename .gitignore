@@ -125,3 +125,4 @@ node_modules/
 
 # Generated test folders
 test/services/*/_generated
+**/cadl-ranch-coverage.json
