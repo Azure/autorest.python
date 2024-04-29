@@ -183,19 +183,10 @@ jobs:
         parameters:
             package: "typespec-python"
             folderName: "azure"
-
-      - script: cadl-ranch check-coverage http/ --configFile ./$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/azure/cadl-ranch-config.yaml
-        displayName: Check Coverage
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
+            checkCoverage: true
 
       - template: generated-code-checks-template.yml
         parameters:
             package: "typespec-python"
             folderName: "unbranded"
-
-      - script: cadl-ranch check-coverage http/ --configFile ./cadl-ranch-config.yaml
-        displayName: Check Coverage
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
-
-      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
-        artifact: CoverageReport
+            checkCoverage: true
