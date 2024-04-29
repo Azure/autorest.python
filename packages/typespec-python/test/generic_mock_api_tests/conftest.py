@@ -15,7 +15,7 @@ FILE_FOLDER = Path(__file__).parent
 
 def start_server_process():
     curr_dir = Path(os.path.dirname(__file__))
-    path = curr_dir / Path("../../../node_modules/@azure-tools/cadl-ranch-specs")
+    path = curr_dir / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
     cmd = f"cadl-ranch serve ./http --coverageFile {curr_dir}/cadl-ranch-coverage.json"
     if os.name == "nt":
