@@ -34,4 +34,4 @@ jobs:
       - name: Create release branch
         run: node ./eng/publish.mjs
         env:
-          GITHUB_TOKEN: $(azuresdk-github-pat)
+          GITHUB_TOKEN: ${{secrets.CUSTOM_GITHUB_TOKEN}}
