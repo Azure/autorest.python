@@ -1,6 +1,7 @@
 parameters:
     folderName: ""
     package: "autorest.python"
+    checkCoverage: false
 
 steps:
     - script: tox run -e ci
@@ -26,3 +27,7 @@ steps:
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: eq(variables['PythonVersion'], '3.11')
+    - script: cadl-ranch check-coverage http/ --configFile ./$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/${{ parameters.folderName }}/cadl-ranch-config.yaml
+      displayName: Check Coverage for ${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
+      condition: and(succeeded(), ${{ parameters.checkCoverage }})
