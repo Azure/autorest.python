@@ -2,7 +2,7 @@ import { execSync } from "child_process";
 
 const branchName = "publish/auto-release";
 
-execSync(`pnpm changeset version`);
+execSync(`pnpm chronus version`);
 const stdout = execSync(`git status --porcelain`).toString();
 
 if (stdout.trim() !== "") {
@@ -16,7 +16,7 @@ if (stdout.trim() !== "") {
   console.log();
   console.log("-".repeat(160));
   console.log("|  Link to create the PR");
-  console.log(`|  https://github.com/Azure/cadl-ranch/pull/new/${branchName}  `);
+  console.log(`|  https://github.com/Azure/autorest.python/pull/new/${branchName}  `);
   console.log("-".repeat(160));
 } else {
   console.log("No changes to publish");
