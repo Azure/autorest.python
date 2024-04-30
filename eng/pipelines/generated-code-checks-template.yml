@@ -35,3 +35,4 @@ steps:
 
     - publish: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}/cadl-ranch-coverage.json
       artifact: CoverageReport - {{ parameters.folderName }}
+      condition: and(succeeded(), ${{ parameters.checkCoverage }})
