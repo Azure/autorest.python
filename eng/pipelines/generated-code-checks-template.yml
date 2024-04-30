@@ -32,7 +32,7 @@ steps:
       displayName: List files in ${{ parameters.folderName }}
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
 
-    - script: cadl-ranch check-coverage http/ --configFile ./cadl-ranch-config.yaml
+    - script: cadl-ranch check-coverage http/ --configFiles ./cadl-ranch-config.yaml --coverageFiles ./cadl-ranch-coverage.json --coverageFiles ../generic_mock_api_tests/cadl-ranch-coverage.json --mergedCoverageFile ./cadl-ranch-coverage.json
       displayName: Check Coverage for ${{ parameters.folderName }}
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: and(succeeded(), ${{ parameters.checkCoverage }})
