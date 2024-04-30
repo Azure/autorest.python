@@ -28,6 +28,10 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: eq(variables['PythonVersion'], '3.11')
 
+    - script: ls
+      displayName: List files in ${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+
     - script: cadl-ranch check-coverage http/ --configFile ./cadl-ranch-config.yaml
       displayName: Check Coverage for ${{ parameters.folderName }}
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
