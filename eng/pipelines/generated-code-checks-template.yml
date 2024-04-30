@@ -33,6 +33,5 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
       condition: and(succeeded(), ${{ parameters.checkCoverage }})
 
-    - publish: ./cadl-ranch-coverage.json
+    - publish: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}/cadl-ranch-coverage.json
       artifact: CoverageReport - {{ parameters.folderName }}
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
