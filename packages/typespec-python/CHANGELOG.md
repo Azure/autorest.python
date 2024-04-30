@@ -22,7 +22,7 @@
 
 - **Other Changes**
 
-- Bump `@azure-tools/typespec-client-generator-core` version to `0.41.8` #2561
+- Bump `@azure-tools/typespec-client-generator-core` version to `0.41.8` #2562
 
 ## 2023-04-26 - 0.23.8
 
