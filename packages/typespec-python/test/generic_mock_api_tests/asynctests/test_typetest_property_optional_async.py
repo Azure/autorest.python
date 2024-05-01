@@ -8,10 +8,12 @@ import pytest
 from typetest.property.optional import models
 from typetest.property.optional.aio import OptionalClient
 
+
 @pytest.fixture
 async def client():
     async with OptionalClient() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_boolean_literal(client):
@@ -21,6 +23,7 @@ async def test_boolean_literal(client):
     await client.boolean_literal.put_all(body)
     await client.boolean_literal.put_default(models.BooleanLiteralProperty())
 
+
 @pytest.mark.asyncio
 async def test_bytes(client):
     body = models.BytesProperty(property="aGVsbG8sIHdvcmxkIQ==")
@@ -28,6 +31,7 @@ async def test_bytes(client):
     assert await client.bytes.get_default() == models.BytesProperty()
     await client.bytes.put_all(body)
     await client.bytes.put_default(models.BytesProperty())
+
 
 @pytest.mark.asyncio
 async def test_collections_byte(client):
@@ -37,13 +41,17 @@ async def test_collections_byte(client):
     await client.collections_byte.put_all(body)
     await client.collections_byte.put_default(models.CollectionsByteProperty())
 
+
 @pytest.mark.asyncio
 async def test_collections_model(client):
-    body = models.CollectionsModelProperty(property=[models.StringProperty(property="hello"), models.StringProperty(property="world")])
+    body = models.CollectionsModelProperty(
+        property=[models.StringProperty(property="hello"), models.StringProperty(property="world")]
+    )
     assert await client.collections_model.get_all() == body
     assert await client.collections_model.get_default() == models.CollectionsModelProperty()
     await client.collections_model.put_all(body)
     await client.collections_model.put_default(models.CollectionsModelProperty())
+
 
 @pytest.mark.asyncio
 async def test_datetime(client):
@@ -53,6 +61,7 @@ async def test_datetime(client):
     await client.datetime.put_all(body)
     await client.datetime.put_default(models.DatetimeProperty())
 
+
 @pytest.mark.asyncio
 async def test_duration(client):
     body = models.DurationProperty(property="P123DT22H14M12.011S")
@@ -60,6 +69,7 @@ async def test_duration(client):
     assert await client.duration.get_default() == models.DurationProperty()
     await client.duration.put_all(body)
     await client.duration.put_default(models.DurationProperty())
+
 
 @pytest.mark.asyncio
 async def test_float_literal(client):
@@ -69,6 +79,7 @@ async def test_float_literal(client):
     await client.float_literal.put_all(body)
     await client.float_literal.put_default(models.FloatLiteralProperty())
 
+
 @pytest.mark.asyncio
 async def test_int_literal(client):
     body = models.IntLiteralProperty(property=1)
@@ -76,6 +87,7 @@ async def test_int_literal(client):
     assert await client.int_literal.get_default() == models.IntLiteralProperty()
     await client.int_literal.put_all(body)
     await client.int_literal.put_default(models.IntLiteralProperty())
+
 
 @pytest.mark.asyncio
 async def test_required_and_optional(client):
@@ -91,6 +103,7 @@ async def test_required_and_optional(client):
     await client.required_and_optional.put_all(all_body)
     await client.required_and_optional.put_required_only(required_only_body)
 
+
 @pytest.mark.asyncio
 async def test_string(client):
     body = models.StringProperty(property="hello")
@@ -98,6 +111,7 @@ async def test_string(client):
     assert await client.string.get_default() == models.StringProperty()
     await client.string.put_all(body)
     await client.string.put_default(models.StringProperty())
+
 
 @pytest.mark.asyncio
 async def test_string_literal(client):
@@ -107,6 +121,7 @@ async def test_string_literal(client):
     await client.string_literal.put_all(body)
     await client.string_literal.put_default(models.StringLiteralProperty())
 
+
 @pytest.mark.asyncio
 async def test_union_float_literal(client):
     body = models.UnionFloatLiteralProperty(property=2.375)
@@ -115,6 +130,7 @@ async def test_union_float_literal(client):
     await client.union_float_literal.put_all(body)
     await client.union_float_literal.put_default(models.UnionFloatLiteralProperty())
 
+
 @pytest.mark.asyncio
 async def test_union_int_literal(client):
     body = models.UnionIntLiteralProperty(property=2)
@@ -122,6 +138,7 @@ async def test_union_int_literal(client):
     assert await client.union_int_literal.get_default() == models.UnionIntLiteralProperty()
     await client.union_int_literal.put_all(body)
     await client.union_int_literal.put_default(models.UnionIntLiteralProperty())
+
 
 @pytest.mark.asyncio
 async def test_union_string_literal(client):

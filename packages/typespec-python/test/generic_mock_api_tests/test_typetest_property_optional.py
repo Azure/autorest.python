@@ -7,10 +7,12 @@ from typing import Any
 import pytest
 from typetest.property.optional import OptionalClient, models
 
+
 @pytest.fixture
 def client():
     with OptionalClient() as client:
         yield client
+
 
 def test_boolean_literal(client):
     body = models.BooleanLiteralProperty(property=True)
@@ -19,12 +21,14 @@ def test_boolean_literal(client):
     client.boolean_literal.put_all(body)
     client.boolean_literal.put_default(models.BooleanLiteralProperty())
 
+
 def test_bytes(client):
     body = models.BytesProperty(property="aGVsbG8sIHdvcmxkIQ==")
     assert client.bytes.get_all() == body
     assert client.bytes.get_default() == models.BytesProperty()
     client.bytes.put_all(body)
     client.bytes.put_default(models.BytesProperty())
+
 
 def test_collections_byte(client):
     body = models.CollectionsByteProperty(property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="])
@@ -33,12 +37,16 @@ def test_collections_byte(client):
     client.collections_byte.put_all(body)
     client.collections_byte.put_default(models.CollectionsByteProperty())
 
+
 def test_collections_model(client):
-    body = models.CollectionsModelProperty(property=[models.StringProperty(property="hello"), models.StringProperty(property="world")])
+    body = models.CollectionsModelProperty(
+        property=[models.StringProperty(property="hello"), models.StringProperty(property="world")]
+    )
     assert client.collections_model.get_all() == body
     assert client.collections_model.get_default() == models.CollectionsModelProperty()
     client.collections_model.put_all(body)
     client.collections_model.put_default(models.CollectionsModelProperty())
+
 
 def test_datetime(client):
     body = models.DatetimeProperty(property="2022-08-26T18:38:00Z")
@@ -47,12 +55,14 @@ def test_datetime(client):
     client.datetime.put_all(body)
     client.datetime.put_default(models.DatetimeProperty())
 
+
 def test_duration(client):
     body = models.DurationProperty(property="P123DT22H14M12.011S")
     assert client.duration.get_all() == body
     assert client.duration.get_default() == models.DurationProperty()
     client.duration.put_all(body)
     client.duration.put_default(models.DurationProperty())
+
 
 def test_float_literal(client):
     body = models.FloatLiteralProperty(property=1.25)
@@ -61,12 +71,14 @@ def test_float_literal(client):
     client.float_literal.put_all(body)
     client.float_literal.put_default(models.FloatLiteralProperty())
 
+
 def test_int_literal(client):
     body = models.IntLiteralProperty(property=1)
     assert client.int_literal.get_all() == body
     assert client.int_literal.get_default() == models.IntLiteralProperty()
     client.int_literal.put_all(body)
     client.int_literal.put_default(models.IntLiteralProperty())
+
 
 def test_required_and_optional(client):
     all_body = {
@@ -81,12 +93,14 @@ def test_required_and_optional(client):
     client.required_and_optional.put_all(all_body)
     client.required_and_optional.put_required_only(required_only_body)
 
+
 def test_string(client):
     body = models.StringProperty(property="hello")
     assert client.string.get_all() == body
     assert client.string.get_default() == models.StringProperty()
     client.string.put_all(body)
     client.string.put_default(models.StringProperty())
+
 
 def test_string_literal(client):
     body = models.StringLiteralProperty(property="hello")
@@ -95,6 +109,7 @@ def test_string_literal(client):
     client.string_literal.put_all(body)
     client.string_literal.put_default(models.StringLiteralProperty())
 
+
 def test_union_float_literal(client):
     body = models.UnionFloatLiteralProperty(property=2.375)
     assert client.union_float_literal.get_all() == body
@@ -102,12 +117,14 @@ def test_union_float_literal(client):
     client.union_float_literal.put_all(body)
     client.union_float_literal.put_default(models.UnionFloatLiteralProperty())
 
+
 def test_union_int_literal(client):
     body = models.UnionIntLiteralProperty(property=2)
     assert client.union_int_literal.get_all() == body
     assert client.union_int_literal.get_default() == models.UnionIntLiteralProperty()
     client.union_int_literal.put_all(body)
     client.union_int_literal.put_default(models.UnionIntLiteralProperty())
+
 
 def test_union_string_literal(client):
     body = models.UnionStringLiteralProperty(property="world")

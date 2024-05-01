@@ -26,20 +26,8 @@ async def client():
     "op_name,model_class,data,file,file_info",
     [
         ("basic", models.MultiPartRequest, {"id": "123"}, {"profileImage": JPG}, {}),
-        (
-            "multi_binary_parts",
-            models.MultiBinaryPartsRequest,
-            {},
-            {"profileImage": JPG, "picture": PNG},
-            {}
-        ),
-        (
-            "multi_binary_parts",
-            models.MultiBinaryPartsRequest,
-            {},
-            {"profileImage": JPG},
-            {}
-        ),
+        ("multi_binary_parts", models.MultiBinaryPartsRequest, {}, {"profileImage": JPG, "picture": PNG}, {}),
+        ("multi_binary_parts", models.MultiBinaryPartsRequest, {}, {"profileImage": JPG}, {}),
         (
             "json_part",
             models.JsonPartRequest,
@@ -64,7 +52,11 @@ async def client():
         (
             "complex",
             models.ComplexPartsRequest,
-            {"id": "123", "previousAddresses": [models.Address(city="Y"), models.Address(city="Z")], "address": models.Address(city="X")},
+            {
+                "id": "123",
+                "previousAddresses": [models.Address(city="Y"), models.Address(city="Z")],
+                "address": models.Address(city="X"),
+            },
             {"pictures": [PNG, PNG], "profileImage": JPG},
             {},
         ),
@@ -88,12 +80,19 @@ async def test_multi_part(client: MultiPartClient, op_name, model_class, data, f
     def add_info(file_path, is_bytes):
         file_content = open(str(file_path), "rb").read() if is_bytes else open(str(file_path), "rb")
         name = str(uuid.uuid4()) if file_info.get("file_name") is None else file_info.get("file_name")
-        content_type = "application/octet-stream" if file_info.get("content_type") is None else file_info.get("content_type")
+        content_type = (
+            "application/octet-stream" if file_info.get("content_type") is None else file_info.get("content_type")
+        )
         return (name, file_content, content_type)
+
     def convert(is_bytes=False):
-        files_part = {k: ([add_info(vi, is_bytes) for vi in v] if isinstance(v, list) else add_info(v, is_bytes)) for k, v in file.items()}
+        files_part = {
+            k: ([add_info(vi, is_bytes) for vi in v] if isinstance(v, list) else add_info(v, is_bytes))
+            for k, v in file.items()
+        }
         files_part.update(data)
         return files_part
+
     op = getattr(client.form_data, op_name)
     # test bytes (raw dict)
     body = convert(True)

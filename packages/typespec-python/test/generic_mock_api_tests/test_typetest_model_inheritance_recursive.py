@@ -13,24 +13,11 @@ def client():
     with RecursiveClient() as client:
         yield client
 
+
 @pytest.fixture
 def expected():
-    return Extension({
-  "level": 0,        
-  "extension": [
-    {
-      "level": 1,
-      "extension": [
-        {
-          "level": 2
-        }
-      ]
-    },
-    {
-      "level": 1
-    }
-  ]
-})
+    return Extension({"level": 0, "extension": [{"level": 1, "extension": [{"level": 2}]}, {"level": 1}]})
+
 
 def test_put(client: RecursiveClient, expected: Extension):
     client.put(expected)
@@ -38,4 +25,3 @@ def test_put(client: RecursiveClient, expected: Extension):
 
 def test_get(client: RecursiveClient, expected: Extension):
     assert client.get() == expected
-

@@ -22,9 +22,7 @@ def test_language(client: NamingClient):
 
 
 def test_compatible_with_encoded_name(client: NamingClient):
-    client.compatible_with_encoded_name(
-        models.ClientNameAndJsonEncodedNameModel(client_name=True)
-    )
+    client.compatible_with_encoded_name(models.ClientNameAndJsonEncodedNameModel(client_name=True))
 
 
 def test_operation(client: NamingClient):

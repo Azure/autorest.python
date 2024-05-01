@@ -19,4 +19,3 @@ def test_property_send(client: JsonClient):
 
 def test_property_get(client: JsonClient):
     assert client.property.get().default_name
-
