@@ -7,6 +7,6 @@
         "azurecore.lro.rpc.models.GenerationResult": "_Specs_.Azure.Core.Lro.Rpc.GenerationResult",
         "azurecore.lro.rpc.models.InnerError": "Azure.Core.Foundations.InnerError",
         "azurecore.lro.rpc.models.OperationState": "Azure.Core.Foundations.OperationState",
-        "azurecore.lro.rpc.RpcClient.begin_long_running_rpc": "longRunningRpc"
+        "azurecore.lro.rpc.RpcClient.begin_long_running_rpc": "_Specs_.Azure.Core.Lro.Rpc.longRunningRpc"
     }
 }

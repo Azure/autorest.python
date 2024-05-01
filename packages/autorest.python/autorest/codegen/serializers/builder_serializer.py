@@ -4,10 +4,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
 from abc import abstractmethod
 from collections import defaultdict
-from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
+from typing import Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
 from ..models import (
     Operation,
@@ -59,6 +58,10 @@ OperationType = TypeVar(
 )
 
 
+def _json_serializable(content_type: str) -> bool:
+    return bool(JSON_REGEXP.match(content_type.split(";")[0].strip().lower()))
+
+
 def _need_type_ignore(builder: OperationType) -> bool:
     for excep in builder.non_default_errors:
         for status_code in excep.status_codes:
@@ -80,34 +83,13 @@ def _escape_str(input_str: str) -> str:
     return f'"{replace}"'
 
 
-def _improve_json_string(template_representation: str) -> Any:
-    origin = template_representation.split("\n")
-    final = []
-    for line in origin:
-        idx0 = line.find("#")
-        idx1 = line.rfind('"')
-        modified_line = ""
-        if idx0 > -1 and idx1 > -1:
-            modified_line = line[:idx0] + line[idx1:] + "  " + line[idx0:idx1] + "\n"
-        else:
-            modified_line = line + "\n"
-        modified_line = modified_line.replace('"', "").replace("\\", '"')
-        final.append(modified_line)
-    return "".join(final)
-
-
-def _json_dumps_template(template_representation: Any) -> Any:
-    # only for template use, since it wraps everything in strings
-    return _improve_json_string(json.dumps(template_representation, indent=4))
-
-
 def _get_polymorphic_subtype_template(polymorphic_subtype: ModelType) -> List[str]:
     retval: List[str] = []
     retval.append("")
     retval.append(
         f'# JSON input template for discriminator value "{polymorphic_subtype.discriminator_value}":'
     )
-    subtype_template = _json_dumps_template(
+    subtype_template = utils.json_dumps_template(
         polymorphic_subtype.get_json_template_representation(),
     )
 
@@ -225,7 +207,7 @@ def _get_json_response_template_to_status_codes(
         if not json_template:
             continue
         status_codes = [str(status_code) for status_code in response.status_codes]
-        response_json = _json_dumps_template(json_template)
+        response_json = utils.json_dumps_template(json_template)
         retval[response_json].extend(status_codes)
     return retval
 
@@ -436,7 +418,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         template.append(
             "# JSON input template you can fill out and use as your body input."
         )
-        json_template = _json_dumps_template(
+        json_template = utils.json_dumps_template(
             json_type.get_json_template_representation(),
         )
         template.extend(
@@ -813,7 +795,7 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if JSON_REGEXP.match(body_param.default_content_type):
+            if _json_serializable(body_param.default_content_type):
                 if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
                     create_body_call = (
                         f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
@@ -1157,7 +1139,7 @@ class _OperationSerializer(
                     )
                     response_attr = (
                         "json"
-                        if JSON_REGEXP.match(str(response.default_content_type))
+                        if _json_serializable(str(response.default_content_type))
                         else "text"
                     )
                     deserialize_code.append("deserialized = _deserialize(")

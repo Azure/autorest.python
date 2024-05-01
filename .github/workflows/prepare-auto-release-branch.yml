@@ -33,3 +33,5 @@ jobs:
 
       - name: Create release branch
         run: node ./eng/publish.mjs
+        env:
+          GITHUB_TOKEN: ${{secrets.CUSTOM_GITHUB_TOKEN}}

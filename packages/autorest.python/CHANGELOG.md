@@ -1,5 +1,53 @@
 # Release
 
+## 2024-04-30 - 6.13.16
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Escape backslashes in docstrings. Thanks @onlined for this contribution, you rock! #2560
+
+## 2024-04-29 - 6.13.15
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Fix internal model typing  #2517
+
+## 2024-04-23 - 6.13.14
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Json serialize input bodies whose default content type is a JSON type with a charset encoding section #2542
+
 ## 2024-04-22 - 6.13.13
 
 | Library                                                                 | Min Version |

@@ -6,7 +6,10 @@
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
-from autorest.codegen.models.utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
+from autorest.codegen.models.utils import (
+    add_to_pylint_disable,
+    NAME_LENGTH_LIMIT,
+)
 from .base import BaseType
 from .constant_type import ConstantType
 from .property import Property
@@ -148,7 +151,11 @@ class ModelType(  # pylint: disable=abstract-method
         if self.discriminated_subtypes:
             # we will instead print the discriminated subtypes
             self._created_json_template_representation = False
-            return self.snake_case_name
+            return (
+                f'"{self.snake_case_name}"'
+                if self.code_model.for_test
+                else self.snake_case_name
+            )
 
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
@@ -308,13 +315,14 @@ class JSONModelType(ModelType):
 class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
-        retval = f"_models.{self.name}"
-        if self.internal:
-            retval = f"{self.code_model.models_filename}.{retval}"
-        return retval if is_operation_file else f'"{retval}"'
+        skip_quote = kwargs.get("skip_quote", False)
+        module_name = "_models." if kwargs.get("need_module_name", True) else ""
+        file_name = f"{self.code_model.models_filename}." if self.internal else ""
+        retval = module_name + file_name + self.name
+        return retval if is_operation_file or skip_quote else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.code_model.namespace}.models.{self.name}"
+        return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, skip_quote=True)}"
 
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
@@ -358,8 +366,7 @@ class MsrestModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        private_model_path = f"_models.{self.code_model.models_filename}."
-        return f"{private_model_path if self.internal else ''}{self.name}"
+        return self.type_annotation(skip_quote=True) if self.internal else self.name
 
     @property
     def instance_check_template(self) -> str:
@@ -378,7 +385,11 @@ class DPGModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        return f"{'_models.' if self.internal else ''}_models.{self.name}"
+        return (
+            self.type_annotation(skip_quote=True)
+            if self.internal
+            else self.type_annotation(need_module_name=False, skip_quote=True)
+        )
 
     @property
     def instance_check_template(self) -> str:
