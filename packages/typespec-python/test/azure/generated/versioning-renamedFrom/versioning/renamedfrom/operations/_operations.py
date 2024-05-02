@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_new_interface_test_request(**kwargs: Any) -> HttpRequest:
+def build_new_interface_new_op_in_new_interface_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -97,10 +97,10 @@ class NewInterfaceOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def test(
+    def new_op_in_new_interface(
         self, body: _models.NewModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.NewModel:
-        """test.
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: ~versioning.renamedfrom.models.NewModel
@@ -130,8 +130,10 @@ class NewInterfaceOperations:
         """
 
     @overload
-    def test(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.NewModel:
-        """test.
+    def new_op_in_new_interface(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: JSON
@@ -154,8 +156,10 @@ class NewInterfaceOperations:
         """
 
     @overload
-    def test(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.NewModel:
-        """test.
+    def new_op_in_new_interface(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -178,8 +182,10 @@ class NewInterfaceOperations:
         """
 
     @distributed_trace
-    def test(self, body: Union[_models.NewModel, JSON, IO[bytes]], **kwargs: Any) -> _models.NewModel:
-        """test.
+    def new_op_in_new_interface(
+        self, body: Union[_models.NewModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Is one of the following types: NewModel, JSON, IO[bytes] Required.
         :type body: ~versioning.renamedfrom.models.NewModel or JSON or IO[bytes]
@@ -225,7 +231,7 @@ class NewInterfaceOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_new_interface_test_request(
+        _request = build_new_interface_new_op_in_new_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

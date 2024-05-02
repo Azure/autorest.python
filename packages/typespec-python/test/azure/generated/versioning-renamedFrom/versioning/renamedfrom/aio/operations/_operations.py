@@ -26,7 +26,10 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
-from ...operations._operations import build_new_interface_test_request, build_renamed_from_new_op_request
+from ...operations._operations import (
+    build_new_interface_new_op_in_new_interface_request,
+    build_renamed_from_new_op_request,
+)
 from .._vendor import RenamedFromClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -56,10 +59,10 @@ class NewInterfaceOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def test(
+    async def new_op_in_new_interface(
         self, body: _models.NewModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.NewModel:
-        """test.
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: ~versioning.renamedfrom.models.NewModel
@@ -89,8 +92,10 @@ class NewInterfaceOperations:
         """
 
     @overload
-    async def test(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.NewModel:
-        """test.
+    async def new_op_in_new_interface(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: JSON
@@ -113,8 +118,10 @@ class NewInterfaceOperations:
         """
 
     @overload
-    async def test(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.NewModel:
-        """test.
+    async def new_op_in_new_interface(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -137,8 +144,10 @@ class NewInterfaceOperations:
         """
 
     @distributed_trace_async
-    async def test(self, body: Union[_models.NewModel, JSON, IO[bytes]], **kwargs: Any) -> _models.NewModel:
-        """test.
+    async def new_op_in_new_interface(
+        self, body: Union[_models.NewModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.NewModel:
+        """new_op_in_new_interface.
 
         :param body: Is one of the following types: NewModel, JSON, IO[bytes] Required.
         :type body: ~versioning.renamedfrom.models.NewModel or JSON or IO[bytes]
@@ -184,7 +193,7 @@ class NewInterfaceOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_new_interface_test_request(
+        _request = build_new_interface_new_op_in_new_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

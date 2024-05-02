@@ -11,6 +11,7 @@ from typing import Any, Union
 from corehttp.runtime import policies
 
 from .. import models as _models
+from ..._validation import api_version_validation
 from .._version import VERSION
 
 

@@ -3,6 +3,6 @@
     "CrossLanguageDefinitionId": {
         "versioning.typechangedfrom.models.TestModel": "Versioning.TypeChangedFrom.TestModel",
         "versioning.typechangedfrom.models.Versions": "Versioning.TypeChangedFrom.Versions",
-        "versioning.typechangedfrom.TypeChangedFromClient.test": "test"
+        "versioning.typechangedfrom.TypeChangedFromClient.test": "Versioning.TypeChangedFrom.test"
     }
 }
