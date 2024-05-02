@@ -11,8 +11,8 @@ from payload.multipart.aio import MultiPartClient
 from payload.multipart import models
 from payload.multipart._model_base import Model
 
-JPG = Path(__file__).parent / "../data/image.jpg"
-PNG = Path(__file__).parent / "../data/image.png"
+JPG = Path(__file__).parent.parent / "data/image.jpg"
+PNG = Path(__file__).parent.parent / "data/image.png"
 
 
 @pytest.fixture
