@@ -26,5 +26,6 @@ def test_get_valid(client, valid_body):
 def test_post_valid(client, valid_body):
     client.post_valid(valid_body)
 
+
 def test_put_valid(client, valid_body):
     assert valid_body == client.put_valid(valid_body)

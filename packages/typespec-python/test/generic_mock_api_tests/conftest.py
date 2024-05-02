@@ -13,6 +13,7 @@ from typing import List
 
 FILE_FOLDER = Path(__file__).parent
 
+
 def start_server_process():
     path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
@@ -21,11 +22,13 @@ def start_server_process():
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
 
+
 def terminate_server_process(process):
-    if os.name == 'nt':
+    if os.name == "nt":
         process.kill()
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+
 
 @pytest.fixture(scope="session", autouse=True)
 def testserver():
@@ -34,9 +37,12 @@ def testserver():
     yield
     terminate_server_process(server)
 
+
 """
 Use to disambiguate the core library we use
 """
+
+
 @pytest.fixture
 def core_library():
     try:
@@ -44,12 +50,14 @@ def core_library():
     except ModuleNotFoundError:
         return importlib.import_module("corehttp")
 
+
 @pytest.fixture
 def key_credential(core_library):
     try:
         return core_library.credentials.AzureKeyCredential
     except AttributeError:
         return core_library.credentials.ServiceKeyCredential
+
 
 SPECIAL_WORDS = [
     "and",
@@ -87,14 +95,17 @@ SPECIAL_WORDS = [
     "yield",
 ]
 
+
 @pytest.fixture
 def special_words() -> List[str]:
     return SPECIAL_WORDS
+
 
 @pytest.fixture
 def png_data() -> bytes:
     with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
         return file_in.read()
+
 
 @pytest.fixture
 def jpg_data() -> bytes:

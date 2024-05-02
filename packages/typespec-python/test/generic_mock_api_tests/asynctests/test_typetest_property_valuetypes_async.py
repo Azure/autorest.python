@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import datetime
 import decimal
 
 import pytest
+import datetime
 from typetest.property.valuetypes import models
 from typetest.property.valuetypes.aio import ValueTypesClient
 
@@ -18,100 +18,78 @@ async def client():
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize(
-    "og_name,val",
-    [
-        ("boolean", True),
-        ("string", "hello"),
-        ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
-        ("int_operations", 42),
-        ("float", 43.125),
-        ("decimal", decimal.Decimal("0.33333")),
-        ("decimal128", decimal.Decimal("0.33333")),
-        ("datetime", "2022-08-26T18:38:00Z"),
-        ("duration", "P123DT22H14M12.011S"),
-        ("enum", "ValueOne"),
-        ("extensible_enum", "UnknownValue"),
-        ("model", {"property": "hello"}),
-        ("collections_string", ["hello", "world"]),
-        ("collections_int", [1, 2]),
-        ("collections_model", [{"property": "hello"}, {"property": "world"}]),
-        ("dictionary_string", {"k1": "hello", "k2": "world"}),
-        ("unknown_string", "hello"),
-        ("unknown_int", 42),
-        ("unknown_dict", {"k1": "hello", "k2": 42}),
-        ("unknown_array", ["hello", "world"]),
-        ("boolean_literal", True),
-        ("int_literal", 42),
-        ("string_literal", "hello"),
-        ("float_literal", 43.125),
-        ("union_string_literal", "world"),
-        ("union_float_literal", 46.875),
-        ("union_int_literal", 42),
-        ("union_enum_value", "value2"),
-    ],
-)
-async def test(client, og_name, val):
-    body = {"property": val}
-    og_group = getattr(client, og_name)
-    assert await og_group.get() == body
-    await og_group.put(body)
+async def test_model_deserialization(client: ValueTypesClient):
+    body = models.ModelProperty(property={"property": "hello"})
+    assert body.property.property == body["property"]["property"]
+    resp = await client.model.get()
+    assert resp.property.property == resp["property"]["property"]
 
-
-@pytest.mark.parametrize(
-    "og_name,model,val",
-    [
-        ("boolean", models.BooleanProperty, True),
-        ("string", models.StringProperty, "hello"),
-        ("bytes", models.BytesProperty, b"hello, world!"),
-        ("int_operations", models.IntProperty, 42),
-        ("float", models.FloatProperty, 43.125),
-        ("decimal", models.DecimalProperty, decimal.Decimal("0.33333")),
-        ("decimal128", models.Decimal128Property, decimal.Decimal("0.33333")),
-        ("enum", models.EnumProperty, models.InnerEnum.VALUE_ONE),
-        ("extensible_enum", models.ExtensibleEnumProperty, "UnknownValue"),
-        ("model", models.ModelProperty, models.InnerModel(property="hello")),
-        ("collections_string", models.CollectionsStringProperty, ["hello", "world"]),
-        ("collections_int", models.CollectionsIntProperty, [1, 2]),
-        (
-            "collections_model",
-            models.CollectionsModelProperty,
-            [{"property": "hello"}, {"property": "world"}],
-        ),
-        (
-            "dictionary_string",
-            models.DictionaryStringProperty,
-            {"k1": "hello", "k2": "world"},
-        ),
-        ("unknown_string", models.UnknownStringProperty, "hello"),
-        ("unknown_int", models.UnknownIntProperty, 42),
-        ("unknown_dict", models.UnknownDictProperty, {"k1": "hello", "k2": 42}),
-        ("unknown_array", models.UnknownArrayProperty, ["hello", "world"]),
-        ("boolean_literal", models.BooleanLiteralProperty, True),
-        ("int_literal", models.IntLiteralProperty, 42),
-        ("string_literal", models.StringLiteralProperty, "hello"),
-        ("float_literal", models.FloatLiteralProperty, 43.125),
-        ("union_string_literal", models.UnionStringLiteralProperty, "world"),
-        ("union_float_literal", models.UnionFloatLiteralProperty, 46.875),
-        ("union_int_literal", models.UnionIntLiteralProperty, 42),
-        (
-            "union_enum_value",
-            models.UnionEnumValueProperty,
-            models.ExtendedEnum.ENUM_VALUE2,
-        ),
-    ],
-)
-@pytest.mark.asyncio
-async def test_model(client, og_name, model, val):
-    body = model(property=val)
-    og_group = getattr(client, og_name)
-    assert await og_group.get() == body
-    assert (await og_group.get()).property == val
-    await og_group.put(body)
+    body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
+    assert body.property[0].property == body["property"][0]["property"]
+    resp = await client.collections_model.get()
+    assert resp.property[1].property == resp["property"][1]["property"]
 
 
 @pytest.mark.asyncio
-async def test_datetime_model(client):
+async def test_enum_property():
+    for prop in ["ValueOne", models.FixedInnerEnum.VALUE_ONE]:
+        string_type = models.EnumProperty(property=prop)
+        assert isinstance(string_type.property, models.FixedInnerEnum)
+        assert isinstance(string_type["property"], str)
+
+
+@pytest.mark.asyncio
+async def test_boolean(client: ValueTypesClient):
+    body = models.BooleanProperty(property=True)
+    assert body.property == body["property"]
+    resp = await client.boolean.get()
+    assert resp.property == resp["property"] == True
+
+
+@pytest.mark.asyncio
+async def test_boolean_literal(client: ValueTypesClient):
+    body = models.BooleanLiteralProperty(property=True)
+    assert body.property == body["property"]
+    resp = await client.boolean_literal.get()
+    assert resp.property == resp["property"] == True
+
+
+@pytest.mark.asyncio
+async def test_bytes(client: ValueTypesClient):
+    body = models.BytesProperty(property=b"hello, world!")
+    assert body.property == b"hello, world!"
+    assert body["property"] == "aGVsbG8sIHdvcmxkIQ=="
+    resp = await client.bytes.get()
+    assert resp.property == b"hello, world!"
+    assert resp["property"] == "aGVsbG8sIHdvcmxkIQ=="
+
+
+@pytest.mark.asyncio
+async def test_collections_int(client: ValueTypesClient):
+    body = models.CollectionsIntProperty(property=[1, 2])
+    assert body.property == body["property"]
+    resp = await client.collections_int.get()
+    assert resp.property == resp["property"] == [1, 2]
+
+
+@pytest.mark.asyncio
+async def test_collections_model(client: ValueTypesClient):
+    body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
+    assert body.property[0].property == body["property"][0]["property"]
+    resp = await client.collections_model.get()
+    assert resp.property[1].property == resp["property"][1]["property"]
+
+
+@pytest.mark.asyncio
+async def test_collections_string(client: ValueTypesClient):
+    body = models.CollectionsStringProperty(property=["hello", "world"])
+    assert body.property == body["property"]
+    resp = await client.collections_string.get()
+    assert resp.property == resp["property"] == ["hello", "world"]
+
+
+@pytest.mark.asyncio
+async def test_datetime(client):
     received_body = await client.datetime.get()
     assert received_body == {"property": "2022-08-26T18:38:00Z"}
     assert received_body.property.year == 2022
@@ -119,29 +97,184 @@ async def test_datetime_model(client):
     assert received_body.property.day == 26
     assert received_body.property.hour == 18
     assert received_body.property.minute == 38
-    await client.datetime.put(
-        models.DatetimeProperty(
-            property=datetime.datetime(2022, 8, 26, hour=18, minute=38)
-        )
-    )
+    await client.datetime.put(models.DatetimeProperty(property=datetime.datetime(2022, 8, 26, hour=18, minute=38)))
 
 
 @pytest.mark.asyncio
-async def test_never_model(client: ValueTypesClient):
-    assert await client.never.get() == models.NeverProperty()
-    await client.never.put(models.NeverProperty())
+async def test_decimal(client: ValueTypesClient):
+    body = models.DecimalProperty(property=decimal.Decimal("0.33333"))
+    assert body.property == decimal.Decimal("0.33333")
+    assert body["property"] == 0.33333
+    resp = await client.decimal.get()
+    assert resp.property == decimal.Decimal("0.33333")
+    assert resp["property"] == 0.33333
 
 
 @pytest.mark.asyncio
-async def test_model_deserialization(client: ValueTypesClient):
+async def test_decimal128(client: ValueTypesClient):
+    body = models.Decimal128Property(property=decimal.Decimal("0.33333"))
+    assert body.property == decimal.Decimal("0.33333")
+    assert body["property"] == 0.33333
+    resp = await client.decimal128.get()
+    assert resp.property == decimal.Decimal("0.33333")
+    assert resp["property"] == 0.33333
+
+
+@pytest.mark.asyncio
+async def test_dictionary_string(client: ValueTypesClient):
+    body = models.DictionaryStringProperty(property={"k1": "hello", "k2": "world"})
+    assert body.property == body["property"]
+    resp = await client.dictionary_string.get()
+    assert resp.property == resp["property"] == {"k1": "hello", "k2": "world"}
+
+
+@pytest.mark.asyncio
+async def test_duration(client: ValueTypesClient):
+    body = models.DurationProperty(property="P123DT22H14M12.011S")
+    assert body.property == datetime.timedelta(days=123, seconds=80052, microseconds=11000)
+    assert body["property"] == "P123DT22H14M12.011S"
+    resp = await client.duration.get()
+    assert resp.property == datetime.timedelta(days=123, seconds=80052, microseconds=11000)
+    assert resp["property"] == "P123DT22H14M12.011S"
+
+
+@pytest.mark.asyncio
+async def test_enum(client: ValueTypesClient):
+    body = models.EnumProperty(property=models.InnerEnum.VALUE_ONE)
+    assert body.property == body["property"]
+    resp = await client.enum.get()
+    assert resp.property == resp["property"] == "ValueOne"
+
+
+@pytest.mark.asyncio
+async def test_extensible_enum(client: ValueTypesClient):
+    body = models.ExtensibleEnumProperty(property="UnknownValue")
+    assert body.property == body["property"]
+    resp = await client.extensible_enum.get()
+    assert resp.property == resp["property"] == "UnknownValue"
+
+
+@pytest.mark.asyncio
+async def test_float(client: ValueTypesClient):
+    body = models.FloatProperty(property=43.125)
+    assert body.property == body["property"]
+    resp = await client.float.get()
+    assert resp.property == resp["property"] == 43.125
+
+
+@pytest.mark.asyncio
+async def test_float_literal(client: ValueTypesClient):
+    body = models.FloatLiteralProperty(property=43.125)
+    assert body.property == body["property"]
+    resp = await client.float_literal.get()
+    assert resp.property == resp["property"] == 43.125
+
+
+@pytest.mark.asyncio
+async def test_int(client: ValueTypesClient):
+    body = models.IntProperty(property=42)
+    assert body.property == body["property"]
+    resp = await client.int_operations.get()
+    assert resp.property == resp["property"] == 42
+
+
+@pytest.mark.asyncio
+async def test_int_literal(client: ValueTypesClient):
+    body = models.IntLiteralProperty(property=42)
+    assert body.property == body["property"]
+    resp = await client.int_literal.get()
+    assert resp.property == resp["property"] == 42
+
+
+@pytest.mark.asyncio
+async def test_model(client: ValueTypesClient):
     body = models.ModelProperty(property={"property": "hello"})
     assert body.property.property == body["property"]["property"]
     resp = await client.model.get()
     assert resp.property.property == resp["property"]["property"]
 
-    body = models.CollectionsModelProperty(
-        property=[{"property": "hello"}, {"property": "world"}]
-    )
-    assert body.property[0].property == body["property"][0]["property"]
-    resp = await client.collections_model.get()
-    assert resp.property[1].property == resp["property"][1]["property"]
+
+@pytest.mark.asyncio
+async def test_never(client: ValueTypesClient):
+    assert await client.never.get() == models.NeverProperty()
+    await client.never.put(models.NeverProperty())
+
+
+@pytest.mark.asyncio
+async def test_string(client: ValueTypesClient):
+    body = models.StringProperty(property="hello")
+    assert body.property == body["property"]
+    resp = await client.string.get()
+    assert resp.property == resp["property"] == "hello"
+
+
+@pytest.mark.asyncio
+async def test_string_literal(client: ValueTypesClient):
+    body = models.StringLiteralProperty(property="hello")
+    assert body.property == body["property"]
+    resp = await client.string_literal.get()
+    assert resp.property == resp["property"] == "hello"
+
+
+@pytest.mark.asyncio
+async def test_union_enum_value(client: ValueTypesClient):
+    body = models.UnionEnumValueProperty(property=models.ExtendedEnum.ENUM_VALUE2)
+    assert body.property == body["property"]
+    resp = await client.union_enum_value.get()
+    assert resp.property == resp["property"] == "value2"
+
+
+@pytest.mark.asyncio
+async def test_union_float_literal(client: ValueTypesClient):
+    body = models.UnionFloatLiteralProperty(property=46.875)
+    assert body.property == body["property"]
+    resp = await client.union_float_literal.get()
+    assert resp.property == resp["property"] == 46.875
+
+
+@pytest.mark.asyncio
+async def test_union_int_literal(client: ValueTypesClient):
+    body = models.UnionIntLiteralProperty(property=42)
+    assert body.property == body["property"]
+    resp = await client.union_int_literal.get()
+    assert resp.property == resp["property"] == 42
+
+
+@pytest.mark.asyncio
+async def test_union_string_literal(client: ValueTypesClient):
+    body = models.UnionStringLiteralProperty(property="world")
+    assert body.property == body["property"]
+    resp = await client.union_string_literal.get()
+    assert resp.property == resp["property"] == "world"
+
+
+@pytest.mark.asyncio
+async def test_unknown_array(client: ValueTypesClient):
+    body = models.UnknownArrayProperty(property=["hello", "world"])
+    assert body.property == body["property"]
+    resp = await client.unknown_array.get()
+    assert resp.property == resp["property"] == ["hello", "world"]
+
+
+@pytest.mark.asyncio
+async def test_unknown_dict(client: ValueTypesClient):
+    body = models.UnknownDictProperty(property={"k1": "hello", "k2": 42})
+    assert body.property == body["property"]
+    resp = await client.unknown_dict.get()
+    assert resp.property == resp["property"] == {"k1": "hello", "k2": 42}
+
+
+@pytest.mark.asyncio
+async def test_unknown_int(client: ValueTypesClient):
+    body = models.UnknownIntProperty(property=42)
+    assert body.property == body["property"]
+    resp = await client.unknown_int.get()
+    assert resp.property == resp["property"] == 42
+
+
+@pytest.mark.asyncio
+async def test_unknown_string(client: ValueTypesClient):
+    body = models.UnknownStringProperty(property="hello")
+    assert body.property == body["property"]
+    resp = await client.unknown_string.get()
+    assert resp.property == resp["property"] == "hello"

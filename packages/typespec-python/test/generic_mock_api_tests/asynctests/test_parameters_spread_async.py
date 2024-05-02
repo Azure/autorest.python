@@ -26,9 +26,7 @@ async def test_alias_body(client: SpreadClient):
 
 @pytest.mark.asyncio
 async def test_alias_parameter(client: SpreadClient):
-    await client.alias.spread_as_request_parameter(
-        "1", x_ms_test_header="bar", name="foo"
-    )
+    await client.alias.spread_as_request_parameter("1", x_ms_test_header="bar", name="foo")
 
 
 @pytest.mark.asyncio

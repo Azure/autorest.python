@@ -16,8 +16,10 @@ def client():
 def test_without_api_version(client: NotVersionedClient):
     client.without_api_version()
 
+
 def test_with_query_api_version(client: NotVersionedClient):
     client.with_query_api_version()
+
 
 def test_with_path_api_version(client: NotVersionedClient):
     client.with_path_api_version()

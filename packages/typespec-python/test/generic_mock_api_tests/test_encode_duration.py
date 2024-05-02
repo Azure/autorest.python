@@ -31,15 +31,11 @@ def test_query(client: DurationClient):
 
 
 def test_property(client: DurationClient):
-    result = client.property.default(
-        DefaultDurationProperty(value=datetime.timedelta(days=40))
-    )
+    result = client.property.default(DefaultDurationProperty(value=datetime.timedelta(days=40)))
     assert result.value == datetime.timedelta(days=40)
     result = client.property.default(DefaultDurationProperty(value="P40D"))
     assert result.value == datetime.timedelta(days=40)
-    result = client.property.iso8601(
-        ISO8601DurationProperty(value=datetime.timedelta(days=40))
-    )
+    result = client.property.iso8601(ISO8601DurationProperty(value=datetime.timedelta(days=40)))
     assert result.value == datetime.timedelta(days=40)
     result = client.property.iso8601(ISO8601DurationProperty(value="P40D"))
     assert result.value == datetime.timedelta(days=40)
@@ -47,9 +43,7 @@ def test_property(client: DurationClient):
     assert result.value == 36
     result = client.property.float_seconds(FloatSecondsDurationProperty(value=35.621))
     assert abs(result.value - 35.621) < 0.0001
-    result = client.property.float_seconds_array(
-        FloatSecondsDurationArrayProperty(value=[35.621, 46.781])
-    )
+    result = client.property.float_seconds_array(FloatSecondsDurationArrayProperty(value=[35.621, 46.781]))
     assert abs(result.value[0] - 35.621) < 0.0001
     assert abs(result.value[1] - 46.781) < 0.0001
 

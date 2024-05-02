@@ -16,11 +16,14 @@ def client():
 def test_without_api_version(client: VersionedClient):
     client.without_api_version()
 
+
 def test_with_query_api_version(client: VersionedClient):
     client.with_query_api_version()
 
+
 def test_with_path_api_version(client: VersionedClient):
     client.with_path_api_version()
+
 
 def test_with_query_old_api_version():
     with VersionedClient(endpoint="http://localhost:3000", api_version="2021-01-01-preview") as client:
