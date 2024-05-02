@@ -14,7 +14,7 @@ PNG = Path(__file__).parent / "data/image.png"
 
 @pytest.fixture
 async def client():
-    with MultiPartClient(endpoint="http://localhost:3000") as client:
+    async with MultiPartClient(endpoint="http://localhost:3000") as client:
         yield client
 
 
