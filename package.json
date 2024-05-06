@@ -6,6 +6,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "pnpm@8.13.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "watch": "tsc --build ./tsconfig.ws.json --watch",

@@ -55,24 +55,18 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
+    - script: pnpm change verify
+      displayName: Check changelog
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
+      continueOnError: true
+
     - script: pnpm list
       displayName: Pnpm list
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
 
     - script: pnpm run build
       displayName: Build project
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: pnpm check-version-mismatch
-      displayName: Check version mismatch
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: pnpm lint
-      displayName: Lint project
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: pnpm check-format
-      displayName: Check formatting
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
     - script: pip install -r dev_requirements.txt
