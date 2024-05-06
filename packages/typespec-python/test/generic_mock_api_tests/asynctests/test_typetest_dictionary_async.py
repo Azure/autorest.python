@@ -73,6 +73,7 @@ async def test_nullable_float_value(client: DictionaryClient):
     assert await client.nullable_float_value.get() == value
     await client.nullable_float_value.put(value)
 
+
 @pytest.mark.asyncio
 async def test_recursive_model_value(client: DictionaryClient):
     value = {

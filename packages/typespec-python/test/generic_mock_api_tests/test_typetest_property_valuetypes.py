@@ -17,27 +17,6 @@ def client():
         yield client
 
 
-def test_model_deserialization(client: ValueTypesClient):
-    body = models.ModelProperty(property={"property": "hello"})
-    assert body.property.property == body["property"]["property"]
-    client.model.put(body)
-
-    resp = client.model.get()
-    assert resp.property.property == resp["property"]["property"]
-
-    body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
-    assert body.property[0].property == body["property"][0]["property"]
-    resp = client.collections_model.get()
-    assert resp.property[1].property == resp["property"][1]["property"]
-
-
-def test_enum_property():
-    for prop in ["ValueOne", models.FixedInnerEnum.VALUE_ONE]:
-        string_type = models.EnumProperty(property=prop)
-        assert isinstance(string_type.property, models.FixedInnerEnum)
-        assert isinstance(string_type["property"], str)
-
-
 def test_boolean(client: ValueTypesClient):
     body = models.BooleanProperty(property=True)
     assert body.property == body["property"]
@@ -70,6 +49,8 @@ def test_bytes(client: ValueTypesClient):
 def test_collections_int(client: ValueTypesClient):
     body = models.CollectionsIntProperty(property=[1, 2])
     assert body.property == body["property"]
+    client.collections_int.put(body)
+
     resp = client.collections_int.get()
     assert resp.property == resp["property"] == [1, 2]
 
@@ -77,6 +58,8 @@ def test_collections_int(client: ValueTypesClient):
 def test_collections_model(client: ValueTypesClient):
     body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
     assert body.property[0].property == body["property"][0]["property"]
+    client.collections_model.put(body)
+
     resp = client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
 

@@ -64,6 +64,7 @@ def test_nullable_float_value(client: DictionaryClient):
     assert client.nullable_float_value.get() == value
     client.nullable_float_value.put(value)
 
+
 def test_recursive_model_value(client: DictionaryClient):
     value = {
         "k1": models.InnerModel(property="hello", children={}),
