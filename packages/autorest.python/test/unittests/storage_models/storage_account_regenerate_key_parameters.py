@@ -20,11 +20,11 @@ class StorageAccountRegenerateKeyParameters(Model):
     """
 
     _validation = {
-        'key_name': {'required': True},
+        "key_name": {"required": True},
     }
 
     _attribute_map = {
-        'key_name': {'key': 'keyName', 'type': 'str'},
+        "key_name": {"key": "keyName", "type": "str"},
     }
 
     def __init__(self, key_name):

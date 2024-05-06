@@ -50,24 +50,34 @@ class AccountSasParameters(Model):
     """
 
     _validation = {
-        'services': {'required': True},
-        'resource_types': {'required': True},
-        'permissions': {'required': True},
-        'shared_access_expiry_time': {'required': True},
+        "services": {"required": True},
+        "resource_types": {"required": True},
+        "permissions": {"required": True},
+        "shared_access_expiry_time": {"required": True},
     }
 
     _attribute_map = {
-        'services': {'key': 'signedServices', 'type': 'str'},
-        'resource_types': {'key': 'signedResourceTypes', 'type': 'str'},
-        'permissions': {'key': 'signedPermission', 'type': 'str'},
-        'ip_address_or_range': {'key': 'signedIp', 'type': 'str'},
-        'protocols': {'key': 'signedProtocol', 'type': 'HttpProtocol'},
-        'shared_access_start_time': {'key': 'signedStart', 'type': 'iso-8601'},
-        'shared_access_expiry_time': {'key': 'signedExpiry', 'type': 'iso-8601'},
-        'key_to_sign': {'key': 'keyToSign', 'type': 'str'},
+        "services": {"key": "signedServices", "type": "str"},
+        "resource_types": {"key": "signedResourceTypes", "type": "str"},
+        "permissions": {"key": "signedPermission", "type": "str"},
+        "ip_address_or_range": {"key": "signedIp", "type": "str"},
+        "protocols": {"key": "signedProtocol", "type": "HttpProtocol"},
+        "shared_access_start_time": {"key": "signedStart", "type": "iso-8601"},
+        "shared_access_expiry_time": {"key": "signedExpiry", "type": "iso-8601"},
+        "key_to_sign": {"key": "keyToSign", "type": "str"},
     }
 
-    def __init__(self, services, resource_types, permissions, shared_access_expiry_time, ip_address_or_range=None, protocols=None, shared_access_start_time=None, key_to_sign=None):
+    def __init__(
+        self,
+        services,
+        resource_types,
+        permissions,
+        shared_access_expiry_time,
+        ip_address_or_range=None,
+        protocols=None,
+        shared_access_start_time=None,
+        key_to_sign=None,
+    ):
         self.services = services
         self.resource_types = resource_types
         self.permissions = permissions

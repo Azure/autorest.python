@@ -22,9 +22,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
     from .client import Client
 
-PagingResponseType = TypeVar(
-    "PagingResponseType", bound=Union[PagingResponse, LROPagingResponse]
-)
+PagingResponseType = TypeVar("PagingResponseType", bound=Union[PagingResponse, LROPagingResponse])
 
 
 class PagingOperationBase(OperationBase[PagingResponseType]):
@@ -53,41 +51,25 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             exceptions=exceptions,
             overloads=overloads,
         )
-        self.next_request_builder: Optional[
-            Union[RequestBuilder, OverloadedRequestBuilder]
-        ] = (
+        self.next_request_builder: Optional[Union[RequestBuilder, OverloadedRequestBuilder]] = (
             get_request_builder(self.yaml_data["nextOperation"], code_model, client)
             if self.yaml_data.get("nextOperation")
             else None
         )
         self.override_success_response_to_200 = override_success_response_to_200
-        self.pager_sync: str = (
-            yaml_data.get("pagerSync")
-            or f"{self.code_model.core_library}.paging.ItemPaged"
-        )
-        self.pager_async: str = (
-            yaml_data.get("pagerAsync")
-            or f"{self.code_model.core_library}.paging.AsyncItemPaged"
-        )
+        self.pager_sync: str = yaml_data.get("pagerSync") or f"{self.code_model.core_library}.paging.ItemPaged"
+        self.pager_async: str = yaml_data.get("pagerAsync") or f"{self.code_model.core_library}.paging.AsyncItemPaged"
 
     def _get_attr_name(self, wire_name: str) -> str:
         response_type = self.responses[0].type
         if not response_type:
-            raise ValueError(
-                f"Can't find a matching property in response for {wire_name}"
-            )
+            raise ValueError(f"Can't find a matching property in response for {wire_name}")
         if response_type.type == "list":
             response_type = cast(ListType, response_type).element_type
         try:
-            return next(
-                p.client_name
-                for p in cast(ModelType, response_type).properties
-                if p.wire_name == wire_name
-            )
+            return next(p.client_name for p in cast(ModelType, response_type).properties if p.wire_name == wire_name)
         except StopIteration as exc:
-            raise ValueError(
-                f"Can't find a matching property in response for {wire_name}"
-            ) from exc
+            raise ValueError(f"Can't find a matching property in response for {wire_name}") from exc
 
     def get_pager(self, async_mode: bool) -> str:
         return self.responses[0].get_pager(async_mode)
@@ -115,9 +97,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         try:
             item_type_yaml = self.yaml_data["itemType"]
         except KeyError as e:
-            raise ValueError(
-                "Only call this for DPG paging model deserialization"
-            ) from e
+            raise ValueError("Only call this for DPG paging model deserialization") from e
         return cast(ModelType, self.code_model.types_map[id(item_type_yaml)])
 
     @property
@@ -130,13 +110,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def _imports_shared(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = super()._imports_shared(async_mode, **kwargs)
         if async_mode:
-            file_import.add_submodule_import(
-                "typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
+            file_import.add_submodule_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         else:
-            file_import.add_submodule_import(
-                "typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
+            file_import.add_submodule_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if (
             self.next_request_builder
             and self.code_model.options["builders_visibility"] == "embedded"
@@ -161,9 +137,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 ImportType.SDKCORE,
             )
         if self.next_request_builder:
-            file_import.merge(
-                self.get_request_builder_import(self.next_request_builder, async_mode)
-            )
+            file_import.merge(self.get_request_builder_import(self.next_request_builder, async_mode))
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
@@ -174,12 +148,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."
             file_import.merge(self.item_type.imports(**kwargs))
-            if self.default_error_deserialization or any(
-                r.type for r in self.responses
-            ):
-                file_import.add_submodule_import(
-                    f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
-                )
+            if self.default_error_deserialization or any(r.type for r in self.responses):
+                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
         return file_import
 
 

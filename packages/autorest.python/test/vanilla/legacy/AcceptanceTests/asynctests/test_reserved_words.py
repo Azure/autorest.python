@@ -26,34 +26,42 @@
 import pytest
 from reservedwords import models, aio
 
+
 @pytest.fixture
 async def client():
     async with aio.ReservedWordsClient() as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_operation_group_import(client):
     await client.import_operations.operation_one(parameter1="foo")
+
 
 @pytest.mark.asyncio
 async def test_operation_with_content_param(client):
     await client.operation_with_content_param(b"hello, world")
 
+
 @pytest.mark.asyncio
 async def test_operation_with_json_param(client):
     await client.operation_with_json_param({"hello": "world"})
+
 
 @pytest.mark.asyncio
 async def test_operation_with_data_param(client):
     await client.operation_with_data_param(data="hello", world="world")
 
+
 @pytest.mark.asyncio
 async def test_operation_with_files_param(client):
     await client.operation_with_files_param(file_name="my.txt", files=b"bytes")
 
+
 @pytest.mark.asyncio
 async def test_operation_with_url(client):
     await client.operation_with_url("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])
+
 
 @pytest.mark.asyncio
 async def test_operation_with_enum(client):

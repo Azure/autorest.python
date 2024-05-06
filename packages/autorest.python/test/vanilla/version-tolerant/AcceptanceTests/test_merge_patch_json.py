@@ -27,10 +27,12 @@ from mergepatchjsonversiontolerant import MergePatchJsonClient
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with MergePatchJsonClient() as client:
         yield client
+
 
 def test_merge_patch_json(client):
     client.patch_single({"foo": "bar"}) == "Success!"

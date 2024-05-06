@@ -80,15 +80,11 @@ def Process(plugin_name: str, session_id: str) -> bool:
 def main() -> None:
     # If --python.debugger is specified on the command line, we call the server.py file internally
     # with flag --debug.
-    if "--debug" in sys.argv or os.environ.get(
-        "AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False
-    ):
+    if "--debug" in sys.argv or os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
             import debugpy  # pylint: disable=import-outside-toplevel
         except ImportError as exc:
-            raise SystemExit(
-                "Please pip install ptvsd in order to use VSCode debugging"
-            ) from exc
+            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging") from exc
 
         # 5678 is the default attach port in the VS Code debug configurations
         debugpy.listen(("localhost", 5678))
@@ -101,9 +97,7 @@ def main() -> None:
         _LOGGER.debug("Trying to read")
         message = read_message()
 
-        response = typing.cast(
-            JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)
-        ).json
+        response = typing.cast(JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)).json
         _LOGGER.debug("Produced: %s", response)
         write_message(response)
         _LOGGER.debug("Message processed")

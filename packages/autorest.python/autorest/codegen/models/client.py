@@ -40,9 +40,7 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
     ):
         super().__init__(yaml_data, code_model)
         self.parameters = parameters
-        self.url: str = self.yaml_data[
-            "url"
-        ]  # the base endpoint of the client. Can be parameterized or not
+        self.url: str = self.yaml_data["url"]  # the base endpoint of the client. Can be parameterized or not
         self.legacy_filename: str = self.yaml_data.get("legacyFilename", "client")
 
     @property
@@ -139,11 +137,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def send_request_name(self) -> str:
         """Name of the send request function"""
-        return (
-            "send_request"
-            if self.code_model.options["show_send_request"]
-            else "_send_request"
-        )
+        return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
 
     @property
     def has_parameterized_host(self) -> bool:
@@ -170,48 +164,28 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def filename(self) -> str:
         """Name of the file for the client"""
-        if (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-        ):
+        if self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"]:
             return "_client"
         return f"_{self.legacy_filename}"
 
-    def lookup_request_builder(
-        self, request_builder_id: int
-    ) -> Union[RequestBuilder, OverloadedRequestBuilder]:
+    def lookup_request_builder(self, request_builder_id: int) -> Union[RequestBuilder, OverloadedRequestBuilder]:
         """Find the request builder based off of id"""
         try:
-            return next(
-                rb
-                for rb in self.request_builders
-                if id(rb.yaml_data) == request_builder_id
-            )
+            return next(rb for rb in self.request_builders if id(rb.yaml_data) == request_builder_id)
         except StopIteration as exc:
-            raise KeyError(
-                f"No request builder with id {request_builder_id} found."
-            ) from exc
+            raise KeyError(f"No request builder with id {request_builder_id} found.") from exc
 
     def lookup_operation(self, operation_id: int) -> "OperationType":
         try:
-            return next(
-                o
-                for og in self.operation_groups
-                for o in og.operations
-                if id(o.yaml_data) == operation_id
-            )
+            return next(o for og in self.operation_groups for o in og.operations if id(o.yaml_data) == operation_id)
         except StopIteration as exc:
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.code_model.options["azure_arm"]:
-            file_import.add_submodule_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE
-            )
+            file_import.add_submodule_import("azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE)
         else:
             file_import.add_submodule_import(
                 "" if self.code_model.is_azure_flavor else "runtime",
@@ -261,11 +235,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def lro_operations(self) -> List["OperationType"]:
         """all LRO operations in this SDK?"""
-        return [
-            operation
-            for operation_group in self.operation_groups
-            for operation in operation_group.lro_operations
-        ]
+        return [operation for operation_group in self.operation_groups for operation in operation_group.lro_operations]
 
     @property
     def has_public_lro_operations(self) -> bool:
@@ -274,18 +244,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @property
     def has_operations(self) -> bool:
-        return any(
-            operation_group.has_operations for operation_group in self.operation_groups
-        )
+        return any(operation_group.has_operations for operation_group in self.operation_groups)
 
     def link_lro_initial_operations(self) -> None:
         """Link each LRO operation to its initial operation"""
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if isinstance(operation, (LROOperation, LROPagingOperation)):
-                    operation.initial_operation = self.lookup_operation(
-                        id(operation.yaml_data["initialOperation"])
-                    )
+                    operation.initial_operation = self.lookup_operation(id(operation.yaml_data["initialOperation"]))
 
     @property
     def need_request_converter(self) -> bool:
@@ -339,14 +305,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.LOCAL,
             )
 
-        if (
-            self.code_model.model_types
-            and self.code_model.options["models_mode"] == "msrest"
-        ):
+        if self.code_model.model_types and self.code_model.options["models_mode"] == "msrest":
             path_to_models = ".." if async_mode else "."
-            file_import.add_submodule_import(
-                path_to_models, "models", ImportType.LOCAL, alias="_models"
-            )
+            file_import.add_submodule_import(path_to_models, "models", ImportType.LOCAL, alias="_models")
         elif self.code_model.options["models_mode"] == "msrest":
             # in this case, we have client_models = {} in the service client, which needs a type annotation
             # this import will always be commented, so will always add it to the typing section
@@ -356,22 +317,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
-        file_import.add_submodule_import(
-            "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         try:
             mixin_operation = next(og for og in self.operation_groups if og.is_mixin)
-            file_import.add_submodule_import(
-                "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
-            )
+            file_import.add_submodule_import("._operations_mixin", mixin_operation.class_name, ImportType.LOCAL)
         except StopIteration:
             pass
-        file_import.add_submodule_import(
-            "azure.profiles", "KnownProfiles", import_type=ImportType.SDKCORE
-        )
-        file_import.add_submodule_import(
-            "azure.profiles", "ProfileDefinition", import_type=ImportType.SDKCORE
-        )
+        file_import.add_submodule_import("azure.profiles", "KnownProfiles", import_type=ImportType.SDKCORE)
+        file_import.add_submodule_import("azure.profiles", "ProfileDefinition", import_type=ImportType.SDKCORE)
         file_import.add_submodule_import(
             "azure.profiles.multiapiclient",
             "MultiApiClientMixin",
@@ -430,35 +383,20 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
             "policies",
             ImportType.SDKCORE,
         )
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.code_model.options["package_version"]:
-            file_import.add_submodule_import(
-                ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
-            )
+            file_import.add_submodule_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
         if self.code_model.options["azure_arm"]:
-            policy = (
-                "AsyncARMChallengeAuthenticationPolicy"
-                if async_mode
-                else "ARMChallengeAuthenticationPolicy"
-            )
-            file_import.add_submodule_import(
-                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE
-            )
-            file_import.add_submodule_import(
-                "azure.mgmt.core.policies", policy, ImportType.SDKCORE
-            )
+            policy = "AsyncARMChallengeAuthenticationPolicy" if async_mode else "ARMChallengeAuthenticationPolicy"
+            file_import.add_submodule_import("azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE)
+            file_import.add_submodule_import("azure.mgmt.core.policies", policy, ImportType.SDKCORE)
 
         return file_import
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
         for gp in self.parameters:
-            if (
-                gp.method_location == ParameterMethodLocation.KWARG
-                and gp not in self.parameters.kwargs_to_pop
-            ):
+            if gp.method_location == ParameterMethodLocation.KWARG and gp not in self.parameters.kwargs_to_pop:
                 continue
             file_import.merge(
                 gp.imports(

@@ -32,15 +32,18 @@ from azurespecialpropertiesversiontolerant.aio import AutoRestAzureSpecialParame
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestParameterGroupingTestService() as client:
         await yield_(client)
 
+
 @pytest.fixture
 def valid_subscription():
-    return '1234-5678-9012-3456'
+    return "1234-5678-9012-3456"
+
 
 @pytest.fixture
 @async_generator
@@ -50,30 +53,35 @@ async def azure_client(valid_subscription, credential, authentication_policy):
     ) as client:
         await yield_(client)
 
+
 @pytest.fixture
 def body_parameter():
     return 1234
 
+
 @pytest.fixture
 def header_parameter():
-    return 'header'
+    return "header"
+
 
 @pytest.fixture
 def query_parameter():
     return 21
 
+
 @pytest.fixture
 def path_parameter():
-    return 'path'
+    return "path"
 
 
 @pytest.fixture
 def unencoded_path():
-    return 'path1/path2/path3'
+    return "path1/path2/path3"
+
 
 @pytest.fixture
 def unencoded_query():
-    return 'value1&q2=value2&q3=value3'
+    return "value1&q2=value2&q3=value3"
 
 
 @pytest.mark.asyncio
@@ -85,13 +93,11 @@ async def test_post_all_required_parameters(client, body_parameter, header_param
         custom_header=header_parameter,
     )
 
+
 @pytest.mark.asyncio
 async def test_post_required_parameters_null_optional_parameters(client, body_parameter, path_parameter):
-    await client.parameter_grouping.post_required(
-        path_parameter,
-        body_parameter,
-        query=None
-    )
+    await client.parameter_grouping.post_required(path_parameter, body_parameter, query=None)
+
 
 @pytest.mark.asyncio
 async def test_post_required_parameters_with_null_required_property(client, path_parameter):
@@ -102,6 +108,7 @@ async def test_post_required_parameters_with_null_required_property(client, path
     with pytest.raises(TypeError):
         await client.parameter_grouping.post_required()
 
+
 @pytest.mark.asyncio
 async def test_post_all_optional(client, header_parameter, query_parameter):
     await client.parameter_grouping.post_optional(
@@ -109,9 +116,11 @@ async def test_post_all_optional(client, header_parameter, query_parameter):
         query=query_parameter,
     )
 
+
 @pytest.mark.asyncio
 async def test_post_none_optional(client):
     await client.parameter_grouping.post_optional(query=None)
+
 
 @pytest.mark.asyncio
 async def test_post_all_multi_param_groups(client, header_parameter, query_parameter):
@@ -122,6 +131,7 @@ async def test_post_all_multi_param_groups(client, header_parameter, query_param
         query_two=42,
     )
 
+
 @pytest.mark.asyncio
 async def test_post_some_multi_param_groups(client, header_parameter):
     await client.parameter_grouping.post_multi_param_groups(
@@ -129,13 +139,16 @@ async def test_post_some_multi_param_groups(client, header_parameter):
         query_two=42,
     )
 
+
 @pytest.mark.asyncio
 async def test_post_shared_parameter_group_object(client, header_parameter):
     await client.parameter_grouping.post_shared_parameter_group_object(header_one=header_parameter)
 
+
 @pytest.mark.asyncio
 async def test_post_reserved_words(client):
     await client.parameter_grouping.post_reserved_words(from_parameter="bob", accept_parameter="yes")
+
 
 @pytest.mark.asyncio
 async def test_subscription_in_credentials(azure_client):
@@ -145,6 +158,7 @@ async def test_subscription_in_credentials(azure_client):
     await azure_client.subscription_in_credentials.post_path_global_valid()
     await azure_client.subscription_in_credentials.post_swagger_global_valid()
 
+
 @pytest.mark.asyncio
 async def test_subscription_in_method(azure_client, valid_subscription):
     await azure_client.subscription_in_method.post_method_local_valid(valid_subscription)
@@ -153,6 +167,7 @@ async def test_subscription_in_method(azure_client, valid_subscription):
     with pytest.raises(ValueError):
         await azure_client.subscription_in_method.post_method_local_null(None)
 
+
 @pytest.mark.asyncio
 async def test_api_version_default(azure_client):
     await azure_client.api_version_default.get_method_global_not_provided_valid()
@@ -160,12 +175,14 @@ async def test_api_version_default(azure_client):
     await azure_client.api_version_default.get_path_global_valid()
     await azure_client.api_version_default.get_swagger_global_valid()
 
+
 @pytest.mark.asyncio
 async def test_api_version_local(azure_client):
     await azure_client.api_version_local.get_method_local_valid()
     await azure_client.api_version_local.get_method_local_null()
     await azure_client.api_version_local.get_path_local_valid()
     await azure_client.api_version_local.get_swagger_local_valid()
+
 
 @pytest.mark.asyncio
 async def test_skip_url_encoding(azure_client, unencoded_path, unencoded_query):
@@ -178,9 +195,11 @@ async def test_skip_url_encoding(azure_client, unencoded_path, unencoded_query):
     await azure_client.skip_url_encoding.get_method_query_null()
     await azure_client.skip_url_encoding.get_method_query_null(q1=None)
 
+
 @pytest.mark.asyncio
 async def test_azure_odata(azure_client):
     await azure_client.odata.get_with_filter(filter="id gt 5 and name eq 'foo'", top=10, orderby="id")
+
 
 @pytest.mark.asyncio
 async def test_group_with_constant(client):

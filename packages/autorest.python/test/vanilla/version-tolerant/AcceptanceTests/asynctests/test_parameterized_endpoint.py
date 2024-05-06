@@ -26,10 +26,12 @@
 import pytest
 from parameterizedendpointversiontolerant.aio import ParmaterizedEndpointClient
 
+
 @pytest.fixture
 async def client():
     async with ParmaterizedEndpointClient(endpoint="http://localhost:3000") as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_get(client):

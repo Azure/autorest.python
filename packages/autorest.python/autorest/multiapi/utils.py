@@ -25,17 +25,13 @@ def _get_default_api_version_from_list(
     # and change it automatically so I can take both syntax as input
     if user_specified_default_api and not user_specified_default_api.startswith("v"):
         default_api_version = [
-            mod_api
-            for mod_api, real_api in mod_to_api_version.items()
-            if real_api == user_specified_default_api
+            mod_api for mod_api, real_api in mod_to_api_version.items() if real_api == user_specified_default_api
         ][0]
         _LOGGER.info("Default API version will be: %s", default_api_version)
         return default_api_version
 
     absolute_latest = sorted(api_versions_list)[-1]
-    not_preview_versions = [
-        version for version in api_versions_list if "preview" not in version
-    ]
+    not_preview_versions = [version for version in api_versions_list if "preview" not in version]
 
     # If there is no preview, easy: the absolute latest is the only latest
     if not not_preview_versions:

@@ -42,63 +42,65 @@ from bodynumber.aio import AutoRestNumberTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestNumber(object):
 
     @pytest.mark.asyncio
     async def test_big_float(self, client):
-        await client.number.put_big_float(3.402823e+20)
-        assert (await client.number.get_big_float()) ==  3.402823e+20
+        await client.number.put_big_float(3.402823e20)
+        assert (await client.number.get_big_float()) == 3.402823e20
 
     @pytest.mark.asyncio
     async def test_small_float(self, client):
         await client.number.put_small_float(3.402823e-20)
-        assert (await client.number.get_small_float()) ==  3.402823e-20
+        assert (await client.number.get_small_float()) == 3.402823e-20
 
     @pytest.mark.asyncio
     async def test_big_double(self, client):
-        await client.number.put_big_double(2.5976931e+101)
-        assert (await client.number.get_big_double()) ==  2.5976931e+101
+        await client.number.put_big_double(2.5976931e101)
+        assert (await client.number.get_big_double()) == 2.5976931e101
 
     @pytest.mark.asyncio
     async def test_small_double(self, client):
         await client.number.put_small_double(2.5976931e-101)
-        assert (await client.number.get_small_double()) ==  2.5976931e-101
+        assert (await client.number.get_small_double()) == 2.5976931e-101
 
     @pytest.mark.asyncio
     async def test_big_double_negative_decimal(self, client):
         await client.number.put_big_double_negative_decimal()
-        assert (await client.number.get_big_double_negative_decimal()) ==  -99999999.99
+        assert (await client.number.get_big_double_negative_decimal()) == -99999999.99
 
     @pytest.mark.asyncio
     async def test_big_double_positive_decimal(self, client):
         await client.number.put_big_double_positive_decimal()
-        assert (await client.number.get_big_double_positive_decimal()) ==  99999999.99
+        assert (await client.number.get_big_double_positive_decimal()) == 99999999.99
 
     @pytest.mark.asyncio
     async def test_big_decimal(self, client):
-        await client.number.put_big_decimal(Decimal(2.5976931e+101))
-        assert (await client.number.get_big_decimal()) ==  2.5976931e+101
+        await client.number.put_big_decimal(Decimal(2.5976931e101))
+        assert (await client.number.get_big_decimal()) == 2.5976931e101
 
     @pytest.mark.asyncio
     async def test_small_decimal(self, client):
         await client.number.put_small_decimal(Decimal(2.5976931e-101))
-        assert (await client.number.get_small_decimal()) ==  2.5976931e-101
+        assert (await client.number.get_small_decimal()) == 2.5976931e-101
 
     @pytest.mark.asyncio
     async def test_get_big_decimal_negative_decimal(self, client):
         await client.number.put_big_decimal_positive_decimal()
-        assert (await client.number.get_big_decimal_negative_decimal()) ==  -99999999.99
+        assert (await client.number.get_big_decimal_negative_decimal()) == -99999999.99
 
     @pytest.mark.asyncio
     async def test_get_big_decimal_positive_decimal(self, client):
         await client.number.put_big_decimal_negative_decimal()
-        assert (await client.number.get_big_decimal_positive_decimal()) ==  99999999.99
+        assert (await client.number.get_big_decimal_positive_decimal()) == 99999999.99
 
     @pytest.mark.asyncio
     async def test_get_null(self, client):

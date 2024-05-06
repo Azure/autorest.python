@@ -25,8 +25,10 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy
+
 # Head is azure-arm
 from headversiontolerant.aio import AutoRestHeadTestService
+
 
 @pytest.mark.asyncio
 async def test_arm_http_logging_policy_default(credential):
@@ -34,23 +36,29 @@ async def test_arm_http_logging_policy_default(credential):
         assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
         assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
 
+
 @pytest.mark.asyncio
 async def test_arm_http_logging_policy_custom(credential):
     http_logging_policy = ARMHttpLoggingPolicy(base_url="test")
     http_logging_policy = ARMHttpLoggingPolicy()
-    http_logging_policy.allowed_header_names.update(
-        {"x-ms-added-header"}
-    )
+    http_logging_policy.allowed_header_names.update({"x-ms-added-header"})
     async with AutoRestHeadTestService(credential, http_logging_policy=http_logging_policy) as client:
         assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
-        assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+        assert (
+            client._config.http_logging_policy.allowed_header_names
+            == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+        )
+
 
 @pytest.mark.asyncio
 async def test_credential_scopes_default(credential):
     async with AutoRestHeadTestService(credential) as client:
-        assert client._config.credential_scopes == ['https://management.azure.com/.default']
+        assert client._config.credential_scopes == ["https://management.azure.com/.default"]
+
 
 @pytest.mark.asyncio
 async def test_credential_scopes_override(credential):
-    async with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
+    async with AutoRestHeadTestService(
+        credential, credential_scopes=["http://i-should-be-the-only-credential"]
+    ) as client:
         assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]

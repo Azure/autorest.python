@@ -23,11 +23,11 @@ class ListAccountSasResponse(Model):
     """
 
     _validation = {
-        'account_sas_token': {'readonly': True},
+        "account_sas_token": {"readonly": True},
     }
 
     _attribute_map = {
-        'account_sas_token': {'key': 'accountSasToken', 'type': 'str'},
+        "account_sas_token": {"key": "accountSasToken", "type": "str"},
     }
 
     def __init__(self):

@@ -39,6 +39,7 @@ async def client():
     async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestDuration(object):
 
     @pytest.mark.asyncio
@@ -53,4 +54,3 @@ class TestDuration(object):
         await client.duration.get_positive_duration()
         delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
         await client.duration.put_positive_duration(delta)
-

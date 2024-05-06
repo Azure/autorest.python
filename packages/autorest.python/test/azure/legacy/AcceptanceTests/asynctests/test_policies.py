@@ -30,14 +30,18 @@ from azure.core import AsyncPipelineClient
 from azure.mgmt.core import AsyncARMPipelineClient
 import pytest
 
+
 def get_policy_class_name(client) -> List[str]:
-    return [p._policy.__class__.__name__ if hasattr(p, "_policy") else p.__class__.__name__ for p in client._client._pipeline._impl_policies]
+    return [
+        p._policy.__class__.__name__ if hasattr(p, "_policy") else p.__class__.__name__
+        for p in client._client._pipeline._impl_policies
+    ]
+
 
 @pytest.mark.parametrize(
-    "sdk_client,pipeline_client", [
-        (AutoRestHeadTestService, AsyncARMPipelineClient),
-        (AutoRestDurationTestService, AsyncPipelineClient)
-])
+    "sdk_client,pipeline_client",
+    [(AutoRestHeadTestService, AsyncARMPipelineClient), (AutoRestDurationTestService, AsyncPipelineClient)],
+)
 @pytest.mark.asyncio
 async def test_policies(sdk_client, pipeline_client):
     client = sdk_client(credential="")

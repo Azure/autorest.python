@@ -80,19 +80,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     @property
     def has_aio_folder(self) -> bool:
-        return not self.code_model.options["no_async"] and bool(
-            self.code_model.has_operations
-        )
+        return not self.code_model.options["no_async"] and bool(self.code_model.has_operations)
 
     @property
     def has_operations_folder(self) -> bool:
-        return self.code_model.options["show_operations"] and bool(
-            self.code_model.has_operations
-        )
+        return self.code_model.options["show_operations"] and bool(self.code_model.has_operations)
 
-    def _serialize_namespace_level(
-        self, env: Environment, namespace_path: Path, clients: List[Client]
-    ) -> None:
+    def _serialize_namespace_level(self, env: Environment, namespace_path: Path, clients: List[Client]) -> None:
         # if there was a patch file before, we keep it
         self._keep_patch_file(namespace_path / Path("_patch.py"), env)
         if self.has_aio_folder:
@@ -100,28 +94,19 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         if self.has_operations_folder:
             self._keep_patch_file(
-                namespace_path
-                / Path(self.code_model.operations_folder_name)
-                / Path("_patch.py"),
+                namespace_path / Path(self.code_model.operations_folder_name) / Path("_patch.py"),
                 env,
             )
             if self.has_aio_folder:
                 self._keep_patch_file(
-                    namespace_path
-                    / Path("aio")
-                    / Path(self.code_model.operations_folder_name)
-                    / Path("_patch.py"),
+                    namespace_path / Path("aio") / Path(self.code_model.operations_folder_name) / Path("_patch.py"),
                     env,
                 )
-        self._serialize_and_write_top_level_folder(
-            env=env, namespace_path=namespace_path, clients=clients
-        )
+        self._serialize_and_write_top_level_folder(env=env, namespace_path=namespace_path, clients=clients)
 
         if any(c for c in self.code_model.clients if c.operation_groups):
             if self.code_model.options["builders_visibility"] != "embedded":
-                self._serialize_and_write_rest_layer(
-                    env=env, namespace_path=namespace_path
-                )
+                self._serialize_and_write_rest_layer(env=env, namespace_path=namespace_path)
             if self.has_aio_folder:
                 self._serialize_and_write_aio_top_level_folder(
                     env=env,
@@ -130,13 +115,9 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 )
 
         if self.has_operations_folder:
-            self._serialize_and_write_operations_folder(
-                clients, env=env, namespace_path=namespace_path
-            )
+            self._serialize_and_write_operations_folder(clients, env=env, namespace_path=namespace_path)
             if self.code_model.options["multiapi"]:
-                self._serialize_and_write_metadata(
-                    env=env, namespace_path=namespace_path
-                )
+                self._serialize_and_write_metadata(env=env, namespace_path=namespace_path)
         if self.code_model.options["package_mode"]:
             self._serialize_and_write_package_files(namespace_path=namespace_path)
 
@@ -166,15 +147,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         )
 
         namespace_path = (
-            Path(".")
-            if self.code_model.options["no_namespace_folders"]
-            else Path(*self._name_space().split("."))
+            Path(".") if self.code_model.options["no_namespace_folders"] else Path(*self._name_space().split("."))
         )
 
         p = namespace_path.parent
-        general_serializer = GeneralSerializer(
-            code_model=self.code_model, env=env, async_mode=False
-        )
+        general_serializer = GeneralSerializer(code_model=self.code_model, env=env, async_mode=False)
         while p != Path("."):
             # write pkgutil init file
             self.write_file(
@@ -195,23 +172,13 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             clients,
         ) in self.code_model.subnamespace_to_clients.items():
             subnamespace_path = namespace_path / Path(subnamespace)
-            self._serialize_namespace_level(
-                env, subnamespace_path, [c for c in clients if c.has_operations]
-            )
+            self._serialize_namespace_level(env, subnamespace_path, [c for c in clients if c.has_operations])
 
-        if self.code_model.options["models_mode"] and (
-            self.code_model.model_types or self.code_model.enums
-        ):
-            self._keep_patch_file(
-                namespace_path / Path("models") / Path("_patch.py"), env
-            )
+        if self.code_model.options["models_mode"] and (self.code_model.model_types or self.code_model.enums):
+            self._keep_patch_file(namespace_path / Path("models") / Path("_patch.py"), env)
 
-        if self.code_model.options["models_mode"] and (
-            self.code_model.model_types or self.code_model.enums
-        ):
-            self._serialize_and_write_models_folder(
-                env=env, namespace_path=namespace_path
-            )
+        if self.code_model.options["models_mode"] and (self.code_model.model_types or self.code_model.enums):
+            self._serialize_and_write_models_folder(env=env, namespace_path=namespace_path)
         if not self.code_model.options["models_mode"]:
             # keep models file if users ended up just writing a models file
             if self.read_file(namespace_path / Path("models.py")):
@@ -229,18 +196,14 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         root_of_sdk = self._package_root_folder(namespace_path)
         if self.code_model.options["package_mode"] in VALID_PACKAGE_MODE:
             env = Environment(
-                loader=PackageLoader(
-                    "autorest.codegen", "templates/packaging_templates"
-                ),
+                loader=PackageLoader("autorest.codegen", "templates/packaging_templates"),
                 undefined=StrictUndefined,
             )
 
             package_files = _PACKAGE_FILES
         elif Path(self.code_model.options["package_mode"]).exists():
             env = Environment(
-                loader=FileSystemLoader(
-                    str(Path(self.code_model.options["package_mode"]))
-                ),
+                loader=FileSystemLoader(str(Path(self.code_model.options["package_mode"]))),
                 keep_trailing_newline=True,
                 undefined=StrictUndefined,
             )
@@ -250,10 +213,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         serializer = GeneralSerializer(self.code_model, env, async_mode=False)
         params = self.code_model.options["packaging_files_config"] or {}
         for template_name in package_files:
-            if (
-                not self.code_model.is_azure_flavor
-                and template_name == "dev_requirements.txt.jinja2"
-            ):
+            if not self.code_model.is_azure_flavor and template_name == "dev_requirements.txt.jinja2":
                 continue
             file = template_name.replace(".jinja2", "")
             output_name = root_of_sdk / file
@@ -272,16 +232,10 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 PatchSerializer(env=env, code_model=self.code_model).serialize(),
             )
 
-    def _serialize_and_write_models_folder(
-        self, env: Environment, namespace_path: Path
-    ) -> None:
+    def _serialize_and_write_models_folder(self, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        serializer = (
-            DpgModelSerializer
-            if self.code_model.options["models_mode"] == "dpg"
-            else MsrestModelSerializer
-        )
+        serializer = DpgModelSerializer if self.code_model.options["models_mode"] == "dpg" else MsrestModelSerializer
         if self.code_model.model_types:
             self.write_file(
                 models_path / Path(f"{self.code_model.models_filename}.py"),
@@ -297,24 +251,15 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             ModelInitSerializer(code_model=self.code_model, env=env).serialize(),
         )
 
-    def _serialize_and_write_rest_layer(
-        self, env: Environment, namespace_path: Path
-    ) -> None:
+    def _serialize_and_write_rest_layer(self, env: Environment, namespace_path: Path) -> None:
         rest_path = namespace_path / Path(self.code_model.rest_layer_name)
-        group_names = {
-            rb.group_name for c in self.code_model.clients for rb in c.request_builders
-        }
+        group_names = {rb.group_name for c in self.code_model.clients for rb in c.request_builders}
 
         for group_name in group_names:
             request_builders = [
-                r
-                for c in self.code_model.clients
-                for r in c.request_builders
-                if r.group_name == group_name
+                r for c in self.code_model.clients for r in c.request_builders if r.group_name == group_name
             ]
-            self._serialize_and_write_single_rest_layer(
-                env, rest_path, request_builders
-            )
+            self._serialize_and_write_single_rest_layer(env, rest_path, request_builders)
         if not "" in group_names:
             self.write_file(
                 rest_path / Path("__init__.py"),
@@ -366,9 +311,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             operation_group=operation_group,
         )
         self.write_file(
-            namespace_path
-            / Path(self.code_model.operations_folder_name)
-            / Path(f"{filename}.py"),
+            namespace_path / Path(self.code_model.operations_folder_name) / Path(f"{filename}.py"),
             operation_group_serializer.serialize(),
         )
 
@@ -382,12 +325,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 operation_group=operation_group,
             )
             self.write_file(
-                (
-                    namespace_path
-                    / Path("aio")
-                    / Path(self.code_model.operations_folder_name)
-                    / Path(f"{filename}.py")
-                ),
+                (namespace_path / Path("aio") / Path(self.code_model.operations_folder_name) / Path(f"{filename}.py")),
                 operation_group_async_serializer.serialize(),
             )
 
@@ -399,9 +337,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             code_model=self.code_model, clients=clients, env=env, async_mode=False
         )
         self.write_file(
-            namespace_path
-            / Path(self.code_model.operations_folder_name)
-            / Path("__init__.py"),
+            namespace_path / Path(self.code_model.operations_folder_name) / Path("__init__.py"),
             operations_init_serializer.serialize(),
         )
 
@@ -411,10 +347,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 code_model=self.code_model, clients=clients, env=env, async_mode=True
             )
             self.write_file(
-                namespace_path
-                / Path("aio")
-                / Path(self.code_model.operations_folder_name)
-                / Path("__init__.py"),
+                namespace_path / Path("aio") / Path(self.code_model.operations_folder_name) / Path("__init__.py"),
                 operations_async_init_serializer.serialize(),
             )
 
@@ -425,9 +358,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 clients=clients,
             )
         else:
-            for operation_group in get_all_operation_groups_recursively(
-                self.code_model.clients
-            ):
+            for operation_group in get_all_operation_groups_recursively(self.code_model.clients):
                 self._serialize_and_write_operations_file(
                     env=env,
                     namespace_path=namespace_path,
@@ -468,9 +399,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         clients: List[Client],
     ) -> None:
         if self.code_model.has_operations:
-            namespace_path = (
-                namespace_path / Path("aio") if async_mode else namespace_path
-            )
+            namespace_path = namespace_path / Path("aio") if async_mode else namespace_path
             self.write_file(
                 namespace_path / Path(f"{self.code_model.client_filename}.py"),
                 general_serializer.serialize_service_client_file(clients),
@@ -483,9 +412,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def _serialize_and_write_top_level_folder(
         self, env: Environment, namespace_path: Path, clients: List[Client]
     ) -> None:
-        general_serializer = GeneralSerializer(
-            code_model=self.code_model, env=env, async_mode=False
-        )
+        general_serializer = GeneralSerializer(code_model=self.code_model, env=env, async_mode=False)
 
         self.write_file(
             namespace_path / Path("__init__.py"),
@@ -493,9 +420,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         )
 
         # Write the service client
-        self._serialize_client_and_config_files(
-            namespace_path, general_serializer, async_mode=False, clients=clients
-        )
+        self._serialize_client_and_config_files(namespace_path, general_serializer, async_mode=False, clients=clients)
         if self.code_model.need_vendored_code(async_mode=False):
             self.write_file(
                 namespace_path / Path("_vendor.py"),
@@ -507,10 +432,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         # write the empty py.typed file
         self.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
 
-        if (
-            not self.code_model.options["client_side_validation"]
-            and not self.code_model.options["multiapi"]
-        ):
+        if not self.code_model.options["client_side_validation"] and not self.code_model.options["multiapi"]:
             self.write_file(
                 namespace_path / Path("_serialization.py"),
                 general_serializer.serialize_serialization_file(),
@@ -521,12 +443,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 general_serializer.serialize_model_base_file(),
             )
 
-        if any(
-            og
-            for client in self.code_model.clients
-            for og in client.operation_groups
-            if og.need_validation
-        ):
+        if any(og for client in self.code_model.clients for og in client.operation_groups if og.need_validation):
             self.write_file(
                 namespace_path / Path("_validation.py"),
                 general_serializer.serialize_validation_file(),
@@ -544,9 +461,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def _serialize_and_write_aio_top_level_folder(
         self, env: Environment, namespace_path: Path, clients: List[Client]
     ) -> None:
-        aio_general_serializer = GeneralSerializer(
-            code_model=self.code_model, env=env, async_mode=True
-        )
+        aio_general_serializer = GeneralSerializer(code_model=self.code_model, env=env, async_mode=True)
 
         aio_path = namespace_path / Path("aio")
 
@@ -566,22 +481,16 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 aio_general_serializer.serialize_vendor_file(clients),
             )
 
-    def _serialize_and_write_metadata(
-        self, env: Environment, namespace_path: Path
-    ) -> None:
+    def _serialize_and_write_metadata(self, env: Environment, namespace_path: Path) -> None:
         metadata_serializer = MetadataSerializer(self.code_model, env)
-        self.write_file(
-            namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
-        )
+        self.write_file(namespace_path / Path("_metadata.json"), metadata_serializer.serialize())
 
     @property
     def _namespace_from_package_name(self) -> str:
         return get_namespace_from_package_name(self.code_model.options["package_name"])
 
     def _name_space(self) -> str:
-        if self.code_model.namespace.count(
-            "."
-        ) >= self._namespace_from_package_name.count("."):
+        if self.code_model.namespace.count(".") >= self._namespace_from_package_name.count("."):
             return self.code_model.namespace
 
         return self._namespace_from_package_name
@@ -592,15 +501,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     @property
     def _additional_folder(self) -> Path:
-        namespace_config = get_namespace_config(
-            self.code_model.namespace, self.code_model.options["multiapi"]
-        )
+        namespace_config = get_namespace_config(self.code_model.namespace, self.code_model.options["multiapi"])
         num_of_namespace = namespace_config.count(".") + 1
         num_of_package_namespace = self._namespace_from_package_name.count(".") + 1
         if num_of_namespace > num_of_package_namespace:
-            return Path(
-                "/".join(namespace_config.split(".")[num_of_package_namespace:])
-            )
+            return Path("/".join(namespace_config.split(".")[num_of_package_namespace:]))
         return Path("")
 
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
@@ -610,8 +515,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 for operation in op_group.operations:
                     if (
                         self.code_model.options["multiapi"]
-                        and operation.api_versions[0]
-                        != self.code_model.options["default_api_version"]
+                        and operation.api_versions[0] != self.code_model.options["default_api_version"]
                     ):
                         continue
                     samples = operation.yaml_data["samples"]
@@ -622,10 +526,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         file_name = to_snake_case(extract_sample_name(file)) + ".py"
                         try:
                             self.write_file(
-                                out_path
-                                / self._additional_folder
-                                / _sample_output_path(file)
-                                / file_name,
+                                out_path / self._additional_folder / _sample_output_path(file) / file_name,
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
@@ -644,9 +545,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         self.code_model.for_test = True
         out_path = self._package_root_folder(namespace_path) / Path("generated_tests")
         general_serializer = TestGeneralSerializer(code_model=self.code_model, env=env)
-        self.write_file(
-            out_path / "conftest.py", general_serializer.serialize_conftest()
-        )
+        self.write_file(out_path / "conftest.py", general_serializer.serialize_conftest())
         for is_async in (True, False):
             async_suffix = "_async" if is_async else ""
             general_serializer.is_async = is_async
@@ -657,15 +556,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         for client in self.code_model.clients:
             for og in client.operation_groups:
-                test_serializer = TestSerializer(
-                    self.code_model, env, client=client, operation_group=og
-                )
+                test_serializer = TestSerializer(self.code_model, env, client=client, operation_group=og)
                 for is_async in (True, False):
                     try:
                         test_serializer.is_async = is_async
                         self.write_file(
-                            out_path
-                            / f"{to_snake_case(test_serializer.test_class_name)}.py",
+                            out_path / f"{to_snake_case(test_serializer.test_class_name)}.py",
                             test_serializer.serialize_test(),
                         )
                     except Exception as e:  # pylint: disable=broad-except

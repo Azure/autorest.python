@@ -10,9 +10,7 @@ from .paging_operation import PagingOperationBase
 from .response import LROPagingResponse, Response
 
 
-class LROPagingOperation(
-    LROOperationBase[LROPagingResponse], PagingOperationBase[LROPagingResponse]
-):
+class LROPagingOperation(LROOperationBase[LROPagingResponse], PagingOperationBase[LROPagingResponse]):
     @property
     def success_status_codes(self):
         """The list of all successfull status code."""

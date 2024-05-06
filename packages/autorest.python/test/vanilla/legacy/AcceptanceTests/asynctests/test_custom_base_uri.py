@@ -42,11 +42,13 @@ from custombaseurlmoreoptions.aio import AutoRestParameterizedCustomHostTestClie
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+    async with AutoRestParameterizedHostTestClient("host:3000", retry_total=0) as client:
         await yield_(client)
+
 
 class TestCustomBaseUri(object):
 
@@ -67,7 +69,7 @@ class TestCustomBaseUri(object):
 
     @pytest.mark.asyncio
     async def test_get_empty_from_bad_host(self):
-        async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+        async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total=0) as client:
             with pytest.raises(ServiceRequestError):
                 await client.paths.get_empty("local")
 
