@@ -176,7 +176,7 @@ class CodeGenerator(Plugin):
             "hidden",
             "embedded",
         ]:
-            raise ValueError("The value of --builders-visibility must be either 'public', 'hidden', " "or 'embedded'")
+            raise ValueError("The value of --builders-visibility must be either 'public', 'hidden', or 'embedded'")
 
         if self.options_retriever.original_models_mode not in ["msrest", "dpg", "none"]:
             raise ValueError(
@@ -327,7 +327,7 @@ class CodeGenerator(Plugin):
 class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         if self._autorestapi.get_boolean_value("python3-only") is False:
-            _LOGGER.warning("You have passed in --python3-only=False. We have force overriden " "this to True.")
+            _LOGGER.warning("You have passed in --python3-only=False. We have force overriden this to True.")
         if self._autorestapi.get_boolean_value("add-python3-operation-files"):
             _LOGGER.warning(
                 "You have passed in --add-python3-operation-files. "
