@@ -34,15 +34,8 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     :type base_url: str
     """
 
-    def __init__(
-        self,
-        credential: "TokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(
-            credential=credential, **kwargs
-        )
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -58,28 +51,18 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
                 self._config.custom_hook_policy,
                 self._config.logging_policy,
                 policies.DistributedTracingPolicy(**kwargs),
-                (
-                    policies.SensitiveHeaderCleanupPolicy(**kwargs)
-                    if self._config.redirect_policy
-                    else None
-                ),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(
-            base_url=base_url, policies=_policies, **kwargs
-        )
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

@@ -32,9 +32,7 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
-ClsType = Optional[
-    Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]
-]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -42,30 +40,21 @@ _SERIALIZER.client_side_validation = False
 
 def build_get_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    _url = kwargs.pop(
-        "template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/"
-    )
+    _url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/method/")
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_param_get_request(
-    *, x_ms_client_request_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = kwargs.pop(
-        "template_url",
-        "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
-    )
+    _url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
 
     # Construct headers
-    _headers["x-ms-client-request-id"] = _SERIALIZER.header(
-        "x_ms_client_request_id", x_ms_client_request_id, "str"
-    )
+    _headers["x-ms-client-request-id"] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -88,14 +77,10 @@ class XMsClientRequestIdOperations:
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = (
-            input_args.pop(0) if input_args else kwargs.pop("deserializer")
-        )
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(
-        self, **kwargs: Any
-    ) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -124,18 +109,14 @@ class XMsClientRequestIdOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = (
-            self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(
-                status_code=response.status_code, response=response, error_map=error_map
-            )
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
@@ -177,21 +158,15 @@ class XMsClientRequestIdOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = (
-            self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(
-                status_code=response.status_code, response=response, error_map=error_map
-            )
-            error = self._deserialize.failsafe_deserialize(
-                _models.Error, pipeline_response
-            )
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

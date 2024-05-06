@@ -6,9 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_http_infrastructure_test_service import (
-    AutoRestHttpInfrastructureTestService,
-)
+from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
 
 try:
     from ._patch import __all__ as _patch_all

@@ -8,25 +8,9 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import (
-    Any,
-    AsyncIterable,
-    Callable,
-    Dict,
-    IO,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    cast,
-    overload,
-)
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
-from my.library.aio import (
-    AsyncCustomDefaultPollingMethod,
-    AsyncCustomPager,
-    AsyncCustomPoller,
-)
+from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from azure.core.async_paging import AsyncList
 from azure.core.exceptions import (
@@ -56,9 +40,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[
-    Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]
-]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
@@ -77,9 +59,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None)
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -112,9 +92,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         if response.status_code not in [200, 204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
-            map_error(
-                status_code=response.status_code, response=response, error_map=error_map
-            )
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         deserialized = None
@@ -131,11 +109,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @overload
     async def begin_basic_polling(
-        self,
-        product: Optional[JSON] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
@@ -170,11 +144,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @overload
     async def begin_basic_polling(
-        self,
-        product: Optional[IO[bytes]] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
@@ -234,9 +204,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None)
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -347,11 +315,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             if response.status_code not in [200]:
                 if _stream:
                     await response.read()  # Load the body in memory and close the socket
-                map_error(
-                    status_code=response.status_code,
-                    response=response,
-                    error_map=error_map,
-                )
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
             return pipeline_response

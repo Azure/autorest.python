@@ -6,7 +6,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
-
 if not sys.version_info >= (3, 8, 0):
     raise Exception("Autorest for Python extension requires Python 3.8 at least")
 
@@ -45,7 +44,6 @@ def main():
         python_run(venv_context, "pip", ["install", "-U", "pip"])
         python_run(venv_context, "pip", ["install", "-r", "requirements.txt"])
         python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR)])
-
 
 if __name__ == "__main__":
     main()
