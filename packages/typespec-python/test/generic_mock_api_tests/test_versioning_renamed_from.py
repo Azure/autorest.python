@@ -22,6 +22,6 @@ def test_new_op(client: RenamedFromClient):
 
 
 def test_new_interface_test(client: RenamedFromClient):
-    assert client.new_interface.test(
+    assert client.new_interface.new_op_in_new_interface(
         NewModel(new_prop="foo", enum_prop=NewEnum.NEW_ENUM_MEMBER, union_prop=10)
     ) == NewModel(new_prop="foo", enum_prop=NewEnum.NEW_ENUM_MEMBER, union_prop=10)
