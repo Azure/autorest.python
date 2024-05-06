@@ -6,12 +6,10 @@ from azure.core.polling._poller import PollingReturnType_co
 class CustomPager(ItemPaged[ReturnType]):
     pass
 
-
 class CustomPoller(LROPoller[PollingReturnType_co]):
     pass
 
-
 __all__ = [
-    "CustomPager",
-    "CustomPoller",
+    'CustomPager',
+    'CustomPoller',
 ]

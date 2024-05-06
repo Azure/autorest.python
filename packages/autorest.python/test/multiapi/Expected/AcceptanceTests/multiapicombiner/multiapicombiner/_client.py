@@ -32,15 +32,12 @@ from .operations import (
 )
 from ._validation import api_version_validation
 from . import models
-
-
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
         Will be removed in final version of multiapi azure-core based client
         """
         pass
-
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
     """Service client for multiapi client testing.
@@ -64,30 +61,28 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
-    DEFAULT_API_VERSION = "3.0.0"
+    DEFAULT_API_VERSION = '3.0.0'
     _PROFILE_TAG = "multiapicombiner.MultiapiServiceClient"
-    LATEST_PROFILE = ProfileDefinition(
-        {
-            _PROFILE_TAG: {
-                None: DEFAULT_API_VERSION,
-                "begin_test_lro": "1.0.0",
-                "begin_test_lro_and_paging": "1.0.0",
-                "test_one": "2.0.0",
-            }
-        },
-        _PROFILE_TAG + " latest",
+    LATEST_PROFILE = ProfileDefinition({
+        _PROFILE_TAG: {
+            None: DEFAULT_API_VERSION,
+            'begin_test_lro': '1.0.0',
+            'begin_test_lro_and_paging': '1.0.0',
+            'test_one': '2.0.0',
+        }},
+        _PROFILE_TAG + " latest"
     )
 
     def __init__(
         self,
         credential: "TokenCredential",
-        api_version: Optional[str] = None,
+        api_version: Optional[str]=None,
         base_url: str = "http://localhost:3000",
-        profile: KnownProfiles = KnownProfiles.default,
+        profile: KnownProfiles=KnownProfiles.default,
         **kwargs: Any
     ):
         if api_version:
-            kwargs.setdefault("api_version", api_version)
+            kwargs.setdefault('api_version', api_version)
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -108,15 +103,20 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
                 self._config.http_logging_policy,
             ]
         self._client = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
-        super(MultiapiServiceClient, self).__init__(api_version=api_version, profile=profile)
+        super(MultiapiServiceClient, self).__init__(
+            api_version=api_version,
+            profile=profile
+        )
 
         self._serialize = Serializer(self._models_dict())
         self._deserialize = Deserializer(self._models_dict())
         self._serialize.client_side_validation = False
 
+
     @classmethod
     def _models_dict(cls):
         return {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+
 
     @property
     def operation_group_one(self):
@@ -130,7 +130,9 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         )
 
     @property
-    @api_version_validation(method_valid_on=["2.0.0", "3.0.0"])
+    @api_version_validation(
+        method_valid_on=['2.0.0', '3.0.0']
+    )
     def operation_group_two(self):
         api_version = self._get_api_version("operation_group_two")
         return OperationGroupTwoOperations(
@@ -143,10 +145,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def close(self):
         self._client.close()
-
     def __enter__(self):
         self._client.__enter__()
         return self
-
     def __exit__(self, *exc_details):
         self._client.__exit__(*exc_details)

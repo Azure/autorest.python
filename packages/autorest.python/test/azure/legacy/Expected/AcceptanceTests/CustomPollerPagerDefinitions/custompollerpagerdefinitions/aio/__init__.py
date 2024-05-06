@@ -4,15 +4,14 @@ from azure.core.polling import AsyncLROPoller
 from azure.core.polling._poller import PollingReturnType_co
 
 
+
 class AsyncCustomPager(AsyncItemPaged[ReturnType]):
     pass
-
 
 class AsyncCustomPoller(AsyncLROPoller[PollingReturnType_co]):
     pass
 
-
 __all__ = [
-    "AsyncCustomPager",
-    "AsyncCustomPoller",
+    'AsyncCustomPager',
+    'AsyncCustomPoller',
 ]

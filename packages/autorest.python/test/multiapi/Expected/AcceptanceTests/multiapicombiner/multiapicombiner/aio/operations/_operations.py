@@ -48,6 +48,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
+
 from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
@@ -58,20 +59,17 @@ from ...operations._operations import build_operation_group_one_test_three_reque
 from ...operations._operations import build_multiapi_service_test_lro_and_paging_request
 from ...operations._operations import build_multiapi_service_test_lro_request
 from ...operations._operations import build_multiapi_service_test_one_request
-
-
 class OperationGroupOneOperations:
     """
-
+    
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
         :attr:`operation_group_one` attribute.
-
+    
     """
-
     models = _models
 
     def __init__(self, *args, **kwargs):
@@ -81,10 +79,9 @@ class OperationGroupOneOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
-
     @api_version_validation(
         params_valid_on={
-            "parameter_one": ["2.0.0", "3.0.0"],
+            "parameter_one": ['2.0.0', '3.0.0'],
         }
     )
     @distributed_trace_async
@@ -156,8 +153,9 @@ class OperationGroupOneOperations:
 
         return deserialized  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["2.0.0"],
+       method_valid_on=['2.0.0'],
     )
     @distributed_trace_async
     async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -204,8 +202,9 @@ class OperationGroupOneOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["3.0.0"],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace
     def test_operation_group_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
@@ -283,16 +282,15 @@ class OperationGroupOneOperations:
 
 class OperationGroupTwoOperations:
     """
-
+    
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
         :attr:`operation_group_two` attribute.
-
+    
     """
-
     models = _models
 
     def __init__(self, *args, **kwargs):
@@ -302,11 +300,10 @@ class OperationGroupTwoOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
-
     @api_version_validation(
         params_valid_on={
-            "parameter_one": ["2.0.0"],
-            "input": ["3.0.0"],
+            "parameter_one": ['2.0.0'],
+            "input": ['3.0.0'],
         }
     )
     @distributed_trace_async
@@ -374,8 +371,9 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["3.0.0"],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace_async
     async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -425,7 +423,7 @@ class OperationGroupTwoOperations:
 
 class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def _api_version(self, op_name: str) -> str:
-        return self._get_api_version(op_name)
+       return self._get_api_version(op_name)
 
     async def _test_lro_and_paging_initial(
         self,
@@ -480,6 +478,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+
 
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
@@ -540,8 +539,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["1.0.0"],
+       method_valid_on=['1.0.0'],
     )
     @distributed_trace_async
     async def begin_test_lro(
@@ -599,8 +599,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
+
     @api_version_validation(
-        method_valid_on=["1.0.0"],
+       method_valid_on=['1.0.0'],
     )
     @distributed_trace_async
     async def begin_test_lro_and_paging(
@@ -733,10 +734,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
+
     @api_version_validation(
         params_valid_on={
-            "greeting_in_chinese": ["2.0.0", "3.0.0"],
-            "greeting_in_french": ["3.0.0"],
+            "greeting_in_chinese": ['2.0.0', '3.0.0'],
+            "greeting_in_french": ['3.0.0'],
         }
     )
     @distributed_trace_async
@@ -802,8 +804,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["1.0.0", "2.0.0"],
+       method_valid_on=['1.0.0', '2.0.0'],
     )
     @distributed_trace_async
     async def test_one(self, *, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
@@ -862,8 +865,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized  # type: ignore
 
+
     @api_version_validation(
-        method_valid_on=["3.0.0"],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
@@ -937,3 +941,5 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+
+

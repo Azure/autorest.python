@@ -11,6 +11,8 @@ exclude = '''
   | build
   | dist
   | node_modules
+  | Expected/AcceptanceTests
+  | generated/
 )/
 '''
 line-length = 120

@@ -10,6 +10,8 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
+
+
 class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
@@ -21,3 +23,4 @@ class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content Type 'image/png'"""
     IMAGE_TIFF = "image/tiff"
     """Content Type 'image/tiff'"""
+

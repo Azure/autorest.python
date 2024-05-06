@@ -7,7 +7,6 @@ from azure.core.polling._poller import PollingReturnType_co
 class CustomPager(ItemPaged[ReturnType]):
     pass
 
-
 class CustomPoller(LROPoller[PollingReturnType_co]):
     @classmethod
     def from_continuation_token(
@@ -20,8 +19,7 @@ class CustomPoller(LROPoller[PollingReturnType_co]):
         ) = polling_method.from_continuation_token(continuation_token, **kwargs)
         return cls(client, initial_response, deserialization_callback, polling_method)
 
-
 __all__ = [
-    "CustomPager",
-    "CustomPoller",
+    'CustomPager',
+    'CustomPoller',
 ]
