@@ -45,11 +45,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operations_list_request(**kwargs: Any) -> HttpRequest:
+def build_operations_list_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -65,12 +64,11 @@ def build_operations_list_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_catalogs_get_request(
-    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, catalog_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -93,13 +91,12 @@ def build_catalogs_get_request(
 
 
 def build_catalogs_create_or_update_request(
-    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, catalog_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -124,13 +121,12 @@ def build_catalogs_create_or_update_request(
 
 
 def build_catalogs_update_request(
-    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, catalog_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -155,12 +151,11 @@ def build_catalogs_update_request(
 
 
 def build_catalogs_delete_request(
-    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, catalog_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -183,12 +178,11 @@ def build_catalogs_delete_request(
 
 
 def build_catalogs_list_by_resource_group_request(  # pylint: disable=name-too-long
-    resource_group_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -210,12 +204,11 @@ def build_catalogs_list_by_resource_group_request(  # pylint: disable=name-too-l
 
 
 def build_catalogs_list_by_subscription_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
+    subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -443,12 +436,17 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
 
 
 def build_images_get_request(
-    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    catalog_name: str,
+    image_name: str,
+    subscription_id: str,
+    *,
+    api_version: str,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -476,6 +474,7 @@ def build_images_list_by_catalog_request(
     catalog_name: str,
     subscription_id: str,
     *,
+    api_version: str,
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
@@ -485,7 +484,6 @@ def build_images_list_by_catalog_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -516,13 +514,18 @@ def build_images_list_by_catalog_request(
 
 
 def build_images_create_or_update_request(
-    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    catalog_name: str,
+    image_name: str,
+    subscription_id: str,
+    *,
+    api_version: str,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -548,12 +551,17 @@ def build_images_create_or_update_request(
 
 
 def build_images_delete_request(
-    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    catalog_name: str,
+    image_name: str,
+    subscription_id: str,
+    *,
+    api_version: str,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -842,12 +850,17 @@ def build_device_groups_claim_devices_request(  # pylint: disable=name-too-long
 
 
 def build_certificates_get_request(
-    resource_group_name: str, catalog_name: str, serial_number: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    catalog_name: str,
+    serial_number: str,
+    subscription_id: str,
+    *,
+    api_version: str,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -875,6 +888,7 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
     catalog_name: str,
     subscription_id: str,
     *,
+    api_version: str,
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
@@ -884,7 +898,6 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1367,12 +1380,11 @@ def build_devices_generate_capability_image_request(  # pylint: disable=name-too
 
 
 def build_products_list_by_catalog_request(
-    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, catalog_name: str, subscription_id: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -1865,8 +1877,8 @@ class CatalogsOperations:
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -2577,8 +2589,8 @@ class CatalogsOperations:
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -4126,11 +4138,11 @@ class ImagesOperations:
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=self._config.api_version,
                     filter=filter,
                     top=top,
                     skip=skip,
                     maxpagesize=maxpagesize,
-                    api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
@@ -4214,8 +4226,8 @@ class ImagesOperations:
             catalog_name=catalog_name,
             image_name=image_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -6724,11 +6736,11 @@ class CertificatesOperations:
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
+                    api_version=self._config.api_version,
                     filter=filter,
                     top=top,
                     skip=skip,
                     maxpagesize=maxpagesize,
-                    api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )

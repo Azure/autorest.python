@@ -8,6 +8,7 @@ import {
     SdkServiceMethod,
     SdkServiceOperation,
     SdkType,
+    SdkClientType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
@@ -76,9 +77,11 @@ type ParamBase = {
 export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: SdkModelPropertyType | SdkMethod<TServiceOperation>,
+    client?: SdkClientType<TServiceOperation>,
 ): string | undefined {
     // We only want added on if it's not the same as the client's added on
-    if (type.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
+    const clientToCheck = client || context.experimental_sdkPackage.clients[0];
+    if (type.apiVersions[0] <= clientToCheck.apiVersions[0]) return undefined;
     return type.apiVersions[0];
 }
 
@@ -86,6 +89,7 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     parameter: SdkParameter | SdkHttpParameter,
     fromBody: boolean = false,
+    client?: SdkClientType<TServiceOperation>,
 ): ParamBase {
     let type = getType(context, parameter.type, fromBody);
     if (parameter.isApiVersionParam) {
@@ -96,7 +100,7 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     return {
         optional: parameter.optional,
         description: parameter.description || "",
-        addedOn: getAddedOn(context, parameter),
+        addedOn: getAddedOn(context, parameter, client),
         clientName: camelToSnakeCase(parameter.name),
         inOverload: false,
         isApiVersion: parameter.isApiVersionParam,

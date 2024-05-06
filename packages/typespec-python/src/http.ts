@@ -172,7 +172,7 @@ function emitHttpOperation(
         responses,
         exceptions,
         groupName: operationGroupName,
-        addedOn: method ? getAddedOn(context, method) : "",
+        addedOn: method ? getAddedOn(context, method, rootClient) : "",
         discriminator: "basic",
         isOverload: false,
         overloads: [],

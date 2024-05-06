@@ -163,7 +163,7 @@ class _ParameterBase(BaseModel, abc.ABC):  # pylint: disable=too-many-instance-a
         file_import = FileImport(self.code_model)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if self.added_on and self.implementation != "Client":
+        if self.added_on:
             file_import.add_submodule_import(
                 f"{'.' if async_mode else ''}.._validation",
                 "api_version_validation",
