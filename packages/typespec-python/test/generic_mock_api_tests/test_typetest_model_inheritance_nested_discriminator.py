@@ -23,6 +23,7 @@ def test_get_model(client, valid_body):
     assert client.get_model() == valid_body
     assert isinstance(client.get_model(), GoblinShark)
 
+
 def test_put_model(client, valid_body):
     client.put_model(valid_body)
 

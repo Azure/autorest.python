@@ -6,15 +6,18 @@
 import pytest
 from typetest.enum.fixed import aio, models
 
+
 @pytest.fixture
 async def client():
     async with aio.FixedClient() as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_known_value(client):
     assert await client.string.get_known_value() == models.DaysOfWeekEnum.MONDAY
     await client.string.put_known_value(models.DaysOfWeekEnum.MONDAY)
+
 
 @pytest.mark.asyncio
 async def test_unknown_value(client: aio.FixedClient, core_library):

@@ -12,6 +12,7 @@ def client():
     with PageableClient(endpoint="http://localhost:3000") as client:
         yield client
 
+
 def test_list(client: PageableClient):
     result = list(client.list(maxpagesize=3))
     assert len(result) == 4
