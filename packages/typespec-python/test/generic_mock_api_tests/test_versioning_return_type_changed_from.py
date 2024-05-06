@@ -8,13 +8,13 @@ from versioning.returntypechangedfrom import ReturnTypeChangedFromClient
 
 
 @pytest.fixture
-async def client():
-    async with ReturnTypeChangedFromClient(
+def client():
+    with ReturnTypeChangedFromClient(
         endpoint="http://localhost:3000", version="v2"
     ) as client:
         yield client
 
 
-async def test(client: ReturnTypeChangedFromClient):
-    assert await client.test("test") == "test"
+def test(client: ReturnTypeChangedFromClient):
+    assert client.test("test") == "test"
 

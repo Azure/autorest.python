@@ -10,14 +10,14 @@ from versioning.typechangedfrom.models import TestModel
 
 @pytest.fixture
 def client():
-    async with TypeChangedFromClient(
+    with TypeChangedFromClient(
         endpoint="http://localhost:3000", version="v2"
     ) as client:
         yield client
 
 
 def test(client: TypeChangedFromClient):
-    assert await client.test(
+    assert client.test(
         TestModel(prop="foo", changed_prop="bar"),
         param="baz",
     ) == TestModel(prop="foo", changed_prop="bar")
