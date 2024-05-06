@@ -47,6 +47,7 @@ steps:
 
     - script: npx chronus verify
       displayName: Check changelog
+      condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
 
     - script: pnpm install --no-frozen-lockfile
       displayName: Pnpm install
