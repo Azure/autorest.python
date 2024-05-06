@@ -65,6 +65,15 @@ def test_nullable_float_value(client: DictionaryClient):
     client.nullable_float_value.put(value)
 
 
+def test_recursive_model_value(client: DictionaryClient):
+    value = {
+        "k1": models.InnerModel(property="hello", children={}),
+        "k2": models.InnerModel(property="world", children={"k2.1": models.InnerModel(property="inner world")}),
+    }
+    assert client.recursive_model_value.get() == value
+    client.recursive_model_value.put(value)
+
+
 def test_string_value(client: DictionaryClient):
     value = {"k1": "hello", "k2": ""}
     assert client.string_value.get() == value
