@@ -58,6 +58,17 @@ class TestDurationPropertyOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
+    def test_float64_seconds(self, duration_endpoint):
+        client = self.create_client(endpoint=duration_endpoint)
+        response = client.property.float64_seconds(
+            body={"value": 0.0},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy
     def test_float_seconds_array(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.property.float_seconds_array(
