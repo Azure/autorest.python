@@ -134,7 +134,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         description: Optional[str] = None,
     ) -> Any:
         if self.is_multipart_file_input:
-            return "[filetype]" if self.type.type == "list" else "filetype"
+            file_type_str = '"filetype"' if self.code_model.for_test else "filetype"
+            return f"[{file_type_str}]" if self.type.type == "list" else file_type_str
         if self.client_default_value:
             client_default_value_declaration = self.get_declaration(
                 self.client_default_value

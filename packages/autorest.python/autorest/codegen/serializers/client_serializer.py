@@ -77,6 +77,7 @@ class ClientSerializer:
                 ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
                 "if no Retry-After header is present."
             )
+        retval = [s.replace("\\", "\\\\") for s in retval]
         retval.append('"""')
         return retval
 
@@ -206,9 +207,9 @@ class ClientSerializer:
         send_request_signature = self._send_request_signature()
         return utils.method_signature_and_response_type_annotation_template(
             method_signature=send_request_signature,
-            response_type_annotation="Awaitable[AsyncHttpResponse]"
-            if async_mode
-            else "HttpResponse",
+            response_type_annotation=(
+                "Awaitable[AsyncHttpResponse]" if async_mode else "HttpResponse"
+            ),
         )
 
     def _example_make_call(self, async_mode: bool) -> List[str]:

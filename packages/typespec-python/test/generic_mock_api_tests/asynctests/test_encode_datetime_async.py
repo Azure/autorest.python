@@ -48,54 +48,36 @@ async def test_query(client: DatetimeClient):
 async def test_property(client: DatetimeClient):
     result = await client.property.default(
         DefaultDatetimeProperty(
-            value=datetime.datetime(
-                2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
-            ),
+            value=datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc),
         )
     )
-    assert result.value == datetime.datetime(
-        2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
-    )
+    assert result.value == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
 
     result = await client.property.rfc3339(
         Rfc3339DatetimeProperty(
-            value=datetime.datetime(
-                2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
-            ),
+            value=datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc),
         )
     )
-    assert result.value == datetime.datetime(
-        2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
-    )
+    assert result.value == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
 
     result = await client.property.rfc7231(
         Rfc7231DatetimeProperty(
-            value=datetime.datetime(
-                2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
-            ),
+            value=datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc),
         )
     )
-    assert result.value == datetime.datetime(
-        2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
-    )
+    assert result.value == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
 
     result = await client.property.unix_timestamp(
         UnixTimestampDatetimeProperty(
-            value=datetime.datetime(
-                2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
-            ),
+            value=datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc),
         )
     )
-    assert result.value == datetime.datetime(
-        2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
-    )
+    assert result.value == datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc)
 
     result = await client.property.unix_timestamp_array(
         UnixTimestampArrayDatetimeProperty(
             value=[
-                datetime.datetime(
-                    2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
-                ),
+                datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc),
                 datetime.datetime(2023, 6, 14, 9, 17, 36, tzinfo=datetime.timezone.utc),
             ],
         )
@@ -131,7 +113,15 @@ async def test_header(client: DatetimeClient):
 @pytest.mark.asyncio
 async def test_response_header(client: DatetimeClient):
     cls = lambda x, y, z: z
-    assert (await client.response_header.default(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
-    assert (await client.response_header.rfc3339(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
-    assert (await client.response_header.rfc7231(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
-    assert (await client.response_header.unix_timestamp(cls=cls))["value"] == datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc)
+    assert (await client.response_header.default(cls=cls))["value"] == datetime.datetime(
+        2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
+    )
+    assert (await client.response_header.rfc3339(cls=cls))["value"] == datetime.datetime(
+        2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
+    )
+    assert (await client.response_header.rfc7231(cls=cls))["value"] == datetime.datetime(
+        2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
+    )
+    assert (await client.response_header.unix_timestamp(cls=cls))["value"] == datetime.datetime(
+        2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
+    )

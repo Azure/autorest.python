@@ -3,57 +3,88 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Type
 import pytest
 from typetest.union.aio import UnionClient
 from typetest.union import models
+
 
 @pytest.fixture
 async def client():
     async with UnionClient() as client:
         yield client
 
-@pytest.mark.parametrize(
-    "og_name,value,res_model_type",
-    [
-        ("strings_only", "b", models.GetResponse),
-        ("string_extensible", "custom", models.GetResponse1),
-        ("string_extensible_named", "custom", models.GetResponse2),
-        ("ints_only", 2, models.GetResponse3),
-        ("floats_only", 2.2, models.GetResponse4),
-        ("models_only", models.Cat(name="test"), models.GetResponse5),
-        (
-            "enums_only",
-            models.EnumsOnlyCases(lr="right", ud="up"),
-            models.GetResponse6,
-        ),
-        (
-            "string_and_array",
-            models.StringAndArrayCases(string="test", array=["test1", "test2"]),
-            models.GetResponse7,
-        ),
-        (
-            "mixed_literals",
-            models.MixedLiteralsCases(
-                string_literal="a",
-                int_literal=2,
-                float_literal=3.3,
-                boolean_literal=True,
-            ),
-            models.GetResponse8,
-        ),
-        (
-            "mixed_types",
-            models.MixedTypesCases(
-                model=models.Cat(name="test"), literal="a", int_property=2, boolean=True
-            ),
-            models.GetResponse9,
-        ),
-    ],
-)
+
 @pytest.mark.asyncio
-async def test_union(client: UnionClient, og_name: str, value: Any, res_model_type: Type):
-    og_group = getattr(client, og_name)
-    assert await og_group.get() == res_model_type(prop=value)
-    await og_group.send(prop=value)
-    await og_group.send({"prop": value})
+async def test_enums_only(client: UnionClient):
+    value = models.EnumsOnlyCases(lr="right", ud="up")
+    assert (await client.enums_only.get()) == {"prop": value}
+    await client.enums_only.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_floats_only(client: UnionClient):
+    value = 2.2
+    assert (await client.floats_only.get()) == {"prop": value}
+    await client.floats_only.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_ints_only(client: UnionClient):
+    value = 2
+    assert (await client.ints_only.get()) == {"prop": value}
+    await client.ints_only.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_mixed_literals(client: UnionClient):
+    value = models.MixedLiteralsCases(string_literal="a", int_literal=2, float_literal=3.3, boolean_literal=True)
+    assert (await client.mixed_literals.get()) == {"prop": value}
+    await client.mixed_literals.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_mixed_types(client: UnionClient):
+    value = models.MixedTypesCases(
+        model=models.Cat(name="test"),
+        literal="a",
+        int_property=2,
+        boolean=True,
+        array=[models.Cat(name="test"), "a", 2, True],
+    )
+    assert (await client.mixed_types.get()) == {"prop": value}
+    await client.mixed_types.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_models_only(client: UnionClient):
+    value = models.Cat(name="test")
+    assert (await client.models_only.get()) == {"prop": value}
+    await client.models_only.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_string_and_array(client: UnionClient):
+    value = models.StringAndArrayCases(string="test", array=["test1", "test2"])
+    assert (await client.string_and_array.get()) == {"prop": value}
+    await client.string_and_array.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_string_extensible(client: UnionClient):
+    value = "custom"
+    assert (await client.string_extensible.get()) == {"prop": value}
+    await client.string_extensible.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_string_extensible_named(client: UnionClient):
+    value = "custom"
+    assert (await client.string_extensible_named.get()) == {"prop": value}
+    await client.string_extensible_named.send(prop=value)
+
+
+@pytest.mark.asyncio
+async def test_strings_only(client: UnionClient):
+    value = "b"
+    assert (await client.strings_only.get()) == {"prop": value}
+    await client.strings_only.send(prop=value)

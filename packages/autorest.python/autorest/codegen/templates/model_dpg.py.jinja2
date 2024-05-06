@@ -3,7 +3,7 @@
 
 
 {{ serializer.declare_model(model) }}
-    """{{ model.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ')  }}
+    """{{ op_tools.wrap_string(model.description(is_operation_file=False), "\n    ") }}
     {% if model.discriminated_subtypes %}
 
     {{ serializer.discriminator_docstring(model) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
@@ -86,5 +86,5 @@
             setattr(self.properties, key, value)
         else:
             super().__setattr__(key, value)
-        {% endif %} 
-    {% endif %} 
+        {% endif %}
+    {% endif %}

@@ -12,17 +12,21 @@ async def client():
     async with VersionedClient(endpoint="http://localhost:3000") as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_without_api_version(client: VersionedClient):
     await client.without_api_version()
+
 
 @pytest.mark.asyncio
 async def test_with_query_api_version(client: VersionedClient):
     await client.with_query_api_version()
 
+
 @pytest.mark.asyncio
 async def test_with_path_api_version(client: VersionedClient):
     await client.with_path_api_version()
+
 
 @pytest.mark.asyncio
 async def test_with_query_old_api_version():

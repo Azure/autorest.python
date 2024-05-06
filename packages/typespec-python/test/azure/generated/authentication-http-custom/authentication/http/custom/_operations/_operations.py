@@ -60,6 +60,7 @@ def build_custom_invalid_request(**kwargs: Any) -> HttpRequest:
 
 
 class CustomClientOperationsMixin(CustomClientMixinABC):
+
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

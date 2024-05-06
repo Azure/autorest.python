@@ -12,7 +12,6 @@ import {
     SdkQueryParameter,
     SdkServiceMethod,
     SdkServiceResponseHeader,
-    getCrossLanguageDefinitionId,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -23,7 +22,6 @@ import {
     getImplementation,
     isAbstract,
     isAzureCoreModel,
-    isSubscriptionId,
 } from "./utils.js";
 import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
@@ -181,7 +179,7 @@ function emitHttpOperation(
         apiVersions: [],
         wantTracing: true,
         exposeStreamKeyword: true,
-        crossLanguageDefinitionId: method ? getCrossLanguageDefinitionId(method) : undefined,
+        crossLanguageDefinitionId: method?.crossLanguageDefintionId,
     };
     if (
         result.bodyParameter &&
@@ -294,9 +292,6 @@ function emitHttpParameters(
             case "path":
                 parameters.push(emitHttpPathParameter(context, parameter));
                 break;
-        }
-        if (isSubscriptionId(context, parameter) && context.__subscriptionIdPathParameter === undefined) {
-            context.__subscriptionIdPathParameter = parameters[parameters.length - 1];
         }
     }
     return parameters;

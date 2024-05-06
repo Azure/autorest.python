@@ -16,6 +16,7 @@ from encode.bytes.models import (
 
 FILE_FOLDER = Path(__file__).parent.parent
 
+
 @pytest.fixture
 async def client():
     async with BytesClient() as client:
@@ -105,11 +106,22 @@ def png_data() -> bytes:
 
 @pytest.mark.asyncio
 async def test_request_body(client: BytesClient, png_data: bytes):
-    await client.request_body.default(value=bytes("test", "utf-8"), )
-    await client.request_body.octet_stream(value=png_data, )
-    await client.request_body.custom_content_type(value=png_data, )
-    await client.request_body.base64(value=bytes("test", "utf-8"), )
-    await client.request_body.base64url(value=bytes("test", "utf-8"), )
+    await client.request_body.default(
+        value=bytes("test", "utf-8"),
+    )
+    await client.request_body.octet_stream(
+        value=png_data,
+    )
+    await client.request_body.custom_content_type(
+        value=png_data,
+    )
+    await client.request_body.base64(
+        value=bytes("test", "utf-8"),
+    )
+    await client.request_body.base64url(
+        value=bytes("test", "utf-8"),
+    )
+
 
 @pytest.mark.asyncio
 async def test_response_body(client: BytesClient, png_data: bytes):

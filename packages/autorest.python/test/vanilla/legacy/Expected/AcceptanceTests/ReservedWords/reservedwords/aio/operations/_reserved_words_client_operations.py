@@ -45,6 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
+
     @distributed_trace_async
     async def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.

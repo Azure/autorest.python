@@ -66,6 +66,7 @@ class _ParameterBase(
         self.wire_name: str = yaml_data.get("wireName", "")
         self.client_name: str = self.yaml_data["clientName"]
         self.optional: bool = self.yaml_data["optional"]
+        self.implementation: str = yaml_data.get("implementation", None)
         self.location: ParameterLocation = self.yaml_data["location"]
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
         self.in_docstring = self.yaml_data.get("inDocstring", True)
@@ -170,7 +171,7 @@ class _ParameterBase(
         file_import = FileImport(self.code_model)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if self.added_on:
+        if self.added_on and self.implementation != "Client":
             file_import.add_submodule_import(
                 f"{'.' if async_mode else ''}.._validation",
                 "api_version_validation",
@@ -227,8 +228,7 @@ class _ParameterBase(
 
     @property
     @abc.abstractmethod
-    def in_method_signature(self) -> bool:
-        ...
+    def in_method_signature(self) -> bool: ...
 
     def method_signature(self, async_mode: bool) -> str:
         type_annot = self.type_annotation(async_mode=async_mode)
@@ -329,7 +329,6 @@ class Parameter(_ParameterBase):
     ) -> None:
         super().__init__(yaml_data, code_model, type=type)
 
-        self.implementation: str = yaml_data["implementation"]
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)

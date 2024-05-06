@@ -175,7 +175,9 @@ class EnumType(BaseType):
         :rtype: str
         """
         if self.code_model.options["models_mode"]:
-            model_name = f"_models.{self.name}"
+            module_name = "_models." if kwargs.get("need_module_name", True) else ""
+            file_name = f"{self.code_model.enums_filename}." if self.internal else ""
+            model_name = module_name + file_name + self.name
             # we don't need quoted annotation in operation files, and need it in model folder files.
             if not kwargs.get("is_operation_file", False):
                 model_name = f'"{model_name}"'
@@ -256,8 +258,10 @@ class EnumType(BaseType):
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
+                typing_section=(
+                    TypingSection.TYPING
+                    if kwargs.get("model_typing")
+                    else TypingSection.REGULAR
+                ),
             )
         return file_import

@@ -7,14 +7,12 @@ azure-core==1.30.0
 -e ./generated/azure-mgmt-spheredpg
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-usage
--e ./generated/azure-client-generator-core-flatten
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-scalar
--e ./generated/azurecore-lro-rpclegacy
 -e ./generated/azurecore-lro-rpc
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
--e ./generated/special-headers-client-request-id
+-e ./generated/azure-special-headers-client-request-id/
 
 # common test case
 -e ./generated/authentication-api-key
@@ -23,6 +21,7 @@ azure-core==1.30.0
 -e ./generated/authentication-union
 -e ./generated/client-naming
 -e ./generated/encode-duration
+-e ./generated/parameters-basic
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
 -e ./generated/resiliency-srv-driven1
@@ -39,6 +38,7 @@ azure-core==1.30.0
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
 -e ./generated/typetest-model-enumdiscriminator
+-e ./generated/typetest-model-flatten
 -e ./generated/typetest-model-nesteddiscriminator
 -e ./generated/typetest-model-notdiscriminated
 -e ./generated/typetest-model-singlediscriminator
@@ -68,3 +68,9 @@ azure-core==1.30.0
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
 -e ./generated/payload-media-type
+-e ./generated/versioning-added
+-e ./generated/versioning-madeOptional
+-e ./generated/versioning-removed
+-e ./generated/versioning-renamedFrom
+-e ./generated/versioning-returnTypeChangedFrom
+-e ./generated/versioning-typeChangedFrom

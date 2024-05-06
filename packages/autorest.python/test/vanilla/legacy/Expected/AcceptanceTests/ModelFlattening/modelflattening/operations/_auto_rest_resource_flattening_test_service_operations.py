@@ -224,6 +224,7 @@ def build_put_simple_product_with_grouping_request(  # pylint: disable=name-too-
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
     AutoRestResourceFlatteningTestServiceMixinABC
 ):
+
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
         self,

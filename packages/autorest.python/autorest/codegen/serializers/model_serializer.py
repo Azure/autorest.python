@@ -17,11 +17,8 @@ def _documentation_string(
 ) -> List[str]:
     retval: List[str] = []
     sphinx_prefix = f":{description_keyword} {prop.client_name}:"
-    retval.append(
-        f"{sphinx_prefix} {prop.description(is_operation_file=False)}"
-        if prop.description(is_operation_file=False)
-        else sphinx_prefix
-    )
+    description = prop.description(is_operation_file=False).replace("\\", "\\\\")
+    retval.append(f"{sphinx_prefix} {description}" if description else sphinx_prefix)
     retval.append(
         f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}"
     )
@@ -30,8 +27,7 @@ def _documentation_string(
 
 class _ModelSerializer(BaseSerializer, ABC):
     @abstractmethod
-    def imports(self) -> FileImport:
-        ...
+    def imports(self) -> FileImport: ...
 
     def serialize(self) -> str:
         # Generate the models
@@ -44,8 +40,7 @@ class _ModelSerializer(BaseSerializer, ABC):
         )
 
     @abstractmethod
-    def declare_model(self, model: ModelType) -> str:
-        ...
+    def declare_model(self, model: ModelType) -> str: ...
 
     @staticmethod
     def escape_dot(s: str):

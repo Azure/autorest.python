@@ -30,8 +30,7 @@ class InvalidAuth(_model_base.Model):
         self,
         *,
         error: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

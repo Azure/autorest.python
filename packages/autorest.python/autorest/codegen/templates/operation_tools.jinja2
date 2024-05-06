@@ -1,4 +1,4 @@
-{% macro wrap_string(string, wrapstring, width=95) %}{{ string | wordwrap(width=width, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
+{% macro wrap_string(string, wrapstring, width=95) %}{{ string | replace("\\", "\\\\") | wordwrap(width=width, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
 
 {% macro description(builder, serializer) %}
 {% set example_template = serializer.example_template(builder) %}

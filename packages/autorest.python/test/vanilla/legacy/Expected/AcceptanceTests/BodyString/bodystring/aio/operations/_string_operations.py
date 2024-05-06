@@ -333,8 +333,11 @@ class StringOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
-        string_body: Literal["啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"] = kwargs.pop(
-            "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        string_body: Literal[
+            "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        ] = kwargs.pop(
+            "string_body",
+            "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
@@ -435,9 +438,9 @@ class StringOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
-        string_body: Literal[
-            "    Now is the time for all good men to come to the aid of their country    "
-        ] = kwargs.pop("string_body", "    Now is the time for all good men to come to the aid of their country    ")
+        string_body: Literal["    Now is the time for all good men to come to the aid of their country    "] = (
+            kwargs.pop("string_body", "    Now is the time for all good men to come to the aid of their country    ")
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = self._serialize.body(string_body, "str")

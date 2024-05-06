@@ -22,9 +22,7 @@ def test_language(client: NamingClient):
 
 
 def test_compatible_with_encoded_name(client: NamingClient):
-    client.compatible_with_encoded_name(
-        models.ClientNameAndJsonEncodedNameModel(client_name=True)
-    )
+    client.compatible_with_encoded_name(models.ClientNameAndJsonEncodedNameModel(client_name=True))
 
 
 def test_operation(client: NamingClient):
@@ -55,5 +53,5 @@ def test_union_enum_member_name(client: NamingClient):
     client.union_enum.union_enum_member_name(models.ExtensibleEnum.CLIENT_ENUM_VALUE1)
 
 
-def test_union_enum_member_name(client: NamingClient):
+def test_union_enum_name(client: NamingClient):
     client.union_enum.union_enum_name(models.ClientExtensibleEnum.ENUM_VALUE1)

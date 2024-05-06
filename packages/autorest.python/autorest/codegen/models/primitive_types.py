@@ -62,7 +62,9 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
             comment = add_to_description(comment, description)
         if comment:
             comment = f"# {comment}"
-        return f"{client_default_value_declaration}{comment}"
+        return client_default_value_declaration + (
+            "" if self.code_model.for_test else comment
+        )
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -228,18 +230,26 @@ class NumberType(PrimitiveType):  # pylint: disable=abstract-method
     @property
     def serialization_constraints(self) -> List[str]:
         validation_constraints = [
-            f"maximum_ex={self.maximum}"
-            if self.maximum is not None and self.exclusive_maximum
-            else None,
-            f"maximum={self.maximum}"
-            if self.maximum is not None and not self.exclusive_maximum
-            else None,
-            f"minimum_ex={self.minimum}"
-            if self.minimum is not None and self.exclusive_minimum
-            else None,
-            f"minimum={self.minimum}"
-            if self.minimum is not None and not self.exclusive_minimum
-            else None,
+            (
+                f"maximum_ex={self.maximum}"
+                if self.maximum is not None and self.exclusive_maximum
+                else None
+            ),
+            (
+                f"maximum={self.maximum}"
+                if self.maximum is not None and not self.exclusive_maximum
+                else None
+            ),
+            (
+                f"minimum_ex={self.minimum}"
+                if self.minimum is not None and self.exclusive_minimum
+                else None
+            ),
+            (
+                f"minimum={self.minimum}"
+                if self.minimum is not None and not self.exclusive_minimum
+                else None
+            ),
             f"multiple={self.multiple}" if self.multiple else None,
         ]
         return [x for x in validation_constraints if x is not None]

@@ -52,6 +52,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
     AutoRestResourceFlatteningTestServiceMixinABC
 ):
+
     @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
         self,

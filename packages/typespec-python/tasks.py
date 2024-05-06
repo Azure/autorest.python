@@ -59,6 +59,9 @@ EMITTER_OPTIONS = {
     "type/model/empty": {
         "package-name": "typetest-model-empty",
     },
+    "type/model/flatten": {
+        "package-name": "typetest-model-flatten",
+    },
     "type/model/inheritance/enum-discriminator": {
         "package-name": "typetest-model-enumdiscriminator",
     },
@@ -241,7 +244,7 @@ def regenerate_azure(c, name=None, debug=False):
         for s in _all_specification_folders("azure")
         if not is_invalid_folder(s)
     ]
-    special_flags = {"flavor": "azure"}
+    special_flags = {"flavor": "azure", "generate-test": "true"}
     _regenerate(
         c,
         specs,
