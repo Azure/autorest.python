@@ -49,6 +49,7 @@ steps:
       displayName: Check changelog
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
+      continueOnError: true
 
     - publish: /home/cloudtest/.npm/_logs/
       artifact: Logs
