@@ -40,7 +40,10 @@ def test_collections_byte(client):
 
 def test_collections_model(client):
     body = models.CollectionsModelProperty(
-        property=[models.StringProperty(property="hello"), models.StringProperty(property="world")]
+        property=[
+            models.StringProperty(property="hello"),
+            models.StringProperty(property="world"),
+        ]
     )
     assert client.collections_model.get_all() == body
     assert client.collections_model.get_default() == models.CollectionsModelProperty()

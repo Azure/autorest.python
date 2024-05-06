@@ -58,6 +58,17 @@ class TestDurationQueryOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
+    def test_float64_seconds(self, duration_endpoint):
+        client = self.create_client(endpoint=duration_endpoint)
+        response = client.query.float64_seconds(
+            input=0.0,
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy
     def test_int32_seconds_array(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.query.int32_seconds_array(

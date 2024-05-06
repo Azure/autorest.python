@@ -97,3 +97,8 @@ def test_multi_binary_parts(client: MultiPartClient):
             picture=open(str(PNG), "rb"),
         )
     )
+    client.form_data.multi_binary_parts(
+        models.MultiBinaryPartsRequest(
+            profile_image=open(str(JPG), "rb"),
+        )
+    )

@@ -59,6 +59,17 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
 
     @DurationPreparer()
     @recorded_by_proxy_async
+    async def test_float64_seconds(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.query.float64_seconds(
+            input=0.0,
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
     async def test_int32_seconds_array(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.int32_seconds_array(

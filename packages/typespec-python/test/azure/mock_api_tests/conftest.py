@@ -11,6 +11,7 @@ import re
 from typing import Literal
 from pathlib import Path
 
+
 def start_server_process():
     path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
@@ -19,11 +20,13 @@ def start_server_process():
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
 
+
 def terminate_server_process(process):
-    if os.name == 'nt':
+    if os.name == "nt":
         process.kill()
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+
 
 @pytest.fixture(scope="session", autouse=True)
 def testserver():
@@ -39,6 +42,7 @@ _VALID_RFC7231 = re.compile(
     r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT$"
 )
 
+
 def validate_format(value: str, format: Literal["uuid", "rfc7231"]):
     if format == "uuid":
         assert _VALID_UUID.match(value)
@@ -47,31 +51,31 @@ def validate_format(value: str, format: Literal["uuid", "rfc7231"]):
     else:
         raise ValueError("Unknown format")
 
+
 @pytest.fixture
 def check_repeatability_header():
     def func(request):
-        validate_format(
-            request.http_request.headers["Repeatability-Request-ID"], "uuid"
-        )
-        validate_format(
-            request.http_request.headers["Repeatability-First-Sent"], "rfc7231"
-        )
+        validate_format(request.http_request.headers["Repeatability-Request-ID"], "uuid")
+        validate_format(request.http_request.headers["Repeatability-First-Sent"], "rfc7231")
+
     return func
+
 
 @pytest.fixture
 def check_client_request_id_header():
     def func(request, header: str, checked: dict):
         validate_format(request.http_request.headers[header], "uuid")
         checked[header] = request.http_request.headers[header]
+
     return func
+
 
 # ================== after azure-core fix, the following code can be removed (begin) ==================
 import urllib.parse
 from azure.core.rest import HttpRequest
 
-def update_api_version_of_status_link(
-    status_link: str
-):
+
+def update_api_version_of_status_link(status_link: str):
     request_params = {}
     parsed_status_link = urllib.parse.urlparse(status_link)
     request_params = {
@@ -81,6 +85,7 @@ def update_api_version_of_status_link(
     request_params["api-version"] = "2022-12-01-preview"
     status_link = urllib.parse.urljoin(status_link, parsed_status_link.path)
     return status_link, request_params
+
 
 @pytest.fixture
 def polling_method():
@@ -100,6 +105,7 @@ def polling_method():
 
     return TempLroBasePolling(0)
 
+
 @pytest.fixture
 def async_polling_method():
     from azure.core.polling.async_base_polling import AsyncLROBasePolling
@@ -115,8 +121,11 @@ def async_polling_method():
                 self._operation_config["request_id"] = self._get_request_id()
 
             rest_request = HttpRequest("GET", status_link, params=request_params)
-            return await self._client.send_request(rest_request, _return_pipeline_response=True, **self._operation_config)
+            return await self._client.send_request(
+                rest_request, _return_pipeline_response=True, **self._operation_config
+            )
 
     return AsyncTempLroBasePolling(0)
+
 
 # ================== after azure-core fix, the up code can be removed (end) ==================
