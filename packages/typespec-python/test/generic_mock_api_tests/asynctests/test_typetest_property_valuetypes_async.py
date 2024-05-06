@@ -201,7 +201,7 @@ async def test_float_literal(client: ValueTypesClient):
 async def test_int(client: ValueTypesClient):
     body = models.IntProperty(property=42)
     assert body.property == body["property"]
-    await client.int.put(body)
+    await client.int_operations.put(body)
 
     resp = await client.int_operations.get()
     assert resp.property == resp["property"] == 42

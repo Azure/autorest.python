@@ -183,7 +183,7 @@ def test_float_literal(client: ValueTypesClient):
 def test_int(client: ValueTypesClient):
     body = models.IntProperty(property=42)
     assert body.property == body["property"]
-    client.int.put(body)
+    client.int_operations.put(body)
 
     resp = client.int_operations.get()
     assert resp.property == resp["property"] == 42
