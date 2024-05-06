@@ -34,7 +34,8 @@ def test_bytes(client: NullableClient):
 
 def test_collections_byte(client: NullableClient):
     non_null_model = models.CollectionsByteProperty(
-        required_property="foo", nullable_property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]
+        required_property="foo",
+        nullable_property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="],
     )
     non_model = models.CollectionsByteProperty(required_property="foo", nullable_property=NULL)
     assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)

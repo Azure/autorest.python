@@ -45,7 +45,10 @@ async def test_collections_byte(client):
 @pytest.mark.asyncio
 async def test_collections_model(client):
     body = models.CollectionsModelProperty(
-        property=[models.StringProperty(property="hello"), models.StringProperty(property="world")]
+        property=[
+            models.StringProperty(property="hello"),
+            models.StringProperty(property="world"),
+        ]
     )
     assert await client.collections_model.get_all() == body
     assert await client.collections_model.get_default() == models.CollectionsModelProperty()

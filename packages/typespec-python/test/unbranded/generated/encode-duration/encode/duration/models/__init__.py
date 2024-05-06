@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from ._models import DefaultDurationProperty
+from ._models import Float64SecondsDurationProperty
 from ._models import FloatSecondsDurationArrayProperty
 from ._models import FloatSecondsDurationProperty
 from ._models import ISO8601DurationProperty
@@ -17,6 +18,7 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "DefaultDurationProperty",
+    "Float64SecondsDurationProperty",
     "FloatSecondsDurationArrayProperty",
     "FloatSecondsDurationProperty",
     "ISO8601DurationProperty",

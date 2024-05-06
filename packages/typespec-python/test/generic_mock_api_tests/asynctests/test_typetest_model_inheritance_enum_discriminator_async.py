@@ -36,12 +36,16 @@ async def test_put_extensible_model(client: EnumDiscriminatorClient, valid_body:
 
 
 @pytest.mark.asyncio
-async def test_get_extensible_model_missing_discriminator(client: EnumDiscriminatorClient):
+async def test_get_extensible_model_missing_discriminator(
+    client: EnumDiscriminatorClient,
+):
     assert await client.get_extensible_model_missing_discriminator() == models.Dog(weight=10)
 
 
 @pytest.mark.asyncio
-async def test_get_extensible_model_wrong_discriminator(client: EnumDiscriminatorClient):
+async def test_get_extensible_model_wrong_discriminator(
+    client: EnumDiscriminatorClient,
+):
     assert await client.get_extensible_model_wrong_discriminator() == models.Dog(weight=8, kind="wrongKind")
 
 

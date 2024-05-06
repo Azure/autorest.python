@@ -5,7 +5,12 @@
 # --------------------------------------------------------------------------
 import pytest
 from typetest.model.flatten.aio import FlattenClient
-from typetest.model.flatten.models import FlattenModel, ChildModel, NestedFlattenModel, ChildFlattenModel
+from typetest.model.flatten.models import (
+    FlattenModel,
+    ChildModel,
+    NestedFlattenModel,
+    ChildFlattenModel,
+)
 
 
 @pytest.fixture
@@ -32,10 +37,12 @@ async def test_put_nested_flatten_model(client: FlattenClient):
     # python doesn't support nested flatten model
     assert await client.put_nested_flatten_model(
         NestedFlattenModel(
-            name="foo", properties=ChildFlattenModel(summary="bar", properties=ChildModel(age=10, description="test"))
+            name="foo",
+            properties=ChildFlattenModel(summary="bar", properties=ChildModel(age=10, description="test")),
         )
     ) == NestedFlattenModel(
-        name="test", properties=ChildFlattenModel(summary="test", properties=ChildModel(age=1, description="foo"))
+        name="test",
+        properties=ChildFlattenModel(summary="test", properties=ChildModel(age=1, description="foo")),
     )
 
 
