@@ -13,7 +13,6 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from . import models as _models
-from .._validation import api_version_validation
 from ._configuration import AddedClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import AddedClientOperationsMixin, InterfaceV2Operations
