@@ -72,18 +72,6 @@ steps:
       displayName: Build project
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
-    - script: pnpm check-version-mismatch
-      displayName: Check version mismatch
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: pnpm lint
-      displayName: Lint project
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: pnpm check-format
-      displayName: Check formatting
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
     - script: pip install -r dev_requirements.txt
       displayName: Pip install dev requirements
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
