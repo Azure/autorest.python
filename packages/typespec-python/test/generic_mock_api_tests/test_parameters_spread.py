@@ -27,15 +27,11 @@ def test_model_composite_request_without_body(client: SpreadClient):
 
 
 def test_model_composite_request(client: SpreadClient):
-    client.model.spread_composite_request(
-        name="foo", body=BodyParameter(name="foo"), test_header="bar"
-    )
+    client.model.spread_composite_request(name="foo", body=BodyParameter(name="foo"), test_header="bar")
 
 
 def test_model_composite_request_mix(client: SpreadClient):
-    client.model.spread_composite_request_mix(
-        name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar"
-    )
+    client.model.spread_composite_request_mix(name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar")
 
 
 def test_alias_body(client: SpreadClient):

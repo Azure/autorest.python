@@ -19,9 +19,7 @@ def test_get_model(client):
 
 
 def test_put_model(client):
-    client.put_model(
-        models.VisibilityModel(create_prop=["foo", "bar"], update_prop=[1, 2])
-    )
+    client.put_model(models.VisibilityModel(create_prop=["foo", "bar"], update_prop=[1, 2]))
 
 
 def test_patch_model(client):

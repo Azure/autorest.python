@@ -14,9 +14,7 @@ def client():
 
 
 def test_extends_different_spread_float(client: AdditionalPropertiesClient):
-    body = models.DifferentSpreadFloatDerived(
-        {"name": "abc", "prop": 43.125, "derivedProp": 43.125}
-    )
+    body = models.DifferentSpreadFloatDerived({"name": "abc", "prop": 43.125, "derivedProp": 43.125})
     assert client.extends_different_spread_float.get() == body
     client.extends_different_spread_float.put(body)
 
@@ -42,9 +40,7 @@ def test_extends_different_spread_model_array(client: AdditionalPropertiesClient
 
 
 def test_extends_different_spread_string(client: AdditionalPropertiesClient):
-    body = models.DifferentSpreadStringDerived(
-        {"id": 43.125, "prop": "abc", "derivedProp": "abc"}
-    )
+    body = models.DifferentSpreadStringDerived({"id": 43.125, "prop": "abc", "derivedProp": "abc"})
     assert client.extends_different_spread_string.get() == body
     client.extends_different_spread_string.put(body)
 
@@ -56,9 +52,7 @@ def test_extends_float(client: AdditionalPropertiesClient):
 
 
 def test_extends_model(client: AdditionalPropertiesClient):
-    body = models.ExtendsModelAdditionalProperties(
-        {"knownProp": {"state": "ok"}, "prop": {"state": "ok"}}
-    )
+    body = models.ExtendsModelAdditionalProperties({"knownProp": {"state": "ok"}, "prop": {"state": "ok"}})
     assert client.extends_model.get() == body
     client.extends_model.put(body)
 
@@ -75,9 +69,7 @@ def test_extends_model_array(client: AdditionalPropertiesClient):
 
 
 def test_extends_string(client: AdditionalPropertiesClient):
-    body = models.ExtendsStringAdditionalProperties(
-        {"name": "ExtendsStringAdditionalProperties", "prop": "abc"}
-    )
+    body = models.ExtendsStringAdditionalProperties({"name": "ExtendsStringAdditionalProperties", "prop": "abc"})
     assert client.extends_string.get() == body
     client.extends_string.put(body)
 
@@ -133,9 +125,7 @@ def test_is_float(client: AdditionalPropertiesClient):
 
 
 def test_is_model(client: AdditionalPropertiesClient):
-    body = models.IsModelAdditionalProperties(
-        {"knownProp": {"state": "ok"}, "prop": {"state": "ok"}}
-    )
+    body = models.IsModelAdditionalProperties({"knownProp": {"state": "ok"}, "prop": {"state": "ok"}})
     assert client.is_model.get() == body
     client.is_model.put(body)
 
@@ -152,9 +142,7 @@ def test_is_model_array(client: AdditionalPropertiesClient):
 
 
 def test_is_string(client: AdditionalPropertiesClient):
-    body = models.IsStringAdditionalProperties(
-        {"name": "IsStringAdditionalProperties", "prop": "abc"}
-    )
+    body = models.IsStringAdditionalProperties({"name": "IsStringAdditionalProperties", "prop": "abc"})
     assert client.is_string.get() == body
     client.is_string.put(body)
 

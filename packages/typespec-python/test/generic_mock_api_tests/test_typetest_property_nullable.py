@@ -23,13 +23,9 @@ def client():
 
 
 def test_bytes(client: NullableClient):
-    non_null_model = models.BytesProperty(
-        required_property="foo", nullable_property="aGVsbG8sIHdvcmxkIQ=="
-    )
+    non_null_model = models.BytesProperty(required_property="foo", nullable_property="aGVsbG8sIHdvcmxkIQ==")
     non_model = models.BytesProperty(required_property="foo", nullable_property=NULL)
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.bytes.get_non_null() == non_null_model
     assert client.bytes.get_null()["nullableProperty"] is None
     client.bytes.patch_non_null(body=non_null_model)
@@ -41,12 +37,8 @@ def test_collections_byte(client: NullableClient):
         required_property="foo",
         nullable_property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="],
     )
-    non_model = models.CollectionsByteProperty(
-        required_property="foo", nullable_property=NULL
-    )
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    non_model = models.CollectionsByteProperty(required_property="foo", nullable_property=NULL)
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.collections_byte.get_non_null() == non_null_model
     assert client.collections_byte.get_null()["nullableProperty"] is None
     client.collections_byte.patch_non_null(body=non_null_model)
@@ -61,12 +53,8 @@ def test_collections_model(client: NullableClient):
             models.InnerModel(property="world"),
         ],
     )
-    non_model = models.CollectionsModelProperty(
-        required_property="foo", nullable_property=NULL
-    )
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    non_model = models.CollectionsModelProperty(required_property="foo", nullable_property=NULL)
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.collections_model.get_non_null() == non_null_model
     assert client.collections_model.get_null()["nullableProperty"] is None
     client.collections_model.patch_non_null(body=non_null_model)
@@ -74,13 +62,9 @@ def test_collections_model(client: NullableClient):
 
 
 def test_datetime(client: NullableClient):
-    non_null_model = models.DatetimeProperty(
-        required_property="foo", nullable_property="2022-08-26T18:38:00Z"
-    )
+    non_null_model = models.DatetimeProperty(required_property="foo", nullable_property="2022-08-26T18:38:00Z")
     non_model = models.DatetimeProperty(required_property="foo", nullable_property=NULL)
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.datetime.get_non_null() == non_null_model
     assert client.datetime.get_null()["nullableProperty"] is None
     client.datetime.patch_non_null(body=non_null_model)
@@ -88,13 +72,9 @@ def test_datetime(client: NullableClient):
 
 
 def test_duration(client: NullableClient):
-    non_null_model = models.DurationProperty(
-        required_property="foo", nullable_property="P123DT22H14M12.011S"
-    )
+    non_null_model = models.DurationProperty(required_property="foo", nullable_property="P123DT22H14M12.011S")
     non_model = models.DurationProperty(required_property="foo", nullable_property=NULL)
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.duration.get_non_null() == non_null_model
     assert client.duration.get_null()["nullableProperty"] is None
     client.duration.patch_non_null(body=non_null_model)
@@ -102,13 +82,9 @@ def test_duration(client: NullableClient):
 
 
 def test_string(client: NullableClient):
-    non_null_model = models.StringProperty(
-        required_property="foo", nullable_property="hello"
-    )
+    non_null_model = models.StringProperty(required_property="foo", nullable_property="hello")
     non_model = models.StringProperty(required_property="foo", nullable_property=NULL)
-    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=SdkJSONEncoder
-    )
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(non_model, cls=SdkJSONEncoder)
     assert client.string.get_non_null() == non_null_model
     assert client.string.get_null()["nullableProperty"] is None
     client.string.patch_non_null(body=non_null_model)

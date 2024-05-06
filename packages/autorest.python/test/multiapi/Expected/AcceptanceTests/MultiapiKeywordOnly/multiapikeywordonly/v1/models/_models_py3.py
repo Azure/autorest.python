@@ -30,7 +30,13 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -57,7 +63,11 @@ class PagingResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        values: Optional[List["_models.Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """
         :keyword values:
@@ -81,7 +91,9 @@ class Product(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: Optional[int] = None, **kwargs: Any
+    ) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -105,7 +117,9 @@ class TestLroAndPagingOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
+    def __init__(
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    ) -> None:
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int

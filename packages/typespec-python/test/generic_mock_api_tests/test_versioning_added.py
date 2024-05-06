@@ -22,9 +22,9 @@ def test_v1(client: AddedClient):
 
 
 def test_v2(client: AddedClient):
-    assert client.v2(
-        ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER, union_prop="bar")
-    ) == ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER, union_prop="bar")
+    assert client.v2(ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER, union_prop="bar")) == ModelV2(
+        prop="foo", enum_prop=EnumV2.ENUM_MEMBER, union_prop="bar"
+    )
 
 
 def test_interface_v2(client: AddedClient):

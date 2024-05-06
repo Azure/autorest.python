@@ -9,9 +9,7 @@ from server.versions.notversioned.aio import NotVersionedClient
 
 @pytest.fixture
 async def client():
-    async with NotVersionedClient(
-        endpoint="http://localhost:3000", api_version="v1.0"
-    ) as client:
+    async with NotVersionedClient(endpoint="http://localhost:3000", api_version="v1.0") as client:
         yield client
 
 

@@ -24,16 +24,8 @@ def client():
 
 def test_put_flatten_model(client: FlattenClient):
     resp = FlattenModel(name="test", properties=ChildModel(age=1, description="test"))
-    assert (
-        client.put_flatten_model(
-            FlattenModel(name="foo", properties=ChildModel(age=10, description="bar"))
-        )
-        == resp
-    )
-    assert (
-        client.put_flatten_model(FlattenModel(name="foo", age=10, description="bar"))
-        == resp
-    )
+    assert client.put_flatten_model(FlattenModel(name="foo", properties=ChildModel(age=10, description="bar"))) == resp
+    assert client.put_flatten_model(FlattenModel(name="foo", age=10, description="bar")) == resp
 
 
 def test_put_nested_flatten_model(client: FlattenClient):
@@ -41,23 +33,17 @@ def test_put_nested_flatten_model(client: FlattenClient):
     assert client.put_nested_flatten_model(
         NestedFlattenModel(
             name="foo",
-            properties=ChildFlattenModel(
-                summary="bar", properties=ChildModel(age=10, description="test")
-            ),
+            properties=ChildFlattenModel(summary="bar", properties=ChildModel(age=10, description="test")),
         )
     ) == NestedFlattenModel(
         name="test",
-        properties=ChildFlattenModel(
-            summary="test", properties=ChildModel(age=1, description="foo")
-        ),
+        properties=ChildFlattenModel(summary="test", properties=ChildModel(age=1, description="foo")),
     )
 
 
 # ============test for compatibility ============
 def test_dpg_model_common():
-    flatten_model = FlattenModel(
-        name="hello", properties=ChildModel(age=0, description="test")
-    )
+    flatten_model = FlattenModel(name="hello", properties=ChildModel(age=0, description="test"))
     assert flatten_model.name == "hello"
     assert flatten_model.properties.age == 0
     assert flatten_model.properties.description == "test"

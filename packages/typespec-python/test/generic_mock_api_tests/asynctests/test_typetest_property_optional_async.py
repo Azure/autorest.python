@@ -35,13 +35,9 @@ async def test_bytes(client):
 
 @pytest.mark.asyncio
 async def test_collections_byte(client):
-    body = models.CollectionsByteProperty(
-        property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]
-    )
+    body = models.CollectionsByteProperty(property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="])
     assert await client.collections_byte.get_all() == body
-    assert (
-        await client.collections_byte.get_default() == models.CollectionsByteProperty()
-    )
+    assert await client.collections_byte.get_default() == models.CollectionsByteProperty()
     await client.collections_byte.put_all(body)
     await client.collections_byte.put_default(models.CollectionsByteProperty())
 
@@ -55,10 +51,7 @@ async def test_collections_model(client):
         ]
     )
     assert await client.collections_model.get_all() == body
-    assert (
-        await client.collections_model.get_default()
-        == models.CollectionsModelProperty()
-    )
+    assert await client.collections_model.get_default() == models.CollectionsModelProperty()
     await client.collections_model.put_all(body)
     await client.collections_model.put_default(models.CollectionsModelProperty())
 
@@ -136,10 +129,7 @@ async def test_string_literal(client):
 async def test_union_float_literal(client):
     body = models.UnionFloatLiteralProperty(property=2.375)
     assert await client.union_float_literal.get_all() == body
-    assert (
-        await client.union_float_literal.get_default()
-        == models.UnionFloatLiteralProperty()
-    )
+    assert await client.union_float_literal.get_default() == models.UnionFloatLiteralProperty()
     await client.union_float_literal.put_all(body)
     await client.union_float_literal.put_default(models.UnionFloatLiteralProperty())
 
@@ -148,9 +138,7 @@ async def test_union_float_literal(client):
 async def test_union_int_literal(client):
     body = models.UnionIntLiteralProperty(property=2)
     assert await client.union_int_literal.get_all() == body
-    assert (
-        await client.union_int_literal.get_default() == models.UnionIntLiteralProperty()
-    )
+    assert await client.union_int_literal.get_default() == models.UnionIntLiteralProperty()
     await client.union_int_literal.put_all(body)
     await client.union_int_literal.put_default(models.UnionIntLiteralProperty())
 
@@ -159,9 +147,6 @@ async def test_union_int_literal(client):
 async def test_union_string_literal(client):
     body = models.UnionStringLiteralProperty(property="world")
     assert await client.union_string_literal.get_all() == body
-    assert (
-        await client.union_string_literal.get_default()
-        == models.UnionStringLiteralProperty()
-    )
+    assert await client.union_string_literal.get_default() == models.UnionStringLiteralProperty()
     await client.union_string_literal.put_all(body)
     await client.union_string_literal.put_default(models.UnionStringLiteralProperty())

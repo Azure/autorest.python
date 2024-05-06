@@ -16,6 +16,4 @@ async def client():
 @pytest.mark.asyncio
 async def test_immediate_success(client: RepeatabilityClient):
     cls = lambda x, y, z: z
-    assert (await client.immediate_success(cls=cls))[
-        "Repeatability-Result"
-    ] == "accepted"
+    assert (await client.immediate_success(cls=cls))["Repeatability-Result"] == "accepted"

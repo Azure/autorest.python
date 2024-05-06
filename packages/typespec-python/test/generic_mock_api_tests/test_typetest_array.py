@@ -21,16 +21,12 @@ def test_boolean_value(client: ArrayClient):
 
 
 def test_datetime_value(client: ArrayClient):
-    assert client.datetime_value.get() == [
-        isodate.parse_datetime("2022-08-26T18:38:00Z")
-    ]
+    assert client.datetime_value.get() == [isodate.parse_datetime("2022-08-26T18:38:00Z")]
     client.datetime_value.put([isodate.parse_datetime("2022-08-26T18:38:00Z")])
 
 
 def test_duration_value(client: ArrayClient):
-    assert client.duration_value.get() == [
-        isodate.parse_duration("P123DT22H14M12.011S")
-    ]
+    assert client.duration_value.get() == [isodate.parse_duration("P123DT22H14M12.011S")]
     client.duration_value.put([isodate.parse_duration("P123DT22H14M12.011S")])
 
 

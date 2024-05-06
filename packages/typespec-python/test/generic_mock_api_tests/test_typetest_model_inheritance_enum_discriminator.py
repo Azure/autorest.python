@@ -38,21 +38,15 @@ def test_get_extensible_model_missing_discriminator(client: EnumDiscriminatorCli
 
 
 def test_get_extensible_model_wrong_discriminator(client: EnumDiscriminatorClient):
-    assert client.get_extensible_model_wrong_discriminator() == models.Dog(
-        weight=8, kind="wrongKind"
-    )
+    assert client.get_extensible_model_wrong_discriminator() == models.Dog(weight=8, kind="wrongKind")
 
 
-def test_get_fixed_model(
-    client: EnumDiscriminatorClient, valid_fixed_body: models.Snake
-):
+def test_get_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):
     assert client.get_fixed_model() == valid_fixed_body
     assert isinstance(client.get_fixed_model(), models.Cobra)
 
 
-def test_put_fixed_model(
-    client: EnumDiscriminatorClient, valid_fixed_body: models.Snake
-):
+def test_put_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):
     client.put_fixed_model(valid_fixed_body)
 
 
@@ -61,6 +55,4 @@ def test_get_fixed_model_missing_discriminator(client: EnumDiscriminatorClient):
 
 
 def test_get_fixed_model_wrong_discriminator(client: EnumDiscriminatorClient):
-    assert client.get_fixed_model_wrong_discriminator() == models.Snake(
-        length=8, kind="wrongKind"
-    )
+    assert client.get_fixed_model_wrong_discriminator() == models.Snake(length=8, kind="wrongKind")

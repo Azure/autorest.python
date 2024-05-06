@@ -26,9 +26,7 @@ async def test_model_deserialization(client: ValueTypesClient):
     resp = await client.model.get()
     assert resp.property.property == resp["property"]["property"]
 
-    body = models.CollectionsModelProperty(
-        property=[{"property": "hello"}, {"property": "world"}]
-    )
+    body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
     assert body.property[0].property == body["property"][0]["property"]
     resp = await client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
@@ -84,9 +82,7 @@ async def test_collections_int(client: ValueTypesClient):
 
 @pytest.mark.asyncio
 async def test_collections_model(client: ValueTypesClient):
-    body = models.CollectionsModelProperty(
-        property=[{"property": "hello"}, {"property": "world"}]
-    )
+    body = models.CollectionsModelProperty(property=[{"property": "hello"}, {"property": "world"}])
     assert body.property[0].property == body["property"][0]["property"]
     resp = await client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
@@ -112,11 +108,7 @@ async def test_datetime(client):
     assert received_body.property.hour == 18
     assert received_body.property.minute == 38
 
-    await client.datetime.put(
-        models.DatetimeProperty(
-            property=datetime.datetime(2022, 8, 26, hour=18, minute=38)
-        )
-    )
+    await client.datetime.put(models.DatetimeProperty(property=datetime.datetime(2022, 8, 26, hour=18, minute=38)))
 
 
 @pytest.mark.asyncio
@@ -156,16 +148,12 @@ async def test_dictionary_string(client: ValueTypesClient):
 @pytest.mark.asyncio
 async def test_duration(client: ValueTypesClient):
     body = models.DurationProperty(property="P123DT22H14M12.011S")
-    assert body.property == datetime.timedelta(
-        days=123, seconds=80052, microseconds=11000
-    )
+    assert body.property == datetime.timedelta(days=123, seconds=80052, microseconds=11000)
     assert body["property"] == "P123DT22H14M12.011S"
     await client.duration.put(body)
 
     resp = await client.duration.get()
-    assert resp.property == datetime.timedelta(
-        days=123, seconds=80052, microseconds=11000
-    )
+    assert resp.property == datetime.timedelta(days=123, seconds=80052, microseconds=11000)
     assert resp["property"] == "P123DT22H14M12.011S"
 
 

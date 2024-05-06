@@ -21,30 +21,22 @@ async def test_model_body(client: SpreadClient):
 
 @pytest.mark.asyncio
 async def test_model_composite_request_only_with_body(client: SpreadClient):
-    await client.model.spread_composite_request_only_with_body(
-        BodyParameter(name="foo")
-    )
+    await client.model.spread_composite_request_only_with_body(BodyParameter(name="foo"))
 
 
 @pytest.mark.asyncio
 async def test_model_composite_request_without_body(client: SpreadClient):
-    await client.model.spread_composite_request_without_body(
-        name="foo", test_header="bar"
-    )
+    await client.model.spread_composite_request_without_body(name="foo", test_header="bar")
 
 
 @pytest.mark.asyncio
 async def test_model_composite_request(client: SpreadClient):
-    await client.model.spread_composite_request(
-        name="foo", body=BodyParameter(name="foo"), test_header="bar"
-    )
+    await client.model.spread_composite_request(name="foo", body=BodyParameter(name="foo"), test_header="bar")
 
 
 @pytest.mark.asyncio
 async def test_model_composite_request_mix(client: SpreadClient):
-    await client.model.spread_composite_request_mix(
-        name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar"
-    )
+    await client.model.spread_composite_request_mix(name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar")
 
 
 @pytest.mark.asyncio
@@ -54,9 +46,7 @@ async def test_alias_body(client: SpreadClient):
 
 @pytest.mark.asyncio
 async def test_alias_parameter(client: SpreadClient):
-    await client.alias.spread_as_request_parameter(
-        "1", x_ms_test_header="bar", name="foo"
-    )
+    await client.alias.spread_as_request_parameter("1", x_ms_test_header="bar", name="foo")
 
 
 @pytest.mark.asyncio

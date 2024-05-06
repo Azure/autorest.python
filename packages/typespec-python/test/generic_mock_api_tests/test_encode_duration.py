@@ -32,15 +32,11 @@ def test_query(client: DurationClient):
 
 
 def test_property(client: DurationClient):
-    result = client.property.default(
-        DefaultDurationProperty(value=datetime.timedelta(days=40))
-    )
+    result = client.property.default(DefaultDurationProperty(value=datetime.timedelta(days=40)))
     assert result.value == datetime.timedelta(days=40)
     result = client.property.default(DefaultDurationProperty(value="P40D"))
     assert result.value == datetime.timedelta(days=40)
-    result = client.property.iso8601(
-        ISO8601DurationProperty(value=datetime.timedelta(days=40))
-    )
+    result = client.property.iso8601(ISO8601DurationProperty(value=datetime.timedelta(days=40)))
     assert result.value == datetime.timedelta(days=40)
     result = client.property.iso8601(ISO8601DurationProperty(value="P40D"))
     assert result.value == datetime.timedelta(days=40)
@@ -50,9 +46,7 @@ def test_property(client: DurationClient):
     assert abs(result.value - 35.621) < 0.0001
     result = client.property.float64_seconds(FloatSecondsDurationProperty(value=35.621))
     assert abs(result.value - 35.621) < 0.0001
-    result = client.property.float_seconds_array(
-        FloatSecondsDurationArrayProperty(value=[35.621, 46.781])
-    )
+    result = client.property.float_seconds_array(FloatSecondsDurationArrayProperty(value=[35.621, 46.781]))
     assert abs(result.value[0] - 35.621) < 0.0001
     assert abs(result.value[1] - 46.781) < 0.0001
 
@@ -60,9 +54,7 @@ def test_property(client: DurationClient):
 def test_header(client: DurationClient):
     client.header.default(duration=datetime.timedelta(days=40))
     client.header.iso8601(duration=datetime.timedelta(days=40))
-    client.header.iso8601_array(
-        duration=[datetime.timedelta(days=40), datetime.timedelta(days=50)]
-    )
+    client.header.iso8601_array(duration=[datetime.timedelta(days=40), datetime.timedelta(days=50)])
     client.header.int32_seconds(duration=36)
     client.header.float_seconds(duration=35.621)
     client.header.float64_seconds(duration=35.621)

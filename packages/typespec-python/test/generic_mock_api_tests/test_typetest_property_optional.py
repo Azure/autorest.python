@@ -31,9 +31,7 @@ def test_bytes(client):
 
 
 def test_collections_byte(client):
-    body = models.CollectionsByteProperty(
-        property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="]
-    )
+    body = models.CollectionsByteProperty(property=["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="])
     assert client.collections_byte.get_all() == body
     assert client.collections_byte.get_default() == models.CollectionsByteProperty()
     client.collections_byte.put_all(body)
@@ -118,9 +116,7 @@ def test_string_literal(client):
 def test_union_float_literal(client):
     body = models.UnionFloatLiteralProperty(property=2.375)
     assert client.union_float_literal.get_all() == body
-    assert (
-        client.union_float_literal.get_default() == models.UnionFloatLiteralProperty()
-    )
+    assert client.union_float_literal.get_default() == models.UnionFloatLiteralProperty()
     client.union_float_literal.put_all(body)
     client.union_float_literal.put_default(models.UnionFloatLiteralProperty())
 
@@ -136,8 +132,6 @@ def test_union_int_literal(client):
 def test_union_string_literal(client):
     body = models.UnionStringLiteralProperty(property="world")
     assert client.union_string_literal.get_all() == body
-    assert (
-        client.union_string_literal.get_default() == models.UnionStringLiteralProperty()
-    )
+    assert client.union_string_literal.get_default() == models.UnionStringLiteralProperty()
     client.union_string_literal.put_all(body)
     client.union_string_literal.put_default(models.UnionStringLiteralProperty())
