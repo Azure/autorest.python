@@ -61,9 +61,6 @@ steps:
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
       continueOnError: true
 
-    - publish: /home/cloudtest/.npm/_logs/
-      artifact: Logs
-
     - script: pnpm list
       displayName: Pnpm list
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
