@@ -45,8 +45,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npx chronus verify 2>&1; cat /root/.npm/_logs/*-debug
+    - script: npx chronus verify
       displayName: Check changelog
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
 
     - script: pnpm install --no-frozen-lockfile
