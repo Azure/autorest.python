@@ -54,6 +54,85 @@ def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+def build_model_spread_composite_request_only_with_body_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/parameters/spread/model/composite-request-only-with-body"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_model_spread_composite_request_without_body_request(  # pylint: disable=name-too-long
+    name: str, *, test_header: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/parameters/spread/model/composite-request-without-body/{name}"
+    path_format_arguments = {
+        "name": _SERIALIZER.url("name", name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct headers
+    _headers["test-header"] = _SERIALIZER.header("test_header", test_header, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_model_spread_composite_request_request(  # pylint: disable=name-too-long
+    name: str, *, test_header: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/parameters/spread/model/composite-request/{name}"
+    path_format_arguments = {
+        "name": _SERIALIZER.url("name", name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct headers
+    _headers["test-header"] = _SERIALIZER.header("test_header", test_header, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_model_spread_composite_request_mix_request(  # pylint: disable=name-too-long
+    name: str, *, test_header: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/parameters/spread/model/composite-request-mix/{name}"
+    path_format_arguments = {
+        "name": _SERIALIZER.url("name", name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct headers
+    _headers["test-header"] = _SERIALIZER.header("test_header", test_header, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
 def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -226,6 +305,464 @@ class ModelOperations:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_model_spread_as_request_body_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_only_with_body.
+
+        :param body: Required.
+        :type body: ~parameters.spread.models.BodyParameter
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
+        """
+
+    @overload
+    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_only_with_body.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_only_with_body.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
+        """spread_composite_request_only_with_body.
+
+        :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
+        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_model_spread_composite_request_only_with_body_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    def spread_composite_request_without_body(  # pylint: disable=inconsistent-return-statements
+        self, name: str, *, test_header: str, **kwargs: Any
+    ) -> None:
+        """spread_composite_request_without_body.
+
+        :param name: Required.
+        :type name: str
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_model_spread_composite_request_without_body_request(
+            name=name,
+            test_header=test_header,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+        self,
+        name: str,
+        body: _models.BodyParameter,
+        *,
+        test_header: str,
+        content_type: str = "application/json",
+        **kwargs: Any,
+    ) -> None:
+        """spread_composite_request.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: ~parameters.spread.models.BodyParameter
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
+        """
+
+    @overload
+    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: JSON
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: Union[_models.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
+    ) -> None:
+        """spread_composite_request.
+
+        :param name: Required.
+        :type name: str
+        :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
+        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"  # Required.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_model_spread_composite_request_request(
+            name=name,
+            test_header=test_header,
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+        self,
+        name: str,
+        body: _models.CompositeRequestMix,
+        *,
+        test_header: str,
+        content_type: str = "application/json",
+        **kwargs: Any,
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: ~parameters.spread.models.CompositeRequestMix
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prop": "str"  # Required.
+                }
+        """
+
+    @overload
+    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: JSON
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+        self, name: str, body: Union[_models.CompositeRequestMix, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Is one of the following types: CompositeRequestMix, JSON, IO[bytes] Required.
+        :type body: ~parameters.spread.models.CompositeRequestMix or JSON or IO[bytes]
+        :keyword test_header: Required.
+        :paramtype test_header: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "prop": "str"  # Required.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_model_spread_composite_request_mix_request(
+            name=name,
+            test_header=test_header,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -469,7 +1006,7 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         name: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_as_request_parameter.
 
@@ -591,7 +1128,7 @@ class AliasOperations:
         prop5: str,
         prop6: str,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -651,7 +1188,7 @@ class AliasOperations:
         prop4: str = _Unset,
         prop5: str = _Unset,
         prop6: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
