@@ -45,7 +45,7 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npx chronus verify 2>&1; cat /home/cloudtest/.npm/_logs/*-debug
+    - script: npx chronus verify 2>&1 find /home/cloudtest/.npm/_logs/ -type f -name '*debug*' -exec cat {} \;
       displayName: Check changelog
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
