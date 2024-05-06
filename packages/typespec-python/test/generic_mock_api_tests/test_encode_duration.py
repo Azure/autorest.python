@@ -28,6 +28,7 @@ def test_query(client: DurationClient):
     client.query.int32_seconds(input=36)
     client.query.int32_seconds_array(input=[36, 47])
     client.query.float_seconds(input=35.621)
+    client.query.float64_seconds(input=35.621)
 
 
 def test_property(client: DurationClient):
@@ -43,6 +44,8 @@ def test_property(client: DurationClient):
     assert result.value == 36
     result = client.property.float_seconds(FloatSecondsDurationProperty(value=35.621))
     assert abs(result.value - 35.621) < 0.0001
+    result = client.property.float64_seconds(FloatSecondsDurationProperty(value=35.621))
+    assert abs(result.value - 35.621) < 0.0001
     result = client.property.float_seconds_array(FloatSecondsDurationArrayProperty(value=[35.621, 46.781]))
     assert abs(result.value[0] - 35.621) < 0.0001
     assert abs(result.value[1] - 46.781) < 0.0001
@@ -54,3 +57,4 @@ def test_header(client: DurationClient):
     client.header.iso8601_array(duration=[datetime.timedelta(days=40), datetime.timedelta(days=50)])
     client.header.int32_seconds(duration=36)
     client.header.float_seconds(duration=35.621)
+    client.header.float64_seconds(duration=35.621)
