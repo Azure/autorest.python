@@ -31,9 +31,7 @@ from .multiapi_base import NotTested
 @pytest.fixture
 def default_client(credential, authentication_policy):
     with MultiapiServiceClient(
-        base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         yield default_client
 
@@ -44,7 +42,7 @@ def client(credential, authentication_policy, api_version):
         base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         yield client
 
@@ -52,6 +50,7 @@ def client(credential, authentication_policy, api_version):
 @pytest.fixture
 def namespace_models():
     from multiapicombiner import models
+
     return models
 
 
@@ -65,7 +64,7 @@ class TestMultiapiClient(NotTested.TestMultiapiBase):
     def test_default_models_from_operation_group(self, default_client):
         pass
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    @pytest.mark.parametrize("api_version", ["1.0.0"])
     def test_specify_models_from_operation_group(self, client):
         pass
 
@@ -73,7 +72,7 @@ class TestMultiapiClient(NotTested.TestMultiapiBase):
         response = default_client.test_one(id=1, message=None)
         assert response == namespace_models.ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    @pytest.mark.parametrize("api_version", ["1.0.0"])
     def test_version_one_operation_group_one(self, client):
         response = client.operation_group_one.test_two()
         assert response is None
@@ -81,14 +80,14 @@ class TestMultiapiClient(NotTested.TestMultiapiBase):
         with pytest.raises(ValueError):
             client.operation_group_one.test_three()
 
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    @pytest.mark.parametrize("api_version", ["2.0.0"])
     def test_version_two_operation_group_one(self, client, namespace_models):
         pass
 
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    @pytest.mark.parametrize("api_version", ["2.0.0"])
     def test_version_two_operation_group_two(self, client):
         pass
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    @pytest.mark.parametrize("api_version", ["1.0.0"])
     def test_lro_and_paging(self, client, namespace_models):
         pass

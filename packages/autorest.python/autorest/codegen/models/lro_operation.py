@@ -17,9 +17,7 @@ if TYPE_CHECKING:
     from .client import Client
     from . import OperationType
 
-LROResponseType = TypeVar(
-    "LROResponseType", bound=Union[LROResponse, LROPagingResponse]
-)
+LROResponseType = TypeVar("LROResponseType", bound=Union[LROResponse, LROPagingResponse])
 
 
 class LROOperationBase(OperationBase[LROResponseType]):
@@ -55,9 +53,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
     @property
     def initial_operation(self) -> "OperationType":
         if not self._initial_operation:
-            raise ValueError(
-                "You need to first call client.link_lro_initial_operations before accessing"
-            )
+            raise ValueError("You need to first call client.link_lro_initial_operations before accessing")
         return self._initial_operation
 
     @initial_operation.setter
@@ -75,16 +71,12 @@ class LROOperationBase(OperationBase[LROResponseType]):
     @property
     def lro_response(self) -> Optional[LROResponseType]:
         responses_with_bodies = [r for r in self.responses if r.type]
-        num_response_schemas = {
-            id(r.type.yaml_data) for r in responses_with_bodies if r.type
-        }
+        num_response_schemas = {id(r.type.yaml_data) for r in responses_with_bodies if r.type}
         response = None
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
             try:
-                response = next(
-                    r for r in responses_with_bodies if 200 in r.status_codes
-                )
+                response = next(r for r in responses_with_bodies if 200 in r.status_codes)
             except StopIteration as exc:
                 raise ValueError(
                     "Your swagger is invalid because you have multiple response schemas for LRO"
@@ -142,12 +134,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
             # used in the case if initial operation returns none
             # but final call returns a model
             relative_path = "..." if async_mode else ".."
-            file_import.add_submodule_import(
-                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
-            )
-        file_import.add_submodule_import(
-            "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+            file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+        file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 

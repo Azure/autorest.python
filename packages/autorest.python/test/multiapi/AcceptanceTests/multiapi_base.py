@@ -28,17 +28,21 @@ import inspect
 import json
 from azure.profiles import KnownProfiles
 
+
 @pytest.fixture
 def default_client():
     pass
+
 
 @pytest.fixture
 def client():
     pass
 
+
 @pytest.fixture
 def namespace_models():
     pass
+
 
 class NotTested(object):
 
@@ -79,7 +83,7 @@ class NotTested(object):
             with pytest.raises(AttributeError):
                 models.ModelTwo(id=1)
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_specify_models_from_operation_group(self, client):
             v1_models = client.operation_group_one.models
 
@@ -95,12 +99,12 @@ class NotTested(object):
             response = default_client.test_one(id=1, message=None)
             assert response == namespace_models.ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_specificy_api_version_operation_mixin(self, client):
             response = client.test_one(id=1, message="This is from api version One")
             assert response is None
 
-        @pytest.mark.parametrize('api_version', ["3.0.0"])
+        @pytest.mark.parametrize("api_version", ["3.0.0"])
         def test_specify_api_version_with_no_mixin(self, client):
             with pytest.raises(ValueError):
                 client.test_one(id=1, message="This should throw")
@@ -113,7 +117,7 @@ class NotTested(object):
             with pytest.raises(AttributeError):
                 response = client.operation_group_one.test_three()
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_version_one_operation_group_one(self, client):
             response = client.operation_group_one.test_two()
             assert response is None
@@ -121,7 +125,7 @@ class NotTested(object):
             with pytest.raises(AttributeError):
                 response = client.operation_group_one.test_three()
 
-        @pytest.mark.parametrize('api_version', ["2.0.0"])
+        @pytest.mark.parametrize("api_version", ["2.0.0"])
         def test_version_two_operation_group_one(self, client, namespace_models):
             parameter = client.operation_group_one.models.ModelTwo(
                 id=1, message="This should be sent from api version 2.0.0"
@@ -139,21 +143,19 @@ class NotTested(object):
             assert response is None
 
         def test_default_operation_group_two_test_four_pdf(self, default_client):
-            response = default_client.operation_group_two.test_four(
-                input=b"PDF", content_type="application/pdf"
-            )
+            response = default_client.operation_group_two.test_four(input=b"PDF", content_type="application/pdf")
             assert response is None
 
         def test_default_operation_group_two_test_five(self, default_client):
             response = default_client.operation_group_two.test_five()
             assert response is None
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_version_one_operation_group_two_error(self, client):
             with pytest.raises(AttributeError):
                 client.operation_group_one.test_four()
 
-        @pytest.mark.parametrize('api_version', ["2.0.0"])
+        @pytest.mark.parametrize("api_version", ["2.0.0"])
         def test_version_two_operation_group_two(self, client):
             response = client.operation_group_two.test_four(parameter_one=True)
             assert response is None
@@ -161,7 +163,7 @@ class NotTested(object):
             with pytest.raises(AttributeError):
                 response = client.operation_group_two.test_five()
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_lro(self, client, namespace_models):
             product = client.begin_test_lro(namespace_models.Product()).result()
             assert product.id == 100
@@ -180,7 +182,7 @@ class NotTested(object):
             assert isinstance(items[0], namespace_models.ModelThree)
             assert items[0].optional_property == "paged"
 
-        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.parametrize("api_version", ["1.0.0"])
         def test_lro_and_paging(self, client, namespace_models):
             poller = client.begin_test_lro_and_paging()
             pager = poller.result()

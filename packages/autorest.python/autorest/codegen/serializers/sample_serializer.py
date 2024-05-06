@@ -42,31 +42,23 @@ class SampleSerializer(BaseSerializer):
         self.operation = operation
         self.sample = sample
         self.file_name = file_name
-        self.sample_params = {
-            to_snake_case(k): v for k, v in sample.get("parameters", {}).items()
-        }
+        self.sample_params = {to_snake_case(k): v for k, v in sample.get("parameters", {}).items()}
 
     def _imports(self) -> FileImportSerializer:
         imports = FileImport(self.code_model)
-        namespace_from_package_name = get_namespace_from_package_name(
-            self.code_model.options["package_name"]
-        )
-        namespace_config = get_namespace_config(
-            self.code_model.namespace, self.code_model.options["multiapi"]
-        )
+        namespace_from_package_name = get_namespace_from_package_name(self.code_model.options["package_name"])
+        namespace_config = get_namespace_config(self.code_model.namespace, self.code_model.options["multiapi"])
         namespace = namespace_from_package_name or namespace_config
         # mainly for "azure-mgmt-rdbms"
-        if not self.code_model.options["multiapi"] and namespace_config.count(
+        if not self.code_model.options["multiapi"] and namespace_config.count(".") > namespace_from_package_name.count(
             "."
-        ) > namespace_from_package_name.count("."):
+        ):
             namespace = namespace_config
         client = self.code_model.clients[0]
         imports.add_submodule_import(namespace, client.name, ImportType.LOCAL)
         credential_type = getattr(client.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
-            imports.add_submodule_import(
-                "azure.identity", "DefaultAzureCredential", ImportType.SDKCORE
-            )
+            imports.add_submodule_import("azure.identity", "DefaultAzureCredential", ImportType.SDKCORE)
         elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
@@ -75,11 +67,7 @@ class SampleSerializer(BaseSerializer):
                 ImportType.SDKCORE,
             )
         for param in self.operation.parameters.positional:
-            if (
-                not param.client_default_value
-                and not param.optional
-                and param.client_name in self.sample_params
-            ):
+            if not param.client_default_value and not param.optional and param.client_name in self.sample_params:
                 imports.merge(param.type.imports_for_sample())
         return FileImportSerializer(imports, True)
 
@@ -90,14 +78,10 @@ class SampleSerializer(BaseSerializer):
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
         elif isinstance(credential_type, KeyCredentialType):
-            special_param.update(
-                {"credential": 'AzureKeyCredential(key=os.getenv("AZURE_KEY"))'}
-            )
+            special_param.update({"credential": 'AzureKeyCredential(key=os.getenv("AZURE_KEY"))'})
 
         params_positional = [
-            p
-            for p in self.code_model.clients[0].parameters.positional
-            if not (p.optional or p.client_default_value)
+            p for p in self.code_model.clients[0].parameters.positional if not (p.optional or p.client_default_value)
         ]
         client_params = {
             p.client_name: special_param.get(
@@ -119,11 +103,7 @@ class SampleSerializer(BaseSerializer):
 
     # prepare operation parameters
     def _operation_params(self) -> Dict[str, Any]:
-        params_positional = [
-            p
-            for p in self.operation.parameters.positional
-            if not p.client_default_value
-        ]
+        params_positional = [p for p in self.operation.parameters.positional if not p.client_default_value]
         failure_info = "fail to find required param named {}"
         operation_params = {}
         for param in params_positional:
@@ -131,12 +111,8 @@ class SampleSerializer(BaseSerializer):
             param_value = self.sample_params.get(name)
             if not param.optional:
                 if not param_value:
-                    raise Exception(  # pylint: disable=broad-exception-raised
-                        failure_info.format(name)
-                    )
-                operation_params[param.client_name] = self.handle_param(
-                    param, param_value
-                )
+                    raise Exception(failure_info.format(name))  # pylint: disable=broad-exception-raised
+                operation_params[param.client_name] = self.handle_param(param, param_value)
         return operation_params
 
     def _operation_group_name(self) -> str:
@@ -145,9 +121,7 @@ class SampleSerializer(BaseSerializer):
         return f".{self.operation_group.property_name}"
 
     def _operation_result(self) -> Tuple[str, str]:
-        is_response_none = "None" in self.operation.response_type_annotation(
-            async_mode=False
-        )
+        is_response_none = "None" in self.operation.response_type_annotation(async_mode=False)
         lro = ".result()"
         if is_response_none:
             paging, normal_print, return_var = "", "", ""

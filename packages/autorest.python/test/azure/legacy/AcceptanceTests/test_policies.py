@@ -30,14 +30,18 @@ from azure.core import PipelineClient
 from azure.mgmt.core import ARMPipelineClient
 import pytest
 
+
 def get_policy_class_name(client) -> List[str]:
-    return [p._policy.__class__.__name__ if hasattr(p, "_policy") else p.__class__.__name__ for p in client._client._pipeline._impl_policies]
+    return [
+        p._policy.__class__.__name__ if hasattr(p, "_policy") else p.__class__.__name__
+        for p in client._client._pipeline._impl_policies
+    ]
+
 
 @pytest.mark.parametrize(
-    "sdk_client,pipeline_client", [
-        (AutoRestHeadTestService, ARMPipelineClient),
-        (AutoRestDurationTestService, PipelineClient)
-])
+    "sdk_client,pipeline_client",
+    [(AutoRestHeadTestService, ARMPipelineClient), (AutoRestDurationTestService, PipelineClient)],
+)
 def test_policies(sdk_client, pipeline_client):
     client = sdk_client(credential="")
     policies_built_in_client = get_policy_class_name(client)

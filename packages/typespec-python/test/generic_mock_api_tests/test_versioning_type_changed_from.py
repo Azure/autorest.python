@@ -10,9 +10,7 @@ from versioning.typechangedfrom.models import TestModel
 
 @pytest.fixture
 def client():
-    with TypeChangedFromClient(
-        endpoint="http://localhost:3000", version="v2"
-    ) as client:
+    with TypeChangedFromClient(endpoint="http://localhost:3000", version="v2") as client:
         yield client
 
 

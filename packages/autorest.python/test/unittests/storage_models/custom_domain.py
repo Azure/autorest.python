@@ -25,12 +25,12 @@ class CustomDomain(Model):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
+        "name": {"key": "name", "type": "str"},
+        "use_sub_domain": {"key": "useSubDomain", "type": "bool"},
     }
 
     def __init__(self, name, use_sub_domain=None):

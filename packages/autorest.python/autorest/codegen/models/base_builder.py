@@ -39,9 +39,7 @@ if TYPE_CHECKING:
     from .request_builder import RequestBuilder
 
 
-OverloadListType = TypeVar(
-    "OverloadListType", bound=Union[List["Operation"], List["RequestBuilder"]]
-)
+OverloadListType = TypeVar("OverloadListType", bound=Union[List["Operation"], List["RequestBuilder"]])
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -69,9 +67,7 @@ class BaseBuilder(
         self.overloads = overloads or cast(OverloadListType, [])
         self._summary: str = yaml_data.get("summary", "")
         self.want_tracing: bool = yaml_data.get("wantTracing", True)
-        self.group_name: str = yaml_data[
-            "groupName"
-        ]  # either operationGroup or client I am on
+        self.group_name: str = yaml_data["groupName"]  # either operationGroup or client I am on
         self.is_overload: bool = yaml_data["isOverload"]
         self.api_versions: List[str] = yaml_data["apiVersions"]
         self.added_on: Optional[str] = yaml_data.get("addedOn")

@@ -26,15 +26,18 @@
 import pytest
 from lrowithparameterizedendpointsversiontolerant import LROWithParamaterizedEndpoints
 
+
 @pytest.fixture
 def client(credential):
     with LROWithParamaterizedEndpoints(credential=credential, host="host:3000") as client:
         yield client
 
+
 def test_poll_with_parameterized_endpoints(client):
-    poller = client.begin_poll_with_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert poller.result() == 'success'
+    poller = client.begin_poll_with_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert poller.result() == "success"
+
 
 def test_poll_with_constant_parameterized_endpoints(client):
-    poller = client.begin_poll_with_constant_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert poller.result() == 'success'
+    poller = client.begin_poll_with_constant_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert poller.result() == "success"

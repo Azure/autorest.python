@@ -29,13 +29,15 @@ from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import BearerTokenCredentialPolicy
 
+
 def test_security_aad_swagger(credential):
     client = AutorestSecurityAad(credential=credential)
     assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)
     client.head(enforce_https=False)
 
+
 def test_security_key_swagger():
     # the key value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
-    client = AutorestSecurityKey(credential=AzureKeyCredential('123456789'))
+    client = AutorestSecurityKey(credential=AzureKeyCredential("123456789"))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
     client.head()

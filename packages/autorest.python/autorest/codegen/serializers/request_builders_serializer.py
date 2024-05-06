@@ -48,7 +48,5 @@ class RequestBuildersSerializer(BaseSerializer):
             imports=FileImportSerializer(
                 self.imports,
             ),
-            request_builder_serializer=RequestBuilderSerializer(
-                self.code_model, async_mode=False
-            ),
+            request_builder_serializer=RequestBuilderSerializer(self.code_model, async_mode=False),
         )

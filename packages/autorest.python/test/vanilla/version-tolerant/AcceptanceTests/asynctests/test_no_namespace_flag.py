@@ -26,12 +26,14 @@
 import pytest
 from anything_client.aio import AnythingClient
 
+
 @pytest.fixture
 async def client():
     async with AnythingClient() as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_call(client):
     # make sure we can do a call with an sdk with no namespace flag
-    assert await client.get_string() == 'anything'
+    assert await client.get_string() == "anything"

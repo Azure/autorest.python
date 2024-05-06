@@ -31,10 +31,12 @@ from multipleinheritance.models import *
 import pytest
 import sys
 
+
 @pytest.fixture
 def client():
     with MultipleInheritanceServiceClient(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestMultipleInheritance(object):
 
@@ -67,7 +69,9 @@ class TestMultipleInheritance(object):
         assert result == "Cat was correct!"
 
     def test_get_kitten(self, client):
-        assert Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == client.get_kitten()
+        assert (
+            Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == client.get_kitten()
+        )
 
     def test_put_kitten(self, client):
         result = client.put_kitten(Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True))
@@ -77,6 +81,7 @@ class TestMultipleInheritance(object):
         from multipleinheritance.models import Error
 
         from multipleinheritance.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -85,5 +90,8 @@ class TestMultipleInheritance(object):
         with pytest.raises(ImportError):
             from multipleinheritance.operations import _multiple_inheritance_service_client_operations_py3
 
-        from multipleinheritance.operations._multiple_inheritance_service_client_operations import MultipleInheritanceServiceClientOperationsMixin as MultipleInheritanceServiceClientOperationsMixinPy2
+        from multipleinheritance.operations._multiple_inheritance_service_client_operations import (
+            MultipleInheritanceServiceClientOperationsMixin as MultipleInheritanceServiceClientOperationsMixinPy2,
+        )
+
         assert MultipleInheritanceServiceClientOperationsMixin == MultipleInheritanceServiceClientOperationsMixinPy2

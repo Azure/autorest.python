@@ -22,9 +22,7 @@ def format_file(file: Path, file_content: str) -> str:
     if not file.suffix == ".py":
         return file_content
     try:
-        file_content = black.format_file_contents(
-            file_content, fast=True, mode=_BLACK_MODE
-        )
+        file_content = black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
     except NothingChanged:
         pass
     return file_content
@@ -98,11 +96,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
         return self.get_namespace(next_dir, namespace)
 
     def process(self) -> bool:
-        folders = [
-            f
-            for f in self.base_folder.glob("**/*")
-            if f.is_dir() and not f.stem.startswith("__")
-        ]
+        folders = [f for f in self.base_folder.glob("**/*") if f.is_dir() and not f.stem.startswith("__")]
         # will always have the root
         self.fix_imports_in_init(
             generated_file_name="_client",
@@ -128,13 +122,9 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             )
         except StopIteration:
             pass
-        operations_folders = [
-            f for f in folders if f.stem in ["operations", "_operations"]
-        ]
+        operations_folders = [f for f in folders if f.stem in ["operations", "_operations"]]
         for operations_folder in operations_folders:
-            sub_namespace = ".".join(
-                str(operations_folder.relative_to(self.base_folder)).split(os.sep)
-            )
+            sub_namespace = ".".join(str(operations_folder.relative_to(self.base_folder)).split(os.sep))
             self.fix_imports_in_init(
                 generated_file_name="_operations",
                 folder_path=operations_folder,
@@ -143,9 +133,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
         shutil.rmtree(f"{str(self.output_folder)}/.temp_folder")
         return True
 
-    def fix_imports_in_init(
-        self, generated_file_name: str, folder_path: Path, namespace: str
-    ) -> None:
+    def fix_imports_in_init(self, generated_file_name: str, folder_path: Path, namespace: str) -> None:
         customized_objects_str = python_run(
             self.venv_context,
             command=[namespace, str(self.output_folder)],
@@ -154,9 +142,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
 
         if not customized_objects_str:
             return
-        customized_objects = {
-            k: None for k in customized_objects_str.split(",")
-        }.keys()  # filter out duplicates
+        customized_objects = {k: None for k in customized_objects_str.split(",")}.keys()  # filter out duplicates
         file = (folder_path / "__init__.py").relative_to(self.output_folder)
         file_content = self.read_file(file).replace("\r\n", "\n")
         added_objs = []
@@ -175,16 +161,12 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             "\nexcept ImportError:\n    _patch_all = []",
             "",
         )
-        file_content = file_content.replace(
-            "from ._patch import __all__ as _patch_all", ""
-        )
+        file_content = file_content.replace("from ._patch import __all__ as _patch_all", "")
         file_content = file_content.replace(
             "from ._patch import *  # pylint: disable=unused-wildcard-import\n",
             "",
         )
-        file_content = file_content.replace(
-            "__all__.extend([p for p in _patch_all if p not in __all__])", ""
-        )
+        file_content = file_content.replace("__all__.extend([p for p in _patch_all if p not in __all__])", "")
         if added_objs:
             # add import
             patch_sdk_import = "from ._patch import patch_sdk as _patch_sdk"
@@ -196,9 +178,7 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = file_content.replace(patch_sdk_import, replacement)
             # add to __all__
             added_objs_all = "\n".join([f'    "{obj}",' for obj in added_objs]) + "\n"
-            file_content = file_content.replace(
-                "__all__ = [", f"__all__ = [\n{added_objs_all}", 1
-            )
+            file_content = file_content.replace("__all__ = [", f"__all__ = [\n{added_objs_all}", 1)
         formatted_file = format_file(file, file_content)
         self.write_file(file, formatted_file)
 

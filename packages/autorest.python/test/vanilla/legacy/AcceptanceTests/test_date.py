@@ -40,22 +40,24 @@ from bodydate import AutoRestDateTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDateTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestDate(object):
 
     def test_model_get_and_put_max_date(self, client):
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
         client.date.put_max_date(max_date)
-        assert max_date ==  client.date.get_max_date()
+        assert max_date == client.date.get_max_date()
 
     def test_model_get_and_put_min_date(self, client):
         min_date = isodate.parse_date("0001-01-01T00:00:00Z")
         client.date.put_min_date(min_date)
-        assert min_date ==  client.date.get_min_date()
+        assert min_date == client.date.get_min_date()
 
     def test_model_get_null(self, client):
         assert client.date.get_null() is None
@@ -76,6 +78,7 @@ class TestDate(object):
         from bodydate.models import Error
 
         from bodydate.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -85,4 +88,5 @@ class TestDate(object):
             from bodydate.operations import _date_operations_py3
 
         from bodydate.operations._date_operations import DateOperations as DateOperationsPy2
+
         assert DateOperations == DateOperationsPy2

@@ -25,8 +25,5 @@ def test_get(client: XmsClientRequestIdClient, check_client_request_id_header):
         ),
     )
     assert result is None
-    assert (
-        resp.http_response.headers["x-ms-client-request-id"]
-        == checked["x-ms-client-request-id"]
-    )
+    assert resp.http_response.headers["x-ms-client-request-id"] == checked["x-ms-client-request-id"]
     pass

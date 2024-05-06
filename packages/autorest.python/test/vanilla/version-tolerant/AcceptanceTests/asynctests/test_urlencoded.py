@@ -27,10 +27,12 @@
 import pytest
 from bodyformurlencodeddataversiontolerant.aio import BodyFormsDataURLEncoded
 
+
 @pytest.fixture
 async def client():
     async with BodyFormsDataURLEncoded() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_update_pet_with_form(client):
@@ -41,13 +43,12 @@ async def test_update_pet_with_form(client):
             "pet_food": "meat",
             "pet_age": 42,
             "name": "Fido",
-        }
+        },
     )
+
 
 @pytest.mark.asyncio
 async def test_partial_constant_body(client):
-    await client.formdataurlencoded.partial_constant_body({
-        "access_token": "foo",
-        "grant_type": "access_token",
-        "service": "bar"
-    })
+    await client.formdataurlencoded.partial_constant_body(
+        {"access_token": "foo", "grant_type": "access_token", "service": "bar"}
+    )

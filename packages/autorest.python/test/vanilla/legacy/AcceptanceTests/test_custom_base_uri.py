@@ -41,10 +41,12 @@ from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
 import pytest
 
+
 @pytest.fixture
 def client():
-    with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+    with AutoRestParameterizedHostTestClient("host:3000", retry_total=0) as client:
         yield client
+
 
 class TestCustomBaseUri(object):
 
@@ -61,7 +63,7 @@ class TestCustomBaseUri(object):
             client.paths.get_empty(None)
 
     def test_get_empty_from_bad_host(self):
-        with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+        with AutoRestParameterizedHostTestClient("badhost:3000", retry_total=0) as client:
             with pytest.raises(ServiceRequestError):
                 client.paths.get_empty("local")
 
@@ -73,6 +75,7 @@ class TestCustomBaseUri(object):
         from custombaseurl.models import Error
 
         from custombaseurl.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -82,4 +85,5 @@ class TestCustomBaseUri(object):
             from custombaseurl.operations import _paths_operations_py3
 
         from custombaseurl.operations._paths_operations import PathsOperations as PathsOperationsPy2
+
         assert PathsOperations == PathsOperationsPy2

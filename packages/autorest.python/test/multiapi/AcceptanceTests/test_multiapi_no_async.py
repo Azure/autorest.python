@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 
+
 def test_multiapi_no_async():
     # making sure that there is no aio folder
     with pytest.raises(ImportError):

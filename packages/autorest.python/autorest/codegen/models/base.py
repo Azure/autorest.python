@@ -42,14 +42,10 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data, code_model)
         self.type = yaml_data["type"]  # the type discriminator
-        self.api_versions: List[str] = yaml_data.get(
-            "apiVersions", []
-        )  # api versions this type is in.
+        self.api_versions: List[str] = yaml_data.get("apiVersions", [])  # api versions this type is in.
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BaseType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
     def imports(self, **kwargs) -> FileImport:  # pylint: disable=unused-argument

@@ -30,6 +30,7 @@ from nonstringenums.models import IntEnum, FloatEnum
 import pytest
 import json
 
+
 @pytest.fixture
 @async_generator
 async def client():

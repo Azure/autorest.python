@@ -76,22 +76,14 @@ class ConstantType(BaseType):
         return self.value_type.docstring_type(**kwargs)
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return (
-            f"Literal[{self.get_declaration()}]"
-            if self._is_literal
-            else self.value_type.type_annotation(**kwargs)
-        )
+        return f"Literal[{self.get_declaration()}]" if self._is_literal else self.value_type.type_annotation(**kwargs)
 
     @property
     def _is_literal(self) -> bool:
-        return isinstance(
-            self.value_type, (IntegerType, BinaryType, StringType, BooleanType)
-        )
+        return isinstance(self.value_type, (IntegerType, BinaryType, StringType, BooleanType))
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ConstantType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ConstantType":
         """Constructs a ConstantType from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -134,9 +126,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         if self._is_literal:
-            file_import.add_submodule_import(
-                "typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR
-            )
+            file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR)
         return file_import
 
     @property

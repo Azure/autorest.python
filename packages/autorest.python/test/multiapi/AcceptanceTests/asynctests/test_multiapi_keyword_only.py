@@ -28,31 +28,34 @@ from async_generator import yield_, async_generator
 from multiapikeywordonly.aio import MultiapiServiceClient
 from .multiapi_base import NotTested
 
+
 @pytest.fixture
 @async_generator
 async def client(credential, authentication_policy, api_version):
     async with MultiapiServiceClient(
-		endpoint="http://localhost:3000",
+        endpoint="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         await yield_(client)
+
 
 @pytest.fixture
 @async_generator
 async def default_client(credential, authentication_policy):
     async with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         await yield_(default_client)
+
 
 @pytest.fixture
 def namespace_models():
     from multiapikeywordonly import models
+
     return models
+
 
 class TestMultiapiClientKeywordOnly(NotTested.TestMultiapiBase):
     pass

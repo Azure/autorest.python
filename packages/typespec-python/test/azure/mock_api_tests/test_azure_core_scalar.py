@@ -23,9 +23,7 @@ def test_azure_location_scalar_put(client: ScalarClient):
 
 
 def test_azure_location_scalar_post(client: ScalarClient):
-    result = client.azure_location_scalar.post(
-        models.AzureLocationModel(location="eastus")
-    )
+    result = client.azure_location_scalar.post(models.AzureLocationModel(location="eastus"))
     assert result == models.AzureLocationModel(location="eastus")
 
 

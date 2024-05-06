@@ -27,25 +27,30 @@ import pytest
 from azure.core.pipeline.policies import CustomHookPolicy
 from bodyarray import AutoRestSwaggerBATArrayService
 
+
 def is_rest(obj):
     return hasattr(obj, "content")
+
 
 def test_raw_request_hook():
     def _callback(request):
         assert not is_rest(request.http_request)
         assert hasattr(request.http_request, "set_multipart_mixed")
         raise ValueError("I entered the callback!")
+
     raw_request_hook_policy = CustomHookPolicy(raw_request_hook=_callback)
     client = AutoRestSwaggerBATArrayService(policies=[raw_request_hook_policy])
     with pytest.raises(ValueError) as ex:
         client.array.get_array_empty()
     assert "I entered the callback!" in str(ex.value)
 
+
 def test_raw_response_hook():
     def _callback(response):
         assert not is_rest(response.http_response)
         assert hasattr(response.http_response, "parts")
         raise ValueError("I entered the callback!")
+
     raw_response_hook_policy = CustomHookPolicy(raw_response_hook=_callback)
     client = AutoRestSwaggerBATArrayService(policies=[raw_response_hook_policy])
     with pytest.raises(ValueError) as ex:

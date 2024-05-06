@@ -46,8 +46,9 @@ import pytest
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestUrlTestService('', base_url="http://localhost:3000") as client:
+    async with AutoRestUrlTestService("", base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 @pytest.fixture
 @async_generator
@@ -55,9 +56,11 @@ async def multi_client():
     async with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
         await yield_(client)
 
+
 @pytest.fixture
 def test_array_query():
     return ["ArrayQuery1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
+
 
 class TestUrl(object):
 
@@ -70,7 +73,7 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_byte_multi_byte(self, client):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
         await client.paths.byte_multi_byte(u_bytes)
 
     @pytest.mark.asyncio
@@ -160,7 +163,7 @@ class TestUrl(object):
     @pytest.mark.asyncio
     async def test_queries_byte(self, client):
         await client.queries.byte_empty()
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
         await client.queries.byte_multi_byte(u_bytes)
         await client.queries.byte_null()
 
@@ -243,7 +246,7 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_array_string_no_collection_format(self, client):
-        await client.queries.array_string_no_collection_format_empty(['hello', 'nihao', 'bonjour'])
+        await client.queries.array_string_no_collection_format_empty(["hello", "nihao", "bonjour"])
 
     @pytest.mark.asyncio
     async def test_get_all_with_values(self, client):

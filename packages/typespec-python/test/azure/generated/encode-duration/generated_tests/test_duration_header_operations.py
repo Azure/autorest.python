@@ -66,3 +66,14 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy
+    def test_float64_seconds(self, duration_endpoint):
+        client = self.create_client(endpoint=duration_endpoint)
+        response = client.header.float64_seconds(
+            duration=0.0,
+        )
+
+        # please add some check logic here by yourself
+        # ...

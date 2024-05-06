@@ -29,25 +29,32 @@ from bodybooleanversiontolerant import AutoRestBoolTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestBoolTestService() as client:
         yield client
 
+
 def test_model_get_true(client):
     assert client.bool.get_true()
+
 
 def test_model_get_false(client):
     assert not client.bool.get_false()
 
+
 def test_model_get_null(client):
     client.bool.get_null()
+
 
 def test_model_put_false(client):
     client.bool.put_false()
 
+
 def test_model_put_true(client):
     client.bool.put_true()
+
 
 def test_model_get_invalid(client):
     with pytest.raises(DecodeError):

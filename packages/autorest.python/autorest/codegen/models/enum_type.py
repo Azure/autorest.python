@@ -78,19 +78,13 @@ class EnumValue(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.merge(self.value_type.imports(**kwargs))
-        file_import.add_submodule_import(
-            "typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR
-        )
-        file_import.add_submodule_import(
-            "._enums", self.enum_type.name, ImportType.LOCAL, TypingSection.REGULAR
-        )
+        file_import.add_submodule_import("typing", "Literal", ImportType.STDLIB, TypingSection.REGULAR)
+        file_import.add_submodule_import("._enums", self.enum_type.name, ImportType.LOCAL, TypingSection.REGULAR)
 
         return file_import
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "EnumValue":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -133,9 +127,7 @@ class EnumType(BaseType):
         self.values = values
         self.value_type = value_type
         self.internal: bool = self.yaml_data.get("internal", False)
-        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
-            "crossLanguageDefinitionId"
-        )
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
@@ -149,9 +141,7 @@ class EnumType(BaseType):
         """
         return self.value_type.serialization_type
 
-    def description(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         possible_values = [self.get_declaration(v.value) for v in self.values]
         if not possible_values:
             return ""
@@ -161,8 +151,7 @@ class EnumType(BaseType):
             possible_values_str = " and ".join(possible_values)
         else:
             possible_values_str = (
-                ", ".join(possible_values[: len(possible_values) - 1])
-                + f", and {possible_values[-1]}"
+                ", ".join(possible_values[: len(possible_values) - 1]) + f", and {possible_values[-1]}"
             )
 
         enum_description = f"Known values are: {possible_values_str}."
@@ -219,16 +208,12 @@ class EnumType(BaseType):
     def instance_check_template(self) -> str:
         return self.value_type.instance_check_template
 
-    def fill_instance_from_yaml(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> None:
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         for value in yaml_data["values"]:
             self.values.append(EnumValue.from_yaml(value, code_model))
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "EnumType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumType":
         raise ValueError(
             "You shouldn't call from_yaml for EnumType to avoid recursion. "
             "Please initial a blank EnumType, then call .fill_instance_from_yaml on the created type."
@@ -238,9 +223,7 @@ class EnumType(BaseType):
         operation = kwargs.pop("operation", False)
         file_import = FileImport(self.code_model)
         if self.code_model.options["models_mode"]:
-            file_import.add_submodule_import(
-                "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
             if not operation:
                 file_import.add_submodule_import(
                     "..",
@@ -258,10 +241,6 @@ class EnumType(BaseType):
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=(
-                    TypingSection.TYPING
-                    if kwargs.get("model_typing")
-                    else TypingSection.REGULAR
-                ),
+                typing_section=(TypingSection.TYPING if kwargs.get("model_typing") else TypingSection.REGULAR),
             )
         return file_import

@@ -32,11 +32,7 @@ class OperationMixinGroup:
         return imports
 
     def typing_definitions(self, async_mode: bool) -> str:
-        key = (
-            "sync_mixin_typing_definitions"
-            if async_mode
-            else "async_mixin_typing_definitions"
-        )
+        key = "sync_mixin_typing_definitions" if async_mode else "async_mixin_typing_definitions"
         origin = "".join(
             [
                 metadata_json.get("operation_mixins", {}).get(key, "")
@@ -45,22 +41,16 @@ class OperationMixinGroup:
         )
         return "\n".join(set(origin.split("\n")))
 
-    def _use_metadata_of_default_api_version(
-        self, mixin_operations: List[MixinOperation]
-    ) -> List[MixinOperation]:
+    def _use_metadata_of_default_api_version(self, mixin_operations: List[MixinOperation]) -> List[MixinOperation]:
         default_api_version_path = [
             version_path
             for version_path in self.version_path_to_metadata.keys()
             if version_path.name == self.default_api_version
         ][0]
-        default_version_metadata = self.version_path_to_metadata[
-            default_api_version_path
-        ]
+        default_version_metadata = self.version_path_to_metadata[default_api_version_path]
         if not default_version_metadata.get("operation_mixins"):
             return mixin_operations
-        for name, metadata in default_version_metadata["operation_mixins"][
-            "operations"
-        ].items():
+        for name, metadata in default_version_metadata["operation_mixins"]["operations"].items():
             if name.startswith("_"):
                 continue
             mixin_operation = [mo for mo in mixin_operations if mo.name == name][0]
@@ -81,9 +71,7 @@ class OperationMixinGroup:
                 if mixin_operation_name.startswith("_"):
                     continue
                 try:
-                    mixin_operation = [
-                        mo for mo in mixin_operations if mo.name == mixin_operation_name
-                    ][0]
+                    mixin_operation = [mo for mo in mixin_operations if mo.name == mixin_operation_name][0]
                 except IndexError:
                     mixin_operation = MixinOperation(
                         name=mixin_operation_name,

@@ -88,7 +88,7 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: black ${{parameters.pythonFolderName}}
+    - script: black $(Build.SourcesDirectory)/autorest.python
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})

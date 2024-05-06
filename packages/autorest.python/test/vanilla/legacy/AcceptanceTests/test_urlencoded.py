@@ -28,10 +28,12 @@ import pytest
 from bodyformurlencodeddata import BodyFormsDataURLEncoded
 from bodyformurlencodeddata.models import PetFood, PetType
 
+
 @pytest.fixture
 def client():
     with BodyFormsDataURLEncoded() as client:
         yield client
+
 
 def test_update_pet_with_form(client):
     client.formdataurlencoded.update_pet_with_form(
@@ -41,6 +43,7 @@ def test_update_pet_with_form(client):
         pet_age=42,
         name="Fido",
     )
+
 
 def test_partial_constant_body(client):
     client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar")

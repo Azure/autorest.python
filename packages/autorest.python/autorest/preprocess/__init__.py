@@ -30,18 +30,14 @@ def update_overload_section(
             if overload_s.get("type"):
                 overload_s["type"] = original_s["type"]
             if overload_s.get("headers"):
-                for overload_h, original_h in zip(
-                    overload_s["headers"], original_s["headers"]
-                ):
+                for overload_h, original_h in zip(overload_s["headers"], original_s["headers"]):
                     if overload_h.get("type"):
                         overload_h["type"] = original_h["type"]
     except KeyError as exc:
         raise ValueError(overload["name"]) from exc
 
 
-def add_overload(
-    yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False
-):
+def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False):
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
     overload["bodyParameter"]["type"] = body_type
@@ -53,9 +49,7 @@ def add_overload(
     if for_flatten_params:
         overload["bodyParameter"]["flattened"] = True
     else:
-        overload["parameters"] = [
-            p for p in overload["parameters"] if not p.get("inFlattenedBody")
-        ]
+        overload["parameters"] = [p for p in overload["parameters"] if not p.get("inFlattenedBody")]
     # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
     for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
         overload_p["type"] = original_p["type"]
@@ -63,9 +57,7 @@ def add_overload(
     update_overload_section(overload, yaml_data, "exceptions")
 
     # update content type to be an overloads content type
-    content_type_param = next(
-        p for p in overload["parameters"] if p["wireName"].lower() == "content-type"
-    )
+    content_type_param = next(p for p in overload["parameters"] if p["wireName"].lower() == "content-type")
     content_type_param["inOverload"] = True
     content_type_param["inDocstring"] = True
     body_type_description = get_body_type_for_description(overload["bodyParameter"])
@@ -88,25 +80,16 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     body_parameter = yaml_data["bodyParameter"]
     if not (
         body_parameter["type"]["type"] == "combined"
-        and len(yaml_data["bodyParameter"]["type"]["types"])
-        > len(yaml_data["overloads"])
+        and len(yaml_data["bodyParameter"]["type"]["types"]) > len(yaml_data["overloads"])
     ):
         return
     for body_type in body_parameter["type"]["types"]:
-        if any(
-            o
-            for o in yaml_data["overloads"]
-            if id(o["bodyParameter"]["type"]) == id(body_type)
-        ):
+        if any(o for o in yaml_data["overloads"] if id(o["bodyParameter"]["type"]) == id(body_type)):
             continue
         yaml_data["overloads"].append(add_overload(yaml_data, body_type))
         if body_type.get("type") == "model" and body_type.get("base") == "json":
-            yaml_data["overloads"].append(
-                add_overload(yaml_data, body_type, for_flatten_params=True)
-            )
-    content_type_param = next(
-        p for p in yaml_data["parameters"] if p["wireName"].lower() == "content-type"
-    )
+            yaml_data["overloads"].append(add_overload(yaml_data, body_type, for_flatten_params=True))
+    content_type_param = next(p for p in yaml_data["parameters"] if p["wireName"].lower() == "content-type")
     content_type_param["inOverload"] = False
     content_type_param["inOverriden"] = True
     content_type_param["inDocstring"] = True
@@ -116,9 +99,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def update_description(
-    description: Optional[str], default_description: str = ""
-) -> str:
+def update_description(description: Optional[str], default_description: str = "") -> str:
     if not description:
         description = default_description
     description.rstrip(" ")
@@ -179,9 +160,7 @@ def has_json_content_type(yaml_data: Dict[str, Any]) -> bool:
 
 
 def has_multi_part_content_type(yaml_data: Dict[str, Any]) -> bool:
-    return any(
-        ct for ct in yaml_data.get("contentTypes", []) if ct == "multipart/form-data"
-    )
+    return any(ct for ct in yaml_data.get("contentTypes", []) if ct == "multipart/form-data")
 
 
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
@@ -213,8 +192,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             body_parameter
             and body_parameter["type"]["type"] in ("model", "dict", "list")
             and (
-                has_json_content_type(body_parameter)
-                or (self.is_cadl and has_multi_part_content_type(body_parameter))
+                has_json_content_type(body_parameter) or (self.is_cadl and has_multi_part_content_type(body_parameter))
             )
             and not body_parameter["type"].get("xmlMetadata")
             and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
@@ -240,10 +218,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return name
 
         if self.is_cadl:
-            reserved_words = {
-                k: (v + CADL_RESERVED_WORDS.get(k, []))
-                for k, v in RESERVED_WORDS.items()
-            }
+            reserved_words = {k: (v + CADL_RESERVED_WORDS.get(k, [])) for k, v in RESERVED_WORDS.items()}
         else:
             reserved_words = RESERVED_WORDS
         name = pad_special_chars(name)
@@ -256,26 +231,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_types(self, yaml_data: List[Dict[str, Any]]) -> None:
         for type in yaml_data:
             for property in type.get("properties", []):
-                property["description"] = update_description(
-                    property.get("description", "")
-                )
-                property["clientName"] = self.pad_reserved_words(
-                    property["clientName"].lower(), PadType.PROPERTY
-                )
+                property["description"] = update_description(property.get("description", ""))
+                property["clientName"] = self.pad_reserved_words(property["clientName"].lower(), PadType.PROPERTY)
                 add_redefined_builtin_info(property["clientName"], property)
             if type.get("name"):
                 name = self.pad_reserved_words(type["name"], PadType.MODEL)
                 type["name"] = name[0].upper() + name[1:]
-                type["description"] = update_description(
-                    type.get("description", ""), type["name"]
-                )
+                type["description"] = update_description(type.get("description", ""), type["name"])
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values"):
                 # we're enums
                 for value in type["values"]:
-                    padded_name = self.pad_reserved_words(
-                        value["name"].lower(), PadType.ENUM
-                    ).upper()
+                    padded_name = self.pad_reserved_words(value["name"].lower(), PadType.ENUM).upper()
                     if padded_name[0] in "0123456789":
                         padded_name = "ENUM_" + padded_name
                     value["name"] = padded_name
@@ -286,24 +253,16 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 yaml_data.append(v["type"])
 
     def update_client(self, yaml_data: Dict[str, Any]) -> None:
-        yaml_data["description"] = update_description(
-            yaml_data["description"], default_description=yaml_data["name"]
-        )
+        yaml_data["description"] = update_description(yaml_data["description"], default_description=yaml_data["name"])
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
         parameters = yaml_data["parameters"]
         for parameter in parameters:
             self.update_parameter(parameter)
             if parameter["clientName"] == "credential":
                 policy = parameter["type"].get("policy")
-                if (
-                    policy
-                    and policy["type"] == "BearerTokenCredentialPolicy"
-                    and self.azure_arm
-                ):
+                if policy and policy["type"] == "BearerTokenCredentialPolicy" and self.azure_arm:
                     policy["type"] = "ARMChallengeAuthenticationPolicy"
-                    policy["credentialScopes"] = [
-                        "https://management.azure.com/.default"
-                    ]
+                    policy["credentialScopes"] = ["https://management.azure.com/.default"]
         if (
             (not self.version_tolerant or self.azure_arm)
             and parameters
@@ -321,10 +280,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 property_if_none_match = None
                 for p in o["parameters"]:
                     wire_name_lower = get_wire_name_lower(p)
-                    if (
-                        p["location"] == "header"
-                        and wire_name_lower == "client-request-id"
-                    ):
+                    if p["location"] == "header" and wire_name_lower == "client-request-id":
                         yaml_data["requestIdHeaderName"] = wire_name_lower
                     if self.version_tolerant and p["location"] == "header":
                         if wire_name_lower == "if-match":
@@ -346,16 +302,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     o["parameters"] = [
                         item
                         for item in o["parameters"]
-                        if get_wire_name_lower(item)
-                        not in ("if-match", "if-none-match")
+                        if get_wire_name_lower(item) not in ("if-match", "if-none-match")
                     ] + [property_if_match, property_if_none_match]
 
                     o["hasEtag"] = True
                     yaml_data["hasEtag"] = True
 
-    def get_operation_updater(
-        self, yaml_data: Dict[str, Any]
-    ) -> Callable[[Dict[str, Any], Dict[str, Any]], None]:
+    def get_operation_updater(self, yaml_data: Dict[str, Any]) -> Callable[[Dict[str, Any], Dict[str, Any]], None]:
         if yaml_data["discriminator"] == "lropaging":
             return self.update_lro_paging_operation
         if yaml_data["discriminator"] == "lro":
@@ -366,13 +319,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     def update_parameter(self, yaml_data: Dict[str, Any]) -> None:
         yaml_data["description"] = update_description(yaml_data.get("description", ""))
-        if not (
-            yaml_data["location"] == "header"
-            and yaml_data["clientName"] in ("content_type", "accept")
-        ):
-            yaml_data["clientName"] = self.pad_reserved_words(
-                yaml_data["clientName"].lower(), PadType.PARAMETER
-            )
+        if not (yaml_data["location"] == "header" and yaml_data["clientName"] in ("content_type", "accept")):
+            yaml_data["clientName"] = self.pad_reserved_words(yaml_data["clientName"].lower(), PadType.PARAMETER)
         if yaml_data.get("propertyToParameterName"):
             # need to create a new one with padded keys and values
             yaml_data["propertyToParameterName"] = {
@@ -383,20 +331,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             }
         wire_name_lower = (yaml_data.get("wireName") or "").lower()
         if yaml_data["location"] == "header" and (
-            wire_name_lower in HEADERS_HIDE_IN_METHOD
-            or yaml_data.get("clientDefaultValue") == "multipart/form-data"
+            wire_name_lower in HEADERS_HIDE_IN_METHOD or yaml_data.get("clientDefaultValue") == "multipart/form-data"
         ):
             yaml_data["hideInMethod"] = True
-        if (
-            self.version_tolerant
-            and yaml_data["location"] == "header"
-            and wire_name_lower in HEADERS_CONVERT_IN_METHOD
-        ):
+        if self.version_tolerant and yaml_data["location"] == "header" and wire_name_lower in HEADERS_CONVERT_IN_METHOD:
             headers_convert(yaml_data, HEADERS_CONVERT_IN_METHOD[wire_name_lower])
-        if (
-            wire_name_lower in ["$host", "content-type", "accept"]
-            and yaml_data["type"]["type"] == "constant"
-        ):
+        if wire_name_lower in ["$host", "content-type", "accept"] and yaml_data["type"]["type"] == "constant":
             yaml_data["clientDefaultValue"] = yaml_data["type"]["value"]
 
     def update_operation(
@@ -406,15 +346,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         *,
         is_overload: bool = False,
     ) -> None:
-        yaml_data["groupName"] = self.pad_reserved_words(
-            yaml_data["groupName"], PadType.OPERATION_GROUP
-        )
+        yaml_data["groupName"] = self.pad_reserved_words(yaml_data["groupName"], PadType.OPERATION_GROUP)
         yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
         yaml_data["name"] = yaml_data["name"].lower()
         yaml_data["name"] = self.pad_reserved_words(yaml_data["name"], PadType.METHOD)
-        yaml_data["description"] = update_description(
-            yaml_data["description"], yaml_data["name"]
-        )
+        yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
         yaml_data["summary"] = update_description(yaml_data.get("summary", ""))
         body_parameter = yaml_data.get("bodyParameter")
         for parameter in yaml_data["parameters"]:
@@ -435,12 +371,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lro"
-            response["pollerSync"] = (
-                response.get("pollerSync") or "azure.core.polling.LROPoller"
-            )
-            response["pollerAsync"] = (
-                response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
-            )
+            response["pollerSync"] = response.get("pollerSync") or "azure.core.polling.LROPoller"
+            response["pollerAsync"] = response.get("pollerAsync") or "azure.core.polling.AsyncLROPoller"
             if not response.get("pollingMethodSync"):
                 response["pollingMethodSync"] = (
                     "azure.mgmt.core.polling.arm_polling.ARMPolling"
@@ -462,9 +394,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         item_type: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.update_lro_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_paging_operation(
-            code_model, yaml_data, is_overload=is_overload, item_type=item_type
-        )
+        self.update_paging_operation(code_model, yaml_data, is_overload=is_overload, item_type=item_type)
         yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
@@ -483,15 +413,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         is_overload: bool = False,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_operation(
-            code_model, yaml_data["initialOperation"], is_overload=is_overload
-        )
+        self.update_operation(code_model, yaml_data["initialOperation"], is_overload=is_overload)
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
-            self.update_operation(
-                code_model, overload["initialOperation"], is_overload=True
-            )
+            self.update_operation(code_model, overload["initialOperation"], is_overload=True)
 
     def update_paging_operation(
         self,
@@ -506,9 +432,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )
-            yaml_data["nextOperation"]["groupName"] = to_snake_case(
-                yaml_data["nextOperation"]["groupName"]
-            )
+            yaml_data["nextOperation"]["groupName"] = to_snake_case(yaml_data["nextOperation"]["groupName"])
             for response in yaml_data["nextOperation"].get("responses", []):
                 update_paging_response(response)
                 response["itemType"] = item_type
@@ -516,28 +440,20 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             update_paging_response(response)
             response["itemType"] = item_type
         for overload in yaml_data.get("overloads", []):
-            self.update_paging_operation(
-                code_model, overload, is_overload=True, item_type=item_type
-            )
+            self.update_paging_operation(code_model, overload, is_overload=True, item_type=item_type)
 
-    def update_operation_groups(
-        self, code_model: Dict[str, Any], client: Dict[str, Any]
-    ) -> None:
+    def update_operation_groups(self, code_model: Dict[str, Any], client: Dict[str, Any]) -> None:
         operation_groups_yaml_data = client["operationGroups"]
         for operation_group in operation_groups_yaml_data:
             operation_group["identifyName"] = self.pad_reserved_words(
                 operation_group.get("name", operation_group["propertyName"]),
                 PadType.OPERATION_GROUP,
             )
-            operation_group["identifyName"] = to_snake_case(
-                operation_group["identifyName"]
-            )
+            operation_group["identifyName"] = to_snake_case(operation_group["identifyName"])
             operation_group["propertyName"] = self.pad_reserved_words(
                 operation_group["propertyName"], PadType.OPERATION_GROUP
             )
-            operation_group["propertyName"] = to_snake_case(
-                operation_group["propertyName"]
-            )
+            operation_group["propertyName"] = to_snake_case(operation_group["propertyName"])
             operation_group["className"] = update_operation_group_class_name(
                 client["name"], operation_group["className"]
             )
@@ -574,6 +490,4 @@ class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
 if __name__ == "__main__":
     # CADL pipeline will call this
     args, unknown_args = parse_args()
-    PreProcessPlugin(
-        output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args
-    ).process()
+    PreProcessPlugin(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()

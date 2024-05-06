@@ -135,9 +135,7 @@ def _default_package_name(spec: Path, category: Literal["azure", "unbranded"]) -
     return _package_name_folder(spec, category).replace("/", "-")
 
 
-def _get_emitter_option(
-    spec: Path, category: Literal["azure", "unbranded"]
-) -> List[Dict[str, str]]:
+def _get_emitter_option(spec: Path, category: Literal["azure", "unbranded"]) -> List[Dict[str, str]]:
     name = _package_name_folder(spec, category)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
@@ -155,16 +153,10 @@ def _add_options(
     result = []
     for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
-        config_copy[
-            "emitter-output-dir"
-        ] = f"{generated_foder}/{config['package-name']}"
+        config_copy["emitter-output-dir"] = f"{generated_foder}/{config['package-name']}"
         result.append(config_copy)
     if not result:
-        result.append(
-            {
-                "emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"
-            }
-        )
+        result.append({"emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"})
     emitter_configs = []
     for options in result:
         emitter_option = ""
@@ -180,18 +172,14 @@ def _add_options(
 def _entry_file_name(path: Path) -> Path:
     if path.is_file():
         return path
-    return (
-        (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
-    )
+    return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+
 
 def _get_specification_dirs(category: Literal["azure", "unbranded"]) -> List[Path]:
     # we should remove the need for this by removing our local definition of mgmt sphere
     local_specification_folder = Path(f"test/{category}/specification")
-    return (
-        [CADL_RANCH_DIR, local_specification_folder]
-        if local_specification_folder.exists()
-        else [CADL_RANCH_DIR]
-    )
+    return [CADL_RANCH_DIR, local_specification_folder] if local_specification_folder.exists() else [CADL_RANCH_DIR]
+
 
 def _all_specification_folders(category: Literal["azure", "unbranded"], filename: str = "main.tsp") -> List[Path]:
 
@@ -201,6 +189,7 @@ def _all_specification_folders(category: Literal["azure", "unbranded"], filename
         for s in item.glob("**/*")
         if s.is_dir() and any(f for f in s.iterdir() if f.name == filename)
     ]
+
 
 def _regenerate(
     c,
@@ -214,9 +203,7 @@ def _regenerate(
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
-        specs.extend(
-            s / "old.tsp" for s in _all_specification_folders(category, filename="old.tsp")
-        )
+        specs.extend(s / "old.tsp" for s in _all_specification_folders(category, filename="old.tsp"))
     for spec in specs:
         for package_name in _get_package_names(spec, category):
             (generated_folder / package_name).mkdir(parents=True, exist_ok=True)
@@ -224,9 +211,7 @@ def _regenerate(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
             for spec in specs
-            for option in _add_options(
-                spec, category, generated_folder, special_flags, debug
-            )
+            for option in _add_options(spec, category, generated_folder, special_flags, debug)
         ]
     )
 
@@ -239,11 +224,7 @@ def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
 
 @task
 def regenerate_azure(c, name=None, debug=False):
-    specs = [
-        s
-        for s in _all_specification_folders("azure")
-        if not is_invalid_folder(s)
-    ]
+    specs = [s for s in _all_specification_folders("azure") if not is_invalid_folder(s)]
     special_flags = {"flavor": "azure", "generate-test": "true"}
     _regenerate(
         c,
@@ -253,8 +234,6 @@ def regenerate_azure(c, name=None, debug=False):
         debug,
         special_flags=special_flags,
     )
-
-
 
 
 @task
@@ -281,7 +260,7 @@ def regenerate(
     name=None,
     debug=False,
     flavor: Optional[Literal["azure", "unbranded"]] = None,
-):  
+):
     if flavor == "azure":
         return regenerate_azure(c, name, debug)
     if flavor == "unbranded":
@@ -289,11 +268,9 @@ def regenerate(
     regenerate_azure(c, name, debug)
     regenerate_unbranded(c, name, debug)
 
+
 def _get_package_names(spec: Path, category: Literal["azure", "unbranded"]) -> List[str]:
-    result = [
-        config["package-name"]
-        for config in _get_emitter_option(spec, category)
-    ]
+    result = [config["package-name"] for config in _get_emitter_option(spec, category)]
     if not result:
         result.append(_default_package_name(spec, category))
     return result
@@ -315,10 +292,7 @@ def _run_single_tsp(cmd):
     if result.ok:
         print(Fore.GREEN + f'Call "{cmd}" done with success')
         return True
-    print(
-        Fore.RED
-        + f'Call "{cmd}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}'
-    )
+    print(Fore.RED + f'Call "{cmd}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
     output_folder = re.findall(r"emitter-output-dir=([^\s]+)", cmd)[0]
     shutil.rmtree(output_folder, ignore_errors=True)
     return False

@@ -66,9 +66,7 @@ class OperationGroupsSerializer(BaseSerializer):
                 )
             )
 
-        template = self.env.get_or_select_template(
-            "operation_groups_container.py.jinja2"
-        )
+        template = self.env.get_or_select_template("operation_groups_container.py.jinja2")
 
         return template.render(
             code_model=self.code_model,

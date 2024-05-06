@@ -9,9 +9,7 @@ from versioning.returntypechangedfrom.aio import ReturnTypeChangedFromClient
 
 @pytest.fixture
 async def client():
-    async with ReturnTypeChangedFromClient(
-        endpoint="http://localhost:3000", version="v2"
-    ) as client:
+    async with ReturnTypeChangedFromClient(endpoint="http://localhost:3000", version="v2") as client:
         yield client
 
 

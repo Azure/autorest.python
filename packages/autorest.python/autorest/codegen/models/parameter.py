@@ -51,9 +51,7 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-class _ParameterBase(
-    BaseModel, abc.ABC
-):  # pylint: disable=too-many-instance-attributes
+class _ParameterBase(BaseModel, abc.ABC):  # pylint: disable=too-many-instance-attributes
     """Base class for all parameters"""
 
     def __init__(
@@ -77,9 +75,7 @@ class _ParameterBase(
         self.grouped_by: Optional[str] = self.yaml_data.get("groupedBy")
         # property matching property name to parameter name for grouping params
         # and flattened body params
-        self.property_to_parameter_name: Optional[Dict[str, str]] = self.yaml_data.get(
-            "propertyToParameterName"
-        )
+        self.property_to_parameter_name: Optional[Dict[str, str]] = self.yaml_data.get("propertyToParameterName")
         self.flattened: bool = self.yaml_data.get("flattened", False)
         self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
         self.grouper: bool = self.yaml_data.get("grouper", False)
@@ -87,9 +83,7 @@ class _ParameterBase(
         self.added_on: Optional[str] = self.yaml_data.get("addedOn")
         self.is_api_version: bool = self.yaml_data.get("isApiVersion", False)
         self.in_overload: bool = self.yaml_data.get("inOverload", False)
-        self.default_to_unset_sentinel: bool = self.yaml_data.get(
-            "defaultToUnsetSentinel", False
-        )
+        self.default_to_unset_sentinel: bool = self.yaml_data.get("defaultToUnsetSentinel", False)
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
     def get_declaration(self, value: Any = None) -> Any:
@@ -105,9 +99,7 @@ class _ParameterBase(
         Checking to see if it's required, because if not, we don't consider it
         a constant because it can have a value of None.
         """
-        return (not self.optional or self.is_api_version) and isinstance(
-            self.type, ConstantType
-        )
+        return (not self.optional or self.is_api_version) and isinstance(self.type, ConstantType)
 
     @property
     def description(self) -> str:
@@ -201,9 +193,7 @@ class _ParameterBase(
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(async_mode, **kwargs)
-        file_import.merge(
-            self.type.imports_for_multiapi(async_mode=async_mode, **kwargs)
-        )
+        file_import.merge(self.type.imports_for_multiapi(async_mode=async_mode, **kwargs))
         return file_import
 
     @property
@@ -212,19 +202,11 @@ class _ParameterBase(
 
     @property
     def description_keyword(self) -> str:
-        return (
-            "param"
-            if self.method_location == ParameterMethodLocation.POSITIONAL
-            else "keyword"
-        )
+        return "param" if self.method_location == ParameterMethodLocation.POSITIONAL else "keyword"
 
     @property
     def docstring_type_keyword(self) -> str:
-        return (
-            "type"
-            if self.method_location == ParameterMethodLocation.POSITIONAL
-            else "paramtype"
-        )
+        return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
 
     @property
     @abc.abstractmethod
@@ -244,10 +226,7 @@ class BodyParameter(_ParameterBase):
 
     @property
     def entries(self) -> List["BodyParameter"]:
-        return [
-            BodyParameter.from_yaml(e, self.code_model)
-            for e in self.yaml_data.get("entries", [])
-        ]
+        return [BodyParameter.from_yaml(e, self.code_model) for e in self.yaml_data.get("entries", [])]
 
     @property
     def is_form_data(self) -> bool:
@@ -262,11 +241,7 @@ class BodyParameter(_ParameterBase):
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        return (
-            ParameterMethodLocation.KWARG
-            if self.constant
-            else ParameterMethodLocation.POSITIONAL
-        )
+        return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.POSITIONAL
 
     @property
     def in_method_signature(self) -> bool:
@@ -303,9 +278,7 @@ class BodyParameter(_ParameterBase):
         return file_import
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BodyParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BodyParameter":
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
@@ -313,9 +286,7 @@ class BodyParameter(_ParameterBase):
         )
 
 
-EntryBodyParameterType = TypeVar(
-    "EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"]
-)
+EntryBodyParameterType = TypeVar("EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"])
 
 
 class Parameter(_ParameterBase):
@@ -337,10 +308,7 @@ class Parameter(_ParameterBase):
 
     @property
     def hide_in_operation_signature(self) -> bool:
-        if (
-            self.code_model.options["version_tolerant"]
-            and self.client_name == "maxpagesize"
-        ):
+        if self.code_model.options["version_tolerant"] and self.client_name == "maxpagesize":
             return True
         return False
 
@@ -382,10 +350,7 @@ class Parameter(_ParameterBase):
             ParameterLocation.HEADER,
             ParameterLocation.QUERY,
         )
-        if (
-            self.code_model.options["only_path_and_body_params_positional"]
-            and query_or_header
-        ):
+        if self.code_model.options["only_path_and_body_params_positional"] and query_or_header:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
@@ -411,10 +376,7 @@ class ClientParameter(Parameter):
             return ParameterMethodLocation.KWARG
         if (
             self.is_host
-            and (
-                self.code_model.options["version_tolerant"]
-                or self.code_model.options["low_level_client"]
-            )
+            and (self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"])
             and not self.code_model.options["azure_arm"]
         ):
             # this means i am the base url
