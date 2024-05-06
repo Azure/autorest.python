@@ -47,7 +47,9 @@ async def test_update_resource_model_input(client: JsonMergePatchClient):
         int_array=NULL,
     )
     response = await client.update_resource(update_resource)
-    assert response == Resource(name="Madge", map={"key": InnerModel(name="InnerMadge")})
+    assert response == Resource(
+        name="Madge", map={"key": InnerModel(name="InnerMadge")}
+    )
 
 
 async def test_update_resource_raw_input(client: JsonMergePatchClient):
@@ -62,7 +64,9 @@ async def test_update_resource_raw_input(client: JsonMergePatchClient):
             "intArray": None,
         }
     )
-    assert response == Resource(name="Madge", map={"key": InnerModel(name="InnerMadge")})
+    assert response == Resource(
+        name="Madge", map={"key": InnerModel(name="InnerMadge")}
+    )
 
 
 async def test_update_optional_resource_model_input(client: JsonMergePatchClient):
@@ -76,7 +80,9 @@ async def test_update_optional_resource_model_input(client: JsonMergePatchClient
         int_array=NULL,
     )
     response = await client.update_optional_resource(update_resource)
-    assert response == Resource(name="Madge", map={"key": InnerModel(name="InnerMadge")})
+    assert response == Resource(
+        name="Madge", map={"key": InnerModel(name="InnerMadge")}
+    )
 
 
 async def test_update_optional_resource_raw_input(client: JsonMergePatchClient):
@@ -91,4 +97,6 @@ async def test_update_optional_resource_raw_input(client: JsonMergePatchClient):
             "intArray": None,
         }
     )
-    assert response == Resource(name="Madge", map={"key": InnerModel(name="InnerMadge")})
+    assert response == Resource(
+        name="Madge", map={"key": InnerModel(name="InnerMadge")}
+    )

@@ -31,7 +31,9 @@ def token_credential(core_library):
     class FakeCredential:
         @staticmethod
         def get_token(*scopes):
-            return core_library.credentials.AccessToken(token="".join(scopes), expires_on=1800)
+            return core_library.credentials.AccessToken(
+                token="".join(scopes), expires_on=1800
+            )
 
     return FakeCredential()
 

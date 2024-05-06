@@ -23,11 +23,15 @@ def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
     assert b"".join(client.same_body.get_avatar_as_jpeg()) == jpg_data
 
 
-def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
+def test_different_body_get_avatar_as_png(
+    client: ContentNegotiationClient, png_data: bytes
+):
     assert b"".join(client.different_body.get_avatar_as_png()) == png_data
 
 
-def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):
+def test_different_body_get_avatar_as_json(
+    client: ContentNegotiationClient, png_data: bytes
+):
     result = client.different_body.get_avatar_as_json()
     expected = PngImageAsJson(content=base64.b64encode(png_data).decode())
     assert result == expected

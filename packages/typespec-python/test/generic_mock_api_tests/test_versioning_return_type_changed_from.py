@@ -17,4 +17,3 @@ def client():
 
 def test(client: ReturnTypeChangedFromClient):
     assert client.test("test") == "test"
-

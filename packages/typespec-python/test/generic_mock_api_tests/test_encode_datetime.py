@@ -46,36 +46,54 @@ def test_query(client: DatetimeClient):
 def test_property(client: DatetimeClient):
     result = client.property.default(
         DefaultDatetimeProperty(
-            value=datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc),
+            value=datetime.datetime(
+                2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
+            ),
         )
     )
-    assert result.value == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
+    assert result.value == datetime.datetime(
+        2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
+    )
 
     result = client.property.rfc3339(
         Rfc3339DatetimeProperty(
-            value=datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc),
+            value=datetime.datetime(
+                2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
+            ),
         )
     )
-    assert result.value == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
+    assert result.value == datetime.datetime(
+        2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc
+    )
 
     result = client.property.rfc7231(
         Rfc7231DatetimeProperty(
-            value=datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc),
+            value=datetime.datetime(
+                2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
+            ),
         )
     )
-    assert result.value == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
+    assert result.value == datetime.datetime(
+        2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc
+    )
 
     result = client.property.unix_timestamp(
         UnixTimestampDatetimeProperty(
-            value=datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc),
+            value=datetime.datetime(
+                2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
+            ),
         )
     )
-    assert result.value == datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc)
+    assert result.value == datetime.datetime(
+        2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
+    )
 
     result = client.property.unix_timestamp_array(
         UnixTimestampArrayDatetimeProperty(
             value=[
-                datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc),
+                datetime.datetime(
+                    2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc
+                ),
                 datetime.datetime(2023, 6, 14, 9, 17, 36, tzinfo=datetime.timezone.utc),
             ],
         )

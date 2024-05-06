@@ -24,13 +24,17 @@ async def test_boolean_value(client: ArrayClient):
 
 @pytest.mark.asyncio
 async def test_datetime_value(client: ArrayClient):
-    assert await client.datetime_value.get() == [isodate.parse_datetime("2022-08-26T18:38:00Z")]
+    assert await client.datetime_value.get() == [
+        isodate.parse_datetime("2022-08-26T18:38:00Z")
+    ]
     await client.datetime_value.put([isodate.parse_datetime("2022-08-26T18:38:00Z")])
 
 
 @pytest.mark.asyncio
 async def test_duration_value(client: ArrayClient):
-    assert await client.duration_value.get() == [isodate.parse_duration("P123DT22H14M12.011S")]
+    assert await client.duration_value.get() == [
+        isodate.parse_duration("P123DT22H14M12.011S")
+    ]
     await client.duration_value.put([isodate.parse_duration("P123DT22H14M12.011S")])
 
 

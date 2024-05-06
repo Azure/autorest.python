@@ -27,12 +27,16 @@ async def test_structure_default():
 
 @pytest.mark.asyncio
 async def test_structure_multiclient():
-    client_a = ClientAClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
+    client_a = ClientAClient(
+        endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT
+    )
     await client_a.renamed_one()
     await client_a.renamed_three()
     await client_a.renamed_five()
 
-    client_b = ClientBClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
+    client_b = ClientBClient(
+        endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT
+    )
     await client_b.renamed_two()
     await client_b.renamed_four()
     await client_b.renamed_six()
@@ -40,7 +44,9 @@ async def test_structure_multiclient():
 
 @pytest.mark.asyncio
 async def test_structure_renamed_operation():
-    client = RenamedOperationClient(endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION)
+    client = RenamedOperationClient(
+        endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION
+    )
     await client.renamed_one()
     await client.renamed_three()
     await client.renamed_five()
@@ -52,7 +58,9 @@ async def test_structure_renamed_operation():
 
 @pytest.mark.asyncio
 async def test_structure_two_operation_group():
-    client = TwoOperationGroupClient(endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION)
+    client = TwoOperationGroupClient(
+        endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION
+    )
     await client.group1.one()
     await client.group1.three()
     await client.group1.four()

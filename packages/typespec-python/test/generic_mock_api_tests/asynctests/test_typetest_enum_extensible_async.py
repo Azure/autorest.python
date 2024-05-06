@@ -15,7 +15,9 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_known_value(client):
-    assert await client.string.get_known_value() == models.DaysOfWeekExtensibleEnum.MONDAY
+    assert (
+        await client.string.get_known_value() == models.DaysOfWeekExtensibleEnum.MONDAY
+    )
     await client.string.put_known_value(models.DaysOfWeekExtensibleEnum.MONDAY)
 
 

@@ -54,7 +54,10 @@ async def valid_recursive_body():
                 "key4": {
                     "age": 2,
                     "kind": "salmon",
-                    "friends": [{"age": 1, "kind": "salmon"}, {"age": 4, "kind": "shark", "sharktype": "goblin"}],
+                    "friends": [
+                        {"age": 1, "kind": "salmon"},
+                        {"age": 4, "kind": "shark", "sharktype": "goblin"},
+                    ],
                 },
             },
         }

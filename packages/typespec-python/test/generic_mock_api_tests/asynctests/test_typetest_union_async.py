@@ -37,7 +37,9 @@ async def test_ints_only(client: UnionClient):
 
 @pytest.mark.asyncio
 async def test_mixed_literals(client: UnionClient):
-    value = models.MixedLiteralsCases(string_literal="a", int_literal=2, float_literal=3.3, boolean_literal=True)
+    value = models.MixedLiteralsCases(
+        string_literal="a", int_literal=2, float_literal=3.3, boolean_literal=True
+    )
     assert (await client.mixed_literals.get()) == {"prop": value}
     await client.mixed_literals.send(prop=value)
 

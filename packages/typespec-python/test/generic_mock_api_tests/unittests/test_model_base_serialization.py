@@ -7,13 +7,33 @@ import decimal
 import json
 import datetime
 from pathlib import Path
-from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, Tuple, Optional, overload, Union
+from typing import (
+    Any,
+    Iterable,
+    List,
+    Literal,
+    Dict,
+    Mapping,
+    Sequence,
+    Set,
+    Tuple,
+    Optional,
+    overload,
+    Union,
+)
 import pytest
 import isodate
 import sys
 from enum import Enum
 
-from specialwords._model_base import SdkJSONEncoder, Model, rest_field, _is_model, rest_discriminator, _deserialize
+from specialwords._model_base import (
+    SdkJSONEncoder,
+    Model,
+    rest_field,
+    _is_model,
+    rest_discriminator,
+    _deserialize,
+)
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -29,7 +49,9 @@ class BasicResource(Model):
     platform_fault_domain_count: int = rest_field(
         name="platformFaultDomainCount"
     )  # How many times the platform fault domain has been counted
-    virtual_machines: List[Any] = rest_field(name="virtualMachines")  # List of virtual machines
+    virtual_machines: List[Any] = rest_field(
+        name="virtualMachines"
+    )  # List of virtual machines
 
     @overload
     def __init__(
@@ -62,8 +84,16 @@ class Pet(Model):
 
 
 def test_model_and_dict_equal():
-    dict_response = {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []}
-    model = BasicResource(platform_update_domain_count=5, platform_fault_domain_count=3, virtual_machines=[])
+    dict_response = {
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 3,
+        "virtualMachines": [],
+    }
+    model = BasicResource(
+        platform_update_domain_count=5,
+        platform_fault_domain_count=3,
+        virtual_machines=[],
+    )
 
     assert model == dict_response
     assert (
@@ -78,12 +108,24 @@ def test_model_and_dict_equal():
         == dict_response["platformFaultDomainCount"]
         == 3
     )
-    assert model.virtual_machines == model["virtualMachines"] == dict_response["virtualMachines"]
+    assert (
+        model.virtual_machines
+        == model["virtualMachines"]
+        == dict_response["virtualMachines"]
+    )
 
 
 def test_json_roundtrip():
-    dict_response = {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []}
-    model = BasicResource(platform_update_domain_count=5, platform_fault_domain_count=3, virtual_machines=[])
+    dict_response = {
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 3,
+        "virtualMachines": [],
+    }
+    model = BasicResource(
+        platform_update_domain_count=5,
+        platform_fault_domain_count=3,
+        virtual_machines=[],
+    )
     with pytest.raises(TypeError):
         json.dumps(model)
     assert (
@@ -120,7 +162,10 @@ def test_has_no_property():
         no_prop: str = rest_field(name="noprop")
 
     model = BasicResourceWithProperty(
-        platform_update_domain_count=5, platform_fault_domain_count=3, virtual_machines=[], no_prop="bonjour!"
+        platform_update_domain_count=5,
+        platform_fault_domain_count=3,
+        virtual_machines=[],
+        no_prop="bonjour!",
     )
     assert model.no_prop == model["noprop"] == dict_response["noprop"] == "bonjour!"
 
@@ -203,7 +248,11 @@ def test_optional_property():
         }
     )
     assert model.optional_dict
-    assert model.optional_dict["Eugene"].name == model.optional_dict["Eugene"]["name"] == "Eugene"
+    assert (
+        model.optional_dict["Eugene"].name
+        == model.optional_dict["Eugene"]["name"]
+        == "Eugene"
+    )
     assert model.optional_dict["Lady"] is None
 
     assert (
@@ -235,21 +284,37 @@ def test_model_pass_in_none():
 
 
 def test_modify_dict():
-    model = BasicResource(platform_update_domain_count=5, platform_fault_domain_count=3, virtual_machines=[])
+    model = BasicResource(
+        platform_update_domain_count=5,
+        platform_fault_domain_count=3,
+        virtual_machines=[],
+    )
 
     # now let's modify the model as a dict
     model["platformUpdateDomainCount"] = 100
-    assert model.platform_update_domain_count == model["platformUpdateDomainCount"] == 100
+    assert (
+        model.platform_update_domain_count == model["platformUpdateDomainCount"] == 100
+    )
 
 
 def test_modify_property():
-    dict_response = {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []}
-    model = BasicResource(platform_update_domain_count=5, platform_fault_domain_count=3, virtual_machines=[])
+    dict_response = {
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 3,
+        "virtualMachines": [],
+    }
+    model = BasicResource(
+        platform_update_domain_count=5,
+        platform_fault_domain_count=3,
+        virtual_machines=[],
+    )
 
     # now let's modify the model through it's properties
     model.platform_fault_domain_count = 2000
     model["platformFaultDomainCount"]
-    assert model.platform_fault_domain_count == model["platformFaultDomainCount"] == 2000
+    assert (
+        model.platform_fault_domain_count == model["platformFaultDomainCount"] == 2000
+    )
 
 
 def test_property_is_a_type():
@@ -280,8 +345,18 @@ def test_property_is_a_type():
 
     fishery = Fishery({"fish": {"name": "Benjamin", "species": "Salmon"}})
     assert isinstance(fishery.fish, Fish)
-    assert fishery.fish.name == fishery.fish["name"] == fishery["fish"]["name"] == "Benjamin"
-    assert fishery.fish.species == fishery.fish["species"] == fishery["fish"]["species"] == "Salmon"
+    assert (
+        fishery.fish.name
+        == fishery.fish["name"]
+        == fishery["fish"]["name"]
+        == "Benjamin"
+    )
+    assert (
+        fishery.fish.species
+        == fishery.fish["species"]
+        == fishery["fish"]["species"]
+        == "Salmon"
+    )
 
 
 def test_datetime_deserialization():
@@ -520,10 +595,21 @@ def test_list_deserialization_model():
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
 
-    dict_response = {"prop": [{"name": "Eugene", "species": "Dog"}, {"name": "Lady", "species": "Newt"}]}
+    dict_response = {
+        "prop": [
+            {"name": "Eugene", "species": "Dog"},
+            {"name": "Lady", "species": "Newt"},
+        ]
+    }
     model = ListModel(dict_response)
-    assert model["prop"] == [{"name": "Eugene", "species": "Dog"}, {"name": "Lady", "species": "Newt"}]
-    assert model.prop == [Pet({"name": "Eugene", "species": "Dog"}), Pet({"name": "Lady", "species": "Newt"})]
+    assert model["prop"] == [
+        {"name": "Eugene", "species": "Dog"},
+        {"name": "Lady", "species": "Newt"},
+    ]
+    assert model.prop == [
+        Pet({"name": "Eugene", "species": "Dog"}),
+        Pet({"name": "Lady", "species": "Newt"}),
+    ]
     assert len(model.prop) == 2
     assert model.prop[0].name == model.prop[0]["name"] == "Eugene"
     assert model.prop[0].species == model.prop[0]["species"] == "Dog"
@@ -625,8 +711,12 @@ class RecursiveModel(Model):
     name: str = rest_field()
     list_of_me: Optional[List["RecursiveModel"]] = rest_field(name="listOfMe")
     dict_of_me: Optional[Dict[str, "RecursiveModel"]] = rest_field(name="dictOfMe")
-    dict_of_list_of_me: Optional[Dict[str, List["RecursiveModel"]]] = rest_field(name="dictOfListOfMe")
-    list_of_dict_of_me: Optional[List[Dict[str, "RecursiveModel"]]] = rest_field(name="listOfDictOfMe")
+    dict_of_list_of_me: Optional[Dict[str, List["RecursiveModel"]]] = rest_field(
+        name="dictOfListOfMe"
+    )
+    list_of_dict_of_me: Optional[List[Dict[str, "RecursiveModel"]]] = rest_field(
+        name="listOfDictOfMe"
+    )
 
     @overload
     def __init__(
@@ -808,7 +898,12 @@ def test_literals():
         age: Literal[1, 2, 3] = rest_field()
 
         @overload
-        def __init__(self, *, species: Literal["Mongose", "Eagle", "Penguin"], age: Literal[1, 2, 3]): ...
+        def __init__(
+            self,
+            *,
+            species: Literal["Mongose", "Eagle", "Penguin"],
+            age: Literal[1, 2, 3],
+        ): ...
 
         @overload
         def __init__(self, mapping: Mapping[str, Any], /): ...
@@ -964,7 +1059,9 @@ class ParentC(ParentB):
     cd_prop: ParentA = rest_field(name="cdProp")
 
     @overload
-    def __init__(self, *, prop: Any, bcd_prop: List[ParentB], cd_prop: ParentA, **kwargs): ...
+    def __init__(
+        self, *, prop: Any, bcd_prop: List[ParentB], cd_prop: ParentA, **kwargs
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any], /): ...
@@ -974,7 +1071,9 @@ class ParentC(ParentB):
 
 
 class ChildD(ParentC):
-    d_prop: Tuple[ParentA, ParentB, ParentC, Optional["ChildD"]] = rest_field(name="dProp")
+    d_prop: Tuple[ParentA, ParentB, ParentC, Optional["ChildD"]] = rest_field(
+        name="dProp"
+    )
 
     @overload
     def __init__(
@@ -1027,7 +1126,13 @@ def test_model_dict_comparisons():
             super().__init__(*args, **kwargs)
 
     def _tests(outer):
-        assert outer.inner.prop == outer["inner"].prop == outer.inner["prop"] == outer["inner"]["prop"] == "hello"
+        assert (
+            outer.inner.prop
+            == outer["inner"].prop
+            == outer.inner["prop"]
+            == outer["inner"]["prop"]
+            == "hello"
+        )
         assert outer.inner == outer["inner"] == {"prop": "hello"}
         assert outer == {"inner": {"prop": "hello"}}
 
@@ -1168,13 +1273,23 @@ def test_inheritance_4_levels():
         prop=3.4,
         bcd_prop=[b],
         cd_prop=a,
-        d_prop=(a, b, c, ChildD(prop=3.4, bcd_prop=[b], cd_prop=a, d_prop=(a, b, c, None))),
+        d_prop=(
+            a,
+            b,
+            c,
+            ChildD(prop=3.4, bcd_prop=[b], cd_prop=a, d_prop=(a, b, c, None)),
+        ),
     )
     assert d == {
         "prop": 3.4,
         "bcdProp": [b],
         "cdProp": a,
-        "dProp": (a, b, c, {"prop": 3.4, "bcdProp": [b], "cdProp": a, "dProp": (a, b, c, None)}),
+        "dProp": (
+            a,
+            b,
+            c,
+            {"prop": 3.4, "bcdProp": [b], "cdProp": a, "dProp": (a, b, c, None)},
+        ),
     }
     assert d.prop == d["prop"] == 3.4
     assert d.bcd_prop == [b]
@@ -1455,7 +1570,9 @@ def test_multiple_inheritance_complex():
         "meows": True,
         "hisses": True,
         "likesMilk": False,
-        "siblings": [{"meows": True, "hisses": False, "siblings": None}],  # we don't automatically set None here
+        "siblings": [
+            {"meows": True, "hisses": False, "siblings": None}
+        ],  # we don't automatically set None here
         "howCuteAmI": 1.0,
         "eatsMiceYet": True,
     }
@@ -1613,7 +1730,11 @@ def test_nested_deserialization():
     serialized_datetime = "9999-12-31T23:59:59.999Z"
 
     model = BaseModel({"innerModel": {"datetimeField": serialized_datetime}})
-    assert model.inner_model["datetimeField"] == model["innerModel"]["datetimeField"] == serialized_datetime
+    assert (
+        model.inner_model["datetimeField"]
+        == model["innerModel"]["datetimeField"]
+        == serialized_datetime
+    )
     assert (
         model.inner_model.datetime_field
         == model["innerModel"].datetime_field
@@ -1668,8 +1789,20 @@ def test_nested_update():
     serialized_datetime = "9999-12-31T23:59:59.999Z"
     parsed_datetime = isodate.parse_datetime(serialized_datetime)
     x = X({"y": {"z": {"zval": serialized_datetime}}})
-    assert x.y.z.zval == x["y"].z.zval == x.y["z"].zval == x["y"]["z"].zval == parsed_datetime
-    assert x.y.z["zval"] == x.y["z"]["zval"] == x["y"].z["zval"] == x["y"]["z"]["zval"] == serialized_datetime
+    assert (
+        x.y.z.zval
+        == x["y"].z.zval
+        == x.y["z"].zval
+        == x["y"]["z"].zval
+        == parsed_datetime
+    )
+    assert (
+        x.y.z["zval"]
+        == x.y["z"]["zval"]
+        == x["y"].z["zval"]
+        == x["y"]["z"]["zval"]
+        == serialized_datetime
+    )
 
 
 def test_deserialization_is():
@@ -1731,7 +1864,11 @@ def test_readonly():
     assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
     assert model == value
     assert model["readonlyProperty"] == model.readonly_property == "readonly"
-    assert model["innerModel"]["readonlyProperty"] == model.inner_model.readonly_property == "readonly"
+    assert (
+        model["innerModel"]["readonlyProperty"]
+        == model.inner_model.readonly_property
+        == "readonly"
+    )
 
 
 def test_readonly_set():
@@ -1744,8 +1881,16 @@ def test_readonly_set():
     model = ModelWithReadonly(value)
     assert model.normal_property == model["normalProperty"] == "normal"
     assert model.readonly_property == model["readonlyProperty"] == "readonly"
-    assert model.inner_model.normal_property == model.inner_model["normalProperty"] == "normal"
-    assert model.inner_model.readonly_property == model.inner_model["readonlyProperty"] == "readonly"
+    assert (
+        model.inner_model.normal_property
+        == model.inner_model["normalProperty"]
+        == "normal"
+    )
+    assert (
+        model.inner_model.readonly_property
+        == model.inner_model["readonlyProperty"]
+        == "readonly"
+    )
 
     assert model.as_dict(exclude_readonly=True) == {
         "normalProperty": "normal",
@@ -1760,8 +1905,16 @@ def test_readonly_set():
 
     assert model.normal_property == model["normalProperty"] == "setWithDict"
     assert model.readonly_property == model["readonlyProperty"] == "setWithDict"
-    assert model.inner_model.normal_property == model.inner_model["normalProperty"] == "setWithDict"
-    assert model.inner_model.readonly_property == model.inner_model["readonlyProperty"] == "setWithDict"
+    assert (
+        model.inner_model.normal_property
+        == model.inner_model["normalProperty"]
+        == "setWithDict"
+    )
+    assert (
+        model.inner_model.readonly_property
+        == model.inner_model["readonlyProperty"]
+        == "setWithDict"
+    )
     assert model.as_dict(exclude_readonly=True) == {
         "normalProperty": "setWithDict",
         "innerModel": {"normalProperty": "setWithDict"},
@@ -1769,7 +1922,10 @@ def test_readonly_set():
     assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == {
         "normalProperty": "setWithDict",
         "readonlyProperty": "setWithDict",
-        "innerModel": {"normalProperty": "setWithDict", "readonlyProperty": "setWithDict"},
+        "innerModel": {
+            "normalProperty": "setWithDict",
+            "readonlyProperty": "setWithDict",
+        },
     }
 
 
@@ -1873,9 +2029,13 @@ def test_inner_model_custom_serializer():
 def test_default_value():
     class MyModel(Model):
         prop_default_str: str = rest_field(name="propDefaultStr", default="hello")
-        prop_optional_str: Optional[str] = rest_field(name="propOptionalStr", default=None)
+        prop_optional_str: Optional[str] = rest_field(
+            name="propOptionalStr", default=None
+        )
         prop_default_int: int = rest_field(name="propDefaultInt", default=1)
-        prop_optional_int: Optional[int] = rest_field(name="propOptionalInt", default=None)
+        prop_optional_int: Optional[int] = rest_field(
+            name="propOptionalInt", default=None
+        )
 
         @overload
         def __init__(
@@ -1922,7 +2082,12 @@ def test_default_value():
     assert my_model.prop_optional_str is my_model["propOptionalStr"] is None
     assert my_model.prop_default_int == my_model["propDefaultInt"] == 1
     assert my_model.prop_optional_int == my_model["propOptionalInt"] == 4
-    assert my_model == {"propDefaultStr": "hello", "propOptionalStr": None, "propDefaultInt": 1, "propOptionalInt": 4}
+    assert my_model == {
+        "propDefaultStr": "hello",
+        "propOptionalStr": None,
+        "propDefaultInt": 1,
+        "propOptionalInt": 4,
+    }
 
     my_model = MyModel({"propDefaultInt": 5})
     assert my_model.prop_default_str == my_model["propDefaultStr"] == "hello"
@@ -2041,7 +2206,12 @@ def test_mutability_list():
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
 
-    original_dict = {"middleProperty": {"innerProperty": [{"strProperty": "hello"}], "prop": "original"}}
+    original_dict = {
+        "middleProperty": {
+            "innerProperty": [{"strProperty": "hello"}],
+            "prop": "original",
+        }
+    }
     model = Outer(original_dict)
     assert model is not original_dict
 
@@ -2058,7 +2228,10 @@ def test_mutability_list():
     assert model["middleProperty"]["prop"] == model.middle_property.prop == "newest"
 
     # modify innerproperty list
-    assert model["middleProperty"]["innerProperty"][0] is model.middle_property.inner_property[0]
+    assert (
+        model["middleProperty"]["innerProperty"][0]
+        is model.middle_property.inner_property[0]
+    )
     assert (
         model["middleProperty"]["innerProperty"][0]
         is model.middle_property["innerProperty"][0]
@@ -2139,7 +2312,12 @@ def test_mutability_dict():
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
 
-    original_dict = {"middleProperty": {"innerProperty": {"inner": {"strProperty": "hello"}}, "prop": "original"}}
+    original_dict = {
+        "middleProperty": {
+            "innerProperty": {"inner": {"strProperty": "hello"}},
+            "prop": "original",
+        }
+    }
     model = Outer(original_dict)
     assert model is not original_dict
 
@@ -2162,7 +2340,10 @@ def test_mutability_dict():
     assert model["middleProperty"]["prop"] == model.middle_property.prop == "newest"
 
     # modify innerproperty list
-    assert model["middleProperty"]["innerProperty"]["inner"] is model.middle_property.inner_property["inner"]
+    assert (
+        model["middleProperty"]["innerProperty"]["inner"]
+        is model.middle_property.inner_property["inner"]
+    )
     assert (
         model["middleProperty"]["innerProperty"]["inner"]
         is model.middle_property["innerProperty"]["inner"]
@@ -2278,7 +2459,12 @@ def test_pop_model():
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
 
-    original_dict = {"middleProperty": {"innerProperty": {"inner": {"strProperty": "hello"}}, "prop": "original"}}
+    original_dict = {
+        "middleProperty": {
+            "innerProperty": {"inner": {"strProperty": "hello"}},
+            "prop": "original",
+        }
+    }
     model_dict = Outer(original_dict)  # model we will access with dict syntax
     model_attr = Outer(original_dict)  # model we will access with attr syntax
 
@@ -2385,7 +2571,11 @@ def test_contains():
 
 
 def test_iter():
-    dict_response = {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []}
+    dict_response = {
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 3,
+        "virtualMachines": [],
+    }
     assert isinstance(iter(dict_response), Iterable)
     model = BasicResource(dict_response)
     assert isinstance(iter(model), Iterable)
@@ -2398,7 +2588,11 @@ def test_iter():
 
 
 def test_len():
-    dict_response = {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []}
+    dict_response = {
+        "platformUpdateDomainCount": 5,
+        "platformFaultDomainCount": 3,
+        "virtualMachines": [],
+    }
     model = BasicResource(dict_response)
     assert len(dict_response) == len(model) == 3
 
@@ -2439,7 +2633,11 @@ def test_values():
 
     assert list(outer.values()) == list(outer_dict.values())
     assert len(outer.values()) == len(outer_dict.values()) == 1
-    assert list(outer.values())[0]["strProp"] == list(outer_dict.values())[0]["strProp"] == "hello"
+    assert (
+        list(outer.values())[0]["strProp"]
+        == list(outer_dict.values())[0]["strProp"]
+        == "hello"
+    )
 
     outer_dict["innerProp"]["strProp"] = "goodbye"
     outer.inner_prop.str_prop = "goodbye"
@@ -2552,28 +2750,49 @@ def test_popitem():
         b_prop: ModelB = rest_field(name="bProp")
         c_prop: ModelC = rest_field(name="cProp")
 
-    my_dict = {"aProp": {"aStrProp": "a"}, "bProp": {"bStrProp": "b"}, "cProp": {"cStrProp": "c"}}
+    my_dict = {
+        "aProp": {"aStrProp": "a"},
+        "bProp": {"bStrProp": "b"},
+        "cProp": {"cStrProp": "c"},
+    }
 
     def _tests(my_dict: Dict[str, Any], my_model: MainModel):
-        my_dict = copy.deepcopy(my_dict)  # so we don't get rid of the dict each time we run tests
+        my_dict = copy.deepcopy(
+            my_dict
+        )  # so we don't get rid of the dict each time we run tests
 
         # pop c prop
         dict_popitem = my_dict.popitem()
         model_popitem = my_model.popitem()
         assert dict_popitem[0] == model_popitem[0] == "cProp"
-        assert dict_popitem[1]["cStrProp"] == model_popitem[1]["cStrProp"] == model_popitem[1].c_str_prop == "c"
+        assert (
+            dict_popitem[1]["cStrProp"]
+            == model_popitem[1]["cStrProp"]
+            == model_popitem[1].c_str_prop
+            == "c"
+        )
 
         # pop b prop
         dict_popitem = my_dict.popitem()
         model_popitem = my_model.popitem()
         assert dict_popitem[0] == model_popitem[0] == "bProp"
-        assert dict_popitem[1]["bStrProp"] == model_popitem[1]["bStrProp"] == model_popitem[1].b_str_prop == "b"
+        assert (
+            dict_popitem[1]["bStrProp"]
+            == model_popitem[1]["bStrProp"]
+            == model_popitem[1].b_str_prop
+            == "b"
+        )
 
         # pop a prop
         dict_popitem = my_dict.popitem()
         model_popitem = my_model.popitem()
         assert dict_popitem[0] == model_popitem[0] == "aProp"
-        assert dict_popitem[1]["aStrProp"] == model_popitem[1]["aStrProp"] == model_popitem[1].a_str_prop == "a"
+        assert (
+            dict_popitem[1]["aStrProp"]
+            == model_popitem[1]["aStrProp"]
+            == model_popitem[1].a_str_prop
+            == "a"
+        )
 
         with pytest.raises(KeyError):
             my_dict.popitem()
@@ -2583,7 +2802,12 @@ def test_popitem():
 
     _tests(my_dict, MainModel(my_dict))
     _tests(
-        my_dict, MainModel(a_prop=ModelA(a_str_prop="a"), b_prop=ModelB(b_str_prop="b"), c_prop=ModelC(c_str_prop="c"))
+        my_dict,
+        MainModel(
+            a_prop=ModelA(a_str_prop="a"),
+            b_prop=ModelB(b_str_prop="b"),
+            c_prop=ModelC(c_str_prop="c"),
+        ),
     )
 
 
@@ -2602,12 +2826,23 @@ def test_clear():
         b_prop: ModelB = rest_field(name="bProp")
         c_prop: ModelC = rest_field(name="cProp")
 
-    my_dict = {"aProp": {"aStrProp": "a"}, "bProp": {"bStrProp": "b"}, "cProp": {"cStrProp": "c"}}
+    my_dict = {
+        "aProp": {"aStrProp": "a"},
+        "bProp": {"bStrProp": "b"},
+        "cProp": {"cStrProp": "c"},
+    }
 
     def _tests(my_dict: Dict[str, Any], my_model: MainModel):
-        my_dict = copy.deepcopy(my_dict)  # so we don't get rid of the dict each time we run tests
+        my_dict = copy.deepcopy(
+            my_dict
+        )  # so we don't get rid of the dict each time we run tests
 
-        assert my_dict["aProp"] == my_model.a_prop == my_model["aProp"] == {"aStrProp": "a"}
+        assert (
+            my_dict["aProp"]
+            == my_model.a_prop
+            == my_model["aProp"]
+            == {"aStrProp": "a"}
+        )
         my_dict.clear()
         my_model.clear()
         assert my_dict == my_model == {}
@@ -2622,7 +2857,12 @@ def test_clear():
 
     _tests(my_dict, MainModel(my_dict))
     _tests(
-        my_dict, MainModel(a_prop=ModelA(a_str_prop="a"), b_prop=ModelB(b_str_prop="b"), c_prop=ModelC(c_str_prop="c"))
+        my_dict,
+        MainModel(
+            a_prop=ModelA(a_str_prop="a"),
+            b_prop=ModelB(b_str_prop="b"),
+            c_prop=ModelC(c_str_prop="c"),
+        ),
     )
 
 
@@ -2641,20 +2881,41 @@ def test_update():
         b_prop: ModelB = rest_field(name="bProp")
         c_prop: ModelC = rest_field(name="cProp")
 
-    my_dict = {"aProp": {"aStrProp": "a"}, "bProp": {"bStrProp": "b"}, "cProp": {"cStrProp": "c"}}
+    my_dict = {
+        "aProp": {"aStrProp": "a"},
+        "bProp": {"bStrProp": "b"},
+        "cProp": {"cStrProp": "c"},
+    }
 
     def _tests(my_dict: Dict[str, Any], my_model: MainModel):
-        my_dict = copy.deepcopy(my_dict)  # so we don't get rid of the dict each time we run tests
+        my_dict = copy.deepcopy(
+            my_dict
+        )  # so we don't get rid of the dict each time we run tests
 
-        assert my_dict["aProp"] == my_model.a_prop == my_model["aProp"] == {"aStrProp": "a"}
+        assert (
+            my_dict["aProp"]
+            == my_model.a_prop
+            == my_model["aProp"]
+            == {"aStrProp": "a"}
+        )
         my_dict.update({"aProp": {"aStrProp": "newA"}})
         my_model.a_prop.update({"aStrProp": "newA"})
-        assert my_dict["aProp"] == my_model.a_prop == my_model["aProp"] == {"aStrProp": "newA"}
+        assert (
+            my_dict["aProp"]
+            == my_model.a_prop
+            == my_model["aProp"]
+            == {"aStrProp": "newA"}
+        )
 
         my_dict["bProp"].update({"newBProp": "hello"})
         my_model.b_prop.update({"newBProp": "hello"})
 
-        assert my_dict["bProp"] == my_model.b_prop == my_model["bProp"] == {"bStrProp": "b", "newBProp": "hello"}
+        assert (
+            my_dict["bProp"]
+            == my_model.b_prop
+            == my_model["bProp"]
+            == {"bStrProp": "b", "newBProp": "hello"}
+        )
 
         my_dict.update({"dProp": "hello"})
         my_model.update({"dProp": "hello"})
@@ -2663,7 +2924,12 @@ def test_update():
 
     _tests(my_dict, MainModel(my_dict))
     _tests(
-        my_dict, MainModel(a_prop=ModelA(a_str_prop="a"), b_prop=ModelB(b_str_prop="b"), c_prop=ModelC(c_str_prop="c"))
+        my_dict,
+        MainModel(
+            a_prop=ModelA(a_str_prop="a"),
+            b_prop=ModelB(b_str_prop="b"),
+            c_prop=ModelC(c_str_prop="c"),
+        ),
     )
 
 
@@ -2679,7 +2945,12 @@ def test_setdefault():
     og_model = Outer(og_dict)
     og_model.inner_prop.setdefault("strProp", "actualDefault")
 
-    assert og_dict["innerProp"] == og_model["innerProp"] == og_model.inner_prop == {"strProp": "actualDefault"}
+    assert (
+        og_dict["innerProp"]
+        == og_model["innerProp"]
+        == og_model.inner_prop
+        == {"strProp": "actualDefault"}
+    )
 
     assert (
         og_dict["innerProp"].setdefault("strProp")
@@ -2707,7 +2978,11 @@ def test_repr():
         b_prop: ModelB = rest_field(name="bProp")
         c_prop: ModelC = rest_field(name="cProp")
 
-    my_dict = {"aProp": {"aStrProp": "a"}, "bProp": {"bStrProp": "b"}, "cProp": {"cStrProp": "c"}}
+    my_dict = {
+        "aProp": {"aStrProp": "a"},
+        "bProp": {"bStrProp": "b"},
+        "cProp": {"cStrProp": "c"},
+    }
 
     assert repr(my_dict) == repr(MainModel(my_dict))
 
@@ -2719,7 +2994,9 @@ def test_complex_basic():
     class Basic(Model):
         id: Optional[int] = rest_field(default=None)
         name: Optional[str] = rest_field(default=None)
-        color: Optional[Literal["cyan", "Magenta", "YELLOW", "blacK"]] = rest_field(default=None)
+        color: Optional[Literal["cyan", "Magenta", "YELLOW", "blacK"]] = rest_field(
+            default=None
+        )
 
         @overload
         def __init__(
@@ -2788,7 +3065,9 @@ def test_complex_byte_wrapper():
         base64: Optional[bytes] = rest_field(default=None, format="base64")
         base64url: Optional[bytes] = rest_field(default=None, format="base64url")
         list_base64: Optional[List[bytes]] = rest_field(default=None, format="base64")
-        map_base64url: Optional[Dict[str, bytes]] = rest_field(default=None, format="base64url")
+        map_base64url: Optional[Dict[str, bytes]] = rest_field(
+            default=None, format="base64url"
+        )
 
         @overload
         def __init__(
@@ -2835,7 +3114,10 @@ def test_complex_byte_wrapper():
         assert mod["base64"] == decoded
         assert mod["base64url"] == decoded_urlsafe
         assert mod["list_base64"] == [decoded, decoded]
-        assert mod["map_base64url"] == {"key1": decoded_urlsafe, "key2": decoded_urlsafe}
+        assert mod["map_base64url"] == {
+            "key1": decoded_urlsafe,
+            "key2": decoded_urlsafe,
+        }
 
     _tests(mod)
     mod.default = byte_string
@@ -2857,8 +3139,12 @@ def test_complex_byte_array_wrapper():
         default: Optional[bytearray] = rest_field(default=None)
         base64: Optional[bytearray] = rest_field(default=None, format="base64")
         base64url: Optional[bytearray] = rest_field(default=None, format="base64url")
-        list_base64: Optional[List[bytearray]] = rest_field(default=None, format="base64")
-        map_base64url: Optional[Dict[str, bytearray]] = rest_field(default=None, format="base64url")
+        list_base64: Optional[List[bytearray]] = rest_field(
+            default=None, format="base64"
+        )
+        map_base64url: Optional[Dict[str, bytearray]] = rest_field(
+            default=None, format="base64url"
+        )
 
         @overload
         def __init__(
@@ -2898,7 +3184,10 @@ def test_complex_byte_array_wrapper():
         assert model["base64"] == decoded
         assert model["base64url"] == decoded_urlsafe
         assert model["list_base64"] == [decoded, decoded]
-        assert model["map_base64url"] == {"key1": decoded_urlsafe, "key2": decoded_urlsafe}
+        assert model["map_base64url"] == {
+            "key1": decoded_urlsafe,
+            "key2": decoded_urlsafe,
+        }
 
     _tests(
         ByteArrayWrapper(
@@ -2928,8 +3217,12 @@ def test_complex_datetime_wrapper():
         rfc3339: datetime.datetime = rest_field(default=None, format="rfc3339")
         rfc7231: datetime.datetime = rest_field(default=None, format="rfc7231")
         unix: datetime.datetime = rest_field(default=None, format="unix-timestamp")
-        list_rfc3339: List[datetime.datetime] = rest_field(default=None, format="rfc3339")
-        dict_rfc7231: Dict[str, datetime.datetime] = rest_field(default=None, format="rfc7231")
+        list_rfc3339: List[datetime.datetime] = rest_field(
+            default=None, format="rfc3339"
+        )
+        dict_rfc7231: Dict[str, datetime.datetime] = rest_field(
+            default=None, format="rfc7231"
+        )
 
         @overload
         def __init__(
@@ -2967,7 +3260,12 @@ def test_complex_datetime_wrapper():
 
     _tests(
         DatetimeWrapper(
-            default=dt, rfc3339=dt, rfc7231=dt, unix=dt, list_rfc3339=[dt, dt], dict_rfc7231={"key1": dt, "key2": dt}
+            default=dt,
+            rfc3339=dt,
+            rfc7231=dt,
+            unix=dt,
+            list_rfc3339=[dt, dt],
+            dict_rfc7231={"key1": dt, "key2": dt},
         )
     )
     _tests(
@@ -3042,26 +3340,42 @@ class DictionaryWrapper(Model):
         super().__init__(*args, **kwargs)
 
 
-default_program = {"txt": "notepad", "bmp": "mspaint", "xls": "excel", "exe": "", "": None}
+default_program = {
+    "txt": "notepad",
+    "bmp": "mspaint",
+    "xls": "excel",
+    "exe": "",
+    "": None,
+}
 
 
 @pytest.mark.parametrize(
     "model",
-    [DictionaryWrapper({"defaultProgram": default_program}), DictionaryWrapper(default_program=default_program)],
+    [
+        DictionaryWrapper({"defaultProgram": default_program}),
+        DictionaryWrapper(default_program=default_program),
+    ],
 )
 def test_complex_dictionary_wrapper(model: DictionaryWrapper):
     assert model == {"defaultProgram": default_program}
     assert model.default_program == model["defaultProgram"] == default_program
 
 
-@pytest.mark.parametrize("model", [DictionaryWrapper({"defaultProgram": {}}), DictionaryWrapper(default_program={})])
+@pytest.mark.parametrize(
+    "model",
+    [DictionaryWrapper({"defaultProgram": {}}), DictionaryWrapper(default_program={})],
+)
 def test_complex_dictionary_wrapper_empty(model: DictionaryWrapper):
     assert model == {"defaultProgram": {}}
     assert model.default_program == model["defaultProgram"] == {}
 
 
 @pytest.mark.parametrize(
-    "model", [DictionaryWrapper({"defaultProgram": None}), DictionaryWrapper(default_program=None)]
+    "model",
+    [
+        DictionaryWrapper({"defaultProgram": None}),
+        DictionaryWrapper(default_program=None),
+    ],
 )
 def test_complex_dictionary_wrapper_none(model: DictionaryWrapper):
     assert model == {"defaultProgram": None}
@@ -3085,10 +3399,18 @@ class ArrayWrapper(Model):
         super().__init__(*args, **kwargs)
 
 
-array_value = ["1, 2, 3, 4", "", None, "&S#$(*Y", "The quick brown fox jumps over the lazy dog"]
+array_value = [
+    "1, 2, 3, 4",
+    "",
+    None,
+    "&S#$(*Y",
+    "The quick brown fox jumps over the lazy dog",
+]
 
 
-@pytest.mark.parametrize("model", [ArrayWrapper(array=array_value), ArrayWrapper({"array": array_value})])
+@pytest.mark.parametrize(
+    "model", [ArrayWrapper(array=array_value), ArrayWrapper({"array": array_value})]
+)
 def test_complex_array_wrapper(model: ArrayWrapper):
     assert model == {"array": array_value}
     assert model.array == model["array"] == array_value
@@ -3112,7 +3434,9 @@ def test_complex_array_wrapper_empty(model: ArrayWrapper):
     assert model.array == model["array"] == ["bonjour"]
 
 
-@pytest.mark.parametrize("model", [ArrayWrapper(array=None), ArrayWrapper({"array": None})])
+@pytest.mark.parametrize(
+    "model", [ArrayWrapper(array=None), ArrayWrapper({"array": None})]
+)
 def test_complex_array_wrapper_none(model: ArrayWrapper):
     assert model == {"array": None}
     assert model.array is model["array"] is None
@@ -3214,7 +3538,11 @@ def test_complex_inheritance(model):
     assert model.id == model["id"] == 2
     assert model.name == model["name"] == "Siameeee"
     assert model.hates
-    assert model.hates[1] == model["hates"][1] == {"id": -1, "name": "Tomato", "food": "french fries"}
+    assert (
+        model.hates[1]
+        == model["hates"][1]
+        == {"id": -1, "name": "Tomato", "food": "french fries"}
+    )
     model["breed"] = "persian"
     model["color"] = "green"
     with pytest.raises(AttributeError):
@@ -3430,7 +3758,9 @@ def test_union():
 def test_as_dict():
     class CatComplex(PetComplex):
         color: Optional[str] = rest_field(default=None)
-        hates: Optional[List[DogComplex]] = rest_field(default=None, visibility=["read"])
+        hates: Optional[List[DogComplex]] = rest_field(
+            default=None, visibility=["read"]
+        )
 
         @overload
         def __init__(
@@ -3452,9 +3782,16 @@ def test_as_dict():
     model = CatComplex(
         id=2,
         name="Siameeee",
-        hates=[DogComplex(id=1, name="Potato", food="tomato"), DogComplex(id=-1, name="Tomato", food="french fries")],
+        hates=[
+            DogComplex(id=1, name="Potato", food="tomato"),
+            DogComplex(id=-1, name="Tomato", food="french fries"),
+        ],
     )
-    assert model.as_dict(exclude_readonly=True) == {"id": 2, "name": "Siameeee", "color": None}
+    assert model.as_dict(exclude_readonly=True) == {
+        "id": 2,
+        "name": "Siameeee",
+        "color": None,
+    }
 
 
 class Fish(Model):
@@ -3627,60 +3964,109 @@ def test_discriminator():
 def test_body_bytes_format():
     assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder) == '"dGVzdA=="'
     assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder) == '"dGVzdA=="'
-    assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64") == '"dGVzdA=="'
-    assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64url") == '"dGVzdA"'
-    assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64") == '"dGVzdA=="'
-    assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64url") == '"dGVzdA"'
-
     assert (
-        json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
+        json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64")
+        == '"dGVzdA=="'
     )
     assert (
-        json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder)
-        == '["dGVzdA==", "dGVzdA=="]'
+        json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64url")
+        == '"dGVzdA"'
     )
     assert (
-        json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder, format="base64")
-        == '["dGVzdA==", "dGVzdA=="]'
+        json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64")
+        == '"dGVzdA=="'
     )
     assert (
-        json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder, format="base64url")
-        == '["dGVzdA", "dGVzdA"]'
-    )
-    assert (
-        json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder, format="base64")
-        == '["dGVzdA==", "dGVzdA=="]'
-    )
-    assert (
-        json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder, format="base64url")
-        == '["dGVzdA", "dGVzdA"]'
+        json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64url")
+        == '"dGVzdA"'
     )
 
     assert (
-        json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=SdkJSONEncoder)
-        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    )
-    assert (
-        json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder)
-        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    )
-    assert (
-        json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=SdkJSONEncoder, format="base64")
-        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    )
-    assert (
-        json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=SdkJSONEncoder, format="base64url")
-        == '{"a": "dGVzdA", "b": "dGVzdA"}'
+        json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder)
+        == '["dGVzdA==", "dGVzdA=="]'
     )
     assert (
         json.dumps(
-            {"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder, format="base64"
+            [bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder
+        )
+        == '["dGVzdA==", "dGVzdA=="]'
+    )
+    assert (
+        json.dumps(
+            [bytes("test", "utf-8"), bytes("test", "utf-8")],
+            cls=SdkJSONEncoder,
+            format="base64",
+        )
+        == '["dGVzdA==", "dGVzdA=="]'
+    )
+    assert (
+        json.dumps(
+            [bytes("test", "utf-8"), bytes("test", "utf-8")],
+            cls=SdkJSONEncoder,
+            format="base64url",
+        )
+        == '["dGVzdA", "dGVzdA"]'
+    )
+    assert (
+        json.dumps(
+            [bytearray("test", "utf-8"), bytearray("test", "utf-8")],
+            cls=SdkJSONEncoder,
+            format="base64",
+        )
+        == '["dGVzdA==", "dGVzdA=="]'
+    )
+    assert (
+        json.dumps(
+            [bytearray("test", "utf-8"), bytearray("test", "utf-8")],
+            cls=SdkJSONEncoder,
+            format="base64url",
+        )
+        == '["dGVzdA", "dGVzdA"]'
+    )
+
+    assert (
+        json.dumps(
+            {"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")},
+            cls=SdkJSONEncoder,
         )
         == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
     )
     assert (
         json.dumps(
-            {"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder, format="base64url"
+            {"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")},
+            cls=SdkJSONEncoder,
+        )
+        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    )
+    assert (
+        json.dumps(
+            {"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")},
+            cls=SdkJSONEncoder,
+            format="base64",
+        )
+        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    )
+    assert (
+        json.dumps(
+            {"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")},
+            cls=SdkJSONEncoder,
+            format="base64url",
+        )
+        == '{"a": "dGVzdA", "b": "dGVzdA"}'
+    )
+    assert (
+        json.dumps(
+            {"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")},
+            cls=SdkJSONEncoder,
+            format="base64",
+        )
+        == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    )
+    assert (
+        json.dumps(
+            {"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")},
+            cls=SdkJSONEncoder,
+            format="base64url",
         )
         == '{"a": "dGVzdA", "b": "dGVzdA"}'
     )
@@ -3715,10 +4101,16 @@ def test_decimal_deserialization():
 def test_decimal_serialization():
     assert json.dumps(decimal.Decimal("0.33333"), cls=SdkJSONEncoder) == "0.33333"
     assert (
-        json.dumps([decimal.Decimal("0.33333"), decimal.Decimal("0.33333")], cls=SdkJSONEncoder) == "[0.33333, 0.33333]"
+        json.dumps(
+            [decimal.Decimal("0.33333"), decimal.Decimal("0.33333")], cls=SdkJSONEncoder
+        )
+        == "[0.33333, 0.33333]"
     )
     assert (
-        json.dumps({"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")}, cls=SdkJSONEncoder)
+        json.dumps(
+            {"a": decimal.Decimal("0.33333"), "b": decimal.Decimal("0.33333")},
+            cls=SdkJSONEncoder,
+        )
         == '{"a": 0.33333, "b": 0.33333}'
     )
 
@@ -3736,10 +4128,18 @@ def test_enum_deserealization():
 
     class ModelWithEnumProperty(Model):
         enum_property: Union[str, MyEnum] = rest_field(name="enumProperty")
-        enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptional")
-        enum_property_optional_none: Optional[Union[str, MyEnum]] = rest_field(name="enumPropertyOptionalNone")
+        enum_property_optional: Optional[Union[str, MyEnum]] = rest_field(
+            name="enumPropertyOptional"
+        )
+        enum_property_optional_none: Optional[Union[str, MyEnum]] = rest_field(
+            name="enumPropertyOptionalNone"
+        )
 
-    raw_input = {"enumProperty": "a", "enumPropertyOptional": "b", "enumPropertyOptionalNone": None}
+    raw_input = {
+        "enumProperty": "a",
+        "enumPropertyOptional": "b",
+        "enumPropertyOptionalNone": None,
+    }
 
     def check_func(target: ModelWithEnumProperty):
         assert target.enum_property == MyEnum.A
@@ -3825,7 +4225,9 @@ def test_additional_properties_serialization():
     model["listProp"] = [1, 2, 3]
     model["dictProp"] = {"key": "value"}
     model["noneProp"] = None
-    model["datetimeProp"] = datetime.datetime(2023, 6, 27, 6, 11, 9, tzinfo=datetime.timezone.utc)
+    model["datetimeProp"] = datetime.datetime(
+        2023, 6, 27, 6, 11, 9, tzinfo=datetime.timezone.utc
+    )
     model["durationProp"] = datetime.timedelta(days=1)
 
     assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value

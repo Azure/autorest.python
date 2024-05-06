@@ -22,7 +22,9 @@ async def test_get_model(client):
 
 @pytest.mark.asyncio
 async def test_put_model(client):
-    await client.put_model(models.VisibilityModel(create_prop=["foo", "bar"], update_prop=[1, 2]))
+    await client.put_model(
+        models.VisibilityModel(create_prop=["foo", "bar"], update_prop=[1, 2])
+    )
 
 
 @pytest.mark.asyncio

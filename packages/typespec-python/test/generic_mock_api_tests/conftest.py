@@ -15,7 +15,9 @@ FILE_FOLDER = Path(__file__).parent
 
 
 def start_server_process():
-    path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
+    path = Path(os.path.dirname(__file__)) / Path(
+        "../../node_modules/@azure-tools/cadl-ranch-specs"
+    )
     os.chdir(path.resolve())
     cmd = "cadl-ranch serve ./http"
     if os.name == "nt":
@@ -27,7 +29,9 @@ def terminate_server_process(process):
     if os.name == "nt":
         process.kill()
     else:
-        os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+        os.killpg(
+            os.getpgid(process.pid), signal.SIGTERM
+        )  # Send the signal to all the process groups
 
 
 @pytest.fixture(scope="session", autouse=True)

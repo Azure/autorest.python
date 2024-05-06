@@ -16,7 +16,9 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_extends_different_spread_float(client: AdditionalPropertiesClient):
-    body = models.DifferentSpreadFloatDerived({"name": "abc", "prop": 43.125, "derivedProp": 43.125})
+    body = models.DifferentSpreadFloatDerived(
+        {"name": "abc", "prop": 43.125, "derivedProp": 43.125}
+    )
     assert await client.extends_different_spread_float.get() == body
     await client.extends_different_spread_float.put(body)
 
@@ -45,7 +47,9 @@ async def test_extends_different_spread_model_array(client: AdditionalProperties
 
 @pytest.mark.asyncio
 async def test_extends_different_spread_string(client: AdditionalPropertiesClient):
-    body = models.DifferentSpreadStringDerived({"id": 43.125, "prop": "abc", "derivedProp": "abc"})
+    body = models.DifferentSpreadStringDerived(
+        {"id": 43.125, "prop": "abc", "derivedProp": "abc"}
+    )
     assert await client.extends_different_spread_string.get() == body
     await client.extends_different_spread_string.put(body)
 
@@ -59,7 +63,9 @@ async def test_extends_float(client: AdditionalPropertiesClient):
 
 @pytest.mark.asyncio
 async def test_extends_model(client: AdditionalPropertiesClient):
-    body = models.ExtendsModelAdditionalProperties({"knownProp": {"state": "ok"}, "prop": {"state": "ok"}})
+    body = models.ExtendsModelAdditionalProperties(
+        {"knownProp": {"state": "ok"}, "prop": {"state": "ok"}}
+    )
     assert await client.extends_model.get() == body
     await client.extends_model.put(body)
 
@@ -67,7 +73,10 @@ async def test_extends_model(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_extends_model_array(client: AdditionalPropertiesClient):
     body = models.ExtendsModelArrayAdditionalProperties(
-        {"knownProp": [{"state": "ok"}, {"state": "ok"}], "prop": [{"state": "ok"}, {"state": "ok"}]}
+        {
+            "knownProp": [{"state": "ok"}, {"state": "ok"}],
+            "prop": [{"state": "ok"}, {"state": "ok"}],
+        }
     )
     assert await client.extends_model_array.get() == body
     await client.extends_model_array.put(body)
@@ -75,7 +84,9 @@ async def test_extends_model_array(client: AdditionalPropertiesClient):
 
 @pytest.mark.asyncio
 async def test_extends_string(client: AdditionalPropertiesClient):
-    body = models.ExtendsStringAdditionalProperties({"name": "ExtendsStringAdditionalProperties", "prop": "abc"})
+    body = models.ExtendsStringAdditionalProperties(
+        {"name": "ExtendsStringAdditionalProperties", "prop": "abc"}
+    )
     assert await client.extends_string.get() == body
     await client.extends_string.put(body)
 
@@ -83,7 +94,12 @@ async def test_extends_string(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_extends_unknown(client: AdditionalPropertiesClient):
     body = models.ExtendsUnknownAdditionalProperties(
-        {"name": "ExtendsUnknownAdditionalProperties", "prop1": 32, "prop2": True, "prop3": "abc"}
+        {
+            "name": "ExtendsUnknownAdditionalProperties",
+            "prop1": 32,
+            "prop2": True,
+            "prop3": "abc",
+        }
     )
     assert await client.extends_unknown.get() == body
     await client.extends_unknown.put(body)
@@ -108,7 +124,15 @@ async def test_extends_unknown_derived(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_extends_unknown_discriminated(client: AdditionalPropertiesClient):
     body = models.ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
-        {"kind": "derived", "name": "Derived", "index": 314, "age": 2.71828, "prop1": 32, "prop2": True, "prop3": "abc"}
+        {
+            "kind": "derived",
+            "name": "Derived",
+            "index": 314,
+            "age": 2.71828,
+            "prop1": 32,
+            "prop2": True,
+            "prop3": "abc",
+        }
     )
     assert await client.extends_unknown_discriminated.get() == body
     await client.extends_unknown_discriminated.put(body)
@@ -123,7 +147,9 @@ async def test_is_float(client: AdditionalPropertiesClient):
 
 @pytest.mark.asyncio
 async def test_is_model(client: AdditionalPropertiesClient):
-    body = models.IsModelAdditionalProperties({"knownProp": {"state": "ok"}, "prop": {"state": "ok"}})
+    body = models.IsModelAdditionalProperties(
+        {"knownProp": {"state": "ok"}, "prop": {"state": "ok"}}
+    )
     assert await client.is_model.get() == body
     await client.is_model.put(body)
 
@@ -131,7 +157,10 @@ async def test_is_model(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_is_model_array(client: AdditionalPropertiesClient):
     body = models.IsModelArrayAdditionalProperties(
-        {"knownProp": [{"state": "ok"}, {"state": "ok"}], "prop": [{"state": "ok"}, {"state": "ok"}]}
+        {
+            "knownProp": [{"state": "ok"}, {"state": "ok"}],
+            "prop": [{"state": "ok"}, {"state": "ok"}],
+        }
     )
     assert await client.is_model_array.get() == body
     await client.is_model_array.put(body)
@@ -139,7 +168,9 @@ async def test_is_model_array(client: AdditionalPropertiesClient):
 
 @pytest.mark.asyncio
 async def test_is_string(client: AdditionalPropertiesClient):
-    body = models.IsStringAdditionalProperties({"name": "IsStringAdditionalProperties", "prop": "abc"})
+    body = models.IsStringAdditionalProperties(
+        {"name": "IsStringAdditionalProperties", "prop": "abc"}
+    )
     assert await client.is_string.get() == body
     await client.is_string.put(body)
 
@@ -147,7 +178,12 @@ async def test_is_string(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_is_unknown(client: AdditionalPropertiesClient):
     body = models.IsUnknownAdditionalProperties(
-        {"name": "IsUnknownAdditionalProperties", "prop1": 32, "prop2": True, "prop3": "abc"}
+        {
+            "name": "IsUnknownAdditionalProperties",
+            "prop1": 32,
+            "prop2": True,
+            "prop3": "abc",
+        }
     )
     assert await client.is_unknown.get() == body
     await client.is_unknown.put(body)
@@ -172,7 +208,15 @@ async def test_is_unknown_derived(client: AdditionalPropertiesClient):
 @pytest.mark.asyncio
 async def test_is_unknown_discriminated(client: AdditionalPropertiesClient):
     body = models.IsUnknownAdditionalPropertiesDiscriminatedDerived(
-        {"kind": "derived", "name": "Derived", "index": 314, "age": 2.71828, "prop1": 32, "prop2": True, "prop3": "abc"}
+        {
+            "kind": "derived",
+            "name": "Derived",
+            "index": 314,
+            "age": 2.71828,
+            "prop1": 32,
+            "prop2": True,
+            "prop3": "abc",
+        }
     )
     assert await client.is_unknown_discriminated.get() == body
     await client.is_unknown_discriminated.put(body)
@@ -222,7 +266,10 @@ async def test_spread_model(client: AdditionalPropertiesClient):
 
 @pytest.mark.asyncio
 async def test_spread_model_array(client: AdditionalPropertiesClient):
-    body = {"knownProp": [{"state": "ok"}, {"state": "ok"}], "prop": [{"state": "ok"}, {"state": "ok"}]}
+    body = {
+        "knownProp": [{"state": "ok"}, {"state": "ok"}],
+        "prop": [{"state": "ok"}, {"state": "ok"}],
+    }
     assert await client.spread_model_array.get() == body
     await client.spread_model_array.put(body)
 
@@ -232,43 +279,65 @@ async def test_spread_record_discriminated_union(client: AdditionalPropertiesCli
     body = {
         "name": "abc",
         "prop1": {"fooProp": "abc", "kind": "kind0"},
-        "prop2": {"end": "2021-01-02T00:00:00Z", "kind": "kind1", "start": "2021-01-01T00:00:00Z"},
+        "prop2": {
+            "end": "2021-01-02T00:00:00Z",
+            "kind": "kind1",
+            "start": "2021-01-01T00:00:00Z",
+        },
     }
     assert await client.spread_record_discriminated_union.get() == body
     await client.spread_record_discriminated_union.put(body)
 
 
 @pytest.mark.asyncio
-async def test_spread_record_non_discriminated_union(client: AdditionalPropertiesClient):
+async def test_spread_record_non_discriminated_union(
+    client: AdditionalPropertiesClient,
+):
     body = {
         "name": "abc",
         "prop1": {"kind": "kind0", "fooProp": "abc"},
-        "prop2": {"kind": "kind1", "start": "2021-01-01T00:00:00Z", "end": "2021-01-02T00:00:00Z"},
+        "prop2": {
+            "kind": "kind1",
+            "start": "2021-01-01T00:00:00Z",
+            "end": "2021-01-02T00:00:00Z",
+        },
     }
     assert await client.spread_record_non_discriminated_union.get() == body
     await client.spread_record_non_discriminated_union.put(body)
 
 
 @pytest.mark.asyncio
-async def test_spread_record_non_discriminated_union2(client: AdditionalPropertiesClient):
+async def test_spread_record_non_discriminated_union2(
+    client: AdditionalPropertiesClient,
+):
     body = {
         "name": "abc",
         "prop1": {"kind": "kind1", "start": "2021-01-01T00:00:00Z"},
-        "prop2": {"kind": "kind1", "start": "2021-01-01T00:00:00Z", "end": "2021-01-02T00:00:00Z"},
+        "prop2": {
+            "kind": "kind1",
+            "start": "2021-01-01T00:00:00Z",
+            "end": "2021-01-02T00:00:00Z",
+        },
     }
     assert await client.spread_record_non_discriminated_union2.get() == body
     await client.spread_record_non_discriminated_union2.put(body)
 
 
 @pytest.mark.asyncio
-async def test_spread_record_non_discriminated_union3(client: AdditionalPropertiesClient):
+async def test_spread_record_non_discriminated_union3(
+    client: AdditionalPropertiesClient,
+):
     body = {
         "name": "abc",
         "prop1": [
             {"kind": "kind1", "start": "2021-01-01T00:00:00Z"},
             {"kind": "kind1", "start": "2021-01-01T00:00:00Z"},
         ],
-        "prop2": {"kind": "kind1", "start": "2021-01-01T00:00:00Z", "end": "2021-01-02T00:00:00Z"},
+        "prop2": {
+            "kind": "kind1",
+            "start": "2021-01-01T00:00:00Z",
+            "end": "2021-01-02T00:00:00Z",
+        },
     }
     assert await client.spread_record_non_discriminated_union3.get() == body
     await client.spread_record_non_discriminated_union3.put(body)

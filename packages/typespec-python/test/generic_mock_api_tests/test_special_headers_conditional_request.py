@@ -14,8 +14,12 @@ def client():
 
 
 def test_post_if_match(core_library, client: ConditionalRequestClient):
-    client.post_if_match(etag="valid", match_condition=core_library.MatchConditions.IfNotModified)
+    client.post_if_match(
+        etag="valid", match_condition=core_library.MatchConditions.IfNotModified
+    )
 
 
 def test_post_if_none_match(core_library, client: ConditionalRequestClient):
-    client.post_if_none_match(etag="invalid", match_condition=core_library.MatchConditions.IfModified)
+    client.post_if_none_match(
+        etag="invalid", match_condition=core_library.MatchConditions.IfModified
+    )
