@@ -22,3 +22,52 @@ class TestSpreadModelOperations(SpreadClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @SpreadPreparer()
+    @recorded_by_proxy
+    def test_spread_composite_request_only_with_body(self, spread_endpoint):
+        client = self.create_client(endpoint=spread_endpoint)
+        response = client.model.spread_composite_request_only_with_body(
+            body={"name": "str"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @SpreadPreparer()
+    @recorded_by_proxy
+    def test_spread_composite_request_without_body(self, spread_endpoint):
+        client = self.create_client(endpoint=spread_endpoint)
+        response = client.model.spread_composite_request_without_body(
+            name="str",
+            test_header="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @SpreadPreparer()
+    @recorded_by_proxy
+    def test_spread_composite_request(self, spread_endpoint):
+        client = self.create_client(endpoint=spread_endpoint)
+        response = client.model.spread_composite_request(
+            name="str",
+            body={"name": "str"},
+            test_header="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @SpreadPreparer()
+    @recorded_by_proxy
+    def test_spread_composite_request_mix(self, spread_endpoint):
+        client = self.create_client(endpoint=spread_endpoint)
+        response = client.model.spread_composite_request_mix(
+            name="str",
+            body={"prop": "str"},
+            test_header="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...
