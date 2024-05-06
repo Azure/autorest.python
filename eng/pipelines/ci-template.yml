@@ -45,7 +45,7 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npx chronus verify
+    - script: pnpm chronus verify
       displayName: Check changelog
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
