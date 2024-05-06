@@ -9,6 +9,7 @@ from specs.azure.core.basic import BasicClient, models
 
 VALID_USER = models.User(id=1, name="Madge", etag="11bdc430-65e8-45ad-81d9-8ffa60d55b59")
 
+
 @pytest.fixture
 def client():
     with BasicClient() as client:
@@ -28,6 +29,7 @@ def test_create_or_replace(client: BasicClient):
 def test_get(client: BasicClient):
     result = client.get(id=1)
     assert result == VALID_USER
+
 
 def test_list(client: BasicClient):
     result = list(
@@ -54,6 +56,7 @@ def test_list(client: BasicClient):
     assert result[1].orders[0].user_id == 2
     assert result[1].orders[0].detail == "a TV"
 
+
 def _list_with_page_tests(pager: Iterable[models.User]):
     result = list(pager)
     assert len(result) == 1
@@ -61,6 +64,7 @@ def _list_with_page_tests(pager: Iterable[models.User]):
     assert result[0].name == "Madge"
     assert result[0].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert result[0].orders is None
+
 
 def test_list_with_page(client: BasicClient):
     _list_with_page_tests(client.list_with_page())
@@ -80,10 +84,12 @@ def test_export(client: BasicClient):
     result = client.export(id=1, format="json")
     assert result == VALID_USER
 
+
 def test_list_with_parameters(client: BasicClient):
     result = list(client.list_with_parameters(models.ListItemInputBody(input_name="Madge"), another="Second"))
     assert len(result) == 1
     assert result[0] == VALID_USER
+
 
 def test_two_models_as_page_item(client: BasicClient):
     result = list(client.two_models_as_page_item.list_first_item())

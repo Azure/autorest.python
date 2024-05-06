@@ -16,6 +16,6 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_v2(client: RemovedClient):
-    assert await client.v2(
-        ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER_V2, union_prop="bar")
-    ) == ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER_V2, union_prop="bar")
+    assert await client.v2(ModelV2(prop="foo", enum_prop=EnumV2.ENUM_MEMBER_V2, union_prop="bar")) == ModelV2(
+        prop="foo", enum_prop=EnumV2.ENUM_MEMBER_V2, union_prop="bar"
+    )

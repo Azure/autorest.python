@@ -13,9 +13,7 @@ pipeline_build = is_pipeline_build()
 root_dir = Path.resolve(Path(__file__) / "../../..")
 
 
-def main(
-    package_name: str, regenerate: bool, check_change: bool, check_code: bool = False
-):
+def main(package_name: str, regenerate: bool, check_change: bool, check_code: bool = False):
     if package_name == "autorest.python":
         folder_name = "autorest"
     elif package_name == "typespec-python":

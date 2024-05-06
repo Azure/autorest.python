@@ -10,6 +10,7 @@ exclude = '''
   | buck-out
   | build
   | dist
+  | node_modules
 )/
 '''
 line-length = 120

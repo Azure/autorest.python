@@ -9,12 +9,9 @@ from versioning.returntypechangedfrom import ReturnTypeChangedFromClient
 
 @pytest.fixture
 def client():
-    with ReturnTypeChangedFromClient(
-        endpoint="http://localhost:3000", version="v2"
-    ) as client:
+    with ReturnTypeChangedFromClient(endpoint="http://localhost:3000", version="v2") as client:
         yield client
 
 
 def test(client: ReturnTypeChangedFromClient):
     assert client.test("test") == "test"
-
