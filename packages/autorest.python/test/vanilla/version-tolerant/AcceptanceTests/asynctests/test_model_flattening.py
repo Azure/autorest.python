@@ -28,200 +28,155 @@ from async_generator import yield_, async_generator
 from modelflatteningversiontolerant.aio import AutoRestResourceFlatteningTestService
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestResourceFlatteningTestService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_flattening_array(client):
 
-    #Array
+    # Array
     result = await client.get_array()
-    assert 3 ==  len(result)
+    assert 3 == len(result)
     # Resource 1
-    assert "1" ==  result[0]['id']
-    assert "OK" ==  result[0]['properties']['provisioningStateValues']
-    assert "Product1" ==  result[0]['properties']['p.name']
-    assert "Flat" ==  result[0]['properties']['type']
-    assert "Building 44" ==  result[0]['location']
-    assert "Resource1" ==  result[0]['name']
-    assert "Succeeded" ==  result[0]['properties']['provisioningState']
-    assert "Microsoft.Web/sites" ==  result[0]['type']
-    assert "value1" ==  result[0]['tags']["tag1"]
-    assert "value3" ==  result[0]['tags']["tag2"]
+    assert "1" == result[0]["id"]
+    assert "OK" == result[0]["properties"]["provisioningStateValues"]
+    assert "Product1" == result[0]["properties"]["p.name"]
+    assert "Flat" == result[0]["properties"]["type"]
+    assert "Building 44" == result[0]["location"]
+    assert "Resource1" == result[0]["name"]
+    assert "Succeeded" == result[0]["properties"]["provisioningState"]
+    assert "Microsoft.Web/sites" == result[0]["type"]
+    assert "value1" == result[0]["tags"]["tag1"]
+    assert "value3" == result[0]["tags"]["tag2"]
     # Resource 2
-    assert "2" ==  result[1]['id']
-    assert "Resource2" ==  result[1]['name']
-    assert "Building 44" ==  result[1]['location']
+    assert "2" == result[1]["id"]
+    assert "Resource2" == result[1]["name"]
+    assert "Building 44" == result[1]["location"]
     # Resource 3
-    assert "3" ==  result[2]['id']
-    assert "Resource3" ==  result[2]['name']
+    assert "3" == result[2]["id"]
+    assert "Resource3" == result[2]["name"]
 
     resource_array = [
-        {
-            'tags': {
-                'tag1': 'value1',
-                'tag2': 'value3'
-            },
-            'location': 'West US'
-        },
-        {
-            'location': 'Building 44'
-        }
+        {"tags": {"tag1": "value1", "tag2": "value3"}, "location": "West US"},
+        {"location": "Building 44"},
     ]
     await client.put_array(resource_array)
+
 
 @pytest.mark.asyncio
 async def test_flattening_dictionary(client):
 
-    #Dictionary
+    # Dictionary
     result = await client.get_dictionary()
-    assert 3 ==  len(result)
+    assert 3 == len(result)
     # Resource 1
-    assert "1" ==  result["Product1"]['id']
-    assert "OK" ==  result["Product1"]['properties']['provisioningStateValues']
-    assert "Product1" ==  result["Product1"]['properties']['p.name']
-    assert "Flat" ==  result["Product1"]['properties']['type']
-    assert "Building 44" ==  result["Product1"]['location']
-    assert "Resource1" ==  result["Product1"]['name']
-    assert "Succeeded" ==  result["Product1"]['properties']['provisioningState']
-    assert "Microsoft.Web/sites" ==  result["Product1"]['type']
-    assert "value1" ==  result["Product1"]['tags']["tag1"]
-    assert "value3" ==  result["Product1"]['tags']["tag2"]
+    assert "1" == result["Product1"]["id"]
+    assert "OK" == result["Product1"]["properties"]["provisioningStateValues"]
+    assert "Product1" == result["Product1"]["properties"]["p.name"]
+    assert "Flat" == result["Product1"]["properties"]["type"]
+    assert "Building 44" == result["Product1"]["location"]
+    assert "Resource1" == result["Product1"]["name"]
+    assert "Succeeded" == result["Product1"]["properties"]["provisioningState"]
+    assert "Microsoft.Web/sites" == result["Product1"]["type"]
+    assert "value1" == result["Product1"]["tags"]["tag1"]
+    assert "value3" == result["Product1"]["tags"]["tag2"]
     # Resource 2
-    assert "2" ==  result["Product2"]['id']
-    assert "Resource2" ==  result["Product2"]['name']
-    assert "Building 44" ==  result["Product2"]['location']
+    assert "2" == result["Product2"]["id"]
+    assert "Resource2" == result["Product2"]["name"]
+    assert "Building 44" == result["Product2"]["location"]
     # Resource 3
-    assert "3" ==  result["Product3"]['id']
-    assert "Resource3" ==  result["Product3"]['name']
+    assert "3" == result["Product3"]["id"]
+    assert "Resource3" == result["Product3"]["name"]
 
     resource_dictionary = {
         "Resource1": {
-            "tags": {
-                "tag1": "value1",
-                "tag2": "value3"
-            },
+            "tags": {"tag1": "value1", "tag2": "value3"},
             "location": "West US",
-            "properties": {
-                "p.name": "Product1",
-                "type": "Flat"
-            }
+            "properties": {"p.name": "Product1", "type": "Flat"},
         },
-        "Resource2": {
-            "location": "Building 44",
-            "properties": {
-                "p.name": "Product2",
-                "type": "Flat"
-            }
-        }
+        "Resource2": {"location": "Building 44", "properties": {"p.name": "Product2", "type": "Flat"}},
     }
     await client.put_dictionary(resource_dictionary)
+
 
 @pytest.mark.asyncio
 async def test_flattening_complex_object(client):
 
-    #ResourceCollection
+    # ResourceCollection
     result = await client.get_resource_collection()
 
-    #dictionaryofresources
-    assert 3 ==  len(result['dictionaryofresources'])
+    # dictionaryofresources
+    assert 3 == len(result["dictionaryofresources"])
     # Resource 1
-    assert "1" ==  result['dictionaryofresources']["Product1"]['id']
-    assert "OK" ==  result['dictionaryofresources']["Product1"]['properties']['provisioningStateValues']
-    assert "Product1" ==  result['dictionaryofresources']["Product1"]['properties']['p.name']
-    assert "Flat" ==  result['dictionaryofresources']["Product1"]['properties']['type']
-    assert "Building 44" ==  result['dictionaryofresources']["Product1"]['location']
-    assert "Resource1" ==  result['dictionaryofresources']["Product1"]['name']
-    assert "Succeeded" ==  result['dictionaryofresources']["Product1"]['properties']['provisioningState']
-    assert "Microsoft.Web/sites" ==  result['dictionaryofresources']["Product1"]['type']
-    assert "value1" ==  result['dictionaryofresources']["Product1"]['tags']["tag1"]
-    assert "value3" ==  result['dictionaryofresources']["Product1"]['tags']["tag2"]
+    assert "1" == result["dictionaryofresources"]["Product1"]["id"]
+    assert "OK" == result["dictionaryofresources"]["Product1"]["properties"]["provisioningStateValues"]
+    assert "Product1" == result["dictionaryofresources"]["Product1"]["properties"]["p.name"]
+    assert "Flat" == result["dictionaryofresources"]["Product1"]["properties"]["type"]
+    assert "Building 44" == result["dictionaryofresources"]["Product1"]["location"]
+    assert "Resource1" == result["dictionaryofresources"]["Product1"]["name"]
+    assert "Succeeded" == result["dictionaryofresources"]["Product1"]["properties"]["provisioningState"]
+    assert "Microsoft.Web/sites" == result["dictionaryofresources"]["Product1"]["type"]
+    assert "value1" == result["dictionaryofresources"]["Product1"]["tags"]["tag1"]
+    assert "value3" == result["dictionaryofresources"]["Product1"]["tags"]["tag2"]
     # Resource 2
-    assert "2" ==  result['dictionaryofresources']["Product2"]['id']
-    assert "Resource2" ==  result['dictionaryofresources']["Product2"]['name']
-    assert "Building 44" ==  result['dictionaryofresources']["Product2"]['location']
+    assert "2" == result["dictionaryofresources"]["Product2"]["id"]
+    assert "Resource2" == result["dictionaryofresources"]["Product2"]["name"]
+    assert "Building 44" == result["dictionaryofresources"]["Product2"]["location"]
     # Resource 3
-    assert "3" ==  result['dictionaryofresources']["Product3"]['id']
-    assert "Resource3" ==  result['dictionaryofresources']["Product3"]['name']
+    assert "3" == result["dictionaryofresources"]["Product3"]["id"]
+    assert "Resource3" == result["dictionaryofresources"]["Product3"]["name"]
 
-    #arrayofresources
-    assert 3 ==  len(result['arrayofresources'])
+    # arrayofresources
+    assert 3 == len(result["arrayofresources"])
     # Resource 1
-    assert "4" ==  result['arrayofresources'][0]['id']
-    assert "OK" ==  result['arrayofresources'][0]['properties']['provisioningStateValues']
-    assert "Product4" ==  result['arrayofresources'][0]['properties']['p.name']
-    assert "Flat" ==  result['arrayofresources'][0]['properties']['type']
-    assert "Building 44" ==  result['arrayofresources'][0]['location']
-    assert "Resource4" ==  result['arrayofresources'][0]['name']
-    assert "Succeeded" ==  result['arrayofresources'][0]['properties']['provisioningState']
-    assert "Microsoft.Web/sites" ==  result['arrayofresources'][0]['type']
-    assert "value1" ==  result['arrayofresources'][0]['tags']["tag1"]
-    assert "value3" ==  result['arrayofresources'][0]['tags']["tag2"]
+    assert "4" == result["arrayofresources"][0]["id"]
+    assert "OK" == result["arrayofresources"][0]["properties"]["provisioningStateValues"]
+    assert "Product4" == result["arrayofresources"][0]["properties"]["p.name"]
+    assert "Flat" == result["arrayofresources"][0]["properties"]["type"]
+    assert "Building 44" == result["arrayofresources"][0]["location"]
+    assert "Resource4" == result["arrayofresources"][0]["name"]
+    assert "Succeeded" == result["arrayofresources"][0]["properties"]["provisioningState"]
+    assert "Microsoft.Web/sites" == result["arrayofresources"][0]["type"]
+    assert "value1" == result["arrayofresources"][0]["tags"]["tag1"]
+    assert "value3" == result["arrayofresources"][0]["tags"]["tag2"]
     # Resource 2
-    assert "5" ==  result['arrayofresources'][1]['id']
-    assert "Resource5" ==  result['arrayofresources'][1]['name']
-    assert "Building 44" ==  result['arrayofresources'][1]['location']
+    assert "5" == result["arrayofresources"][1]["id"]
+    assert "Resource5" == result["arrayofresources"][1]["name"]
+    assert "Building 44" == result["arrayofresources"][1]["location"]
     # Resource 3
-    assert "6" ==  result['arrayofresources'][2]['id']
-    assert "Resource6" ==  result['arrayofresources'][2]['name']
+    assert "6" == result["arrayofresources"][2]["id"]
+    assert "Resource6" == result["arrayofresources"][2]["name"]
 
-    #productresource
-    assert "7" ==  result['productresource']['id']
-    assert "Resource7" ==  result['productresource']['name']
+    # productresource
+    assert "7" == result["productresource"]["id"]
+    assert "Resource7" == result["productresource"]["name"]
 
     resource_dictionary = {
-        "productresource": {
-            "location": "India",
-            "properties": {
-                "p.name": "Azure",
-                "type": "Flat"
-            }
-        },
+        "productresource": {"location": "India", "properties": {"p.name": "Azure", "type": "Flat"}},
         "arrayofresources": [
             {
-                "tags": {
-                    "tag1": "value1",
-                    "tag2": "value3"
-                },
+                "tags": {"tag1": "value1", "tag2": "value3"},
                 "location": "West US",
-                "properties": {
-                    "p.name": "Product1",
-                    "type": "Flat"
-                }
+                "properties": {"p.name": "Product1", "type": "Flat"},
             },
-            {
-                "location": "East US",
-                "properties": {
-                    "p.name": "Product2",
-                    "type": "Flat"
-                }
-            }
+            {"location": "East US", "properties": {"p.name": "Product2", "type": "Flat"}},
         ],
         "dictionaryofresources": {
             "Resource1": {
-                "tags": {
-                    "tag1": "value1",
-                    "tag2": "value3"
-                },
+                "tags": {"tag1": "value1", "tag2": "value3"},
                 "location": "West US",
-                "properties": {
-                    "p.name": "Product1",
-                    "type": "Flat"
-                }
+                "properties": {"p.name": "Product1", "type": "Flat"},
             },
-            "Resource2": {
-                "location": "Building 44",
-                "properties": {
-                    "p.name": "Product2",
-                    "type": "Flat"
-                }
-            }
-        }
+            "Resource2": {"location": "Building 44", "properties": {"p.name": "Product2", "type": "Flat"}},
+        },
     }
     await client.put_resource_collection(resource_dictionary)
+
 
 @pytest.mark.asyncio
 async def test_model_flattening_simple(client):
@@ -232,14 +187,12 @@ async def test_model_flattening_simple(client):
         "details": {
             "max_product_display_name": "max name",
             "max_product_capacity": "Large",
-            "max_product_image": {
-                "generic_value": "https://generic",
-                "@odata.value": "http://foo"
-            }
-        }
+            "max_product_image": {"generic_value": "https://generic", "@odata.value": "http://foo"},
+        },
     }
     result = await client.put_simple_product(simple_product)
-    assert result ==  simple_product
+    assert result == simple_product
+
 
 @pytest.mark.asyncio
 async def test_model_flattening_with_parameter_flattening(client):
@@ -250,13 +203,12 @@ async def test_model_flattening_with_parameter_flattening(client):
         "details": {
             "max_product_display_name": "max name",
             "max_product_capacity": "Large",
-            "max_product_image": {
-                "@odata.value": "http://foo"
-            }
-        }
+            "max_product_image": {"@odata.value": "http://foo"},
+        },
     }
     result = await client.post_flattened_simple_product(simple_product)
     assert result == simple_product
+
 
 @pytest.mark.asyncio
 async def test_model_flattening_with_grouping(client):
@@ -266,10 +218,8 @@ async def test_model_flattening_with_grouping(client):
         "details": {
             "max_product_display_name": "max name",
             "max_product_capacity": "Large",
-            "max_product_image": {
-                "@odata.value": "http://foo"
-            }
-        }
+            "max_product_image": {"@odata.value": "http://foo"},
+        },
     }
-    result = await client.put_simple_product_with_grouping('groupproduct', simple_product)
+    result = await client.put_simple_product_with_grouping("groupproduct", simple_product)
     assert result == simple_product

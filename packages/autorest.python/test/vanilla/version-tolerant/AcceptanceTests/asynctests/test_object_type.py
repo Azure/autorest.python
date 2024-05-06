@@ -29,20 +29,25 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with ObjectTypeClient() as client:
         await yield_(client)
+
+
 @pytest.mark.asyncio
 async def test_get_object(client):
     response = await client.get()
     assert response == {"message": "An object was successfully returned"}
 
+
 @pytest.mark.asyncio
 async def test_put_object_success(client):
     response = await client.put({"foo": "bar"})
     assert response is None
+
 
 @pytest.mark.asyncio
 async def test_put_object_fail(client):

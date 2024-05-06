@@ -32,32 +32,40 @@ from dpgcustomizationinitialversiontolerant import DPGClient as DPGClientInitial
 from dpgcustomizationcustomizedversiontolerant import DPGClient as DPGClientCustomized
 from dpgcustomizationcustomizedversiontolerant.models import *
 
+
 @pytest.fixture
 def client(client_cls):
     with client_cls() as client:
         yield client
 
+
 CLIENTS = [DPGClientInitial, DPGClientCustomized]
+
 
 @pytest.mark.parametrize("client_cls", CLIENTS)
 def test_get_raw_model(client):
     assert client.get_model(mode="raw") == {"received": "raw"}
 
+
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
 def test_get_customized_model(client):
     assert client.get_model("model").received == "model"
+
 
 @pytest.mark.parametrize("client_cls", CLIENTS)
 def test_post_raw_model(client):
     assert client.post_model("raw", {"hello": "world!"})["received"] == "raw"
 
+
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
 def test_post_customized_model(client):
     assert client.post_model("model", Input(hello="world!")).received == "model"
 
+
 @pytest.mark.parametrize("client_cls", CLIENTS)
 def test_get_raw_pages(client):
-    assert list(client.get_pages("raw")) == [{'received': 'raw'}, {'received': 'raw'}]
+    assert list(client.get_pages("raw")) == [{"received": "raw"}, {"received": "raw"}]
+
 
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
 def test_get_customized_pages(client):
@@ -65,9 +73,11 @@ def test_get_customized_pages(client):
     assert all(p for p in pages if isinstance(p, Product))
     assert all(p for p in pages if p.received == "model")
 
+
 @pytest.mark.parametrize("client_cls", CLIENTS)
 def test_raw_lro(client):
-    assert client.begin_lro(mode="raw").result() == {'provisioningState': 'Succeeded', 'received': 'raw'}
+    assert client.begin_lro(mode="raw").result() == {"provisioningState": "Succeeded", "received": "raw"}
+
 
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
 def test_customized_lro(client):
@@ -76,21 +86,24 @@ def test_customized_lro(client):
     assert product.received == "model"
     assert product.provisioning_state == "Succeeded"
 
-@pytest.mark.parametrize("package_name", ["dpgcustomizationinitialversiontolerant", "dpgcustomizationcustomizedversiontolerant"])
+
+@pytest.mark.parametrize(
+    "package_name", ["dpgcustomizationinitialversiontolerant", "dpgcustomizationcustomizedversiontolerant"]
+)
 def test_dunder_all(package_name):
     assert importlib.import_module(package_name).__all__ == ["DPGClient"]
     assert importlib.import_module(f"{package_name}._operations").__all__ == ["DPGClientOperationsMixin"]
 
+
 def test_imports():
     # make sure we can import all of the models we've added to the customization class
-    from dpgcustomizationcustomizedversiontolerant.models import (
-        Input, LROProduct, Product
-    )
+    from dpgcustomizationcustomizedversiontolerant.models import Input, LROProduct, Product
+
     models = [Input, LROProduct, Product]
     # check public models
     public_models = [
-        name for name, obj in
-        inspect.getmembers(sys.modules["dpgcustomizationcustomizedversiontolerant.models"])
+        name
+        for name, obj in inspect.getmembers(sys.modules["dpgcustomizationcustomizedversiontolerant.models"])
         if name[0] != "_" and obj in models
     ]
     assert len(public_models) == 3

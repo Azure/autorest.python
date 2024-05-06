@@ -19,7 +19,8 @@ from pathlib import Path
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
 import inspect
-if not hasattr(inspect, 'getargspec'):
+
+if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec
 #######################################################
 
@@ -46,49 +47,49 @@ class Config(NamedTuple):
 AUTOREST_DIR = os.path.dirname(__file__)
 M4_VERSION = "--use=@autorest/modelerfour@latest "
 _VANILLA_SWAGGER_MAPPINGS = {
-    'AdditionalProperties': 'additionalProperties.json',
-    'Anything': 'any-type.json',
-    'ParameterFlattening': 'parameter-flattening.json',
-    'BodyArray': 'body-array.json',
-    'BodyBinary': 'body-binary.json',
-    'BodyBoolean': 'body-boolean.json',
-    'BodyByte': 'body-byte.json',
-    'BodyComplex': 'body-complex.json',
-    'BodyDate': 'body-date.json',
-    'BodyDateTime': 'body-datetime.json',
-    'BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
-    'BodyDuration': 'body-duration.json',
-    'BodyDictionary': 'body-dictionary.json',
-    'BodyFile': 'body-file.json',
-    'Constants': 'constants.json',
-    'BodyFormData': 'body-formdata.json',
-    'BodyFormUrlEncodedData': 'body-formdata-urlencoded.json',
-    'BodyInteger': 'body-integer.json',
-    'BodyNumber': 'body-number.json',
-    'BodyString': 'body-string.json',
-    'BodyTime': 'body-time.json',
-    'ClientEnum': 'client-enum.json',
-    'ErrorWithSecrets': 'error-with-secrets.json',
-    'ExtensibleEnums': 'extensible-enums-swagger.json',
-    'Header': 'header.json',
-    'Http': 'httpInfrastructure.json',
-    'IncorrectErrorResponse': 'incorrect-error-response.json',
-    'Report': 'report.json',
-    'RequiredOptional': 'required-optional.json',
-    'Url': 'url.json',
-    'Validation': 'validation.json',
-    'CustomBaseUri': 'custom-baseUrl.json',
-    'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
-    'MergePatchJson': 'merge-patch.json',
-    'ModelFlattening': 'model-flattening.json',
-    'Xml': 'xml-service.json',
-    'UrlMultiCollectionFormat': 'url-multi-collectionFormat.json',
-    'XmsErrorResponse': 'xms-error-responses.json',
-    'MediaTypes': 'media_types.json',
-    'ObjectType': 'object-type.json',
-    'NonStringEnums': 'non-string-enum.json',
-    'MultipleInheritance': 'multiple-inheritance.json',
-    'NoOperations': 'no-operations.json',
+    "AdditionalProperties": "additionalProperties.json",
+    "Anything": "any-type.json",
+    "ParameterFlattening": "parameter-flattening.json",
+    "BodyArray": "body-array.json",
+    "BodyBinary": "body-binary.json",
+    "BodyBoolean": "body-boolean.json",
+    "BodyByte": "body-byte.json",
+    "BodyComplex": "body-complex.json",
+    "BodyDate": "body-date.json",
+    "BodyDateTime": "body-datetime.json",
+    "BodyDateTimeRfc1123": "body-datetime-rfc1123.json",
+    "BodyDuration": "body-duration.json",
+    "BodyDictionary": "body-dictionary.json",
+    "BodyFile": "body-file.json",
+    "Constants": "constants.json",
+    "BodyFormData": "body-formdata.json",
+    "BodyFormUrlEncodedData": "body-formdata-urlencoded.json",
+    "BodyInteger": "body-integer.json",
+    "BodyNumber": "body-number.json",
+    "BodyString": "body-string.json",
+    "BodyTime": "body-time.json",
+    "ClientEnum": "client-enum.json",
+    "ErrorWithSecrets": "error-with-secrets.json",
+    "ExtensibleEnums": "extensible-enums-swagger.json",
+    "Header": "header.json",
+    "Http": "httpInfrastructure.json",
+    "IncorrectErrorResponse": "incorrect-error-response.json",
+    "Report": "report.json",
+    "RequiredOptional": "required-optional.json",
+    "Url": "url.json",
+    "Validation": "validation.json",
+    "CustomBaseUri": "custom-baseUrl.json",
+    "CustomBaseUriMoreOptions": "custom-baseUrl-more-options.json",
+    "MergePatchJson": "merge-patch.json",
+    "ModelFlattening": "model-flattening.json",
+    "Xml": "xml-service.json",
+    "UrlMultiCollectionFormat": "url-multi-collectionFormat.json",
+    "XmsErrorResponse": "xms-error-responses.json",
+    "MediaTypes": "media_types.json",
+    "ObjectType": "object-type.json",
+    "NonStringEnums": "non-string-enum.json",
+    "MultipleInheritance": "multiple-inheritance.json",
+    "NoOperations": "no-operations.json",
     "ParameterizedEndpoint": "parameterized-endpoint.json",
     "ReservedWords": "reserved-words.json",
     "SecurityAadSwagger": "security-aad.json",
@@ -96,56 +97,51 @@ _VANILLA_SWAGGER_MAPPINGS = {
 }
 
 _DPG_SWAGGER_MAPPINGS = {
-    'DPGServiceDrivenInitial': 'dpg-initial.json',
-    'DPGServiceDrivenUpdateOne': 'dpg-update1.json',
-    'DPGCustomizationInitial': 'dpg-customization.json',
-    'DPGCustomizationCustomized': 'dpg-customization.json',
+    "DPGServiceDrivenInitial": "dpg-initial.json",
+    "DPGServiceDrivenUpdateOne": "dpg-update1.json",
+    "DPGCustomizationInitial": "dpg-customization.json",
+    "DPGCustomizationCustomized": "dpg-customization.json",
 }
 
 _GENERATOR_SPECIFIC_TESTS = {
     _Generator.LEGACY: {
         _SwaggerGroup.VANILLA: {
-            'BodyArrayWithNamespaceFolders': 'body-array.json',
-            'BodyByteWithPackageName': 'body-byte.json',
-            'SecurityAadSwaggerCredentialFlag': 'security-aad.json',
-            'SecurityKeySwaggerCredentialFlag': 'security-key.json',
+            "BodyArrayWithNamespaceFolders": "body-array.json",
+            "BodyByteWithPackageName": "body-byte.json",
+            "SecurityAadSwaggerCredentialFlag": "security-aad.json",
+            "SecurityKeySwaggerCredentialFlag": "security-key.json",
         },
         _SwaggerGroup.AZURE_ARM: {
-            'HeadWithAzureKeyCredentialPolicy': 'head.json',
-            'SecurityAadSwagger': 'security-aad.json',
-            'SecurityKeySwagger': 'security-key.json',
-        }
+            "HeadWithAzureKeyCredentialPolicy": "head.json",
+            "SecurityAadSwagger": "security-aad.json",
+            "SecurityKeySwagger": "security-key.json",
+        },
     },
     _Generator.VERSION_TOLERANT: {
         _SwaggerGroup.DPG: {
-            'DPGTestModels': 'dpg-customization.json',
+            "DPGTestModels": "dpg-customization.json",
         },
         _SwaggerGroup.VANILLA: {
-            'NoNamespaceFlag': "any-type.json",
-        }
+            "NoNamespaceFlag": "any-type.json",
+        },
     },
 }
 
 _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
-    'DPGTestModels': {
+    "DPGTestModels": {
         "models-mode": "msrest",
     },
-    'ClientEnum': {
+    "ClientEnum": {
         "models-mode": "msrest",
     },
-    'Xml': {
+    "Xml": {
         "models-mode": "msrest",
     },
-    'BodyArrayWithNamespaceFolders': {
-        "namespace": "vanilla.body.array"
-    },
-    "BodyByteWithPackageName": {
-        "package-name": "packagename",
-        "override-client-name": "class_name"
-    },
+    "BodyArrayWithNamespaceFolders": {"namespace": "vanilla.body.array"},
+    "BodyByteWithPackageName": {"package-name": "packagename", "override-client-name": "class_name"},
     "HeadWithAzureKeyCredentialPolicy": {
         "credential-default-policy-type": "AzureKeyCredentialPolicy",
-        "credential-key-header-name": "Authorization"
+        "credential-key-header-name": "Authorization",
     },
     "SecurityAadSwaggerCredentialFlag": {
         "add-credential": True,
@@ -156,56 +152,53 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Any]] = {
         "add-credential": True,
         "title": "SecurityKeySwaggerCredentialFlag",
     },
-    "NoNamespaceFlag": {
-        "namespace": None,  # clear our namespace flag
-        "package-name": "nonamespaceflag"
-    }
+    "NoNamespaceFlag": {"namespace": None, "package-name": "nonamespaceflag"},  # clear our namespace flag
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
-    'AzureBodyDuration': 'body-duration.json',
-    'AzureReport': 'azure-report.json',
-    'AzureParameterGrouping': 'azure-parameter-grouping.json',
-    'CustomBaseUri': 'custom-baseUrl.json',
-    'LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
-    'Paging': 'paging.json',
-    'CustomUrlPaging': 'custom-baseUrl-paging.json',
+    "AzureBodyDuration": "body-duration.json",
+    "AzureReport": "azure-report.json",
+    "AzureParameterGrouping": "azure-parameter-grouping.json",
+    "CustomBaseUri": "custom-baseUrl.json",
+    "LroWithParameterizedEndpoints": "lro-parameterized-endpoints.json",
+    "Paging": "paging.json",
+    "CustomUrlPaging": "custom-baseUrl-paging.json",
 }
 
 # The list is mostly built on Swaggers that uses CloudError feature
 # These Swagger should be modified to test their features, and not the CloudError one
 _AZURE_ARM_SWAGGER_MAPPINGS = {
-    'Head': 'head.json',
-    'HeadExceptions': 'head-exceptions.json',
-    'StorageManagementClient': 'storage.json',
-    'Lro': 'lro.json',
-    'SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
-    'AzureSpecials': 'azure-special-properties.json',
+    "Head": "head.json",
+    "HeadExceptions": "head-exceptions.json",
+    "StorageManagementClient": "storage.json",
+    "Lro": "lro.json",
+    "SubscriptionIdApiVersion": "subscriptionId-apiVersion.json",
+    "AzureSpecials": "azure-special-properties.json",
 }
 
 """Overwrite default behavior we have assigned to test flags
 """
 
 _OVERWRITE_DEFAULT_NAMESPACE = {
-    'ExtensibleEnums': 'extensibleenumsswagger',
-    'Http': 'httpinfrastructure',
-    'CustomBaseUri': 'custombaseurl',
-    'CustomBaseUriMoreOptions': 'custombaseurlmoreoptions',
-    'Xml': 'xmlservice',
-    'AzureBodyDuration': 'bodyduration',
-    'CustomUrlPaging': 'custombaseurlpaging',
-    'AzureSpecials': 'azurespecialproperties',
-    'StorageManagementClient': 'storage',
+    "ExtensibleEnums": "extensibleenumsswagger",
+    "Http": "httpinfrastructure",
+    "CustomBaseUri": "custombaseurl",
+    "CustomBaseUriMoreOptions": "custombaseurlmoreoptions",
+    "Xml": "xmlservice",
+    "AzureBodyDuration": "bodyduration",
+    "CustomUrlPaging": "custombaseurlpaging",
+    "AzureSpecials": "azurespecialproperties",
+    "StorageManagementClient": "storage",
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
-    'Validation',
-    'Url',
-    'RequiredOptional',
-    'CustomBaseUri',
-    'BodyComplex',
-    'AzureParameterGrouping',
-    'AzureSpecials'
+    "Validation",
+    "Url",
+    "RequiredOptional",
+    "CustomBaseUri",
+    "BodyComplex",
+    "AzureParameterGrouping",
+    "AzureSpecials",
 ]
 
 _POSTPROCESS_PACKAGES = [
@@ -215,9 +208,7 @@ _POSTPROCESS_PACKAGES = [
 ]
 
 
-def _get_config(
-    swagger_group: _SwaggerGroup, package_name: str, **kwargs
-) -> Config:
+def _get_config(swagger_group: _SwaggerGroup, package_name: str, **kwargs) -> Config:
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
     elif swagger_group == _SwaggerGroup.DPG:
@@ -243,19 +234,16 @@ def _build_flags(
     debug: bool,
     swagger_group: _SwaggerGroup,
     override_flags: Optional[Dict[str, Any]] = None,
-    **kwargs
+    **kwargs,
 ) -> Dict[str, Any]:
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
-    override_flags.update(
-        _PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
+    override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
     version_tolerant = kwargs.get("version_tolerant", False)
     client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not version_tolerant
-    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(
-        package_name, package_name.lower()))
+    namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
 
-    generator, output_folder = _get_config(
-        swagger_group, package_name, **kwargs)
+    generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
 
     if generator == _Generator.LEGACY:
         override_flags["payload-flattening-threshold"] = 1
@@ -303,11 +291,8 @@ def _build_command_line(
         # package name, so we override package names
         override_flags = override_flags or {}
         override_flags.update({"package-name": package_name.lower()})
-    flags = _build_flags(package_name, swagger_name, debug,
-                         swagger_group, override_flags, **kwargs)
-    flag_strings = [
-        f"--{flag}={value}" for flag, value in flags.items()
-    ]
+    flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
+    flag_strings = [f"--{flag}={value}" for flag, value in flags.items()]
     debug_str = " --python.debugger" if debug else ""
     return "autorest " + M4_VERSION + " ".join(flag_strings) + debug_str
 
@@ -329,8 +314,7 @@ def _run_single_autorest(cmd_line, debug=False):
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
         return True
-    print(Fore.RED +
-          f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+    print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
 
     try:
         output_folder = re.findall(r"--output-folder=([^\s]+)", cmd_line)[0]
@@ -345,23 +329,21 @@ def _regenerate(
     debug: bool,
     swagger_group: _SwaggerGroup,
     override_flags: Optional[Dict[str, Any]] = None,
-    **kwargs
+    **kwargs,
 ) -> None:
     cmds = []
     post_process_cmds = []
     for package_name, swagger_name in mapping.items():
-        command_line = _build_command_line(
-            package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
+        command_line = _build_command_line(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
 
-        print(Fore.YELLOW + f'Queuing up: {command_line}')
+        print(Fore.YELLOW + f"Queuing up: {command_line}")
         cmds.append(command_line)
         if kwargs.get("version_tolerant") and package_name in _POSTPROCESS_PACKAGES:
             config = _get_config(swagger_group, package_name, **kwargs)
             post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
             if debug:
                 post_process_cmd += " --python.debugger"
-            print(Fore.YELLOW +
-                  f'Queuing up post process command: {post_process_cmd}')
+            print(Fore.YELLOW + f"Queuing up post process command: {post_process_cmd}")
             post_process_cmds.append(post_process_cmd)
     _run_autorest(cmds, debug=debug)
     _run_autorest(post_process_cmds, debug=debug)
@@ -373,11 +355,9 @@ def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None
     else:
         generator = _Generator.LEGACY
     mapping_copy = copy.copy(mapping)
-    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(
-        generator, {}).get(swagger_group, {}))
+    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(generator, {}).get(swagger_group, {}))
     if swagger_name:
-        prepared_mapping = {k: v for k, v in mapping_copy.items(
-        ) if swagger_name.lower() in k.lower()}
+        prepared_mapping = {k: v for k, v in mapping_copy.items() if swagger_name.lower() in k.lower()}
     else:
         prepared_mapping = mapping_copy
     _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
@@ -385,8 +365,7 @@ def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None
 
 @task
 def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(
-        c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
 
@@ -394,33 +373,20 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(
-        c,
-        _DPG_SWAGGER_MAPPINGS,
-        _SwaggerGroup.DPG,
-        swagger_name,
-        debug,
-        version_tolerant=True,
-        **kwargs
+        c, _DPG_SWAGGER_MAPPINGS, _SwaggerGroup.DPG, swagger_name, debug, version_tolerant=True, **kwargs
     )
 
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(
-        c,
-        _VANILLA_SWAGGER_MAPPINGS,
-        _SwaggerGroup.VANILLA,
-        swagger_name,
-        debug,
-        version_tolerant=True,
-        **kwargs
+        c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, version_tolerant=True, **kwargs
     )
 
 
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
-    _prepare_mapping_and_regenerate(
-        c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
@@ -430,7 +396,8 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(
-        c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
+        c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs
+    )
     if not swagger_name:
         regenerate_custom_poller_pager_version_tolerant(c, debug)
         regenerate_lro_paging_version_tolerant(c, debug)
@@ -439,12 +406,15 @@ def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwarg
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(
-        c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
+        c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs
+    )
 
 
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
+    return _prepare_mapping_and_regenerate(
+        c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs
+    )
 
 
 @task
@@ -468,11 +438,10 @@ def regenerate(
     vanilla=False,
     azure=False,
     azure_arm=False,
-    dpg=False
+    dpg=False,
 ):
     if legacy and dpg:
-        raise ValueError(
-            "Can not specify legacy flag and dpg flag at the same time.")
+        raise ValueError("Can not specify legacy flag and dpg flag at the same time.")
     generators = [
         "version_tolerant" if version_tolerant else "",
         "legacy" if legacy else "",
@@ -501,20 +470,20 @@ def regenerate(
             ("version_tolerant", "azure_arm"): regenerate_azure_arm_version_tolerant,
             ("version_tolerant", "dpg"): regenerate_dpg_version_tolerant,
         }
-        funcs = [
-            v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)
-        ]
+        funcs = [v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)]
     for func in funcs:
         func(c, swagger_name, debug)
 
     regenerate_unittests(c)
 
+
 @task
 def regenerate_unittests(c):
     shutil.copyfile(
         "test/azure/legacy/Expected/AcceptanceTests/AzureBodyDuration/bodyduration/_serialization.py",
-        "test/unittests/storage_models/serialization.py"
+        "test/unittests/storage_models/serialization.py",
     )
+
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
@@ -528,7 +497,7 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
 def test(c):
     # run language-specific tests
     base_dir = os.path.dirname(__file__)
-    cmd = 'tox run -e ci'
+    cmd = "tox run -e ci"
 
     autorest_types = ["azure", "vanilla"]
     gen_types = ["legacy", "version-tolerant"]
@@ -544,8 +513,8 @@ def test(c):
 def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
     cmd = (
-        f'autorest {M4_VERSION} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
-        f'--python-sdks-folder={cwd}/test/'
+        f"autorest {M4_VERSION} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags "
+        + f"--python-sdks-folder={cwd}/test/"
     )
     if debug:
         cmd += " --python.debugger"
@@ -576,25 +545,25 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapicombiner/README.md",
     ]
 
-    cmds = [_multiapi_command_line(
-        spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
+    cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
 
     check_call(f"python {Path('test/multiapi/run_multiapi_combiner.py')} multiapicombiner", shell=True)
 
+
 @task
 def regenerate_package_mode(c, debug=False, swagger_group=None):
     cwd = os.getcwd()
     azure_packages = [
-        'test/azure/legacy/specification/packagemodemgmtplane/README.md',
-        'test/azure/legacy/specification/packagemodecustomize/README.md',
-        'test/azure/legacy/specification/packagemodedataplane/README.md',
-        'test/azure/legacy/specification/packagemodebatch/README.md',
+        "test/azure/legacy/specification/packagemodemgmtplane/README.md",
+        "test/azure/legacy/specification/packagemodecustomize/README.md",
+        "test/azure/legacy/specification/packagemodedataplane/README.md",
+        "test/azure/legacy/specification/packagemodebatch/README.md",
     ]
     vanilla_packages = [
-        'test/vanilla/legacy/specification/packagemodedataplane/README.md',
-        'test/vanilla/legacy/specification/internaloperation/README.md',
+        "test/vanilla/legacy/specification/packagemodedataplane/README.md",
+        "test/vanilla/legacy/specification/internaloperation/README.md",
     ]
     if swagger_group == _SwaggerGroup.VANILLA:
         package_mode = vanilla_packages
@@ -602,9 +571,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
         package_mode = azure_packages
     else:
         package_mode = azure_packages + vanilla_packages
-    cmds = [
-        f'autorest {M4_VERSION} {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
-    ]
+    cmds = [f"autorest {M4_VERSION} {readme} --use=. --python-sdks-folder={cwd}/test/" for readme in package_mode]
 
     _run_autorest(cmds, debug=debug)
 
@@ -612,46 +579,37 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
 @task
 def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
-    cmd = (
-        f'autorest {M4_VERSION} test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
-    )
+    cmd = f"autorest {M4_VERSION} test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/"
     _run_autorest([cmd], debug=debug)
 
 
 @task
 def regenerate_mixed_api_version_legacy(c, debug=False):
     cwd = os.getcwd()
-    cmd = (
-        f'autorest {M4_VERSION} test/azure/legacy/specification/mixedapiversion/README.md --use=. --python-sdks-folder={cwd}/test/'
-    )
+    cmd = f"autorest {M4_VERSION} test/azure/legacy/specification/mixedapiversion/README.md --use=. --python-sdks-folder={cwd}/test/"
     _run_autorest([cmd], debug=debug)
 
 
 @task
 def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
     cwd = os.getcwd()
-    cmd = (
-        f'autorest {M4_VERSION} test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
-    )
+    cmd = f"autorest {M4_VERSION} test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/"
     _run_autorest([cmd], debug=debug)
+
 
 @task
 def regenerate_lro_paging_version_tolerant(c, debug=False):
     cwd = os.getcwd()
-    cmd = (
-        f'autorest {M4_VERSION} test/azure/version-tolerant/specification/lropaging/README.md --use=. --python-sdks-folder={cwd}/test/'
-    )
+    cmd = f"autorest {M4_VERSION} test/azure/version-tolerant/specification/lropaging/README.md --use=. --python-sdks-folder={cwd}/test/"
     _run_autorest([cmd], debug=debug)
+
 
 @task
 def regenerate_samples(c, debug=False):
     cwd = os.getcwd()
     sample_to_special_flags = {
         "management": None,
-        "multiapi": {
-            "multiapi": True,
-            "python-sdks-folder": f'{cwd}/samples/specification/multiapi'
-        },
+        "multiapi": {"multiapi": True, "python-sdks-folder": f"{cwd}/samples/specification/multiapi"},
         "azure_key_credential": None,
         "directives": None,
         "basic": None,
@@ -659,11 +617,9 @@ def regenerate_samples(c, debug=False):
 
     cmds = []
     for sample, special_flags in sample_to_special_flags.items():
-        cmd = f'autorest {M4_VERSION} samples/specification/{sample}/readme.md --use=.  '
+        cmd = f"autorest {M4_VERSION} samples/specification/{sample}/readme.md --use=.  "
         if special_flags:
-            flag_strings = [
-                f"--{flag}={value}" for flag, value in special_flags.items()
-            ]
+            flag_strings = [f"--{flag}={value}" for flag, value in special_flags.items()]
             cmd += " ".join(flag_strings)
         cmds.append(cmd)
     _run_autorest(cmds, debug)

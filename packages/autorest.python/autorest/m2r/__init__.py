@@ -34,9 +34,7 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
         """Convert in place the YAML str."""
         self._convert_docstring_no_cycles(yaml_data, set())
 
-    def _convert_docstring_no_cycles(
-        self, yaml_data: Union[Dict[str, Any], str], node_list: Set[int]
-    ) -> None:
+    def _convert_docstring_no_cycles(self, yaml_data: Union[Dict[str, Any], str], node_list: Set[int]) -> None:
         """Walk the YAML tree to convert MD to RST."""
         if id(yaml_data) in node_list:
             return
@@ -69,6 +67,4 @@ class M2RAutorest(YamlUpdatePluginAutorest, M2R):
 if __name__ == "__main__":
     # CADL pipeline will call this
     args, unknown_args = parse_args()
-    M2R(
-        output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args
-    ).process()
+    M2R(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()

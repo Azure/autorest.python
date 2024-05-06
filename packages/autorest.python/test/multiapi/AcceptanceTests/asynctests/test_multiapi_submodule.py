@@ -36,38 +36,43 @@ from .multiapi_base import NotTested
 @async_generator
 async def default_client(credential, authentication_policy):
     from multiapiwithsubmodule.submodule.aio import MultiapiServiceClient
+
     async with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         await yield_(default_client)
+
 
 @pytest.fixture
 @async_generator
 async def client(credential, authentication_policy, api_version):
     from multiapiwithsubmodule.submodule.aio import MultiapiServiceClient
+
     async with MultiapiServiceClient(
-		base_url="http://localhost:3000",
+        base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         await yield_(client)
+
 
 @pytest.fixture
 def namespace_models():
     from multiapiwithsubmodule.submodule import models
+
     return models
 
 
-@pytest.mark.parametrize('api_version', ["2.0.0"])
+@pytest.mark.parametrize("api_version", ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
     assert client.profile.label == "multiapiwithsubmodule.submodule.MultiapiServiceClient 2.0.0"
+
 
 def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
     assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapiwithsubmodule/")
+
 
 class TestMultiapiSubmodule(NotTested.TestMultiapiBase):
     pass

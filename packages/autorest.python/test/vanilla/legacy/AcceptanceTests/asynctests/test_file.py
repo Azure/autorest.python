@@ -50,16 +50,19 @@ async def client(connection_data_block_size=None):
     ) as client:
         await yield_(client)
 
+
 @pytest.fixture
 def callback():
     def _callback(response, data_stream, headers):
         assert not data_stream.response.internal_response._released
         return data_stream
+
     return _callback
+
 
 class TestFile(object):
     @pytest.mark.asyncio
-    @pytest.mark.parametrize('client', [1000], indirect=True)
+    @pytest.mark.parametrize("client", [1000], indirect=True)
     async def test_get_file(self, client):
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -70,21 +73,33 @@ class TestFile(object):
             async for data in stream:
                 assert 0 < len(data) <= stream.block_size
                 file_length += len(data)
-                print("Downloading... {}%".format(int(file_length*100/total)))
+                print("Downloading... {}%".format(int(file_length * 100 / total)))
                 file_handle.write(data)
 
-            assert file_length !=  0
+            assert file_length != 0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, pardir, pardir,
-                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+                join(
+                    cwd,
+                    pardir,
+                    pardir,
+                    pardir,
+                    pardir,
+                    pardir,
+                    "node_modules",
+                    "@microsoft.azure",
+                    "autorest.testserver",
+                    "routes",
+                    "sample.png",
+                )
+            )
 
-            with open(sample_file, 'rb') as data:
+            with open(sample_file, "rb") as data:
                 sample_data = hash(data.read())
-            assert sample_data ==  hash(file_handle.getvalue())
+            assert sample_data == hash(file_handle.getvalue())
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize('client', [4096], indirect=True)
+    @pytest.mark.parametrize("client", [4096], indirect=True)
     async def test_get_empty_file(self, client):
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -96,10 +111,10 @@ class TestFile(object):
                 file_length += len(data)
                 file_handle.write(data)
 
-            assert file_length ==  0
+            assert file_length == 0
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize('client', [4096], indirect=True)
+    @pytest.mark.parametrize("client", [4096], indirect=True)
     async def test_files_long_running(self, client):
         file_length = 0
         stream = await client.files.get_file_large()
@@ -107,10 +122,10 @@ class TestFile(object):
             assert 0 < len(data) <= stream.block_size
             file_length += len(data)
 
-        assert file_length ==  3000 * 1024 * 1024
+        assert file_length == 3000 * 1024 * 1024
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize('client', [None], indirect=True)
+    @pytest.mark.parametrize("client", [None], indirect=True)
     async def test_get_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -121,18 +136,30 @@ class TestFile(object):
                 file_length += len(data)
                 file_handle.write(data)
 
-            assert file_length !=  0
+            assert file_length != 0
 
             sample_file = realpath(
-                join(cwd, pardir, pardir, pardir, pardir, pardir,
-                     "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+                join(
+                    cwd,
+                    pardir,
+                    pardir,
+                    pardir,
+                    pardir,
+                    pardir,
+                    "node_modules",
+                    "@microsoft.azure",
+                    "autorest.testserver",
+                    "routes",
+                    "sample.png",
+                )
+            )
 
-            with open(sample_file, 'rb') as data:
+            with open(sample_file, "rb") as data:
                 sample_data = hash(data.read())
-            assert sample_data ==  hash(file_handle.getvalue())
+            assert sample_data == hash(file_handle.getvalue())
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize('client', [None], indirect=True)
+    @pytest.mark.parametrize("client", [None], indirect=True)
     async def test_get_empty_file_with_callback(self, client, callback):
         file_length = 0
         with io.BytesIO() as file_handle:
@@ -142,4 +169,4 @@ class TestFile(object):
                 file_handle.write(data)
 
             assert stream.response.internal_response._released
-            assert file_length ==  0
+            assert file_length == 0

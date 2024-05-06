@@ -198,7 +198,5 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
 
 
 RequestBuilderType = Union[RequestBuilder, OverloadedRequestBuilder]
-ParameterType = Union[
-    Parameter, RequestBuilderParameter, ClientParameter, ConfigParameter
-]
+ParameterType = Union[Parameter, RequestBuilderParameter, ClientParameter, ConfigParameter]
 OperationType = Union[Operation, LROOperation, PagingOperation, LROPagingOperation]

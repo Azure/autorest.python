@@ -29,15 +29,20 @@ from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client(credential, authentication_policy):
-    async with AutoRestPagingTestService(credential, host="host:3000", authentication_policy=authentication_policy) as client:
+    async with AutoRestPagingTestService(
+        credential, host="host:3000", authentication_policy=authentication_policy
+    ) as client:
         await yield_(client)
+
 
 def test_custom_pager(client):
     pager = client.paging.get_single_pages()
     assert isinstance(pager, AsyncCustomPager)
+
 
 @pytest.mark.asyncio
 async def test_custom_poller(client):

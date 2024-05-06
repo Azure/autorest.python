@@ -43,9 +43,7 @@ class FileImport:
                                     Tuple[
                                         str,
                                         Optional[str],
-                                        Tuple[
-                                            Tuple[Tuple[int, int], str, Optional[str]]
-                                        ],
+                                        Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
                                     ],
                                 ]
                             ]
@@ -125,9 +123,9 @@ class FileImport:
             ],
             convert_list_to_tuple(name_import),
         )
-        self._imports.setdefault(typing_section, {}).setdefault(
-            import_type, {}
-        ).setdefault(from_section, set()).add(name_input)
+        self._imports.setdefault(typing_section, {}).setdefault(import_type, {}).setdefault(from_section, set()).add(
+            name_input
+        )
 
     def add_submodule_import(
         self,
@@ -175,6 +173,4 @@ class FileImport:
             for import_type, package_list in import_type_dict.items():
                 for package_name, module_list in package_list.items():
                     for module_name in module_list:
-                        self._add_import(
-                            package_name, import_type, module_name, typing_section
-                        )
+                        self._add_import(package_name, import_type, module_name, typing_section)

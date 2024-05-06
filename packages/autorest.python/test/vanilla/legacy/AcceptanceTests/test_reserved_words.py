@@ -26,28 +26,36 @@
 import pytest
 from reservedwords import ReservedWordsClient, models
 
+
 @pytest.fixture
 def client():
     with ReservedWordsClient() as client:
         yield client
 
+
 def test_operation_group_import(client):
     client.import_operations.operation_one(parameter1="foo")
+
 
 def test_operation_with_content_param(client):
     client.operation_with_content_param(b"hello, world")
 
+
 def test_operation_with_json_param(client):
     client.operation_with_json_param({"hello": "world"})
+
 
 def test_operation_with_data_param(client):
     client.operation_with_data_param(data="hello", world="world")
 
+
 def test_operation_with_files_param(client):
     client.operation_with_files_param(file_name="my.txt", files=b"bytes")
 
+
 def test_operation_with_url(client):
     client.operation_with_url("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])
+
 
 def test_operation_with_enum(client):
     client.reserved_enum(models.MyEnum.IMPORT_ENUM)

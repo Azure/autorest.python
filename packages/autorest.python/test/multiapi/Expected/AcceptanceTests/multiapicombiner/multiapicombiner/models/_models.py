@@ -16,8 +16,6 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-
-
 class Error(_serialization.Model):
     """Error.
 
@@ -42,6 +40,7 @@ class Error(_serialization.Model):
         super().__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class PagingResult(_serialization.Model):
     """PagingResult.
@@ -70,6 +69,7 @@ class PagingResult(_serialization.Model):
         self.values = values
         self.next_link = next_link
 
+
 class Product(_serialization.Model):
     """Product.
 
@@ -88,6 +88,7 @@ class Product(_serialization.Model):
         """
         super().__init__(**kwargs)
         self.id = id
+
 
 class TestLroAndPagingOptions(_serialization.Model):
     """Parameter group.
@@ -115,6 +116,7 @@ class TestLroAndPagingOptions(_serialization.Model):
         super().__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
+
 
 class ModelTwo(_serialization.Model):
     """Only exists in api version 2.0.0.
@@ -149,6 +151,7 @@ class ModelTwo(_serialization.Model):
         self.id = id
         self.message = message
 
+
 class ModelThree(_serialization.Model):
     """Only exists in api version 3.0.0.
 
@@ -167,6 +170,7 @@ class ModelThree(_serialization.Model):
         """
         super().__init__(**kwargs)
         self.optional_property = optional_property
+
 
 class SourcePath(_serialization.Model):
     """Uri or local path to source data.
@@ -190,4 +194,3 @@ class SourcePath(_serialization.Model):
         """
         super().__init__(**kwargs)
         self.source = source
-

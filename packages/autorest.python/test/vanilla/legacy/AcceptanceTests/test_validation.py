@@ -37,12 +37,10 @@ from os.path import dirname, pardir, join, realpath
 from msrest.exceptions import ValidationError
 
 from validation import AutoRestValidationTest
-from validation.models import (
-    Product,
-    ConstantProduct,
-    ChildProduct)
+from validation.models import Product, ConstantProduct, ChildProduct
 
 import pytest
+
 
 @pytest.fixture
 def client():
@@ -50,17 +48,19 @@ def client():
         client.api_version = "12-34-5678"
         yield client
 
+
 @pytest.fixture
 def constant_body():
     """This is NOT considering the constant body, this should work with
     the commented line.
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
-    #return Product(child=ChildProduct())
+    # return Product(child=ChildProduct())
     return Product(
         child=ChildProduct(),
         const_child=ConstantProduct(),
     )
+
 
 class TestValidation(object):
 
@@ -75,84 +75,83 @@ class TestValidation(object):
         try:
             client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
-            assert err.rule ==  "min_length"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "min_length"
+            assert err.target == "resource_group_name"
 
     def test_max_length_validation(self, client):
         try:
             client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
-            assert err.rule ==  "max_length"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "max_length"
+            assert err.target == "resource_group_name"
 
     def test_pattern_validation(self, client):
         try:
             client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
-            assert err.rule ==  "pattern"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "pattern"
+            assert err.target == "resource_group_name"
 
     def test_multiple_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
-            assert err.rule ==  "multiple"
-            assert err.target ==  "id"
+            assert err.rule == "multiple"
+            assert err.target == "id"
 
     def test_minimum_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
-            assert err.rule ==  "minimum"
-            assert err.target ==  "id"
+            assert err.rule == "minimum"
+            assert err.target == "id"
 
     def test_maximum_validation(self, client):
         try:
             client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
-            assert err.rule ==  "maximum"
-            assert err.target ==  "id"
+            assert err.rule == "maximum"
+            assert err.target == "id"
 
     def test_minimum_ex_validation(self, client, constant_body):
         try:
             constant_body.capacity = 0
             client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "minimum_ex"
-            assert "capacity" in  err.target
+            assert err.rule == "minimum_ex"
+            assert "capacity" in err.target
 
     def test_maximum_ex_validation(self, client, constant_body):
         try:
             constant_body.capacity = 100
             client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "maximum_ex"
-            assert "capacity" in  err.target
+            assert err.rule == "maximum_ex"
+            assert "capacity" in err.target
 
     def test_max_items_validation(self, client, constant_body):
         try:
-            constant_body.display_names = ["item1","item2","item3","item4","item5","item6","item7"]
+            constant_body.display_names = ["item1", "item2", "item3", "item4", "item5", "item6", "item7"]
             client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "max_items"
-            assert "display_names" in  err.target
+            assert err.rule == "max_items"
+            assert "display_names" in err.target
 
     @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
     def test_api_version_validation(self, client):
-        client = AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000")
+        client = AutoRestValidationTest("abc123", base_url="http://localhost:3000")
         client.api_version = "abc"
         try:
             client.validation_of_method_parameters("123", 150)
         except ValidationError as err:
-            assert err.rule ==  "pattern"
-            assert err.target ==  "self.api_version"
+            assert err.rule == "pattern"
+            assert err.target == "self.api_version"
 
     def test_models(self):
         from validation.models import Error
 
         from validation.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -161,5 +160,8 @@ class TestValidation(object):
         with pytest.raises(ImportError):
             from validation.operations import _auto_rest_validation_test_operations_py3
 
-        from validation.operations._auto_rest_validation_test_operations import AutoRestValidationTestOperationsMixin as AutoRestValidationTestOperationsMixinPy2
+        from validation.operations._auto_rest_validation_test_operations import (
+            AutoRestValidationTestOperationsMixin as AutoRestValidationTestOperationsMixinPy2,
+        )
+
         assert AutoRestValidationTestOperationsMixin == AutoRestValidationTestOperationsMixinPy2

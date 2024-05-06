@@ -12,16 +12,12 @@ from .import_serializer import FileImportSerializer
 from .base_serializer import BaseSerializer
 
 
-def _documentation_string(
-    prop: Property, description_keyword: str, docstring_type_keyword: str
-) -> List[str]:
+def _documentation_string(prop: Property, description_keyword: str, docstring_type_keyword: str) -> List[str]:
     retval: List[str] = []
     sphinx_prefix = f":{description_keyword} {prop.client_name}:"
     description = prop.description(is_operation_file=False).replace("\\", "\\\\")
     retval.append(f"{sphinx_prefix} {description}" if description else sphinx_prefix)
-    retval.append(
-        f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}"
-    )
+    retval.append(f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}")
     return retval
 
 
@@ -60,9 +56,7 @@ class _ModelSerializer(BaseSerializer, ABC):
 
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
-        discriminator_value = (
-            f"'{model.discriminator_value}'" if model.discriminator_value else None
-        )
+        discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
         if not discriminator_value:
             typing = "Optional[str]"
         else:
@@ -87,11 +81,7 @@ class _ModelSerializer(BaseSerializer, ABC):
 
     @staticmethod
     def _init_line_parameters(model: ModelType):
-        return [
-            p
-            for p in model.properties
-            if not p.readonly and not p.is_discriminator and not p.constant
-        ]
+        return [p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant]
 
     def init_line(self, model: ModelType) -> List[str]:
         init_properties_declaration = []
@@ -109,15 +99,8 @@ class _ModelSerializer(BaseSerializer, ABC):
         properties_to_pass_to_super = []
         for parent in model.parents:
             for prop in model.properties:
-                if (
-                    prop in parent.properties
-                    and not prop.is_discriminator
-                    and not prop.constant
-                    and not prop.readonly
-                ):
-                    properties_to_pass_to_super.append(
-                        f"{prop.client_name}={prop.client_name}"
-                    )
+                if prop in parent.properties and not prop.is_discriminator and not prop.constant and not prop.readonly:
+                    properties_to_pass_to_super.append(f"{prop.client_name}={prop.client_name}")
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
 
@@ -176,9 +159,7 @@ class MsrestModelSerializer(_ModelSerializer):
     @staticmethod
     def declare_property(prop: Property) -> str:
         if prop.flattened_names:
-            attribute_key = ".".join(
-                _ModelSerializer.escape_dot(n) for n in prop.flattened_names
-            )
+            attribute_key = ".".join(_ModelSerializer.escape_dot(n) for n in prop.flattened_names)
         else:
             attribute_key = _ModelSerializer.escape_dot(prop.wire_name)
         if prop.type.xml_serialization_ctxt:
@@ -219,9 +200,7 @@ class DpgModelSerializer(_ModelSerializer):
             if model.is_polymorphic:
                 file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
             if not model.internal and self.init_line(model):
-                file_import.add_submodule_import(
-                    "typing", "overload", ImportType.STDLIB
-                )
+                file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
                 file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
                 file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
         return file_import
@@ -271,11 +250,7 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        type_ignore = (
-            prop.is_discriminator
-            and isinstance(prop.type, (ConstantType, EnumValue))
-            and prop.type.value
-        )
+        type_ignore = prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
         return (
             f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
@@ -285,10 +260,7 @@ class DpgModelSerializer(_ModelSerializer):
         init_args = []
         for prop in self.get_properties_to_declare(model):
             if prop.constant and not prop.is_base_discriminator:
-                init_args.append(
-                    f"self.{prop.client_name}: {prop.type_annotation()} = "
-                    f"{prop.get_declaration()}"
-                )
+                init_args.append(f"self.{prop.client_name}: {prop.type_annotation()} = " f"{prop.get_declaration()}")
         return init_args
 
     @staticmethod
@@ -296,10 +268,7 @@ class DpgModelSerializer(_ModelSerializer):
         return [
             p
             for p in model.properties
-            if p.is_base_discriminator
-            or not p.is_discriminator
-            and not p.constant
-            and p.visibility != ["read"]
+            if p.is_base_discriminator or not p.is_discriminator and not p.constant and p.visibility != ["read"]
         ]
 
     @staticmethod
@@ -308,18 +277,11 @@ class DpgModelSerializer(_ModelSerializer):
         for parent in model.parents:
             for prop in model.properties:
                 if (
-                    prop.client_name
-                    in [
-                        prop.client_name
-                        for prop in parent.properties
-                        if prop.is_base_discriminator
-                    ]
+                    prop.client_name in [prop.client_name for prop in parent.properties if prop.is_base_discriminator]
                     and prop.is_discriminator
                     and not prop.constant
                     and not prop.readonly
                 ):
-                    properties_to_pass_to_super.append(
-                        f"{prop.client_name}={prop.get_declaration()}"
-                    )
+                    properties_to_pass_to_super.append(f"{prop.client_name}={prop.get_declaration()}")
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)

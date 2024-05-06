@@ -28,26 +28,31 @@ from nonstringenumsversiontolerant.aio import NonStringEnumsClient
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with NonStringEnumsClient() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_put_int_enum(client):
     result = await client.int_operations.put(200)
     assert result == "Nice job posting an int enum"
+
 
 @pytest.mark.asyncio
 async def test_get_int_enum(client):
     result = await client.int_operations.get()
     assert result == 429
 
+
 @pytest.mark.asyncio
 async def test_put_float_enum(client):
     result = await client.float.put(200.4)
     assert result == "Nice job posting a float enum"
+
 
 @pytest.mark.asyncio
 async def test_get_float_enum(client):

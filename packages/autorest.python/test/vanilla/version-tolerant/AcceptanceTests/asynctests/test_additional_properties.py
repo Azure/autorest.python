@@ -29,96 +29,78 @@ from additionalpropertiesversiontolerant.aio import AdditionalPropertiesClient
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AdditionalPropertiesClient() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_create_ap_true(client):
     input_ap_true = {
-        'birthdate': '2017-12-13T02:29:51Z',
-        'complexProperty': {
-            'color': 'Red'
-        },
+        "birthdate": "2017-12-13T02:29:51Z",
+        "complexProperty": {"color": "Red"},
         "id": 1,
         "name": "Puppy",
     }
     output_ap_true = await client.pets.create_ap_true(input_ap_true)
-    assert output_ap_true['birthdate'] ==  '2017-12-13T02:29:51Z'
+    assert output_ap_true["birthdate"] == "2017-12-13T02:29:51Z"
+
 
 @pytest.mark.asyncio
 async def test_create_cat_ap_true(client):
     input_ap_true = {
-        'birthdate': '2017-12-13T02:29:51Z',
-        'complexProperty': {'color': 'Red'},
-        'id': 1,
-        'name': 'Lisa',
-        'friendly': True
+        "birthdate": "2017-12-13T02:29:51Z",
+        "complexProperty": {"color": "Red"},
+        "id": 1,
+        "name": "Lisa",
+        "friendly": True,
     }
     output_ap_true = await client.pets.create_cat_ap_true(input_ap_true)
-    assert output_ap_true['birthdate'] ==  '2017-12-13T02:29:51Z'
+    assert output_ap_true["birthdate"] == "2017-12-13T02:29:51Z"
+
 
 @pytest.mark.asyncio
 async def test_create_ap_object(client):
     input_ap_obj = {
         "id": 2,
         "name": "Hira",
-        'siblings': [{
-            'id': 1,
-            'name': 'Puppy',
-            'birthdate': '2017-12-13T02:29:51Z',
-            'complexProperty': {
-                'color': 'Red'
-            }
-        }],
-        'picture': '//////4='
+        "siblings": [
+            {"id": 1, "name": "Puppy", "birthdate": "2017-12-13T02:29:51Z", "complexProperty": {"color": "Red"}}
+        ],
+        "picture": "//////4=",
     }
     output_ap_obj = await client.pets.create_ap_object(input_ap_obj)
-    assert output_ap_obj['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
+    assert output_ap_obj["siblings"][0]["birthdate"] == "2017-12-13T02:29:51Z"
+
 
 @pytest.mark.asyncio
 async def test_create_ap_string(client):
-    input_ap_str = {
-        "id": 3,
-        "name": 'Tommy',
-        'color': 'red',
-        'weight': '10 kg',
-        'city': 'Bombay'
-    }
+    input_ap_str = {"id": 3, "name": "Tommy", "color": "red", "weight": "10 kg", "city": "Bombay"}
     output_ap_str = await client.pets.create_ap_string(input_ap_str)
-    assert output_ap_str['color'] ==  'red'
+    assert output_ap_str["color"] == "red"
+
 
 @pytest.mark.asyncio
 async def test_create_ap_in_properties(client):
-    input_ap_int = {
-        "id": 4,
-        "name": 'Bunny',
-        "additionalProperties": {
-            'height': 5.61,
-            'weight': 599,
-            'footsize': 11.5
-        }
-    }
+    input_ap_int = {"id": 4, "name": "Bunny", "additionalProperties": {"height": 5.61, "weight": 599, "footsize": 11.5}}
     output_ap_int = await client.pets.create_ap_in_properties(input_ap_int)
-    assert output_ap_int['additionalProperties']['weight'] ==  599
+    assert output_ap_int["additionalProperties"]["weight"] == 599
+
 
 @pytest.mark.asyncio
 async def test_create_ap_in_properties_with_ap_string(client):
     input_ap_str_add = {
         "id": 5,
-        "name": 'Funny',
-        "@odata.location":'westus',
-        'color': 'red',
-        'city': 'Seattle',
-        'food': 'tikka masala',
-        "additionalProperties": {
-            'height': 5.61,
-            'weight': 599,
-            'footsize': 11.5
-        }
+        "name": "Funny",
+        "@odata.location": "westus",
+        "color": "red",
+        "city": "Seattle",
+        "food": "tikka masala",
+        "additionalProperties": {"height": 5.61, "weight": 599, "footsize": 11.5},
     }
     output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string(input_ap_str_add)
-    assert output_ap_str_add['color'] ==  'red'
-    assert output_ap_str_add['additionalProperties']['weight'] ==  599
+    assert output_ap_str_add["color"] == "red"
+    assert output_ap_str_add["additionalProperties"]["weight"] == 599

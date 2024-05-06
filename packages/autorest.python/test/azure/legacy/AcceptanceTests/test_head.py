@@ -42,11 +42,14 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 class TestHead(object):
 
     def test_head(self, credential, authentication_policy):
 
-        with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        with AutoRestHeadTestService(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
 
             assert client.http_success.head200()
             assert client.http_success.head204()
@@ -54,7 +57,9 @@ class TestHead(object):
 
     def test_head_exception(self, credential, authentication_policy):
 
-        with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        with AutoRestHeadExceptionTestService(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
 
             client.head_exception.head200()
             client.head_exception.head204()
@@ -68,6 +73,7 @@ class TestHead(object):
             from head.operations import _http_success_operations_py3
 
         from head.operations._http_success_operations import HttpSuccessOperations as HttpSuccessOperationsPy2
+
         assert HttpSuccessOperations == HttpSuccessOperationsPy2
 
         from headexceptions.operations import HeadExceptionOperations
@@ -75,5 +81,8 @@ class TestHead(object):
         with pytest.raises(ImportError):
             from headexceptions.operations import _head_exception_operations_py3
 
-        from headexceptions.operations._head_exception_operations import HeadExceptionOperations as HeadExceptionOperationsPy2
+        from headexceptions.operations._head_exception_operations import (
+            HeadExceptionOperations as HeadExceptionOperationsPy2,
+        )
+
         assert HeadExceptionOperations == HeadExceptionOperationsPy2

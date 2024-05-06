@@ -34,9 +34,7 @@ class ResponseHeader(BaseModel):
         return self.type.serialization_type
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ResponseHeader":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ResponseHeader":
         from . import build_type
 
         return cls(
@@ -141,35 +139,21 @@ class Response(BaseModel):
         # helper function to return imports for responses based off
         # of whether we're importing from the core library, or users
         # are customizing responses
-        return (
-            ImportType.SDKCORE
-            if self.code_model.core_library.split(".")[0] in input_path
-            else ImportType.THIRDPARTY
-        )
+        return ImportType.SDKCORE if self.code_model.core_library.split(".")[0] in input_path else ImportType.THIRDPARTY
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "Response":
-        type = (
-            code_model.lookup_type(id(yaml_data["type"]))
-            if yaml_data.get("type")
-            else None
-        )
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Response":
+        type = code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
         # use ByteIteratorType if we are returning a binary type
         default_content_type = yaml_data.get("defaultContentType", "application/json")
         if isinstance(type, BinaryType) or (
-            isinstance(type, ByteArraySchema)
-            and default_content_type != "application/json"
+            isinstance(type, ByteArraySchema) and default_content_type != "application/json"
         ):
             type = BinaryIteratorType(type.yaml_data, type.code_model)
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            headers=[
-                ResponseHeader.from_yaml(header, code_model)
-                for header in yaml_data["headers"]
-            ],
+            headers=[ResponseHeader.from_yaml(header, code_model) for header in yaml_data["headers"]],
             type=type,
         )
 
@@ -181,13 +165,8 @@ class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
-        self.pager_sync: str = (
-            self.yaml_data.get("pagerSync")
-            or f"{self.code_model.core_library}.paging.ItemPaged"
-        )
-        default_paging_submodule = (
-            f"{'async_' if self.code_model.is_azure_flavor else ''}paging"
-        )
+        self.pager_sync: str = self.yaml_data.get("pagerSync") or f"{self.code_model.core_library}.paging.ItemPaged"
+        default_paging_submodule = f"{'async_' if self.code_model.is_azure_flavor else ''}paging"
         self.pager_async: str = (
             self.yaml_data.get("pagerAsync")
             or f"{self.code_model.core_library}.{default_paging_submodule}.AsyncItemPaged"
@@ -227,9 +206,7 @@ class PagingResponse(Response):
         pager = self.get_pager(async_mode)
         pager_path = self.get_pager_import_path(async_mode)
 
-        file_import.add_submodule_import(
-            pager_path, pager, self._get_import_type(pager_path)
-        )
+        file_import.add_submodule_import(pager_path, pager, self._get_import_type(pager_path))
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -250,11 +227,7 @@ class PagingResponse(Response):
 
 class LROResponse(Response):
     def get_poller_path(self, async_mode: bool) -> str:
-        return (
-            self.yaml_data["pollerAsync"]
-            if async_mode
-            else self.yaml_data["pollerSync"]
-        )
+        return self.yaml_data["pollerAsync"] if async_mode else self.yaml_data["pollerSync"]
 
     def get_poller(self, async_mode: bool) -> str:
         """Get the name of the poller. Default is LROPoller / AsyncLROPoller"""
@@ -262,11 +235,7 @@ class LROResponse(Response):
 
     def get_polling_method_path(self, async_mode: bool) -> str:
         """Get the full name of the poller path. Default are the azure core pollers"""
-        return (
-            self.yaml_data["pollingMethodAsync"]
-            if async_mode
-            else self.yaml_data["pollingMethodSync"]
-        )
+        return self.yaml_data["pollingMethodAsync"] if async_mode else self.yaml_data["pollingMethodSync"]
 
     def get_polling_method(self, async_mode: bool) -> str:
         """Get the default pollint method"""
@@ -308,27 +277,21 @@ class LROResponse(Response):
         async_mode = kwargs["async_mode"]
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
-        file_import.add_submodule_import(
-            poller_import_path, poller, self._get_import_type(poller_import_path)
-        )
+        file_import.add_submodule_import(poller_import_path, poller, self._get_import_type(poller_import_path))
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         async_mode = kwargs["async_mode"]
 
-        default_polling_method_import_path = ".".join(
-            self.get_polling_method_path(async_mode).split(".")[:-1]
-        )
+        default_polling_method_import_path = ".".join(self.get_polling_method_path(async_mode).split(".")[:-1])
         default_polling_method = self.get_polling_method(async_mode)
         file_import.add_submodule_import(
             default_polling_method_import_path,
             default_polling_method,
             self._get_import_type(default_polling_method_import_path),
         )
-        default_no_polling_method_import_path = ".".join(
-            self.get_no_polling_method_path(async_mode).split(".")[:-1]
-        )
+        default_no_polling_method_import_path = ".".join(self.get_no_polling_method_path(async_mode).split(".")[:-1])
         default_no_polling_method = self.get_no_polling_method(async_mode)
         file_import.add_submodule_import(
             default_no_polling_method_import_path,
@@ -336,9 +299,7 @@ class LROResponse(Response):
             self._get_import_type(default_no_polling_method_import_path),
         )
 
-        base_polling_method_import_path = ".".join(
-            self.get_base_polling_method_path(async_mode).split(".")[:-1]
-        )
+        base_polling_method_import_path = ".".join(self.get_base_polling_method_path(async_mode).split(".")[:-1])
         base_polling_method = self.get_base_polling_method(async_mode)
         file_import.add_submodule_import(
             base_polling_method_import_path,
@@ -361,9 +322,7 @@ class LROPagingResponse(LROResponse, PagingResponse):
         return f"~{self.get_poller_path(kwargs.get('async_mode', False))}[{paging_docstring_type}]"
 
     def docstring_text(self, **kwargs) -> str:
-        base_description = (
-            "An instance of LROPoller that returns an iterator like instance of "
-        )
+        base_description = "An instance of LROPoller that returns an iterator like instance of "
         if not self.code_model.options["version_tolerant"]:
             base_description += "either "
         return base_description + Response.docstring_text(self)

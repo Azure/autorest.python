@@ -42,12 +42,12 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-
 from typing import Any, Callable, Dict, IO, Iterable, Optional, Type, TypeVar, Union, cast, overload
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 from .._validation import api_version_validation
+
 
 def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -70,6 +70,7 @@ def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  #
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 def build_operation_group_one_test_three_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -88,6 +89,7 @@ def build_operation_group_one_test_three_request(**kwargs: Any) -> HttpRequest: 
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 def build_operation_group_one_test_operation_group_paging_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
@@ -103,17 +105,19 @@ def build_operation_group_one_test_operation_group_paging_request(  # pylint: di
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
+
 class OperationGroupOneOperations:
     """
-    
+
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
         :attr:`operation_group_one` attribute.
-    
+
     """
+
     models = _models
 
     def __init__(self, *args, **kwargs):
@@ -123,9 +127,10 @@ class OperationGroupOneOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
+
     @api_version_validation(
         params_valid_on={
-            "parameter_one": ['2.0.0', '3.0.0'],
+            "parameter_one": ["2.0.0", "3.0.0"],
         }
     )
     @distributed_trace
@@ -197,9 +202,8 @@ class OperationGroupOneOperations:
 
         return deserialized  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['2.0.0'],
+        method_valid_on=["2.0.0"],
     )
     @distributed_trace
     def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -246,9 +250,8 @@ class OperationGroupOneOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['3.0.0'],
+        method_valid_on=["3.0.0"],
     )
     @distributed_trace
     def test_operation_group_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
@@ -345,6 +348,7 @@ def build_operation_group_two_test_four_request(**kwargs: Any) -> HttpRequest:  
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 def build_operation_group_two_test_five_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -363,17 +367,19 @@ def build_operation_group_two_test_five_request(**kwargs: Any) -> HttpRequest:  
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 class OperationGroupTwoOperations:
     """
-    
+
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
         :attr:`operation_group_two` attribute.
-    
+
     """
+
     models = _models
 
     def __init__(self, *args, **kwargs):
@@ -383,10 +389,11 @@ class OperationGroupTwoOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
+
     @api_version_validation(
         params_valid_on={
-            "parameter_one": ['2.0.0'],
-            "input": ['3.0.0'],
+            "parameter_one": ["2.0.0"],
+            "input": ["3.0.0"],
         }
     )
     @distributed_trace
@@ -454,9 +461,8 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['3.0.0'],
+        method_valid_on=["3.0.0"],
     )
     @distributed_trace
     def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -525,6 +531,7 @@ def build_multiapi_service_test_lro_and_paging_request(  # pylint: disable=name-
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
+
 def build_multiapi_service_test_lro_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -540,6 +547,7 @@ def build_multiapi_service_test_lro_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
 
 def build_multiapi_service_test_different_calls_request(  # pylint: disable=name-too-long
     *,
@@ -570,6 +578,7 @@ def build_multiapi_service_test_different_calls_request(  # pylint: disable=name
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 def build_multiapi_service_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -591,6 +600,7 @@ def build_multiapi_service_test_one_request(*, id: int, message: Optional[str] =
 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
+
 def build_multiapi_service_test_paging_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -604,16 +614,17 @@ def build_multiapi_service_test_paging_request(**kwargs: Any) -> HttpRequest:  #
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
+
 class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def _api_version(self, op_name: str) -> str:
-       return self._get_api_version(op_name)
+        return self._get_api_version(op_name)
 
     def _test_lro_and_paging_initial(
         self,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         *,
         client_request_id: Optional[str] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.PagingResult:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -661,7 +672,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
 
     def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
@@ -722,9 +732,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['1.0.0'],
+        method_valid_on=["1.0.0"],
     )
     @distributed_trace
     def begin_test_lro(
@@ -754,7 +763,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
@@ -781,9 +790,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-
     @api_version_validation(
-       method_valid_on=['1.0.0'],
+        method_valid_on=["1.0.0"],
     )
     @distributed_trace
     def begin_test_lro_and_paging(
@@ -791,7 +799,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         *,
         client_request_id: Optional[str] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[Iterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -887,7 +895,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
@@ -916,11 +924,10 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-
     @api_version_validation(
         params_valid_on={
-            "greeting_in_chinese": ['2.0.0', '3.0.0'],
-            "greeting_in_french": ['3.0.0'],
+            "greeting_in_chinese": ["2.0.0", "3.0.0"],
+            "greeting_in_french": ["3.0.0"],
         }
     )
     @distributed_trace
@@ -986,9 +993,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['1.0.0', '2.0.0'],
+        method_valid_on=["1.0.0", "2.0.0"],
     )
     @distributed_trace
     def test_one(self, *, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
@@ -1047,9 +1053,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized  # type: ignore
 
-
     @api_version_validation(
-       method_valid_on=['3.0.0'],
+        method_valid_on=["3.0.0"],
     )
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
@@ -1123,5 +1128,3 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
-
-

@@ -111,9 +111,7 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def update_property(
-    yaml_data: Dict[str, Any], has_additional_properties: bool
-) -> Dict[str, Any]:
+def update_property(yaml_data: Dict[str, Any], has_additional_properties: bool) -> Dict[str, Any]:
     client_name = yaml_data["language"]["default"]["name"]
     if has_additional_properties and client_name == "additional_properties":
         client_name = "additional_properties1"
@@ -150,9 +148,7 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def fill_model(
-    yaml_data: Dict[str, Any], current_model: Dict[str, Any]
-) -> Dict[str, Any]:
+def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
     properties = []
     yaml_parents = yaml_data.get("parents", {}).get("immediate", [])
     dict_parents = [p for p in yaml_parents if p["type"] == "dictionary"]
@@ -170,17 +166,12 @@ def fill_model(
             }
         )
     properties.extend(
-        [
-            update_property(p, has_additional_properties=bool(dict_parents))
-            for p in yaml_data.get("properties", [])
-        ]
+        [update_property(p, has_additional_properties=bool(dict_parents)) for p in yaml_data.get("properties", [])]
     )
     current_model.update(
         {
             "properties": properties,
-            "parents": [
-                update_type(yaml_data=p) for p in yaml_parents if p["type"] == "object"
-            ],
+            "parents": [update_type(yaml_data=p) for p in yaml_parents if p["type"] == "object"],
             "discriminatedSubtypes": update_discriminated_subtypes(yaml_data),
             "discriminatorValue": yaml_data.get("discriminatorValue"),
         }
@@ -253,11 +244,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> Dict[str, Any]:
         if KNOWN_TYPES.get(type["type"]):
             types.append(KNOWN_TYPES[type["type"]])
         else:
-            types.append(
-                next(
-                    v for v in ORIGINAL_ID_TO_UPDATED_TYPE.values() if id(v) == id(type)
-                )
-            )
+            types.append(next(v for v in ORIGINAL_ID_TO_UPDATED_TYPE.values() if id(v) == id(type)))
     retval = {"type": "combined", "types": types}
     ORIGINAL_ID_TO_UPDATED_TYPE[id(retval)] = retval
     return retval
@@ -318,17 +305,11 @@ def add_lro_information(
     for response in operation["responses"]:
         response["pollerSync"] = extensions.get("x-python-custom-poller-sync")
         response["pollerAsync"] = extensions.get("x-python-custom-poller-async")
-        response["pollingMethodSync"] = extensions.get(
-            "x-python-custom-default-polling-method-sync"
-        )
-        response["pollingMethodAsync"] = extensions.get(
-            "x-python-custom-default-polling-method-async"
-        )
+        response["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
+        response["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
 
 
-def filter_out_paging_next_operation(
-    yaml_data: List[Dict[str, Any]]
-) -> List[Dict[str, Any]]:
+def filter_out_paging_next_operation(yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     next_operations: Set[str] = set()
     for operation in yaml_data:
         next_operation = operation.get("nextOperation")
@@ -355,13 +336,9 @@ def update_response(
     else:
         type = None
     return {
-        "headers": [
-            update_response_header(h)
-            for h in yaml_data["protocol"]["http"].get("headers", [])
-        ],
+        "headers": [update_response_header(h) for h in yaml_data["protocol"]["http"].get("headers", [])],
         "statusCodes": [
-            int(code) if code != "default" else "default"
-            for code in yaml_data["protocol"]["http"]["statusCodes"]
+            int(code) if code != "default" else "default" for code in yaml_data["protocol"]["http"]["statusCodes"]
         ],
         "type": type,
         "nullable": yaml_data.get("nullable", False),
@@ -391,28 +368,20 @@ def _get_default_content_type(  # pylint: disable=too-many-return-statements
 
 
 def update_client_url(yaml_data: Dict[str, Any]) -> str:
-    if any(
-        p
-        for p in yaml_data["globalParameters"]
-        if p["language"]["default"]["name"] == "$host"
-    ):
+    if any(p for p in yaml_data["globalParameters"] if p["language"]["default"]["name"] == "$host"):
         # this means we DO NOT have a parameterized host
         # in order to share code better, going to make it a "parameterized host" of
         # just the endpoint parameter
         return "{endpoint}"
     # we have a parameterized host. Return first url from first request, quite gross
-    return yaml_data["operationGroups"][0]["operations"][0]["requests"][0]["protocol"][
-        "http"
-    ]["uri"]
+    return yaml_data["operationGroups"][0]["operations"][0]["requests"][0]["protocol"]["http"]["uri"]
 
 
 def to_lower_camel_case(name: str) -> str:
     return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
 
 
-class M4Reformatter(
-    YamlUpdatePluginAutorest
-):  # pylint: disable=too-many-public-methods
+class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-public-methods
     """Add Python naming information."""
 
     def __init__(self, *args, **kwargs) -> None:
@@ -443,10 +412,7 @@ class M4Reformatter(
 
     @property
     def default_optional_constants_to_none(self) -> bool:
-        return bool(
-            self._autorestapi.get_boolean_value("default-optional-constants-to-none")
-            or self.version_tolerant
-        )
+        return bool(self._autorestapi.get_boolean_value("default-optional-constants-to-none") or self.version_tolerant)
 
     def update_parameter_base(
         self, yaml_data: Dict[str, Any], *, override_client_name: Optional[str] = None
@@ -456,14 +422,8 @@ class M4Reformatter(
             location = "other"
         if location == "uri":
             location = "endpointPath"
-        grouped_by = (
-            yaml_data["groupedBy"]["language"]["default"]["name"]
-            if yaml_data.get("groupedBy")
-            else None
-        )
-        client_name: str = (
-            override_client_name or yaml_data["language"]["default"]["name"]
-        )
+        grouped_by = yaml_data["groupedBy"]["language"]["default"]["name"] if yaml_data.get("groupedBy") else None
+        client_name: str = override_client_name or yaml_data["language"]["default"]["name"]
         if grouped_by and client_name[0] != "_":
             # this is an m4 bug, doesn't hide constant grouped params, patching m4 for now
             client_name = "_" + client_name
@@ -502,17 +462,11 @@ class M4Reformatter(
         if not body_types:
             return overloads
         for body_type in body_types:
-            overload = self.update_overload(
-                group_name, yaml_data, body_type, content_types=content_types
-            )
-            overload["internal"] = yaml_data.get("extensions", {}).get(
-                "x-ms-internal", False
-            )
+            overload = self.update_overload(group_name, yaml_data, body_type, content_types=content_types)
+            overload["internal"] = yaml_data.get("extensions", {}).get("x-ms-internal", False)
             for parameter in overload["parameters"]:
                 if parameter["wireName"].lower() == "content-type":
-                    parameter["clientDefaultValue"] = overload["bodyParameter"][
-                        "defaultContentType"
-                    ]
+                    parameter["clientDefaultValue"] = overload["bodyParameter"]["defaultContentType"]
             overloads.append(overload)
         return overloads
 
@@ -524,14 +478,9 @@ class M4Reformatter(
         *,
         is_overload: bool = False,
     ) -> Dict[str, Any]:
-        in_overriden = (
-            body_parameter["type"]["type"] == "combined" if body_parameter else False
-        )
+        in_overriden = body_parameter["type"]["type"] == "combined" if body_parameter else False
         abstract = False
-        if body_parameter and (
-            body_parameter.get("entries")
-            or len(body_parameter["type"].get("types", [])) > 2
-        ):
+        if body_parameter and (body_parameter.get("entries") or len(body_parameter["type"].get("types", [])) > 2):
             # this means it's formdata or urlencoded, or there are more than 2 types of body
             abstract = True
         return {
@@ -551,10 +500,7 @@ class M4Reformatter(
             "exceptions": [
                 update_response(e)
                 for e in yaml_data.get("exceptions", [])
-                if not (
-                    e.get("schema")
-                    and e["schema"]["language"]["default"]["name"] == "CloudError"
-                )
+                if not (e.get("schema") and e["schema"]["language"]["default"]["name"] == "CloudError")
             ],
             "groupName": group_name,
             "discriminator": "operation",
@@ -564,12 +510,8 @@ class M4Reformatter(
             "externalDocs": yaml_data.get("externalDocs"),
         }
 
-    def get_operation_creator(
-        self, yaml_data: Dict[str, Any]
-    ) -> Callable[[str, Dict[str, Any]], List[Dict[str, Any]]]:
-        lro_operation = yaml_data.get("extensions", {}).get(
-            "x-ms-long-running-operation"
-        )
+    def get_operation_creator(self, yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], List[Dict[str, Any]]]:
+        lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
         paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
         if lro_operation and paging_operation:
             return self.update_lro_paging_operation
@@ -579,72 +521,50 @@ class M4Reformatter(
             return self.update_paging_operation
         return self.update_operation
 
-    def update_operation(
-        self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def update_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         body_parameter = (
-            self.update_body_parameter(yaml_data["requestMediaTypes"])
-            if yaml_data.get("requestMediaTypes")
-            else None
+            self.update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None
         )
         content_types = None
         operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
-        operation["internal"] = yaml_data.get("extensions", {}).get(
-            "x-ms-internal", False
-        )
+        operation["internal"] = yaml_data.get("extensions", {}).get("x-ms-internal", False)
         operation["overloads"] = self.update_overloads(
             group_name, yaml_data, body_parameter, content_types=content_types
         )
         operation["samples"] = yaml_data.get("extensions", {}).get("x-ms-examples", {})
         return [operation]
 
-    def add_paging_information(
-        self, group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]
-    ) -> None:
+    def add_paging_information(self, group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
         operation["discriminator"] = "paging"
-        operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get(
-            "itemName", "value"
-        )
-        operation["continuationTokenName"] = yaml_data["extensions"][
-            "x-ms-pageable"
-        ].get("nextLinkName")
+        operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
+        operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         returned_response_object = (
-            operation["nextOperation"]["responses"][0]
-            if operation.get("nextOperation")
-            else operation["responses"][0]
+            operation["nextOperation"]["responses"][0] if operation.get("nextOperation") else operation["responses"][0]
         )
         if self.version_tolerant:
             # if we're in version tolerant, hide the paging model
             returned_response_object["type"]["internal"] = True
         operation["itemType"] = next(
-            p["type"]
-            for p in returned_response_object["type"]["properties"]
-            if p["wireName"] == operation["itemName"]
+            p["type"] for p in returned_response_object["type"]["properties"] if p["wireName"] == operation["itemName"]
         )
         if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
             operation["nextOperation"] = self.update_operation(
                 group_name=group_name,
-                yaml_data=yaml_data["language"]["default"]["paging"][
-                    "nextLinkOperation"
-                ],
+                yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
             )[0]
         extensions = yaml_data["extensions"]
         for response in operation["responses"]:
             response["pagerSync"] = extensions.get("x-python-custom-pager-sync")
             response["pagerAsync"] = extensions.get("x-python-custom-pager-async")
 
-    def update_paging_operation(
-        self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def update_paging_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         for base_operation in self.update_operation(group_name, yaml_data):
             self.add_paging_information(group_name, base_operation, yaml_data)
             retval.append(base_operation)
         return retval
 
-    def update_lro_paging_operation(
-        self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def update_lro_paging_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         for operation in self.update_lro_operation(group_name, yaml_data):
             if operation.get("discriminator") == "lro":
@@ -659,9 +579,7 @@ class M4Reformatter(
         initial_operation["wantTracing"] = False
         return initial_operation
 
-    def update_lro_operation(
-        self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> List[Dict[str, Any]]:
+    def update_lro_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         for base_operation in self.update_operation(group_name, yaml_data):
             initial_operation = self.update_operation(group_name, yaml_data)[0]
@@ -684,9 +602,7 @@ class M4Reformatter(
         body_parameter = self.update_body_parameter_overload(
             yaml_data["requestMediaTypes"], body_type, content_types=content_types
         )
-        return self._update_operation_helper(
-            group_name, yaml_data, body_parameter, is_overload=True
-        )
+        return self._update_operation_helper(group_name, yaml_data, body_parameter, is_overload=True)
 
     def update_operation_group(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         property_name = yaml_data["language"]["default"]["name"]
@@ -694,11 +610,7 @@ class M4Reformatter(
             "propertyName": property_name,
             "className": property_name,
             "operations": filter_out_paging_next_operation(
-                [
-                    o
-                    for ydo in yaml_data["operations"]
-                    for o in self.get_operation_creator(ydo)(property_name, ydo)
-                ]
+                [o for ydo in yaml_data["operations"] for o in self.get_operation_creator(ydo)(property_name, ydo)]
             ),
         }
 
@@ -718,28 +630,19 @@ class M4Reformatter(
         body_param["contentTypes"] = content_types or [
             ct
             for ct, request in yaml_data.items()
-            if id(body_type)
-            == id(
-                ORIGINAL_ID_TO_UPDATED_TYPE[id(get_body_parameter(request)["schema"])]
-            )
+            if id(body_type) == id(ORIGINAL_ID_TO_UPDATED_TYPE[id(get_body_parameter(request)["schema"])])
         ]
         # get default content type
-        body_param["defaultContentType"] = _get_default_content_type(
-            body_param["contentTypes"]
-        )
+        body_param["defaultContentType"] = _get_default_content_type(body_param["contentTypes"])
         # python supports IO input with all kinds of content_types
         if body_type["type"] == "binary":
             body_param["contentTypes"] = content_types or list(yaml_data.keys())
         if body_param["type"]["type"] == "constant":
-            if not body_param["optional"] or (
-                body_param["optional"] and not self.default_optional_constants_to_none
-            ):
+            if not body_param["optional"] or (body_param["optional"] and not self.default_optional_constants_to_none):
                 body_param["clientDefaultValue"] = body_type["value"]
         body_param["flattened"] = flattened
         body_param["isPartialBody"] = is_partial_body
-        body_param["wireName"] = body_param["wireName"] or to_lower_camel_case(
-            body_param["clientName"]
-        )
+        body_param["wireName"] = body_param["wireName"] or to_lower_camel_case(body_param["clientName"])
         return body_param
 
     def update_multipart_body_parameter(
@@ -767,21 +670,15 @@ class M4Reformatter(
     def update_body_parameter(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         protocol_http = list(yaml_data.values())[0].get("protocol", {}).get("http", {})
         if protocol_http.get("multipart"):
-            return self.update_multipart_body_parameter(
-                yaml_data, "files", "Multipart input for files."
-            )
+            return self.update_multipart_body_parameter(yaml_data, "files", "Multipart input for files.")
         if protocol_http.get("knownMediaType") == "form":
-            return self.update_multipart_body_parameter(
-                yaml_data, "data", "Multipart input for form encoded data."
-            )
+            return self.update_multipart_body_parameter(yaml_data, "data", "Multipart input for form encoded data.")
         body_types = get_all_body_types(yaml_data)
         if len(body_types) > 1 and not yaml_data.get("flattened"):
             body_type = update_types(body_types)
         else:
             body_type = body_types[0]
-        body_param = next(
-            p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p)
-        )
+        body_param = next(p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p))
         return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
     def update_body_parameter_overload(
@@ -792,12 +689,8 @@ class M4Reformatter(
         content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """For overloads we already know what body_type we want to go with"""
-        body_param = next(
-            p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p)
-        )
-        return self._update_body_parameter_helper(
-            yaml_data, body_param, body_type, content_types=content_types
-        )
+        body_param = next(p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p))
+        return self._update_body_parameter_helper(yaml_data, body_param, body_type, content_types=content_types)
 
     def update_flattened_parameter(
         self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]
@@ -805,13 +698,9 @@ class M4Reformatter(
         if not body_parameter:
             raise ValueError("Has to have a body parameter if it's flattened")
         # this means i'm a property that is part of a flattened model
-        target_property_name = yaml_data["targetProperty"]["language"]["default"][
-            "name"
-        ]
+        target_property_name = yaml_data["targetProperty"]["language"]["default"]["name"]
         param = self.update_parameter(yaml_data)
-        body_parameter.setdefault("propertyToParameterName", {})[
-            target_property_name
-        ] = param["clientName"]
+        body_parameter.setdefault("propertyToParameterName", {})[target_property_name] = param["clientName"]
         param["inFlattenedBody"] = True
         return param
 
@@ -829,11 +718,7 @@ class M4Reformatter(
             return yaml_data
         param = copy.deepcopy(yaml_data)
         param["schema"] = KNOWN_TYPES["string"]  # override to string type
-        if (
-            body_parameter["type"]["type"] == "binary"
-            and not body_parameter["defaultContentType"]
-            and not self.legacy
-        ):
+        if body_parameter["type"]["type"] == "binary" and not body_parameter["defaultContentType"] and not self.legacy:
             param["required"] = True
         else:
             param["required"] = False
@@ -843,13 +728,8 @@ class M4Reformatter(
         if not (in_overriden or in_overload):
             param["inDocstring"] = False
         elif in_overload:
-            description += (
-                " Content type parameter for "
-                f"{get_body_type_for_description(body_parameter)} body."
-            )
-        if not in_overload or (
-            body_parameter["type"]["type"] == "binary" and len(request_media_types) > 1
-        ):
+            description += " Content type parameter for " f"{get_body_type_for_description(body_parameter)} body."
+        if not in_overload or (body_parameter["type"]["type"] == "binary" and len(request_media_types) > 1):
             content_types = "'" + "', '".join(request_media_types) + "'"
             description += f" Known values are: {content_types}."
         if not in_overload and not in_overriden:
@@ -872,9 +752,7 @@ class M4Reformatter(
         has_flattened_body = body_parameter and body_parameter.get("flattened")
         for param in parameters:
             client_name = param["language"]["default"]["name"]
-            if param["language"]["default"]["name"] == "$host" or (
-                client_name in seen_client_names
-            ):
+            if param["language"]["default"]["name"] == "$host" or (client_name in seen_client_names):
                 continue
             seen_client_names.add(client_name)
             if has_flattened_body and param.get("targetProperty"):
@@ -889,10 +767,7 @@ class M4Reformatter(
                 continue
             if is_body(param):
                 continue
-            if (
-                param["language"]["default"].get("serializedName").lower()
-                == "content-type"
-            ):
+            if param["language"]["default"].get("serializedName").lower() == "content-type":
                 param = self._update_content_type_parameter(
                     param,
                     body_parameter,
@@ -900,9 +775,7 @@ class M4Reformatter(
                     in_overload=in_overload,
                     in_overriden=in_overriden,
                 )
-            updated_param = self.update_parameter(
-                param, in_overload=in_overload, in_overriden=in_overriden
-            )
+            updated_param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
             retval.append(updated_param)
         return retval
 
@@ -955,8 +828,7 @@ class M4Reformatter(
                 next(
                     prop
                     for prop in grouper["type"]["properties"]
-                    if p["clientName"].lstrip("_")
-                    in prop["groupedParameterNames"]  # TODO: patching m4
+                    if p["clientName"].lstrip("_") in prop["groupedParameterNames"]  # TODO: patching m4
                 )["clientName"]: p["clientName"]
                 for p in all_params
                 if p.get("groupedBy") == grouper_name
@@ -971,14 +843,10 @@ class M4Reformatter(
         in_overload: bool = False,
         in_overriden: bool = False,
     ) -> Dict[str, Any]:
-        param_base = self.update_parameter_base(
-            yaml_data, override_client_name=override_client_name
-        )
+        param_base = self.update_parameter_base(yaml_data, override_client_name=override_client_name)
         type = get_type(yaml_data["schema"])
         if type["type"] == "constant":
-            if not param_base["optional"] or (
-                param_base["optional"] and not self.default_optional_constants_to_none
-            ):
+            if not param_base["optional"] or (param_base["optional"] and not self.default_optional_constants_to_none):
                 param_base["clientDefaultValue"] = type["value"]
         protocol_http = yaml_data["protocol"].get("http", {})
         param_base.update(
@@ -987,9 +855,7 @@ class M4Reformatter(
                 "implementation": yaml_data["implementation"],
                 "explode": protocol_http.get("explode", False),
                 "inOverload": in_overload,
-                "skipUrlEncoding": yaml_data.get("extensions", {}).get(
-                    "x-ms-skip-url-encoding", False
-                ),
+                "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
                 "inDocstring": yaml_data.get("inDocstring", True),
                 "inOverriden": in_overriden,
                 "delimiter": update_parameter_delimiter(protocol_http.get("style")),
@@ -997,9 +863,7 @@ class M4Reformatter(
         )
         return param_base
 
-    def update_global_parameters(
-        self, yaml_data: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+    def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         global_params: List[Dict[str, Any]] = []
         for global_parameter in yaml_data:
             client_name: Optional[str] = None
@@ -1009,13 +873,9 @@ class M4Reformatter(
 
                 client_name = "endpoint" if self.version_tolerant else "base_url"
                 global_parameter["language"]["default"]["description"] = "Service URL."
-            elif (
-                global_parameter.get("origin") == "modelerfour:synthesized/api-version"
-            ):
+            elif global_parameter.get("origin") == "modelerfour:synthesized/api-version":
                 self.check_client_input = True
-            param = self.update_parameter(
-                global_parameter, override_client_name=client_name
-            )
+            param = self.update_parameter(global_parameter, override_client_name=client_name)
             if global_parameter.get("origin") == "modelerfour:synthesized/api-version":
                 param["implementation"] = "Client"
                 param["checkClientInput"] = False
@@ -1033,9 +893,7 @@ class M4Reformatter(
         update_type(retval)
         return retval
 
-    def update_credential_from_security(
-        self, yaml_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    def update_credential_from_security(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         retval: Dict[str, Any] = {}
         for scheme in yaml_data.get("schemes", []):
             if scheme["type"] == OAUTH_TYPE:
@@ -1049,13 +907,8 @@ class M4Reformatter(
         if self.azure_arm:
             return ["https://management.azure.com/.default"]
         credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
-        credential_scopes = (
-            credential_scopes_temp.split(",") if credential_scopes_temp else None
-        )
-        if (
-            self._autorestapi.get_boolean_value("credential-scopes", False)
-            and not credential_scopes
-        ):
+        credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
+        if self._autorestapi.get_boolean_value("credential-scopes", False) and not credential_scopes:
             raise ValueError(
                 "--credential-scopes takes a list of scopes in comma separated format. "
                 "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
@@ -1073,10 +926,7 @@ class M4Reformatter(
 
     def update_credential_from_flags(self) -> Dict[str, Any]:
         default_auth_policy = "BearerTokenCredentialPolicy"
-        auth_policy = (
-            self._autorestapi.get_value("credential-default-policy-type")
-            or default_auth_policy
-        )
+        auth_policy = self._autorestapi.get_value("credential-default-policy-type") or default_auth_policy
         credential_scopes = self.get_credential_scopes_from_flags(auth_policy)
         key = self._autorestapi.get_value("credential-key-header-name")
         if auth_policy.lower() in (
@@ -1101,14 +951,10 @@ class M4Reformatter(
             )
         if not key:
             key = "api-key"
-            _LOGGER.info(
-                "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
-            )
+            _LOGGER.info("Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'")
         return get_azure_key_credential(key)
 
-    def update_credential(
-        self, yaml_data: Dict[str, Any], parameters: List[Dict[str, Any]]
-    ) -> None:
+    def update_credential(self, yaml_data: Dict[str, Any], parameters: List[Dict[str, Any]]) -> None:
         # then override with credential flags
         credential_flag = (
             self._autorestapi.get_boolean_value("add-credentials", False)
@@ -1135,19 +981,13 @@ class M4Reformatter(
         parameters.append(credential)
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-        parameters = self.update_global_parameters(
-            yaml_data.get("globalParameters", [])
-        )
+        parameters = self.update_global_parameters(yaml_data.get("globalParameters", []))
         self.update_credential(yaml_data.get("security", {}), parameters)
         return {
             "name": yaml_data["language"]["default"]["name"],
             "description": yaml_data["info"].get("description"),
             "parameters": parameters,
-            "url": (
-                update_client_url(yaml_data)
-                if yaml_data.get("globalParameters")
-                else ""
-            ),
+            "url": (update_client_url(yaml_data) if yaml_data.get("globalParameters") else ""),
         }
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
@@ -1159,10 +999,7 @@ class M4Reformatter(
         # First we update the types, so we can access for when we're creating parameters etc.
         for type_group, types in yaml_data["schemas"].items():
             for t in types:
-                if (
-                    type_group == "objects"
-                    and t["language"]["default"]["name"] == "CloudError"
-                ):
+                if type_group == "objects" and t["language"]["default"]["name"] == "CloudError":
                     # we don't generate cloud error
                     continue
                 update_type(t)
@@ -1172,9 +1009,7 @@ class M4Reformatter(
         yaml_data["clients"][0]["operationGroups"] = [
             self.update_operation_group(og) for og in yaml_data["operationGroups"]
         ]
-        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(
-            KNOWN_TYPES.values()
-        )
+        yaml_data["types"] = list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(KNOWN_TYPES.values())
         if yaml_data.get("globalParameters"):
             del yaml_data["globalParameters"]
         del yaml_data["info"]

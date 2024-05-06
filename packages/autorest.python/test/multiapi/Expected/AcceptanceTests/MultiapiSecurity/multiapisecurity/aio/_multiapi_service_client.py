@@ -24,12 +24,14 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
+
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
         Will be removed in final version of multiapi azure-core based client
         """
         pass
+
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
     """Service client for multiapi client testing.
@@ -53,13 +55,15 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
-    DEFAULT_API_VERSION = '1.0.0'
+    DEFAULT_API_VERSION = "1.0.0"
     _PROFILE_TAG = "multiapisecurity.MultiapiServiceClient"
-    LATEST_PROFILE = ProfileDefinition({
-        _PROFILE_TAG: {
-            None: DEFAULT_API_VERSION,
-        }},
-        _PROFILE_TAG + " latest"
+    LATEST_PROFILE = ProfileDefinition(
+        {
+            _PROFILE_TAG: {
+                None: DEFAULT_API_VERSION,
+            }
+        },
+        _PROFILE_TAG + " latest",
     )
 
     def __init__(
@@ -71,7 +75,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         **kwargs: Any
     ) -> None:
         if api_version:
-            kwargs.setdefault('api_version', api_version)
+            kwargs.setdefault("api_version", api_version)
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -91,10 +95,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
                 self._config.http_logging_policy,
             ]
         self._client = AsyncPipelineClient(base_url=base_url, policies=_policies, **kwargs)
-        super(MultiapiServiceClient, self).__init__(
-            api_version=api_version,
-            profile=profile
-        )
+        super(MultiapiServiceClient, self).__init__(api_version=api_version, profile=profile)
 
     @classmethod
     def _models_dict(cls, api_version):
@@ -104,14 +105,16 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def models(cls, api_version=DEFAULT_API_VERSION):
         """Module depends on the API version:
 
-           * 0.0.0: :mod:`v0.models<multiapisecurity.v0.models>`
-           * 1.0.0: :mod:`v1.models<multiapisecurity.v1.models>`
+        * 0.0.0: :mod:`v0.models<multiapisecurity.v0.models>`
+        * 1.0.0: :mod:`v1.models<multiapisecurity.v1.models>`
         """
-        if api_version == '0.0.0':
+        if api_version == "0.0.0":
             from ..v0 import models
+
             return models
-        elif api_version == '1.0.0':
+        elif api_version == "1.0.0":
             from ..v1 import models
+
             return models
         raise ValueError("API version {} is not available".format(api_version))
 
@@ -119,23 +122,31 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def operation_group_one(self):
         """Instance depends on the API version:
 
-           * 0.0.0: :class:`OperationGroupOneOperations<multiapisecurity.v0.aio.operations.OperationGroupOneOperations>`
-           * 1.0.0: :class:`OperationGroupOneOperations<multiapisecurity.v1.aio.operations.OperationGroupOneOperations>`
+        * 0.0.0: :class:`OperationGroupOneOperations<multiapisecurity.v0.aio.operations.OperationGroupOneOperations>`
+        * 1.0.0: :class:`OperationGroupOneOperations<multiapisecurity.v1.aio.operations.OperationGroupOneOperations>`
         """
-        api_version = self._get_api_version('operation_group_one')
-        if api_version == '0.0.0':
+        api_version = self._get_api_version("operation_group_one")
+        if api_version == "0.0.0":
             from ..v0.aio.operations import OperationGroupOneOperations as OperationClass
-        elif api_version == '1.0.0':
+        elif api_version == "1.0.0":
             from ..v1.aio.operations import OperationGroupOneOperations as OperationClass
         else:
             raise ValueError("API version {} does not have operation group 'operation_group_one'".format(api_version))
         self._config.api_version = api_version
-        return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)), api_version)
+        return OperationClass(
+            self._client,
+            self._config,
+            Serializer(self._models_dict(api_version)),
+            Deserializer(self._models_dict(api_version)),
+            api_version,
+        )
 
     async def close(self):
         await self._client.close()
+
     async def __aenter__(self):
         await self._client.__aenter__()
         return self
+
     async def __aexit__(self, *exc_details):
         await self._client.__aexit__(*exc_details)

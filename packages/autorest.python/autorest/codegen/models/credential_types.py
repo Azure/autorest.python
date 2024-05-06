@@ -57,9 +57,7 @@ class BearerTokenCredentialPolicyType(_CredentialPolicyBaseType):
         return f"policies.{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BearerTokenCredentialPolicyType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BearerTokenCredentialPolicyType":
         return cls(yaml_data, code_model, yaml_data["credentialScopes"])
 
 
@@ -85,27 +83,17 @@ class KeyCredentialPolicyType(_CredentialPolicyBaseType):
 
     @property
     def credential_name(self) -> str:
-        return (
-            "AzureKeyCredential"
-            if self.code_model.is_azure_flavor
-            else "ServiceKeyCredential"
-        )
+        return "AzureKeyCredential" if self.code_model.is_azure_flavor else "ServiceKeyCredential"
 
     def call(self, async_mode: bool) -> str:
         params = f'"{self.key}", '
         if self.scheme:
             params += f'prefix="{self.scheme}", '
-        return (
-            f"policies.{self.credential_name}Policy(self.credential, {params}**kwargs)"
-        )
+        return f"policies.{self.credential_name}Policy(self.credential, {params}**kwargs)"
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "KeyCredentialPolicyType":
-        return cls(
-            yaml_data, code_model, yaml_data["key"], yaml_data.get("scheme", None)
-        )
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "KeyCredentialPolicyType":
+        return cls(yaml_data, code_model, yaml_data["key"], yaml_data.get("scheme", None))
 
 
 CredentialPolicyType = TypeVar(
@@ -118,9 +106,7 @@ CredentialPolicyType = TypeVar(
 )
 
 
-class CredentialType(
-    Generic[CredentialPolicyType], BaseType
-):  # pylint:disable=abstract-method
+class CredentialType(Generic[CredentialPolicyType], BaseType):  # pylint:disable=abstract-method
     """Store info about the type of the credential. Can be either an KeyCredential or a TokenCredential"""
 
     def __init__(
@@ -132,9 +118,7 @@ class CredentialType(
         super().__init__(yaml_data, code_model)
         self.policy = policy
 
-    def description(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         return ""
 
     def get_json_template_representation(
@@ -144,9 +128,7 @@ class CredentialType(
         client_default_value_declaration: Optional[str] = None,
         description: Optional[str] = None,
     ) -> Any:
-        raise TypeError(
-            "You should not try to get a JSON template representation of a CredentialSchema"
-        )
+        raise TypeError("You should not try to get a JSON template representation of a CredentialSchema")
 
     def docstring_text(self, **kwargs: Any) -> str:
         return "credential"
@@ -156,17 +138,13 @@ class CredentialType(
         return self.docstring_type()
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "CredentialType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "CredentialType":
         from . import build_type
 
         return cls(
             yaml_data,
             code_model,
-            policy=cast(
-                CredentialPolicyType, build_type(yaml_data["policy"], code_model)
-            ),
+            policy=cast(CredentialPolicyType, build_type(yaml_data["policy"], code_model)),
         )
 
 
@@ -225,9 +203,7 @@ class KeyCredentialType(
     """Type for an KeyCredential"""
 
     def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
-        return (
-            f"~{self.code_model.core_library}.credentials.{self.policy.credential_name}"
-        )
+        return f"~{self.code_model.core_library}.credentials.{self.policy.credential_name}"
 
     def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
         return self.policy.credential_name

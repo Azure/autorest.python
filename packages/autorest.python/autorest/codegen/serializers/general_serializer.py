@@ -35,9 +35,7 @@ class GeneralSerializer(BaseSerializer):
         template = self.env.get_template(template_name)
         package_parts = (self.code_model.options["package_name"] or "").split("-")[:-1]
         token_credential = any(
-            c
-            for c in self.code_model.clients
-            if isinstance(getattr(c.credential, "type", None), TokenCredentialType)
+            c for c in self.code_model.clients if isinstance(getattr(c.credential, "type", None), TokenCredentialType)
         )
         version = self.code_model.options["package_version"]
         if any(x in version for x in ["a", "b", "rc"]) or version[0] == "0":
@@ -48,13 +46,8 @@ class GeneralSerializer(BaseSerializer):
             "code_model": self.code_model,
             "dev_status": dev_status,
             "token_credential": token_credential,
-            "pkgutil_names": [
-                ".".join(package_parts[: i + 1]) for i in range(len(package_parts))
-            ],
-            "init_names": [
-                "/".join(package_parts[: i + 1]) + "/__init__.py"
-                for i in range(len(package_parts))
-            ],
+            "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
+            "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))],
             "client_name": self.code_model.clients[0].name,
             "namespace": self.code_model.namespace,
         }
@@ -131,10 +124,7 @@ class GeneralSerializer(BaseSerializer):
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
-        if (
-            self.code_model.has_form_data
-            and self.code_model.options["models_mode"] == "dpg"
-        ):
+        if self.code_model.has_form_data and self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
@@ -190,9 +180,7 @@ class GeneralSerializer(BaseSerializer):
 
     def serialize_model_base_file(self) -> str:
         template = self.env.get_template("model_base.py.jinja2")
-        return template.render(
-            code_model=self.code_model, file_import=FileImport(self.code_model)
-        )
+        return template.render(code_model=self.code_model, file_import=FileImport(self.code_model))
 
     def serialize_validation_file(self) -> str:
         template = self.env.get_template("validation.py.jinja2")
@@ -213,11 +201,7 @@ class GeneralSerializer(BaseSerializer):
             {
                 (
                     f"{self.code_model.namespace}.{client.name}."
-                    + (
-                        ""
-                        if operation_group.is_mixin
-                        else f"{operation_group.property_name}."
-                    )
+                    + ("" if operation_group.is_mixin else f"{operation_group.property_name}.")
                     + f"{operation.name}"
                 ): operation.cross_language_definition_id
                 for client in self.code_model.clients

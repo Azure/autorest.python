@@ -29,22 +29,26 @@ import pytest
 
 from subscriptionidapiversion import MicrosoftAzureTestUrl
 
+
 class TestAzureUrl(object):
 
     def test_azure_url(self, credential, authentication_policy):
 
         sub_id = str(uuid4())
 
-        with MicrosoftAzureTestUrl(credential, sub_id, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        with MicrosoftAzureTestUrl(
+            credential, sub_id, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
 
             group = client.group.get_sample_resource_group("testgoup101")
-            assert group.name ==  "testgroup101"
-            assert group.location ==  "West US"
+            assert group.name == "testgroup101"
+            assert group.location == "West US"
 
     def test_models(self):
         from subscriptionidapiversion.models import Error
 
         from subscriptionidapiversion.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -54,4 +58,5 @@ class TestAzureUrl(object):
             from subscriptionidapiversion.operations import _group_operations_py3
 
         from subscriptionidapiversion.operations._group_operations import GroupOperations as GroupOperationsPy2
+
         assert GroupOperations == GroupOperationsPy2

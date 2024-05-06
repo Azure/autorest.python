@@ -51,9 +51,7 @@ class CombinedType(BaseType):
     def client_default_value(self) -> Any:
         return self.yaml_data.get("clientDefaultValue")
 
-    def description(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         if len(self.types) == 2:
             return f"Is either a {self.types[0].type_description} type or a {self.types[1].type_description} type."
         return f"Is one of the following types: {', '.join([t.type_description for t in self.types])}"
@@ -75,9 +73,7 @@ class CombinedType(BaseType):
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         # remove duplicates
-        inside_types = list(
-            dict.fromkeys([type.type_annotation(**kwargs) for type in self.types])
-        )
+        inside_types = list(dict.fromkeys([type.type_annotation(**kwargs) for type in self.types]))
         if len(inside_types) == 1:
             return inside_types[0]
         if self._is_union_of_literals:
@@ -135,9 +131,7 @@ class CombinedType(BaseType):
         return file_import
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BaseType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BaseType":
         from . import build_type
 
         return cls(

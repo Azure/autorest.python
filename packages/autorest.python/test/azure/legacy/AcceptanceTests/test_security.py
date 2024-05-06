@@ -27,9 +27,11 @@ from securityaadswagger import AutorestSecurityAad
 from securitykeyswagger import AutorestSecurityKey
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy
 
+
 def test_security_aad(credential):
     client = AutorestSecurityAad(credential)
     assert isinstance(client._config.authentication_policy, ARMChallengeAuthenticationPolicy)
+
 
 def test_security_key(credential):
     client = AutorestSecurityKey(credential)

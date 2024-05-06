@@ -31,10 +31,12 @@ from bodytime import AutoRestTimeTestService
 import pytest
 import sys
 
+
 @pytest.fixture
 def client():
     with AutoRestTimeTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestTime(object):
 
@@ -49,6 +51,7 @@ class TestTime(object):
         from bodytime.models import Error
 
         from bodytime.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -58,4 +61,5 @@ class TestTime(object):
             from bodytime.operations import _time_operations_py3
 
         from bodytime.operations._time_operations import TimeOperations as TimeOperationsPy2
+
         assert TimeOperations == TimeOperationsPy2

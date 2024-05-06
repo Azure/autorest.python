@@ -89,19 +89,13 @@ class DictionaryType(BaseType):
 
         if isinstance(self.element_type, ModelType):
             is_polymorphic_subtype = (
-                self.element_type.discriminator_value
-                and not self.element_type.discriminated_subtypes
+                self.element_type.discriminator_value and not self.element_type.discriminated_subtypes
             )
-            if (
-                self.element_type.name not in (m.name for m in polymorphic_subtypes)
-                and is_polymorphic_subtype
-            ):
+            if self.element_type.name not in (m.name for m in polymorphic_subtypes) and is_polymorphic_subtype:
                 polymorphic_subtypes.append(self.element_type)
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "DictionaryType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "DictionaryType":
         """Constructs a DictionaryType from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -124,9 +118,7 @@ class DictionaryType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(
-            "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports(**kwargs))
         return file_import
 

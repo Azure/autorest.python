@@ -31,16 +31,19 @@ from bodydurationversiontolerant import AutoRestDurationTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDurationTestService() as client:
         yield client
+
 
 def test_get_null_and_invalid(client):
     assert client.duration.get_null() is None
 
     with pytest.raises(isodate.ISO8601Error):
         deserialize_duration(client.duration.get_invalid())
+
 
 def test_positive_duration(client):
     client.duration.get_positive_duration()

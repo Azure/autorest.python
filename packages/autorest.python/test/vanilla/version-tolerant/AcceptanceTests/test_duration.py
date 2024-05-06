@@ -31,10 +31,12 @@ from .serializer import deserialize_duration, serialize_duration
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDurationTestService() as client:
         yield client
+
 
 def test_get_null_and_invalid(client):
     assert client.duration.get_null() is None
@@ -42,6 +44,11 @@ def test_get_null_and_invalid(client):
     with pytest.raises(isodate.ISO8601Error):
         deserialize_duration(client.duration.get_invalid())
 
+
 def test_positive_duration(client):
-    assert isodate.Duration(4, 45005, 0, years=3, months=6) == deserialize_duration(client.duration.get_positive_duration())
-    client.duration.put_positive_duration(serialize_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
+    assert isodate.Duration(4, 45005, 0, years=3, months=6) == deserialize_duration(
+        client.duration.get_positive_duration()
+    )
+    client.duration.put_positive_duration(
+        serialize_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    )

@@ -43,6 +43,7 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestPagingTestService(base_url="http://localhost:3000") as client:
@@ -53,6 +54,7 @@ def client():
 def custom_url_client():
     with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
         yield client
+
 
 class TestPaging(object):
     def test_get_no_item_name_pages(self, client):
@@ -81,6 +83,7 @@ class TestPaging(object):
             for obj in list_of_obj:
                 obj.marked = True
             return list_of_obj
+
         pages = client.paging.get_single_pages(cls=cb)
         assert all(obj.marked for obj in pages)
 
@@ -104,7 +107,7 @@ class TestPaging(object):
         assert len(items) == 10
 
     def test_query_params(self, client):
-        pages = client.paging.get_with_query_params(required_query_parameter='100')
+        pages = client.paging.get_with_query_params(required_query_parameter="100")
         items = [i for i in pages]
         assert len(items) == 2
 
@@ -125,12 +128,12 @@ class TestPaging(object):
 
     def test_get_multiple_pages_with_offset(self, client):
         from paging.models import PagingGetMultiplePagesWithOffsetOptions
+
         options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
         pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
         items = [i for i in pages]
         assert len(items) == 10
         assert items[-1].properties.id == 110
-
 
     def test_get_single_pages_failure(self, client):
         pages = client.paging.get_single_pages_failure()
@@ -172,9 +175,9 @@ class TestPaging(object):
         assert paged[1].properties.id == 2
 
     def test_get_multiple_pages_lro(self, client):
-        """LRO + Paging at the same time.
-        """
+        """LRO + Paging at the same time."""
         from azure.mgmt.core.polling.arm_polling import ARMPolling
+
         poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
         pager = poller.result()
 
@@ -215,6 +218,7 @@ class TestPaging(object):
     def test_models(self):
         from paging.models import OperationResult
         from paging.models._models_py3 import OperationResult as OperationResultPy3
+
         assert OperationResult == OperationResultPy3
 
     def test_operation_groups(self):
@@ -224,6 +228,7 @@ class TestPaging(object):
             from paging.operations import _paging_operations_py3
 
         from paging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+
         assert PagingOperations == PagingOperationsPy2
 
         from custombaseurlpaging.operations import PagingOperations
@@ -232,4 +237,5 @@ class TestPaging(object):
             from custombaseurlpaging.operations import _paging_operations_py3
 
         from custombaseurlpaging.operations._paging_operations import PagingOperations as PagingOperationsPy2
+
         assert PagingOperations == PagingOperationsPy2

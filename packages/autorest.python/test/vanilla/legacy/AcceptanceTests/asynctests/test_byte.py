@@ -41,11 +41,13 @@ from bodybyte.aio import AutoRestSwaggerBATByteService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestByte(object):
 
@@ -53,7 +55,7 @@ class TestByte(object):
     async def test_non_ascii(self, client):
         tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
         await client.byte.put_non_ascii(tests)
-        assert tests ==  (await client.byte.get_non_ascii())
+        assert tests == (await client.byte.get_non_ascii())
 
     @pytest.mark.asyncio
     async def test_get_null(self, client):
@@ -61,7 +63,7 @@ class TestByte(object):
 
     @pytest.mark.asyncio
     async def test_get_empty(self, client):
-        assert bytearray() ==  (await client.byte.get_empty())
+        assert bytearray() == (await client.byte.get_empty())
 
     @pytest.mark.asyncio
     async def test_get_invalid(self, client):
