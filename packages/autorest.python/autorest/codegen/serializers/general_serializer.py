@@ -134,6 +134,7 @@ class GeneralSerializer(BaseSerializer):
         if (
             self.code_model.has_form_data
             and self.code_model.options["models_mode"] == "dpg"
+            and not self.async_mode
         ):
             file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
             file_import.add_submodule_import("typing", "Tuple", ImportType.STDLIB)
