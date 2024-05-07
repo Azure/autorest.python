@@ -24,13 +24,13 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: npm install -g pnpm@7.27.1
-        name: Install PNPM
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
 
       - run: pnpm install
         name: Install dependencies
 
       - name: Create release branch
-        run: node ./eng/publish.mjs
+        run: node ./eng/prepare-release-branch.js
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
