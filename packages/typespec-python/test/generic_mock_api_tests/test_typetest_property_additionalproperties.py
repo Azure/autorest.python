@@ -305,3 +305,9 @@ def test_spread_string(client: AdditionalPropertiesClient):
     body = {"name": "SpreadSpringRecord", "prop": "abc"}
     assert client.spread_string.get() == body
     client.spread_string.put(body)
+
+
+def test_spread_float(client: AdditionalPropertiesClient):
+    body = {"id": 43.125, "prop": 43.125}
+    assert client.spread_float.get() == body
+    client.spread_float.put(body)
