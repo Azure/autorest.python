@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Type, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -77,31 +77,33 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def invalid(self, **kwargs: Any) -> _models.InvalidAuth:
         """Check whether client is authenticated.
 
-        :return: None
-        :rtype: None
+        :return: InvalidAuth. The InvalidAuth is compatible with MutableMapping
+        :rtype: ~authentication.apikey.models.InvalidAuth
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 204, 403
+                response == {
+                    "error": "str"  # Required.
+                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            403: cast(
-                Type[HttpResponseError],
-                lambda response: HttpResponseError(
-                    response=response, model=_deserialize(_models.InvalidAuth, response.json())
-                ),
-            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.InvalidAuth] = kwargs.pop("cls", None)
 
         _request = build_api_key_invalid_request(
             headers=_headers,
@@ -109,18 +111,32 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [204]:
+        if response.status_code not in [204, 403]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if response.status_code == 204:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.InvalidAuth, response.json())
+
+        if response.status_code == 403:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.InvalidAuth, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore

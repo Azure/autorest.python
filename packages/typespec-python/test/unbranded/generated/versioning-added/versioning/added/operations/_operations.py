@@ -112,8 +112,7 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v1": ["endpoint", "version", "accept"]},
     )
     def v2_in_interface(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
@@ -149,8 +148,7 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v1": ["endpoint", "version", "accept"]},
     )
     def v2_in_interface(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
@@ -177,8 +175,7 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v1": ["endpoint", "version", "accept"]},
     )
     def v2_in_interface(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
@@ -206,8 +203,7 @@ class InterfaceV2Operations:
         """
 
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v1": ["endpoint", "version", "accept"]},
     )
     def v2_in_interface(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
