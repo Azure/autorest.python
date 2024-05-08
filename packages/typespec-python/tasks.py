@@ -118,9 +118,9 @@ EMITTER_OPTIONS = {
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
     },
-    "mgmt/sphere": [
-        {"package-name": "azure-mgmt-spheredpg"},
-    ],
+    # "mgmt/sphere": [
+    #     {"package-name": "azure-mgmt-spheredpg"},
+    # ],
 }
 
 
@@ -177,8 +177,10 @@ def _entry_file_name(path: Path) -> Path:
 
 def _get_specification_dirs(category: Literal["azure", "unbranded"]) -> List[Path]:
     # we should remove the need for this by removing our local definition of mgmt sphere
-    local_specification_folder = Path(f"test/{category}/specification")
-    return [CADL_RANCH_DIR, local_specification_folder] if local_specification_folder.exists() else [CADL_RANCH_DIR]
+    # local_specification_folder = Path(f"test/{category}/specification")
+    # return [CADL_RANCH_DIR, local_specification_folder] if local_specification_folder.exists() else [CADL_RANCH_DIR]
+
+    return [CADL_RANCH_DIR]
 
 
 def _all_specification_folders(category: Literal["azure", "unbranded"], filename: str = "main.tsp") -> List[Path]:
