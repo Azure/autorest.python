@@ -67,3 +67,15 @@ class BodyParameter(PropertyTypeBase[types.YamlBodyParameter]):
         self.kind = yaml_data["kind"]
         self.content_types = yaml_data["contentTypes"]
         self.default_content_type = yaml_data["defaultContentType"]
+
+
+
+def get_client_parameter(sdk_package: SdkPackage, yaml_data: types.ClientInitializationParameter) -> typing.Union[EndpointParameter, CredentialParameter, MethodParameter]:
+    kind = yaml_data["kind"]
+    if kind == "endpoint":
+        return EndpointParameter(sdk_package, typing.cast(types.YamlEndpointParameter, yaml_data))
+    if kind == "method":
+        return MethodParameter(sdk_package, yaml_data)
+    if kind == "credential":
+        return CredentialParameter(sdk_package, typing.cast(types.YamlCredentialParameter, yaml_data))
+    raise ValueError(f"Unknown parameter kind: {kind}")

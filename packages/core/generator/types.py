@@ -31,8 +31,15 @@ class YamlType(TypedDict):
     """Represents any object in the yaml dictionary. Is the base clase for clients, types, etc."""
     ...
 
+
 class YamlClient(YamlType):
     name: str
+    description: str
+    subClients: List[YamlClient]
+    methods: List[YamlServiceMethod]
+    parameters: List[ClientInitializationParameter]
+    apiVersions: List[str]
+    publicInitialization: bool
 
 class YamlSdkType(YamlType):
     ...
@@ -150,6 +157,8 @@ class YamlQueryParameter(YamlPropertyTypeBase):
     collectionFormat: CollectionFormat
     serializedName: str
 
+ClientInitializationParameter = Union[YamlMethodParameter, YamlCredentialParameter, YamlEndpointParameter]
+
 YamlPropertyType = Union[
     YamlBodyModelPropertyType,
     YamlEndpointParameter,
@@ -158,8 +167,10 @@ YamlPropertyType = Union[
     YamlPathParameter,
     YamlQueryParameter,
     YamlBodyParameter,
-    YamlMethodParameter
+    ClientInitializationParameter
 ]
+
+
 
 class _YamlServiceMethodBase(TypedDict):
     name: str
@@ -191,6 +202,8 @@ class YamlLroServiceMethod(_YamlServiceMethodBase):
 
 class YamlLroPagingServiceMethod(_YamlServiceMethodBase, _YamlPagingServiceMethodOptions):
     kind: Literal["lropaging"]
+
+YamlServiceMethod = Union[YamlBasicServiceMethod, YamlPagingServiceMethod, YamlLroServiceMethod, YamlLroPagingServiceMethod]
 
 class YamlHttpOperation(TypedDict):
     kind: Literal["http"]

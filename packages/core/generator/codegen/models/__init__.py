@@ -12,6 +12,7 @@ if typing.TYPE_CHECKING:
     from .sdk_package import SdkPackage
 
 
+
 def get_type(sdk_package: SdkPackage, yaml_data: types.YamlSdkType) -> PythonSdkType:
     ...
 
