@@ -16,7 +16,7 @@ from .helpers import (
 )
 from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
-from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
+from .. import YamlUpdatePlugin
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
@@ -475,16 +475,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 self.update_operation_groups(yaml_data, client)
         if yaml_data.get("namespace"):
             yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
-
-
-class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
-    def get_options(self) -> Dict[str, Any]:
-        options = {
-            "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant"),
-            "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
-            "models-mode": self._autorestapi.get_value("models-mode"),
-        }
-        return {k: v for k, v in options.items() if v is not None}
 
 
 if __name__ == "__main__":

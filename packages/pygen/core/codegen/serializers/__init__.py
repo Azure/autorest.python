@@ -8,8 +8,7 @@ from typing import List, Optional, Any, Union
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 
-from ... import ReaderAndWriter, ReaderAndWriterAutorest
-from ...jsonrpc import AutorestAPI
+from ... import ReaderAndWriter
 from ..models import (
     OperationGroup,
     RequestBuilder,
@@ -138,7 +137,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def serialize(self) -> None:
         env = Environment(
-            loader=PackageLoader("autorest.codegen", "templates"),
+            loader=PackageLoader("core.codegen", "templates"),
             keep_trailing_newline=True,
             line_statement_prefix="##",
             line_comment_prefix="###",
@@ -196,7 +195,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         root_of_sdk = self._package_root_folder(namespace_path)
         if self.code_model.options["package_mode"] in VALID_PACKAGE_MODE:
             env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates/packaging_templates"),
+                loader=PackageLoader("core.codegen", "templates/packaging_templates"),
                 undefined=StrictUndefined,
             )
 
@@ -569,20 +568,3 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         log_error = f"error happens in test generation for operation group {og.class_name}: {e}"
                         _LOGGER.error(log_error)
         self.code_model.for_test = False
-
-
-class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
-    def __init__(
-        self,
-        autorestapi: AutorestAPI,
-        code_model: CodeModel,
-        *,
-        output_folder: Union[str, Path],
-        **kwargs: Any,
-    ) -> None:
-        super().__init__(
-            autorestapi=autorestapi,
-            code_model=code_model,
-            output_folder=output_folder,
-            **kwargs,
-        )

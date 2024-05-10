@@ -12,7 +12,7 @@ import black
 from black.report import NothingChanged
 from .venvtools import ExtendedEnvBuilder, python_run
 
-from .. import Plugin, PluginAutorest
+from .. import Plugin
 
 _BLACK_MODE = black.Mode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
@@ -181,8 +181,3 @@ class PostProcessPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = file_content.replace("__all__ = [", f"__all__ = [\n{added_objs_all}", 1)
         formatted_file = format_file(file, file_content)
         self.write_file(file, formatted_file)
-
-
-class PostProcessPluginAutorest(PostProcessPlugin, PluginAutorest):
-    def get_options(self) -> Dict[str, Any]:
-        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}

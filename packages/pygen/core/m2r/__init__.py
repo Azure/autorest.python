@@ -3,21 +3,21 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""An autorest MD to RST plugin.
+"""An MD to RST plugin.
 """
 import logging
 from typing import Any, Dict, Set, Union
 
 import m2r2
 
-from .. import YamlUpdatePluginAutorest, YamlUpdatePlugin
+from .. import YamlUpdatePlugin
 from .._utils import parse_args
 
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class AutorestRender(m2r2.RestRenderer):
+class GeneratorRenderer(m2r2.RestRenderer):
     """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
     in the description/summary.
     """
@@ -54,14 +54,9 @@ class M2R(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def convert_to_rst(string_to_convert: str) -> str:
         """Convert that string from MD to RST."""
         try:
-            return m2r2.convert(string_to_convert, renderer=AutorestRender()).strip()
+            return m2r2.convert(string_to_convert, renderer=GeneratorRenderer()).strip()
         except Exception:  # pylint: disable=broad-except
             return string_to_convert
-
-
-class M2RAutorest(YamlUpdatePluginAutorest, M2R):
-    def get_options(self) -> Dict[str, Any]:
-        return {}
 
 
 if __name__ == "__main__":

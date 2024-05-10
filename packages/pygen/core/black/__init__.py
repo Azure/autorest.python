@@ -10,7 +10,7 @@ from typing import Any, Dict
 import black
 from black.report import NothingChanged
 
-from .. import Plugin, PluginAutorest
+from .. import Plugin
 from .._utils import parse_args
 
 _LOGGER = logging.getLogger("blib2to3")
@@ -63,11 +63,6 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             raise
         else:
             self.write_file(file, file_content)
-
-
-class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):
-    def get_options(self) -> Dict[str, Any]:
-        return {"output_folder": self._autorestapi.get_value("outputFolderUri")}
 
 
 if __name__ == "__main__":
