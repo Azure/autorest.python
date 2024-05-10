@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ArmOperationStatusResourceProvisioningState(_model_base.Model):  # pylint: disable=name-too-long
+class ArmOperationStatus(_model_base.Model):
     """Standard Azure Resource Manager operation status response.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
@@ -71,42 +71,39 @@ class ArmOperationStatusResourceProvisioningState(_model_base.Model):  # pylint:
         super().__init__(*args, **kwargs)
 
 
-class ArmResourceBase(_model_base.Model):
-    """Base class used for type definitions."""
-
-
-class ArmResource(ArmResourceBase):
+class Resource(_model_base.Model):
     """Common properties for all Azure Resource Manager resources.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
     :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
     """
 
-    id: str = rest_field(visibility=["read"])
+    id: Optional[str] = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required."""
-    type: str = rest_field(visibility=["read"])
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long"""
+    name: Optional[str] = rest_field(visibility=["read"])
+    """The name of the resource."""
+    type: Optional[str] = rest_field(visibility=["read"])
     """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\". Required."""
+     \"Microsoft.Storage/storageAccounts\"."""
     system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
     """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
 
-class TrackedResourceBase(ArmResource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource.
+class TrackedResource(Resource):
+    """The resource model definition for an Azure Resource Manager tracked top level resource which
+    has 'tags' and a 'location'.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
@@ -114,10 +111,11 @@ class TrackedResourceBase(ArmResource):
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -152,7 +150,7 @@ class TrackedResourceBase(ArmResource):
         super().__init__(*args, **kwargs)
 
 
-class Catalog(TrackedResourceBase):
+class Catalog(TrackedResource):
     """An Azure Sphere catalog.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
@@ -161,10 +159,11 @@ class Catalog(TrackedResourceBase):
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -240,11 +239,15 @@ class CatalogProperties(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
+    :ivar tenant_id: The Azure Sphere tenant ID associated with the catalog.
+    :vartype tenant_id: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
+    tenant_id: Optional[str] = rest_field(name="tenantId", visibility=["read"])
+    """The Azure Sphere tenant ID associated with the catalog."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
@@ -280,19 +283,18 @@ class CatalogUpdate(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ProxyResourceBase(ArmResource):
+class ProxyResource(Resource):
     """The base proxy resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -300,19 +302,18 @@ class ProxyResourceBase(ArmResource):
     """
 
 
-class Certificate(ProxyResourceBase):
+class Certificate(ProxyResource):
     """An certificate resource belonging to a catalog resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -493,7 +494,7 @@ class CountElementsResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class CountDeviceResponse(CountElementsResponse):
+class CountDevicesResponse(CountElementsResponse):
     """Response to the action call for count devices in a catalog.
 
     All required parameters must be populated in order to send to server.
@@ -520,19 +521,18 @@ class CountDeviceResponse(CountElementsResponse):
         super().__init__(*args, **kwargs)
 
 
-class Deployment(ProxyResourceBase):
+class Deployment(ProxyResource):
     """An deployment resource belonging to a device group resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -646,19 +646,18 @@ class DeploymentProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Device(ProxyResourceBase):
+class Device(ProxyResource):
     """An device resource belonging to a device group resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -688,19 +687,18 @@ class Device(ProxyResourceBase):
         super().__init__(*args, **kwargs)
 
 
-class DeviceGroup(ProxyResourceBase):
+class DeviceGroup(ProxyResource):
     """An device group resource belonging to a product resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -842,11 +840,12 @@ class DeviceGroupProperties(_model_base.Model):
 class DeviceGroupUpdate(_model_base.Model):
     """The type used for update operations of the DeviceGroup.
 
-    :ivar properties:
+    :ivar properties: The updatable properties of the DeviceGroup.
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdateProperties
     """
 
     properties: Optional["_models.DeviceGroupUpdateProperties"] = rest_field()
+    """The updatable properties of the DeviceGroup."""
 
     @overload
     def __init__(
@@ -1091,11 +1090,12 @@ class DeviceProperties(_model_base.Model):
 class DeviceUpdate(_model_base.Model):
     """The type used for update operations of the Device.
 
-    :ivar properties:
+    :ivar properties: The updatable properties of the Device.
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceUpdateProperties
     """
 
     properties: Optional["_models.DeviceUpdateProperties"] = rest_field()
+    """The updatable properties of the Device."""
 
     @overload
     def __init__(
@@ -1250,19 +1250,18 @@ class GenerateCapabilityImageRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Image(ProxyResourceBase):
+class Image(ProxyResource):
     """An image resource belonging to a catalog resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -1455,8 +1454,8 @@ class Operation(_model_base.Model):
      (RBAC) and audit logs UX. Default value is "user,system". Known values are: "user", "system",
      and "user,system".
     :vartype origin: str or ~azure.mgmt.spheredpg.models.Origin
-    :ivar action_type: Enum. Indicates the action type. "Internal" refers to actions that are for
-     internal only APIs. "Internal"
+    :ivar action_type: Extensible enum. Indicates the action type. "Internal" refers to actions
+     that are for internal only APIs. "Internal"
     :vartype action_type: str or ~azure.mgmt.spheredpg.models.ActionType
     """
 
@@ -1474,8 +1473,8 @@ class Operation(_model_base.Model):
      logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
      \"user,system\"."""
     action_type: Optional[Union[str, "_models.ActionType"]] = rest_field(name="actionType")
-    """Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only
-     APIs. \"Internal\""""
+    """Extensible enum. Indicates the action type. \"Internal\" refers to actions that are for
+     internal only APIs. \"Internal\""""
 
     @overload
     def __init__(
@@ -1547,6 +1546,41 @@ class OperationDisplay(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class PagedDeviceInsight(_model_base.Model):
+    """Paged collection of DeviceInsight items.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar value: The DeviceInsight items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheredpg.models.DeviceInsight]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    value: List["_models.DeviceInsight"] = rest_field()
+    """The DeviceInsight items on this page. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """The link to the next page of items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List["_models.DeviceInsight"],
+        next_link: Optional[str] = None,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class PagedOperation(_model_base.Model):
     """A list of REST API operations supported by an Azure Resource Provider. It contains an URL link
     to get the next set of results.
@@ -1583,19 +1617,18 @@ class PagedOperation(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Product(ProxyResourceBase):
+class Product(ProxyResource):
     """An product resource belonging to a catalog resource.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
@@ -1665,17 +1698,15 @@ class ProductProperties(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
-
-    :ivar description: Description of the product. Required.
+    :ivar description: Description of the product.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    description: str = rest_field()
-    """Description of the product. Required."""
+    description: Optional[str] = rest_field()
+    """Description of the product."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
@@ -1686,7 +1717,7 @@ class ProductProperties(_model_base.Model):
     def __init__(
         self,
         *,
-        description: str,
+        description: Optional[str] = None,
     ): ...
 
     @overload
@@ -1703,11 +1734,12 @@ class ProductProperties(_model_base.Model):
 class ProductUpdate(_model_base.Model):
     """The type used for update operations of the Product.
 
-    :ivar properties:
+    :ivar properties: The updatable properties of the Product.
     :vartype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
     """
 
     properties: Optional["_models.ProductUpdateProperties"] = rest_field()
+    """The updatable properties of the Product."""
 
     @overload
     def __init__(

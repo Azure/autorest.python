@@ -44,6 +44,7 @@ from ...operations._operations import (
     build_catalogs_list_device_insights_request,
     build_catalogs_list_devices_request,
     build_catalogs_update_request,
+    build_catalogs_upload_image_request,
     build_certificates_get_request,
     build_certificates_list_by_catalog_request,
     build_certificates_retrieve_cert_chain_request,
@@ -119,8 +120,8 @@ class Operations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionType": "str",  # Optional. Enum. Indicates the action type. "Internal"
-                      refers to actions that are for internal only APIs. "Internal"
+                    "actionType": "str",  # Optional. Extensible enum. Indicates the action type.
+                      "Internal" refers to actions that are for internal only APIs. "Internal"
                     "display": {
                         "description": "str",  # Optional. The short, localized friendly
                           description of the operation; suitable for tool tips and detailed views.
@@ -213,24 +214,6 @@ class Operations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class CustomUpdateOperationsOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
-        :attr:`custom_update_operations` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-
 class CatalogsOperations:
     """
     .. warning::
@@ -267,17 +250,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -297,7 +279,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -379,8 +363,8 @@ class CatalogsOperations:
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -448,17 +432,16 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -478,22 +461,23 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -513,7 +497,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -550,17 +536,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -580,7 +565,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -617,17 +604,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -647,7 +633,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -680,17 +668,16 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -710,22 +697,23 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -745,7 +733,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -832,17 +822,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -862,7 +851,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -898,17 +889,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -928,7 +918,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -964,17 +956,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -994,7 +985,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -1033,17 +1026,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -1063,7 +1055,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1091,8 +1085,8 @@ class CatalogsOperations:
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -1238,17 +1232,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -1268,7 +1261,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1354,17 +1349,16 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
                     "location": "str",  # The geo-location where the resource lives. Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "provisioningState": "str"  # Optional. The status of the last
+                        "provisioningState": "str",  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
+                          with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
@@ -1384,7 +1378,9 @@ class CatalogsOperations:
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1458,7 +1454,7 @@ class CatalogsOperations:
     @distributed_trace_async
     async def count_devices(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> _models.CountDeviceResponse:
+    ) -> _models.CountDevicesResponse:
         """Counts devices in catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1466,8 +1462,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
+        :return: CountDevicesResponse. The CountDevicesResponse is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.CountDevicesResponse
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -1489,7 +1485,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CountDevicesResponse] = kwargs.pop("cls", None)
 
         _request = build_catalogs_count_devices_request(
             resource_group_name=resource_group_name,
@@ -1518,12 +1514,625 @@ class CatalogsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = _deserialize(_models.CountDevicesResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+
+    @distributed_trace
+    def list_deployments(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.Deployment"]:
+        # pylint: disable=line-too-long
+        """Lists deployments for catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of Deployment
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Deployment]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "deployedImages": [
+                            {
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
+                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                "name": "str",  # Optional. The name of the resource.
+                                "properties": {
+                                    "componentId": "str",  # Optional. The image
+                                      component id.
+                                    "description": "str",  # Optional. The image
+                                      description.
+                                    "image": "str",  # Optional. Image as a UTF-8
+                                      encoded base 64 string on image create. This field contains the
+                                      image URI on image reads.
+                                    "imageId": "str",  # Optional. Image ID.
+                                    "imageName": "str",  # Optional. Image name.
+                                    "imageType": "str",  # Optional. The image
+                                      type. Known values are: "InvalidImageType", "OneBl",
+                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                      "UpdateCertStore", "BaseSystemUpdateManifest",
+                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                    "provisioningState": "str",  # Optional. The
+                                      status of the last operation. Known values are: "Succeeded",
+                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                      "Accepted".
+                                    "regionalDataBoundary": "str",  # Optional.
+                                      Regional data boundary for an image. Known values are: "None" and
+                                      "EU".
+                                    "uri": "str"  # Optional. Location the image.
+                                },
+                                "systemData": {
+                                    "createdAt": "2020-02-20",  # Optional. The
+                                      type of identity that created the resource.
+                                    "createdBy": "str",  # Optional. The identity
+                                      that created the resource.
+                                    "createdByType": "str",  # Optional. The type
+                                      of identity that created the resource. Known values are: "User",
+                                      "Application", "ManagedIdentity", and "Key".
+                                    "lastModifiedAt": "2020-02-20",  # Optional.
+                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedBy": "str",  # Optional. The
+                                      identity that last modified the resource.
+                                    "lastModifiedByType": "str"  # Optional. The
+                                      type of identity that last modified the resource. Known values
+                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
+                            }
+                        ],
+                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
+                          date UTC.
+                        "deploymentId": "str",  # Optional. Deployment ID.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_catalogs_list_deployments_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @overload
+    def list_device_groups(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: _models.ListDeviceGroupsRequest,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
+        """List the device groups for the catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: List device groups for catalog. Required.
+        :type body: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "deviceGroupName": "str"  # Optional. Device Group name.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    def list_device_groups(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: JSON,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
+        """List the device groups for the catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: List device groups for catalog. Required.
+        :type body: JSON
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    def list_device_groups(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: IO[bytes],
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncIterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
+        """List the device groups for the catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: List device groups for catalog. Required.
+        :type body: IO[bytes]
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @distributed_trace
+    def list_device_groups(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: Union[_models.ListDeviceGroupsRequest, JSON, IO[bytes]],
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
+        """List the device groups for the catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: List device groups for catalog. Is one of the following types:
+         ListDeviceGroupsRequest, JSON, IO[bytes] Required.
+        :type body: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON or IO[bytes]
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "deviceGroupName": "str"  # Optional. Device Group name.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_catalogs_list_device_groups_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    content_type=content_type,
+                    api_version=self._config.api_version,
+                    content=_content,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def list_device_insights(
@@ -1678,12 +2287,9 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -1714,7 +2320,9 @@ class CatalogsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1792,133 +2400,9 @@ class CatalogsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    @distributed_trace
-    def list_deployments(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Deployment"]:
-        # pylint: disable=line-too-long
-        """Lists deployments for catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :return: An iterator like instance of Deployment
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Deployment]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "deployedImages": [
-                            {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
-                                "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
-                                },
-                                "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
-                            }
-                        ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
-
+    async def _upload_image_initial(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, catalog_name: str, body: Union[_models.Image, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1927,534 +2411,87 @@ class CatalogsOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                _request = build_catalogs_list_deployments_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    subscription_id=self._config.subscription_id,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
-                    api_version=self._config.api_version,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            return _request
-
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
-
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
-    @overload
-    def list_device_groups(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        parameters: _models.ListDeviceGroupsRequest,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
-        """List the device groups for the catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param parameters: List device groups for catalog. Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "deviceGroupName": "str"  # Optional. Device Group name.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def list_device_groups(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        parameters: JSON,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
-        """List the device groups for the catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param parameters: List device groups for catalog. Required.
-        :type parameters: JSON
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    def list_device_groups(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        parameters: IO[bytes],
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
-        """List the device groups for the catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param parameters: List device groups for catalog. Required.
-        :type parameters: IO[bytes]
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace
-    def list_device_groups(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        parameters: Union[_models.ListDeviceGroupsRequest, JSON, IO[bytes]],
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
-        """List the device groups for the catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param parameters: List device groups for catalog. Is one of the following types:
-         ListDeviceGroupsRequest, JSON, IO[bytes] Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON or IO[bytes]
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "deviceGroupName": "str"  # Optional. Device Group name.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(parameters, (IOBase, bytes)):
-            _content = parameters
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        _request = build_catalogs_upload_image_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
 
-                _request = build_catalogs_list_device_groups_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    subscription_id=self._config.subscription_id,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
-                    content_type=content_type,
-                    api_version=self._config.api_version,
-                    content=_content,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
 
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
+        response = pipeline_response.http_response
 
-            return _request
+        if response.status_code not in [202]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+        response_headers = {}
+        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        if cls:
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
-
-class ImagesOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
-        :attr:`images` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.Image:
+    @overload
+    async def begin_upload_image(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: _models.Image,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         # pylint: disable=line-too-long
-        """Get a Image.
+        """Creates an image. Use this action when the image ID is unknown.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :return: Image. The Image is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Image
+        :param body: Image upload request body. Required.
+        :type body: ~azure.mgmt.spheredpg.models.Image
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -2491,7 +2528,876 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_upload_image(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[None]:
+        """Creates an image. Use this action when the image ID is unknown.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: Image upload request body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def begin_upload_image(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        body: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[None]:
+        """Creates an image. Use this action when the image ID is unknown.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: Image upload request body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def begin_upload_image(
+        self, resource_group_name: str, catalog_name: str, body: Union[_models.Image, JSON, IO[bytes]], **kwargs: Any
+    ) -> AsyncLROPoller[None]:
+        # pylint: disable=line-too-long
+        """Creates an image. Use this action when the image ID is unknown.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param body: Image upload request body. Is one of the following types: Image, JSON, IO[bytes]
+         Required.
+        :type body: ~azure.mgmt.spheredpg.models.Image or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "componentId": "str",  # Optional. The image component id.
+                        "description": "str",  # Optional. The image description.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
+                          on image create. This field contains the image URI on image reads.
+                        "imageId": "str",  # Optional. Image ID.
+                        "imageName": "str",  # Optional. Image name.
+                        "imageType": "str",  # Optional. The image type. Known values are:
+                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
+                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
+                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
+                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for an image. Known values are: "None" and "EU".
+                        "uri": "str"  # Optional. Location the image.
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._upload_image_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                body=body,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+            if cls:
+                return cls(pipeline_response, None, {})  # type: ignore
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[None].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+
+
+class CertificatesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
+        :attr:`certificates` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(
+        self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
+    ) -> _models.Certificate:
+        # pylint: disable=line-too-long
+        """Get a Certificate.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :return: Certificate. The Certificate is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Certificate
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
+                          base 64 string.
+                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
+                          expiry date.
+                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
+                          not before date.
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "status": "str",  # Optional. The certificate status. Known values
+                          are: "Active", "Inactive", "Expired", and "Revoked".
+                        "subject": "str",  # Optional. The certificate subject.
+                        "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.Certificate] = kwargs.pop("cls", None)
+
+        _request = build_certificates_get_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            serial_number=serial_number,
+            subscription_id=self._config.subscription_id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Certificate, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def list_by_catalog(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.Certificate"]:
+        # pylint: disable=line-too-long
+        """List Certificate resources by Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of Certificate
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Certificate]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
+                          base 64 string.
+                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
+                          expiry date.
+                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
+                          not before date.
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "status": "str",  # Optional. The certificate status. Known values
+                          are: "Active", "Inactive", "Expired", and "Revoked".
+                        "subject": "str",  # Optional. The certificate subject.
+                        "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_certificates_list_by_catalog_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
                     }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Certificate], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace_async
+    async def retrieve_cert_chain(
+        self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
+    ) -> _models.CertificateChainResponse:
+        """Retrieves cert chain.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :return: CertificateChainResponse. The CertificateChainResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.CertificateChainResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "certificateChain": "str"  # Optional. The certificate chain.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.CertificateChainResponse] = kwargs.pop("cls", None)
+
+        _request = build_certificates_retrieve_cert_chain_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            serial_number=serial_number,
+            subscription_id=self._config.subscription_id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.CertificateChainResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def retrieve_proof_of_possession_nonce(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        serial_number: str,
+        body: _models.ProofOfPossessionNonceRequest,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
+        """Gets the proof of possession nonce.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :param body: Proof of possession nonce request body. Required.
+        :type body: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
+                      string.
+                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                      before date.
+                    "provisioningState": "str",  # Optional. The status of the last operation.
+                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                      "Deleting", and "Accepted".
+                    "status": "str",  # Optional. The certificate status. Known values are:
+                      "Active", "Inactive", "Expired", and "Revoked".
+                    "subject": "str",  # Optional. The certificate subject.
+                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                }
+        """
+
+    @overload
+    async def retrieve_proof_of_possession_nonce(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        serial_number: str,
+        body: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
+        """Gets the proof of possession nonce.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :param body: Proof of possession nonce request body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
+                      string.
+                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                      before date.
+                    "provisioningState": "str",  # Optional. The status of the last operation.
+                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                      "Deleting", and "Accepted".
+                    "status": "str",  # Optional. The certificate status. Known values are:
+                      "Active", "Inactive", "Expired", and "Revoked".
+                    "subject": "str",  # Optional. The certificate subject.
+                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                }
+        """
+
+    @overload
+    async def retrieve_proof_of_possession_nonce(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        serial_number: str,
+        body: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
+        """Gets the proof of possession nonce.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :param body: Proof of possession nonce request body. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
+                      string.
+                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                      before date.
+                    "provisioningState": "str",  # Optional. The status of the last operation.
+                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                      "Deleting", and "Accepted".
+                    "status": "str",  # Optional. The certificate status. Known values are:
+                      "Active", "Inactive", "Expired", and "Revoked".
+                    "subject": "str",  # Optional. The certificate subject.
+                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                }
+        """
+
+    @distributed_trace_async
+    async def retrieve_proof_of_possession_nonce(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        serial_number: str,
+        body: Union[_models.ProofOfPossessionNonceRequest, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
+        """Gets the proof of possession nonce.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param serial_number: Serial number of the certificate. Use '.default' to get current active
+         certificate. Required.
+        :type serial_number: str
+        :param body: Proof of possession nonce request body. Is one of the following types:
+         ProofOfPossessionNonceRequest, JSON, IO[bytes] Required.
+        :type body: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or IO[bytes]
+        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
+         MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
+                      string.
+                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                      before date.
+                    "provisioningState": "str",  # Optional. The status of the last operation.
+                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                      "Deleting", and "Accepted".
+                    "status": "str",  # Optional. The certificate status. Known values are:
+                      "Active", "Inactive", "Expired", and "Revoked".
+                    "subject": "str",  # Optional. The certificate subject.
+                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.ProofOfPossessionNonceResponse] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_certificates_retrieve_proof_of_possession_nonce_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            serial_number=serial_number,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ProofOfPossessionNonceResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+
+class ImagesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
+        :attr:`images` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.Image:
+        # pylint: disable=line-too-long
+        """Get a Image.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
+        :type image_name: str
+        :return: Image. The Image is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Image
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "componentId": "str",  # Optional. The image component id.
+                        "description": "str",  # Optional. The image description.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
+                          on image create. This field contains the image URI on image reads.
+                        "imageId": "str",  # Optional. Image ID.
+                        "imageName": "str",  # Optional. Image name.
+                        "imageType": "str",  # Optional. The image type. Known values are:
+                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
+                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
+                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
+                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for an image. Known values are: "None" and "EU".
+                        "uri": "str"  # Optional. Location the image.
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2542,160 +3448,6 @@ class ImagesOperations:
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def list_by_catalog(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Image"]:
-        # pylint: disable=line-too-long
-        """List Image resources by Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :return: An iterator like instance of Image
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Image]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
-
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                _request = build_images_list_by_catalog_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    subscription_id=self._config.subscription_id,
-                    api_version=self._config.api_version,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            return _request
-
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Image], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
-
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
     async def _create_or_update_initial(
         self,
         resource_group_name: str,
@@ -2730,8 +3482,8 @@ class ImagesOperations:
             catalog_name=catalog_name,
             image_name=image_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -2785,7 +3537,7 @@ class ImagesOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
         :type image_name: str
         :param resource: Resource create parameters. Required.
         :type resource: ~azure.mgmt.spheredpg.models.Image
@@ -2802,12 +3554,9 @@ class ImagesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -2844,17 +3593,16 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -2891,7 +3639,9 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -2914,7 +3664,7 @@ class ImagesOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
         :type image_name: str
         :param resource: Resource create parameters. Required.
         :type resource: JSON
@@ -2931,12 +3681,9 @@ class ImagesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -2973,7 +3720,9 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -2996,7 +3745,7 @@ class ImagesOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
         :type image_name: str
         :param resource: Resource create parameters. Required.
         :type resource: IO[bytes]
@@ -3013,12 +3762,9 @@ class ImagesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -3055,7 +3801,9 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3076,7 +3824,7 @@ class ImagesOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
         :type image_name: str
         :param resource: Resource create parameters. Is one of the following types: Image, JSON,
          IO[bytes] Required.
@@ -3091,12 +3839,9 @@ class ImagesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -3133,17 +3878,16 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
@@ -3180,7 +3924,9 @@ class ImagesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -3289,7 +4035,7 @@ class ImagesOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
+        :param image_name: Image name. Use an image GUID for GA versions of the API. Required.
         :type image_name: str
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -3333,15 +4079,168 @@ class ImagesOperations:
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
+    @distributed_trace
+    def list_by_catalog(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.Image"]:
+        # pylint: disable=line-too-long
+        """List Image resources by Catalog.
 
-class DeviceGroupsOperations:
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of Image
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Image]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "componentId": "str",  # Optional. The image component id.
+                        "description": "str",  # Optional. The image description.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
+                          on image create. This field contains the image URI on image reads.
+                        "imageId": "str",  # Optional. Image ID.
+                        "imageName": "str",  # Optional. Image name.
+                        "imageType": "str",  # Optional. The image type. Known values are:
+                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
+                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
+                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
+                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for an image. Known values are: "None" and "EU".
+                        "uri": "str"  # Optional. Location the image.
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_images_list_by_catalog_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Image], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+
+class ProductsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
-        :attr:`device_groups` attribute.
+        :attr:`products` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3351,21 +4250,13 @@ class DeviceGroupsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace
-    def list_by_product(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
+    @distributed_trace_async
+    async def get(
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> _models.Product:
         # pylint: disable=line-too-long
-        """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
-        and cannot be used for product name.
+        """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -3374,12 +4265,1240 @@ class DeviceGroupsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+
+        _request = build_products_get_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Product, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    async def _create_or_update_initial(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: Union[_models.Product, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> JSON:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IOBase, bytes)):
+            _content = resource
+        else:
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_products_create_or_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = _deserialize(JSON, response.json())
+
+        if response.status_code == 201:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = _deserialize(JSON, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: _models.Product,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Product
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+
+                # response body for status code(s): 200, 201
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Required.
+        :type resource: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @distributed_trace_async
+    async def begin_create_or_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        resource: Union[_models.Product, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param resource: Resource create parameters. Is one of the following types: Product, JSON,
+         IO[bytes] Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Product or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource = {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+
+                # response body for status code(s): 200, 201
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._create_or_update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
+            deserialized = _deserialize(_models.Product, response.json())
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[_models.Product].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    async def _update_initial(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> Optional[JSON]:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(properties, (IOBase, bytes)):
+            _content = properties
+        else:
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_products_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = _deserialize(JSON, response.json())
+
+        if response.status_code == 202:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: _models.ProductUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "description": "str"  # Optional. Description of the product.
+                    }
+                }
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @distributed_trace_async
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        # pylint: disable=line-too-long
+        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param properties: The resource properties to be updated. Is one of the following types:
+         ProductUpdate, JSON, IO[bytes] Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "description": "str"  # Optional. Description of the product.
+                    }
+                }
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                properties=properties,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
+            deserialized = _deserialize(_models.Product, response.json())
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[_models.Product].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> None:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_products_delete_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202, 204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 202:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)  # type: ignore
+
+    @distributed_trace_async
+    async def begin_delete(
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
+        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
+        product name'.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._delete_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+            if cls:
+                return cls(pipeline_response, None, {})  # type: ignore
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[None].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+
+    @distributed_trace
+    def list_by_catalog(
+        self, resource_group_name: str, catalog_name: str, **kwargs: Any
+    ) -> AsyncIterable["_models.Product"]:
+        # pylint: disable=line-too-long
+        """List Product resources by Catalog.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "description": "str",  # Optional. Description of the product.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_products_list_by_catalog_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    subscription_id=self._config.subscription_id,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Product], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace_async
+    async def count_devices(
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> _models.CountDevicesResponse:
+        """Counts devices in product. '.default' and '.unassigned' are system defined values and cannot be
+        used for product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :return: CountDevicesResponse. The CountDevicesResponse is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.CountDevicesResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": 0  # Number of children resources in parent resource. Required.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.CountDevicesResponse] = kwargs.pop("cls", None)
+
+        _request = build_products_count_devices_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            subscription_id=self._config.subscription_id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.CountDevicesResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def generate_default_device_groups(
+        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
+    ) -> AsyncIterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
+        """Generates default device groups for the product. '.default' and '.unassigned' are system
+        defined values and cannot be used for product name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3389,12 +5508,9 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3427,13 +5543,14 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3447,15 +5564,11 @@ class DeviceGroupsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_device_groups_list_by_product_request(
+                _request = build_products_generate_default_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
                     subscription_id=self._config.subscription_id,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3506,6 +5619,24 @@ class DeviceGroupsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
+
+class DeviceGroupsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
+        :attr:`device_groups` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
     @distributed_trace_async
     async def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
@@ -3532,12 +5663,9 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3570,7 +5698,9 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3734,12 +5864,9 @@ class DeviceGroupsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3772,17 +5899,16 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3815,7 +5941,9 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3859,12 +5987,9 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3897,7 +6022,9 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3941,12 +6068,9 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -3979,7 +6103,9 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -4019,12 +6145,9 @@ class DeviceGroupsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -4057,17 +6180,16 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
                           the user allows for crash dump collection. Known values are: "Enabled" and
@@ -4100,7 +6222,9 @@ class DeviceGroupsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -4118,6 +6242,476 @@ class DeviceGroupsOperations:
                 product_name=product_name,
                 device_group_name=device_group_name,
                 resource=resource,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
+
+        def get_long_running_output(pipeline_response):
+            response = pipeline_response.http_response
+            deserialized = _deserialize(_models.DeviceGroup, response.json())
+            if cls:
+                return cls(pipeline_response, deserialized, {})  # type: ignore
+            return deserialized
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
+        else:
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[_models.DeviceGroup].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[_models.DeviceGroup](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
+
+    async def _update_initial(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> Optional[JSON]:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(properties, (IOBase, bytes)):
+            _content = properties
+        else:
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_device_groups_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            device_group_name=device_group_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        deserialized = None
+        response_headers = {}
+        if response.status_code == 200:
+            deserialized = _deserialize(JSON, response.json())
+
+        if response.status_code == 202:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: _models.DeviceGroupUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
+         with MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    }
+                }
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
+         with MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
+         with MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @distributed_trace_async
+    async def begin_update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> AsyncLROPoller[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
+        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
+        for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param properties: The resource properties to be updated. Is one of the following types:
+         DeviceGroupUpdate, JSON, IO[bytes] Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
+         with MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    }
+                }
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._update_initial(
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                properties=properties,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
                 headers=_headers,
@@ -4259,93 +6853,21 @@ class DeviceGroupsOperations:
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _update_initial(
+    @distributed_trace
+    def list_by_product(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        device_group_name: str,
-        properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(properties, (IOBase, bytes)):
-            _content = properties
-        else:
-            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_device_groups_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        deserialized = None
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 202:
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
-    @overload
-    async def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: _models.DeviceGroupUpdate,
         *,
-        content_type: str = "application/json",
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.DeviceGroup]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
+        """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
+        and cannot be used for product name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -4354,403 +6876,14 @@ class DeviceGroupsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
-         with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    }
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
-         with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
-         with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace_async
-    async def begin_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         DeviceGroupUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO[bytes]
-        :return: An instance of AsyncLROPoller that returns DeviceGroup. The DeviceGroup is compatible
-         with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    }
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = await self._update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                device_group_name=device_group_name,
-                properties=properties,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.DeviceGroup, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return AsyncLROPoller[_models.DeviceGroup].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return AsyncLROPoller[_models.DeviceGroup](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
-
-    @distributed_trace_async
-    async def count_devices(
-        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> _models.CountDeviceResponse:
-        """Counts devices in device group. '.default' and '.unassigned' are system defined values and
-        cannot be used for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -4758,9 +6891,52 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": 0  # Number of children resources in parent resource. Required.
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
+                          the user allows for crash dump collection. Known values are: "Enabled" and
+                          "Disabled".
+                        "description": "str",  # Optional. Description of the device group.
+                        "hasDeployment": bool,  # Optional. Deployment status for the device
+                          group.
+                        "osFeedType": "str",  # Optional. Operating system feed type of the
+                          device group. Known values are: "Retail" and "RetailEval".
+                        "provisioningState": "str",  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
+                          for the device group. Known values are: "None" and "EU".
+                        "updatePolicy": "str"  # Optional. Update policy of the device group.
+                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4769,199 +6945,77 @@ class DeviceGroupsOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        def prepare_request(next_link=None):
+            if not next_link:
 
-        cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
+                _request = build_device_groups_list_by_product_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    product_name=product_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
 
-        _request = build_device_groups_count_devices_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+            return _request
 
-        response = pipeline_response.http_response
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
-        if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
 
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        return deserialized  # type: ignore
+            return pipeline_response
 
-    @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
+        return AsyncItemPaged(get_next, extract_data)
+
+    async def _claim_devices_initial(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        claim_devices_request: _models.ClaimDevicesRequest,
-        *,
-        content_type: str = "application/json",
+        body: Union[_models.ClaimDevicesRequest, JSON, IO[bytes]],
         **kwargs: Any
     ) -> None:
-        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
-        when bulk claiming devices to a catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Required.
-        :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                claim_devices_request = {
-                    "deviceIdentifiers": [
-                        "str"  # Device identifiers of the devices to be claimed. Required.
-                    ]
-                }
-        """
-
-    @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        claim_devices_request: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
-        when bulk claiming devices to a catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Required.
-        :type claim_devices_request: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        claim_devices_request: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
-        when bulk claiming devices to a catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Required.
-        :type claim_devices_request: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace_async
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        claim_devices_request: Union[_models.ClaimDevicesRequest, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> None:
-        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
-        when bulk claiming devices to a catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Is one of the following types:
-         ClaimDevicesRequest, JSON, IO[bytes] Required.
-        :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest or JSON or
-         IO[bytes]
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                claim_devices_request = {
-                    "deviceIdentifiers": [
-                        "str"  # Device identifiers of the devices to be claimed. Required.
-                    ]
-                }
-        """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4978,10 +7032,10 @@ class DeviceGroupsOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(claim_devices_request, (IOBase, bytes)):
-            _content = claim_devices_request
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(claim_devices_request, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
@@ -5012,606 +7066,253 @@ class DeviceGroupsOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-
-class CertificatesOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
-        :attr:`certificates` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-    @distributed_trace_async
-    async def get(
-        self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
-    ) -> _models.Certificate:
-        # pylint: disable=line-too-long
-        """Get a Certificate.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :return: Certificate. The Certificate is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Certificate
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
-                        "subject": "str",  # Optional. The certificate subject.
-                        "thumbprint": "str"  # Optional. The certificate thumbprint.
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.Certificate] = kwargs.pop("cls", None)
-
-        _request = build_certificates_get_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            serial_number=serial_number,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.Certificate, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
-
-    @distributed_trace
-    def list_by_catalog(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Certificate"]:
-        # pylint: disable=line-too-long
-        """List Certificate resources by Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :return: An iterator like instance of Certificate
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Certificate]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
-                        "subject": "str",  # Optional. The certificate subject.
-                        "thumbprint": "str"  # Optional. The certificate thumbprint.
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
-
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                _request = build_certificates_list_by_catalog_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    subscription_id=self._config.subscription_id,
-                    api_version=self._config.api_version,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            return _request
-
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Certificate], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
-
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
-    @distributed_trace_async
-    async def retrieve_cert_chain(
-        self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
-    ) -> _models.CertificateChainResponse:
-        """Retrieves cert chain.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :return: CertificateChainResponse. The CertificateChainResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.CertificateChainResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "certificateChain": "str"  # Optional. The certificate chain.
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.CertificateChainResponse] = kwargs.pop("cls", None)
-
-        _request = build_certificates_retrieve_cert_chain_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            serial_number=serial_number,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.CertificateChainResponse, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
-
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    async def begin_claim_devices(
         self,
         resource_group_name: str,
         catalog_name: str,
-        serial_number: str,
-        parameters: _models.ProofOfPossessionNonceRequest,
+        product_name: str,
+        device_group_name: str,
+        body: _models.ClaimDevicesRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
-        """Gets the proof of possession nonce.
+    ) -> AsyncLROPoller[None]:
+        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
+        when bulk claiming devices to a catalog only.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param body: Bulk claim devices request body. Required.
+        :type body: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                body = {
+                    "deviceIdentifiers": [
+                        "str"  # Device identifiers of the devices to be claimed. Required.
+                    ]
                 }
         """
 
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    async def begin_claim_devices(
         self,
         resource_group_name: str,
         catalog_name: str,
-        serial_number: str,
-        parameters: JSON,
+        product_name: str,
+        device_group_name: str,
+        body: JSON,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
-        """Gets the proof of possession nonce.
+    ) -> AsyncLROPoller[None]:
+        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
+        when bulk claiming devices to a catalog only.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Required.
-        :type parameters: JSON
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param body: Bulk claim devices request body. Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
-                }
         """
 
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    async def begin_claim_devices(
         self,
         resource_group_name: str,
         catalog_name: str,
-        serial_number: str,
-        parameters: IO[bytes],
+        product_name: str,
+        device_group_name: str,
+        body: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
-        """Gets the proof of possession nonce.
+    ) -> AsyncLROPoller[None]:
+        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
+        when bulk claiming devices to a catalog only.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Required.
-        :type parameters: IO[bytes]
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param body: Bulk claim devices request body. Required.
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
-                }
         """
 
     @distributed_trace_async
-    async def retrieve_proof_of_possession_nonce(
+    async def begin_claim_devices(
         self,
         resource_group_name: str,
         catalog_name: str,
-        serial_number: str,
-        parameters: Union[_models.ProofOfPossessionNonceRequest, JSON, IO[bytes]],
+        product_name: str,
+        device_group_name: str,
+        body: Union[_models.ClaimDevicesRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
-        """Gets the proof of possession nonce.
+    ) -> AsyncLROPoller[None]:
+        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
+        when bulk claiming devices to a catalog only.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Is one of the following types:
-         ProofOfPossessionNonceRequest, JSON, IO[bytes] Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or
-         IO[bytes]
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param body: Bulk claim devices request body. Is one of the following types:
+         ClaimDevicesRequest, JSON, IO[bytes] Required.
+        :type body: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns None
+        :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                body = {
+                    "deviceIdentifiers": [
+                        "str"  # Device identifiers of the devices to be claimed. Required.
+                    ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProofOfPossessionNonceResponse] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
+        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
+        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
+        if cont_token is None:
+            raw_result = await self._claim_devices_initial(  # type: ignore
+                resource_group_name=resource_group_name,
+                catalog_name=catalog_name,
+                product_name=product_name,
+                device_group_name=device_group_name,
+                body=body,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
+            )
+        kwargs.pop("error_map", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(parameters, (IOBase, bytes)):
-            _content = parameters
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+            if cls:
+                return cls(pipeline_response, None, {})  # type: ignore
+
+        if polling is True:
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
+        elif polling is False:
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
-            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            polling_method = polling
+        if cont_token:
+            return AsyncLROPoller[None].from_continuation_token(
+                polling_method=polling_method,
+                continuation_token=cont_token,
+                client=self._client,
+                deserialization_callback=get_long_running_output,
+            )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-        _request = build_certificates_retrieve_proof_of_possession_nonce_request(
+    @distributed_trace_async
+    async def count_devices(
+        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
+    ) -> _models.CountDevicesResponse:
+        """Counts devices in device group. '.default' and '.unassigned' are system defined values and
+        cannot be used for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :return: CountDevicesResponse. The CountDevicesResponse is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.CountDevicesResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "value": 0  # Number of children resources in parent resource. Required.
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.CountDevicesResponse] = kwargs.pop("cls", None)
+
+        _request = build_device_groups_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
-            serial_number=serial_number,
+            product_name=product_name,
+            device_group_name=device_group_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -5634,7 +7335,7 @@ class CertificatesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProofOfPossessionNonceResponse, response.json())
+            deserialized = _deserialize(_models.CountDevicesResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5694,22 +7395,16 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -5753,7 +7448,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -5778,7 +7476,9 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5830,211 +7530,6 @@ class DeploymentsOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    @distributed_trace
-    def list_by_device_group(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.Deployment"]:
-        # pylint: disable=line-too-long
-        """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
-        values and cannot be used for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :return: An iterator like instance of Deployment
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Deployment]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "deployedImages": [
-                            {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
-                                "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
-                                },
-                                "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
-                            }
-                        ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
-
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                _request = build_deployments_list_by_device_group_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    product_name=product_name,
-                    device_group_name=device_group_name,
-                    subscription_id=self._config.subscription_id,
-                    filter=filter,
-                    top=top,
-                    skip=skip,
-                    maxpagesize=maxpagesize,
-                    api_version=self._config.api_version,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            return _request
-
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
-
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
 
     async def _create_or_update_initial(
         self,
@@ -6154,22 +7649,16 @@ class DeploymentsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6213,7 +7702,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6238,27 +7730,23 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6302,7 +7790,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6327,7 +7818,9 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6375,22 +7868,16 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6434,7 +7921,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6459,7 +7949,9 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6507,22 +7999,16 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6566,7 +8052,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6591,7 +8080,9 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6635,22 +8126,16 @@ class DeploymentsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6694,7 +8179,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6719,27 +8207,23 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Fully qualified resource ID for the
-                                  resource. Ex -
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
                                   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                  Required.
-                                "type": "str",  # The type of the resource. E.g.
-                                  "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts". Required.
+                                "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
                                       component id.
@@ -6783,7 +8267,10 @@ class DeploymentsOperations:
                                     "lastModifiedByType": "str"  # Optional. The
                                       type of identity that last modified the resource. Known values
                                       are: "User", "Application", "ManagedIdentity", and "Key".
-                                }
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
@@ -6808,7 +8295,9 @@ class DeploymentsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -6985,6 +8474,210 @@ class DeploymentsOperations:
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
+    @distributed_trace
+    def list_by_device_group(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        *,
+        filter: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.Deployment"]:
+        # pylint: disable=line-too-long
+        """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
+        values and cannot be used for product or device group name.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of Deployment
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Deployment]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "deployedImages": [
+                            {
+                                "id": "str",  # Optional. Fully qualified resource ID
+                                  for the resource. Ex -
+                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                "name": "str",  # Optional. The name of the resource.
+                                "properties": {
+                                    "componentId": "str",  # Optional. The image
+                                      component id.
+                                    "description": "str",  # Optional. The image
+                                      description.
+                                    "image": "str",  # Optional. Image as a UTF-8
+                                      encoded base 64 string on image create. This field contains the
+                                      image URI on image reads.
+                                    "imageId": "str",  # Optional. Image ID.
+                                    "imageName": "str",  # Optional. Image name.
+                                    "imageType": "str",  # Optional. The image
+                                      type. Known values are: "InvalidImageType", "OneBl",
+                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                      "UpdateCertStore", "BaseSystemUpdateManifest",
+                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                    "provisioningState": "str",  # Optional. The
+                                      status of the last operation. Known values are: "Succeeded",
+                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                      "Accepted".
+                                    "regionalDataBoundary": "str",  # Optional.
+                                      Regional data boundary for an image. Known values are: "None" and
+                                      "EU".
+                                    "uri": "str"  # Optional. Location the image.
+                                },
+                                "systemData": {
+                                    "createdAt": "2020-02-20",  # Optional. The
+                                      type of identity that created the resource.
+                                    "createdBy": "str",  # Optional. The identity
+                                      that created the resource.
+                                    "createdByType": "str",  # Optional. The type
+                                      of identity that created the resource. Known values are: "User",
+                                      "Application", "ManagedIdentity", and "Key".
+                                    "lastModifiedAt": "2020-02-20",  # Optional.
+                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedBy": "str",  # Optional. The
+                                      identity that last modified the resource.
+                                    "lastModifiedByType": "str"  # Optional. The
+                                      type of identity that last modified the resource. Known values
+                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                },
+                                "type": "str"  # Optional. The type of the resource.
+                                  E.g. "Microsoft.Compute/virtualMachines" or
+                                  "Microsoft.Storage/storageAccounts".
+                            }
+                        ],
+                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
+                          date UTC.
+                        "deploymentId": "str",  # Optional. Deployment ID.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
+
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                _request = build_deployments_list_by_device_group_request(
+                    resource_group_name=resource_group_name,
+                    catalog_name=catalog_name,
+                    product_name=product_name,
+                    device_group_name=device_group_name,
+                    subscription_id=self._config.subscription_id,
+                    filter=filter,
+                    top=top,
+                    skip=skip,
+                    maxpagesize=maxpagesize,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                _request.url = self._client.format_url(_request.url)
+
+            return _request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            _request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                _request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                error = _deserialize(_models.ErrorResponse, response.json())
+                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
 
 class DevicesOperations:
     """
@@ -7037,12 +8730,9 @@ class DevicesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7073,7 +8763,9 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7243,12 +8935,9 @@ class DevicesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7279,17 +8968,16 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7320,7 +9008,9 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -7367,12 +9057,9 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7403,7 +9090,9 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -7450,12 +9139,9 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7486,7 +9172,9 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -7529,12 +9217,9 @@ class DevicesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7565,17 +9250,16 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7606,7 +9290,9 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -7657,13 +9343,22 @@ class DevicesOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    @distributed_trace
-    def list_by_device_group(
-        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.Device"]:
+    @overload
+    async def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        properties: _models.DeviceUpdate,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Device:
         # pylint: disable=line-too-long
-        """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
-        and cannot be used for product or device group name.
+        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
+        a device to the catalog level.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -7674,21 +9369,32 @@ class DevicesOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: An iterator like instance of Device
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Device]
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "deviceGroupId": "str"  # Optional. Device group id.
+                    }
+                }
+
+                # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
@@ -7719,14 +9425,257 @@ class DevicesOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
+    @overload
+    async def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        properties: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Device:
+        # pylint: disable=line-too-long
+        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
+        a device to the catalog level.
 
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "chipSku": "str",  # Optional. SKU of the chip.
+                        "deviceId": "str",  # Optional. Device ID.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available
+                          for installation when update requested.
+                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
+                          device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update requested and new OS version available.
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update was last requested.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @overload
+    async def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        properties: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Device:
+        # pylint: disable=line-too-long
+        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
+        a device to the catalog level.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param properties: The resource properties to be updated. Required.
+        :type properties: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "chipSku": "str",  # Optional. SKU of the chip.
+                        "deviceId": "str",  # Optional. Device ID.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available
+                          for installation when update requested.
+                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
+                          device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update requested and new OS version available.
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update was last requested.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
+
+    @distributed_trace_async
+    async def update(
+        self,
+        resource_group_name: str,
+        catalog_name: str,
+        product_name: str,
+        device_group_name: str,
+        device_name: str,
+        properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> _models.Device:
+        # pylint: disable=line-too-long
+        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
+        a device to the catalog level.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param catalog_name: Name of catalog. Required.
+        :type catalog_name: str
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param properties: The resource properties to be updated. Is one of the following types:
+         DeviceUpdate, JSON, IO[bytes] Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
+        :return: Device. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                properties = {
+                    "properties": {
+                        "deviceGroupId": "str"  # Optional. Device group id.
+                    }
+                }
+
+                # response body for status code(s): 200, 202
+                response == {
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
+                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                    "name": "str",  # Optional. The name of the resource.
+                    "properties": {
+                        "chipSku": "str",  # Optional. SKU of the chip.
+                        "deviceId": "str",  # Optional. Device ID.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available
+                          for installation when update requested.
+                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
+                          device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update requested and new OS version available.
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update was last requested.
+                        "provisioningState": "str"  # Optional. The status of the last
+                          operation. Known values are: "Succeeded", "Failed", "Canceled",
+                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20",  # Optional. The type of identity that
+                          created the resource.
+                        "createdBy": "str",  # Optional. The identity that created the
+                          resource.
+                        "createdByType": "str",  # Optional. The type of identity that
+                          created the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
+                          resource last modification (UTC).
+                        "lastModifiedBy": "str",  # Optional. The identity that last modified
+                          the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that
+                          last modified the resource. Known values are: "User", "Application",
+                          "ManagedIdentity", and "Key".
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                }
+        """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7735,64 +9684,67 @@ class DevicesOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-                _request = build_devices_list_by_device_group_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    product_name=product_name,
-                    device_group_name=device_group_name,
-                    subscription_id=self._config.subscription_id,
-                    api_version=self._config.api_version,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(properties, (IOBase, bytes)):
+            _content = properties
+        else:
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_devices_update_request(
+            resource_group_name=resource_group_name,
+            catalog_name=catalog_name,
+            product_name=product_name,
+            device_group_name=device_group_name,
+            device_name=device_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 202]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
             else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
+                deserialized = _deserialize(_models.Device, response.json())
 
-            return _request
+        if response.status_code == 202:
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Device], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.json())
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
+        return deserialized  # type: ignore
 
     async def _delete_initial(  # pylint: disable=inconsistent-return-statements
         self,
@@ -7918,717 +9870,25 @@ class DevicesOperations:
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        properties: _models.DeviceUpdate,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        # pylint: disable=line-too-long
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "deviceGroupId": "str"  # Optional. Device group id.
-                    }
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        # pylint: disable=line-too-long
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        properties: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        # pylint: disable=line-too-long
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace_async
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> _models.Device:
-        # pylint: disable=line-too-long
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         DeviceUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "deviceGroupId": "str"  # Optional. Device group id.
-                    }
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(properties, (IOBase, bytes)):
-            _content = properties
-        else:
-            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_devices_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            device_name=device_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.Device, response.json())
-
-        if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.Device, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
-    @overload
-    async def generate_capability_image(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        parameters: _models.GenerateCapabilityImageRequest,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.SignedCapabilityImageResponse:
-        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
-        group and product names to generate the image for a device that does not belong to a specific
-        device group and product.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param parameters: Generate capability image request body. Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "capabilities": [
-                        "str"  # List of capabilities to create. Required.
-                    ]
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
-                }
-        """
-
-    @overload
-    async def generate_capability_image(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        parameters: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.SignedCapabilityImageResponse:
-        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
-        group and product names to generate the image for a device that does not belong to a specific
-        device group and product.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param parameters: Generate capability image request body. Required.
-        :type parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
-                }
-        """
-
-    @overload
-    async def generate_capability_image(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        parameters: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.SignedCapabilityImageResponse:
-        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
-        group and product names to generate the image for a device that does not belong to a specific
-        device group and product.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param parameters: Generate capability image request body. Required.
-        :type parameters: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
-                }
-        """
-
-    @distributed_trace_async
-    async def generate_capability_image(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        parameters: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> _models.SignedCapabilityImageResponse:
-        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
-        group and product names to generate the image for a device that does not belong to a specific
-        device group and product.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param parameters: Generate capability image request body. Is one of the following types:
-         GenerateCapabilityImageRequest, JSON, IO[bytes] Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or
-         IO[bytes]
-        :return: SignedCapabilityImageResponse. The SignedCapabilityImageResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                parameters = {
-                    "capabilities": [
-                        "str"  # List of capabilities to create. Required.
-                    ]
-                }
-
-                # response body for status code(s): 200, 202
-                response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.SignedCapabilityImageResponse] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(parameters, (IOBase, bytes)):
-            _content = parameters
-        else:
-            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_devices_generate_capability_image_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            device_group_name=device_group_name,
-            device_name=device_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
-
-        if response.status_code == 202:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
-
-class ProductsOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~azure.mgmt.spheredpg.aio.AzureSphereClient`'s
-        :attr:`products` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
     @distributed_trace
-    def list_by_catalog(
-        self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.Product"]:
+    def list_by_device_group(
+        self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
+    ) -> AsyncIterable["_models.Device"]:
         # pylint: disable=line-too-long
-        """List Product resources by Catalog.
+        """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
+        and cannot be used for product or device group name.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :return: An iterator like instance of Product
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Product]
+        :param product_name: Name of product. Required.
+        :type product_name: str
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :return: An iterator like instance of Device
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Device]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -8636,14 +9896,20 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
+                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
                       /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
+                    "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "description": "str",  # Description of the product. Required.
+                        "chipSku": "str",  # Optional. SKU of the chip.
+                        "deviceId": "str",  # Optional. Device ID.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available
+                          for installation when update requested.
+                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
+                          device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update requested and new OS version available.
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
+                          update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
                           operation. Known values are: "Succeeded", "Failed", "Canceled",
                           "Provisioning", "Updating", "Deleting", and "Accepted".
@@ -8663,13 +9929,15 @@ class ProductsOperations:
                         "lastModifiedByType": "str"  # Optional. The type of identity that
                           last modified the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                    }
+                    },
+                    "type": "str"  # Optional. The type of the resource. E.g.
+                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -8682,9 +9950,11 @@ class ProductsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_products_list_by_catalog_request(
+                _request = build_devices_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
+                    product_name=product_name,
+                    device_group_name=device_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -8711,7 +9981,7 @@ class ProductsOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Product], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.Device], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -8736,666 +10006,14 @@ class ProductsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def get(
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> _models.Product:
-        # pylint: disable=line-too-long
-        """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :return: Product. The Product is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
-
-        _request = build_products_get_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.Product, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
-
-    async def _create_or_update_initial(
+    async def _generate_capability_image_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: Union[_models.Product, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> JSON:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IOBase, bytes)):
-            _content = resource
-        else:
-            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_products_create_or_update_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
-        if response.status_code == 201:
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-            deserialized = _deserialize(JSON, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
-
-    @overload
-    async def begin_create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: _models.Product,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Product
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def begin_create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def begin_create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: IO[bytes],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @distributed_trace_async
-    async def begin_create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: Union[_models.Product, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Is one of the following types: Product, JSON,
-         IO[bytes] Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Product or JSON or IO[bytes]
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = await self._create_or_update_initial(
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                resource=resource,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Product, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return AsyncLROPoller[_models.Product].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return AsyncLROPoller[_models.Product](
-            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
-        )
-
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> None:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[None] = kwargs.pop("cls", None)
-
-        _request = build_products_delete_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        response_headers = {}
-        if response.status_code == 202:
-            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
-            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-        if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
-
-    @distributed_trace_async
-    async def begin_delete(
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncLROPoller[None]:
-        """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name'.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :return: An instance of AsyncLROPoller that returns None
-        :rtype: ~azure.core.polling.AsyncLROPoller[None]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[None] = kwargs.pop("cls", None)
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
-                resource_group_name=resource_group_name,
-                catalog_name=catalog_name,
-                product_name=product_name,
-                cls=lambda x, y, z: x,
-                headers=_headers,
-                params=_params,
-                **kwargs
-            )
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
-            if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
-
-        if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncARMPolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return AsyncLROPoller[None].from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    async def _update_initial(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
+        device_group_name: str,
+        device_name: str,
+        body: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
         **kwargs: Any
     ) -> Optional[JSON]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -9414,15 +10032,17 @@ class ProductsOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(properties, (IOBase, bytes)):
-            _content = properties
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_products_update_request(
+        _request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
+            device_group_name=device_group_name,
+            device_name=device_name,
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -9461,19 +10081,21 @@ class ProductsOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def begin_update(
+    async def begin_generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: _models.ProductUpdate,
+        device_group_name: str,
+        device_name: str,
+        body: _models.GenerateCapabilityImageRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
+    ) -> AsyncLROPoller[_models.SignedCapabilityImageResponse]:
+        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
+        group and product names to generate the image for a device that does not belong to a specific
+        device group and product.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -9482,73 +10104,54 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param body: Generate capability image request body. Required.
+        :type body: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: An instance of AsyncLROPoller that returns SignedCapabilityImageResponse. The
+         SignedCapabilityImageResponse is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "description": "str"  # Optional. Description of the product.
-                    }
+                body = {
+                    "capabilities": [
+                        "str"  # List of capabilities to create. Required.
+                    ]
                 }
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 202, 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
+                    "image": "str"  # Optional. The signed device capability image as a UTF-8
+                      encoded base 64 string.
                 }
         """
 
     @overload
-    async def begin_update(
+    async def begin_generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: JSON,
+        device_group_name: str,
+        device_name: str,
+        body: JSON,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
+    ) -> AsyncLROPoller[_models.SignedCapabilityImageResponse]:
+        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
+        group and product names to generate the image for a device that does not belong to a specific
+        device group and product.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -9557,66 +10160,47 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param body: Generate capability image request body. Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: An instance of AsyncLROPoller that returns SignedCapabilityImageResponse. The
+         SignedCapabilityImageResponse is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 202, 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
+                    "image": "str"  # Optional. The signed device capability image as a UTF-8
+                      encoded base 64 string.
                 }
         """
 
     @overload
-    async def begin_update(
+    async def begin_generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: IO[bytes],
+        device_group_name: str,
+        device_name: str,
+        body: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
+    ) -> AsyncLROPoller[_models.SignedCapabilityImageResponse]:
+        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
+        group and product names to generate the image for a device that does not belong to a specific
+        device group and product.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -9625,64 +10209,45 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: IO[bytes]
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param body: Generate capability image request body. Required.
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :return: An instance of AsyncLROPoller that returns SignedCapabilityImageResponse. The
+         SignedCapabilityImageResponse is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 202, 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
+                    "image": "str"  # Optional. The signed device capability image as a UTF-8
+                      encoded base 64 string.
                 }
         """
 
     @distributed_trace_async
-    async def begin_update(
+    async def begin_generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
+        device_group_name: str,
+        device_name: str,
+        body: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
+    ) -> AsyncLROPoller[_models.SignedCapabilityImageResponse]:
+        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
+        group and product names to generate the image for a device that does not belong to a specific
+        device group and product.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
@@ -9691,70 +10256,51 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         ProductUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO[bytes]
-        :return: An instance of AsyncLROPoller that returns Product. The Product is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.Product]
+        :param device_group_name: Name of device group. Required.
+        :type device_group_name: str
+        :param device_name: Device name. Required.
+        :type device_name: str
+        :param body: Generate capability image request body. Is one of the following types:
+         GenerateCapabilityImageRequest, JSON, IO[bytes] Required.
+        :type body: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or IO[bytes]
+        :return: An instance of AsyncLROPoller that returns SignedCapabilityImageResponse. The
+         SignedCapabilityImageResponse is compatible with MutableMapping
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse]
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
                 # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "properties": {
-                        "description": "str"  # Optional. Description of the product.
-                    }
+                body = {
+                    "capabilities": [
+                        "str"  # List of capabilities to create. Required.
+                    ]
                 }
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 202, 200
                 response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
+                    "image": "str"  # Optional. The signed device capability image as a UTF-8
+                      encoded base 64 string.
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SignedCapabilityImageResponse] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._update_initial(
+            raw_result = await self._generate_capability_image_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
-                properties=properties,
+                device_group_name=device_group_name,
+                device_name=device_name,
+                body=body,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
                 headers=_headers,
@@ -9764,10 +10310,14 @@ class ProductsOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
+            response_headers = {}
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Product, response.json())
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
         if polling is True:
@@ -9777,222 +10327,12 @@ class ProductsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_models.Product].from_continuation_token(
+            return AsyncLROPoller[_models.SignedCapabilityImageResponse].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.Product](
+        return AsyncLROPoller[_models.SignedCapabilityImageResponse](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
-
-    @distributed_trace
-    def generate_default_device_groups(
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
-        """Generates default device groups for the product. '.default' and '.unassigned' are system
-        defined values and cannot be used for product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
-
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                _request = build_products_generate_default_device_groups_request(
-                    resource_group_name=resource_group_name,
-                    catalog_name=catalog_name,
-                    product_name=product_name,
-                    subscription_id=self._config.subscription_id,
-                    api_version=self._config.api_version,
-                    headers=_headers,
-                    params=_params,
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            else:
-                # make call to next link with the client's api-version
-                _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict(
-                    {
-                        key: [urllib.parse.quote(v) for v in value]
-                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
-                    }
-                )
-                _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest(
-                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
-                )
-                _request.url = self._client.format_url(_request.url)
-
-            return _request
-
-        async def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
-
-            _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
-                raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
-    @distributed_trace_async
-    async def count_devices(
-        self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> _models.CountDeviceResponse:
-        """Counts devices in product. '.default' and '.unassigned' are system defined values and cannot be
-        used for product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0  # Number of children resources in parent resource. Required.
-                }
-        """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
-
-        _request = build_products_count_devices_request(
-            resource_group_name=resource_group_name,
-            catalog_name=catalog_name,
-            product_name=product_name,
-            subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
-            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
-
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore

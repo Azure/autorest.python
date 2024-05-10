@@ -61,7 +61,8 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "accept"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2_in_interface(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
@@ -97,7 +98,8 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "accept"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2_in_interface(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
@@ -126,7 +128,8 @@ class InterfaceV2Operations:
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "accept"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2_in_interface(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
@@ -154,7 +157,8 @@ class InterfaceV2Operations:
         """
 
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "accept"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2_in_interface(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
@@ -243,8 +247,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v2": ["header_v2"]},
     )
     async def v1(
         self, body: _models.ModelV1, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
@@ -284,8 +287,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v2": ["header_v2"]},
     )
     async def v1(
         self, body: JSON, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
@@ -317,8 +319,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v2": ["header_v2"]},
     )
     async def v1(
         self, body: IO[bytes], *, header_v2: str, content_type: str = "application/json", **kwargs: Any
@@ -349,8 +350,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @api_version_validation(
-        method_added_on="v1",
-        params_added_on={"v1": ["endpoint", "version", "content_type", "accept"]},
+        params_added_on={"v2": ["header_v2"]},
     )
     async def v1(
         self, body: Union[_models.ModelV1, JSON, IO[bytes]], *, header_v2: str, **kwargs: Any
@@ -443,7 +443,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "content_type"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
@@ -479,7 +480,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "content_type"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
@@ -506,7 +508,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "content_type"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
@@ -532,7 +535,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @api_version_validation(
-        params_added_on={"v1": ["endpoint", "version", "content_type"]},
+        method_added_on="v2",
+        params_added_on={"v2": ["content_type", "accept"]},
     )
     async def v2(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2.

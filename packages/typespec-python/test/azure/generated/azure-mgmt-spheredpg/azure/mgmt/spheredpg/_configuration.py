@@ -28,14 +28,13 @@ class AzureSphereClientConfiguration:  # pylint: disable=too-many-instance-attri
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str
-    :keyword api_version: The API version to use for this operation. Default value is
-     "2022-09-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+    :keyword api_version: The API version to use for this operation. Default value is "2024-04-01".
+     Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs: Any) -> None:
-        api_version: str = kwargs.pop("api_version", "2022-09-01-preview")
+        api_version: str = kwargs.pop("api_version", "2024-04-01")
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

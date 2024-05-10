@@ -6,9 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import ArmOperationStatusResourceProvisioningState
-from ._models import ArmResource
-from ._models import ArmResourceBase
+from ._models import ArmOperationStatus
 from ._models import Catalog
 from ._models import CatalogListResult
 from ._models import CatalogProperties
@@ -18,7 +16,7 @@ from ._models import CertificateChainResponse
 from ._models import CertificateListResult
 from ._models import CertificateProperties
 from ._models import ClaimDevicesRequest
-from ._models import CountDeviceResponse
+from ._models import CountDevicesResponse
 from ._models import CountElementsResponse
 from ._models import Deployment
 from ._models import DeploymentListResult
@@ -44,6 +42,7 @@ from ._models import ImageProperties
 from ._models import ListDeviceGroupsRequest
 from ._models import Operation
 from ._models import OperationDisplay
+from ._models import PagedDeviceInsight
 from ._models import PagedOperation
 from ._models import Product
 from ._models import ProductListResult
@@ -52,10 +51,11 @@ from ._models import ProductUpdate
 from ._models import ProductUpdateProperties
 from ._models import ProofOfPossessionNonceRequest
 from ._models import ProofOfPossessionNonceResponse
-from ._models import ProxyResourceBase
+from ._models import ProxyResource
+from ._models import Resource
 from ._models import SignedCapabilityImageResponse
 from ._models import SystemData
-from ._models import TrackedResourceBase
+from ._models import TrackedResource
 
 from ._enums import ActionType
 from ._enums import AllowCrashDumpCollection
@@ -74,9 +74,7 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ArmOperationStatusResourceProvisioningState",
-    "ArmResource",
-    "ArmResourceBase",
+    "ArmOperationStatus",
     "Catalog",
     "CatalogListResult",
     "CatalogProperties",
@@ -86,7 +84,7 @@ __all__ = [
     "CertificateListResult",
     "CertificateProperties",
     "ClaimDevicesRequest",
-    "CountDeviceResponse",
+    "CountDevicesResponse",
     "CountElementsResponse",
     "Deployment",
     "DeploymentListResult",
@@ -112,6 +110,7 @@ __all__ = [
     "ListDeviceGroupsRequest",
     "Operation",
     "OperationDisplay",
+    "PagedDeviceInsight",
     "PagedOperation",
     "Product",
     "ProductListResult",
@@ -120,10 +119,11 @@ __all__ = [
     "ProductUpdateProperties",
     "ProofOfPossessionNonceRequest",
     "ProofOfPossessionNonceResponse",
-    "ProxyResourceBase",
+    "ProxyResource",
+    "Resource",
     "SignedCapabilityImageResponse",
     "SystemData",
-    "TrackedResourceBase",
+    "TrackedResource",
     "ActionType",
     "AllowCrashDumpCollection",
     "CapabilityType",

@@ -19,7 +19,6 @@ from ._serialization import Deserializer, Serializer
 from .operations import (
     CatalogsOperations,
     CertificatesOperations,
-    CustomUpdateOperationsOperations,
     DeploymentsOperations,
     DeviceGroupsOperations,
     DevicesOperations,
@@ -38,32 +37,28 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
 
     :ivar operations: Operations operations
     :vartype operations: azure.mgmt.spheredpg.operations.Operations
-    :ivar custom_update_operations: CustomUpdateOperationsOperations operations
-    :vartype custom_update_operations:
-     azure.mgmt.spheredpg.operations.CustomUpdateOperationsOperations
     :ivar catalogs: CatalogsOperations operations
     :vartype catalogs: azure.mgmt.spheredpg.operations.CatalogsOperations
-    :ivar images: ImagesOperations operations
-    :vartype images: azure.mgmt.spheredpg.operations.ImagesOperations
-    :ivar device_groups: DeviceGroupsOperations operations
-    :vartype device_groups: azure.mgmt.spheredpg.operations.DeviceGroupsOperations
     :ivar certificates: CertificatesOperations operations
     :vartype certificates: azure.mgmt.spheredpg.operations.CertificatesOperations
+    :ivar images: ImagesOperations operations
+    :vartype images: azure.mgmt.spheredpg.operations.ImagesOperations
+    :ivar products: ProductsOperations operations
+    :vartype products: azure.mgmt.spheredpg.operations.ProductsOperations
+    :ivar device_groups: DeviceGroupsOperations operations
+    :vartype device_groups: azure.mgmt.spheredpg.operations.DeviceGroupsOperations
     :ivar deployments: DeploymentsOperations operations
     :vartype deployments: azure.mgmt.spheredpg.operations.DeploymentsOperations
     :ivar devices: DevicesOperations operations
     :vartype devices: azure.mgmt.spheredpg.operations.DevicesOperations
-    :ivar products: ProductsOperations operations
-    :vartype products: azure.mgmt.spheredpg.operations.ProductsOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str
     :param base_url: Service host. Default value is "https://management.azure.com".
     :type base_url: str
-    :keyword api_version: The API version to use for this operation. Default value is
-     "2022-09-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+    :keyword api_version: The API version to use for this operation. Default value is "2024-04-01".
+     Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
@@ -101,16 +96,13 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
-        self.custom_update_operations = CustomUpdateOperationsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
         self.catalogs = CatalogsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.images = ImagesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.device_groups = DeviceGroupsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.certificates = CertificatesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.images = ImagesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.products = ProductsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.device_groups = DeviceGroupsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.deployments = DeploymentsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.devices = DevicesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.products = ProductsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
