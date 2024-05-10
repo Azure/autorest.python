@@ -79,7 +79,11 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
 ): string | undefined {
     // since we do not support multi-service for now, we can just check the root client's api version
     // if type is added in the first version of the client, we do not need to add the versioning info
-    if (type.apiVersions[0] === context.experimental_sdkPackage.clients.find(c => c.initialization.access === "public")?.apiVersions[0]) return undefined;
+    if (
+        type.apiVersions[0] ===
+        context.experimental_sdkPackage.clients.find((c) => c.initialization.access === "public")?.apiVersions[0]
+    )
+        return undefined;
     return type.apiVersions[0];
 }
 
