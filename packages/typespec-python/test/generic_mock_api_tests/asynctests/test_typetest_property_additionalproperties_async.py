@@ -343,3 +343,10 @@ async def test_spread_string(client: AdditionalPropertiesClient):
     body = {"name": "SpreadSpringRecord", "prop": "abc"}
     assert await client.spread_string.get() == body
     await client.spread_string.put(body)
+
+
+@pytest.mark.asyncio
+async def test_spread_float(client: AdditionalPropertiesClient):
+    body = {"id": 43.125, "prop": 43.125}
+    assert await client.spread_float.get() == body
+    await client.spread_float.put(body)

@@ -1,4 +1,5 @@
 const stdout = execSync(`git status --porcelain`).toString();
+const branchName = "publish/auto-release"
 
 if (stdout.trim() !== "") {
   console.log("Commiting the following changes:\n", stdout);
@@ -10,7 +11,7 @@ if (stdout.trim() !== "") {
   console.log();
   console.log("-".repeat(160));
   console.log("|  Link to create the PR");
-  console.log(`|  https://github.com/timotheeguerin/chronus/pull/new/${branchName}  `);
+  console.log(`|  https://github.com/Azure/autorest.python/pull/new/${branchName}  `);
   console.log("-".repeat(160));
 
   const github = getOctokit(process.env.GITHUB_TOKEN ?? "");
