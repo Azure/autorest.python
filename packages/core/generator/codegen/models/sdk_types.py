@@ -12,6 +12,7 @@ from ... import types
 from .property_types import PathParameter
 from .base import PythonYaml, TYamlType
 
+
 class _PythonSdkTypeBase(PythonYaml[TYamlType]):
     """Represents a Python SDK type, i.e. a model, an enum, etc.."""
     def __init__(self, sdk_package: SdkPackage, yaml_data: TYamlType) -> None:

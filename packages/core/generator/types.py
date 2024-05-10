@@ -170,8 +170,6 @@ YamlPropertyType = Union[
     ClientInitializationParameter
 ]
 
-
-
 class _YamlServiceMethodBase(TypedDict):
     name: str
     access: Literal["public", "internal"]
@@ -180,6 +178,7 @@ class _YamlServiceMethodBase(TypedDict):
     crossLanguageDefinitionId: str
     response: YamlMethodResponse
     exception: Optional[YamlMethodResponse]
+    operation: YamlHttpOperation
 
 class YamlMethodResponse(TypedDict):
     kind: Literal["method"]
@@ -188,8 +187,7 @@ class YamlMethodResponse(TypedDict):
 
 class YamlBasicServiceMethod(_YamlServiceMethodBase):
     kind: Literal["basic"]
-    operation: YamlHttpOperation
-
+    
 class _YamlPagingServiceMethodOptions(TypedDict):
     nextLinkPath: Optional[str]
     nextLinkOperation: Optional[YamlHttpOperation]

@@ -23,6 +23,7 @@ class Client(PythonYaml[types.YamlClient], ClientBackcompatMixin):
         self.parameters = [get_client_parameter(sdk_package, p) for p in yaml_data["parameters"]]
         self.sub_clients = [Client(sdk_package, c) for c in yaml_data.get("subClients", [])]
         self.public_initialization: bool = yaml_data["publicInitialization"]
+        self.methods = [types.Method(sdk_package, m) for m in yaml_data["methods"]]
 
     @property
     def filename(self) -> str:
