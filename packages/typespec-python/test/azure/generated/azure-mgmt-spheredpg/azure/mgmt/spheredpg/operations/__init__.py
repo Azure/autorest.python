@@ -7,14 +7,13 @@
 # --------------------------------------------------------------------------
 
 from ._operations import Operations
-from ._operations import CustomUpdateOperationsOperations
 from ._operations import CatalogsOperations
-from ._operations import ImagesOperations
-from ._operations import DeviceGroupsOperations
 from ._operations import CertificatesOperations
+from ._operations import ImagesOperations
+from ._operations import ProductsOperations
+from ._operations import DeviceGroupsOperations
 from ._operations import DeploymentsOperations
 from ._operations import DevicesOperations
-from ._operations import ProductsOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -22,14 +21,13 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "Operations",
-    "CustomUpdateOperationsOperations",
     "CatalogsOperations",
-    "ImagesOperations",
-    "DeviceGroupsOperations",
     "CertificatesOperations",
+    "ImagesOperations",
+    "ProductsOperations",
+    "DeviceGroupsOperations",
     "DeploymentsOperations",
     "DevicesOperations",
-    "ProductsOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

@@ -25,6 +25,7 @@ from corehttp.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import _deserialize
 from .._serialization import Serializer
+from .._validation import api_version_validation
 from .._vendor import PageableClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -59,6 +60,9 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
 
+    @api_version_validation(
+        params_added_on={"1.0-preview.1": ["maxpagesize"]},
+    )
     def list(self, **kwargs: Any) -> Iterable["_models.User"]:
         """List users.
 
