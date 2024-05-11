@@ -16,12 +16,6 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code                               | `4.6.0`       |
 
-### Bug Fixes
-
-- [#2571](https://github.com/Azure/autorest.python/pull/2571) add tests for cadl-ranch and fix api version issue with multiple clients
-- [#2533](https://github.com/Azure/autorest.python/pull/2533) Fix union deserialization for optional property of DPG model
-- [#2517](https://github.com/Azure/autorest.python/pull/2517) Fix typing annotation for internal model #2517
-
 ### Bump dependencies
 
 - [#2581](https://github.com/Azure/autorest.python/pull/2581) bump tcgc to 0.42.2
