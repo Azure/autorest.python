@@ -1,5 +1,32 @@
 # Release
 
+## 2023-05-11 - 0.23.10
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.55.0`      |
+| `@typespec/http`                                                        | `0.55.0`      |
+| `@typespec/rest`                                                        | `0.55.0`      |
+| `@typespec/versioning`                                                  | `0.55.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.8`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+### Bug Fixes
+
+- [#2571](https://github.com/Azure/autorest.python/pull/2571) add tests for cadl-ranch and fix api version issue with multiple clients
+- [#2533](https://github.com/Azure/autorest.python/pull/2533) Fix union deserialization for optional property of DPG model
+- [#2517](https://github.com/Azure/autorest.python/pull/2517) Fix typing annotation for internal model #2517
+
+### Bump dependencies
+
+- [#2581](https://github.com/Azure/autorest.python/pull/2581) bump tcgc to 0.42.2
+
+
 ## 2023-04-30 - 0.23.9
 
 | Library                                                                 | Min Version   |
