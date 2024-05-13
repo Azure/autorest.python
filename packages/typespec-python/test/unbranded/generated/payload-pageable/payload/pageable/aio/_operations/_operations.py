@@ -24,6 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ... import models as _models
 from ..._model_base import _deserialize
 from ..._operations._operations import build_pageable_list_request
+from ..._validation import api_version_validation
 from .._vendor import PageableClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -36,6 +37,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
 
+    @api_version_validation(
+        params_added_on={"1.0-preview.1": ["maxpagesize"]},
+    )
     def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
         """List users.
 

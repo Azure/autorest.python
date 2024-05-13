@@ -77,8 +77,13 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: SdkModelPropertyType | SdkMethod<TServiceOperation>,
 ): string | undefined {
-    // We only want added on if it's not the same as the client's added on
-    if (type.apiVersions[0] === context.experimental_sdkPackage.clients[0].apiVersions[0]) return undefined;
+    // since we do not support multi-service for now, we can just check the root client's api version
+    // if type is added in the first version of the client, we do not need to add the versioning info
+    if (
+        type.apiVersions[0] ===
+        context.experimental_sdkPackage.clients.find((c) => c.initialization.access === "public")?.apiVersions[0]
+    )
+        return undefined;
     return type.apiVersions[0];
 }
 
