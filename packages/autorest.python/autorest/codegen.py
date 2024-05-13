@@ -29,7 +29,7 @@ class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
         output_folder: Union[str, Path],
         **kwargs: Any,
     ) -> None:
-        super().__init__(
+        super().__init__(  # type: ignore
             autorestapi=autorestapi,
             code_model=code_model,
             output_folder=output_folder,
