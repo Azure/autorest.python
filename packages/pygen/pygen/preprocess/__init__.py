@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from ..utils import to_snake_case
+from .._utils import to_snake_case
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -17,7 +17,7 @@ from .helpers import (
 from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin
-from ..utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
+from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
 def update_overload_section(

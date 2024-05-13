@@ -11,7 +11,7 @@ import black
 from black.report import NothingChanged
 
 from .. import Plugin
-from ..utils import parse_args
+from .._utils import parse_args
 
 _LOGGER = logging.getLogger("blib2to3")
 

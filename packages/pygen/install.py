@@ -26,7 +26,7 @@ except ImportError:
 import subprocess
 from pathlib import Path
 
-from pygen.utils.venvtools import ExtendedEnvBuilder, python_run
+from venvtools import ExtendedEnvBuilder, python_run
 
 _ROOT_DIR = Path(__file__).parent
 

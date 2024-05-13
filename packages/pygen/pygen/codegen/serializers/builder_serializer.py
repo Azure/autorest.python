@@ -36,7 +36,7 @@ from ..models import (
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
 from . import utils
-from ...utils import JSON_REGEXP
+from ..._utils import JSON_REGEXP
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]

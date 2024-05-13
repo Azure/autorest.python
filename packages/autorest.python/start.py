@@ -13,13 +13,13 @@ if not sys.version_info >= (3, 8, 0):
 from pathlib import Path
 import venv
 
-from pygen.utils.venvtools import python_run
+from venvtools import python_run
 
 _ROOT_DIR = Path(__file__).parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "venv"
+    venv_path = _ROOT_DIR / "node_modules/@azure-tools/python-client-generator-core/venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done

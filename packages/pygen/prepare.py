@@ -13,7 +13,7 @@ if not sys.version_info >= (3, 8, 0):
 from pathlib import Path
 import venv
 
-from pygen.utils.venvtools import python_run
+from venvtools import python_run
 
 _ROOT_DIR = Path(__file__).parent
 
@@ -27,8 +27,10 @@ def main():
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
     requirements_path = _ROOT_DIR / "dev_requirements.txt"
-
-    python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
+    try:
+        python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
+    except FileNotFoundError as e:
+        raise ValueError(e.filename)
 
 
 if __name__ == "__main__":

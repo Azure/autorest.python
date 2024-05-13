@@ -10,7 +10,7 @@ import yaml
 
 
 from .. import Plugin
-from ..utils import parse_args
+from .._utils import parse_args
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer
 from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
