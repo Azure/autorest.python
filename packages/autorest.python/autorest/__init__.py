@@ -11,7 +11,7 @@ from typing import Any, Dict, Union, List
 import yaml
 
 from .jsonrpc import AutorestAPI
-from pygen.core import ReaderAndWriter, Plugin, YamlUpdatePlugin
+from pygen import ReaderAndWriter, Plugin, YamlUpdatePlugin
 
 _LOGGER = logging.getLogger(__name__)
 

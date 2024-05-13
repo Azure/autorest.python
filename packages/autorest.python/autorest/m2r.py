@@ -7,7 +7,7 @@
 """
 from typing import Any, Dict
 
-from pygen.core.m2r import M2R
+from pygen.m2r import M2R
 from . import YamlUpdatePluginAutorest
 
 class M2RAutorest(YamlUpdatePluginAutorest, M2R):

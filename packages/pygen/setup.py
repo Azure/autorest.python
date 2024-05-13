@@ -14,14 +14,14 @@ from setuptools import setup, find_packages
 
 
 # Version extraction inspired from 'requests'
-with open(os.path.join("core", "_version.py"), "r") as fd:
+with open(os.path.join("pygen", "_version.py"), "r") as fd:
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
     raise RuntimeError("Cannot find version information")
 
 setup(
-    name="pygencore",
+    name="pygen",
     version=version,
     description="Core Library for Python Generation",
     long_description=open("README.md", "r").read(),

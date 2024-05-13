@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-from pygen.core.postprocess import PostProcessPlugin
+from pygen.postprocess import PostProcessPlugin
 from . import PluginAutorest
 
 class PostProcessPluginAutorest(PostProcessPlugin, PluginAutorest):

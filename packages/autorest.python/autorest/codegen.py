@@ -9,12 +9,12 @@ from pathlib import Path
 import yaml
 from . import ReaderAndWriterAutorest
 from .jsonrpc import AutorestAPI
-from pygen.core.codegen.models import CodeModel
-from pygen.core.codegen.serializers import JinjaSerializer
+from pygen.codegen.models import CodeModel
+from pygen.codegen.serializers import JinjaSerializer
 
 
 from . import PluginAutorest
-from pygen.core.codegen import CodeGenerator
+from pygen.codegen import CodeGenerator
 
 
 _LOGGER = logging.getLogger(__name__)

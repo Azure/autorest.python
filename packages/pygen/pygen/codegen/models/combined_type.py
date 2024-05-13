@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Type, Tuple, Union
 import re
-from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection
 from .base import BaseType
 from .model_type import ModelType
 

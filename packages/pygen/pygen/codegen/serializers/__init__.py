@@ -137,7 +137,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
     def serialize(self) -> None:
         env = Environment(
-            loader=PackageLoader("core.codegen", "templates"),
+            loader=PackageLoader("pygen.codegen", "templates"),
             keep_trailing_newline=True,
             line_statement_prefix="##",
             line_comment_prefix="###",
@@ -195,7 +195,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         root_of_sdk = self._package_root_folder(namespace_path)
         if self.code_model.options["package_mode"] in VALID_PACKAGE_MODE:
             env = Environment(
-                loader=PackageLoader("core.codegen", "templates/packaging_templates"),
+                loader=PackageLoader("pygen.codegen", "templates/packaging_templates"),
                 undefined=StrictUndefined,
             )
 

@@ -6,7 +6,7 @@
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
-from autorest.codegen.models.utils import (
+from .utils import (
     add_to_pylint_disable,
     NAME_LENGTH_LIMIT,
 )

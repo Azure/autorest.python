@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Dict, Any
-from pygen.core.black import BlackScriptPlugin
+from pygen.black import BlackScriptPlugin
 from . import PluginAutorest
 
 class BlackScriptPluginAutorest(BlackScriptPlugin, PluginAutorest):

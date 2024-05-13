@@ -7,7 +7,7 @@
 """
 from typing import Dict, Any
 from . import YamlUpdatePluginAutorest
-from pygen.core.preprocess import PreProcessPlugin
+from pygen.preprocess import PreProcessPlugin
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):

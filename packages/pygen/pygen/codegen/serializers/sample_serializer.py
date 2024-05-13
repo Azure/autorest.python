@@ -8,7 +8,7 @@ import logging
 from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
-from autorest.codegen.models.operation import OperationBase
+from ..models.operation import OperationBase
 from .import_serializer import FileImportSerializer
 from .base_serializer import BaseSerializer
 from ..models import (
