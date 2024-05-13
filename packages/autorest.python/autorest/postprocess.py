@@ -8,6 +8,7 @@ from typing import Any, Dict
 from pygen.postprocess import PostProcessPlugin
 from . import PluginAutorest
 
+
 class PostProcessPluginAutorest(PostProcessPlugin, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}

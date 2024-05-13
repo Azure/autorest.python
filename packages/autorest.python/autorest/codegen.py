@@ -7,17 +7,18 @@ import logging
 from typing import Dict, Any, Union
 from pathlib import Path
 import yaml
-from . import ReaderAndWriterAutorest
-from .jsonrpc import AutorestAPI
+
+from pygen.codegen import CodeGenerator
 from pygen.codegen.models import CodeModel
 from pygen.codegen.serializers import JinjaSerializer
 
-
+from . import ReaderAndWriterAutorest
+from .jsonrpc import AutorestAPI
 from . import PluginAutorest
-from pygen.codegen import CodeGenerator
 
 
 _LOGGER = logging.getLogger(__name__)
+
 
 class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
     def __init__(
@@ -34,7 +35,6 @@ class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
             output_folder=output_folder,
             **kwargs,
         )
-
 
 
 class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):

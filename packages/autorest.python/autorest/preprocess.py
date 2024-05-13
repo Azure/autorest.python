@@ -6,8 +6,8 @@
 """The preprocessing autorest plugin.
 """
 from typing import Dict, Any
-from . import YamlUpdatePluginAutorest
 from pygen.preprocess import PreProcessPlugin
+from . import YamlUpdatePluginAutorest
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):

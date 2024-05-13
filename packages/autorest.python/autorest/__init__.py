@@ -10,10 +10,12 @@ from typing import Any, Dict, Union, List
 
 import yaml
 
-from .jsonrpc import AutorestAPI
 from pygen import ReaderAndWriter, Plugin, YamlUpdatePlugin
+from .jsonrpc import AutorestAPI
+
 
 _LOGGER = logging.getLogger(__name__)
+
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
     def __init__(self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI) -> None:
@@ -40,6 +42,7 @@ class PluginAutorest(Plugin, ReaderAndWriterAutorest):
     @abstractmethod
     def get_options(self) -> Dict[str, Any]:
         """Get the options bag using the AutorestAPI that we send to the parent plugin"""
+
 
 class YamlUpdatePluginAutorest(YamlUpdatePlugin, PluginAutorest):  # pylint: disable=abstract-method
     def get_yaml(self) -> Dict[str, Any]:
