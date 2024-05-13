@@ -8,7 +8,7 @@ from typing import List
 from . import utils
 from ..models import Client, ParameterMethodLocation
 from .parameter_serializer import ParameterSerializer, PopKwargType
-from ..._utils import build_policies
+from ...utils import build_policies
 
 
 class ClientSerializer:

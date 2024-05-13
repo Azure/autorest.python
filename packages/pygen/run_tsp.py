@@ -7,7 +7,7 @@ import sys
 import venv
 import logging
 from pathlib import Path
-from venvtools import python_run
+from pygen.utils.venvtools import python_run
 
 _ROOT_DIR = Path(__file__).parent
 

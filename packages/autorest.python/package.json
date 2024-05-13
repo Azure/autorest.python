@@ -4,7 +4,7 @@
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "prepare": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/prepare.py",
-    "start": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/start.py",
+    "start": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js start.py",
     "install": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/install.py",
     "debug": "node r./node_modules/@azure-tools/python-client-generator-core/un-python3.js ./node_modules/@azure-tools/python-client-generator-core/start.py --debug"
   },

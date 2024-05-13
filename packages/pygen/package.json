@@ -35,7 +35,6 @@
     "setup.py",
     "install.py",
     "prepare.py",
-    "start.py",
     "venvtools.py",
     "run-python3.js",
     "requirements.txt",

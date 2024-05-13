@@ -13,7 +13,7 @@ if not sys.version_info >= (3, 8, 0):
 from pathlib import Path
 import venv
 
-from venvtools import python_run
+from pygen.utils.venvtools import python_run
 
 _ROOT_DIR = Path(__file__).parent
 
