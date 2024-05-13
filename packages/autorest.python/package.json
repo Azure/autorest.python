@@ -3,10 +3,10 @@
   "version": "6.13.17",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "prepare": "node run-python3.js prepare.py",
-    "start": "node run-python3.js start.py",
-    "install": "node run-python3.js install.py",
-    "debug": "node run-python3.js start.py --debug"
+    "prepare": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/prepare.py",
+    "start": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/start.py",
+    "install": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/install.py",
+    "debug": "node r./node_modules/@azure-tools/python-client-generator-core/un-python3.js ./node_modules/@azure-tools/python-client-generator-core/start.py --debug"
   },
   "main": "index.js",
   "repository": {
@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/main/README.md",
   "dependencies": {
-    "@autorest/system-requirements": "~1.0.2"
+    "@autorest/system-requirements": "~1.0.2",
+    "@azure-tools/python-client-generator-core": "workspace:^"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",
