@@ -38,6 +38,7 @@ versionPolicies:
     packages:
       - "@azure-tools/typespec-python"
       - "@autorest/python"
+      - "@azure-tools/python-client-generator-core"
 
 changelog: ["@chronus/github/changelog", { repo: "azure/autorest.python" }]
 
