@@ -3,4 +3,4 @@ pyright==1.1.362
 pylint==3.1.0
 tox==4.15.0
 mypy==1.10.0
--e ./packages/pygen
+-e ../pygen
