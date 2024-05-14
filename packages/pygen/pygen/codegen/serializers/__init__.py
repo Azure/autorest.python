@@ -28,7 +28,7 @@ from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from .test_serializer import TestSerializer, TestGeneralSerializer
 from .types_serializer import TypesSerializer
-from ..._utils import to_snake_case
+from ...utils import to_snake_case
 from .._utils import VALID_PACKAGE_MODE
 from .utils import (
     extract_sample_name,

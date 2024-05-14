@@ -22,7 +22,7 @@ from ..models import (
     FileImport,
 )
 from .utils import get_namespace_config, get_namespace_from_package_name
-from ..._utils import to_snake_case
+from ...utils import to_snake_case
 
 _LOGGER = logging.getLogger(__name__)
 

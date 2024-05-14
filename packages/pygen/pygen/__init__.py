@@ -105,4 +105,3 @@ class YamlUpdatePlugin(Plugin):
         :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
         """
         raise NotImplementedError()
-

@@ -6,13 +6,14 @@
 from pathlib import Path
 from typing import Any, Optional, Union, List
 from jinja2 import PackageLoader, Environment
+from pygen.utils import build_policies
 
 from .import_serializer import FileImportSerializer
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel, GlobalParameter
 from ... import ReaderAndWriter, ReaderAndWriterAutorest
-from ..._utils import build_policies
+
 
 __all__ = [
     "MultiAPISerializer",

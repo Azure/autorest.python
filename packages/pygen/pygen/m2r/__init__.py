@@ -11,7 +11,7 @@ from typing import Any, Dict, Set, Union
 import m2r2
 
 from .. import YamlUpdatePlugin
-from .._utils import parse_args
+from ..utils import parse_args
 
 
 _LOGGER = logging.getLogger(__name__)

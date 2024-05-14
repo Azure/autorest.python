@@ -34,6 +34,6 @@ def main(root_dir):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run emitter build commands.")
-    parser.add_argument('--root', help='Path to the virtual environment')
+    parser.add_argument("--root", help="Path to the virtual environment")
     args = parser.parse_args()
     main(Path(args.root or Path(__file__).parent))
