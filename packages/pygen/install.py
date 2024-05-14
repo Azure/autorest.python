@@ -6,6 +6,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
+import argparse
 
 if not sys.version_info >= (3, 8, 0):
     raise Exception("Autorest for Python extension requires Python 3.8 at least")
@@ -28,12 +29,9 @@ from pathlib import Path
 
 from venvtools import ExtendedEnvBuilder, python_run
 
-_ROOT_DIR = Path(__file__).parent
 
-
-def main():
-    venv_path = _ROOT_DIR / "venv"
-
+def main(root_dir):
+    venv_path = root_dir / "venv"
     if venv_path.exists():
         env_builder = venv.EnvBuilder(with_pip=True)
         venv_context = env_builder.ensure_directories(venv_path)
@@ -44,8 +42,12 @@ def main():
 
         python_run(venv_context, "pip", ["install", "-U", "pip"])
         python_run(venv_context, "pip", ["install", "-r", "requirements.txt"])
-        python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR)])
+        python_run(venv_context, "pip", ["install", "-e", str(root_dir)])
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Run emitter build commands.")
+    parser.add_argument('--root', help='Path to the virtual environment')
+
+    args = parser.parse_args()
+    main(Path(args.root or Path(__file__).parent))

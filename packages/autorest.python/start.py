@@ -19,7 +19,7 @@ _ROOT_DIR = Path(__file__).parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "node_modules/@azure-tools/python-client-generator-core/venv"
+    venv_path = _ROOT_DIR / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done
