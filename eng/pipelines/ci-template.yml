@@ -68,6 +68,15 @@ steps:
       displayName: Build project
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
+    - script: |
+        if [ "$(Agent.OS)" == "Windows_NT" ]; then
+          call venv\Scripts\activate
+        else
+          source venv/bin/activate
+        fi
+      displayName: 'Activate virtual environment'
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
+
     - script: pip list
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
