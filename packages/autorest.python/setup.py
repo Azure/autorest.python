@@ -53,4 +53,7 @@ setup(
         "m2r2",
         "black",
     ],
+    dependency_links=[
+        'file:../pygen#egg=pygen',
+    ]
 )
