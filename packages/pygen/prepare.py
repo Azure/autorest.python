@@ -16,16 +16,18 @@ import venv
 
 from venvtools import python_run
 
+_ROOT_DIR = Path(__file__).parent
 
-def main(root_dir):
-    venv_path = root_dir / "venv"
+
+def main():
+    venv_path = _ROOT_DIR / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done
 
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
-    requirements_path = root_dir / "dev_requirements.txt"
+    requirements_path = _ROOT_DIR / "dev_requirements.txt"
     try:
         python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
     except FileNotFoundError as e:
@@ -33,7 +35,4 @@ def main(root_dir):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run emitter build commands.")
-    parser.add_argument("--root", help="Path to the virtual environment")
-    args = parser.parse_args()
-    main(Path(args.root or Path(__file__).parent))
+    main()

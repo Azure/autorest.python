@@ -31,7 +31,8 @@ _ROOT_DIR = Path(__file__).parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "venv"
+    # we use pygen's venv
+    venv_path = _ROOT_DIR.parent / "pygen" / "venv"
     if venv_path.exists():
         env_builder = venv.EnvBuilder(with_pip=True)
         venv_context = env_builder.ensure_directories(venv_path)
@@ -40,7 +41,6 @@ def main():
         env_builder.create(venv_path)
         venv_context = env_builder.context
 
-        python_run(venv_context, "pip", ["install", "-U", "pip"])
         python_run(venv_context, "pip", ["install", "-r", "requirements.txt"])
         python_run(venv_context, "pip", ["install", "-e", str(_ROOT_DIR)])
 

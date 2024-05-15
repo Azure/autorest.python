@@ -19,7 +19,8 @@ _ROOT_DIR = Path(__file__).parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "venv"
+    # we use pygen's venv
+    venv_path = _ROOT_DIR.parent / "pygen" / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done
