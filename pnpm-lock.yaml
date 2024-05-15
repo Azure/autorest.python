@@ -70,9 +70,9 @@ importers:
 
   packages/typespec-python:
     dependencies:
-      '@autorest/python':
-        specifier: workspace:^
-        version: link:../autorest.python
+      '@autorest/system-requirements':
+        specifier: ~1.0.2
+        version: 1.0.2
       '@typespec/openapi3':
         specifier: ~0.56.0
         version: 0.56.0(@typespec/compiler@0.56.0)(@typespec/http@0.56.0)(@typespec/openapi@0.56.0)(@typespec/versioning@0.56.0)

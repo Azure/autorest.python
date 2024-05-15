@@ -12,6 +12,7 @@ import { execFileSync } from "child_process";
 import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
+import path from "path";
 
 export function getModelsMode(context: SdkContext): "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
@@ -66,14 +67,14 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
-    const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
+    const root = path.join(dirname(fileURLToPath(import.meta.url)), "pygen");
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
-        `${root}/run_cadl.py`,
+        `${root}/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];

@@ -38,8 +38,7 @@
   "files": [
     "lib/*.cadl",
     "dist/**",
-    "!dist/test/**",
-    "get-autorest-python-path.cjs"
+    "!dist/test/**"
   ],
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.42.0 <1.0.0",
@@ -58,9 +57,9 @@
     }
   },
   "dependencies": {
-    "@autorest/python": "workspace:^",
     "js-yaml": "~4.1.0",
-    "@typespec/openapi3": "~0.56.0"
+    "@typespec/openapi3": "~0.56.0",
+    "@autorest/system-requirements": "~1.0.2"
   },
   "devDependencies": {
     "@azure-tools/typespec-azure-resource-manager": "~0.42.0",
