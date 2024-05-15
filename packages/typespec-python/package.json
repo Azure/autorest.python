@@ -28,7 +28,7 @@
   },
   "scripts": {
     "clean": "rimraf ./dist ./temp",
-    "build": "tsc -p .",
+    "build": "tsc -p . && node ./scripts/post-build.js",
     "watch": "tsc -p . --watch",
     "test": "mocha",
     "test-official": "c8 mocha --forbid-only",
@@ -59,7 +59,8 @@
   "dependencies": {
     "js-yaml": "~4.1.0",
     "@typespec/openapi3": "~0.56.0",
-    "@autorest/system-requirements": "~1.0.2"
+    "@autorest/system-requirements": "~1.0.2",
+    "fs-extra": "11.2.0"
   },
   "devDependencies": {
     "@azure-tools/typespec-azure-resource-manager": "~0.42.0",
