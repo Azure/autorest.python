@@ -25,8 +25,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/main/README.md",
   "dependencies": {
-    "@autorest/system-requirements": "~1.0.2",
-    "@azure-tools/python-client-generator-core": "workspace:^"
+    "@autorest/system-requirements": "~1.0.2"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",

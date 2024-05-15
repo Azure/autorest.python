@@ -60,7 +60,8 @@
     "js-yaml": "~4.1.0",
     "@typespec/openapi3": "~0.56.0",
     "@autorest/system-requirements": "~1.0.2",
-    "fs-extra": "11.2.0"
+    "fs-extra": "11.2.0",
+    "semver": "7.6.2"
   },
   "devDependencies": {
     "@azure-tools/typespec-azure-resource-manager": "~0.42.0",
