@@ -1,5 +1,12 @@
 # Release
 
+## 0.23.11
+
+### Bump dependencies
+
+- [#2590](https://github.com/Azure/autorest.python/pull/2590) bump tcgc to 0.41.3
+
+
 ## 2023-05-11 - 0.23.10
 
 | Library                                                                 | Min Version   |

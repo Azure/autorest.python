@@ -1,7 +1,6 @@
 {
     "CrossLanguagePackageId": "Microsoft.AzureSphere",
     "CrossLanguageDefinitionId": {
-        "azure.mgmt.spheredpg.models.ArmOperationStatus": "Azure.ResourceManager.ArmOperationStatus",
         "azure.mgmt.spheredpg.models.Resource": "Azure.ResourceManager.Foundations.Resource",
         "azure.mgmt.spheredpg.models.TrackedResource": "Azure.ResourceManager.Foundations.TrackedResource",
         "azure.mgmt.spheredpg.models.Catalog": "Microsoft.AzureSphere.Catalog",
@@ -53,7 +52,6 @@
         "azure.mgmt.spheredpg.models.SystemData": "Azure.ResourceManager.Foundations.SystemData",
         "azure.mgmt.spheredpg.models.CreatedByType": "Azure.ResourceManager.Foundations.createdByType",
         "azure.mgmt.spheredpg.models.ProvisioningState": "Microsoft.AzureSphere.ProvisioningState",
-        "azure.mgmt.spheredpg.models.ResourceProvisioningState": "Azure.ResourceManager.ResourceProvisioningState",
         "azure.mgmt.spheredpg.models.CapabilityType": "Microsoft.AzureSphere.CapabilityType",
         "azure.mgmt.spheredpg.models.RegionalDataBoundary": "Microsoft.AzureSphere.RegionalDataBoundary",
         "azure.mgmt.spheredpg.models.ImageType": "Microsoft.AzureSphere.ImageType",
