@@ -72,10 +72,6 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pip install -r requirements.txt
-      displayName: Pip install requirements
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-
     - script: pip install -r dev_requirements.txt
       displayName: Pip install dev requirements
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
