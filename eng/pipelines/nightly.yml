@@ -28,7 +28,7 @@ steps:
         regenerate: true
         updateToLatestTypespec: true
         checkChange: false
-        venvFolderPath: "dist/pygen/venv"
+        venvFolderPath: "dist/pygen"
 
     - template: generated-code-checks-template.yml
       parameters:
