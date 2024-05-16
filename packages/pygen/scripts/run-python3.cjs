@@ -7,16 +7,16 @@
 // Invoke it like so: "node run-python3.cjs script.py"
 
 const cp = require("child_process");
-const extension = require("@autorest/system-requirements");
+const extension = require("./system-requirements.cjs");
 
 async function runPython3(scriptName, ...args) {
-  const command = await extension.patchPythonPath(["python", scriptName, ...args], { version: ">=3.8", environmentVariable: "AUTOREST_PYTHON_EXE" });
-  cp.execSync(command.join(" "), {
-    stdio: [0, 1, 2]
+    const command = await extension.patchPythonPath(["python", scriptName, ...args], { version: ">=3.8", environmentVariable: "AUTOREST_PYTHON_EXE" });
+    cp.execSync(command.join(" "), {
+      stdio: [0, 1, 2]
+    });
+  }
+  
+  runPython3(...process.argv.slice(2)).catch(err => {
+    console.error(err.toString());
+    process.exit(1);
   });
-}
-
-runPython3(...process.argv.slice(2)).catch(err => {
-  console.error(err.toString());
-  process.exit(1);
-});

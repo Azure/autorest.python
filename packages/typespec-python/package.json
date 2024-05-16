@@ -27,8 +27,9 @@
     "node": ">=14.0.0"
   },
   "scripts": {
+    "postinstall": "node ./scripts/post-install.js && node ./dist/pygen/scripts/run-python3.cjs ./dist/pygen/scripts/install.py && node ./dist/pygen/scripts/run-python3.cjs ./dist/pygen/scripts/prepare.py",
     "clean": "rimraf ./dist ./temp",
-    "build": "tsc -p . && node ./scripts/post-build.js",
+    "build": "tsc -p .",
     "watch": "tsc -p . --watch",
     "test": "mocha",
     "test-official": "c8 mocha --forbid-only",

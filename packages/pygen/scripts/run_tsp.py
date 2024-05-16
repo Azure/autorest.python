@@ -9,7 +9,7 @@ import logging
 from pathlib import Path
 from venvtools import python_run
 
-_ROOT_DIR = Path(__file__).parent
+_ROOT_DIR = Path(__file__).parent.parent
 
 _LOGGER = logging.getLogger(__name__)
 

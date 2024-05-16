@@ -67,14 +67,14 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
-    const root = path.join(dirname(fileURLToPath(import.meta.url)), "pygen");
+    const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "pygen");
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
-        `${root}/run-python3.js`,
-        `${root}/run_tsp.py`,
+        `${root}/scripts/run-python3.cjs`,
+        `${root}/scripts/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];

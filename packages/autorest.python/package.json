@@ -3,10 +3,10 @@
   "version": "6.13.17",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "prepare": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js ./node_modules/@azure-tools/python-client-generator-core/prepare.py",
-    "start": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js start.py",
-    "install": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js install.py",
-    "debug": "node ./node_modules/@azure-tools/python-client-generator-core/run-python3.js start.py --debug"
+    "prepare": "node ./node_modules/pygen/scripts/run-python3.cjs ./node_modules/pygen/scripts/prepare.py",
+    "start": "node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/start.py",
+    "install": "node ./scripts/copy-pygen.js && node ./node_modules/pygen/scripts/run-python3.cjs ./node_modules/pygen/scripts/install.py && node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/install.py",
+    "debug": "node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/start.py --debug"
   },
   "main": "index.js",
   "repository": {
@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/main/README.md",
   "dependencies": {
-    "@autorest/system-requirements": "~1.0.2"
+    "@autorest/system-requirements": "~1.0.2",
+    "fs-extra": "^10.0.0",
+    "semver": "^7.3.5"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",
@@ -34,12 +36,9 @@
   "files": [
     "autorest/**/*.py",
     "autorest/**/*.jinja2",
+    "scripts/",
     "setup.py",
-    "install.py",
-    "prepare.py",
-    "start.py",
     "venvtools.py",
-    "run-python3.js",
     "requirements.txt",
     "run_cadl.py"
   ]

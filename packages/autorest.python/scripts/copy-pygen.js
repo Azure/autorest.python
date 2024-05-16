@@ -1,12 +1,10 @@
-import fs from 'fs-extra';
-import {join, dirname} from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const fs = require('fs-extra');
+const path = require('path');
+const url = require('url');
 
 // Define the source and destination directories
-const sourceDir = join(__dirname, "..", "..", 'pygen');
-const destDir = join(__dirname, "..", 'dist', "src", "pygen");
+const sourceDir = path.join(__dirname, "..", "..", 'pygen');
+const destDir = path.join(__dirname, "..", "node_modules", "pygen");
 
 // Define the filter function. Don't want to copy node_modules
 const filterFunc = (src) => {
