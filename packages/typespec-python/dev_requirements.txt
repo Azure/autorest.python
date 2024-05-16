@@ -1,3 +1,4 @@
 -r ../../eng/requirements.txt
 -r ../../eng/dev_requirements.txt
+-e dist/pygen
 
