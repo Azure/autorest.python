@@ -86,6 +86,7 @@ steps:
           venv\Scripts\activate
         else
           source venv/bin/activate
+        fi
       displayName: 'Create and activate virtual environment'
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/${{parameters.venvFolderPath}}
 
