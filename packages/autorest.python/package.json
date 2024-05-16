@@ -26,8 +26,8 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/main/README.md",
   "dependencies": {
     "@autorest/system-requirements": "~1.0.2",
-    "fs-extra": "^10.0.0",
-    "semver": "^7.3.5"
+    "fs-extra": "~11.2.0",
+    "semver": "~7.6.2"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",
