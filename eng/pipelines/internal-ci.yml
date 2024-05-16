@@ -21,7 +21,6 @@ steps:
           installCadlRanch: true
           folderName: "typespec-python"
           regenerate: true
-          venvFolderPath: "dist/pygen"
 
     - script: |
             tox run -e ci
