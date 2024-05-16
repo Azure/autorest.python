@@ -79,6 +79,7 @@ jobs:
             pythonCodeChecks: true
             pythonFolderName: autorest
             regenerate: true
+            venvFolderPath: "node_modules/pygen/venv"
 
       - script: |
           pip install pip
@@ -178,6 +179,7 @@ jobs:
             installCadlRanch: true
             folderName: "typespec-python"
             regenerate: true
+            venvFolderPath: "dist/pygen/venv"
 
       - template: generated-code-checks-template.yml
         parameters:

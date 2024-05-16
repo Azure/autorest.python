@@ -8,6 +8,7 @@ parameters:
     regenerate: false
     checkChange: true
     updateToLatestTypespec: false
+    venvFolderPath: ""
 
 steps:
     - checkout: self
@@ -79,6 +80,15 @@ steps:
     - script: pip list
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
+    - script: |
+        python -m venv venv
+        if [[ "$(Agent.OS)" == "Windows_NT" ]]; then
+          venv\Scripts\activate
+        else
+          source venv/bin/activate
+      displayName: 'Create and activate virtual environment'
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/{{parameter.venvFolderPath}}
 
     - script: pylint ${{parameters.pythonFolderName}}
       displayName: Pylint
