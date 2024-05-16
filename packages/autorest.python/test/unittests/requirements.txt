@@ -4,3 +4,4 @@ pytest
 pytest-cov
 azure-core==1.30.0
 -e ../../.
+-e ../../node_modules/pygen
