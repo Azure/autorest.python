@@ -35,7 +35,6 @@ from ..models import (
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
-from ..models.response import LROResponse
 from . import utils
 from ..._utils import JSON_REGEXP
 
@@ -937,7 +936,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
-                if isinstance(response, LROResponse) and builder.initial_operation.has_stream_kwargs:
+                if hasattr(builder, "initial_operation") and builder.initial_operation.has_stream_kwargs:
                     response_name = "_response"
                     deserialize_code.append(
                         "_response = pipeline_response if getattr(pipeline_response, 'context', {}) else pipeline_response.http_response"  # pylint: disable=line-too-long
