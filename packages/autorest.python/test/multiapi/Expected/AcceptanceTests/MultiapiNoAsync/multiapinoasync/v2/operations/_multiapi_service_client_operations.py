@@ -9,7 +9,14 @@
 import sys
 from typing import Any, Callable, Dict, Optional, Type, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    ResourceNotModifiedError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
@@ -25,81 +32,60 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_test_one_request(
-    *,
-    id: int,
-    message: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
+def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))
-    accept = _headers.pop('Accept', "application/json")
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
 
     # Construct parameters
-    _params['id'] = _SERIALIZER.query("id", id, 'int')
+    _params["id"] = _SERIALIZER.query("id", id, "int")
     if message is not None:
-        _params['message'] = _SERIALIZER.query("message", message, 'str')
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+        _params["message"] = _SERIALIZER.query("message", message, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_test_different_calls_request(
-    *,
-    greeting_in_english: str,
-    greeting_in_chinese: Optional[str] = None,
-    **kwargs: Any
+    *, greeting_in_english: str, greeting_in_chinese: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))
-    accept = _headers.pop('Accept', "application/json")
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    _headers["greetingInEnglish"] = _SERIALIZER.header("greeting_in_english", greeting_in_english, "str")
     if greeting_in_chinese is not None:
-        _headers['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers["greetingInChinese"] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
-class MultiapiServiceClientOperationsMixin( 
-    MultiapiServiceClientMixinABC
-):
+
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version
@@ -107,12 +93,7 @@ class MultiapiServiceClientOperationsMixin(
             return ""
 
     @distributed_trace
-    def test_one(
-        self,
-        id: int,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> _models.ModelTwo:
+    def test_one(self, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter. Required.
@@ -124,19 +105,21 @@ class MultiapiServiceClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version('test_one') or "2.0.0"))
-        cls: ClsType[_models.ModelTwo] = kwargs.pop(
-            'cls', None
+        api_version: str = kwargs.pop(
+            "api_version", _params.pop("api-version", self._api_version("test_one") or "2.0.0")
         )
+        cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
 
-        
         _request = build_test_one_request(
             id=id,
             message=message,
@@ -148,10 +131,8 @@ class MultiapiServiceClientOperationsMixin(
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -161,24 +142,16 @@ class MultiapiServiceClientOperationsMixin(
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize(
-            'ModelTwo',
-            pipeline_response
-        )
+        deserialized = self._deserialize("ModelTwo", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {}) # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-
-
     @distributed_trace
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
-        self,
-        greeting_in_english: str,
-        greeting_in_chinese: Optional[str] = None,
-        **kwargs: Any
+        self, greeting_in_english: str, greeting_in_chinese: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
 
@@ -191,19 +164,21 @@ class MultiapiServiceClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version('test_different_calls') or "2.0.0"))
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
+        api_version: str = kwargs.pop(
+            "api_version", _params.pop("api-version", self._api_version("test_different_calls") or "2.0.0")
         )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        
         _request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
@@ -215,10 +190,8 @@ class MultiapiServiceClientOperationsMixin(
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -229,6 +202,4 @@ class MultiapiServiceClientOperationsMixin(
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore

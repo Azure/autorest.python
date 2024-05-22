@@ -70,6 +70,3 @@ class ModelTwo(_serialization.Model):
         super().__init__(**kwargs)
         self.id = id
         self.message = message
-er().__init__(**kwargs)
-        self.id = id
-        self.message = message

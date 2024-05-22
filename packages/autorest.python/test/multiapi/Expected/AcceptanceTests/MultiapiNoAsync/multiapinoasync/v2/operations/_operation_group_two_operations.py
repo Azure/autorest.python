@@ -126,7 +126,3 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
-       if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
