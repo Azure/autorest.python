@@ -902,7 +902,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def deserialize_for_stream_res(self) -> str:
         if self.code_model.options["version_tolerant"]:
             return "response.iter_bytes()"
-        return f"response.stream_download(self._client.{self.pipeline_name})"
+        return "(await response.load_body()) or response._content # pylint: disable=protected-access" if self.async_mode else f"response.stream_download(self._client.{self.pipeline_name})"
 
     def response_headers_and_deserialization(
         self,
@@ -936,7 +936,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 if isinstance(response, LROResponse) and builder.initial_operation.has_stream_kwargs:
                     response_name = "_response"
                     deserialize_code.append(
-                        "_response = pipeline_response if getattr(pipeline_response, 'context', {}) else pipeline_response.http_response.internal_response"  # pylint: disable=line-too-long
+                        "_response = pipeline_response if getattr(pipeline_response, 'context', {}) else pipeline_response.http_response"  # pylint: disable=line-too-long
                     )
                 else:
                     response_name = "pipeline_response"
@@ -981,11 +981,13 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
         retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
-        if not self.code_model.need_request_converter:
+        need_download = builder.has_stream_kwargs and self.async_mode and not self.code_model.options["version_tolerant"]
+        if not self.code_model.need_request_converter or need_download:
+            load_func = "load_body" if need_download else "read"
             retval.extend(
                 [
                     "    if _stream:",
-                    f"        {async_await} response.read()  # Load the body in memory and close the socket",
+                    f"        {async_await} response.{load_func}()  # Load the body in memory and close the socket",
                 ]
             )
         type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
