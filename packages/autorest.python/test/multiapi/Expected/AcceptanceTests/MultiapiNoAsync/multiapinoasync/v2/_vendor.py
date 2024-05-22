@@ -34,3 +34,5 @@ class MultiapiServiceClientMixinABC(ABC):
     _config: MultiapiServiceClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+er"
+

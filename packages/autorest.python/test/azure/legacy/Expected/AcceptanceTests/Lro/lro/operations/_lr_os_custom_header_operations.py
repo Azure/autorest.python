@@ -167,7 +167,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -185,7 +185,10 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -259,6 +262,7 @@ class LROsCustomHeaderOperations:
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -274,7 +278,10 @@ class LROsCustomHeaderOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response)
+            _response = (
+                pipeline_response if getattr(pipeline_response, "context", {}) else pipeline_response.http_response
+            )
+            deserialized = self._deserialize("Product", _response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -334,7 +341,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -346,10 +353,16 @@ class LROsCustomHeaderOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("Product", pipeline_response)
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("Product", pipeline_response)
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -423,6 +436,7 @@ class LROsCustomHeaderOperations:
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -430,7 +444,10 @@ class LROsCustomHeaderOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response)
+            _response = (
+                pipeline_response if getattr(pipeline_response, "context", {}) else pipeline_response.http_response
+            )
+            deserialized = self._deserialize("Product", _response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

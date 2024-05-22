@@ -485,7 +485,7 @@ class StorageAccountsOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -498,7 +498,10 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("StorageAccount", pipeline_response)
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = self._deserialize("StorageAccount", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -616,6 +619,7 @@ class StorageAccountsOperations:
                 api_version=api_version,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -623,7 +627,10 @@ class StorageAccountsOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("StorageAccount", pipeline_response)
+            _response = (
+                pipeline_response if getattr(pipeline_response, "context", {}) else pipeline_response.http_response
+            )
+            deserialized = self._deserialize("StorageAccount", _response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

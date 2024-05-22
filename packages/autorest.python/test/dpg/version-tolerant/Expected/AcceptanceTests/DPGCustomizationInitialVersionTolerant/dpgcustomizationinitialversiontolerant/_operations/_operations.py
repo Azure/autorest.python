@@ -426,7 +426,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -439,10 +439,13 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
+        if _stream:
+            deserialized = response.iter_bytes()
         else:
-            deserialized = None
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
@@ -479,7 +482,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._lro_initial(mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+            raw_result = self._lro_initial(
+                mode=mode, cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+            )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

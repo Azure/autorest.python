@@ -58,3 +58,4 @@ class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-a
             self.authentication_policy = ARMChallengeAuthenticationPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+ntial_scopes, **kwargs)

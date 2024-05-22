@@ -93,7 +93,7 @@ class DownloadOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = response.stream_download(self._client._pipeline)
+        deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -1835,7 +1835,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1848,10 +1848,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
+        if _stream:
+            deserialized = response.iter_bytes()
         else:
-            deserialized = None
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
@@ -1959,6 +1962,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

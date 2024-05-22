@@ -540,7 +540,7 @@ class StorageAccountsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -555,10 +555,13 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if _stream:
+                deserialized = response.iter_bytes()
             else:
-                deserialized = None
+                if response.content:
+                    deserialized = response.json()
+                else:
+                    deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -912,6 +915,7 @@ class StorageAccountsOperations:
                 parameters=parameters,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

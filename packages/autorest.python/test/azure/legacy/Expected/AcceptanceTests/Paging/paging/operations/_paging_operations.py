@@ -2063,7 +2063,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2074,7 +2074,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("ProductResult", pipeline_response)
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = self._deserialize("ProductResult", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2179,6 +2182,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs,

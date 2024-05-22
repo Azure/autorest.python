@@ -644,7 +644,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -655,7 +655,10 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("PagingResult", pipeline_response)
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = self._deserialize("PagingResult", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -701,7 +704,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -715,7 +718,10 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("Product", pipeline_response)
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -752,6 +758,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -759,7 +766,10 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response)
+            _response = (
+                pipeline_response if getattr(pipeline_response, "context", {}) else pipeline_response.http_response
+            )
+            deserialized = self._deserialize("Product", _response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -885,6 +895,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 test_lro_and_paging_options=test_lro_and_paging_options,
                 client_request_id=client_request_id,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
