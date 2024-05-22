@@ -35,6 +35,7 @@ from ..models import (
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
+from ..models.response import LROResponse
 from . import utils
 from ..._utils import JSON_REGEXP
 
@@ -562,7 +563,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
             f'kwargs.pop("stream", {builder.has_stream_response})'
-            if builder.expose_stream_keyword and builder.has_response_body
+            if builder.has_stream_kwargs
             else builder.has_stream_response
         )
         return [
@@ -897,11 +898,18 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def call_request_builder(self, builder: OperationType, is_paging: bool = False) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder, is_paging=is_paging)
 
+    @property
+    def deserialize_for_stream_res(self) -> str:
+        if self.code_model.options["version_tolerant"]:
+            return "response.iter_bytes()"
+        return f"response.stream_download(self._client.{self.pipeline_name})"
+
     def response_headers_and_deserialization(
         self,
         builder: OperationType,
         response: Response,
     ) -> List[str]:
+        # pylint: disable=too-many-statements
         retval: List[str] = [
             (
                 f"response_headers['{response_header.wire_name}']=self._deserialize("
@@ -918,19 +926,23 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 deserialized = f"{'await ' if self.async_mode else ''}response.read()"
             else:
                 stream_logic = False
-                if self.code_model.options["version_tolerant"]:
-                    deserialized = "response.iter_bytes()"
-                else:
-                    deserialized = f"response.stream_download(self._client.{self.pipeline_name})"
+                deserialized = self.deserialize_for_stream_res
             deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
             if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
+                if isinstance(response, LROResponse) and builder.initial_operation.has_stream_kwargs:
+                    response_name = "_response"
+                    deserialize_code.append(
+                        "_response = pipeline_response if getattr(pipeline_response, 'context', {}) else pipeline_response.http_response.internal_response"  # pylint: disable=line-too-long
+                    )
+                else:
+                    response_name = "pipeline_response"
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append("    pipeline_response")
+                deserialize_code.append(f"    {response_name}")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
@@ -959,7 +971,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         if len(deserialize_code) > 0:
             if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
-                retval.append("    deserialized = response.iter_bytes()")
+                retval.append(f"    deserialized = {self.deserialize_for_stream_res}")
                 retval.append("else:")
                 retval.extend([f"    {dc}" for dc in deserialize_code])
             else:
@@ -1320,6 +1332,8 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
             [f"        {parameter.client_name}={parameter.client_name}," for parameter in builder.parameters.method]
         )
         retval.append("        cls=lambda x,y,z: x,")
+        if builder.initial_operation.has_stream_kwargs:
+            retval.append("        stream=True,")
         retval.append("        headers=_headers,")
         retval.append("        params=_params,")
         retval.append("        **kwargs")
