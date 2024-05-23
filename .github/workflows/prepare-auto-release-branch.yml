@@ -31,6 +31,6 @@ jobs:
         name: Install dependencies
 
       - name: Create release branch
-        run: node ./eng/prepare-release-branch.js
+        run: node ./eng/prepare-release-branch.mjs
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
