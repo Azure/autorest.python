@@ -940,10 +940,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
                 if hasattr(builder, "initial_operation") and builder.initial_operation.has_stream_kwargs:  # type: ignore # pylint: disable=line-too-long
-                    response_name = "_response"
-                    deserialize_code.append(
-                        "_response = pipeline_response if getattr(pipeline_response, 'context', {}) else pipeline_response.http_response"  # pylint: disable=line-too-long
-                    )
+                    response_name = "pipeline_response.http_response"
                 else:
                     response_name = "pipeline_response"
                 deserialize_code.append("deserialized = self._deserialize(")
