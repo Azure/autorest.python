@@ -112,7 +112,7 @@ class FormdataOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -166,7 +166,7 @@ class FormdataOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -223,7 +223,7 @@ class FormdataOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
