@@ -80,7 +80,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -99,20 +99,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -262,7 +256,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -320,7 +313,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -336,10 +329,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(JSON, response.json())
+        deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -367,7 +357,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete_initial(
-                name=name, cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -413,7 +403,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -429,10 +419,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(JSON, response.json())
+        deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -472,7 +459,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._export_initial(
-                name=name, format=format, cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 

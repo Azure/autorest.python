@@ -358,7 +358,7 @@ class QuestionAnsweringProjectsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -374,13 +374,10 @@ class QuestionAnsweringProjectsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
+            if response.content:
+                deserialized = response.json()
             else:
-                if response.content:
-                    deserialized = response.json()
-                else:
-                    deserialized = None
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Operation-Location"] = self._deserialize(
@@ -880,7 +877,6 @@ class QuestionAnsweringProjectsOperations:
                 body=body,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

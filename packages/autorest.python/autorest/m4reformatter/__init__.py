@@ -577,6 +577,9 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         initial_operation["name"] = f"_{initial_operation['name']}_initial"
         initial_operation["isLroInitialOperation"] = True
         initial_operation["wantTracing"] = False
+        if self.legacy:
+            # legacy will use msrest models, which may meet https://github.com/Azure/autorest.python/issues/2428 for lro
+            initial_operation["exposeStreamKeyword"] = True
         return initial_operation
 
     def update_lro_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:

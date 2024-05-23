@@ -419,10 +419,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self._update_lro_operation_helper(overload)
             self.update_operation(code_model, overload["initialOperation"], is_overload=True)
 
-        # for lro initial reponse, there is no need to make deserialization so we mark it
-        # as stream operation by default which will not make deserialization by default
-        yaml_data["initialOperation"]["exposeStreamKeyword"] = True
-
     def update_paging_operation(
         self,
         code_model: Dict[str, Any],

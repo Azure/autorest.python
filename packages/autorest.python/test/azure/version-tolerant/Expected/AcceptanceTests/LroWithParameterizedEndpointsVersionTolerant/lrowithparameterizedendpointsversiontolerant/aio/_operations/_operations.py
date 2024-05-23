@@ -67,7 +67,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -83,13 +83,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
+            if response.content:
+                deserialized = response.json()
             else:
-                if response.content:
-                    deserialized = response.json()
-                else:
-                    deserialized = None
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -118,12 +115,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._poll_with_parameterized_endpoints_initial(
-                account_name=account_name,
-                cls=lambda x, y, z: x,
-                stream=True,
-                headers=_headers,
-                params=_params,
-                **kwargs
+                account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -193,7 +185,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -209,13 +201,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
+            if response.content:
+                deserialized = response.json()
             else:
-                if response.content:
-                    deserialized = response.json()
-                else:
-                    deserialized = None
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -250,7 +239,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 account_name=account_name,
                 constant_parameter=constant_parameter,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

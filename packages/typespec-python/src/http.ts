@@ -66,7 +66,7 @@ function emitInitialLroHttpMethod(
         name: `_${camelToSnakeCase(method.name)}_initial`,
         isLroInitialOperation: true,
         wantTracing: false,
-        exposeStreamKeyword: true,
+        exposeStreamKeyword: false,
         description: getDescriptionAndSummary(method).description,
         summary: getDescriptionAndSummary(method).summary,
     };
