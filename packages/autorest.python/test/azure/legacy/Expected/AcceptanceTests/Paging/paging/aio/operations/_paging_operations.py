@@ -1697,7 +1697,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response.http_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

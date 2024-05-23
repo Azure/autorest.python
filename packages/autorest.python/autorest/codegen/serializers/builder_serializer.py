@@ -212,6 +212,10 @@ def is_json_model_type(parameters: ParameterListType) -> bool:
     )
 
 
+def has_stream_initial_operation(builder: OperationType) -> bool:
+    return hasattr(builder, "initial_operation") and builder.initial_operation.has_stream_kwargs  # type: ignore # pylint: disable=line-too-long
+
+
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
@@ -939,7 +943,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
-                if hasattr(builder, "initial_operation") and builder.initial_operation.has_stream_kwargs:  # type: ignore # pylint: disable=line-too-long
+                if has_stream_initial_operation(builder):
                     response_name = "pipeline_response.http_response"
                 else:
                     response_name = "pipeline_response"
@@ -1248,7 +1252,10 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
+            suffix = ".http_response" if has_stream_initial_operation(builder) else ""
+            deserialized = (
+                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
+            )
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
