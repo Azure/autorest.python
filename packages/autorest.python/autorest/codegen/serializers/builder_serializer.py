@@ -984,7 +984,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
         retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
-        need_download = builder.has_stream_kwargs and self.async_mode and not self.code_model.options["version_tolerant"]
+        need_download = (
+            builder.has_stream_kwargs and self.async_mode and not self.code_model.options["version_tolerant"]
+        )
         if not self.code_model.need_request_converter or need_download:
             load_func = "load_body" if need_download else "read"
             retval.extend(
