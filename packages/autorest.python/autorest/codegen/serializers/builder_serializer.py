@@ -994,7 +994,11 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             self.code_model.options["version_tolerant"] or self.async_mode
         )
         if not self.code_model.need_request_converter or need_download:
-            load_func = "load_body" if need_download and self.async_mode else "read"
+            load_func = (
+                "load_body"
+                if need_download and self.async_mode and not self.code_model.options["version_tolerant"]
+                else "read"
+            )
             retval.extend(
                 [
                     "    if _stream:",

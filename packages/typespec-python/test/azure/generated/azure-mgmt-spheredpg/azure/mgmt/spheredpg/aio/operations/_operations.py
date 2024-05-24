@@ -371,7 +371,7 @@ class CatalogsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -387,12 +387,18 @@ class CatalogsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -753,6 +759,7 @@ class CatalogsOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -3490,7 +3497,7 @@ class ImagesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3506,12 +3513,18 @@ class ImagesOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3945,6 +3958,7 @@ class ImagesOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -4393,7 +4407,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4409,12 +4423,18 @@ class ProductsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4762,6 +4782,7 @@ class ProductsOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -4834,7 +4855,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4851,7 +4872,10 @@ class ProductsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -5155,6 +5179,7 @@ class ProductsOperations:
                 properties=properties,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -5796,7 +5821,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5812,12 +5837,18 @@ class DeviceGroupsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -6244,6 +6275,7 @@ class DeviceGroupsOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -6318,7 +6350,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -6335,7 +6367,10 @@ class DeviceGroupsOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -6714,6 +6749,7 @@ class DeviceGroupsOperations:
                 properties=properties,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -7577,7 +7613,7 @@ class DeploymentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -7593,12 +7629,18 @@ class DeploymentsOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -8318,6 +8360,7 @@ class DeploymentsOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -8864,7 +8907,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -8880,12 +8923,18 @@ class DevicesOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -9313,6 +9362,7 @@ class DevicesOperations:
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
@@ -10052,7 +10102,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -10069,7 +10119,10 @@ class DevicesOperations:
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            if _stream:
+                deserialized = await response.read()
+            else:
+                deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -10303,6 +10356,7 @@ class DevicesOperations:
                 body=body,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

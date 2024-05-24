@@ -75,7 +75,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -91,7 +91,10 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        if _stream:
+            deserialized = await response.read()
+        else:
+            deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -222,7 +225,13 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._long_running_rpc_initial(
-                body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+                body=body,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                stream=True,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
