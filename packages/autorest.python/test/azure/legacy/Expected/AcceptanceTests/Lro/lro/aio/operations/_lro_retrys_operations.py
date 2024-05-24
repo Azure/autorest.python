@@ -119,13 +119,13 @@ class LRORetrysOperations:
 
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -290,7 +290,7 @@ class LRORetrysOperations:
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -443,7 +443,7 @@ class LRORetrysOperations:
         response_headers = {}
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -452,7 +452,7 @@ class LRORetrysOperations:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 

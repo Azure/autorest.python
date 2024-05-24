@@ -138,13 +138,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -297,13 +297,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -459,13 +459,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -627,7 +627,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1473,13 +1473,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1638,7 +1638,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1811,7 +1811,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2441,7 +2441,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         deserialized = None
         if response.status_code == 200:
             if _stream:
-                deserialized = await response.load_body()
+                deserialized = (await response.load_body()) or response.body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2603,7 +2603,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2776,7 +2776,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = await response.load_body()
+            deserialized = (await response.load_body()) or response.body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
