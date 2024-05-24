@@ -1618,7 +1618,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("ProductResult", pipeline_response)
 

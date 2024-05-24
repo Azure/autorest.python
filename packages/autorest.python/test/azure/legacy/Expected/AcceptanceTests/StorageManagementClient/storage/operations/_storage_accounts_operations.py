@@ -499,7 +499,7 @@ class StorageAccountsOperations:
         deserialized = None
         if response.status_code == 200:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.body()
             else:
                 deserialized = self._deserialize("StorageAccount", pipeline_response)
 

@@ -123,7 +123,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response_headers = {}
         if response.status_code == 200:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.body()
             else:
                 deserialized = self._deserialize("str", pipeline_response)
 
@@ -242,7 +242,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response_headers = {}
         if response.status_code == 200:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.body()
             else:
                 deserialized = self._deserialize("str", pipeline_response)
 

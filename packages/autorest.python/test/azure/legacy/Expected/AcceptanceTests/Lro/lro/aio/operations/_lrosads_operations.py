@@ -138,13 +138,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -297,13 +297,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -459,13 +459,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -627,7 +627,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -769,6 +769,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -850,6 +852,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -931,6 +935,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1031,6 +1037,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1170,6 +1178,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1309,6 +1319,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1461,13 +1473,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1626,7 +1638,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1799,7 +1811,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -1944,6 +1956,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2021,6 +2035,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2123,6 +2139,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2265,6 +2283,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2421,7 +2441,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         deserialized = None
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2583,7 +2603,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2756,7 +2776,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("Product", pipeline_response)
 
@@ -2901,6 +2921,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2983,6 +3005,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3070,6 +3094,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3172,6 +3198,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3314,6 +3342,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3462,6 +3492,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

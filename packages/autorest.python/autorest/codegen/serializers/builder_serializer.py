@@ -904,12 +904,12 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     @property
     def deserialize_for_stream_res(self) -> str:
         if self.code_model.options["version_tolerant"]:
-            return "response.iter_bytes()"
-        return (
-            "(await response.load_body()) or response._content # pylint: disable=protected-access"
-            if self.async_mode
-            else f"response.stream_download(self._client.{self.pipeline_name})"
-        )
+            if self.async_mode:
+                return "await response.read()"
+            return "response.read()"
+        if self.async_mode:
+            return "(await response.load_body()) or response.body()"
+        return "response.body()"
 
     def response_headers_and_deserialization(
         self,
@@ -978,7 +978,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         if len(deserialize_code) > 0:
             if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
-                retval.append(f"    deserialized = {self.deserialize_for_stream_res}")
+                retval.append(
+                    f"    deserialized = {self.deserialize_for_stream_res if builder.is_lro_initial_operation else 'response.iter_bytes()'}"  # pylint: disable=line-too-long
+                )
                 retval.append("else:")
                 retval.extend([f"    {dc}" for dc in deserialize_code])
             else:
@@ -988,11 +990,11 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
         retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
-        need_download = (
-            builder.has_stream_kwargs and self.async_mode and not self.code_model.options["version_tolerant"]
+        need_download = builder.is_lro_initial_operation and (
+            self.code_model.options["version_tolerant"] or self.async_mode
         )
         if not self.code_model.need_request_converter or need_download:
-            load_func = "load_body" if need_download else "read"
+            load_func = "load_body" if need_download and self.async_mode else "read"
             retval.extend(
                 [
                     "    if _stream:",

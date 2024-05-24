@@ -82,7 +82,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -97,10 +97,13 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         deserialized = None
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
+            if _stream:
+                deserialized = await response.read()
             else:
-                deserialized = None
+                if response.content:
+                    deserialized = response.json()
+                else:
+                    deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -214,6 +217,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
+                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs

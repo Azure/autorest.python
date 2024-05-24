@@ -89,7 +89,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response_headers = {}
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("str", pipeline_response)
 
@@ -210,7 +210,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response_headers = {}
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("str", pipeline_response)
 

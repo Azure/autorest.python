@@ -165,7 +165,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         deserialized = None
         if response.status_code == 200:
             if _stream:
-                deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+                deserialized = await response.load_body()
             else:
                 deserialized = self._deserialize("Product", pipeline_response)
 
@@ -314,7 +314,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = (await response.load_body()) or response._content  # pylint: disable=protected-access
+            deserialized = await response.load_body()
         else:
             deserialized = self._deserialize("PagingResult", pipeline_response)
 

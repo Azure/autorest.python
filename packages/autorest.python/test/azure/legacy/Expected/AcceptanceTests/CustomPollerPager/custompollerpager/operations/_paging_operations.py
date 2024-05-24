@@ -2079,7 +2079,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.body()
         else:
             deserialized = self._deserialize("ProductResult", pipeline_response)
 
