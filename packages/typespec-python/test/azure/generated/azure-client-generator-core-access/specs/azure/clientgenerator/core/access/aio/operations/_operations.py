@@ -22,7 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._model_base import _deserialize
+from ...models._model_base import _deserialize
 from ...operations._operations import (
     build_internal_operation_internal_decorator_in_internal_request,
     build_internal_operation_no_decorator_in_internal_request,

@@ -22,7 +22,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _model_base, models as _models
+from .. import models as _models
+from ...models import _model_base
 from .._serialization import Serializer
 from .._vendor import prepare_multipart_form_data
 

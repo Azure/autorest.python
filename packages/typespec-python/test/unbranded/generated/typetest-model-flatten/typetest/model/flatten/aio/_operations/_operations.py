@@ -24,11 +24,11 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_flatten_put_flatten_model_request,
     build_flatten_put_nested_flatten_model_request,
 )
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import FlattenClientMixinABC
 
 if sys.version_info >= (3, 9):

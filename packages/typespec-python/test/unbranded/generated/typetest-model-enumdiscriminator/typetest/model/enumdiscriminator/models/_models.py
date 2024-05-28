@@ -9,9 +9,9 @@
 
 from typing import Any, Dict, Literal, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from . import _model_base
 from ._enums import DogKind, SnakeKind
+from ._model_base import rest_discriminator, rest_field
 
 
 class Snake(_model_base.Model):

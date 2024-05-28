@@ -10,8 +10,8 @@
 import sys
 from typing import Any, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from . import _model_base
+from ._model_base import rest_field
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

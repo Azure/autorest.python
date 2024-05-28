@@ -10,8 +10,8 @@
 import datetime
 from typing import Any, List, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from . import _model_base
+from ._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

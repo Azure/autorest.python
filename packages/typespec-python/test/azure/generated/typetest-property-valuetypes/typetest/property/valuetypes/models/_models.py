@@ -11,9 +11,9 @@ import datetime
 import decimal
 from typing import Any, Dict, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from . import _model_base
 from ._enums import ExtendedEnum
+from ._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

@@ -24,7 +24,6 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_visibility_delete_model_request,
     build_visibility_get_model_request,
@@ -33,6 +32,7 @@ from ..._operations._operations import (
     build_visibility_post_model_request,
     build_visibility_put_model_request,
 )
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import VisibilityClientMixinABC
 
 if sys.version_info >= (3, 9):
