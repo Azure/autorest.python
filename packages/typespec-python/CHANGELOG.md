@@ -1,5 +1,12 @@
 # Release
 
+## 0.23.12
+
+### Bug Fixes
+
+- [#2601](https://github.com/Azure/autorest.python/pull/2601) Remove unused model for paging operation
+
+
 ## 0.23.11
 
 ### Bump dependencies
