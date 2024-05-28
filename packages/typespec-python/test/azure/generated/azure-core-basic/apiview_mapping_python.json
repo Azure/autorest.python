@@ -5,7 +5,6 @@
         "specs.azure.core.basic.models.ListItemInputBody": "_Specs_.Azure.Core.Basic.ListItemInputBody",
         "specs.azure.core.basic.models.SecondItem": "_Specs_.Azure.Core.Basic.SecondItem",
         "specs.azure.core.basic.models.User": "_Specs_.Azure.Core.Basic.User",
-        "specs.azure.core.basic.models.UserListResults": "_Specs_.Azure.Core.Basic.CustomPageModel",
         "specs.azure.core.basic.models.UserOrder": "_Specs_.Azure.Core.Basic.UserOrder",
         "specs.azure.core.basic.models.ListItemInputExtensibleEnum": "_Specs_.Azure.Core.Basic.ListItemInputExtensibleEnum",
         "specs.azure.core.basic.BasicClient.two_models_as_page_item.list_first_item": "_Specs_.Azure.Core.Basic.TwoModelsAsPageItem.listFirstItem",
