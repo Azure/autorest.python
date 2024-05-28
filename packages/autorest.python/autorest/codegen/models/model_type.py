@@ -303,7 +303,7 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
             )
             if self.is_form_data:
                 file_import.add_submodule_import(
-                    relative_path,
+                    f"{relative_path}.models",
                     "_model_base",
                     ImportType.LOCAL,
                     typing_section=(TypingSection.TYPING if kwargs.get("model_typing") else TypingSection.REGULAR),

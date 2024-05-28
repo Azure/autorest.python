@@ -134,7 +134,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
             # used in the case if initial operation returns none
             # but final call returns a model
             relative_path = "..." if async_mode else ".."
-            file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+            file_import.add_submodule_import(f"{relative_path}models._model_base", "_deserialize", ImportType.LOCAL)
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
