@@ -21,7 +21,6 @@ def test_client_signature():
 
 
 def test_model_mode():
-    from azure.mgmt.spheredpg import _model_base
-    from azure.mgmt.spheredpg.models import Resource
+    from azure.mgmt.spheredpg.models import Resource, _model_base
 
     assert isinstance(Resource(id="", type=""), _model_base.Model)
