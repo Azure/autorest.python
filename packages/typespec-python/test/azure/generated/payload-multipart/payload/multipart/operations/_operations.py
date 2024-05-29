@@ -23,9 +23,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from ...models import _model_base
 from .._serialization import Serializer
 from .._vendor import prepare_multipart_form_data
+from ..models import _model_base
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
