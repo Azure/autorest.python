@@ -212,10 +212,6 @@ def is_json_model_type(parameters: ParameterListType) -> bool:
     )
 
 
-def has_stream_initial_operation(builder: OperationType) -> bool:
-    return hasattr(builder, "initial_operation") and builder.initial_operation.has_stream_kwargs  # type: ignore # pylint: disable=line-too-long
-
-
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
@@ -566,7 +562,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
             f'kwargs.pop("stream", {builder.has_stream_response})'
-            if builder.has_stream_kwargs
+            if builder.expose_stream_keyword and builder.has_response_body
             else builder.has_stream_response
         )
         return [
@@ -901,16 +897,6 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def call_request_builder(self, builder: OperationType, is_paging: bool = False) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder, is_paging=is_paging)
 
-    @property
-    def deserialize_for_stream_res(self) -> str:
-        if self.code_model.options["version_tolerant"]:
-            if self.async_mode:
-                return "await response.read()"
-            return "response.read()"
-        if self.async_mode:
-            return "(await response.load_body()) or response.body()"
-        return "response.body()"
-
     def response_headers_and_deserialization(
         self,
         builder: OperationType,
@@ -943,13 +929,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
-                if has_stream_initial_operation(builder):
-                    response_name = "pipeline_response.http_response"
-                else:
-                    response_name = "pipeline_response"
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append(f"    {response_name}")
+                deserialize_code.append(f"    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
@@ -978,9 +960,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         if len(deserialize_code) > 0:
             if builder.expose_stream_keyword and stream_logic:
                 retval.append("if _stream:")
-                retval.append(
-                    f"    deserialized = {self.deserialize_for_stream_res if builder.is_lro_initial_operation else 'response.iter_bytes()'}"  # pylint: disable=line-too-long
-                )
+                retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
                 retval.extend([f"    {dc}" for dc in deserialize_code])
             else:
@@ -990,19 +970,11 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
         retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
-        need_download = builder.is_lro_initial_operation and (
-            self.code_model.options["version_tolerant"] or self.async_mode
-        )
-        if not self.code_model.need_request_converter or need_download:
-            load_func = (
-                "load_body"
-                if need_download and self.async_mode and not self.code_model.options["version_tolerant"]
-                else "read"
-            )
+        if not self.code_model.need_request_converter:
             retval.extend(
                 [
                     "    if _stream:",
-                    f"        {async_await} response.{load_func}()  # Load the body in memory and close the socket",
+                    f"        {async_await} response.read()  # Load the body in memory and close the socket",
                 ]
             )
         type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
@@ -1258,10 +1230,7 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            suffix = ".http_response" if has_stream_initial_operation(builder) else ""
-            deserialized = (
-                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
-            )
+            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
@@ -1352,12 +1321,11 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
             [f"        {parameter.client_name}={parameter.client_name}," for parameter in builder.parameters.method]
         )
         retval.append("        cls=lambda x,y,z: x,")
-        if builder.initial_operation.has_stream_kwargs:
-            retval.append("        stream=True,")
         retval.append("        headers=_headers,")
         retval.append("        params=_params,")
         retval.append("        **kwargs")
         retval.append("    )")
+        retval.append(f"    {'await ' if self.async_mode else ''}raw_result.http_response.read()  # type: ignore")
         retval.append("kwargs.pop('error_map', None)")
         return retval
 

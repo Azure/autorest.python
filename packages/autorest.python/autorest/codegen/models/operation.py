@@ -187,10 +187,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
         return any(response.type for response in self.responses)
 
     @property
-    def has_stream_kwargs(self) -> bool:
-        return self.expose_stream_keyword and self.has_response_body
-
-    @property
     def any_response_has_headers(self) -> bool:
         return any(response.headers for response in self.responses)
 

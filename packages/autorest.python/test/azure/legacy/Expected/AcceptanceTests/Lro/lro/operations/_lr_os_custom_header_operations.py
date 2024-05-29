@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -131,7 +131,7 @@ class LROsCustomHeaderOperations:
 
     def _put_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -144,7 +144,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -167,7 +167,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -185,10 +185,7 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if _stream:
-            deserialized = response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -262,11 +259,11 @@ class LROsCustomHeaderOperations:
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -278,7 +275,7 @@ class LROsCustomHeaderOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -302,7 +299,7 @@ class LROsCustomHeaderOperations:
 
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -315,7 +312,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -338,7 +335,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -350,16 +347,10 @@ class LROsCustomHeaderOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if _stream:
-                deserialized = response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 201:
-            if _stream:
-                deserialized = response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -433,15 +424,15 @@ class LROsCustomHeaderOperations:
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -463,9 +454,9 @@ class LROsCustomHeaderOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+    def _post202_retry200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -478,7 +469,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -501,7 +492,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -516,8 +507,12 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def begin_post202_retry200(
@@ -579,7 +574,7 @@ class LROsCustomHeaderOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._post202_retry200_initial(  # type: ignore
+            raw_result = self._post202_retry200_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -587,6 +582,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -608,9 +604,9 @@ class LROsCustomHeaderOperations:
             )
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+    def _post_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -623,7 +619,7 @@ class LROsCustomHeaderOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -646,7 +642,7 @@ class LROsCustomHeaderOperations:
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -664,8 +660,12 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def begin_post_async_retry_succeeded(
@@ -730,7 +730,7 @@ class LROsCustomHeaderOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._post_async_retry_succeeded_initial(  # type: ignore
+            raw_result = self._post_async_retry_succeeded_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -738,6 +738,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements

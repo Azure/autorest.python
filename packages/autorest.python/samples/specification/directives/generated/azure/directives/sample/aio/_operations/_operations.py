@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
@@ -47,7 +47,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     async def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -60,7 +60,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -82,7 +82,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -95,20 +95,16 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = None
         if response.status_code == 200:
-            if _stream:
-                deserialized = await response.read()
-            else:
-                if response.content:
-                    deserialized = response.json()
-                else:
-                    deserialized = None
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return deserialized  # type: ignore
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @overload
     async def begin_basic_polling(
@@ -217,11 +213,11 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

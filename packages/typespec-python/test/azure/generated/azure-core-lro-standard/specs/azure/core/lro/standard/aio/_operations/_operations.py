@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -48,7 +48,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     async def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -61,7 +61,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -80,7 +80,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -99,20 +99,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            if _stream:
-                deserialized = await response.read()
-            else:
-                deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            if _stream:
-                deserialized = await response.read()
-            else:
-                deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -262,11 +256,11 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 resource=resource,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -298,7 +292,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(self, name: str, **kwargs: Any) -> JSON:
+    async def _delete_initial(self, name: str, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -310,7 +304,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_standard_delete_request(
             name=name,
@@ -320,7 +314,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -336,10 +330,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        if _stream:
-            deserialized = await response.read()
-        else:
-            deserialized = _deserialize(JSON, response.json())
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -367,8 +358,9 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete_initial(
-                name=name, cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -390,7 +382,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> JSON:
+    async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -402,7 +394,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_standard_export_request(
             name=name,
@@ -413,7 +405,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -429,10 +421,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        if _stream:
-            deserialized = await response.read()
-        else:
-            deserialized = _deserialize(JSON, response.json())
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -472,8 +461,9 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._export_initial(
-                name=name, format=format, cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

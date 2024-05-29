@@ -414,14 +414,14 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         self.update_operation(code_model, yaml_data["initialOperation"], is_overload=is_overload)
+        for response in yaml_data["initialOperation"].get("responses", []):
+            response["type"] = KNOWN_TYPES["binary"]
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
             self.update_operation(code_model, overload["initialOperation"], is_overload=True)
-
-        # for lro initial reponse, there is no need to make deserialization so we mark it
-        # as stream operation by default which will not make deserialization by default
-        yaml_data["initialOperation"]["exposeStreamKeyword"] = True
+            for response in overload["initialOperation"].get("responses", []):
+                response["type"] = KNOWN_TYPES["binary"]
 
     def update_paging_operation(
         self,
@@ -470,6 +470,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         self.update_types(yaml_data["types"])
+        yaml_data["types"] += KNOWN_TYPES.values()
         for client in yaml_data["clients"]:
             self.update_client(client)
             self.update_operation_groups(yaml_data, client)

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -105,7 +105,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put200_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> Optional[_models.Product]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -118,7 +118,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -141,7 +141,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -149,17 +149,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
+
+        if response.status_code == 204:
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -230,15 +227,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -262,7 +259,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -275,7 +272,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -298,7 +295,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -306,8 +303,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -316,10 +311,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -390,11 +382,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -404,7 +396,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -428,7 +420,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -441,7 +433,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -464,7 +456,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -472,27 +464,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 201:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -560,15 +544,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -595,7 +579,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -608,7 +592,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -631,7 +615,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -639,17 +623,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -657,10 +636,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -731,15 +707,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -763,7 +739,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put201_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -776,7 +752,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -799,7 +775,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -807,15 +783,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -886,15 +857,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -916,7 +887,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _post202_list_initial(self, **kwargs: Any) -> Optional[List[_models.Product]]:
+    async def _post202_list_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -928,7 +899,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[List[_models.Product]]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_post202_list_request(
             headers=_headers,
@@ -937,7 +908,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -945,24 +916,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("[Product]", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -988,12 +955,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._post202_list_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("[Product]", pipeline_response.http_response)
+            deserialized = self._deserialize("[Product]", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1017,7 +985,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put200_succeeded_no_state_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1030,7 +998,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1053,7 +1021,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1061,15 +1029,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1140,15 +1103,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1172,7 +1135,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put202_retry200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1185,7 +1148,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1208,7 +1171,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1216,15 +1179,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1298,15 +1256,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1330,7 +1288,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1343,7 +1301,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1366,7 +1324,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1374,22 +1332,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 201:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1463,15 +1413,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1495,7 +1445,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put200_updating_succeeded204_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1508,7 +1458,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1531,7 +1481,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1539,15 +1489,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1621,15 +1566,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1653,7 +1598,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put201_creating_failed200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1666,7 +1611,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1689,7 +1634,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1697,22 +1642,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 201:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1786,15 +1723,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1818,7 +1755,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put200_acceptedcanceled200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1831,7 +1768,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1854,7 +1791,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1862,15 +1799,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1944,15 +1876,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -1976,7 +1908,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_no_header_in_retry_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1989,7 +1921,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2012,7 +1944,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2020,18 +1952,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2102,11 +2029,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2114,7 +2041,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2138,7 +2065,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2151,7 +2078,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2174,7 +2101,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2182,8 +2109,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2194,10 +2119,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2271,11 +2193,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2287,7 +2209,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2311,7 +2233,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_no_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2324,7 +2246,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2347,7 +2269,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2355,8 +2277,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2366,10 +2286,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2443,11 +2360,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2458,7 +2375,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2482,7 +2399,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_retry_failed_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2495,7 +2412,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2518,7 +2435,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2526,8 +2443,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2538,10 +2453,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2615,11 +2527,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2631,7 +2543,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2655,7 +2567,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_no_retrycanceled_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2668,7 +2580,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2691,7 +2603,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2699,8 +2611,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2710,10 +2620,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2787,11 +2694,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2802,7 +2709,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2826,7 +2733,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_no_header_in_retry_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2839,7 +2746,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2862,7 +2769,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2870,8 +2777,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2880,10 +2785,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2957,11 +2859,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2971,7 +2873,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -2995,7 +2897,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_non_resource_initial(
         self, sku: Optional[Union[_models.Sku, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Sku:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3008,7 +2910,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3031,7 +2933,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3039,15 +2941,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Sku", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3108,18 +3005,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._put_non_resource_initial(
-                sku=sku,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                stream=True,
-                headers=_headers,
-                params=_params,
-                **kwargs
+                sku=sku, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Sku", pipeline_response.http_response)
+            deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3143,7 +3035,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_non_resource_initial(
         self, sku: Optional[Union[_models.Sku, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Sku:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3156,7 +3048,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3179,7 +3071,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3187,15 +3079,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Sku", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3256,18 +3143,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._put_async_non_resource_initial(
-                sku=sku,
-                content_type=content_type,
-                cls=lambda x, y, z: x,
-                stream=True,
-                headers=_headers,
-                params=_params,
-                **kwargs
+                sku=sku, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Sku", pipeline_response.http_response)
+            deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3291,7 +3173,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_sub_resource_initial(
         self, provisioning_state: Optional[str] = None, **kwargs: Any
-    ) -> _models.SubProduct:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3304,7 +3186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
-        cls: ClsType[_models.SubProduct] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
@@ -3321,7 +3203,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3329,15 +3211,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("SubProduct", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3370,15 +3247,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 provisioning_state=provisioning_state,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("SubProduct", pipeline_response.http_response)
+            deserialized = self._deserialize("SubProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3402,7 +3279,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_async_sub_resource_initial(
         self, provisioning_state: Optional[str] = None, **kwargs: Any
-    ) -> _models.SubProduct:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3415,7 +3292,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
-        cls: ClsType[_models.SubProduct] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _product = _models.SubProduct(provisioning_state=provisioning_state)
         if _product is not None:
@@ -3432,7 +3309,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3440,15 +3317,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("SubProduct", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3481,15 +3353,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 provisioning_state=provisioning_state,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("SubProduct", pipeline_response.http_response)
+            deserialized = self._deserialize("SubProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3513,7 +3385,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3525,7 +3397,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
@@ -3534,7 +3406,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3542,26 +3414,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3590,12 +3454,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3619,7 +3484,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3631,7 +3496,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_provisioning202_deleting_failed200_request(
             headers=_headers,
@@ -3640,7 +3505,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3648,26 +3513,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3696,12 +3553,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete_provisioning202_deleting_failed200_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3725,7 +3583,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3737,7 +3595,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_provisioning202_deletingcanceled200_request(
             headers=_headers,
@@ -3746,7 +3604,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3754,26 +3612,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3802,12 +3652,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -3829,9 +3680,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete204_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete204_succeeded_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3843,7 +3692,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete204_succeeded_request(
             headers=_headers,
@@ -3852,7 +3701,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3860,13 +3709,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete204_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -3884,9 +3735,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete204_succeeded_initial(  # type: ignore
+            raw_result = await self._delete204_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3908,7 +3760,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[_models.Product]:
+    async def _delete202_retry200_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3920,7 +3772,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete202_retry200_request(
             headers=_headers,
@@ -3929,7 +3781,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3937,22 +3789,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3978,12 +3826,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete202_retry200_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4005,7 +3854,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[_models.Product]:
+    async def _delete202_no_retry204_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4017,7 +3866,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete202_no_retry204_request(
             headers=_headers,
@@ -4026,7 +3875,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4034,22 +3883,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4075,12 +3920,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._delete202_no_retry204_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4102,9 +3948,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4116,7 +3960,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_no_header_in_retry_request(
             headers=_headers,
@@ -4125,7 +3969,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4133,8 +3977,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4142,8 +3984,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
+            deserialized = response.stream_download(self._client._pipeline)
+
+        if response.status_code == 204:
+            deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4162,9 +4011,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_no_header_in_retry_initial(  # type: ignore
+            raw_result = await self._delete_no_header_in_retry_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4186,9 +4036,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4200,7 +4048,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_async_no_header_in_retry_request(
             headers=_headers,
@@ -4209,7 +4057,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4217,8 +4065,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4226,8 +4072,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
+            deserialized = response.stream_download(self._client._pipeline)
+
+        if response.status_code == 204:
+            deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4246,9 +4099,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_async_no_header_in_retry_initial(  # type: ignore
+            raw_result = await self._delete_async_no_header_in_retry_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4270,9 +4124,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4284,7 +4136,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_async_retry_succeeded_request(
             headers=_headers,
@@ -4293,7 +4145,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4301,8 +4153,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4313,8 +4163,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4333,9 +4187,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_async_retry_succeeded_initial(  # type: ignore
+            raw_result = await self._delete_async_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4357,9 +4212,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4371,7 +4224,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_async_no_retry_succeeded_request(
             headers=_headers,
@@ -4380,7 +4233,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4388,8 +4241,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4400,8 +4251,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4420,9 +4275,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_async_no_retry_succeeded_initial(  # type: ignore
+            raw_result = await self._delete_async_no_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4444,9 +4300,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_async_retry_failed_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4458,7 +4312,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_async_retry_failed_request(
             headers=_headers,
@@ -4467,7 +4321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4475,8 +4329,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4487,8 +4339,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retry_failed(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4507,9 +4363,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_async_retry_failed_initial(  # type: ignore
+            raw_result = await self._delete_async_retry_failed_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4531,9 +4388,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4545,7 +4400,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_delete_async_retrycanceled_request(
             headers=_headers,
@@ -4554,7 +4409,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4562,8 +4417,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4574,8 +4427,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete_async_retrycanceled(self, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -4594,9 +4451,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_async_retrycanceled_initial(  # type: ignore
+            raw_result = await self._delete_async_retrycanceled_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4618,7 +4476,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post200_with_payload_initial(self, **kwargs: Any) -> _models.Sku:
+    async def _post200_with_payload_initial(self, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4630,7 +4488,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_post200_with_payload_request(
             headers=_headers,
@@ -4639,7 +4497,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4647,22 +4505,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Sku", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Sku", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4687,12 +4537,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._post200_with_payload_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Sku", pipeline_response.http_response)
+            deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -4714,9 +4565,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post202_retry200_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4729,7 +4580,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4752,7 +4603,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4760,8 +4611,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4769,8 +4618,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     async def begin_post202_retry200(
@@ -4829,7 +4682,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._post202_retry200_initial(  # type: ignore
+            raw_result = await self._post202_retry200_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -4837,6 +4690,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4860,7 +4714,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post202_no_retry204_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4873,7 +4727,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4896,7 +4750,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4904,8 +4758,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4913,10 +4765,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4987,11 +4836,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5000,7 +4849,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -5024,7 +4873,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5036,7 +4885,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_post_double_headers_final_location_get_request(
             headers=_headers,
@@ -5045,7 +4894,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5053,15 +4902,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5090,12 +4934,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._post_double_headers_final_location_get_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5121,7 +4966,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5133,7 +4978,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_post_double_headers_final_azure_header_get_request(
             headers=_headers,
@@ -5142,7 +4987,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5150,15 +4995,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5187,12 +5027,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._post_double_headers_final_azure_header_get_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5219,7 +5060,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> _models.Product:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5231,7 +5072,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_post_double_headers_final_azure_header_get_default_request(
             headers=_headers,
@@ -5240,7 +5081,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5248,15 +5089,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if _stream:
-            deserialized = (await response.load_body()) or response.body()
-        else:
-            deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5285,12 +5121,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
-                cls=lambda x, y, z: x, stream=True, headers=_headers, params=_params, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5314,7 +5151,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> Optional[_models.Product]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5327,7 +5164,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -5350,7 +5187,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5358,18 +5195,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -5377,6 +5208,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -5450,15 +5283,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5482,7 +5315,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_async_no_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> Optional[_models.Product]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5495,7 +5328,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -5518,7 +5351,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5526,18 +5359,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            if _stream:
-                deserialized = (await response.load_body()) or response.body()
-            else:
-                deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -5545,6 +5372,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -5618,15 +5447,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
-                stream=True,
                 headers=_headers,
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response.http_response)
+            deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -5648,9 +5477,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_retry_failed_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5663,7 +5492,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -5686,7 +5515,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5694,8 +5523,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5706,8 +5533,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     async def begin_post_async_retry_failed(
@@ -5769,7 +5600,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._post_async_retry_failed_initial(  # type: ignore
+            raw_result = await self._post_async_retry_failed_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -5777,6 +5608,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -5798,9 +5630,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_retrycanceled_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5813,7 +5645,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -5836,7 +5668,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5844,8 +5676,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.load_body()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5856,8 +5686,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.stream_download(self._client._pipeline)
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     async def begin_post_async_retrycanceled(
@@ -5919,7 +5753,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._post_async_retrycanceled_initial(  # type: ignore
+            raw_result = await self._post_async_retrycanceled_initial(
                 product=product,
                 content_type=content_type,
                 cls=lambda x, y, z: x,
@@ -5927,6 +5761,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
