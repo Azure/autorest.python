@@ -10,8 +10,8 @@
 import datetime
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from . import _model_base
+from ._model_base import rest_field
 
 
 class DefaultDatetimeProperty(_model_base.Model):

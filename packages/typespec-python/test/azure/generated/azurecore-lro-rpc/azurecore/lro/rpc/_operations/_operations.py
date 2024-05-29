@@ -27,9 +27,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import RpcClientMixinABC
+from ..models._model_base import SdkJSONEncoder, _deserialize
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

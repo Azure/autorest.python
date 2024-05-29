@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_enums_only_get_request,
     build_enums_only_send_request,

@@ -22,8 +22,8 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
+from ..models._model_base import SdkJSONEncoder, _deserialize
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

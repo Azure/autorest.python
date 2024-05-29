@@ -25,8 +25,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_recursive_get_request, build_recursive_put_request
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import RecursiveClientMixinABC
 
 if sys.version_info >= (3, 9):

@@ -21,9 +21,10 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import _model_base, models as _models
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import prepare_multipart_form_data
+from ..models import _model_base
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

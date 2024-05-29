@@ -159,7 +159,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
-                ".._model_base",
+                "._model_base",
                 "rest_discriminator" if self.is_discriminator else "rest_field",
                 ImportType.LOCAL,
             )

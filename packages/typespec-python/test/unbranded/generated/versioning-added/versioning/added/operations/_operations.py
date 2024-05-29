@@ -24,10 +24,10 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._validation import api_version_validation
 from .._vendor import AddedClientMixinABC
+from ..models._model_base import SdkJSONEncoder, _deserialize
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

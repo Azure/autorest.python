@@ -31,7 +31,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_catalogs_count_devices_request,
     build_catalogs_create_or_update_request,

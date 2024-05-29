@@ -24,8 +24,8 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_made_optional_test_request
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import MadeOptionalClientMixinABC
 
 if sys.version_info >= (3, 9):

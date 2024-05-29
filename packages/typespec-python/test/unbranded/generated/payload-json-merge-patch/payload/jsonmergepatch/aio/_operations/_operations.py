@@ -24,12 +24,12 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_json_merge_patch_create_resource_request,
     build_json_merge_patch_update_optional_resource_request,
     build_json_merge_patch_update_resource_request,
 )
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import JsonMergePatchClientMixinABC
 
 if sys.version_info >= (3, 9):

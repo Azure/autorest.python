@@ -187,7 +187,7 @@ class DpgModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
-            "..",
+            ".",
             "_model_base",
             ImportType.LOCAL,
             TypingSection.REGULAR,

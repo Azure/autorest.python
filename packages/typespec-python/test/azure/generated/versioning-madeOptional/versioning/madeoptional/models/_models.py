@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from . import _model_base
+from ._model_base import rest_field
 
 
 class TestModel(_model_base.Model):

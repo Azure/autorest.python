@@ -425,7 +425,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         if self.non_default_errors and self.code_model.options["models_mode"] == "dpg":
-            file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+            file_import.add_submodule_import(f"{relative_path}models._model_base", "_deserialize", ImportType.LOCAL)
         return file_import
 
     def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> ResponseType:
@@ -503,13 +503,13 @@ class Operation(OperationBase[Response]):
             if self.parameters.has_body:
                 if not self.has_form_data_body:
                     file_import.add_submodule_import(
-                        f"{relative_path}_model_base",
+                        f"{relative_path}models._model_base",
                         "SdkJSONEncoder",
                         ImportType.LOCAL,
                     )
                     file_import.add_import("json", ImportType.STDLIB)
             if self.default_error_deserialization or any(r.type for r in self.responses):
-                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+                file_import.add_submodule_import(f"{relative_path}models._model_base", "_deserialize", ImportType.LOCAL)
 
         return file_import
 

@@ -20,8 +20,9 @@ from corehttp.exceptions import (
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ... import _model_base, models as _models
+from ... import models as _models
 from ..._vendor import prepare_multipart_form_data
+from ...models import _model_base
 from ...operations._operations import (
     build_form_data_anonymous_model_request,
     build_form_data_basic_request,

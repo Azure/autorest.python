@@ -22,8 +22,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._model_base import _deserialize
 from ..._operations._operations import build_api_key_invalid_request, build_api_key_valid_request
+from ...models._model_base import _deserialize
 from .._vendor import ApiKeyClientMixinABC
 
 if sys.version_info >= (3, 9):

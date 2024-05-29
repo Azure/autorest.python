@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from .. import _model_base
+from . import _model_base
 
 
 class EmptyInput(_model_base.Model):

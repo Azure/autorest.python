@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._model_base import SdkJSONEncoder, _deserialize
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_string_body_get_as_json_request,
     build_string_body_get_as_text_request,

@@ -24,12 +24,12 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_empty_get_empty_request,
     build_empty_post_round_trip_empty_request,
     build_empty_put_empty_request,
 )
+from ...models._model_base import SdkJSONEncoder, _deserialize
 from .._vendor import EmptyClientMixinABC
 
 if sys.version_info >= (3, 9):

@@ -149,7 +149,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             relative_path = "..." if async_mode else ".."
             file_import.merge(self.item_type.imports(**kwargs))
             if self.default_error_deserialization or any(r.type for r in self.responses):
-                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+                file_import.add_submodule_import(f"{relative_path}models._model_base", "_deserialize", ImportType.LOCAL)
         return file_import
 
 
