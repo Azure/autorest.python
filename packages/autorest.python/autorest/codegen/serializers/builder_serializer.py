@@ -902,7 +902,6 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         builder: OperationType,
         response: Response,
     ) -> List[str]:
-        # pylint: disable=too-many-statements
         retval: List[str] = [
             (
                 f"response_headers['{response_header.wire_name}']=self._deserialize("
@@ -931,7 +930,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append(f"    pipeline_response")
+                deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
@@ -1230,7 +1229,7 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response\n)"
+            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
