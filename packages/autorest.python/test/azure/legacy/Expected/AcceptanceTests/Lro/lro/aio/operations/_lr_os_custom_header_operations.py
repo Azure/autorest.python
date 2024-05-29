@@ -200,7 +200,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -368,7 +368,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -522,7 +522,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -678,7 +678,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements

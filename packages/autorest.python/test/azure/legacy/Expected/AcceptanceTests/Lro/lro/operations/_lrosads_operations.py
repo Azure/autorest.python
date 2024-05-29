@@ -619,7 +619,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -770,7 +769,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -921,7 +919,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1075,7 +1072,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1171,7 +1167,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1255,7 +1250,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1343,7 +1337,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1487,7 +1480,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1631,7 +1623,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1781,7 +1772,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1925,7 +1915,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2082,7 +2071,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2247,7 +2235,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2339,7 +2326,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete204_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2431,7 +2417,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_no_status_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2578,7 +2563,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2731,7 +2715,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2878,7 +2861,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3035,7 +3017,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3200,7 +3181,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3297,7 +3277,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3389,7 +3368,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3481,7 +3459,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_invalid_json_polling_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3628,7 +3605,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3781,7 +3757,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3934,7 +3909,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements

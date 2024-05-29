@@ -622,7 +622,6 @@ class StorageAccountsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

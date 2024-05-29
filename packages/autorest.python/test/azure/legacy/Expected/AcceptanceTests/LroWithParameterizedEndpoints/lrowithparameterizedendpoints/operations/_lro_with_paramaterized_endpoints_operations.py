@@ -154,7 +154,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             raw_result = self._poll_with_parameterized_endpoints_initial(
                 account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -275,7 +274,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
