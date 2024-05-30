@@ -237,7 +237,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
-        await raw_result.http_response.load_body()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -390,7 +390,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -423,7 +423,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
-        await raw_result.http_response.load_body()  # type: ignore
+            await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

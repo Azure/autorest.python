@@ -401,7 +401,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             raw_result = await self._lro_initial(
                 mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-        await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

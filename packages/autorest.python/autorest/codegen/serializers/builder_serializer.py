@@ -1241,7 +1241,10 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
+            suffix = ".http_response" if hasattr(builder, "initial_operation") else ""
+            deserialized = (
+                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
+            )
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
@@ -1337,7 +1340,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        **kwargs")
         retval.append("    )")
         if self.need_read_stream_response:
-            retval.append(self.read_stream_response("raw_result.http_response"))
+            retval.append(f'    {self.read_stream_response("raw_result.http_response")}')
         retval.append("kwargs.pop('error_map', None)")
         return retval
 
