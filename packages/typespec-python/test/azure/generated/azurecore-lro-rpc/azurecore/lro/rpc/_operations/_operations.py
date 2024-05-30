@@ -249,7 +249,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             raw_result = self._long_running_rpc_initial(
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-        raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
