@@ -38,7 +38,8 @@
   "files": [
     "lib/*.cadl",
     "dist/**",
-    "!dist/test/**"
+    "!dist/test/**",
+    "pygen/**"
   ],
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.42.0 <1.0.0",
