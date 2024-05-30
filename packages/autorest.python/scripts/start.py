@@ -20,7 +20,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 def main():
     # we use pygen's venv
-    venv_path = _ROOT_DIR / "node_modules" / "pygen" / "venv"
+    venv_path = _ROOT_DIR / "node_modules" / "@azure-tools/typespec-python" / "pygen" / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done

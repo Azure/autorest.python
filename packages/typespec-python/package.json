@@ -33,7 +33,9 @@
     "test": "mocha",
     "test-official": "c8 mocha --forbid-only",
     "lint": "eslint . --ext .ts --max-warnings=0",
-    "lint:fix": "eslint . --fix --ext .ts"
+    "lint:fix": "eslint . --fix --ext .ts",
+    "install": "node ./pygen/scripts/run-python3.cjs ./pygen/scripts/install.py",
+    "prepare": "node ./pygen/scripts/run-python3.cjs ./pygen/scripts/prepare.py"
   },
   "files": [
     "lib/*.cadl",

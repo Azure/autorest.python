@@ -50,6 +50,9 @@ importers:
       '@autorest/system-requirements':
         specifier: ~1.0.2
         version: 1.0.2
+      '@azure-tools/typespec-python':
+        specifier: workspace:^
+        version: link:../typespec-python
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0

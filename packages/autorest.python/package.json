@@ -3,10 +3,9 @@
   "version": "6.13.17",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "prepare": "node ./node_modules/pygen/scripts/run-python3.cjs ./node_modules/pygen/scripts/prepare.py",
-    "start": "node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/start.py",
-    "install": "node ./scripts/copy-pygen.js && node ./node_modules/pygen/scripts/run-python3.cjs ./node_modules/pygen/scripts/install.py && node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/install.py",
-    "debug": "node ./node_modules/pygen/scripts/run-python3.cjs ./scripts/start.py --debug"
+    "start": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/start.py",
+    "install": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/install.py",
+    "debug": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/start.py --debug"
   },
   "main": "index.js",
   "repository": {
@@ -28,7 +27,7 @@
     "@autorest/system-requirements": "~1.0.2",
     "fs-extra": "~11.2.0",
     "semver": "~7.6.2",
-    "@autorest/python": "workspace:^"
+    "@azure-tools/typespec-python": "workspace:^"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",

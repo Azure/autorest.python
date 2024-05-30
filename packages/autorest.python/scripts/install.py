@@ -31,20 +31,12 @@ from venvtools import python_run
 _ROOT_DIR = Path(__file__).parent.parent
 
 
-def ignore_node_modules(dirname, filenames):
-    return ["node_modules"] if "node_modules" in filenames else []
-
-
 def main():
     # Define the source and destination directories
-    source_dir = _ROOT_DIR.parent / "pygen"
-    dest_dir = _ROOT_DIR / "node_modules" / "pygen"
-
-    # Copy the source directory to the destination directory
-    shutil.copytree(source_dir, dest_dir, dirs_exist_ok=True, ignore=ignore_node_modules)
+    pygen_dir = _ROOT_DIR / "node_modules" / "@azure-tools/typespec-python" / "pygen"
 
     # we use pygen's venv
-    venv_path = dest_dir / "venv"
+    venv_path = pygen_dir / "venv"
     assert venv_path.exists()  # Otherwise install was not done
 
     env_builder = venv.EnvBuilder(with_pip=True)
