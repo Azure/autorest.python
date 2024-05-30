@@ -1,6 +1,6 @@
 -e .
 -r ../../eng/requirements.txt
 -r ../../eng/dev_requirements.txt
--e node_modules/pygen
+-e node_modules/@azure-tools/typespec-python/pygen
 ptvsd==4.3.2
 types-PyYAML==6.0.12.8
