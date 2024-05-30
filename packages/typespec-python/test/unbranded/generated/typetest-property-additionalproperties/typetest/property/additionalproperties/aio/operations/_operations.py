@@ -162,7 +162,7 @@ class ExtendsUnknownOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -290,8 +290,6 @@ class ExtendsUnknownOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -363,7 +361,7 @@ class ExtendsUnknownDerivedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -501,8 +499,6 @@ class ExtendsUnknownDerivedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -581,7 +577,7 @@ class ExtendsUnknownDiscriminatedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -733,8 +729,6 @@ class ExtendsUnknownDiscriminatedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -803,7 +797,7 @@ class IsUnknownOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -931,8 +925,6 @@ class IsUnknownOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1003,7 +995,7 @@ class IsUnknownDerivedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1139,8 +1131,6 @@ class IsUnknownDerivedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1219,7 +1209,7 @@ class IsUnknownDiscriminatedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1371,8 +1361,6 @@ class IsUnknownDiscriminatedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1441,7 +1429,7 @@ class ExtendsStringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1569,8 +1557,6 @@ class ExtendsStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1639,7 +1625,7 @@ class IsStringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1767,8 +1753,6 @@ class IsStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1836,7 +1820,7 @@ class SpreadStringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1963,8 +1947,6 @@ class SpreadStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2033,7 +2015,7 @@ class ExtendsFloatOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2161,8 +2143,6 @@ class ExtendsFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2231,7 +2211,7 @@ class IsFloatOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2359,8 +2339,6 @@ class IsFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2428,7 +2406,7 @@ class SpreadFloatOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2555,8 +2533,6 @@ class SpreadFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2627,7 +2603,7 @@ class ExtendsModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2759,8 +2735,6 @@ class ExtendsModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2831,7 +2805,7 @@ class IsModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2963,8 +2937,6 @@ class IsModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3034,7 +3006,7 @@ class SpreadModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3165,8 +3137,6 @@ class SpreadModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3239,7 +3209,7 @@ class ExtendsModelArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3381,8 +3351,6 @@ class ExtendsModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3455,7 +3423,7 @@ class IsModelArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3591,8 +3559,6 @@ class IsModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3664,7 +3630,7 @@ class SpreadModelArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3800,8 +3766,6 @@ class SpreadModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3870,7 +3834,7 @@ class SpreadDifferentStringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3998,8 +3962,6 @@ class SpreadDifferentStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4068,7 +4030,7 @@ class SpreadDifferentFloatOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4196,8 +4158,6 @@ class SpreadDifferentFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4266,7 +4226,7 @@ class SpreadDifferentModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4394,8 +4354,6 @@ class SpreadDifferentModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4464,7 +4422,7 @@ class SpreadDifferentModelArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4592,8 +4550,6 @@ class SpreadDifferentModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4663,7 +4619,7 @@ class ExtendsDifferentSpreadStringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4793,8 +4749,6 @@ class ExtendsDifferentSpreadStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4864,7 +4818,7 @@ class ExtendsDifferentSpreadFloatOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4994,8 +4948,6 @@ class ExtendsDifferentSpreadFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5067,7 +5019,7 @@ class ExtendsDifferentSpreadModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5201,8 +5153,6 @@ class ExtendsDifferentSpreadModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5276,7 +5226,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5414,8 +5364,6 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5483,7 +5431,7 @@ class MultipleSpreadOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5611,8 +5559,6 @@ class MultipleSpreadOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5680,7 +5626,7 @@ class SpreadRecordUnionOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5808,8 +5754,6 @@ class SpreadRecordUnionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5878,7 +5822,7 @@ class SpreadRecordDiscriminatedUnionOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6006,8 +5950,6 @@ class SpreadRecordDiscriminatedUnionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6076,7 +6018,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6208,8 +6150,6 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6278,7 +6218,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6412,8 +6352,6 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6482,7 +6420,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                await response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6616,8 +6554,6 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
