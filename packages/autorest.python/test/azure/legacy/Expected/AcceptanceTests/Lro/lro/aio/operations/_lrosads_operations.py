@@ -131,6 +131,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -210,7 +212,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -282,6 +284,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -364,7 +368,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -436,6 +440,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -518,7 +524,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -590,6 +596,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -675,7 +683,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -738,6 +746,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -771,7 +781,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -822,6 +832,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -855,7 +867,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete202_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -906,6 +918,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -943,7 +957,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete_async_relative_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1011,6 +1025,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1087,7 +1103,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1155,6 +1171,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1231,7 +1249,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1299,6 +1317,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1381,7 +1401,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1449,6 +1469,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1528,7 +1550,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1600,6 +1622,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1688,7 +1712,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1768,6 +1792,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1856,7 +1882,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1919,6 +1945,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1948,7 +1976,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete204_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2001,6 +2029,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2040,7 +2070,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete_async_relative_retry_no_status_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2108,6 +2138,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2187,7 +2219,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2255,6 +2287,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2340,7 +2374,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2408,6 +2442,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2490,7 +2526,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2562,6 +2598,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2650,7 +2688,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2730,6 +2768,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2818,7 +2858,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2881,6 +2921,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2915,7 +2957,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete202_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2968,6 +3010,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3007,7 +3051,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete_async_relative_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3060,6 +3104,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3099,7 +3145,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3167,6 +3213,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3246,7 +3294,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3314,6 +3362,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3399,7 +3449,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3467,6 +3517,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                await response.load_body()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3552,7 +3604,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+        await raw_result.http_response.load_body()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements

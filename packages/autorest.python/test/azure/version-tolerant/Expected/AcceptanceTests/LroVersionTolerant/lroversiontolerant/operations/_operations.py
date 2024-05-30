@@ -1450,7 +1450,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1627,7 +1627,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1701,7 +1701,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1879,7 +1879,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1958,7 +1958,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2137,7 +2137,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2213,7 +2213,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2396,7 +2396,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2470,7 +2470,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2643,7 +2643,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2700,7 +2700,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2762,7 +2762,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = self._post202_list_initial(cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2836,7 +2836,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3009,7 +3009,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3083,7 +3083,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3257,7 +3257,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3331,7 +3331,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3511,7 +3511,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3585,7 +3585,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -3761,7 +3761,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3835,7 +3835,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4015,7 +4015,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4089,7 +4089,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4265,7 +4265,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4339,7 +4339,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4515,7 +4515,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4592,7 +4592,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -4775,7 +4775,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4856,7 +4856,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5038,7 +5038,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5118,7 +5118,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5301,7 +5301,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5382,7 +5382,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5564,7 +5564,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5644,7 +5644,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -5825,7 +5825,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5902,7 +5902,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6006,7 +6006,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._put_non_resource_initial(
                 sku=sku, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6080,7 +6080,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6186,7 +6186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._put_async_non_resource_initial(
                 sku=sku, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6260,7 +6260,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6400,7 +6400,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6474,7 +6474,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6614,7 +6614,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6673,7 +6673,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6736,7 +6736,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6795,7 +6795,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6858,7 +6858,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_provisioning202_deleting_failed200_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6917,7 +6917,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -6980,7 +6980,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_provisioning202_deletingcanceled200_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -7037,7 +7037,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7067,7 +7067,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete204_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7118,7 +7118,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7178,7 +7178,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_retry200_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -7235,7 +7235,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7295,7 +7295,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_no_retry204_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -7352,7 +7352,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202, 204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7390,7 +7390,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_no_header_in_retry_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7441,7 +7441,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202, 204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7479,7 +7479,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_no_header_in_retry_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7530,7 +7530,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7568,7 +7568,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7619,7 +7619,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7657,7 +7657,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_no_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7708,7 +7708,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7746,7 +7746,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_retry_failed_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7797,7 +7797,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7835,7 +7835,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_retrycanceled_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7886,7 +7886,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -7930,7 +7930,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._post200_with_payload_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8004,7 +8004,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8126,7 +8126,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -8194,7 +8194,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8371,7 +8371,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8434,7 +8434,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8489,7 +8489,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._post_double_headers_final_location_get_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8550,7 +8550,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8605,7 +8605,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._post_double_headers_final_azure_header_get_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8666,7 +8666,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8721,7 +8721,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._post_double_headers_final_azure_header_get_default_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8795,7 +8795,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -8982,7 +8982,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9056,7 +9056,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -9243,7 +9243,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9317,7 +9317,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -9445,7 +9445,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -9513,7 +9513,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -9641,7 +9641,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -9727,7 +9727,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -9907,7 +9907,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9981,7 +9981,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10164,7 +10164,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -10230,7 +10230,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10293,7 +10293,7 @@ class LRORetrysOperations:
             raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -10350,7 +10350,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10385,7 +10385,7 @@ class LRORetrysOperations:
             raw_result = self._delete202_retry200_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10438,7 +10438,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10478,7 +10478,7 @@ class LRORetrysOperations:
             raw_result = self._delete_async_relative_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10546,7 +10546,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10668,7 +10668,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10736,7 +10736,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -10864,7 +10864,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10950,7 +10950,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -11124,7 +11124,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11198,7 +11198,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -11375,7 +11375,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11449,7 +11449,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -11626,7 +11626,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11700,7 +11700,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -11880,7 +11880,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11944,7 +11944,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -11978,7 +11978,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12029,7 +12029,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12063,7 +12063,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_non_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12114,7 +12114,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12152,7 +12152,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry400_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12220,7 +12220,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12339,7 +12339,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12407,7 +12407,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12526,7 +12526,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12594,7 +12594,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12719,7 +12719,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -12787,7 +12787,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -12961,7 +12961,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -13035,7 +13035,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -13218,7 +13218,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -13299,7 +13299,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -13482,7 +13482,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -13546,7 +13546,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -13576,7 +13576,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete204_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -13629,7 +13629,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -13669,7 +13669,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_no_status_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -13737,7 +13737,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -13859,7 +13859,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -13927,7 +13927,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -14055,7 +14055,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -14123,7 +14123,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200, 204]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -14300,7 +14300,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -14374,7 +14374,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -14557,7 +14557,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -14638,7 +14638,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -14821,7 +14821,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -14885,7 +14885,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -14920,7 +14920,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete202_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -14973,7 +14973,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15013,7 +15013,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_invalid_header_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -15066,7 +15066,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15106,7 +15106,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raw_result = self._delete_async_relative_retry_invalid_json_polling_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -15174,7 +15174,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15296,7 +15296,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -15364,7 +15364,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15492,7 +15492,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -15560,7 +15560,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15688,7 +15688,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -15774,7 +15774,7 @@ class LROsCustomHeaderOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -15960,7 +15960,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -16041,7 +16041,7 @@ class LROsCustomHeaderOperations:
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -16224,7 +16224,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -16298,7 +16298,7 @@ class LROsCustomHeaderOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -16423,7 +16423,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -16491,7 +16491,7 @@ class LROsCustomHeaderOperations:
 
         if response.status_code not in [202]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                response.read()  # type: ignore
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -16622,7 +16622,7 @@ class LROsCustomHeaderOperations:
                 params=_params,
                 **kwargs,
             )
-            raw_result.http_response.read()  # type: ignore
+        raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
