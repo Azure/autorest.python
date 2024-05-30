@@ -11,7 +11,9 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ActionType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs."""
+    """Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal
+    only APIs.
+    """
 
     INTERNAL = "Internal"
     """Actions are for internal-only APIs."""
@@ -137,7 +139,7 @@ class OSFeedType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class ProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Provisioning state of the resource."""
+    """Provisioning state of resource."""
 
     SUCCEEDED = "Succeeded"
     """Resource has been created."""
@@ -162,17 +164,6 @@ class RegionalDataBoundary(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """No data boundary"""
     EU = "EU"
     """EU data boundary"""
-
-
-class ResourceProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The provisioning state of a resource type."""
-
-    SUCCEEDED = "Succeeded"
-    """Resource has been created."""
-    FAILED = "Failed"
-    """Resource creation failed."""
-    CANCELED = "Canceled"
-    """Resource creation was canceled."""
 
 
 class UpdatePolicy(str, Enum, metaclass=CaseInsensitiveEnumMeta):

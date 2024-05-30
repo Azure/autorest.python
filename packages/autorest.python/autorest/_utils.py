@@ -8,9 +8,7 @@ import re
 import argparse
 
 
-def update_enum_value(
-    name: str, value: Any, description: str, enum_type: Dict[str, Any]
-) -> Dict[str, Any]:
+def update_enum_value(name: str, value: Any, description: str, enum_type: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "name": name,
         "type": "enumvalue",
@@ -37,12 +35,7 @@ def to_snake_case(name: str) -> str:
             and len(name) - next_non_upper_case_char_location > 1
             and name[next_non_upper_case_char_location].isalpha()
         ):
-            return (
-                prefix
-                + match_str[: len(match_str) - 1]
-                + "_"
-                + match_str[len(match_str) - 1]
-            )
+            return prefix + match_str[: len(match_str) - 1] + "_" + match_str[len(match_str) - 1]
 
         return prefix + match_str
 
@@ -89,12 +82,8 @@ def parse_args(
         return value
 
     unknown_args_ret = {
-        ua.strip("--").split("=", maxsplit=1)[  # pylint: disable=bad-str-strip-call
-            0
-        ]: _get_value(
-            ua.strip("--").split("=", maxsplit=1)[  # pylint: disable=bad-str-strip-call
-                1
-            ]
+        ua.strip("--").split("=", maxsplit=1)[0]: _get_value(  # pylint: disable=bad-str-strip-call
+            ua.strip("--").split("=", maxsplit=1)[1]  # pylint: disable=bad-str-strip-call
         )
         for ua in unknown_args
     }
@@ -136,11 +125,7 @@ def build_policies(
             "self._config.user_agent_policy",
             "self._config.proxy_policy",
             "policies.ContentDecodePolicy(**kwargs)",
-            (
-                f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()"
-                if is_arm
-                else None
-            ),
+            (f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy()" if is_arm else None),
             "self._config.redirect_policy",
             "self._config.retry_policy",
             "self._config.authentication_policy",

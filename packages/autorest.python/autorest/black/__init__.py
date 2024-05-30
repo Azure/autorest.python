@@ -55,9 +55,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
     def format_file(self, file: Path) -> None:
         try:
             file_content = self.read_file(file)
-            file_content = black.format_file_contents(
-                file_content, fast=True, mode=_BLACK_MODE
-            )
+            file_content = black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
         except NothingChanged:
             pass
         except:  # pylint: disable=bare-except

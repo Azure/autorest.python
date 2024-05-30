@@ -19,8 +19,9 @@ def test_client_signature():
 
     assert signatures["base_url"].default == "https://management.azure.com"
 
+
 def test_model_mode():
     from azure.mgmt.spheredpg import _model_base
-    from azure.mgmt.spheredpg.models import ArmResource as ArmResourceDpg
-    assert isinstance(ArmResourceDpg(id="", type=""), _model_base.Model)
+    from azure.mgmt.spheredpg.models import Resource
 
+    assert isinstance(Resource(id="", type=""), _model_base.Model)

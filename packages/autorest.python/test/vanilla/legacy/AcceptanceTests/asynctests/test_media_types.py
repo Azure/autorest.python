@@ -32,6 +32,7 @@ from azure.core.exceptions import HttpResponseError
 import pytest
 import json
 
+
 @pytest.fixture
 @async_generator
 async def client():
@@ -53,7 +54,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_content_type_with_encoding(self, client):
-        result = await client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
+        result = await client.content_type_with_encoding(input="hello", content_type="text/plain; charset=UTF-8")
         assert result == "Nice job sending content type with encoding"
 
     @pytest.mark.asyncio
@@ -67,7 +68,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_binary_body_two_content_types(self, client):
-        json_input = json.dumps({"hello":"world"})
+        json_input = json.dumps({"hello": "world"})
         await client.binary_body_with_two_content_types(json_input, content_type="application/json")
 
         content = b"hello, world"
@@ -75,7 +76,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_binary_body_three_content_types(self, client):
-        json_input = json.dumps({"hello":"world"})
+        json_input = json.dumps({"hello": "world"})
         await client.binary_body_with_three_content_types(json_input)
 
         content = b"hello, world"
@@ -86,7 +87,7 @@ class TestMediaTypes(object):
 
     @pytest.mark.asyncio
     async def test_body_three_types(self, client):
-        json_input = {"hello":"world"}
+        json_input = {"hello": "world"}
         await client.body_three_types(json_input)
 
         content = b"hello, world"

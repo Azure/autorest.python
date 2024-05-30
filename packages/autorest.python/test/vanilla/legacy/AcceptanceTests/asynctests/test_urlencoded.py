@@ -28,10 +28,12 @@ import pytest
 from bodyformurlencodeddata.aio import BodyFormsDataURLEncoded
 from bodyformurlencodeddata.models import PetFood, PetType
 
+
 @pytest.fixture
 async def client():
     async with BodyFormsDataURLEncoded() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_update_pet_with_form(client):
@@ -42,6 +44,7 @@ async def test_update_pet_with_form(client):
         pet_age=42,
         name="Fido",
     )
+
 
 @pytest.mark.asyncio
 async def test_partial_constant_body(client):

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from parameters.spread import SpreadClient
-from parameters.spread.models import BodyParameter
+from parameters.spread.models import BodyParameter, CompositeRequestMix
 
 
 @pytest.fixture
@@ -16,6 +16,22 @@ def client():
 
 def test_model_body(client: SpreadClient):
     client.model.spread_as_request_body(BodyParameter(name="foo"))
+
+
+def test_model_composite_request_only_with_body(client: SpreadClient):
+    client.model.spread_composite_request_only_with_body(BodyParameter(name="foo"))
+
+
+def test_model_composite_request_without_body(client: SpreadClient):
+    client.model.spread_composite_request_without_body(name="foo", test_header="bar")
+
+
+def test_model_composite_request(client: SpreadClient):
+    client.model.spread_composite_request(name="foo", body=BodyParameter(name="foo"), test_header="bar")
+
+
+def test_model_composite_request_mix(client: SpreadClient):
+    client.model.spread_composite_request_mix(name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar")
 
 
 def test_alias_body(client: SpreadClient):

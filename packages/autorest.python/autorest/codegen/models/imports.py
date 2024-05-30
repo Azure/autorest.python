@@ -30,12 +30,8 @@ class TypingSection(str, Enum):
 
 class MsrestImportType(Enum):
     Module = auto()  # import _serialization.py or msrest.serialization as Module
-    Serializer = (
-        auto()
-    )  # from _serialization.py or msrest.serialization import Serializer
-    SerializerDeserializer = (
-        auto()
-    )  # from _serialization.py or msrest.serialization import Serializer and Deserializer
+    Serializer = auto()  # from _serialization.py or msrest.serialization import Serializer
+    SerializerDeserializer = auto()  # from _serialization.py or msrest.serialization import Serializer and Deserializer
 
 
 class ImportModel:
@@ -47,9 +43,7 @@ class ImportModel:
         *,
         submodule_name: Optional[str] = None,
         alias: Optional[str] = None,
-        version_modules: Optional[
-            Tuple[Tuple[Tuple[int, int], str, Optional[str]]]
-        ] = None,
+        version_modules: Optional[Tuple[Tuple[Tuple[int, int], str, Optional[str]]]] = None,
     ):
         self.typing_section = typing_section
         self.import_type = import_type
@@ -109,23 +103,15 @@ class FileImport:
             ]
             if all(l not in mod_name for l in core_libraries):
                 # this is to make sure we don't tack on core libraries when we don't need to
-                import_model.module_name = (
-                    f"{self.code_model.core_library}{'.' if mod_name else ''}{mod_name}"
-                )
+                import_model.module_name = f"{self.code_model.core_library}{'.' if mod_name else ''}{mod_name}"
         if not any(
             i
             for i in self.imports
-            if all(
-                getattr(i, attr) == getattr(import_model, attr)
-                for attr in dir(i)
-                if attr[0] != "_"
-            )
+            if all(getattr(i, attr) == getattr(import_model, attr) for attr in dir(i) if attr[0] != "_")
         ):
             self.imports.append(import_model)
 
-    def get_imports_from_section(
-        self, typing_section: TypingSection
-    ) -> List[ImportModel]:
+    def get_imports_from_section(self, typing_section: TypingSection) -> List[ImportModel]:
         return [i for i in self.imports if i.typing_section == typing_section]
 
     def add_submodule_import(
@@ -135,9 +121,7 @@ class FileImport:
         import_type: ImportType,
         typing_section: TypingSection = TypingSection.REGULAR,
         alias: Optional[str] = None,
-        version_modules: Optional[
-            Tuple[Tuple[Tuple[int, int], str, Optional[str]]]
-        ] = None,
+        version_modules: Optional[Tuple[Tuple[Tuple[int, int], str, Optional[str]]]] = None,
     ) -> None:
         """Add an import to this import block."""
         self._append_import(
@@ -174,9 +158,7 @@ class FileImport:
         type_value: str,
         async_type_value: Optional[str] = None,
     ):
-        self.type_definitions[type_name] = TypeDefinition(
-            type_value, async_type_value or type_value
-        )
+        self.type_definitions[type_name] = TypeDefinition(type_value, async_type_value or type_value)
 
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""
@@ -269,9 +251,9 @@ class FileImport:
                     name_import = (i.submodule_name, i.alias)
                 else:
                     name_import = i.submodule_name
-            retval.setdefault(i.typing_section, {}).setdefault(
-                i.import_type, {}
-            ).setdefault(i.module_name, set()).add(name_import)
+            retval.setdefault(i.typing_section, {}).setdefault(i.import_type, {}).setdefault(i.module_name, set()).add(
+                name_import
+            )
         return retval
 
     def add_msrest_import(
@@ -283,24 +265,16 @@ class FileImport:
     ):
         if self.code_model.options["client_side_validation"]:
             if msrest_import_type == MsrestImportType.Module:
-                self.add_import(
-                    "msrest.serialization", ImportType.SDKCORE, typing_section
-                )
+                self.add_import("msrest.serialization", ImportType.SDKCORE, typing_section)
             else:
-                self.add_submodule_import(
-                    "msrest", "Serializer", ImportType.THIRDPARTY, typing_section
-                )
+                self.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY, typing_section)
                 if msrest_import_type == MsrestImportType.SerializerDeserializer:
-                    self.add_submodule_import(
-                        "msrest", "Deserializer", ImportType.THIRDPARTY, typing_section
-                    )
+                    self.add_submodule_import("msrest", "Deserializer", ImportType.THIRDPARTY, typing_section)
         else:
             if self.code_model.options["multiapi"]:
                 relative_path += "."
             if msrest_import_type == MsrestImportType.Module:
-                self.add_submodule_import(
-                    relative_path, "_serialization", ImportType.LOCAL, typing_section
-                )
+                self.add_submodule_import(relative_path, "_serialization", ImportType.LOCAL, typing_section)
             else:
                 self.add_submodule_import(
                     f"{relative_path}_serialization",

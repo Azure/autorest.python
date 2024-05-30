@@ -26,6 +26,7 @@
 from multiapisecurity import MultiapiServiceClient
 from azure.core.pipeline.policies import BearerTokenCredentialPolicy
 
+
 def test_multiapi_security(credential):
     with MultiapiServiceClient(credential=credential) as client:
         assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)

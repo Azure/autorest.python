@@ -101,6 +101,4 @@ def test_sort_required_and_non_required_parameters():
 
     parameter_list = [optional_parameter, required_parameter]
 
-    assert [required_parameter, optional_parameter] == ParameterList(
-        {}, get_code_model(), parameter_list
-    ).method
+    assert [required_parameter, optional_parameter] == ParameterList({}, get_code_model(), parameter_list).method

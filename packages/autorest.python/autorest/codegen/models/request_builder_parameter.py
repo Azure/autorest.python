@@ -40,9 +40,7 @@ class RequestBuilderBodyParameter(BodyParameter):
     @property
     def in_method_signature(self) -> bool:
         return (
-            super().in_method_signature
-            and not self.is_partial_body
-            and self.code_model.options["models_mode"] != "dpg"
+            super().in_method_signature and not self.is_partial_body and self.code_model.options["models_mode"] != "dpg"
         )
 
     @property
@@ -54,9 +52,7 @@ class RequestBuilderBodyParameter(BodyParameter):
         )
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "RequestBuilderBodyParameter":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderBodyParameter":
         return super().from_yaml(yaml_data, code_model)  # type: ignore
 
     @property
@@ -92,9 +88,7 @@ class RequestBuilderParameter(Parameter):
         if self.grouped_by and not self.in_flattened_body:
             return True
         return super().in_method_signature and not (
-            self.location == ParameterLocation.ENDPOINT_PATH
-            or self.in_flattened_body
-            or self.grouper
+            self.location == ParameterLocation.ENDPOINT_PATH or self.in_flattened_body or self.grouper
         )
 
     @property
@@ -106,10 +100,7 @@ class RequestBuilderParameter(Parameter):
         super_method_location = super().method_location
         if super_method_location == ParameterMethodLocation.KWARG:
             return super_method_location
-        if (
-            self.in_overriden
-            and super_method_location == ParameterMethodLocation.KEYWORD_ONLY
-        ):
+        if self.in_overriden and super_method_location == ParameterMethodLocation.KEYWORD_ONLY:
             return ParameterMethodLocation.KWARG
         if self.location != ParameterLocation.PATH:
             return ParameterMethodLocation.KEYWORD_ONLY

@@ -24,11 +24,11 @@ class ListServiceSasResponse(Model):
     """
 
     _validation = {
-        'service_sas_token': {'readonly': True},
+        "service_sas_token": {"readonly": True},
     }
 
     _attribute_map = {
-        'service_sas_token': {'key': 'serviceSasToken', 'type': 'str'},
+        "service_sas_token": {"key": "serviceSasToken", "type": "str"},
     }
 
     def __init__(self):

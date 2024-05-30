@@ -49,6 +49,7 @@ def test_lro():
         assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial)
         assert has_tracing_decorator(client.lros.begin_put201_creating_succeeded200)
 
+
 def test_azure_url():
     client = MicrosoftAzureTestUrl("cred", "sub_id", base_url="dummy url")
     assert has_tracing_decorator(client.group.get_sample_resource_group)

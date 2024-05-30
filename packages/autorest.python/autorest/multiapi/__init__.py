@@ -66,9 +66,7 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
     ) -> None:
         super().__init__(output_folder=Path(output_folder).resolve(), **kwargs)
         if input_package_name is None:
-            raise ValueError(
-                "package-name is required, either provide it as args or check your readme configuration"
-            )
+            raise ValueError("package-name is required, either provide it as args or check your readme configuration")
         self.input_package_name = input_package_name
         _LOGGER.debug("Received package name %s", input_package_name)
         _LOGGER.debug("Received output-folder %s", output_folder)
@@ -116,8 +114,7 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
         # If not, if it exists a stable API version for a global or RT, will always be used
         return cast(
             bool,
-            self.user_specified_default_api
-            and "preview" in self.user_specified_default_api,
+            self.user_specified_default_api and "preview" in self.user_specified_default_api,
         )
 
     @property
@@ -147,9 +144,7 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
             total_api_version_list = metadata_json["total_api_version_list"]
             if not version:
                 if total_api_version_list:
-                    sys.exit(
-                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
-                    )
+                    sys.exit(f"Unable to match {total_api_version_list} to label {version_path.stem}")
                 else:
                     sys.exit(f"Unable to extract api version of {version_path.stem}")
             mod_to_api_version[version_path.name] = version
@@ -186,6 +181,4 @@ class MultiAPIAutorest(MultiAPI, ReaderAndWriterAutorest):
 
     @property
     def serializer(self) -> MultiAPISerializer:
-        return MultiAPISerializerAutorest(
-            self._autorestapi, output_folder=self.output_folder
-        )
+        return MultiAPISerializerAutorest(self._autorestapi, output_folder=self.output_folder)

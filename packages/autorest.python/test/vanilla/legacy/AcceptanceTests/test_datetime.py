@@ -40,19 +40,21 @@ from bodydatetime import AutoRestDateTimeTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestDatetime(object):
 
     def test_utc_max_date_time(self, client):
         max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
         dt = client.datetime.get_utc_lowercase_max_date_time()
-        assert dt ==  max_date
+        assert dt == max_date
         dt = client.datetime.get_utc_uppercase_max_date_time()
-        assert dt ==  max_date
+        assert dt == max_date
         client.datetime.put_utc_max_date_time(max_date)
 
     def test_utc_max_date_time_7digits(self, client):
@@ -66,13 +68,12 @@ class TestDatetime(object):
     def test_get_utc_min_date_time(self, client):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
         dt = client.datetime.get_utc_min_date_time()
-        assert dt ==  min_date
+        assert dt == min_date
         client.datetime.put_utc_min_date_time(min_date)
 
     def test_get_local_negative_offset_min_date_time(self, client):
         client.datetime.get_local_negative_offset_min_date_time()
-        client.datetime.put_local_negative_offset_min_date_time(
-            isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
+        client.datetime.put_local_negative_offset_min_date_time(isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
 
     def test_get_local_no_offset_min_date_time(self, client):
         local_no_offset_min_date_time = isodate.parse_datetime("0001-01-01T00:00:00")
@@ -92,14 +93,14 @@ class TestDatetime(object):
             client.datetime.get_local_positive_offset_min_date_time()
 
         with pytest.raises(SerializationError):
-            client.datetime.put_local_positive_offset_min_date_time(
-                isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
+            client.datetime.put_local_positive_offset_min_date_time(isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
 
     def test_local_positive_offset_max_date_time(self, client):
         client.datetime.get_local_positive_offset_lowercase_max_date_time()
         client.datetime.get_local_positive_offset_uppercase_max_date_time()
         client.datetime.put_local_positive_offset_max_date_time(
-            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00"))
+            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00")
+        )
 
     def test_get_null(self, client):
         client.datetime.get_null()
@@ -119,12 +120,14 @@ class TestDatetime(object):
     def test_put_local_negative_offset_max_date_time(self, client):
         with pytest.raises(SerializationError):
             client.datetime.put_local_negative_offset_max_date_time(
-                isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
+                isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00")
+            )
 
     def test_models(self):
         from bodydatetime.models import Error
 
         from bodydatetime.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -134,4 +137,5 @@ class TestDatetime(object):
             from bodydatetime.operations._datetime_operations_py3 import DatetimeOperations as DatetimeOperationsPy3
 
         from bodydatetime.operations._datetime_operations import DatetimeOperations as DatetimeOperationsPy2
+
         assert DatetimeOperations == DatetimeOperationsPy2

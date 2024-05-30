@@ -69,19 +69,13 @@ class ListType(BaseType):
         return ", ".join(attrs_list)
 
     def docstring_type(self, **kwargs: Any) -> str:
-        if (
-            self.code_model.options["version_tolerant"]
-            and self.element_type.xml_metadata
-        ):
+        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_type(**kwargs)
         return f"list[{self.element_type.docstring_type(**kwargs)}]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        if (
-            self.code_model.options["version_tolerant"]
-            and self.element_type.xml_metadata
-        ):
+        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_text(**kwargs)
         return f"list of {self.element_type.docstring_text(**kwargs)}"
@@ -118,13 +112,9 @@ class ListType(BaseType):
 
         if isinstance(self.element_type, ModelType):
             is_polymorphic_subtype = (
-                self.element_type.discriminator_value
-                and not self.element_type.discriminated_subtypes
+                self.element_type.discriminator_value and not self.element_type.discriminated_subtypes
             )
-            if (
-                self.element_type.name not in (m.name for m in polymorphic_subtypes)
-                and is_polymorphic_subtype
-            ):
+            if self.element_type.name not in (m.name for m in polymorphic_subtypes) and is_polymorphic_subtype:
                 polymorphic_subtypes.append(self.element_type)
 
     @property
@@ -132,17 +122,13 @@ class ListType(BaseType):
         return "isinstance({}, list)"
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ListType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ListType":
         from . import build_type
 
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            element_type=build_type(
-                yaml_data=yaml_data["elementType"], code_model=code_model
-            ),
+            element_type=build_type(yaml_data=yaml_data["elementType"], code_model=code_model),
         )
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -152,9 +138,7 @@ class ListType(BaseType):
             and self.element_type.is_xml
             and not self.code_model.options["models_mode"]
         ):
-            file_import.add_submodule_import(
-                "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports(**kwargs))
         return file_import
 

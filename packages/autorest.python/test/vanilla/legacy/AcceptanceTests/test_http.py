@@ -49,13 +49,7 @@ import pytest
 @pytest.fixture()
 def client(cookie_policy):
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
-    policies = [
-        HeadersPolicy(),
-        ContentDecodePolicy(),
-        RedirectPolicy(),
-        RetryPolicy(),
-        cookie_policy
-    ]
+    policies = [HeadersPolicy(), ContentDecodePolicy(), RedirectPolicy(), RetryPolicy(), cookie_policy]
     with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
         yield client
 
@@ -66,7 +60,8 @@ class TestHttp(object):
         def return_status(pipeline_response, data, headers):
             assert isinstance(pipeline_response, PipelineResponse)
             return pipeline_response.http_response.status_code
-        kwargs['cls'] = return_status
+
+        kwargs["cls"] = return_status
         status_code = func(*args, **kwargs)
         assert status_code == code
 
@@ -119,61 +114,61 @@ class TestHttp(object):
 
     def test_get200_model204(self, client):
         r = client.multiple_responses.get200_model204_no_model_default_error200_valid()
-        assert '200' ==  r.status_code
+        assert "200" == r.status_code
 
-        self.assert_raises_with_status(201,
-            client.multiple_responses.get200_model204_no_model_default_error201_invalid)
+        self.assert_raises_with_status(201, client.multiple_responses.get200_model204_no_model_default_error201_invalid)
 
-        self.assert_raises_with_status(202,
-            client.multiple_responses.get200_model204_no_model_default_error202_none)
+        self.assert_raises_with_status(202, client.multiple_responses.get200_model204_no_model_default_error202_none)
 
         assert client.multiple_responses.get200_model204_no_model_default_error204_valid() is None
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model204_no_model_default_error400_valid)
+        self.assert_raises_with_status_and_message(
+            400, "client error", client.multiple_responses.get200_model204_no_model_default_error400_valid
+        )
 
     def test_get200_model201(self, client):
         self.assert_status(200, client.multiple_responses.get200_model201_model_default_error200_valid)
 
         b_model = client.multiple_responses.get200_model201_model_default_error201_valid()
         assert b_model is not None
-        assert b_model.status_code ==  "201"
-        assert b_model.text_status_code ==  "Created"
+        assert b_model.status_code == "201"
+        assert b_model.text_status_code == "Created"
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model201_model_default_error400_valid)
+        self.assert_raises_with_status_and_message(
+            400, "client error", client.multiple_responses.get200_model201_model_default_error400_valid
+        )
 
     def test_get200_model_a201_model_c404(self, client):
         a_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error200_valid()
         assert a_model is not None
-        assert a_model.status_code ==  "200"
+        assert a_model.status_code == "200"
 
         c_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error201_valid()
         assert c_model is not None
-        assert c_model.http_code ==  "201"
+        assert c_model.http_code == "201"
 
         d_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error404_valid()
         assert d_model is not None
-        assert d_model.http_status_code ==  "404"
+        assert d_model.http_status_code == "404"
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model_a201_model_c404_model_d_default_error400_valid)
+        self.assert_raises_with_status_and_message(
+            400, "client error", client.multiple_responses.get200_model_a201_model_c404_model_d_default_error400_valid
+        )
 
     def test_get202_none204(self, client):
         client.multiple_responses.get202_none204_none_default_error202_none()
         client.multiple_responses.get202_none204_none_default_error204_none()
 
-        self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get202_none204_none_default_error400_valid)
+        self.assert_raises_with_status_and_message(
+            400, "client error", client.multiple_responses.get202_none204_none_default_error400_valid
+        )
 
         client.multiple_responses.get202_none204_none_default_none202_invalid()
         client.multiple_responses.get202_none204_none_default_none204_none()
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get202_none204_none_default_none400_none)
+        self.assert_raises_with_status(400, client.multiple_responses.get202_none204_none_default_none400_none)
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get202_none204_none_default_none400_invalid)
+        self.assert_raises_with_status(400, client.multiple_responses.get202_none204_none_default_none400_invalid)
 
     def test_get_default_model_a200(self, client):
         self.assert_status(200, client.multiple_responses.get_default_model_a200_valid)
@@ -183,22 +178,18 @@ class TestHttp(object):
         client.multiple_responses.get_default_model_a200_none()
 
     def test_get_default_model_a400(self, client):
-        self.assert_raises_with_model(400, MyException,
-            client.multiple_responses.get_default_model_a400_valid)
+        self.assert_raises_with_model(400, MyException, client.multiple_responses.get_default_model_a400_valid)
 
-        self.assert_raises_with_model(400, MyException,
-            client.multiple_responses.get_default_model_a400_none)
+        self.assert_raises_with_model(400, MyException, client.multiple_responses.get_default_model_a400_none)
 
     def test_get_default_none200(self, client):
         client.multiple_responses.get_default_none200_invalid()
         client.multiple_responses.get_default_none200_none()
 
     def test_get_default_none400(self, client):
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get_default_none400_invalid)
+        self.assert_raises_with_status(400, client.multiple_responses.get_default_none400_invalid)
 
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get_default_none400_none)
+        self.assert_raises_with_status(400, client.multiple_responses.get_default_none400_none)
 
     def test_get200_model_a200(self, client):
         assert client.multiple_responses.get200_model_a200_none() is None
@@ -208,31 +199,23 @@ class TestHttp(object):
         assert client.multiple_responses.get200_model_a200_invalid().status_code is None
 
     def test_get200_model_a400(self, client):
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_none)
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_valid)
-        self.assert_raises_with_status(400,
-            client.multiple_responses.get200_model_a400_invalid)
+        self.assert_raises_with_status(400, client.multiple_responses.get200_model_a400_none)
+        self.assert_raises_with_status(400, client.multiple_responses.get200_model_a400_valid)
+        self.assert_raises_with_status(400, client.multiple_responses.get200_model_a400_invalid)
 
     def test_get200_model_a202(self, client):
-        self.assert_raises_with_status(202,
-            client.multiple_responses.get200_model_a202_valid)
+        self.assert_raises_with_status(202, client.multiple_responses.get200_model_a202_valid)
 
     def test_server_error_status_codes_501(self, client):
 
-        self.assert_raises_with_status(requests.codes.not_implemented,
-            client.http_server_failure.head501)
+        self.assert_raises_with_status(requests.codes.not_implemented, client.http_server_failure.head501)
 
-        self.assert_raises_with_status(requests.codes.not_implemented,
-            client.http_server_failure.get501)
+        self.assert_raises_with_status(requests.codes.not_implemented, client.http_server_failure.get501)
 
     def test_server_error_status_codes_505(self, client):
-        self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.post505)
+        self.assert_raises_with_status(requests.codes.http_version_not_supported, client.http_server_failure.post505)
 
-        self.assert_raises_with_status(requests.codes.http_version_not_supported,
-            client.http_server_failure.delete505)
+        self.assert_raises_with_status(requests.codes.http_version_not_supported, client.http_server_failure.delete505)
 
     def test_retry_status_codes_408(self, client):
         client.http_retry.head408()
@@ -254,96 +237,77 @@ class TestHttp(object):
         client.http_retry.patch504()
 
     def test_error_status_codes_400(self, client):
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.head400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.head400)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.get400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.get400)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.bad_request,
+        # self.assert_raises_with_status(requests.codes.bad_request,
         #    client.http_client_failure.options400)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.put400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.put400)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.patch400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.patch400)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.post400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.post400)
 
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_client_failure.delete400)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_client_failure.delete400)
 
     def test_error_status_codes_401(self, client):
-        self.assert_raises_with_status(requests.codes.unauthorized,
-            client.http_client_failure.head401)
+        self.assert_raises_with_status(requests.codes.unauthorized, client.http_client_failure.head401)
 
     def test_error_status_codes_402(self, client):
-        self.assert_raises_with_status(requests.codes.payment_required,
-            client.http_client_failure.get402)
+        self.assert_raises_with_status(requests.codes.payment_required, client.http_client_failure.get402)
 
     def test_error_status_codes_403(self, client):
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.forbidden,
+        # self.assert_raises_with_status(requests.codes.forbidden,
         #    client.http_client_failure.options403)
 
-        self.assert_raises_with_status(requests.codes.forbidden,
-            client.http_client_failure.get403)
+        self.assert_raises_with_status(requests.codes.forbidden, client.http_client_failure.get403)
 
     def test_error_status_codes_404(self, client):
-        self.assert_raises_with_status(requests.codes.not_found,
-            client.http_client_failure.put404)
+        self.assert_raises_with_status(requests.codes.not_found, client.http_client_failure.put404)
 
     def test_error_status_codes_405(self, client):
-        self.assert_raises_with_status(requests.codes.method_not_allowed,
-            client.http_client_failure.patch405)
+        self.assert_raises_with_status(requests.codes.method_not_allowed, client.http_client_failure.patch405)
 
     def test_error_status_codes_406(self, client):
-        self.assert_raises_with_status(requests.codes.not_acceptable,
-            client.http_client_failure.post406)
+        self.assert_raises_with_status(requests.codes.not_acceptable, client.http_client_failure.post406)
 
     def test_error_status_codes_407(self, client):
-        self.assert_raises_with_status(requests.codes.proxy_authentication_required,
-            client.http_client_failure.delete407)
+        self.assert_raises_with_status(
+            requests.codes.proxy_authentication_required, client.http_client_failure.delete407
+        )
 
     def test_error_status_codes_409(self, client):
-        self.assert_raises_with_status(requests.codes.conflict,
-            client.http_client_failure.put409)
+        self.assert_raises_with_status(requests.codes.conflict, client.http_client_failure.put409)
 
     def test_error_status_codes_410(self, client):
-        self.assert_raises_with_status(requests.codes.gone,
-            client.http_client_failure.head410)
+        self.assert_raises_with_status(requests.codes.gone, client.http_client_failure.head410)
 
     def test_error_status_codes_411(self, client):
-        self.assert_raises_with_status(requests.codes.length_required,
-            client.http_client_failure.get411)
+        self.assert_raises_with_status(requests.codes.length_required, client.http_client_failure.get411)
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #self.assert_raises_with_status(requests.codes.precondition_failed,
+        # self.assert_raises_with_status(requests.codes.precondition_failed,
         #    client.http_client_failure.options412)
 
-        self.assert_raises_with_status(requests.codes.precondition_failed,
-            client.http_client_failure.get412)
+        self.assert_raises_with_status(requests.codes.precondition_failed, client.http_client_failure.get412)
 
-        self.assert_raises_with_status(requests.codes.request_entity_too_large,
-            client.http_client_failure.put413)
+        self.assert_raises_with_status(requests.codes.request_entity_too_large, client.http_client_failure.put413)
 
-        self.assert_raises_with_status(requests.codes.request_uri_too_large,
-            client.http_client_failure.patch414)
+        self.assert_raises_with_status(requests.codes.request_uri_too_large, client.http_client_failure.patch414)
 
-        self.assert_raises_with_status(requests.codes.unsupported_media,
-            client.http_client_failure.post415)
+        self.assert_raises_with_status(requests.codes.unsupported_media, client.http_client_failure.post415)
 
-        self.assert_raises_with_status(requests.codes.requested_range_not_satisfiable,
-            client.http_client_failure.get416)
+        self.assert_raises_with_status(
+            requests.codes.requested_range_not_satisfiable, client.http_client_failure.get416
+        )
 
-        self.assert_raises_with_status(requests.codes.expectation_failed,
-            client.http_client_failure.delete417)
+        self.assert_raises_with_status(requests.codes.expectation_failed, client.http_client_failure.delete417)
 
-        self.assert_raises_with_status(429,
-            client.http_client_failure.head429)
+        self.assert_raises_with_status(429, client.http_client_failure.head429)
 
     def test_redirect_to_300(self, client):
         self.assert_status(200, client.http_redirects.get300)
@@ -371,15 +335,15 @@ class TestHttp(object):
         self.assert_status(200, client.http_redirects.patch307)
         self.assert_status(200, client.http_redirects.delete307)
 
-
-
     def test_bad_request_status_assert(self, client):
-        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
-            client.http_failure.get_empty_error)
+        self.assert_raises_with_message(
+            "Operation returned an invalid status 'Bad Request'", client.http_failure.get_empty_error
+        )
 
     def test_no_error_model_status_assert(self, client):
-        self.assert_raises_with_status_and_response_contains(requests.codes.bad_request, "NoErrorModel",
-            client.http_failure.get_no_model_error)
+        self.assert_raises_with_status_and_response_contains(
+            requests.codes.bad_request, "NoErrorModel", client.http_failure.get_no_model_error
+        )
 
     def test_success_status_codes_200(self, client):
         client.http_success.head200()
@@ -390,7 +354,7 @@ class TestHttp(object):
         client.http_success.delete200()
 
         # TODO, 4042586: Support options operations in swagger modeler
-        #assert client.http_success.options200()
+        # assert client.http_success.options200()
 
     def test_success_status_codes_201(self, client):
         client.http_success.put201()
@@ -413,13 +377,13 @@ class TestHttp(object):
         client.http_success.head404()
 
     def test_empty_no_content(self, client):
-        self.assert_raises_with_status(requests.codes.bad_request,
-            client.http_failure.get_no_model_empty)
+        self.assert_raises_with_status(requests.codes.bad_request, client.http_failure.get_no_model_empty)
 
     def test_models(self):
         from httpinfrastructure.models import Error
 
         from httpinfrastructure.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -428,5 +392,8 @@ class TestHttp(object):
         with pytest.raises(ImportError):
             from httpinfrastructure.operations import _multiple_responses_operations_py3
 
-        from httpinfrastructure.operations._multiple_responses_operations import MultipleResponsesOperations as MultipleResponsesOperationsPy2
+        from httpinfrastructure.operations._multiple_responses_operations import (
+            MultipleResponsesOperations as MultipleResponsesOperationsPy2,
+        )
+
         assert MultipleResponsesOperations == MultipleResponsesOperationsPy2

@@ -12,6 +12,7 @@ async def client():
     async with RepeatabilityClient() as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_immediate_success(client: RepeatabilityClient):
     cls = lambda x, y, z: z

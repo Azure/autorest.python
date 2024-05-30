@@ -69,9 +69,7 @@ def python_run(  # pylint: disable=inconsistent-return-statements
             stdout=False,
         )
         if module == "get_all":
-            with open(
-                f"{command[1]}/.temp_folder/patched.txt", "r", encoding="utf-8-sig"
-            ) as f:
+            with open(f"{command[1]}/.temp_folder/patched.txt", "r", encoding="utf-8-sig") as f:
                 return f.read()
     except subprocess.CalledProcessError as err:
         print(err)

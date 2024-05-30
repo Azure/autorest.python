@@ -119,9 +119,7 @@ class Test(TestName):
 
 
 class TestGeneralSerializer(BaseSerializer):
-    def __init__(
-        self, code_model: CodeModel, env: Environment, *, is_async: bool = False
-    ) -> None:
+    def __init__(self, code_model: CodeModel, env: Environment, *, is_async: bool = False) -> None:
         super().__init__(code_model, env)
         self.is_async = is_async
 
@@ -131,29 +129,19 @@ class TestGeneralSerializer(BaseSerializer):
 
     @property
     def test_names(self) -> List[TestName]:
-        return [
-            TestName(c.name, is_async=self.is_async) for c in self.code_model.clients
-        ]
+        return [TestName(c.name, is_async=self.is_async) for c in self.code_model.clients]
 
     @property
     def import_clients(self) -> FileImportSerializer:
         imports = self.init_file_import()
-        namespace = get_namespace_from_package_name(
-            self.code_model.options["package_name"]
-        )
+        namespace = get_namespace_from_package_name(self.code_model.options["package_name"])
 
-        imports.add_submodule_import(
-            "devtools_testutils", "AzureRecordedTestCase", ImportType.STDLIB
-        )
+        imports.add_submodule_import("devtools_testutils", "AzureRecordedTestCase", ImportType.STDLIB)
         if not self.is_async:
             imports.add_import("functools", ImportType.STDLIB)
-            imports.add_submodule_import(
-                "devtools_testutils", "PowerShellPreparer", ImportType.STDLIB
-            )
+            imports.add_submodule_import("devtools_testutils", "PowerShellPreparer", ImportType.STDLIB)
         for client in self.code_model.clients:
-            imports.add_submodule_import(
-                namespace + self.aio_str, client.name, ImportType.STDLIB
-            )
+            imports.add_submodule_import(namespace + self.aio_str, client.name, ImportType.STDLIB)
         return FileImportSerializer(imports, self.is_async)
 
     def serialize_conftest(self) -> str:
@@ -194,9 +182,7 @@ class TestSerializer(TestGeneralSerializer):
             test_name.base_test_class_name,
             ImportType.LOCAL,
         )
-        imports.add_submodule_import(
-            "testpreparer", test_name.preparer_name, ImportType.LOCAL
-        )
+        imports.add_submodule_import("testpreparer", test_name.preparer_name, ImportType.LOCAL)
         imports.add_submodule_import(
             "devtools_testutils" + self.aio_str,
             "recorded_by_proxy" + async_suffix,
@@ -235,9 +221,7 @@ class TestSerializer(TestGeneralSerializer):
         for param in required_params:
             model_type = self.get_model_type(param.type)
             param_type = self.get_sub_type(model_type) if model_type else param.type
-            operation_params[param.client_name] = json_dumps_template(
-                param_type.get_json_template_representation()
-            )
+            operation_params[param.client_name] = json_dumps_template(param_type.get_json_template_representation())
         return operation_params
 
     def get_test(self) -> Test:
@@ -255,9 +239,7 @@ class TestSerializer(TestGeneralSerializer):
                 )
                 testcases.append(testcase)
         if not testcases:
-            raise Exception(  # pylint: disable=broad-exception-raised
-                "no public operation to test"
-            )
+            raise Exception("no public operation to test")  # pylint: disable=broad-exception-raised
 
         return Test(
             client_name=self.client.name,
@@ -270,9 +252,7 @@ class TestSerializer(TestGeneralSerializer):
     @property
     def test_class_name(self) -> str:
         test_name = TestName(self.client.name, is_async=self.is_async)
-        class_name = (
-            "" if self.operation_group.is_mixin else self.operation_group.class_name
-        )
+        class_name = "" if self.operation_group.is_mixin else self.operation_group.class_name
         return f"Test{test_name.prefix}{class_name}{test_name.async_suffix_capt}"
 
     def serialize_test(self) -> str:

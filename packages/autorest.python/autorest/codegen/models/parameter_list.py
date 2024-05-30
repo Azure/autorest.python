@@ -33,12 +33,8 @@ from .parameter import (
     ConfigParameter,
 )
 
-ParameterType = TypeVar(
-    "ParameterType", bound=Union[Parameter, RequestBuilderParameter]
-)
-BodyParameterType = TypeVar(
-    "BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter]
-)
+ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
+BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -52,17 +48,13 @@ class ParameterImplementation(Enum):
 _LOGGER = logging.getLogger(__name__)
 
 
-def method_signature_helper(
-    positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]
-):
+def method_signature_helper(positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]):
     keyword_only = keyword_only or []
     return positional + keyword_only + kwarg_params
 
 
 def _sort(params):
-    return sorted(
-        params, key=lambda x: not (x.client_default_value or x.optional), reverse=True
-    )
+    return sorted(params, key=lambda x: not (x.client_default_value or x.optional), reverse=True)
 
 
 class _ParameterListBase(
@@ -110,17 +102,13 @@ class _ParameterListBase(
 
     @staticmethod
     @abstractmethod
-    def body_parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], BodyParameterType]
-    ):
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], BodyParameterType]:
         """Callable for creating body parameters"""
 
     @property
     def grouped(self) -> List[Union[ParameterType, BodyParameterType]]:
         """All parameters that are inside a parameter group"""
-        params: List[Union[ParameterType, BodyParameterType]] = [
-            p for p in self.parameters if p.grouped_by
-        ]
+        params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.grouped_by]
         if self.has_body and self.body_parameter.grouped_by:
             params.append(self.body_parameter)
         return params
@@ -137,11 +125,7 @@ class _ParameterListBase(
     @property
     def path(self) -> List[ParameterType]:
         """All path parameters"""
-        return [
-            p
-            for p in self.parameters
-            if p.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH)
-        ]
+        return [p for p in self.parameters if p.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH)]
 
     @property
     def query(self) -> List[ParameterType]:
@@ -162,34 +146,20 @@ class _ParameterListBase(
     def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
         """All positional parameters"""
         return _sort(
-            [
-                p
-                for p in self.unsorted_method_params
-                if p.method_location == ParameterMethodLocation.POSITIONAL
-            ]
+            [p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.POSITIONAL]
         )
 
     @property
     def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
         """All keyword only parameters"""
         return _sort(
-            [
-                p
-                for p in self.unsorted_method_params
-                if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
-            ]
+            [p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
         )
 
     @property
     def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
         """All kwargs"""
-        return _sort(
-            [
-                p
-                for p in self.unsorted_method_params
-                if p.method_location == ParameterMethodLocation.KWARG
-            ]
-        )
+        return _sort([p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.KWARG])
 
     @property
     def body_parameter(self) -> BodyParameterType:
@@ -261,20 +231,12 @@ class _ParameterListBase(
         """Method kwargs we want to pop"""
         # don't want to pop bodies unless it's a constant
         kwargs_to_pop = self.kwarg
-        return [
-            k
-            for k in kwargs_to_pop
-            if k.location != ParameterLocation.BODY or k.constant
-        ]
+        return [k for k in kwargs_to_pop if k.location != ParameterLocation.BODY or k.constant]
 
     @property
     def call(self) -> List[str]:
         """How to pass in parameters to call the operation"""
-        retval = [
-            p.client_name
-            for p in self.method
-            if p.method_location == ParameterMethodLocation.POSITIONAL
-        ]
+        retval = [p.client_name for p in self.method if p.method_location == ParameterMethodLocation.POSITIONAL]
         retval.extend(
             [
                 f"{p.client_name}={p.client_name}"
@@ -287,15 +249,10 @@ class _ParameterListBase(
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
-        parameters = [
-            cls.parameter_creator()(parameter, code_model)
-            for parameter in yaml_data["parameters"]
-        ]
+        parameters = [cls.parameter_creator()(parameter, code_model) for parameter in yaml_data["parameters"]]
         body_parameter = None
         if yaml_data.get("bodyParameter"):
-            body_parameter = cls.body_parameter_creator()(
-                yaml_data["bodyParameter"], code_model
-            )
+            body_parameter = cls.body_parameter_creator()(yaml_data["bodyParameter"], code_model)
         return cls(
             yaml_data,
             code_model,
@@ -304,11 +261,7 @@ class _ParameterListBase(
         )
 
 
-class _ParameterList(
-    _ParameterListBase[  # pylint: disable=unsubscriptable-object
-        Parameter, BodyParameter
-    ]
-):
+class _ParameterList(_ParameterListBase[Parameter, BodyParameter]):  # pylint: disable=unsubscriptable-object
     """Base Parameter class for the two operation ParameterLists"""
 
     @staticmethod
@@ -316,9 +269,7 @@ class _ParameterList(
         return Parameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], BodyParameter]
-    ):
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], BodyParameter]:
         return BodyParameter.from_yaml
 
     @property
@@ -327,9 +278,7 @@ class _ParameterList(
 
     @property
     def path(self) -> List[Parameter]:
-        return [
-            k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH
-        ]
+        return [k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH]
 
 
 class ParameterList(_ParameterList):
@@ -337,22 +286,16 @@ class ParameterList(_ParameterList):
 
 
 class _RequestBuilderParameterList(
-    _ParameterListBase[  # pylint: disable=unsubscriptable-object
-        RequestBuilderParameter, RequestBuilderBodyParameter
-    ]
+    _ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]  # pylint: disable=unsubscriptable-object
 ):
     """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
 
     @staticmethod
-    def parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]
-    ):
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]:
         return RequestBuilderParameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameter]
-    ):
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameter]:
         return RequestBuilderBodyParameter.from_yaml
 
     @property
@@ -367,34 +310,21 @@ class _RequestBuilderParameterList(
         retval = [
             p
             for p in super().unsorted_method_params
-            if not (
-                p.location == ParameterLocation.BODY
-                and cast(RequestBuilderBodyParameter, p).is_partial_body
-            )
+            if not (p.location == ParameterLocation.BODY and cast(RequestBuilderBodyParameter, p).is_partial_body)
         ]
-        retval.extend(
-            [
-                p
-                for p in self.parameters
-                if p.implementation == "Client" and p.in_method_signature
-            ]
-        )
+        retval.extend([p for p in self.parameters if p.implementation == "Client" and p.in_method_signature])
         return retval
 
     @property
     def path(self) -> List[RequestBuilderParameter]:
-        return [
-            p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH
-        ]
+        return [p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH]
 
     @property
     def constant(
         self,
     ) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
         """All constant parameters"""
-        return [
-            p for p in super().constant if p.location != ParameterLocation.ENDPOINT_PATH
-        ]
+        return [p for p in super().constant if p.location != ParameterLocation.ENDPOINT_PATH]
 
 
 class RequestBuilderParameterList(_RequestBuilderParameterList):
@@ -405,15 +335,11 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
 
 
-class _ClientGlobalParameterList(  # pylint: disable=abstract-method
-    _ParameterListBase[ParameterType, BodyParameter]
-):
+class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):  # pylint: disable=abstract-method
     """Base parameter list for client and config classes"""
 
     @staticmethod
-    def body_parameter_creator() -> (
-        Callable[[Dict[str, Any], "CodeModel"], BodyParameter]
-    ):
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], BodyParameter]:
         return BodyParameter.from_yaml
 
     @property
@@ -429,9 +355,7 @@ class _ClientGlobalParameterList(  # pylint: disable=abstract-method
 
     @property
     def path(self) -> List[ParameterType]:
-        return [
-            p for p in super().path if p.location == ParameterLocation.ENDPOINT_PATH
-        ]
+        return [p for p in super().path if p.location == ParameterLocation.ENDPOINT_PATH]
 
 
 class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):

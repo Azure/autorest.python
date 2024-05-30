@@ -37,12 +37,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
-        self.is_multipart_file_input: bool = yaml_data.get(
-            "isMultipartFileInput", False
-        )
-        self.flatten = self.yaml_data.get("flatten", False) and not getattr(
-            self.type, "flattened_property", False
-        )
+        self.is_multipart_file_input: bool = yaml_data.get("isMultipartFileInput", False)
+        self.flatten = self.yaml_data.get("flatten", False) and not getattr(self.type, "flattened_property", False)
 
     @property
     def pylint_disable(self) -> str:
@@ -59,9 +55,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             description = add_to_description(description, "Required.")
         # don't want model type documentation as part of property doc
         type_description = (
-            ""
-            if isinstance(self.type, ModelType)
-            else self.type.description(is_operation_file=is_operation_file)
+            "" if isinstance(self.type, ModelType) else self.type.description(is_operation_file=is_operation_file)
         )
         return add_to_description(description, type_description)
 
@@ -77,11 +71,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def constant(self) -> bool:
         # this bool doesn't consider you to be constant if you are a discriminator
         # you also have to be required to be considered a constant
-        return (
-            isinstance(self.type, ConstantType)
-            and not self.optional
-            and not self.is_discriminator
-        )
+        return isinstance(self.type, ConstantType) and not self.optional and not self.is_discriminator
 
     @property
     def is_input(self):
@@ -104,16 +94,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         """If this discriminator is on the base model for polymorphic inheritance"""
         if self.is_enum_discriminator:
             return self.is_polymorphic and self.client_default_value is None
-        return (
-            self.is_discriminator
-            and self.is_polymorphic
-            and cast(ConstantType, self.type).value is None
-        )
+        return self.is_discriminator and self.is_polymorphic and cast(ConstantType, self.type).value is None
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        types_type_annotation = self.type.type_annotation(
-            is_operation_file=is_operation_file
-        )
+        types_type_annotation = self.type.type_annotation(is_operation_file=is_operation_file)
         if self.is_multipart_file_input:
             # we only support FileType or list of FileType
             types_type_annotation = types_type_annotation.replace("bytes", "FileType")
@@ -137,9 +121,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             file_type_str = '"filetype"' if self.code_model.for_test else "filetype"
             return f"[{file_type_str}]" if self.type.type == "list" else file_type_str
         if self.client_default_value:
-            client_default_value_declaration = self.get_declaration(
-                self.client_default_value
-            )
+            client_default_value_declaration = self.get_declaration(self.client_default_value)
         if self.description(is_operation_file=True):
             description = self.description(is_operation_file=True)
         # make sure there is no \n otherwise the json template will be invalid
@@ -172,9 +154,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         file_import = FileImport(self.code_model)
         if self.is_discriminator and isinstance(self.type, EnumType):
             return file_import
-        file_import.merge(
-            self.type.imports(**kwargs, relative_path="..", model_typing=True)
-        )
+        file_import.merge(self.type.imports(**kwargs, relative_path="..", model_typing=True))
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.code_model.options["models_mode"] == "dpg":

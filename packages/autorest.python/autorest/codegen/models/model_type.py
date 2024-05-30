@@ -30,13 +30,8 @@ def _get_properties(type: "ModelType", properties: List[Property]) -> List[Prope
 
         # need to make sure that the properties we choose from our parent also don't contain
         # any of our own properties
-        property_names = set(
-            [p.client_name for p in properties]
-            + [p.client_name for p in type.properties]
-        )
-        chosen_parent_properties = [
-            p for p in parent.properties if p.client_name not in property_names
-        ]
+        property_names = set([p.client_name for p in properties] + [p.client_name for p in type.properties])
+        chosen_parent_properties = [p for p in parent.properties if p.client_name not in property_names]
         properties = _get_properties(parent, chosen_parent_properties) + properties
     return properties
 
@@ -70,17 +65,13 @@ class ModelType(  # pylint: disable=abstract-method
         self.properties = properties or []
         self.parents = parents or []
         self.discriminated_subtypes = discriminated_subtypes or {}
-        self.discriminator_value: Optional[str] = self.yaml_data.get(
-            "discriminatorValue"
-        )
+        self.discriminator_value: Optional[str] = self.yaml_data.get("discriminatorValue")
         self._created_json_template_representation = False
         self._got_polymorphic_subtypes = False
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
-        self.cross_language_definition_id: Optional[str] = self.yaml_data.get(
-            "crossLanguageDefinitionId"
-        )
+        self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
 
     @property
     def flattened_property(self) -> Optional[Property]:
@@ -151,11 +142,7 @@ class ModelType(  # pylint: disable=abstract-method
         if self.discriminated_subtypes:
             # we will instead print the discriminated subtypes
             self._created_json_template_representation = False
-            return (
-                f'"{self.snake_case_name}"'
-                if self.code_model.for_test
-                else self.snake_case_name
-            )
+            return f'"{self.snake_case_name}"' if self.code_model.for_test else self.snake_case_name
 
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
@@ -166,22 +153,16 @@ class ModelType(  # pylint: disable=abstract-method
                 description=description,
             )
             for prop in [
-                p
-                for p in self.properties
-                if not (p.is_discriminator or p.client_name == "additional_properties")
+                p for p in self.properties if not (p.is_discriminator or p.client_name == "additional_properties")
             ]
         }
         if self.discriminator and self.discriminator_value:
-            representation[f'"{self.discriminator.wire_name}"'] = (
-                f'"{self.discriminator_value}"'
-            )
+            representation[f'"{self.discriminator.wire_name}"'] = f'"{self.discriminator_value}"'
 
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
         self._created_json_template_representation = False
-        optional_keys = [
-            f'"{p.wire_name}"' for p in self.properties if getattr(p, "optional", False)
-        ]
+        optional_keys = [f'"{p.wire_name}"' for p in self.properties if getattr(p, "optional", False)]
         return OrderedDict(
             sorted(
                 representation.items(),
@@ -190,16 +171,11 @@ class ModelType(  # pylint: disable=abstract-method
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
-        is_polymorphic_subtype = (
-            self.discriminator_value and not self.discriminated_subtypes
-        )
+        is_polymorphic_subtype = self.discriminator_value and not self.discriminated_subtypes
         if self._got_polymorphic_subtypes:
             return
         self._got_polymorphic_subtypes = True
-        if (
-            self.name not in (m.name for m in polymorphic_subtypes)
-            and is_polymorphic_subtype
-        ):
+        if self.name not in (m.name for m in polymorphic_subtypes) and is_polymorphic_subtype:
             polymorphic_subtypes.append(self)
         for discriminated_subtype in self.discriminated_subtypes.values():
             discriminated_subtype.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -208,26 +184,17 @@ class ModelType(  # pylint: disable=abstract-method
         self._got_polymorphic_subtypes = False
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ModelType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ModelType":
         raise ValueError(
             "You shouldn't call from_yaml for ModelType to avoid recursion. "
             "Please initial a blank ModelType, then call .fill_instance_from_yaml on the created type."
         )
 
-    def fill_instance_from_yaml(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> None:
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         from . import build_type
 
-        self.parents = [
-            cast(ModelType, build_type(bm, code_model))
-            for bm in yaml_data.get("parents", [])
-        ]
-        properties = [
-            Property.from_yaml(p, code_model) for p in yaml_data["properties"]
-        ]
+        self.parents = [cast(ModelType, build_type(bm, code_model)) for bm in yaml_data.get("parents", [])]
+        properties = [Property.from_yaml(p, code_model) for p in yaml_data["properties"]]
         self.properties = _get_properties(self, properties)
         # checking to see if this is a polymorphic class
         self.discriminated_subtypes = {
@@ -237,10 +204,7 @@ class ModelType(  # pylint: disable=abstract-method
 
     @property
     def has_readonly_or_constant_property(self) -> bool:
-        return any(
-            x.readonly or x.constant or x.visibility == ["read"]
-            for x in self.properties
-        )
+        return any(x.readonly or x.constant or x.visibility == ["read"] for x in self.properties)
 
     @property
     def discriminator(self) -> Optional[Property]:
@@ -255,9 +219,7 @@ class ModelType(  # pylint: disable=abstract-method
             return next(
                 p
                 for p in self.properties
-                if p.is_discriminator
-                and isinstance(p.type, ConstantType)
-                and p.type.value == self.discriminator_value
+                if p.is_discriminator and isinstance(p.type, ConstantType) and p.type.value == self.discriminator_value
             )
         except StopIteration:
             return None
@@ -301,14 +263,10 @@ class JSONModelType(ModelType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.define_mutable_mapping_type()
         if self.is_xml:
-            file_import.add_submodule_import(
-                "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
-            )
+            file_import.add_submodule_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
         return file_import
 
 
@@ -341,22 +299,14 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
                 "models",
                 ImportType.LOCAL,
                 alias="_models",
-                typing_section=(
-                    TypingSection.TYPING
-                    if kwargs.get("model_typing")
-                    else TypingSection.REGULAR
-                ),
+                typing_section=(TypingSection.TYPING if kwargs.get("model_typing") else TypingSection.REGULAR),
             )
             if self.is_form_data:
                 file_import.add_submodule_import(
                     relative_path,
                     "_model_base",
                     ImportType.LOCAL,
-                    typing_section=(
-                        TypingSection.TYPING
-                        if kwargs.get("model_typing")
-                        else TypingSection.REGULAR
-                    ),
+                    typing_section=(TypingSection.TYPING if kwargs.get("model_typing") else TypingSection.REGULAR),
                 )
         return file_import
 
@@ -374,9 +324,7 @@ class MsrestModelType(GeneratedModelType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
 

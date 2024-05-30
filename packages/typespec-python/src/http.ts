@@ -95,7 +95,7 @@ function addPagingInformation(
     method: SdkPagingServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
     operationGroupName: string,
 ) {
-    for (const response of Object.values(method.operation.responses)) {
+    for (const response of method.operation.responses.values()) {
         if (response.type && !isAzureCoreModel(response.type)) {
             getType(context, response.type)["pageResultModel"] = true;
         }

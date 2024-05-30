@@ -49,15 +49,13 @@ class OperationGroup(BaseModel):
     @property
     def has_abstract_operations(self) -> bool:
         return any(o for o in self.operations if o.abstract) or any(
-            operation_group.has_abstract_operations
-            for operation_group in self.operation_groups
+            operation_group.has_abstract_operations for operation_group in self.operation_groups
         )
 
     @property
     def has_non_abstract_operations(self) -> bool:
         return any(o for o in self.operations if not o.abstract) or any(
-            operation_group.has_non_abstract_operations
-            for operation_group in self.operation_groups
+            operation_group.has_non_abstract_operations for operation_group in self.operation_groups
         )
 
     @property
@@ -71,15 +69,11 @@ class OperationGroup(BaseModel):
         file_import = FileImport(self.code_model)
         relative_path = ".." if async_mode else "."
         for operation in self.operations:
-            file_import.merge(
-                operation.imports_for_multiapi(async_mode, relative_path=relative_path)
-            )
-        if (
-            self.code_model.model_types or self.code_model.enums
-        ) and self.code_model.options["models_mode"] == "msrest":
-            file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
-            )
+            file_import.merge(operation.imports_for_multiapi(async_mode, relative_path=relative_path))
+        if (self.code_model.model_types or self.code_model.enums) and self.code_model.options[
+            "models_mode"
+        ] == "msrest":
+            file_import.add_submodule_import(relative_path, "models", ImportType.LOCAL, alias="_models")
         return file_import
 
     @property
@@ -103,13 +97,9 @@ class OperationGroup(BaseModel):
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport(self.code_model)
 
-        relative_path = ("..." if async_mode else "..") + (
-            "." if self.client.is_subclient else ""
-        )
+        relative_path = ("..." if async_mode else "..") + ("." if self.client.is_subclient else "")
         for operation in self.operations:
-            file_import.merge(
-                operation.imports(async_mode, relative_path=relative_path)
-            )
+            file_import.merge(operation.imports(async_mode, relative_path=relative_path))
         if not self.code_model.options["combine_operation_files"]:
             for og in self.operation_groups:
                 file_import.add_submodule_import(
@@ -123,27 +113,17 @@ class OperationGroup(BaseModel):
             and self.code_model.options["models_mode"] == "msrest"
             and not self.is_mixin
         ):
-            file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
-            )
+            file_import.add_submodule_import(relative_path, "models", ImportType.LOCAL, alias="_models")
         if self.code_model.need_mixin_abc:
-            file_import.add_submodule_import(
-                ".._vendor", f"{self.client.name}MixinABC", ImportType.LOCAL
-            )
+            file_import.add_submodule_import(".._vendor", f"{self.client.name}MixinABC", ImportType.LOCAL)
         if self.has_abstract_operations:
-            file_import.add_submodule_import(
-                ".._vendor", "raise_if_not_implemented", ImportType.LOCAL
-            )
+            file_import.add_submodule_import(".._vendor", "raise_if_not_implemented", ImportType.LOCAL)
         if all(o.abstract for o in self.operations):
             return file_import
-        file_import.add_submodule_import(
-            "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.define_mypy_type("T", "TypeVar('T')")
         type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
-        file_import.define_mypy_type(
-            "ClsType", type_value.format(""), type_value.format("Async")
-        )
+        file_import.define_mypy_type("ClsType", type_value.format(""), type_value.format("Async"))
         return file_import
 
     @property
@@ -160,44 +140,27 @@ class OperationGroup(BaseModel):
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
                 if isinstance(operation, (LROOperation, LROPagingOperation)):
-                    operation.initial_operation = self.lookup_operation(
-                        id(operation.yaml_data["initialOperation"])
-                    )
+                    operation.initial_operation = self.lookup_operation(id(operation.yaml_data["initialOperation"]))
 
     def lookup_operation(self, operation_id: int) -> "OperationType":
         try:
-            return next(
-                o
-                for og in self.operation_groups
-                for o in og.operations
-                if id(o.yaml_data) == operation_id
-            )
+            return next(o for og in self.operation_groups for o in og.operations if id(o.yaml_data) == operation_id)
         except StopIteration as exc:
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     @property
     def lro_operations(self) -> List["OperationType"]:
-        return [
-            operation
-            for operation in self.operations
-            if operation.operation_type in ("lro", "lropaging")
-        ] + [
-            operation
-            for operation_group in self.operation_groups
-            for operation in operation_group.lro_operations
+        return [operation for operation in self.operations if operation.operation_type in ("lro", "lropaging")] + [
+            operation for operation_group in self.operation_groups for operation in operation_group.lro_operations
         ]
 
     @property
     def has_operations(self) -> bool:
-        return any(
-            operation_group.has_operations for operation_group in self.operation_groups
-        ) or bool(self.operations)
+        return any(operation_group.has_operations for operation_group in self.operation_groups) or bool(self.operations)
 
     @property
     def has_form_data_body(self) -> bool:
-        operations = self.operations + [
-            o for og in self.operation_groups for o in og.operations
-        ]
+        operations = self.operations + [o for og in self.operation_groups for o in og.operations]
         return any(operation.has_form_data_body for operation in operations)
 
     @classmethod
@@ -207,9 +170,7 @@ class OperationGroup(BaseModel):
         code_model: "CodeModel",
         client: "Client",
     ) -> "OperationGroup":
-        operations = [
-            get_operation(o, code_model, client) for o in yaml_data["operations"]
-        ]
+        operations = [get_operation(o, code_model, client) for o in yaml_data["operations"]]
         api_versions: OrderedSet[str] = {}
         for operation in operations:
             for api_version in operation.api_versions:

@@ -41,11 +41,13 @@ from bodyduration.aio import AutoRestDurationTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestDuration(object):
 
@@ -59,4 +61,6 @@ class TestDuration(object):
     @pytest.mark.asyncio
     async def test_positive_duration(self, client):
         await client.duration.get_positive_duration()
-        await client.duration.put_positive_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+        await client.duration.put_positive_duration(
+            timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
+        )

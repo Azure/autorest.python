@@ -25,11 +25,11 @@ class StorageAccountListKeysResult(Model):
     """
 
     _validation = {
-        'keys': {'readonly': True},
+        "keys": {"readonly": True},
     }
 
     _attribute_map = {
-        'keys': {'key': 'keys', 'type': '[StorageAccountKey]'},
+        "keys": {"key": "keys", "type": "[StorageAccountKey]"},
     }
 
     def __init__(self):

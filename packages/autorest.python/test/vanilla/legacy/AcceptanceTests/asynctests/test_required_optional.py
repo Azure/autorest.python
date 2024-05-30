@@ -42,27 +42,28 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client_required():
     async with AutoRestRequiredOptionalTestService(
-            "required_path",
-            "required_query",
-            base_url="http://localhost:3000") as client:
+        "required_path", "required_query", base_url="http://localhost:3000"
+    ) as client:
         client._config.required_global_path = "required_path"
         client._config.required_global_query = "required_query"
         await yield_(client)
+
 
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestRequiredOptionalTestService(
-            "required_path",
-            "required_query",
-            base_url="http://localhost:3000") as client:
+        "required_path", "required_query", base_url="http://localhost:3000"
+    ) as client:
         client._config.required_global_path = None
         client._config.required_global_query = None
         await yield_(client)
+
 
 class TestRequiredOptional(object):
     # These clients have a required global path and query
@@ -148,11 +149,10 @@ class TestRequiredOptional(object):
     @pytest.mark.asyncio
     async def test_explict_put_required_binary_body(self, client):
         test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
+        test_bytes = bytearray(test_string, encoding="utf-8")
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
             await client.explicit.put_required_binary_body(stream_data)
-
 
     @pytest.mark.asyncio
     async def test_implicit_put_optional_binary_body(self, client):

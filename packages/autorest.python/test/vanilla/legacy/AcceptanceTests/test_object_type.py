@@ -29,10 +29,12 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with ObjectTypeClient(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestObjectType(object):
 
@@ -55,5 +57,8 @@ class TestObjectType(object):
         with pytest.raises(ImportError):
             from objecttype.operations import _object_type_client_operations_py3
 
-        from objecttype.operations._object_type_client_operations import ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2
+        from objecttype.operations._object_type_client_operations import (
+            ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2,
+        )
+
         assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy2

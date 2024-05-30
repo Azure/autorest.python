@@ -24,9 +24,7 @@ class RawString(object):
 
 
 class PrimitiveType(BaseType):  # pylint: disable=abstract-method
-    def description(
-        self, *, is_operation_file: bool  # pylint: disable=unused-argument
-    ) -> str:
+    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
         return ""
 
     def type_annotation(self, **kwargs: Any) -> str:
@@ -46,25 +44,18 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
         if optional:
             comment = add_to_description(comment, "Optional.")
         if self.client_default_value is not None:
-            client_default_value_declaration = (
-                client_default_value_declaration
-                or self.get_declaration(self.client_default_value)
+            client_default_value_declaration = client_default_value_declaration or self.get_declaration(
+                self.client_default_value
             )
         if client_default_value_declaration:
-            comment = add_to_description(
-                comment, f"Default value is {client_default_value_declaration}."
-            )
+            comment = add_to_description(comment, f"Default value is {client_default_value_declaration}.")
         else:
-            client_default_value_declaration = (
-                self.default_template_representation_declaration
-            )
+            client_default_value_declaration = self.default_template_representation_declaration
         if description:
             comment = add_to_description(comment, description)
         if comment:
             comment = f"# {comment}"
-        return client_default_value_declaration + (
-            "" if self.code_model.for_test else comment
-        )
+        return client_default_value_declaration + ("" if self.code_model.for_test else comment)
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -149,9 +140,7 @@ class BinaryIteratorType(PrimitiveType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(
-            "typing", self._iterator_name(**kwargs), ImportType.STDLIB
-        )
+        file_import.add_submodule_import("typing", self._iterator_name(**kwargs), ImportType.STDLIB)
         return file_import
 
     @property
@@ -176,16 +165,12 @@ class AnyType(PrimitiveType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport(self.code_model)
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
+        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
     @property
     def instance_check_template(self) -> str:
-        raise ValueError(
-            "Shouldn't do instance check on an anytype, it can be anything"
-        )
+        raise ValueError("Shouldn't do instance check on an anytype, it can be anything")
 
 
 class AnyObjectType(PrimitiveType):
@@ -230,26 +215,10 @@ class NumberType(PrimitiveType):  # pylint: disable=abstract-method
     @property
     def serialization_constraints(self) -> List[str]:
         validation_constraints = [
-            (
-                f"maximum_ex={self.maximum}"
-                if self.maximum is not None and self.exclusive_maximum
-                else None
-            ),
-            (
-                f"maximum={self.maximum}"
-                if self.maximum is not None and not self.exclusive_maximum
-                else None
-            ),
-            (
-                f"minimum_ex={self.minimum}"
-                if self.minimum is not None and self.exclusive_minimum
-                else None
-            ),
-            (
-                f"minimum={self.minimum}"
-                if self.minimum is not None and not self.exclusive_minimum
-                else None
-            ),
+            (f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None),
+            (f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None),
+            (f"minimum_ex={self.minimum}" if self.minimum is not None and self.exclusive_minimum else None),
+            (f"minimum={self.minimum}" if self.minimum is not None and not self.exclusive_minimum else None),
             f"multiple={self.multiple}" if self.multiple else None,
         ]
         return [x for x in validation_constraints if x is not None]
@@ -353,9 +322,7 @@ class StringType(PrimitiveType):
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.max_length: Optional[int] = yaml_data.get("maxLength")
         self.min_length: Optional[int] = (
-            yaml_data.get("minLength", 0)
-            if yaml_data.get("maxLength")
-            else yaml_data.get("minLength")
+            yaml_data.get("minLength", 0) if yaml_data.get("maxLength") else yaml_data.get("minLength")
         )
         self.pattern: Optional[str] = yaml_data.get("pattern")
 
@@ -400,8 +367,7 @@ class DatetimeType(PrimitiveType):
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.encode = (
             "rfc3339"
-            if yaml_data.get("encode", "date-time") == "date-time"
-            or yaml_data.get("encode", "date-time") == "rfc3339"
+            if yaml_data.get("encode", "date-time") == "date-time" or yaml_data.get("encode", "date-time") == "rfc3339"
             else "rfc7231"
         )
 

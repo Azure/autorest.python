@@ -43,11 +43,13 @@ from custombaseurl.models import Error
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestParameterizedHostTestClient(host="host:3000") as client:
         client._config.retry_policy.retries = 0
         yield client
+
 
 class TestCustomBaseUri(object):
 
@@ -71,6 +73,7 @@ class TestCustomBaseUri(object):
         from custombaseurl.models import Error
 
         from custombaseurl.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -80,4 +83,5 @@ class TestCustomBaseUri(object):
             from custombaseurl.operations import _paths_operations_py3
 
         from custombaseurl.operations._paths_operations import PathsOperations as PathsOperationsPy2
+
         assert PathsOperations == PathsOperationsPy2

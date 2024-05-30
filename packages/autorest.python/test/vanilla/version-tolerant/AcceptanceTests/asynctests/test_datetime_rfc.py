@@ -31,30 +31,36 @@ from bodydatetimerfc1123versiontolerant.aio import AutoRestRFC1123DateTimeTestSe
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestRFC1123DateTimeTestService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_get_null(client):
     assert await client.datetimerfc1123.get_null() is None
+
 
 @pytest.mark.asyncio
 async def test_get_invalid(client):
     with pytest.raises(isodate.ISO8601Error):
         deserialize_datetime(await client.datetimerfc1123.get_invalid())
 
+
 @pytest.mark.asyncio
 async def test_get_underflow(client):
     with pytest.raises(isodate.ISO8601Error):
         deserialize_datetime(await client.datetimerfc1123.get_underflow())
 
+
 @pytest.mark.asyncio
 async def test_get_overflow(client):
     with pytest.raises(isodate.ISO8601Error):
         deserialize_datetime(await client.datetimerfc1123.get_overflow())
+
 
 @pytest.mark.asyncio
 async def test_utc_max_date_time(client):
@@ -63,6 +69,7 @@ async def test_utc_max_date_time(client):
     await client.datetimerfc1123.get_utc_lowercase_max_date_time()
     await client.datetimerfc1123.get_utc_uppercase_max_date_time()
     await client.datetimerfc1123.put_utc_max_date_time(serialize_rfc(max_date))
+
 
 @pytest.mark.asyncio
 async def test_utc_min_date_time(client):

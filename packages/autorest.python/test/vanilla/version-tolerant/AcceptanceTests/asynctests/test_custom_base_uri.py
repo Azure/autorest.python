@@ -32,32 +32,38 @@ from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient
 from custombaseurlmoreoptionsversiontolerant.aio import AutoRestParameterizedCustomHostTestClient
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+    async with AutoRestParameterizedHostTestClient("host:3000", retry_total=0) as client:
         await yield_(client)
+
 
 @pytest.mark.asyncio
 async def test_positive():
     client = AutoRestParameterizedHostTestClient("host:3000")
     await client.paths.get_empty("local")
 
+
 @pytest.mark.asyncio
 async def test_get_empty_with_bad_string(client):
     with pytest.raises(ServiceRequestError):
         await client.paths.get_empty("bad")
+
 
 @pytest.mark.asyncio
 async def test_get_empty_with_none(client):
     with pytest.raises(ValueError):
         await client.paths.get_empty(None)
 
+
 @pytest.mark.asyncio
 async def test_get_empty_from_bad_host():
-    async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+    async with AutoRestParameterizedHostTestClient("badhost:3000", retry_total=0) as client:
         with pytest.raises(ServiceRequestError):
             await client.paths.get_empty("local")
+
 
 @pytest.mark.asyncio
 async def test_more_options():

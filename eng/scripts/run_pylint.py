@@ -20,9 +20,7 @@ rfc_file_location = os.path.join(AUTOREST_PACKAGE_DIR, "pylintrc")
 
 
 def _single_dir_pylint(mod):
-    inner_class = next(
-        d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info")
-    )
+    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     try:
         check_call(
             [
@@ -37,9 +35,7 @@ def _single_dir_pylint(mod):
         )
         return True
     except CalledProcessError as e:
-        logging.error(
-            "{} exited with linting error {}".format(inner_class.stem, e.returncode)
-        )
+        logging.error("{} exited with linting error {}".format(inner_class.stem, e.returncode))
         return False
 
 

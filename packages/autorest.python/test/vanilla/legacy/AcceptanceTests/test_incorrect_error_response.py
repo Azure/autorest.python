@@ -28,10 +28,12 @@ import pytest
 from azure.core.exceptions import HttpResponseError
 from incorrecterrorresponse import IncorrectReturnedErrorModel
 
+
 def test_swallow_deserialization_error_for_error_model():
     client = IncorrectReturnedErrorModel(base_url="http://localhost:3000")
     with pytest.raises(HttpResponseError):
         client.get_incorrect_error_from_server()
+
 
 def test_operation_groups():
     from incorrecterrorresponse.operations import IncorrectReturnedErrorModelOperationsMixin
@@ -39,5 +41,8 @@ def test_operation_groups():
     with pytest.raises(ImportError):
         from incorrecterrorresponse.operations import _incorrect_returned_error_model_operations_py3
 
-    from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin as IncorrectReturnedErrorModelOperationsMixinPy2
+    from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import (
+        IncorrectReturnedErrorModelOperationsMixin as IncorrectReturnedErrorModelOperationsMixinPy2,
+    )
+
     assert IncorrectReturnedErrorModelOperationsMixin == IncorrectReturnedErrorModelOperationsMixinPy2

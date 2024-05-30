@@ -18,9 +18,7 @@ logging.getLogger().setLevel(logging.INFO)
 
 
 def _single_dir_pyright(mod):
-    inner_class = next(
-        d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info")
-    )
+    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     retries = 3
     while retries:
         try:
@@ -37,9 +35,7 @@ def _single_dir_pyright(mod):
             )
             return True
         except CalledProcessError as e:
-            logging.exception(
-                "{} exited with pyright error {}".format(inner_class.stem, e.returncode)
-            )
+            logging.exception("{} exited with pyright error {}".format(inner_class.stem, e.returncode))
             logging.error(f"PyRight stdout:\n{e.stdout}\n===========")
             logging.error(f"PyRight stderr:\n{e.stderr}\n===========")
             # PyRight has shown to randomly failed with a 217, retry the same folder 3 times should help

@@ -55,25 +55,18 @@ class OptionsRetriever:
 
     @property
     def company_name(self) -> str:
-        return self.options.get(
-            "company-name", "Microsoft" if self.is_azure_flavor else ""
-        )
+        return self.options.get("company-name", "Microsoft" if self.is_azure_flavor else "")
 
     @property
     def license_header(self) -> str:
         license_header = self.options.get(
             "header-text",
-            (
-                DEFAULT_HEADER_TEXT.format(company_name=self.company_name)
-                if self.company_name
-                else ""
-            ),
+            (DEFAULT_HEADER_TEXT.format(company_name=self.company_name) if self.company_name else ""),
         )
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
             license_header = (
-                "# --------------------------------------------------------------------------\n# "
-                + license_header
+                "# --------------------------------------------------------------------------\n# " + license_header
             )
             license_header += "\n# --------------------------------------------------------------------------"
         return license_header
@@ -84,9 +77,7 @@ class OptionsRetriever:
 
     @property
     def _models_mode_default(self) -> str:
-        models_mode_default = (
-            "none" if self.low_level_client or self.version_tolerant else "msrest"
-        )
+        models_mode_default = "none" if self.low_level_client or self.version_tolerant else "msrest"
         if self.options.get("cadl_file") is not None:
             models_mode_default = "dpg"
         return models_mode_default
@@ -98,9 +89,7 @@ class OptionsRetriever:
     @property
     def models_mode(self) -> Union[str, bool]:
         # switch to falsy value for easier code writing
-        return (
-            False if self.original_models_mode == "none" else self.original_models_mode
-        )
+        return False if self.original_models_mode == "none" else self.original_models_mode
 
     @property
     def tracing(self) -> bool:
@@ -136,9 +125,7 @@ class OptionsRetriever:
 
     @property
     def package_pprint_name(self) -> str:
-        return self.options.get("package-pprint-name") or _default_pprint(
-            str(self.package_name)
-        )
+        return self.options.get("package-pprint-name") or _default_pprint(str(self.package_name))
 
     @property
     def default_optional_constants_to_none(self) -> bool:
@@ -162,9 +149,7 @@ class OptionsRetriever:
 
     @property
     def package_mode(self) -> str:
-        return self.options.get("packaging-files-dir") or self.options.get(
-            "package-mode", ""
-        )
+        return self.options.get("packaging-files-dir") or self.options.get("package-mode", "")
 
     @property
     def packaging_files_config(self) -> Optional[Dict[str, Any]]:
@@ -175,10 +160,7 @@ class OptionsRetriever:
         # if it's a string, we can split on the comma to get the dict
         # otherwise we just return
         try:
-            return {
-                k.strip(): v.strip()
-                for k, v in [i.split(":") for i in packaging_files_config.split("|")]
-            }
+            return {k.strip(): v.strip() for k, v in [i.split(":") for i in packaging_files_config.split("|")]}
         except AttributeError:
             return packaging_files_config
 
@@ -194,10 +176,7 @@ class CodeGenerator(Plugin):
             "hidden",
             "embedded",
         ]:
-            raise ValueError(
-                "The value of --builders-visibility must be either 'public', 'hidden', "
-                "or 'embedded'"
-            )
+            raise ValueError("The value of --builders-visibility must be either 'public', 'hidden', or 'embedded'")
 
         if self.options_retriever.original_models_mode not in ["msrest", "dpg", "none"]:
             raise ValueError(
@@ -206,32 +185,20 @@ class CodeGenerator(Plugin):
                 "'none' if you don't want any."
             )
 
-        if (
-            not self.options_retriever.show_operations
-            and self.options_retriever.builders_visibility == "embedded"
-        ):
+        if not self.options_retriever.show_operations and self.options_retriever.builders_visibility == "embedded":
             raise ValueError(
                 "Can not embed builders without operations. "
                 "Either set --show-operations to True, or change the value of --builders-visibility "
                 "to 'public' or 'hidden'."
             )
 
-        if (
-            self.options_retriever.basic_setup_py
-            and not self.options_retriever.package_version
-        ):
+        if self.options_retriever.basic_setup_py and not self.options_retriever.package_version:
             raise ValueError("--basic-setup-py must be used with --package-version")
 
-        if (
-            self.options_retriever.package_mode
-            and not self.options_retriever.package_version
-        ):
+        if self.options_retriever.package_mode and not self.options_retriever.package_version:
             raise ValueError("--package-mode must be used with --package-version")
 
-        if (
-            not self.options_retriever.show_operations
-            and self.options_retriever.combine_operation_files
-        ):
+        if not self.options_retriever.show_operations and self.options_retriever.combine_operation_files:
             raise ValueError(
                 "Can not combine operation files if you are not showing operations. "
                 "If you want operation files, pass in flag --show-operations"
@@ -258,26 +225,16 @@ class CodeGenerator(Plugin):
                 "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
             )
 
-        if (
-            self.options_retriever.client_side_validation
-            and self.options_retriever.version_tolerant
-        ):
-            raise ValueError(
-                "Can not generate version tolerant with --client-side-validation. "
-            )
+        if self.options_retriever.client_side_validation and self.options_retriever.version_tolerant:
+            raise ValueError("Can not generate version tolerant with --client-side-validation. ")
 
-        if not (
-            self.options_retriever.azure_arm or self.options_retriever.version_tolerant
-        ):
+        if not (self.options_retriever.azure_arm or self.options_retriever.version_tolerant):
             _LOGGER.warning(
                 "You are generating with options that would not allow the SDK to be shipped as an official Azure SDK. "
                 "Please read https://aka.ms/azsdk/dpcodegen for more details."
             )
 
-        if (
-            not self.options_retriever.is_azure_flavor
-            and self.options_retriever.tracing
-        ):
+        if not self.options_retriever.is_azure_flavor and self.options_retriever.tracing:
             raise ValueError("Can only have tracing turned on for Azure SDKs.")
 
     @staticmethod
@@ -292,8 +249,7 @@ class CodeGenerator(Plugin):
                         exception = operation["exceptions"][i]
                         if (
                             exception.get("schema")
-                            and exception["schema"]["language"]["default"]["name"]
-                            == "CloudError"
+                            and exception["schema"]["language"]["default"]["name"] == "CloudError"
                         ):
                             del operation["exceptions"][i]
                             i -= 1
@@ -360,9 +316,7 @@ class CodeGenerator(Plugin):
             self.remove_cloud_errors(yaml_data)
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
-        if not self.options_retriever.is_azure_flavor and any(
-            client.lro_operations for client in code_model.clients
-        ):
+        if not self.options_retriever.is_azure_flavor and any(client.lro_operations for client in code_model.clients):
             raise ValueError("Only support LROs for Azure SDKs")
         serializer = self.get_serializer(code_model)
         serializer.serialize()
@@ -373,10 +327,7 @@ class CodeGenerator(Plugin):
 class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         if self._autorestapi.get_boolean_value("python3-only") is False:
-            _LOGGER.warning(
-                "You have passed in --python3-only=False. We have force overriden "
-                "this to True."
-            )
+            _LOGGER.warning("You have passed in --python3-only=False. We have force overriden this to True.")
         if self._autorestapi.get_boolean_value("add-python3-operation-files"):
             _LOGGER.warning(
                 "You have passed in --add-python3-operation-files. "
@@ -391,49 +342,31 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
         options = {
             "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
             "header-text": self._autorestapi.get_value("header-text"),
-            "low-level-client": self._autorestapi.get_boolean_value(
-                "low-level-client", False
-            ),
-            "version-tolerant": self._autorestapi.get_boolean_value(
-                "version-tolerant", True
-            ),
+            "low-level-client": self._autorestapi.get_boolean_value("low-level-client", False),
+            "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant", True),
             "show-operations": self._autorestapi.get_boolean_value("show-operations"),
             "python3-only": self._autorestapi.get_boolean_value("python3-only"),
-            "head-as-boolean": self._autorestapi.get_boolean_value(
-                "head-as-boolean", False
-            ),
-            "keep-version-file": self._autorestapi.get_boolean_value(
-                "keep-version-file"
-            ),
+            "head-as-boolean": self._autorestapi.get_boolean_value("head-as-boolean", False),
+            "keep-version-file": self._autorestapi.get_boolean_value("keep-version-file"),
             "no-async": self._autorestapi.get_boolean_value("no-async"),
-            "no-namespace-folders": self._autorestapi.get_boolean_value(
-                "no-namespace-folders"
-            ),
+            "no-namespace-folders": self._autorestapi.get_boolean_value("no-namespace-folders"),
             "basic-setup-py": self._autorestapi.get_boolean_value("basic-setup-py"),
             "package-name": self._autorestapi.get_value("package-name"),
             "package-version": self._autorestapi.get_value("package-version"),
-            "client-side-validation": self._autorestapi.get_boolean_value(
-                "client-side-validation"
-            ),
+            "client-side-validation": self._autorestapi.get_boolean_value("client-side-validation"),
             "tracing": self._autorestapi.get_boolean_value("trace"),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic-examples": self._autorestapi.get_value("polymorphic-examples"),
             "models-mode": self._autorestapi.get_value("models-mode"),
             "builders-visibility": self._autorestapi.get_value("builders-visibility"),
-            "show-send-request": self._autorestapi.get_boolean_value(
-                "show-send-request"
-            ),
+            "show-send-request": self._autorestapi.get_boolean_value("show-send-request"),
             "only-path-and-body-params-positional": self._autorestapi.get_boolean_value(
                 "only-path-and-body-params-positional"
             ),
-            "combine-operation-files": self._autorestapi.get_boolean_value(
-                "combine-operation-files"
-            ),
+            "combine-operation-files": self._autorestapi.get_boolean_value("combine-operation-files"),
             "package-mode": self._autorestapi.get_value("package-mode"),
             "package-pprint-name": self._autorestapi.get_value("package-pprint-name"),
-            "packaging-files-config": self._autorestapi.get_value(
-                "package-configuration"
-            ),
+            "packaging-files-config": self._autorestapi.get_value("package-configuration"),
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none"
             ),

@@ -35,11 +35,11 @@ cwd = dirname(realpath(__file__))
 
 @pytest.fixture
 def client(connection_data_block_size):
-    with AutoRestSwaggerBATFileService(
-        connection_data_block_size=connection_data_block_size) as client:
+    with AutoRestSwaggerBATFileService(connection_data_block_size=connection_data_block_size) as client:
         yield client
 
-@pytest.mark.parametrize('connection_data_block_size', [1000])
+
+@pytest.mark.parametrize("connection_data_block_size", [1000])
 def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
@@ -50,17 +50,29 @@ def test_get_file(client):
             file_length += len(data)
             file_handle.write(data)
 
-        assert file_length !=  0
+        assert file_length != 0
 
         sample_file = realpath(
-            join(cwd, pardir, pardir, pardir, pardir,
-                "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+            join(
+                cwd,
+                pardir,
+                pardir,
+                pardir,
+                pardir,
+                "node_modules",
+                "@microsoft.azure",
+                "autorest.testserver",
+                "routes",
+                "sample.png",
+            )
+        )
 
-        with open(sample_file, 'rb') as data:
+        with open(sample_file, "rb") as data:
             sample_data = hash(data.read())
-        assert sample_data ==  hash(file_handle.getvalue())
+        assert sample_data == hash(file_handle.getvalue())
 
-@pytest.mark.parametrize('connection_data_block_size', [4096])
+
+@pytest.mark.parametrize("connection_data_block_size", [4096])
 def test_get_empty_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
@@ -70,9 +82,10 @@ def test_get_empty_file(client):
             file_length += len(data)
             file_handle.write(data)
 
-        assert file_length ==  0
+        assert file_length == 0
 
-@pytest.mark.parametrize('connection_data_block_size', [4096])
+
+@pytest.mark.parametrize("connection_data_block_size", [4096])
 def test_files_long_running(client):
     file_length = 0
     stream = client.files.get_file_large()
@@ -80,4 +93,4 @@ def test_files_long_running(client):
         assert 0 < len(data) <= 4096
         file_length += len(data)
 
-    assert file_length ==  3000 * 1024 * 1024
+    assert file_length == 3000 * 1024 * 1024

@@ -27,14 +27,16 @@ import pytest
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.credentials import AzureKeyCredential
 
+
 @pytest.fixture
 def default_client(authentication_policy):
     from multiapicredentialdefaultpolicy import MultiapiServiceClient
+
     with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=AzureKeyCredential("12345")
+        base_url="http://localhost:3000", credential=AzureKeyCredential("12345")
     ) as default_client:
         yield default_client
+
 
 def test_multiapi_credential_default_policy_type(default_client):
     # making sure that the authentication policy is AzureKeyCredentialPolicy

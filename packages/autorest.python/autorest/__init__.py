@@ -34,9 +34,7 @@ class ReaderAndWriter:
             python_json = {}
         self.options = kwargs
         if python_json:
-            _LOGGER.warning(
-                "Loading python.json file. This behavior will be depreacted"
-            )
+            _LOGGER.warning("Loading python.json file. This behavior will be depreacted")
         self.options.update(python_json)
 
     def read_file(self, path: Union[str, Path]) -> str:
@@ -61,9 +59,7 @@ class ReaderAndWriter:
 
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
-    def __init__(
-        self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI
-    ) -> None:
+    def __init__(self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI) -> None:
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
@@ -97,9 +93,7 @@ class Plugin(ReaderAndWriter, ABC):
 class PluginAutorest(Plugin, ReaderAndWriterAutorest):
     """For our Autorest plugins, we want to take autorest api as input as options, then pass it to the Plugin"""
 
-    def __init__(
-        self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]
-    ) -> None:
+    def __init__(self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]) -> None:
         super().__init__(autorestapi=autorestapi, output_folder=output_folder)
         self.options = self.get_options()
 
@@ -141,9 +135,7 @@ class YamlUpdatePlugin(Plugin):
         raise NotImplementedError()
 
 
-class YamlUpdatePluginAutorest(  # pylint: disable=abstract-method
-    YamlUpdatePlugin, PluginAutorest
-):
+class YamlUpdatePluginAutorest(YamlUpdatePlugin, PluginAutorest):  # pylint: disable=abstract-method
     def get_yaml(self) -> Dict[str, Any]:
         return yaml.safe_load(self.read_file("code-model-v4-no-tags.yaml"))
 

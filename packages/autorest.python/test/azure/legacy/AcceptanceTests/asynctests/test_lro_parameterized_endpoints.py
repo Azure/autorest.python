@@ -27,18 +27,21 @@ import pytest
 from lrowithparameterizedendpoints.aio import LROWithParamaterizedEndpoints
 from async_generator import yield_, async_generator
 
+
 @pytest.fixture
 @async_generator
 async def client(credential):
     async with LROWithParamaterizedEndpoints(credential=credential, host="host:3000") as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_poll_with_parameterized_endpoints(client):
-    poller = await client.begin_poll_with_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert (await poller.result()) == 'success'
+    poller = await client.begin_poll_with_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert (await poller.result()) == "success"
+
 
 @pytest.mark.asyncio
 async def test_poll_with_constant_parameterized_endpoints(client):
-    poller = await client.begin_poll_with_constant_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert (await poller.result()) == 'success'
+    poller = await client.begin_poll_with_constant_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert (await poller.result()) == "success"

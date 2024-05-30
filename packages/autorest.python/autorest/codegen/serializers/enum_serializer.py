@@ -12,6 +12,4 @@ class EnumSerializer(BaseSerializer):
     def serialize(self) -> str:
         # Generate the enum file
         template = self.env.get_template("enum_container.py.jinja2")
-        return template.render(
-            code_model=self.code_model, file_import=FileImport(self.code_model)
-        )
+        return template.render(code_model=self.code_model, file_import=FileImport(self.code_model))

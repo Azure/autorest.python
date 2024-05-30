@@ -33,9 +33,7 @@ class MultiClientPlugin(Plugin):  # pylint: disable=abstract-method
         template = env.get_template("version.py.jinja2")
         self.write_file(
             Path("_version.py"),
-            template.render(
-                package_version=self.options.get("package-version") or "1.0.0b1"
-            ),
+            template.render(package_version=self.options.get("package-version") or "1.0.0b1"),
         )
 
         # py.typed

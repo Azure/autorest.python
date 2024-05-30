@@ -27,22 +27,27 @@ from nonstringenumsversiontolerant import NonStringEnumsClient
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with NonStringEnumsClient() as client:
         yield client
 
+
 def test_put_int_enum(client):
     result = client.int_operations.put(200)
     assert result == "Nice job posting an int enum"
+
 
 def test_get_int_enum(client):
     result = client.int_operations.get()
     assert result == 429
 
+
 def test_put_float_enum(client):
     result = client.float.put(200.4)
     assert result == "Nice job posting a float enum"
+
 
 def test_get_float_enum(client):
     result = client.float.get()

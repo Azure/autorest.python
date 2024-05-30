@@ -121,9 +121,7 @@ class ParameterSerializer:
             [
                 '    "{}": {},'.format(
                     path_parameter.wire_name,
-                    ParameterSerializer.serialize_parameter(
-                        path_parameter, serializer_name
-                    ),
+                    ParameterSerializer.serialize_parameter(path_parameter, serializer_name),
                 )
                 for path_parameter in parameters
             ]
@@ -172,9 +170,7 @@ class ParameterSerializer:
 
         def append_pop_kwarg(key: str, pop_type: PopKwargType) -> None:
             if PopKwargType.CASE_INSENSITIVE == pop_type:
-                retval.append(
-                    f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})'
-                )
+                retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
             elif PopKwargType.SIMPLE == pop_type:
                 retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
 
@@ -189,35 +185,21 @@ class ParameterSerializer:
                     default_value = f"self._config.{kwarg.client_name}"
                 else:
                     default_value = kwarg.client_default_value_declaration
-                if check_kwarg_dict and (
-                    kwarg.location
-                    in [ParameterLocation.HEADER, ParameterLocation.QUERY]
-                ):
-                    kwarg_dict = (
-                        "headers"
-                        if kwarg.location == ParameterLocation.HEADER
-                        else "params"
-                    )
+                if check_kwarg_dict and (kwarg.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]):
+                    kwarg_dict = "headers" if kwarg.location == ParameterLocation.HEADER else "params"
                     if (
                         kwarg.client_name == "api_version"
                         and kwarg.code_model.options["multiapi"]
                         and operation_name is not None
                     ):
-                        default_value = (
-                            f"self._api_version{operation_name} or {default_value}"
-                        )
-                    default_value = (
-                        f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
-                    )
+                        default_value = f"self._api_version{operation_name} or {default_value}"
+                    default_value = f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
 
                 retval.append(
-                    f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}', "
-                    + f"{default_value})"
+                    f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}', " + f"{default_value})"
                 )
             else:
-                retval.append(
-                    f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}')"
-                )
+                retval.append(f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}')")
         return retval
 
     @staticmethod

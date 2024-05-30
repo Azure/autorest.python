@@ -1,5 +1,64 @@
 # Release
 
+## 0.23.12
+
+### Bug Fixes
+
+- [#2601](https://github.com/Azure/autorest.python/pull/2601) Remove unused model for paging operation
+
+
+## 0.23.11
+
+### Bump dependencies
+
+- [#2590](https://github.com/Azure/autorest.python/pull/2590) bump tcgc to 0.41.3
+
+
+## 2023-05-11 - 0.23.10
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.56.0`      |
+| `@typespec/http`                                                        | `0.56.0`      |
+| `@typespec/rest`                                                        | `0.56.0`      |
+| `@typespec/versioning`                                                  | `0.56.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.42.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.42.2`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+### Bump dependencies
+
+- [#2581](https://github.com/Azure/autorest.python/pull/2581) bump tcgc to 0.42.2
+
+
+## 2023-04-30 - 0.23.9
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.55.0`      |
+| `@typespec/http`                                                        | `0.55.0`      |
+| `@typespec/rest`                                                        | `0.55.0`      |
+| `@typespec/versioning`                                                  | `0.55.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.8`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
+| `azure-core` dep of generated code                                      | `1.30.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b3`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code                               | `4.6.0`       |
+
+**Bug Fixes**
+
+- Escape backslashes in docstrings. Thanks @onlined for this contribution, you rock! #2560
+
+- **Other Changes**
+
+- Bump `@azure-tools/typespec-client-generator-core` version to `0.41.8` #2562
+
 ## 2023-04-26 - 0.23.8
 
 | Library                                                                 | Min Version   |

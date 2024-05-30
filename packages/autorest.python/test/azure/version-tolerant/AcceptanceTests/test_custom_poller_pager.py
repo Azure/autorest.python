@@ -28,14 +28,17 @@ from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 import pytest
 
+
 @pytest.fixture
 def client(credential, authentication_policy):
     with AutoRestPagingTestService(credential, authentication_policy=authentication_policy) as client:
         yield client
 
+
 def test_custom_pager(client):
     pager = client.paging.get_single_pages()
     assert isinstance(pager, CustomPager)
+
 
 def test_custom_poller(client):
     poller = client.paging.begin_get_multiple_pages_lro()
