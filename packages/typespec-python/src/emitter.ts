@@ -5,7 +5,7 @@ import {
     SdkHttpOperation,
     SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
-import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
+import { saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
@@ -67,7 +67,7 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
-    const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "pygen");
+    const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "..", "pygen");
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
