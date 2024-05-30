@@ -90,7 +90,6 @@ class OperationGroupOneOperations:
                     headers=_headers,
                     params=_params,
                 )
-                _request = _convert_request(_request)
                 _request.url = self._client.format_url(_request.url)
 
             else:
@@ -106,7 +105,6 @@ class OperationGroupOneOperations:
                 _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request = _convert_request(_request)
                 _request.url = self._client.format_url(_request.url)
                 _request.method = "GET"
             return _request
@@ -220,7 +218,6 @@ class OperationGroupOneOperations:
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False

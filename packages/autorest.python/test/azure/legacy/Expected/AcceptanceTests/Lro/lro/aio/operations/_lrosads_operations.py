@@ -118,7 +118,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -270,7 +269,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -425,7 +423,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -580,7 +577,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -731,7 +727,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -814,7 +809,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -897,7 +891,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -999,7 +992,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1140,7 +1132,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1281,7 +1272,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1428,7 +1418,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1580,7 +1569,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1749,7 +1737,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1903,7 +1890,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1982,7 +1968,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2086,7 +2071,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2230,7 +2214,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2380,7 +2363,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2533,7 +2515,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2702,7 +2683,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2856,7 +2836,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -2940,7 +2919,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -3029,7 +3007,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -3133,7 +3110,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -3277,7 +3253,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -3427,7 +3402,6 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False

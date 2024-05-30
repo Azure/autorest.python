@@ -97,7 +97,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         path_format_arguments = {
             "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }

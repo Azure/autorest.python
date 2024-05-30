@@ -846,11 +846,6 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
 
     def _postprocess_http_request(self, builder: OperationType, template_url: Optional[str] = None) -> List[str]:
         retval: List[str] = []
-        if not self.code_model.options["version_tolerant"]:
-            pass_files = ""
-            if builder.parameters.has_body and builder.parameters.body_parameter.client_name == "files":
-                pass_files = ", _files"
-            retval.append(f"_request = _convert_request(_request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
         url_to_format = "_request.url"

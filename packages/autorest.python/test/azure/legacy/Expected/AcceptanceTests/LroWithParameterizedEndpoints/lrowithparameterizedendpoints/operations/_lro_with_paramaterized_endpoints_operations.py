@@ -99,7 +99,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -212,7 +211,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),

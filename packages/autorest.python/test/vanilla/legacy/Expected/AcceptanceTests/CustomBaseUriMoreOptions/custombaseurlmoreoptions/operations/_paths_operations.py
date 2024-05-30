@@ -120,7 +120,6 @@ class PathsOperations:
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),
             "secret": self._serialize.url("secret", secret, "str", skip_quote=True),
