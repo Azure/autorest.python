@@ -843,7 +843,7 @@ class FormDataOperations:
         if body is _Unset:
             if profile_image is _Unset:
                 raise TypeError("missing required argument: profile_image")
-            body = {"profileimage": profile_image}
+            body = {"profileImage": profile_image}
             body = {k: v for k, v in body.items() if v is not None}
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _file_fields: List[str] = ["profileImage"]
