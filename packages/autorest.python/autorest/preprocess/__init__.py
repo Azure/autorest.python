@@ -324,8 +324,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if yaml_data.get("propertyToParameterName"):
             # need to create a new one with padded keys and values
             yaml_data["propertyToParameterName"] = {
-                self.pad_reserved_words(prop, PadType.PROPERTY)
-                .lower(): self.pad_reserved_words(param_name, PadType.PARAMETER)
+                self.pad_reserved_words(prop, PadType.PROPERTY): self.pad_reserved_words(param_name, PadType.PARAMETER)
                 .lower()
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
