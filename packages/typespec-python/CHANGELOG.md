@@ -1,5 +1,13 @@
 # Release
 
+## 0.23.13
+
+### Bug Fixes
+
+- [#2607](https://github.com/Azure/autorest.python/pull/2607) Fix serialization error when setting model property with `azure.core.serialization.NULL`.
+- [#2608](https://github.com/Azure/autorest.python/pull/2608) don't lowercase serialized names when building a body from splatted arguments
+
+
 ## 0.23.12
 
 ### Bug Fixes
