@@ -53,6 +53,7 @@ from azure.core.exceptions import (
     SerializationError as AzureCoreSerializationError,
     DeserializationError as AzureCoreDeserializationError,
 )
+from azure.core.serialization import NULL as CoreNull
 
 import storage_models
 
@@ -251,9 +252,29 @@ class TestRuntimeSerialized(unittest.TestCase):
         def __str__(self):
             return "Test_Object"
 
+    class TestObj2(Model):
+        _attribute_map = {
+            "attr": {"key": "properties.Attr", "type": "TestObj"},
+        }
+
+        def __init__(self, attr=None):
+            self.attr = attr
+
     def setUp(self):
-        self.s = Serializer({"TestObj": self.TestObj})
+        self.s = Serializer({"TestObj": self.TestObj, "TestObj2": self.TestObj2})
         return super(TestRuntimeSerialized, self).setUp()
+
+    def test_azure_core_null(self):
+        test_cases = [
+            # passing azure.core.serialization.NULL for null value in json string
+            (CoreNull, '{"properties": {"Attr": null}}'),
+            # passing None doesn't work
+            (None, "{}"),
+        ]
+        for none_value, json_string in test_cases:
+            for item in [self.TestObj2(attr=none_value), {"properties": {"Attr": none_value}}]:
+                json_body = self.s.body(item, "TestObj2")
+                assert json.dumps(json_body) == json_string
 
     @pytest.mark.skip(
         "validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428"
