@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-Fix serialization error when setting model property with `azure.core.serialization.NULL`
+Fix serialization error when setting model property with `azure.core.serialization.NULL`.
