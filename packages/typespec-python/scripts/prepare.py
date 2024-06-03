@@ -27,9 +27,8 @@ def main():
 
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
-    requirements_path = _ROOT_DIR / "dev_requirements.txt"
     try:
-        python_run(venv_context, "pip", ["install", "-r", str(requirements_path)])
+        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/pygen/dev_requirements.txt"])
     except FileNotFoundError as e:
         raise ValueError(e.filename)
 
