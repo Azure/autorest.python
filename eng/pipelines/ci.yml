@@ -2,11 +2,13 @@ trigger:
   branches:
     include:
       - main
+      - '*gh-readonly-queue*'
 
 pr:
   branches:
     include:
       - main
+      - '*gh-readonly-queue*'
 
 resources:
   repositories:
