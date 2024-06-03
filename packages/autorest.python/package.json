@@ -3,9 +3,9 @@
   "version": "6.13.17",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "start": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/start.py",
-    "install": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/install.py",
-    "debug": "node ./node_modules/@azure-tools/typespec-python/pygen/scripts/run-python3.cjs ./scripts/start.py --debug"
+    "start": "node ./scripts/run-python3.js ./scripts/start.py",
+    "install": "node ./scripts/run-python3.js ./scripts/install.py",
+    "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
   },
   "main": "index.js",
   "repository": {
