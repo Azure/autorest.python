@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
       - main
+      - gh-readonly-queue/{base_branch}
 
 pr:
   branches:
