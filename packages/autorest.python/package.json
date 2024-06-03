@@ -38,8 +38,6 @@
     "autorest/**/*.jinja2",
     "scripts/",
     "setup.py",
-    "venvtools.py",
-    "requirements.txt",
-    "run_cadl.py"
+    "requirements.txt"
   ]
 }

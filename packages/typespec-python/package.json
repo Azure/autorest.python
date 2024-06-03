@@ -38,10 +38,10 @@
     "prepare": "node ./scripts/run-python3.cjs ./scripts/prepare.py"
   },
   "files": [
-    "lib/*.cadl",
     "dist/**",
     "!dist/test/**",
-    "pygen/**"
+    "pygen/**",
+    "scripts/**"
   ],
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.42.0 <1.0.0",
