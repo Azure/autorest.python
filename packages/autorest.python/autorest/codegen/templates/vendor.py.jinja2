@@ -3,14 +3,6 @@
 
 {{ imports }}
 
-{% if code_model.need_request_converter and not async_mode %}
-def _convert_request(request, files=None):
-    data = request.content if not files else None
-    request = HttpRequest(method=request.method, url=request.url, headers=request.headers, data=data)
-    if files:
-        request.set_formdata_body(files)
-    return request
-{% endif %}
 {% if code_model.need_mixin_abc %}
     {% for client in clients | selectattr("has_mixin") %}
 {% set pylint_disable = "# pylint: disable=name-too-long" if (client.name | length) + ("MixinABC" | length) > 40 else "" %}
