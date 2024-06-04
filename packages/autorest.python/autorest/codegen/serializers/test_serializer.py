@@ -22,6 +22,18 @@ from ..models import (
 from .utils import get_namespace_from_package_name, json_dumps_template
 
 
+def is_lro(operation_type: str) -> bool:
+    return operation_type in ("lro", "lropaging")
+
+
+def is_paging(operation_type: str) -> bool:
+    return operation_type in ("paging", "lropaging")
+
+
+def is_common_operation(operation_type: str) -> bool:
+    return operation_type == "operation"
+
+
 class TestName:
     def __init__(self, client_name: str, *, is_async: bool = False) -> None:
         self.client_name = client_name
@@ -71,34 +83,28 @@ class TestCase:
     @property
     def response(self) -> str:
         if self.is_async:
-            if self.operation.operation_type == "lropaging":
+            if is_lro(self.operation.operation_type):
                 return "response = await (await "
-            return "response = await "
+            if is_common_operation(self.operation.operation_type):
+                return "response = await "
         return "response = "
 
     @property
     def lro_comment(self) -> str:
-        return " # poll until service return final result"
+        return " # call '.result()' to poll until service return final result"
 
     @property
     def operation_suffix(self) -> str:
-        if self.operation.operation_type == "lropaging":
+        if is_lro(self.operation.operation_type):
             extra = ")" if self.is_async else ""
             return f"{extra}.result(){self.lro_comment}"
         return ""
 
     @property
     def extra_operation(self) -> str:
-        if self.is_async:
-            if self.operation.operation_type == "lro":
-                return f"result = await response.result(){self.lro_comment}"
-            if self.operation.operation_type == ("lropaging", "paging"):
-                return "result = [r async for r in response]"
-        else:
-            if self.operation.operation_type == "lro":
-                return f"result = response.result(){self.lro_comment}"
-            if self.operation.operation_type in ("lropaging", "paging"):
-                return "result = [r for r in response]"
+        if is_paging(self.operation.operation_type):
+            async_str = "async " if self.is_async else ""
+            return f"result = [r {async_str}for r in response]"
         return ""
 
 
