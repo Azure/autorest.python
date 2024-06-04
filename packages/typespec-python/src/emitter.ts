@@ -67,7 +67,7 @@ function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
-    const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "..", "pygen");
+    const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "..");
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
