@@ -14,7 +14,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 _LOGGER = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    venv_path = _ROOT_DIR / "venv"
+    venv_path = _ROOT_DIR / "pygen" / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done

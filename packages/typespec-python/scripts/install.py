@@ -31,7 +31,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "venv"
+    venv_path = _ROOT_DIR / "pygen" / "venv"
     if venv_path.exists():
         env_builder = venv.EnvBuilder(with_pip=True)
         venv_context = env_builder.ensure_directories(venv_path)
