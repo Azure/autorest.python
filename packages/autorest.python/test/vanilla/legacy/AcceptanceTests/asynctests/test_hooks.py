@@ -35,7 +35,7 @@ def is_rest(obj):
 @pytest.mark.asyncio
 async def test_raw_request_hook():
     def _callback(request):
-        assert not is_rest(request.http_request)
+        assert is_rest(request.http_request)
         assert hasattr(request.http_request, "set_multipart_mixed")
         raise ValueError("I entered the callback!")
 
@@ -49,7 +49,7 @@ async def test_raw_request_hook():
 @pytest.mark.asyncio
 async def test_raw_response_hook():
     def _callback(response):
-        assert not is_rest(response.http_response)
+        assert is_rest(response.http_response)
         assert hasattr(response.http_response, "parts")
         raise ValueError("I entered the callback!")
 

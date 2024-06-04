@@ -366,8 +366,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             file_import.add_import("warnings", ImportType.STDLIB)
 
         relative_path = "..." if async_mode else ".."
-        if self.code_model.need_request_converter:
-            file_import.add_submodule_import(f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL)
         if self.has_etag:
             file_import.add_submodule_import(
                 "exceptions",
@@ -377,32 +375,18 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             if not async_mode:
                 file_import.add_submodule_import(f"{relative_path}_vendor", "prep_if_match", ImportType.LOCAL)
                 file_import.add_submodule_import(f"{relative_path}_vendor", "prep_if_none_match", ImportType.LOCAL)
-        if self.code_model.need_request_converter:
-            if async_mode:
-                file_import.add_submodule_import(
-                    "azure.core.pipeline.transport",
-                    "AsyncHttpResponse",
-                    ImportType.SDKCORE,
-                )
-            else:
-                file_import.add_submodule_import(
-                    "azure.core.pipeline.transport",
-                    "HttpResponse",
-                    ImportType.SDKCORE,
-                )
+        if async_mode:
+            file_import.add_submodule_import(
+                "rest",
+                "AsyncHttpResponse",
+                ImportType.SDKCORE,
+            )
         else:
-            if async_mode:
-                file_import.add_submodule_import(
-                    "rest",
-                    "AsyncHttpResponse",
-                    ImportType.SDKCORE,
-                )
-            else:
-                file_import.add_submodule_import(
-                    "rest",
-                    "HttpResponse",
-                    ImportType.SDKCORE,
-                )
+            file_import.add_submodule_import(
+                "rest",
+                "HttpResponse",
+                ImportType.SDKCORE,
+            )
         if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
