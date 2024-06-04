@@ -3,8 +3,9 @@
   "version": "6.13.18",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
+    "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
-    "install": "copyfiles -a /node_modules/@azure-tools/typespec-python/venv/* ./venv && node ./scripts/run-python3.js ./scripts/install.py",
+    "install": "node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
   },
   "main": "index.js",

@@ -1,1 +1,2 @@
 json-rpc==1.14.0
+-e ./node_modules/@azure-tools/typespec-python/pygen
