@@ -14,22 +14,22 @@ from setuptools import setup, find_packages
 
 
 # Version extraction inspired from 'requests'
-with open(os.path.join("autorest", "_version.py"), "r") as fd:
+with open(os.path.join("pygen", "_version.py"), "r") as fd:
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
     raise RuntimeError("Cannot find version information")
 
 setup(
-    name="autorest",
+    name="pygen",
     version=version,
-    description="Microsoft Autorest Plugins for Python",
+    description="Core Library for Python Generation",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
     author="Microsoft Corporation",
     author_email="azpysdkhelp@microsoft.com",
-    url="https://github.com/Azure/autorest.python",
+    url="https://github.com/Azure/autorest.python/packages/core",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
