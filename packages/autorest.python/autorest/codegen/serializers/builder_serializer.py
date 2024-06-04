@@ -520,6 +520,15 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         return retval
 
     @property
+    def need_read_stream_response(self) -> bool:
+        return self.code_model.options["version_tolerant"] or self.async_mode
+
+    def read_stream_response(self, response: str = "response") -> str:
+        async_str = "await " if self.async_mode else ""
+        func_str = "read" if self.code_model.options["version_tolerant"] else "load_body"
+        return f"{async_str}{response}.{func_str}() # type: ignore"
+
+    @property
     def _json_response_template_name(self) -> str:
         return "response"
 
@@ -558,15 +567,17 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 retval.extend(f"{self._json_response_template_name} == {response_body}".splitlines())
         return retval
 
-    def make_pipeline_call(self, builder: OperationType) -> List[str]:
-        type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
-        stream_value = (
+    def stream_value(self, builder: OperationType) -> Union[str, bool]:
+        return (
             f'kwargs.pop("stream", {builder.has_stream_response})'
             if builder.expose_stream_keyword and builder.has_response_body
             else builder.has_stream_response
         )
+
+    def make_pipeline_call(self, builder: OperationType) -> List[str]:
+        type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         return [
-            f"_stream = {stream_value}",
+            f"_stream = {self.stream_value(builder)}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
@@ -925,7 +936,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append("    pipeline_response")
+                deserialize_code.append(
+                    f"    pipeline_response{'.http_response' if hasattr(builder, 'initial_operation') else ''}"
+                )
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
@@ -962,7 +975,6 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         return retval
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
-        async_await = "await " if self.async_mode else ""
         retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
         retval.extend(
             [
@@ -1223,7 +1235,10 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
+            suffix = ".http_response" if hasattr(builder, "initial_operation") else ""
+            deserialized = (
+                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
+            )
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
@@ -1318,8 +1333,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        params=_params,")
         retval.append("        **kwargs")
         retval.append("    )")
-        if self.async_mode:
-            retval.append(f"    await raw_result.http_response.load_body()  # type: ignore")
+        
         retval.append("kwargs.pop('error_map', None)")
         return retval
 

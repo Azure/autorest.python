@@ -110,7 +110,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 201]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -200,7 +204,7 @@ class LRORetrysOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("Product", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -268,7 +272,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [200]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -369,7 +377,7 @@ class LRORetrysOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("Product", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -422,7 +430,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -469,7 +481,7 @@ class LRORetrysOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("Product", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -520,7 +532,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -608,7 +624,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -716,7 +736,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -864,7 +888,11 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

@@ -412,16 +412,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
     ) -> None:
+        def convert_initial_operation_response_type(data: Dict[str, Any]) -> None:
+            for response in data.get("responses", []):
+                response["type"] = KNOWN_TYPES["binary"]
+
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         self.update_operation(code_model, yaml_data["initialOperation"], is_overload=is_overload)
-        for response in yaml_data["initialOperation"].get("responses", []):
-            response["type"] = KNOWN_TYPES["binary"]
+        convert_initial_operation_response_type(yaml_data["initialOperation"])
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
             self.update_operation(code_model, overload["initialOperation"], is_overload=True)
-            for response in overload["initialOperation"].get("responses", []):
-                response["type"] = KNOWN_TYPES["binary"]
+            convert_initial_operation_response_type(overload["initialOperation"])
 
     def update_paging_operation(
         self,

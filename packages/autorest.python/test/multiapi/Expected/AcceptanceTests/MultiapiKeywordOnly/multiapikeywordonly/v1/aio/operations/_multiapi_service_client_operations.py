@@ -154,7 +154,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if response.status_code not in [200, 204]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -239,7 +243,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("Product", pipeline_response)
+            deserialized = self._deserialize("Product", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -305,7 +309,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -385,7 +393,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

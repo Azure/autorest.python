@@ -77,7 +77,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         if response.status_code not in [200, 202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -121,7 +125,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = self._deserialize("str", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -191,7 +195,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         if response.status_code not in [200, 202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -243,7 +251,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = self._deserialize("str", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

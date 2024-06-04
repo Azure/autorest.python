@@ -1612,7 +1612,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         if response.status_code not in [202]:
             if _stream:
+<<<<<<< HEAD
                 await response.read()  # Load the body in memory and close the socket
+=======
+                await response.load_body()  # type: ignore
+>>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1692,7 +1696,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response.http_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
