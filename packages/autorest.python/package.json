@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
-    "install": "node ./scripts/run-python3.js ./scripts/install.py",
+    "copy-pygen": "copyfiles -a ./node_modules/@azure-tools/typespec-python ./pygen",
+    "install": "npm run copy-pygen && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
   },
   "main": "index.js",
