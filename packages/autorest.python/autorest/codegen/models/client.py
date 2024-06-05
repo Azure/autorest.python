@@ -254,6 +254,18 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                     operation.initial_operation = self.lookup_operation(id(operation.yaml_data["initialOperation"]))
 
     @property
+    def need_request_converter(self) -> bool:
+        """
+        Whether we need to convert our created azure.core.rest.HttpRequest to
+        azure.core.pipeline.transport.HttpRequest
+        """
+        return (
+            self.code_model.options["show_operations"]
+            and bool(self.request_builders)
+            and not self.code_model.options["version_tolerant"]
+        )
+
+    @property
     def has_abstract_operations(self) -> bool:
         """Whether there is abstract operation in any operation group."""
         return any(og.has_abstract_operations for og in self.operation_groups)
