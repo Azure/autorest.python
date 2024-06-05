@@ -1212,12 +1212,15 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
         response = builder.responses[0]
         deserialized = "pipeline_response.http_response.json()"
         if self.code_model.options["models_mode"] == "msrest":
+            suffix = ".http_response" if hasattr(builder, "initial_operation") else ""
             deserialize_type = response.serialization_type
             pylint_disable = "  # pylint: disable=protected-access"
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
+            deserialized = (
+                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
+            )
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
