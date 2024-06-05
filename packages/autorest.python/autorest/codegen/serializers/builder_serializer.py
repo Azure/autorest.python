@@ -925,7 +925,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append("    pipeline_response.http_response")
+                deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
