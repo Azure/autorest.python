@@ -138,7 +138,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return _request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

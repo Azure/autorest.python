@@ -95,8 +95,8 @@
         "operation_group_one": "OperationGroupOneOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Iterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"IO\", \"Optional\", \"Union\"], \"io\": [\"IOBase\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.polling\": [\"LROPoller\"], \"azure.core.paging\": [\"ItemPaged\"]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"IO\", \"Optional\", \"Union\"], \"io\": [\"IOBase\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.polling\": [\"AsyncLROPoller\"], \"azure.core.async_paging\": [\"AsyncItemPaged\"]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Iterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"IO\", \"Iterator\", \"Optional\", \"Union\"], \"io\": [\"IOBase\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.polling\": [\"LROPoller\"], \"azure.core.paging\": [\"ItemPaged\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"AsyncIterator\", \"IO\", \"Optional\", \"Union\"], \"io\": [\"IOBase\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}, \"sdkcore\": {\"azure.core.polling\": [\"AsyncLROPoller\"], \"azure.core.async_paging\": [\"AsyncItemPaged\"]}}}",
         "sync_mixin_typing_definitions": "",
         "async_mixin_typing_definitions": "",
         "operations": {
@@ -115,14 +115,14 @@
             },
             "_test_lro_initial" : {
                 "sync": {
-                    "signature": "def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO[bytes]\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "signature": "def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e Iterator[bytes]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO[bytes]\n:return: Iterator[bytes] or the result of cls(response)\n:rtype: Iterator[bytes]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
-                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO[bytes]\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO[bytes]]] = None,\n    **kwargs: Any\n) -\u003e AsyncIterator[bytes]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is\n None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO[bytes]\n:return: AsyncIterator[bytes] or the result of cls(response)\n:rtype: AsyncIterator[bytes]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "product, **kwargs"
                 }
             },
@@ -141,14 +141,14 @@
             },
             "_test_lro_and_paging_initial" : {
                 "sync": {
-                    "signature": "def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.PagingResult:\n",
-                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.PagingResult\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "signature": "def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e Iterator[bytes]:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:return: Iterator[bytes] or the result of cls(response)\n:rtype: Iterator[bytes]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.PagingResult:\n",
-                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.PagingResult\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "signature": "async def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e AsyncIterator[bytes]:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:return: AsyncIterator[bytes] or the result of cls(response)\n:rtype: AsyncIterator[bytes]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
                     "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
                 }
             },
