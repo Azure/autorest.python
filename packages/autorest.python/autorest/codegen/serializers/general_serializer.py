@@ -87,6 +87,13 @@ class GeneralSerializer(BaseSerializer):
 
         # configure imports
         file_import = FileImport(self.code_model)
+        if self.code_model.need_request_converter:
+            file_import.add_submodule_import(
+                "azure.core.pipeline.transport",
+                "HttpRequest",
+                ImportType.SDKCORE,
+            )
+
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(
                 "abc",

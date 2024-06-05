@@ -18,13 +18,14 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.pipeline.transport import HttpResponse
+from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MultiapiCustomBaseUrlServiceClientMixinABC
+from .._vendor import MultiapiCustomBaseUrlServiceClientMixinABC, _convert_request
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -97,6 +98,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             headers=_headers,
             params=_params,
         )
+        _request = _convert_request(_request)
         path_format_arguments = {
             "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
@@ -110,8 +112,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
