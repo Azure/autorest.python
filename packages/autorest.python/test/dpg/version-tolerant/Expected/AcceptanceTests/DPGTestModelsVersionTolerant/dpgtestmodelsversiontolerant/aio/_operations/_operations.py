@@ -90,7 +90,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = self._deserialize("Product", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -198,7 +198,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        deserialized = self._deserialize("Product", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -302,8 +302,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # type: ignore
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -338,7 +337,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             raw_result = await self._lro_initial(
                 mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()  # type: ignore
+            await raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

@@ -889,7 +889,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -947,7 +947,7 @@ class StringOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1261,7 +1261,7 @@ class BytesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1319,7 +1319,7 @@ class BytesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1633,7 +1633,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1691,7 +1691,7 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2005,7 +2005,7 @@ class DurationOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2063,7 +2063,7 @@ class DurationOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2379,7 +2379,7 @@ class CollectionsByteOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2439,7 +2439,7 @@ class CollectionsByteOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2766,7 +2766,7 @@ class CollectionsModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2829,7 +2829,7 @@ class CollectionsModelOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3159,7 +3159,7 @@ class StringLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3217,7 +3217,7 @@ class StringLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3531,7 +3531,7 @@ class IntLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3589,7 +3589,7 @@ class IntLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3903,7 +3903,7 @@ class FloatLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3961,7 +3961,7 @@ class FloatLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4275,7 +4275,7 @@ class BooleanLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4333,7 +4333,7 @@ class BooleanLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4650,7 +4650,7 @@ class UnionStringLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4711,7 +4711,7 @@ class UnionStringLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5036,7 +5036,7 @@ class UnionIntLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5095,7 +5095,7 @@ class UnionIntLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5415,7 +5415,7 @@ class UnionFloatLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5475,7 +5475,7 @@ class UnionFloatLiteralOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5797,7 +5797,7 @@ class RequiredAndOptionalOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5857,7 +5857,7 @@ class RequiredAndOptionalOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

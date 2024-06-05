@@ -184,13 +184,11 @@ class OperationGroupOneOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("ModelThree", pipeline_response)
+        deserialized = self._deserialize("ModelThree", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -238,8 +236,6 @@ class OperationGroupOneOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -315,8 +311,6 @@ class OperationGroupOneOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -447,8 +441,6 @@ class OperationGroupTwoOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -497,8 +489,6 @@ class OperationGroupTwoOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -654,8 +644,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -712,8 +701,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -763,6 +751,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -861,7 +850,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return _request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -877,8 +866,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -896,6 +883,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -985,8 +973,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1043,13 +1029,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = self._deserialize("ModelTwo", pipeline_response)
+        deserialized = self._deserialize("ModelTwo", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1124,8 +1108,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

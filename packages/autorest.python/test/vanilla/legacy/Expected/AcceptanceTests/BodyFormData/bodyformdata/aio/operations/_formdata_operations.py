@@ -105,12 +105,7 @@ class FormdataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-<<<<<<< HEAD
-                await response.read()  # Load the body in memory and close the socket
-=======
-                await response.load_body()  # type: ignore
->>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -164,12 +159,7 @@ class FormdataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-<<<<<<< HEAD
-                await response.read()  # Load the body in memory and close the socket
-=======
-                await response.load_body()  # type: ignore
->>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -226,12 +216,7 @@ class FormdataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-<<<<<<< HEAD
-                await response.read()  # Load the body in memory and close the socket
-=======
-                await response.load_body()  # type: ignore
->>>>>>> bcbc2d34b5a58d5ed8c17e2b53f723b1e2ce87d0
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)

@@ -681,7 +681,7 @@ class PropertyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -835,7 +835,7 @@ class PropertyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -989,7 +989,7 @@ class PropertyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1148,7 +1148,7 @@ class PropertyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1319,7 +1319,7 @@ class PropertyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

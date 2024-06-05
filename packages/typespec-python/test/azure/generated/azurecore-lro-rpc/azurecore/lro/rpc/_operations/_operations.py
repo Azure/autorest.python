@@ -108,8 +108,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -249,7 +248,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             raw_result = self._long_running_rpc_initial(
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

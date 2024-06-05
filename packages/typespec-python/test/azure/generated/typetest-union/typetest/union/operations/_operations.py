@@ -384,7 +384,7 @@ class StringsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -593,7 +593,7 @@ class StringExtensibleOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -801,7 +801,7 @@ class StringExtensibleNamedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1012,7 +1012,7 @@ class IntsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1217,7 +1217,7 @@ class FloatsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1423,7 +1423,7 @@ class ModelsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1637,7 +1637,7 @@ class EnumsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1861,7 +1861,7 @@ class StringAndArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2089,7 +2089,7 @@ class MixedLiteralsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2337,7 +2337,7 @@ class MixedTypesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

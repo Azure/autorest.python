@@ -1830,7 +1830,7 @@ class CatalogsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1893,8 +1893,7 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2271,7 +2270,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2617,7 +2616,7 @@ class CatalogsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2664,8 +2663,7 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2717,7 +2715,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -3024,7 +3022,7 @@ class CatalogsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3954,8 +3952,7 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4189,7 +4186,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4324,7 +4321,7 @@ class CertificatesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4544,7 +4541,7 @@ class CertificatesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4815,7 +4812,7 @@ class CertificatesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4946,7 +4943,7 @@ class ImagesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5011,8 +5008,7 @@ class ImagesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5462,7 +5458,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5524,8 +5520,7 @@ class ImagesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5582,7 +5577,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -5857,7 +5852,7 @@ class ProductsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5922,8 +5917,7 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -6287,7 +6281,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6364,8 +6358,7 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -6682,7 +6675,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6744,8 +6737,7 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -6803,7 +6795,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7002,7 +6994,7 @@ class ProductsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -7268,7 +7260,7 @@ class DeviceGroupsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -7335,8 +7327,7 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -7779,7 +7770,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -7858,8 +7849,7 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -8251,7 +8241,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8314,8 +8304,7 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -8376,7 +8365,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -8602,8 +8591,7 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -8791,7 +8779,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -8875,7 +8863,7 @@ class DeviceGroupsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -9064,7 +9052,7 @@ class DeploymentsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -9133,8 +9121,7 @@ class DeploymentsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -9870,7 +9857,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9940,8 +9927,7 @@ class DeploymentsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -10012,7 +9998,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10361,7 +10347,7 @@ class DevicesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -10430,8 +10416,7 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -10875,7 +10860,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11280,7 +11265,7 @@ class DevicesOperations:
 
         if response.status_code not in [200, 202]:
             if _stream:
-                response.read()  # type: ignore
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -11348,8 +11333,7 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -11418,7 +11402,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -11628,8 +11612,7 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                response.read()  # type: ignore
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -11876,7 +11859,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()  # type: ignore
+            raw_result.http_response.read()
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
