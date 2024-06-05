@@ -335,6 +335,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -381,6 +383,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -390,7 +394,7 @@ class HttpRedirectsOperations:
         if response.status_code == 300:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = self._deserialize("[str]", pipeline_response.http_response)
+            deserialized = self._deserialize("[str]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -432,6 +436,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -478,6 +484,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -538,6 +546,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [301]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -583,6 +593,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -629,6 +641,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -689,6 +703,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [302]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -748,6 +764,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 303]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -794,6 +812,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -840,6 +860,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -886,6 +908,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -945,6 +969,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -1004,6 +1030,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -1063,6 +1091,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
@@ -1122,6 +1152,8 @@ class HttpRedirectsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)

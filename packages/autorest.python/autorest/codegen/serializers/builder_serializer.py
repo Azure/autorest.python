@@ -963,10 +963,13 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
-        retval = [
-            f"if response.status_code not in {str(builder.success_status_codes)}:",
-            f"    {async_await}response.read()  # Load the body in memory and close the socket"
-        ]
+        retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
+        retval.extend(
+            [
+                "    if _stream:",
+                f"        {async_await} response.read()  # Load the body in memory and close the socket",
+            ]
+        )
         type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
         retval.append(
             f"    map_error(status_code=response.status_code, response=response, error_map=error_map){type_ignore}"
@@ -1220,7 +1223,9 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response.http_response\n)"
+            deserialized = (
+                f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response.http_response\n)"
+            )
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG

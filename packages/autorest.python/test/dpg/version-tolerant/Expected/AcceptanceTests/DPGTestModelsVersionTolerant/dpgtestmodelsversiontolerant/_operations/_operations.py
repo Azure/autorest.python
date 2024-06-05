@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -163,10 +163,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response.http_response)
+        deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -271,10 +273,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response.http_response)
+        deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -342,6 +346,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -349,7 +355,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    def _lro_initial(self, mode: str, **kwargs: Any) -> Iterator[bytes]:
+    def _lro_initial(self, mode: str, **kwargs: Any) -> _models.LROProduct:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -361,7 +367,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.LROProduct] = kwargs.pop("cls", None)
 
         _request = build_dpg_lro_request(
             mode=mode,
@@ -370,7 +376,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = True
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -378,11 +384,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            response.read()  # Load the body in memory and close the socket
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.iter_bytes()
+        deserialized = self._deserialize("LROProduct", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -411,11 +418,10 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = self._lro_initial(mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
-            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("LROProduct", pipeline_response.http_response)
+            deserialized = self._deserialize("LROProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
