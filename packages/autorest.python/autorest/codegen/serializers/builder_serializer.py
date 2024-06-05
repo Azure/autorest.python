@@ -560,8 +560,13 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
+        stream_value = (
+            f'kwargs.pop("stream", {builder.has_stream_response})'
+            if builder.expose_stream_keyword and builder.has_response_body
+            else builder.has_stream_response
+        )
         return [
-            f"_stream = {builder.stream_value}",
+            f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
@@ -920,7 +925,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append(" pipeline_response.http_response")
+                deserialize_code.append("    pipeline_response.http_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 if builder.has_stream_response:
@@ -958,12 +963,10 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
-        retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
-        response_read = f"    {async_await}response.read()  # Load the body in memory and close the socket"
-        if builder.stream_value is True:  # _stream is True so no need to judge it
-            retval.append(response_read)
-        elif isinstance(builder.stream_value, str):  # _stream is not sure, so we need to judge it
-            retval.extend(["    if _stream:", f"    {response_read}"])
+        retval = [
+            f"if response.status_code not in {str(builder.success_status_codes)}:",
+            f"    {async_await}response.read()  # Load the body in memory and close the socket"
+        ]
         type_ignore = "  # type: ignore" if _need_type_ignore(builder) else ""
         retval.append(
             f"    map_error(status_code=response.status_code, response=response, error_map=error_map){type_ignore}"
@@ -1212,15 +1215,12 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
         response = builder.responses[0]
         deserialized = "pipeline_response.http_response.json()"
         if self.code_model.options["models_mode"] == "msrest":
-            suffix = ".http_response" if hasattr(builder, "initial_operation") else ""
             deserialize_type = response.serialization_type
             pylint_disable = "  # pylint: disable=protected-access"
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = (
-                f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response{suffix}\n)"
-            )
+            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response.http_response\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG

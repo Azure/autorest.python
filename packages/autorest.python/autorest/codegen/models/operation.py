@@ -92,14 +92,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
 
     @property
-    def stream_value(self) -> Union[str, bool]:
-        return (
-            f'kwargs.pop("stream", {self.has_stream_response})'
-            if self.expose_stream_keyword and self.has_response_body
-            else self.has_stream_response
-        )
-
-    @property
     def has_form_data_body(self):
         return self.parameters.has_form_data_body
 
