@@ -1315,7 +1315,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        params=_params,")
         retval.append("        **kwargs")
         retval.append("    )")
-        retval.append(f"    {'await ' if self.async_mode else ''}raw_result.http_response.read()")
+        retval.append(f"    {'await ' if self.async_mode else ''}raw_result.http_response.read() # type: ignore")
 
         retval.append("kwargs.pop('error_map', None)")
         return retval

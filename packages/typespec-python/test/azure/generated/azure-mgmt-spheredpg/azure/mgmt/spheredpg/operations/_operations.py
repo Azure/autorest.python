@@ -2270,7 +2270,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2715,7 +2715,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4186,7 +4186,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -5458,7 +5458,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5577,7 +5577,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -6281,7 +6281,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6675,7 +6675,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6795,7 +6795,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7770,7 +7770,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8241,7 +8241,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8365,7 +8365,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -8779,7 +8779,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -9857,7 +9857,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9998,7 +9998,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -10860,7 +10860,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -11402,7 +11402,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -11859,7 +11859,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

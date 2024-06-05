@@ -307,7 +307,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -487,7 +487,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

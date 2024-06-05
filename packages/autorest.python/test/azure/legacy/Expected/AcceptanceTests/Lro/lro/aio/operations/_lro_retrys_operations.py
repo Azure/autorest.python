@@ -195,7 +195,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -355,7 +355,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -462,7 +462,7 @@ class LRORetrysOperations:
             raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -551,7 +551,7 @@ class LRORetrysOperations:
             raw_result = await self._delete202_retry200_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -643,7 +643,7 @@ class LRORetrysOperations:
             raw_result = await self._delete_async_relative_retry_succeeded_initial(
                 cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -790,7 +790,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -943,7 +943,7 @@ class LRORetrysOperations:
                 params=_params,
                 **kwargs
             )
-            await raw_result.http_response.read()
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements

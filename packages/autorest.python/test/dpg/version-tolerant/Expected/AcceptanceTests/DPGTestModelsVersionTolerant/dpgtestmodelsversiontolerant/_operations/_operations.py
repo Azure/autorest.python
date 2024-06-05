@@ -411,7 +411,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = self._lro_initial(mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

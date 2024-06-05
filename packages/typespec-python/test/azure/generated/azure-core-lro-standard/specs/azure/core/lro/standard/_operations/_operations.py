@@ -330,7 +330,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 params=_params,
                 **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -429,7 +429,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             raw_result = self._delete_initial(
                 name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -531,7 +531,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             raw_result = self._export_initial(
                 name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
-            raw_result.http_response.read()
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
