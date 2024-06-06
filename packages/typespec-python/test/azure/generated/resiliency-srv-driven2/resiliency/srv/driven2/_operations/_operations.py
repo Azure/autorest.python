@@ -143,7 +143,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            response.read()  # Load the body in memory and close the socket
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -198,7 +199,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            response.read()  # Load the body in memory and close the socket
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -260,7 +262,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            response.read()  # Load the body in memory and close the socket
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -321,7 +324,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            response.read()  # Load the body in memory and close the socket
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
