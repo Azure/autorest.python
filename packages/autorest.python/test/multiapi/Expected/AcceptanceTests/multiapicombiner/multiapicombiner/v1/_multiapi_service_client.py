@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, TYPE_CHECKING
 
 from azure.core.pipeline import policies
@@ -18,6 +19,11 @@ from . import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -95,7 +101,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MultiapiServiceClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

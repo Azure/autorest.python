@@ -17,6 +17,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import FlattenClientConfiguration
 from ._operations import FlattenClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class FlattenClient(FlattenClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates the model flatten cases.
@@ -79,7 +84,7 @@ class FlattenClient(FlattenClientOperationsMixin):  # pylint: disable=client-acc
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "FlattenClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

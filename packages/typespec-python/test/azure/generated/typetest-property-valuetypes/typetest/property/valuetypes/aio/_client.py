@@ -47,6 +47,11 @@ from .operations import (
     UnknownStringOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various property types for models.
@@ -214,7 +219,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ValueTypesClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

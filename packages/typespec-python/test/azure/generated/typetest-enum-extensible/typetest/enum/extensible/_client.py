@@ -17,6 +17,11 @@ from ._configuration import ExtensibleClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import StringOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ExtensibleClient:  # pylint: disable=client-accepts-api-version-keyword
     """ExtensibleClient.
@@ -80,7 +85,7 @@ class ExtensibleClient:  # pylint: disable=client-accepts-api-version-keyword
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ExtensibleClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

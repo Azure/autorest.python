@@ -18,6 +18,11 @@ from ._configuration import RenamedFromClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import NewInterfaceOperations, RenamedFromClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@renamedFrom`` decorator.
@@ -90,7 +95,7 @@ class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=cl
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RenamedFromClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

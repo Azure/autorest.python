@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
@@ -16,6 +17,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import LroPagingClientConfiguration
 from .operations import QuestionAnsweringProjectsOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class LroPagingClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -91,7 +97,7 @@ class LroPagingClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "LroPagingClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

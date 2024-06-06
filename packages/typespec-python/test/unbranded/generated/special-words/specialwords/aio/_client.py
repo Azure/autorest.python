@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import SpecialWordsClientConfiguration
 from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Scenarios to verify that reserved words can be used in service and generators will handle it
@@ -125,7 +130,7 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "SpecialWordsClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

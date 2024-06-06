@@ -28,6 +28,11 @@ from .operations import (
     UnknownValueOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various of dictionaries.
@@ -119,7 +124,7 @@ class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,to
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "DictionaryClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -27,6 +27,11 @@ from .operations import (
     ProductsOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
@@ -131,7 +136,7 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AzureSphereClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

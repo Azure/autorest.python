@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, Dict
 
 from azure.core.credentials import AzureKeyCredential
@@ -18,6 +19,11 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
@@ -86,7 +92,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestHeadTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

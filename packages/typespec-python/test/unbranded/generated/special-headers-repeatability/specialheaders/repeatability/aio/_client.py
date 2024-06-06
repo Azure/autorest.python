@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import RepeatabilityClientConfiguration
 from ._operations import RepeatabilityClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates OASIS repeatability headers.
@@ -72,7 +77,7 @@ class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disabl
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RepeatabilityClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

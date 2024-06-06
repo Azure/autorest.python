@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from azure.core import PipelineClient
@@ -26,6 +27,11 @@ from .operations import (
     PrimitiveOperations,
     ReadonlypropertyOperations,
 )
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
@@ -122,7 +128,7 @@ class AutoRestComplexTestService:  # pylint: disable=client-accepts-api-version-
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestComplexTestService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

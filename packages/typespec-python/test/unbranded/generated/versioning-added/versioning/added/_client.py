@@ -17,6 +17,11 @@ from ._configuration import AddedClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import AddedClientOperationsMixin, InterfaceV2Operations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@added`` decorator.
@@ -83,7 +88,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AddedClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

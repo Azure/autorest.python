@@ -225,6 +225,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
                 ImportType.SDKCORE,
             )
+
+        # import for "typing.Self"
+        file_import.add_import("sys", ImportType.STDLIB)
+        file_import.add_submodule_import(
+            "typing_extensions",
+            "Self",
+            ImportType.BYVERSION,
+            TypingSection.REGULAR,
+            None,
+            (((3, 11), "typing", None),),
+        )
         return file_import
 
     @property

@@ -23,6 +23,7 @@ setup(
     install_requires=[
         "isodate>=0.6.1",
         "azure-mgmt-core>=1.3.2",
+        "typing-extensions>=4.6.0",
     ],
     long_description="""\
     Test Infrastructure for AutoRest.

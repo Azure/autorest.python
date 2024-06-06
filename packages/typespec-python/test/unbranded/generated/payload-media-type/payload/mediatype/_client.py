@@ -16,6 +16,11 @@ from ._configuration import MediaTypeClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import StringBodyOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test the payload with different media types and different types of the payload itself.
@@ -73,7 +78,7 @@ class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MediaTypeClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

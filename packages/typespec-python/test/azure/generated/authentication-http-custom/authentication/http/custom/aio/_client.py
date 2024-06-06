@@ -18,6 +18,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import CustomClientConfiguration
 from ._operations import CustomClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
@@ -82,7 +87,7 @@ class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accep
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "CustomClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

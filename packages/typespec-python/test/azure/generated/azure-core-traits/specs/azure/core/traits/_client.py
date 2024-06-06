@@ -17,6 +17,11 @@ from ._configuration import TraitsClientConfiguration
 from ._operations import TraitsClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates Azure Core operation customizations by traits.
@@ -81,7 +86,7 @@ class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accep
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "TraitsClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

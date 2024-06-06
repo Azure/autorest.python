@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import JsonMergePatchClientConfiguration
 from ._operations import JsonMergePatchClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for merge-patch+json content-type.
@@ -72,7 +77,7 @@ class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):  # pylint: disa
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "JsonMergePatchClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

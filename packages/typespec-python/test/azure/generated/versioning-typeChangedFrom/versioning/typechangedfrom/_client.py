@@ -18,6 +18,11 @@ from ._configuration import TypeChangedFromClientConfiguration
 from ._operations import TypeChangedFromClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@typeChangedFrom`` decorator.
@@ -87,7 +92,7 @@ class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: di
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "TypeChangedFromClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

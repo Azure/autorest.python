@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import BodyOptionalityClientConfiguration
 from .operations import BodyOptionalityClientOperationsMixin, OptionalExplicitOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
@@ -78,7 +83,7 @@ class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: di
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "BodyOptionalityClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

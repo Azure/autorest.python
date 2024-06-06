@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.pipeline import policies
@@ -26,6 +27,11 @@ from .operations import (
     SubscriptionInMethodOperations,
     XMsClientRequestIdOperations,
 )
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -150,7 +156,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestAzureSpecialParametersTestClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

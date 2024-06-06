@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import NotDefinedClientConfiguration
 from ._operations import NotDefinedClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates server doesn't define endpoint. Client should automatically add an endpoint to let
@@ -78,7 +83,7 @@ class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=clie
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "NotDefinedClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

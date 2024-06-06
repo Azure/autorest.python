@@ -17,6 +17,11 @@ from ._configuration import ScalarClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import AzureLocationScalarOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
     """ScalarClient.
@@ -83,7 +88,7 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ScalarClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

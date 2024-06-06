@@ -27,6 +27,11 @@ from .operations import (
     StringsOnlyOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class UnionClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Describe scenarios for various combinations of unions.
@@ -117,7 +122,7 @@ class UnionClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "UnionClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

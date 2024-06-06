@@ -17,6 +17,11 @@ from ._configuration import VisibilityClientConfiguration
 from ._operations import VisibilityClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates models with visibility properties.
@@ -77,7 +82,7 @@ class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=clie
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "VisibilityClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

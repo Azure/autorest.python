@@ -241,9 +241,3 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     @property
     def is_legacy(self) -> bool:
         return _is_legacy(self.options)
-
-    @property
-    def need_typing_extensions(self) -> bool:
-        if self.options["models_mode"] == "dpg":
-            return True
-        return False

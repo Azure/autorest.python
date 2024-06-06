@@ -16,6 +16,11 @@ from ._configuration import NamingClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import ModelOperations, NamingClientOperationsMixin, UnionEnumOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
@@ -76,7 +81,7 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "NamingClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

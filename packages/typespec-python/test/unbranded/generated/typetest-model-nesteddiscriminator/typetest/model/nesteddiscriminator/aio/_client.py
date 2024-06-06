@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import NestedDiscriminatorClientConfiguration
 from ._operations import NestedDiscriminatorClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class NestedDiscriminatorClient(
     NestedDiscriminatorClientOperationsMixin
@@ -74,7 +79,7 @@ class NestedDiscriminatorClient(
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "NestedDiscriminatorClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

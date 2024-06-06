@@ -16,6 +16,11 @@ from ._configuration import SingleClientConfiguration
 from ._operations import SingleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates server with a single path parameter @server.
@@ -75,7 +80,7 @@ class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accep
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "SingleClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

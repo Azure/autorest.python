@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Dict
 
 from azure.core import PipelineClient
@@ -16,6 +17,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import ParmaterizedEndpointClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import ParmaterizedEndpointClientOperationsMixin
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class ParmaterizedEndpointClient(
@@ -85,7 +91,7 @@ class ParmaterizedEndpointClient(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ParmaterizedEndpointClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

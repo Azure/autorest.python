@@ -49,6 +49,11 @@ from .operations import (
     SpreadStringOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Tests for additional properties of models.
@@ -271,7 +276,7 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AdditionalPropertiesClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

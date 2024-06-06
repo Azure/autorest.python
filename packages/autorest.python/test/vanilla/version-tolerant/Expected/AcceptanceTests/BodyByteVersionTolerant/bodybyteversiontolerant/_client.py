@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from azure.core import PipelineClient
@@ -16,6 +17,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AutoRestSwaggerBATByteServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import ByteOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestSwaggerBATByteService:  # pylint: disable=client-accepts-api-version-keyword
@@ -80,7 +86,7 @@ class AutoRestSwaggerBATByteService:  # pylint: disable=client-accepts-api-versi
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestSwaggerBATByteService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

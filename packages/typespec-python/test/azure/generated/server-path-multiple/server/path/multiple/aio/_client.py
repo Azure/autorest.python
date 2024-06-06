@@ -17,6 +17,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import MultipleClientConfiguration
 from ._operations import MultipleClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """MultipleClient.
@@ -88,7 +93,7 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MultipleClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

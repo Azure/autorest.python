@@ -24,6 +24,11 @@ from .operations import (
     UnknownOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """ScalarClient.
@@ -101,7 +106,7 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-ma
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ScalarClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

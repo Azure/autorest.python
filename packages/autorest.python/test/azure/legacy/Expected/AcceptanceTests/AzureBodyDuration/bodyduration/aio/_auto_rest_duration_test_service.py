@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
@@ -17,6 +18,11 @@ from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestDurationTestServiceConfiguration
 from .operations import DurationOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestDurationTestService:  # pylint: disable=client-accepts-api-version-keyword
@@ -84,7 +90,7 @@ class AutoRestDurationTestService:  # pylint: disable=client-accepts-api-version
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestDurationTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

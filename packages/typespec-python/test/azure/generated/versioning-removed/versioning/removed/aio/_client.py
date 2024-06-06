@@ -18,6 +18,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import RemovedClientConfiguration
 from ._operations import RemovedClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@removed`` decorator.
@@ -89,7 +94,7 @@ class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-acc
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RemovedClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

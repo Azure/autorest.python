@@ -16,6 +16,11 @@ from ._configuration import SingleDiscriminatorClientConfiguration
 from ._operations import SingleDiscriminatorClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class SingleDiscriminatorClient(
     SingleDiscriminatorClientOperationsMixin
@@ -72,7 +77,7 @@ class SingleDiscriminatorClient(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "SingleDiscriminatorClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

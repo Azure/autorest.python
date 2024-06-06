@@ -24,6 +24,11 @@ from .operations import (
     StringOperations,
 )
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates models with nullable properties.
@@ -109,7 +114,7 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "NullableClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from msrest import Deserializer, Serializer
@@ -18,6 +19,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
 from .operations import ParameterGroupingOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-api-version-keyword
@@ -84,7 +90,7 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestParameterGroupingTestService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

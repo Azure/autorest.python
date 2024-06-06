@@ -17,6 +17,11 @@ from ._configuration import RpcClientConfiguration
 from ._operations import RpcClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class RpcClient(RpcClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core with long-running RPC operation.
@@ -83,7 +88,7 @@ class RpcClient(RpcClientOperationsMixin):  # pylint: disable=client-accepts-api
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RpcClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -18,6 +18,11 @@ from ._configuration import ReturnTypeChangedFromClientConfiguration
 from ._operations import ReturnTypeChangedFromClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ReturnTypeChangedFromClient(
     ReturnTypeChangedFromClientOperationsMixin
@@ -89,7 +94,7 @@ class ReturnTypeChangedFromClient(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ReturnTypeChangedFromClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

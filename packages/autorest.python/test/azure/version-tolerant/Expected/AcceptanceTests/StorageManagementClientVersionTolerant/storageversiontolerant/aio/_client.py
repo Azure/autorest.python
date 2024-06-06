@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.pipeline import policies
@@ -17,6 +18,11 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 from .._serialization import Deserializer, Serializer
 from ._configuration import StorageManagementClientConfiguration
 from .operations import StorageAccountsOperations, UsageOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -109,7 +115,7 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "StorageManagementClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

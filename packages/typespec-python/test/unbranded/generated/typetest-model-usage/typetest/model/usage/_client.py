@@ -16,6 +16,11 @@ from ._configuration import UsageClientConfiguration
 from ._operations import UsageClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates usage of Record in different places(Operation parameters, return type or both).
@@ -70,7 +75,7 @@ class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "UsageClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

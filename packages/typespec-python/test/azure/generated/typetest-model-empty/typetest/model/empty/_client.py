@@ -17,6 +17,11 @@ from ._configuration import EmptyClientConfiguration
 from ._operations import EmptyClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates usage of empty model used in operation's parameters and responses.
@@ -77,7 +82,7 @@ class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "EmptyClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

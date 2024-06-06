@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Optional
 
 from msrest import Deserializer, Serializer
@@ -18,6 +19,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyword
@@ -99,7 +105,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestUrlTestService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

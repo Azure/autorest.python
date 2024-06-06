@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, Dict, TYPE_CHECKING
 
 from azure.core.pipeline import policies
@@ -17,6 +18,11 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 from .._serialization import Deserializer, Serializer
 from ._configuration import HeadClientConfiguration
 from .operations import HttpSuccessOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -91,7 +97,7 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "HeadClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

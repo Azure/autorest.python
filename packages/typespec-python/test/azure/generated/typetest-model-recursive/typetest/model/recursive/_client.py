@@ -17,6 +17,11 @@ from ._configuration import RecursiveClientConfiguration
 from ._operations import RecursiveClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class RecursiveClient(RecursiveClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance recursion.
@@ -77,7 +82,7 @@ class RecursiveClient(RecursiveClientOperationsMixin):  # pylint: disable=client
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RecursiveClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

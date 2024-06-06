@@ -16,6 +16,11 @@ from .._serialization import Deserializer, Serializer
 from ._configuration import ContentNegotiationClientConfiguration
 from .operations import DifferentBodyOperations, SameBodyOperations
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
@@ -78,7 +83,7 @@ class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-ke
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ContentNegotiationClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

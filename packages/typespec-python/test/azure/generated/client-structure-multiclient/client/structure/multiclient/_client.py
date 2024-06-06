@@ -18,6 +18,11 @@ from ._configuration import ClientAClientConfiguration, ClientBClientConfigurati
 from ._operations import ClientAClientOperationsMixin, ClientBClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ClientAClient.
@@ -88,7 +93,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientAClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 
@@ -165,7 +170,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientBClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

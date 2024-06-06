@@ -18,6 +18,11 @@ from ._configuration import MadeOptionalClientConfiguration
 from ._operations import MadeOptionalClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@madeOptional`` decorator.
@@ -87,7 +92,7 @@ class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MadeOptionalClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

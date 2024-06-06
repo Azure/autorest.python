@@ -18,6 +18,11 @@ from ._configuration import ServiceClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
+
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can use @client and @operationGroup decorators to customize client side code
@@ -109,7 +114,7 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ServiceClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 
