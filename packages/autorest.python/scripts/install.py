@@ -32,8 +32,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 
 def main():
-    # we copy pygen's venv into autorest.python
-    venv_path = _ROOT_DIR / "pygen" / "venv"
+    venv_path = _ROOT_DIR / "generator" / "venv"
     assert venv_path.exists()  # Otherwise install was not done
 
     env_builder = venv.EnvBuilder(with_pip=True)

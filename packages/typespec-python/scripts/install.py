@@ -31,7 +31,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "pygen" / "venv"
+    venv_path = _ROOT_DIR / "generator" / "venv"
     if venv_path.exists():
         env_builder = venv.EnvBuilder(with_pip=True)
         venv_context = env_builder.ensure_directories(venv_path)
@@ -41,8 +41,8 @@ def main():
         venv_context = env_builder.context
 
         python_run(venv_context, "pip", ["install", "-U", "pip"])
-        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/pygen/requirements.txt"])
-        python_run(venv_context, "pip", ["install", "-e", f"{_ROOT_DIR}/pygen"])
+        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/generator/requirements.txt"])
+        python_run(venv_context, "pip", ["install", "-e", f"{_ROOT_DIR}/generator"])
 
 
 if __name__ == "__main__":

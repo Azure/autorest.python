@@ -14,7 +14,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 _LOGGER = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    venv_path = _ROOT_DIR / "pygen" / "venv"
+    venv_path = _ROOT_DIR / "generator" / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         breakpoint()  # pylint: disable=undefined-variable
 
     # run m2r
-    python_run(venv_context, "pygen.m2r.__init__", command=sys.argv[1:])
-    python_run(venv_context, "pygen.preprocess.__init__", command=sys.argv[1:])
-    python_run(venv_context, "pygen.codegen.__init__", command=sys.argv[1:])
-    python_run(venv_context, "pygen.black.__init__", command=sys.argv[1:])
+    python_run(venv_context, "m2r.__init__", command=sys.argv[1:])
+    python_run(venv_context, "preprocess.__init__", command=sys.argv[1:])
+    python_run(venv_context, "codegen.__init__", command=sys.argv[1:])
+    python_run(venv_context, "black.__init__", command=sys.argv[1:])

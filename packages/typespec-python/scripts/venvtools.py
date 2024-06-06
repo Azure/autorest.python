@@ -73,7 +73,7 @@ def python_run(venv_context, module, command=None, *, additional_dir="."):
         print("Executing: {}".format(" ".join(cmd_line)))
         subprocess.run(
             cmd_line,
-            cwd=_ROOT_DIR / "pygen" / additional_dir,
+            cwd=_ROOT_DIR / "generator" / "pygen" / additional_dir,
             check=True,
         )
     except subprocess.CalledProcessError as err:

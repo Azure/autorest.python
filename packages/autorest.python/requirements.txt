@@ -1,2 +1,2 @@
 json-rpc==1.14.0
--e ./pygen
+-e ./generator

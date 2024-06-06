@@ -4,8 +4,8 @@
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
-    "copy-pygen": "node ./scripts/copy-pygen.js",
-    "install": "npm run copy-pygen && node ./scripts/run-python3.js ./scripts/install.py",
+    "copy-generator": "node ./scripts/copy-generator.js",
+    "install": "npm run copy-generator && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
   },
   "main": "index.js",

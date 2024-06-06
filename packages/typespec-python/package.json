@@ -40,7 +40,7 @@
   "files": [
     "dist/**",
     "!dist/test/**",
-    "pygen/**",
+    "generator/**",
     "scripts/**"
   ],
   "peerDependencies": {

@@ -20,7 +20,7 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 
 def main():
-    venv_path = _ROOT_DIR / "pygen" / "venv"
+    venv_path = _ROOT_DIR / "generator" / "venv"
     venv_prexists = venv_path.exists()
 
     assert venv_prexists  # Otherwise install was not done
@@ -28,7 +28,7 @@ def main():
     env_builder = venv.EnvBuilder(with_pip=True)
     venv_context = env_builder.ensure_directories(venv_path)
     try:
-        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/pygen/dev_requirements.txt"])
+        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/generator/dev_requirements.txt"])
     except FileNotFoundError as e:
         raise ValueError(e.filename)
 
