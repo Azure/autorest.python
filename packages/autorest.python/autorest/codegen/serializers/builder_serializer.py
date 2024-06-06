@@ -1223,9 +1223,7 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # 
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = (
-                f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response.http_response\n)"
-            )
+            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG

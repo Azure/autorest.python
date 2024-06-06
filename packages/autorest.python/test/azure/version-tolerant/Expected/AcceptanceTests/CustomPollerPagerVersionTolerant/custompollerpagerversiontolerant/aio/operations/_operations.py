@@ -8,7 +8,21 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    AsyncIterable,
+    AsyncIterator,
+    Callable,
+    Dict,
+    IO,
+    Literal,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 import urllib.parse
 
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
@@ -1816,7 +1830,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     async def _get_multiple_pages_lro_initial(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1828,7 +1842,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_paging_get_multiple_pages_lro_request(
             maxresults=maxresults,
@@ -1838,7 +1852,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1851,15 +1865,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)  # type: ignore
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1967,6 +1978,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
