@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, TYPE_CHECKING
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest

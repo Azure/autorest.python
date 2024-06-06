@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any, Awaitable, Union
 
 from azure.core import AsyncPipelineClient

@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
 
 from corehttp.credentials import ServiceKeyCredential
