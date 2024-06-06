@@ -4,6 +4,7 @@
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
+    "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
     "copy-generator": "node ./scripts/copy-generator.js",
     "install": "npm run copy-generator && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
