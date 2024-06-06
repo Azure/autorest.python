@@ -6,5 +6,10 @@ const url = require('url');
 const sourceDir = path.join(__dirname, "..", "node_modules", "@azure-tools", "typespec-python", "generator");
 const destDir = path.join(__dirname, "..", "generator");
 
+// Delete the destination directory if it exists
+if (fs.existsSync(destDir)) {
+    fs.removeSync(destDir);
+}
+
 // Copy the source directory to the destination directory
 fs.copySync(sourceDir, destDir);
