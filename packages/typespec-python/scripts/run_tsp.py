@@ -34,7 +34,7 @@ if __name__ == "__main__":
         breakpoint()  # pylint: disable=undefined-variable
 
     # run m2r
-    python_run(venv_context, "m2r.__init__", command=sys.argv[1:])
+    python_run(venv_context, "m2r", command=sys.argv[1:])
     python_run(venv_context, "preprocess.__init__", command=sys.argv[1:])
     python_run(venv_context, "codegen.__init__", command=sys.argv[1:])
-    python_run(venv_context, "black.__init__", command=sys.argv[1:])
+    python_run(venv_context, "black", command=sys.argv[1:])
