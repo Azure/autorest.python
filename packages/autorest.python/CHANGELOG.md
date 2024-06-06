@@ -1,5 +1,12 @@
 # Release
 
+## 6.13.19
+
+### Bug Fixes
+
+- [#2615](https://github.com/Azure/autorest.python/pull/2615) fix casing of multipart legacy properties
+
+
 ## 6.13.18
 
 ### Bug Fixes
