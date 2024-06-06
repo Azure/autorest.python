@@ -6,6 +6,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
+import os
 import argparse
 
 if not sys.version_info >= (3, 8, 0):
