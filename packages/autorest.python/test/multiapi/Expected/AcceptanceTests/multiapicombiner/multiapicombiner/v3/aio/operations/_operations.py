@@ -101,7 +101,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -259,7 +259,7 @@ class OperationGroupOneOperations:
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("PagingResult", pipeline_response.http_response)
+            deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

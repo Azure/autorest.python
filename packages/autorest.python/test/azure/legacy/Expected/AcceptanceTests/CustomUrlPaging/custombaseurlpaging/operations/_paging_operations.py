@@ -153,7 +153,7 @@ class PagingOperations:
             return _request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response.http_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -230,7 +230,7 @@ class PagingOperations:
             return _request
 
         def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response.http_response)
+            deserialized = self._deserialize("ProductResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
