@@ -1,4 +1,4 @@
--e .
+-e ./generator
 -r ../../../eng/requirements.txt
 -r ../../../eng/dev_requirements.txt
 ptvsd==4.3.2
