@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
@@ -77,7 +78,7 @@ class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "NotVersionedClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

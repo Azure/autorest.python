@@ -29,7 +29,7 @@
     {{ keywords.def }} close(self) -> None:
         {{ keywords.await }}self._client.close()
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ " -> \"" + client.name + "\"" }}:
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self) -> Self:
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
