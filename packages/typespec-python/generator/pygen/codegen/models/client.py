@@ -225,6 +225,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
                 ImportType.SDKCORE,
             )
+
+        # import for "Self"
+        file_import.add_submodule_import(
+            "typing_extensions",
+            "Self",
+            ImportType.STDLIB,
+        )
         return file_import
 
     @property

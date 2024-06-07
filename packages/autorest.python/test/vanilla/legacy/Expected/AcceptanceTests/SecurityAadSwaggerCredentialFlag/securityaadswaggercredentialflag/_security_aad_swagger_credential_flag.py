@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Dict
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -81,7 +82,7 @@ class SecurityAadSwaggerCredentialFlag(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "SecurityAadSwaggerCredentialFlag":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

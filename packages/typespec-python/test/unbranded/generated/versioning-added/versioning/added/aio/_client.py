@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Union
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -85,7 +86,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AddedClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

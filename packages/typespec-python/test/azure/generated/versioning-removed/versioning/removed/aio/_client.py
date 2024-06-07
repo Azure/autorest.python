@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Union
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -89,7 +90,7 @@ class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-acc
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RemovedClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING, Union
+from typing_extensions import Self
 
 from corehttp.credentials import ServiceKeyCredential
 from corehttp.rest import HttpRequest, HttpResponse
@@ -83,7 +84,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "UnionClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -700,7 +700,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         # this means i'm a property that is part of a flattened model
         target_property_name = yaml_data["targetProperty"]["language"]["default"]["name"]
         param = self.update_parameter(yaml_data)
-        body_parameter.setdefault("propertyToParameterName", {})[target_property_name] = param["clientName"]
+        body_parameter.setdefault("propertyToParameterName", {})[target_property_name.lower()] = param["clientName"]
         param["inFlattenedBody"] = True
         return param
 
@@ -829,7 +829,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                     prop
                     for prop in grouper["type"]["properties"]
                     if p["clientName"].lstrip("_") in prop["groupedParameterNames"]  # TODO: patching m4
-                )["clientName"]: p["clientName"]
+                )["clientName"].lower(): p["clientName"]
                 for p in all_params
                 if p.get("groupedBy") == grouper_name
             }
