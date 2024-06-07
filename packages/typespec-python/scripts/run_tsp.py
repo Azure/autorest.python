@@ -34,7 +34,7 @@ if __name__ == "__main__":
         breakpoint()  # pylint: disable=undefined-variable
 
     # run m2r
-    python_run(venv_context, "pygen.m2r", command=sys.argv[1:])
-    python_run(venv_context, "pygen.preprocess.__init__", command=sys.argv[1:])
-    python_run(venv_context, "pygen.codegen.__init__", command=sys.argv[1:])
-    python_run(venv_context, "pygen.black", command=sys.argv[1:])
+    python_run(venv_context, "generator.pygen.m2r", command=sys.argv[1:])
+    python_run(venv_context, "generator.pygen.preprocess.__init__", command=sys.argv[1:])
+    python_run(venv_context, "generator.pygen.codegen.__init__", command=sys.argv[1:])
+    python_run(venv_context, "generator.pygen.black", command=sys.argv[1:])
