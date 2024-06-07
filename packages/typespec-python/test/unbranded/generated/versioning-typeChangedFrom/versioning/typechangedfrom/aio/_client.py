@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable, Union
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -17,11 +17,6 @@ from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import TypeChangedFromClientConfiguration
 from ._operations import TypeChangedFromClientOperationsMixin
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

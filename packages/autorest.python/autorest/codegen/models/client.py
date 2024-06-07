@@ -226,15 +226,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 ImportType.SDKCORE,
             )
 
-        # import for "typing.Self"
-        file_import.add_import("sys", ImportType.STDLIB)
+        # import for "Self"
         file_import.add_submodule_import(
             "typing_extensions",
             "Self",
-            ImportType.BYVERSION,
-            TypingSection.REGULAR,
-            None,
-            (((3, 11), "typing", None),),
+            ImportType.STDLIB,
         )
         return file_import
 

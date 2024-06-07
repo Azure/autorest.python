@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable, Union
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -18,11 +18,6 @@ from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import MadeOptionalClientConfiguration
 from ._operations import MadeOptionalClientOperationsMixin
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

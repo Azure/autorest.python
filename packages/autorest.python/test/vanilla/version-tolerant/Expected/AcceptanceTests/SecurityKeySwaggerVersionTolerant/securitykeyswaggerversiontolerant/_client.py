@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -18,11 +18,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AutorestSecurityKeyConfiguration
 from ._operations import AutorestSecurityKeyOperationsMixin
 from ._serialization import Deserializer, Serializer
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -19,11 +19,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api-version-keyword

@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -17,11 +17,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import XMSErrorResponseExtensionsConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import PetOperations
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class XMSErrorResponseExtensions:  # pylint: disable=client-accepts-api-version-keyword

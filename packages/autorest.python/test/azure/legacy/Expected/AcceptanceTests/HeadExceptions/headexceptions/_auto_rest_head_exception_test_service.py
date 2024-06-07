@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Dict, TYPE_CHECKING
+from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
@@ -18,11 +18,6 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import HeadExceptionOperations
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

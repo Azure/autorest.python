@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, TYPE_CHECKING
+from typing_extensions import Self
 
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
@@ -16,11 +16,6 @@ from corehttp.runtime import PipelineClient, policies
 from ._configuration import OAuth2ClientConfiguration
 from ._operations import OAuth2ClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

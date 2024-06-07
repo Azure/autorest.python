@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable, Dict
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -17,11 +17,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import ParmaterizedEndpointClientConfiguration
 from .operations import ParmaterizedEndpointClientOperationsMixin
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class ParmaterizedEndpointClient(

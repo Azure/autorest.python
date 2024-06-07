@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, Optional
+from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
@@ -22,11 +22,6 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):

@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Union
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -18,11 +18,6 @@ from . import models as _models
 from ._configuration import ClientAClientConfiguration, ClientBClientConfiguration
 from ._operations import ClientAClientOperationsMixin, ClientBClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

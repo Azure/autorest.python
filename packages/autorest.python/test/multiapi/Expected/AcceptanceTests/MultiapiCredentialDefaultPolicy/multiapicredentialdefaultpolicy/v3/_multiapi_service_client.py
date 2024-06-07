@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any
+from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
@@ -20,11 +20,6 @@ from . import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

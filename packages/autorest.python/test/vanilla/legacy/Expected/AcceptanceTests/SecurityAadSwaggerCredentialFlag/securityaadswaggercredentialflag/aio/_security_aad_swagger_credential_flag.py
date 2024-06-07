@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-import sys
 from typing import Any, Awaitable, Dict
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -18,11 +18,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
 from .operations import SecurityAadSwaggerCredentialFlagOperationsMixin
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class SecurityAadSwaggerCredentialFlag(

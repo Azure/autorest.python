@@ -9,8 +9,8 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, Optional, TYPE_CHECKING
+from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.mgmt.core import AsyncARMPipelineClient
@@ -20,11 +20,6 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
