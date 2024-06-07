@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Union
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -88,7 +89,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientAClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 
@@ -165,7 +166,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientBClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

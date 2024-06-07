@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -146,7 +147,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestAzureSpecialParametersTestClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 
