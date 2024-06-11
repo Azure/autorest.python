@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -78,7 +79,7 @@ class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: di
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "BodyOptionalityClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

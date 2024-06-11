@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Union
+from typing_extensions import Self
 
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
@@ -83,7 +84,7 @@ class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=cl
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RenamedFromClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

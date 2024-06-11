@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Union
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -90,7 +91,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AddedClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

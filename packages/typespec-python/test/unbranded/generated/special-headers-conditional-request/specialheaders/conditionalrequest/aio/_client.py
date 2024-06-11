@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -74,7 +75,7 @@ class ConditionalRequestClient(
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ConditionalRequestClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

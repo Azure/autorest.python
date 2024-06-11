@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from corehttp.credentials import ServiceKeyCredential
 from corehttp.rest import HttpRequest, HttpResponse
@@ -73,7 +74,7 @@ class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accep
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "CustomClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

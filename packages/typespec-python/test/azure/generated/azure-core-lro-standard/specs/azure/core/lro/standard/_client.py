@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -83,7 +84,7 @@ class StandardClient(StandardClientOperationsMixin):  # pylint: disable=client-a
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "StandardClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

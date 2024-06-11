@@ -23,6 +23,7 @@ setup(
     install_requires=[
         "msrest>=0.7.1",
         "azure-mgmt-core>=1.3.2",
+        "typing-extensions>=4.6.0",
     ],
     long_description="""\
     Autorest Security Aad REST APIs.

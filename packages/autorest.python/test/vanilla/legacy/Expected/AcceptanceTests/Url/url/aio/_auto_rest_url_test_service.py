@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Optional
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -101,7 +102,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestUrlTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 
