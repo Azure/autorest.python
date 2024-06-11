@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class ExportedUser(_model_base.Model):
     """The exported user data.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: The name of user. Required.
     :vartype name: str
