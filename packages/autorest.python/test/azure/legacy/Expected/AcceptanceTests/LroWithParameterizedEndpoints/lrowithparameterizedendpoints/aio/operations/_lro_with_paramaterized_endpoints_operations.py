@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar, Union, cast
+from typing import Any, AsyncIterator, Callable, Dict, Literal, Optional, Type, TypeVar, Union, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -44,7 +44,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
     async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
-    ) -> Optional[str]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -56,7 +56,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
@@ -68,7 +68,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -76,19 +76,19 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -116,10 +116,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             raw_result = await self._poll_with_parameterized_endpoints_initial(
                 account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = self._deserialize("str", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -154,7 +155,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
     async def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
-    ) -> Optional[str]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -167,7 +168,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         _params = kwargs.pop("params", {}) or {}
 
         constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
-        cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
@@ -180,7 +181,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -188,19 +189,19 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = response.stream_download(self._client._pipeline)
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+
+            deserialized = response.stream_download(self._client._pipeline)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -236,10 +237,11 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            deserialized = self._deserialize("str", pipeline_response)
+            deserialized = self._deserialize("str", pipeline_response.http_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

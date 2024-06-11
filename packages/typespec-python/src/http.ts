@@ -55,14 +55,8 @@ function emitInitialLroHttpMethod(
     method: SdkLroServiceMethod<SdkHttpOperation> | SdkLroPagingServiceMethod<SdkHttpOperation>,
     operationGroupName: string,
 ): Record<string, any> {
-    const initialOperation = emitHttpOperation(context, rootClient, operationGroupName, method.operation);
-    initialOperation.responses.forEach((resp: Record<string, any>) => {
-        if (method.operation.responses.get(resp.statusCodes[0])?.type) {
-            resp["type"] = KnownTypes.anyObject;
-        }
-    });
     return {
-        ...initialOperation,
+        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation),
         name: `_${camelToSnakeCase(method.name)}_initial`,
         isLroInitialOperation: true,
         wantTracing: false,
