@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from enum import Enum
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
@@ -22,6 +23,15 @@ else:
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
+
+class UsageFlags(Enum):
+    Default = 0
+    Input = 2
+    Output = 4
+    ApiVersionEnum = 8
+    JsonMergePatch = 16
+    MultipartFormData = 32
 
 
 def _get_properties(type: "ModelType", properties: List[Property]) -> List[Property]:
@@ -72,6 +82,11 @@ class ModelType(  # pylint: disable=abstract-method
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
+        self.usage: int = self.yaml_data.get("usage", 0)
+
+    @property
+    def is_usage_output(self) -> bool:
+        return self.usage == UsageFlags.Output.value
 
     @property
     def flattened_property(self) -> Optional[Property]:

@@ -344,7 +344,6 @@ class ClaimDevicesRequest(_model_base.Model):
 class CountElementsResponse(_model_base.Model):
     """Response of the count for elements.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Number of children resources in parent resource. Required.
     :vartype value: int
@@ -374,7 +373,6 @@ class CountElementsResponse(_model_base.Model):
 class CountDevicesResponse(CountElementsResponse):
     """Response to the action call for count devices in a catalog.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Number of children resources in parent resource. Required.
     :vartype value: int
@@ -735,7 +733,6 @@ class DeviceGroupUpdateProperties(_model_base.Model):
 class DeviceInsight(_model_base.Model):
     """Device insight report.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar device_id: Device ID. Required.
     :vartype device_id: str
