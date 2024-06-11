@@ -320,7 +320,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }
@@ -328,7 +328,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }
@@ -360,7 +360,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }
@@ -392,7 +392,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }
@@ -418,7 +418,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }
@@ -426,7 +426,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
+                                        # "enumMemberV2".
                     "prop": "str",  # Required.
                     "unionProp": "str"  # Required. Is either a str type or a int type.
                 }

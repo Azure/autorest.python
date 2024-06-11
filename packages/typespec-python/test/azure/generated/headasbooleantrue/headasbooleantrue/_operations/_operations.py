@@ -153,11 +153,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -168,11 +167,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -202,11 +200,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -236,11 +233,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -267,11 +263,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -282,11 +277,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -367,11 +361,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -424,11 +417,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -501,11 +493,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -564,11 +555,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -640,11 +630,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -703,11 +692,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -779,11 +767,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -842,11 +829,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -918,11 +904,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]
@@ -981,11 +966,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                     "createProp": [
                         "str"  # Required string[], illustrating a create property. Required.
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
+                    "deleteProp": bool,  # Required bool, illustrating a delete property. Required.
                     "queryProp": 0,  # Required int32, illustrating a query property. Required.
                     "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                                        # Required.
                     "updateProp": [
                         0  # Required int32[], illustrating a update property. Required.
                     ]

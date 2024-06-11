@@ -61,7 +61,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "golden":
                 dog = {
@@ -133,7 +133,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
+                # discriminator "kind":
 
                 # JSON input template for discriminator value "golden":
                 dog = {
@@ -193,7 +193,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
+                # discriminator "kind":
 
                 # JSON input template for discriminator value "golden":
                 dog = {
@@ -261,7 +261,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "golden":
                 dog = {
@@ -326,7 +326,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "golden":
                 dog = {
@@ -391,7 +391,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "cobra":
                 snake = {
@@ -463,7 +463,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
+                # discriminator "kind":
 
                 # JSON input template for discriminator value "cobra":
                 snake = {
@@ -523,7 +523,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
+                # discriminator "kind":
 
                 # JSON input template for discriminator value "cobra":
                 snake = {
@@ -589,7 +589,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "cobra":
                 snake = {
@@ -654,7 +654,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "cobra":
                 snake = {

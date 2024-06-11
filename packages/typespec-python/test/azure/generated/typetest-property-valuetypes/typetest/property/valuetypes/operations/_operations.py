@@ -2638,7 +2638,7 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2704,7 +2704,7 @@ class EnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
 
@@ -2758,7 +2758,7 @@ class EnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2836,7 +2836,7 @@ class ExtensibleEnumOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2902,7 +2902,7 @@ class ExtensibleEnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
 
@@ -2957,7 +2957,7 @@ class ExtensibleEnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": "str"  # Property. Required. Known values are: "ValueOne" and
-                      "ValueTwo".
+                                       # "ValueTwo".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5803,8 +5803,8 @@ class UnionStringLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": "hello"  # Default value is "hello". Property. Required. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "hello"  # Default value is "hello". Property. Required. Is either
+                                         # a Literal["hello"] type or a Literal["world"] type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5870,8 +5870,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Default value is "hello". Property. Required. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "hello"  # Default value is "hello". Property. Required. Is either
+                                         # a Literal["hello"] type or a Literal["world"] type.
                 }
         """
 
@@ -5927,8 +5927,8 @@ class UnionStringLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": "hello"  # Default value is "hello". Property. Required. Is
-                      either a Literal["hello"] type or a Literal["world"] type.
+                    "property": "hello"  # Default value is "hello". Property. Required. Is either
+                                         # a Literal["hello"] type or a Literal["world"] type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6006,7 +6006,7 @@ class UnionIntLiteralOperations:
                 # response body for status code(s): 200
                 response == {
                     "property": 42  # Default value is 42. Property. Required. Is either a
-                      Literal[42] type or a Literal[43] type.
+                                    # Literal[42] type or a Literal[43] type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6072,7 +6072,7 @@ class UnionIntLiteralOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": 42  # Default value is 42. Property. Required. Is either a
-                      Literal[42] type or a Literal[43] type.
+                                    # Literal[42] type or a Literal[43] type.
                 }
         """
 
@@ -6127,7 +6127,7 @@ class UnionIntLiteralOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "property": 42  # Default value is 42. Property. Required. Is either a
-                      Literal[42] type or a Literal[43] type.
+                                    # Literal[42] type or a Literal[43] type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6205,8 +6205,8 @@ class UnionFloatLiteralOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
-                      a float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either a
+                                        # float type or a float type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6271,8 +6271,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
-                      a float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either a
+                                        # float type or a float type.
                 }
         """
 
@@ -6326,8 +6326,8 @@ class UnionFloatLiteralOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "property": 43.125  # Default value is 43.125. Property. Required. Is either
-                      a float type or a float type.
+                    "property": 43.125  # Default value is 43.125. Property. Required. Is either a
+                                        # float type or a float type.
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

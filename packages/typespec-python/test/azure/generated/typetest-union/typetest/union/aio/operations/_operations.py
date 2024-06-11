@@ -91,7 +91,7 @@ class StringsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                                 # Literal["a"], Literal["b"], Literal["c"]
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -158,7 +158,7 @@ class StringsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                                 # Literal["a"], Literal["b"], Literal["c"]
                 }
         """
 
@@ -217,7 +217,7 @@ class StringsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                                 # Literal["a"], Literal["b"], Literal["c"]
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -300,7 +300,7 @@ class StringExtensibleOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                                 # Literal["b"], Literal["c"], str
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -366,7 +366,7 @@ class StringExtensibleOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                                 # Literal["b"], Literal["c"], str
                 }
         """
 
@@ -426,7 +426,7 @@ class StringExtensibleOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                                 # Literal["b"], Literal["c"], str
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -719,7 +719,7 @@ class IntsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                               # Literal[1], Literal[2], Literal[3]
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -785,7 +785,7 @@ class IntsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                               # Literal[1], Literal[2], Literal[3]
                 }
         """
 
@@ -841,7 +841,7 @@ class IntsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                               # Literal[1], Literal[2], Literal[3]
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -924,7 +924,7 @@ class FloatsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                                 # float, float, float
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -990,7 +990,7 @@ class FloatsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                                 # float, float, float
                 }
         """
 
@@ -1046,7 +1046,7 @@ class FloatsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                                 # float, float, float
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1339,11 +1339,10 @@ class EnumsOnlyOperations:
                 response == {
                     "prop": {
                         "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                                       # the left variant. Required. Is one of the following types: Literal["left"],
+                                       # Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the up
+                                    # variant. Required. Is either a Literal["up"] type or a Literal["down"] type.
                     }
                 }
         """
@@ -1412,11 +1411,10 @@ class EnumsOnlyOperations:
                 body = {
                     "prop": {
                         "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                                       # the left variant. Required. Is one of the following types: Literal["left"],
+                                       # Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the up
+                                    # variant. Required. Is either a Literal["up"] type or a Literal["down"] type.
                     }
                 }
         """
@@ -1475,11 +1473,10 @@ class EnumsOnlyOperations:
                 body = {
                     "prop": {
                         "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                                       # the left variant. Required. Is one of the following types: Literal["left"],
+                                       # Literal["right"], Literal["up"], Literal["down"]
+                        "ud": "up"  # Default value is "up". This should be receive/send the up
+                                    # variant. Required. Is either a Literal["up"] type or a Literal["down"] type.
                     }
                 }
         """
@@ -1565,9 +1562,9 @@ class StringAndArrayOperations:
                 response == {
                     "prop": {
                         "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                         "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                     }
                 }
         """
@@ -1636,9 +1633,9 @@ class StringAndArrayOperations:
                 body = {
                     "prop": {
                         "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                         "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                     }
                 }
         """
@@ -1697,9 +1694,9 @@ class StringAndArrayOperations:
                 body = {
                     "prop": {
                         "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                         "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                                         # Required. Is either a str type or a [str] type.
                     }
                 }
         """
@@ -1785,17 +1782,17 @@ class MixedLiteralsOperations:
                 response == {
                     "prop": {
                         "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                                # receive/send the true variant. Required. Is one of the following types:
+                                                # Literal["a"], Literal[2], float, Literal[True]
                         "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the 3.3 variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
+                        "intLiteral": "a",  # Default value is "a". This should be receive/send
+                                            # the 2 variant. Required. Is one of the following types: Literal["a"],
+                                            # Literal[2], float, Literal[True]
                         "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the "a" variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
                     }
                 }
         """
@@ -1864,17 +1861,17 @@ class MixedLiteralsOperations:
                 body = {
                     "prop": {
                         "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                                # receive/send the true variant. Required. Is one of the following types:
+                                                # Literal["a"], Literal[2], float, Literal[True]
                         "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the 3.3 variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
+                        "intLiteral": "a",  # Default value is "a". This should be receive/send
+                                            # the 2 variant. Required. Is one of the following types: Literal["a"],
+                                            # Literal[2], float, Literal[True]
                         "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the "a" variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
                     }
                 }
         """
@@ -1933,17 +1930,17 @@ class MixedLiteralsOperations:
                 body = {
                     "prop": {
                         "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                                # receive/send the true variant. Required. Is one of the following types:
+                                                # Literal["a"], Literal[2], float, Literal[True]
                         "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the 3.3 variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
+                        "intLiteral": "a",  # Default value is "a". This should be receive/send
+                                            # the 2 variant. Required. Is one of the following types: Literal["a"],
+                                            # Literal[2], float, Literal[True]
                         "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                                              # receive/send the "a" variant. Required. Is one of the following types:
+                                              # Literal["a"], Literal[2], float, Literal[True]
                     }
                 }
         """

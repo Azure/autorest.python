@@ -135,29 +135,29 @@ class Operations:
                 # response body for status code(s): 200
                 response == {
                     "actionType": "str",  # Optional. Extensible enum. Indicates the action type.
-                      "Internal" refers to actions that are for internal only APIs. "Internal"
+                                          # "Internal" refers to actions that are for internal only APIs. "Internal"
                     "display": {
                         "description": "str",  # Optional. The short, localized friendly
-                          description of the operation; suitable for tool tips and detailed views.
+                                               # description of the operation; suitable for tool tips and detailed views.
                         "operation": "str",  # Optional. The concise, localized friendly name
-                          for the operation; suitable for dropdowns. E.g. "Create or Update Virtual
-                          Machine", "Restart Virtual Machine".
+                                             # for the operation; suitable for dropdowns. E.g. "Create or Update Virtual
+                                             # Machine", "Restart Virtual Machine".
                         "provider": "str",  # Optional. The localized friendly form of the
-                          resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft
-                          Compute".
+                                            # resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft
+                                            # Compute".
                         "resource": "str"  # Optional. The localized friendly name of the
-                          resource type related to this operation. E.g. "Virtual Machines" or "Job
-                          Schedule Collections".
+                                           # resource type related to this operation. E.g. "Virtual Machines" or "Job
+                                           # Schedule Collections".
                     },
-                    "isDataAction": bool,  # Optional. Whether the operation applies to
-                      data-plane. This is "true" for data-plane operations and "false" for Azure
-                      Resource Manager/control-plane operations.
+                    "isDataAction": bool,  # Optional. Whether the operation applies to data-plane.
+                                           # This is "true" for data-plane operations and "false" for Azure Resource
+                                           # Manager/control-plane operations.
                     "name": "str",  # Optional. The name of the operation, as per Resource-Based
-                      Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write",
-                      "Microsoft.Compute/virtualMachines/capture/action".
+                                    # Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write",
+                                    # "Microsoft.Compute/virtualMachines/capture/action".
                     "origin": "str"  # Optional. The intended executor of the operation; as in
-                      Resource Based Access Control (RBAC) and audit logs UX. Default value is
-                      "user,system". Known values are: "user", "system", and "user,system".
+                                     # Resource Based Access Control (RBAC) and audit logs UX. Default value is
+                                     # "user,system". Known values are: "user", "system", and "user,system".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -264,36 +264,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -445,72 +445,72 @@ class CatalogsOperations:
                 resource = {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -549,36 +549,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -617,36 +617,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -681,72 +681,72 @@ class CatalogsOperations:
                 resource = {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -836,36 +836,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -903,36 +903,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -970,36 +970,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -1040,36 +1040,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1254,36 +1254,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1369,36 +1369,36 @@ class CatalogsOperations:
                 response == {
                     "location": "str",  # The geo-location where the resource lives. Required.
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
                         "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                                           # with the catalog.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "tags": {
                         "str": "str"  # Optional. Resource tags.
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1572,89 +1572,89 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1777,43 +1777,43 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -1859,43 +1859,43 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -1941,43 +1941,43 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -2025,43 +2025,43 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2186,8 +2186,7 @@ class CatalogsOperations:
                     "eventClass": "str",  # Event class. Required.
                     "eventCount": 0,  # Event count. Required.
                     "eventType": "str",  # Event type. Required.
-                    "startTimestampUtc": "2020-02-20 00:00:00"  # Event start timestamp.
-                      Required.
+                    "startTimestampUtc": "2020-02-20 00:00:00"  # Event start timestamp. Required.
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2298,41 +2297,41 @@ class CatalogsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2501,47 +2500,47 @@ class CatalogsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -2624,47 +2623,47 @@ class CatalogsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2751,41 +2750,41 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
+                                               # base 64 string.
+                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry
+                                                             # date.
+                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                                                                # before date.
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "status": "str",  # Optional. The certificate status. Known values are:
+                                          # "Active", "Inactive", "Expired", and "Revoked".
                         "subject": "str",  # Optional. The certificate subject.
                         "thumbprint": "str"  # Optional. The certificate thumbprint.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2871,41 +2870,41 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
+                                               # base 64 string.
+                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry
+                                                             # date.
+                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
+                                                                # before date.
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "status": "str",  # Optional. The certificate status. Known values are:
+                                          # "Active", "Inactive", "Expired", and "Revoked".
                         "subject": "str",  # Optional. The certificate subject.
                         "thumbprint": "str"  # Optional. The certificate thumbprint.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -3099,15 +3098,15 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
+                                           # string.
                     "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not before
+                                                            # date.
                     "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
+                                                 # Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                                                 # "Deleting", and "Accepted".
                     "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
+                                      # "Active", "Inactive", "Expired", and "Revoked".
                     "subject": "str",  # Optional. The certificate subject.
                     "thumbprint": "str"  # Optional. The certificate thumbprint.
                 }
@@ -3151,15 +3150,15 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
+                                           # string.
                     "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not before
+                                                            # date.
                     "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
+                                                 # Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                                                 # "Deleting", and "Accepted".
                     "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
+                                      # "Active", "Inactive", "Expired", and "Revoked".
                     "subject": "str",  # Optional. The certificate subject.
                     "thumbprint": "str"  # Optional. The certificate thumbprint.
                 }
@@ -3203,15 +3202,15 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
+                                           # string.
                     "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not before
+                                                            # date.
                     "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
+                                                 # Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                                                 # "Deleting", and "Accepted".
                     "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
+                                      # "Active", "Inactive", "Expired", and "Revoked".
                     "subject": "str",  # Optional. The certificate subject.
                     "thumbprint": "str"  # Optional. The certificate thumbprint.
                 }
@@ -3256,15 +3255,15 @@ class CertificatesOperations:
                 # response body for status code(s): 200
                 response == {
                     "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
+                                           # string.
                     "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
+                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not before
+                                                            # date.
                     "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
+                                                 # Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
+                                                 # "Deleting", and "Accepted".
                     "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
+                                      # "Active", "Inactive", "Expired", and "Revoked".
                     "subject": "str",  # Optional. The certificate subject.
                     "thumbprint": "str"  # Optional. The certificate thumbprint.
                 }
@@ -3367,47 +3366,47 @@ class ImagesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3564,93 +3563,93 @@ class ImagesOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3691,47 +3690,47 @@ class ImagesOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3772,47 +3771,47 @@ class ImagesOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -3849,93 +3848,93 @@ class ImagesOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -4134,47 +4133,47 @@ class ImagesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "componentId": "str",  # Optional. The image component id.
                         "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
+                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string on
+                                         # image create. This field contains the image URI on image reads.
                         "imageId": "str",  # Optional. Image ID.
                         "imageName": "str",  # Optional. Image name.
                         "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
+                                             # "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
+                                             # "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                             # "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+                                             # "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+                                             # "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                             # "RecoveryManifest", "ManifestSet", and "Other".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # an image. Known values are: "None" and "EU".
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -4293,32 +4292,32 @@ class ProductsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4476,63 +4475,63 @@ class ProductsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -4574,32 +4573,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -4641,32 +4640,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -4704,63 +4703,63 @@ class ProductsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -4925,32 +4924,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -4992,32 +4991,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -5059,32 +5058,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -5129,32 +5128,32 @@ class ProductsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -5341,32 +5340,32 @@ class ProductsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "description": "str",  # Optional. Description of the product.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -5536,43 +5535,43 @@ class ProductsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -5689,43 +5688,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5889,85 +5888,85 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6012,43 +6011,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6093,43 +6092,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6170,85 +6169,85 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -6412,59 +6411,59 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                              # device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6509,43 +6508,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6590,43 +6589,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -6667,59 +6666,59 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                              # device group. Known values are: "Retail" and "RetailEval".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -6928,43 +6927,43 @@ class DeviceGroupsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
+                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if the
+                                                             # user allows for crash dump collection. Known values are: "Enabled" and
+                                                             # "Disabled".
                         "description": "str",  # Optional. Description of the device group.
                         "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
+                                                # group.
                         "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
+                                              # device group. Known values are: "Retail" and "RetailEval".
                         "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
+                                                     # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                     # "Updating", "Deleting", and "Accepted".
+                        "regionalDataBoundary": "str",  # Optional. Regional data boundary for
+                                                        # the device group. Known values are: "None" and "EU".
                         "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                                               # Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -7434,89 +7433,89 @@ class DeploymentsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7687,177 +7686,177 @@ class DeploymentsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -7906,89 +7905,89 @@ class DeploymentsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -8037,89 +8036,89 @@ class DeploymentsOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -8164,177 +8163,177 @@ class DeploymentsOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -8564,89 +8563,89 @@ class DeploymentsOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "deployedImages": [
                             {
                                 "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                              # for the resource. Ex -
+                                              # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                                 "name": "str",  # Optional. The name of the resource.
                                 "properties": {
                                     "componentId": "str",  # Optional. The image
-                                      component id.
+                                                           # component id.
                                     "description": "str",  # Optional. The image
-                                      description.
+                                                           # description.
                                     "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
+                                                     # encoded base 64 string on image create. This field contains the
+                                                     # image URI on image reads.
                                     "imageId": "str",  # Optional. Image ID.
                                     "imageName": "str",  # Optional. Image name.
                                     "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
+                                                         # type. Known values are: "InvalidImageType", "OneBl",
+                                                         # "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
+                                                         # "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
+                                                         # "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
+                                                         # "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
+                                                         # "UpdateCertStore", "BaseSystemUpdateManifest",
+                                                         # "FirmwareUpdateManifest", "CustomerUpdateManifest",
+                                                         # "RecoveryManifest", "ManifestSet", and "Other".
                                     "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
+                                                                 # status of the last operation. Known values are: "Succeeded",
+                                                                 # "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
+                                                                 # "Accepted".
                                     "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
+                                                                    # Regional data boundary for an image. Known values are: "None" and
+                                                                    # "EU".
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
                                     "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                                                # type of identity that created the resource.
                                     "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
+                                                         # that created the resource.
                                     "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
+                                                             # of identity that created the resource. Known values are: "User",
+                                                             # "Application", "ManagedIdentity", and "Key".
                                     "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                                                     # The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
+                                                              # identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                                                 # type of identity that last modified the resource. Known values are:
+                                                                 # "User", "Application", "ManagedIdentity", and "Key".
                                 },
                                 "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                               # E.g. "Microsoft.Compute/virtualMachines" or
+                                               # "Microsoft.Storage/storageAccounts".
                             }
                         ],
                         "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
+                                                                     # date UTC.
                         "deploymentId": "str",  # Optional. Deployment ID.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -8777,41 +8776,41 @@ class DevicesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -8981,81 +8980,81 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9103,41 +9102,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9185,41 +9184,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9263,81 +9262,81 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 resource = {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -9439,41 +9438,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9520,41 +9519,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9601,41 +9600,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
 
@@ -9685,41 +9684,41 @@ class DevicesOperations:
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -9953,41 +9952,41 @@ class DevicesOperations:
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+                                  # /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
                     "name": "str",  # Optional. The name of the resource.
                     "properties": {
                         "chipSku": "str",  # Optional. SKU of the chip.
                         "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
+                        "lastAvailableOsVersion": "str",  # Optional. OS version available for
+                                                          # installation when update requested.
                         "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
+                                                          # device when update requested.
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when update
+                                                                   # requested and new OS version available.
                         "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
+                                                                        # update was last requested.
                         "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                                                    # operation. Known values are: "Succeeded", "Failed", "Canceled", "Provisioning",
+                                                    # "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
                         "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                                                    # created the resource.
                         "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                                             # resource.
+                        "createdByType": "str",  # Optional. The type of identity that created
+                                                 # the resource. Known values are: "User", "Application", "ManagedIdentity", and
+                                                 # "Key".
+                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of resource
+                                                         # last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                                                  # the resource.
+                        "lastModifiedByType": "str"  # Optional. The type of identity that last
+                                                     # modified the resource. Known values are: "User", "Application",
+                                                     # "ManagedIdentity", and "Key".
                     },
                     "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                                   # "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -10186,7 +10185,7 @@ class DevicesOperations:
                 # response body for status code(s): 202, 200
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                                    # encoded base 64 string.
                 }
         """
 
@@ -10235,7 +10234,7 @@ class DevicesOperations:
                 # response body for status code(s): 202, 200
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                                    # encoded base 64 string.
                 }
         """
 
@@ -10284,7 +10283,7 @@ class DevicesOperations:
                 # response body for status code(s): 202, 200
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                                    # encoded base 64 string.
                 }
         """
 
@@ -10336,7 +10335,7 @@ class DevicesOperations:
                 # response body for status code(s): 202, 200
                 response == {
                     "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                                    # encoded base 64 string.
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

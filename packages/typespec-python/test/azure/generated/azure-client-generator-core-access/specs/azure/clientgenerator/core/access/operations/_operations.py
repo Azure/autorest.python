@@ -832,7 +832,7 @@ class RelativeModelInOperationOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                # off discriminator "kind":
 
                 # JSON input template for discriminator value "real":
                 abstract_model = {

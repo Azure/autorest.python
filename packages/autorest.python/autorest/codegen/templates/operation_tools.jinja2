@@ -26,8 +26,8 @@ Example:
     .. code-block:: python
     {% for template_line in example_template %}
         {% if template_line %}
-            {% set wrap_amount = (template_line | length) - (template_line.lstrip() | length) + 10 %}
-        {{  wrap_string(template_line, wrapstring='\n' + " " * wrap_amount, width=(95 - wrap_amount)) }}
+            {% set wrap_amount = (template_line | length) - (template_line.lstrip() | length) + 8 %}
+        {{  wrap_string(template_line, wrapstring='\n' + " " * (wrap_amount + template_line.lstrip().find("#")) + "# ", width=(95 - wrap_amount)) }}
         {% else %}
 
         {% endif %}
