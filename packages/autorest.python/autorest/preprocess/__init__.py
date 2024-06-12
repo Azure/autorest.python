@@ -274,7 +274,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
         yaml_data["builderPadName"] = to_snake_case(prop_name)
-        for og in yaml_data["operationGroups"]:
+        for og in yaml_data.get("operationGroups", []):
             for o in og["operations"]:
                 property_if_match = None
                 property_if_none_match = None
@@ -449,7 +449,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_paging_operation(code_model, overload, is_overload=True, item_type=item_type)
 
     def update_operation_groups(self, code_model: Dict[str, Any], client: Dict[str, Any]) -> None:
-        operation_groups_yaml_data = client["operationGroups"]
+        operation_groups_yaml_data = client.get("operationGroups", [])
         for operation_group in operation_groups_yaml_data:
             operation_group["identifyName"] = self.pad_reserved_words(
                 operation_group.get("name", operation_group["propertyName"]),
