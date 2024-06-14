@@ -64,7 +64,7 @@ def build_query_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_query_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -76,7 +76,7 @@ def build_query_base64url_request(*, value: bytes, **kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
+def build_query_base64_url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -122,7 +122,7 @@ def build_property_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_base64url_request(**kwargs: Any) -> HttpRequest:
+def build_property_base64_url_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -139,7 +139,7 @@ def build_property_base64url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_base64url_array_request(**kwargs: Any) -> HttpRequest:
+def build_property_base64_url_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -180,7 +180,7 @@ def build_header_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_header_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -192,7 +192,7 @@ def build_header_base64url_request(*, value: bytes, **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
+def build_header_base64_url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -256,7 +256,7 @@ def build_request_body_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_request_body_base64url_request(**kwargs: Any) -> HttpRequest:
+def build_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -325,7 +325,7 @@ def build_response_body_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_response_body_base64url_request(**kwargs: Any) -> HttpRequest:
+def build_response_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -445,8 +445,8 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """base64url.
+    def base64_url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64_url.
 
         :keyword value: Required.
         :paramtype value: bytes
@@ -467,7 +467,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64url_request(
+        _request = build_query_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -489,10 +489,10 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def base64url_array(  # pylint: disable=inconsistent-return-statements
+    def base64_url_array(  # pylint: disable=inconsistent-return-statements
         self, *, value: List[bytes], **kwargs: Any
     ) -> None:
-        """base64url_array.
+        """base64_url_array.
 
         :keyword value: Required.
         :paramtype value: list[bytes]
@@ -513,7 +513,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64url_array_request(
+        _request = build_query_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -861,10 +861,10 @@ class PropertyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def base64url(
+    def base64_url(
         self, body: _models.Base64urlBytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
-        """base64url.
+        """base64_url.
 
         :param body: Required.
         :type body: ~encode.bytes.models.Base64urlBytesProperty
@@ -890,10 +890,10 @@ class PropertyOperations:
         """
 
     @overload
-    def base64url(
+    def base64_url(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
-        """base64url.
+        """base64_url.
 
         :param body: Required.
         :type body: JSON
@@ -914,10 +914,10 @@ class PropertyOperations:
         """
 
     @overload
-    def base64url(
+    def base64_url(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
-        """base64url.
+        """base64_url.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -938,10 +938,10 @@ class PropertyOperations:
         """
 
     @distributed_trace
-    def base64url(
+    def base64_url(
         self, body: Union[_models.Base64urlBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlBytesProperty:
-        """base64url.
+        """base64_url.
 
         :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO[bytes] Required.
         :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO[bytes]
@@ -983,7 +983,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64url_request(
+        _request = build_property_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1015,10 +1015,10 @@ class PropertyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def base64url_array(
+    def base64_url_array(
         self, body: _models.Base64urlArrayBytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
-        """base64url_array.
+        """base64_url_array.
 
         :param body: Required.
         :type body: ~encode.bytes.models.Base64urlArrayBytesProperty
@@ -1049,10 +1049,10 @@ class PropertyOperations:
         """
 
     @overload
-    def base64url_array(
+    def base64_url_array(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
-        """base64url_array.
+        """base64_url_array.
 
         :param body: Required.
         :type body: JSON
@@ -1076,10 +1076,10 @@ class PropertyOperations:
         """
 
     @overload
-    def base64url_array(
+    def base64_url_array(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
-        """base64url_array.
+        """base64_url_array.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -1103,10 +1103,10 @@ class PropertyOperations:
         """
 
     @distributed_trace
-    def base64url_array(
+    def base64_url_array(
         self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Base64urlArrayBytesProperty:
-        """base64url_array.
+        """base64_url_array.
 
         :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO[bytes]
          Required.
@@ -1154,7 +1154,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64url_array_request(
+        _request = build_property_base64_url_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1292,8 +1292,8 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """base64url.
+    def base64_url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64_url.
 
         :keyword value: Required.
         :paramtype value: bytes
@@ -1314,7 +1314,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64url_request(
+        _request = build_header_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -1336,10 +1336,10 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def base64url_array(  # pylint: disable=inconsistent-return-statements
+    def base64_url_array(  # pylint: disable=inconsistent-return-statements
         self, *, value: List[bytes], **kwargs: Any
     ) -> None:
-        """base64url_array.
+        """base64_url_array.
 
         :keyword value: Required.
         :paramtype value: list[bytes]
@@ -1360,7 +1360,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64url_array_request(
+        _request = build_header_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -1594,8 +1594,8 @@ class RequestBodyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def base64url(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """base64url.
+    def base64_url(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64_url.
 
         :param value: Required.
         :type value: bytes
@@ -1619,7 +1619,7 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
 
-        _request = build_request_body_base64url_request(
+        _request = build_request_body_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1854,8 +1854,8 @@ class ResponseBodyOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def base64url(self, **kwargs: Any) -> bytes:
-        """base64url.
+    def base64_url(self, **kwargs: Any) -> bytes:
+        """base64_url.
 
         :return: bytes
         :rtype: bytes
@@ -1874,7 +1874,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64url_request(
+        _request = build_response_body_base64_url_request(
             headers=_headers,
             params=_params,
         )

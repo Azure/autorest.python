@@ -15,9 +15,17 @@ import { PythonSdkContext } from "./lib.js";
 import { Style } from "@azure-tools/codegen";
 
 export function camelToSnakeCase(name: string): string {
-    if (!name || name === "constructor") return name;
+    if (!name) return name;
+    const camelToSnakeCaseRe = (str: string) =>
+        str
+            .replace(/[^a-zA-Z0-9]/g, "_")
+            .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+            .replace(/_+/g, "_");
 
-    return Style.snake(name);
+    if (!name.toLocaleLowerCase().includes("constructor")) {
+        return Style.snake(name, false);
+    }
+    return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
 export function removeUnderscoresFromNamespace(name?: string): string {
