@@ -258,7 +258,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                                     enum_type=value["enumType"],
                                 )
                             )
-                        type["values"].extend(values_to_add)
+                type["values"].extend(values_to_add)
 
         # add type for reference
         for v in HEADERS_CONVERT_IN_METHOD.values():
