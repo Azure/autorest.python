@@ -17,7 +17,7 @@ from .helpers import (
 from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
-from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
+from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES, update_enum_value
 
 
 def update_overload_section(
@@ -241,11 +241,24 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values"):
                 # we're enums
+                values_to_add = []
                 for value in type["values"]:
                     padded_name = self.pad_reserved_words(value["name"].lower(), PadType.ENUM).upper()
-                    if padded_name[0] in "0123456789":
-                        padded_name = "ENUM_" + padded_name
-                    value["name"] = padded_name
+                    if self.version_tolerant:
+                        if padded_name[0] in "0123456789":
+                            padded_name = "ENUM_" + padded_name
+                            value["name"] = padded_name
+                    else:
+                        if value["name"] != padded_name:
+                            values_to_add.append(
+                                update_enum_value(
+                                    name=padded_name,
+                                    value=value["value"],
+                                    description=value["description"],
+                                    enum_type=value["enumType"],
+                                )
+                            )
+                        type["values"].extend(values_to_add)
 
         # add type for reference
         for v in HEADERS_CONVERT_IN_METHOD.values():
