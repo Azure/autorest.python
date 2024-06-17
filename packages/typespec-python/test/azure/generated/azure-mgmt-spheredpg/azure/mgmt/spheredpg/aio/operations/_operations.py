@@ -274,15 +274,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -401,6 +401,9 @@ class CatalogsOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -455,15 +458,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -491,15 +494,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -559,15 +562,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -627,15 +630,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -691,15 +694,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -727,15 +730,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -846,15 +849,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -913,15 +916,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -980,15 +983,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1050,15 +1053,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1264,15 +1267,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1379,15 +1382,15 @@ class CatalogsOperations:
                           with the catalog.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1610,15 +1613,15 @@ class CatalogsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -1638,15 +1641,15 @@ class CatalogsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1797,15 +1800,15 @@ class CatalogsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1879,15 +1882,15 @@ class CatalogsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -1961,15 +1964,15 @@ class CatalogsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2045,15 +2048,15 @@ class CatalogsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2316,15 +2319,15 @@ class CatalogsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2525,15 +2528,15 @@ class CatalogsOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2648,15 +2651,15 @@ class CatalogsOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2769,15 +2772,15 @@ class CertificatesOperations:
                         "thumbprint": "str"  # Optional. The certificate thumbprint.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -2889,15 +2892,15 @@ class CertificatesOperations:
                         "thumbprint": "str"  # Optional. The certificate thumbprint.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3391,15 +3394,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3518,6 +3521,9 @@ class ImagesOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -3588,15 +3594,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3634,15 +3640,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3715,15 +3721,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3796,15 +3802,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3873,15 +3879,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -3919,15 +3925,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4158,15 +4164,15 @@ class ImagesOperations:
                         "uri": "str"  # Optional. Location the image.
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4302,15 +4308,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4429,6 +4435,9 @@ class ProductsOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -4485,15 +4494,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4516,15 +4525,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4583,15 +4592,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4650,15 +4659,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4713,15 +4722,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4744,15 +4753,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -4934,15 +4943,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5001,15 +5010,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5068,15 +5077,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5138,15 +5147,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5350,15 +5359,15 @@ class ProductsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5556,15 +5565,15 @@ class ProductsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5709,15 +5718,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5839,6 +5848,9 @@ class DeviceGroupsOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -5909,15 +5921,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -5951,15 +5963,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6032,15 +6044,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6113,15 +6125,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6190,15 +6202,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6232,15 +6244,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6448,15 +6460,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6529,15 +6541,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6610,15 +6622,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6703,15 +6715,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -6948,15 +6960,15 @@ class DeviceGroupsOperations:
                           Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -7472,15 +7484,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -7500,15 +7512,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -7633,6 +7645,9 @@ class DeploymentsOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -7725,15 +7740,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -7753,15 +7768,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -7813,15 +7828,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -7841,15 +7856,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -7944,15 +7959,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -7972,15 +7987,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8075,15 +8090,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -8103,15 +8118,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8202,15 +8217,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -8230,15 +8245,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8290,15 +8305,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -8318,15 +8333,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8602,15 +8617,15 @@ class DeploymentsOperations:
                                     "uri": "str"  # Optional. Location the image.
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
+                                    "createdAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource creation (UTC).
                                     "createdBy": "str",  # Optional. The identity
                                       that created the resource.
                                     "createdByType": "str",  # Optional. The type
                                       of identity that created the resource. Known values are: "User",
                                       "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
+                                    "lastModifiedAt": "2020-02-20 00:00:00",  #
+                                      Optional. The timestamp of resource last modification (UTC).
                                     "lastModifiedBy": "str",  # Optional. The
                                       identity that last modified the resource.
                                     "lastModifiedByType": "str"  # Optional. The
@@ -8630,15 +8645,15 @@ class DeploymentsOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8795,15 +8810,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -8928,6 +8943,9 @@ class DevicesOperations:
             deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
             deserialized = response.iter_bytes()
@@ -8999,15 +9017,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9039,15 +9057,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9121,15 +9139,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9203,15 +9221,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9281,15 +9299,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9321,15 +9339,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9457,15 +9475,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9538,15 +9556,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9619,15 +9637,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9703,15 +9721,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that
@@ -9971,15 +9989,15 @@ class DevicesOperations:
                           "Provisioning", "Updating", "Deleting", and "Accepted".
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
+                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
+                          resource creation (UTC).
                         "createdBy": "str",  # Optional. The identity that created the
                           resource.
                         "createdByType": "str",  # Optional. The type of identity that
                           created the resource. Known values are: "User", "Application",
                           "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
+                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
+                          of resource last modification (UTC).
                         "lastModifiedBy": "str",  # Optional. The identity that last modified
                           the resource.
                         "lastModifiedByType": "str"  # Optional. The type of identity that

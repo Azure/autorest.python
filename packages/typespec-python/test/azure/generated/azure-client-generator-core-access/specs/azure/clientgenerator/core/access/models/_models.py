@@ -24,7 +24,7 @@ class AbstractModel(_model_base.Model):
     RealModel
 
 
-    :ivar kind: Required. Default value is None.
+    :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
     :vartype kind: str
     :ivar name: Required.
     :vartype name: str
@@ -32,7 +32,7 @@ class AbstractModel(_model_base.Model):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
+    """Discriminator property for AbstractModel. Required. Default value is None."""
     name: str = rest_field()
     """Required."""
 
