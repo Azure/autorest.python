@@ -18,6 +18,7 @@ from ..models import (
     ModelType,
     BaseType,
     CombinedType,
+    FileImport,
 )
 from .utils import get_namespace_from_package_name, json_dumps_template
 
@@ -143,17 +144,21 @@ class TestGeneralSerializer(BaseSerializer):
     def test_names(self) -> List[TestName]:
         return [TestName(self.code_model, c.name, is_async=self.is_async) for c in self.code_model.clients]
 
+    def add_import_client(self, imports: FileImport) -> None:
+        namespace = get_namespace_from_package_name(self.code_model.options["package_name"])
+        for client in self.code_model.clients:
+            imports.add_submodule_import(namespace + self.aio_str, client.name, ImportType.STDLIB)
+
     @property
     def import_clients(self) -> FileImportSerializer:
         imports = self.init_file_import()
-        namespace = get_namespace_from_package_name(self.code_model.options["package_name"])
 
         imports.add_submodule_import("devtools_testutils", "AzureRecordedTestCase", ImportType.STDLIB)
         if not self.is_async:
             imports.add_import("functools", ImportType.STDLIB)
             imports.add_submodule_import("devtools_testutils", "PowerShellPreparer", ImportType.STDLIB)
-        for client in self.code_model.clients:
-            imports.add_submodule_import(namespace + self.aio_str, client.name, ImportType.STDLIB)
+        self.add_import_client(imports)
+
         return FileImportSerializer(imports, self.is_async)
 
     def serialize_conftest(self) -> str:
@@ -194,12 +199,18 @@ class TestSerializer(TestGeneralSerializer):
             test_name.base_test_class_name,
             ImportType.LOCAL,
         )
-        imports.add_submodule_import("devtools_testutils" if self.code_model.options["azure_arm"] else "testpreparer", test_name.preparer_name, ImportType.LOCAL)
+        imports.add_submodule_import(
+            "devtools_testutils" if self.code_model.options["azure_arm"] else "testpreparer",
+            test_name.preparer_name,
+            ImportType.LOCAL,
+        )
         imports.add_submodule_import(
             "devtools_testutils" + self.aio_str,
             "recorded_by_proxy" + async_suffix,
             ImportType.LOCAL,
         )
+        if self.code_model.options["azure_arm"]:
+            self.add_import_client(imports)
         return FileImportSerializer(imports, self.is_async)
 
     @property
