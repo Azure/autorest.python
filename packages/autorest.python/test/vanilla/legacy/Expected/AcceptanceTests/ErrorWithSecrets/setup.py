@@ -23,6 +23,7 @@ setup(
     install_requires=[
         "msrest>=0.7.1",
         "azure-core>=1.30.0",
+        "typing-extensions>=4.6.0",
     ],
     long_description="""\
     Tests whether loggers/tracers redact secrets and PII within error responses.

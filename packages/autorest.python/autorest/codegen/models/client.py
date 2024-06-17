@@ -111,7 +111,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                         )
                     )
 
-        queue = self.yaml_data["operationGroups"].copy()
+        queue = self.yaml_data.get("operationGroups", []).copy()
         while queue:
             now = queue.pop(0)
             add_og_request_builder(now)
@@ -225,6 +225,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
                 ImportType.SDKCORE,
             )
+
+        # import for "Self"
+        file_import.add_submodule_import(
+            "typing_extensions",
+            "Self",
+            ImportType.STDLIB,
+        )
         return file_import
 
     @property
@@ -252,18 +259,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             for operation in operation_group.operations:
                 if isinstance(operation, (LROOperation, LROPagingOperation)):
                     operation.initial_operation = self.lookup_operation(id(operation.yaml_data["initialOperation"]))
-
-    @property
-    def need_request_converter(self) -> bool:
-        """
-        Whether we need to convert our created azure.core.rest.HttpRequest to
-        azure.core.pipeline.transport.HttpRequest
-        """
-        return (
-            self.code_model.options["show_operations"]
-            and bool(self.request_builders)
-            and not self.code_model.options["version_tolerant"]
-        )
 
     @property
     def has_abstract_operations(self) -> bool:

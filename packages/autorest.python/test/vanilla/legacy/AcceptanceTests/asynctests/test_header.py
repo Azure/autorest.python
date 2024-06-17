@@ -122,7 +122,7 @@ class TestHeader(object):
         response = await client.header.response_string("null", cls=value_header)
         assert response == "null"  # TODO This should be None
         response = await client.header.response_string("empty", cls=value_header)
-        assert response == ""
+        assert response is None
 
     @pytest.mark.asyncio
     async def test_enum(self, client, value_header):
@@ -139,7 +139,7 @@ class TestHeader(object):
         # Here we now return empty string without failin **on purpose**
         # with pytest.raises(DeserializationError):
         response = await client.header.response_enum("null", cls=value_header)
-        assert response == ""
+        assert response is None
 
     @pytest.mark.asyncio
     async def test_date(self, client, value_header):

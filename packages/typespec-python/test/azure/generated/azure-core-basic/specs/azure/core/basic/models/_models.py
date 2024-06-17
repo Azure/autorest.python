@@ -22,7 +22,6 @@ class FirstItem(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar id: The id of the item. Required.
     :vartype id: int
@@ -67,7 +66,6 @@ class SecondItem(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: The name of the item. Required.
     :vartype name: str

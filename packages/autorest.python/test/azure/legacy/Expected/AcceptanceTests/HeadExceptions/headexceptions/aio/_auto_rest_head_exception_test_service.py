@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Dict, TYPE_CHECKING
+from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
@@ -91,7 +92,7 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestHeadExceptionTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

@@ -120,11 +120,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc or self.has_etag or self.has_form_data
-
-    @property
-    def need_request_converter(self) -> bool:
-        return any(c for c in self.clients if c.need_request_converter)
+        return self.need_mixin_abc or self.has_etag or self.has_form_data
 
     @property
     def need_mixin_abc(self) -> bool:
@@ -241,9 +237,3 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     @property
     def is_legacy(self) -> bool:
         return _is_legacy(self.options)
-
-    @property
-    def need_typing_extensions(self) -> bool:
-        if self.options["models_mode"] == "dpg":
-            return True
-        return False

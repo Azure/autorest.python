@@ -18,12 +18,10 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
-from azure.core.rest import HttpRequest
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
 from ...operations._multiple_responses_operations import (
     build_get200_model201_model_default_error200_valid_request,
     build_get200_model201_model_default_error201_valid_request,
@@ -115,7 +113,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -132,7 +129,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -166,7 +163,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -183,7 +179,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -217,7 +213,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -234,7 +229,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -268,7 +263,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -285,7 +279,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -319,7 +313,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -336,7 +329,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -370,7 +363,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -386,10 +378,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("B", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -423,7 +415,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -439,10 +430,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("B", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -476,7 +467,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -492,10 +482,10 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("B", pipeline_response)
+            deserialized = self._deserialize("B", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -530,7 +520,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -546,13 +535,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("C", pipeline_response.http_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("D", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -587,7 +576,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -603,13 +591,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("C", pipeline_response.http_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("D", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -644,7 +632,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -660,13 +647,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("C", pipeline_response.http_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("D", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -701,7 +688,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -717,13 +703,13 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response)
+            deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize("C", pipeline_response)
+            deserialized = self._deserialize("C", pipeline_response.http_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize("D", pipeline_response)
+            deserialized = self._deserialize("D", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -757,7 +743,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -802,7 +787,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -847,7 +831,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -892,7 +875,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -936,7 +918,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -980,7 +961,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1024,7 +1004,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1066,7 +1045,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1080,7 +1058,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1112,7 +1090,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1126,7 +1103,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1160,7 +1137,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1205,7 +1181,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1250,7 +1225,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1292,7 +1266,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1336,7 +1309,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1378,7 +1350,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1421,7 +1392,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1435,7 +1405,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1467,7 +1437,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1481,7 +1450,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1513,7 +1482,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1527,7 +1495,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1559,7 +1527,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1573,7 +1540,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1605,7 +1572,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1619,7 +1585,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1651,7 +1617,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1665,7 +1630,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1697,7 +1662,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -1711,7 +1675,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("MyException", pipeline_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

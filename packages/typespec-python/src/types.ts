@@ -219,6 +219,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         base: type.isGeneratedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
+        usage: type.usage,
     };
 
     typesMap.set(type, newValue);

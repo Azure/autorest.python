@@ -61,10 +61,6 @@ class InterfaceV2Operations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2_in_interface(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -98,10 +94,6 @@ class InterfaceV2Operations:
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2_in_interface(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -128,10 +120,6 @@ class InterfaceV2Operations:
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2_in_interface(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -248,9 +236,6 @@ class InterfaceV2Operations:
 class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     async def v1(
         self, body: _models.ModelV1, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -288,9 +273,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     async def v1(
         self, body: JSON, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -320,9 +302,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     async def v1(
         self, body: IO[bytes], *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -445,10 +424,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -482,10 +457,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
 
@@ -510,10 +481,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     async def v2(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
 
