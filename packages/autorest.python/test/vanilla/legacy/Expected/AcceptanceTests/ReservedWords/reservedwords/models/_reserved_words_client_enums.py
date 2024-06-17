@@ -13,5 +13,6 @@ from azure.core import CaseInsensitiveEnumMeta
 class MyEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """MyEnum."""
 
-    IMPORT_ENUM = "import"
+    IMPORT = "import"
     OTHER = "other"
+    IMPORT_ENUM = "import"
