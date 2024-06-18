@@ -4,6 +4,7 @@
         "typetest.property.nullable.models.BytesProperty": "Type.Property.Nullable.BytesProperty",
         "typetest.property.nullable.models.CollectionsByteProperty": "Type.Property.Nullable.CollectionsByteProperty",
         "typetest.property.nullable.models.CollectionsModelProperty": "Type.Property.Nullable.CollectionsModelProperty",
+        "typetest.property.nullable.models.CollectionsStringProperty": "Type.Property.Nullable.CollectionsStringProperty",
         "typetest.property.nullable.models.DatetimeProperty": "Type.Property.Nullable.DatetimeProperty",
         "typetest.property.nullable.models.DurationProperty": "Type.Property.Nullable.DurationProperty",
         "typetest.property.nullable.models.InnerModel": "Type.Property.Nullable.InnerModel",
@@ -31,6 +32,10 @@
         "typetest.property.nullable.NullableClient.collections_model.get_non_null": "Type.Property.Nullable.CollectionsModel.getNonNull",
         "typetest.property.nullable.NullableClient.collections_model.get_null": "Type.Property.Nullable.CollectionsModel.getNull",
         "typetest.property.nullable.NullableClient.collections_model.patch_non_null": "Type.Property.Nullable.CollectionsModel.patchNonNull",
-        "typetest.property.nullable.NullableClient.collections_model.patch_null": "Type.Property.Nullable.CollectionsModel.patchNull"
+        "typetest.property.nullable.NullableClient.collections_model.patch_null": "Type.Property.Nullable.CollectionsModel.patchNull",
+        "typetest.property.nullable.NullableClient.collections_string.get_non_null": "Type.Property.Nullable.CollectionsString.getNonNull",
+        "typetest.property.nullable.NullableClient.collections_string.get_null": "Type.Property.Nullable.CollectionsString.getNull",
+        "typetest.property.nullable.NullableClient.collections_string.patch_non_null": "Type.Property.Nullable.CollectionsString.patchNonNull",
+        "typetest.property.nullable.NullableClient.collections_string.patch_null": "Type.Property.Nullable.CollectionsString.patchNull"
     }
 }

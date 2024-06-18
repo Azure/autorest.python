@@ -24,7 +24,11 @@ from .operations import (
     Int32ValueOperations,
     Int64ValueOperations,
     ModelValueOperations,
+    NullableBooleanValueOperations,
     NullableFloatValueOperations,
+    NullableInt32ValueOperations,
+    NullableModelValueOperations,
+    NullableStringValueOperations,
     StringValueOperations,
     UnknownValueOperations,
 )
@@ -53,6 +57,14 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     :vartype model_value: typetest.array.operations.ModelValueOperations
     :ivar nullable_float_value: NullableFloatValueOperations operations
     :vartype nullable_float_value: typetest.array.operations.NullableFloatValueOperations
+    :ivar nullable_int32_value: NullableInt32ValueOperations operations
+    :vartype nullable_int32_value: typetest.array.operations.NullableInt32ValueOperations
+    :ivar nullable_boolean_value: NullableBooleanValueOperations operations
+    :vartype nullable_boolean_value: typetest.array.operations.NullableBooleanValueOperations
+    :ivar nullable_string_value: NullableStringValueOperations operations
+    :vartype nullable_string_value: typetest.array.operations.NullableStringValueOperations
+    :ivar nullable_model_value: NullableModelValueOperations operations
+    :vartype nullable_model_value: typetest.array.operations.NullableModelValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -93,6 +105,18 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
         self.unknown_value = UnknownValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_value = ModelValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.nullable_float_value = NullableFloatValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_int32_value = NullableInt32ValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_boolean_value = NullableBooleanValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_string_value = NullableStringValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_model_value = NullableModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

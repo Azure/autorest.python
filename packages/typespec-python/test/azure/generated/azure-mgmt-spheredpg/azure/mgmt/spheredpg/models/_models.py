@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class Resource(_model_base.Model):
-    """Common properties for all Azure Resource Manager resources.
+    """Common fields that are returned in the response for all Azure Resource Manager resources.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
@@ -67,16 +67,16 @@ class TrackedResource(Resource):
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
     :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
     """
 
-    location: str = rest_field(visibility=["read", "create"])
-    """The geo-location where the resource lives. Required."""
     tags: Optional[Dict[str, str]] = rest_field()
     """Resource tags."""
+    location: str = rest_field(visibility=["read", "create"])
+    """The geo-location where the resource lives. Required."""
 
     @overload
     def __init__(
@@ -115,15 +115,15 @@ class Catalog(TrackedResource):
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
      information.
     :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
     """
 
-    properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.CatalogProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -196,7 +196,8 @@ class CatalogUpdate(_model_base.Model):
 
 
 class ProxyResource(Resource):
-    """The base proxy resource.
+    """The resource model definition for a Azure Resource Manager proxy resource. It will not have
+    tags and a location.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
@@ -234,7 +235,7 @@ class Certificate(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.CertificateProperties
     """
 
-    properties: Optional["_models.CertificateProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.CertificateProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -416,7 +417,7 @@ class Deployment(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeploymentProperties
     """
 
-    properties: Optional["_models.DeploymentProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.DeploymentProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -506,7 +507,7 @@ class Device(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceProperties
     """
 
-    properties: Optional["_models.DeviceProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.DeviceProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -547,7 +548,7 @@ class DeviceGroup(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupProperties
     """
 
-    properties: Optional["_models.DeviceGroupProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.DeviceGroupProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -1039,7 +1040,7 @@ class Image(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
     """
 
-    properties: Optional["_models.ImageProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.ImageProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -1300,7 +1301,7 @@ class Product(ProxyResource):
     :vartype properties: ~azure.mgmt.spheredpg.models.ProductProperties
     """
 
-    properties: Optional["_models.ProductProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.ProductProperties"] = rest_field()
     """The resource-specific properties for this resource."""
 
     @overload
@@ -1485,39 +1486,55 @@ class SignedCapabilityImageResponse(_model_base.Model):
 class SystemData(_model_base.Model):
     """Metadata pertaining to creation and last modification of the resource.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar created_by: The identity that created the resource.
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
      "User", "Application", "ManagedIdentity", and "Key".
     :vartype created_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
-    :ivar created_at: The type of identity that created the resource.
-    :vartype created_at: ~datetime.date
+    :ivar created_at: The timestamp of resource creation (UTC).
+    :vartype created_at: ~datetime.datetime
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
      are: "User", "Application", "ManagedIdentity", and "Key".
     :vartype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
-    :vartype last_modified_at: ~datetime.date
+    :vartype last_modified_at: ~datetime.datetime
     """
 
-    created_by: Optional[str] = rest_field(name="createdBy", visibility=["read"])
+    created_by: Optional[str] = rest_field(name="createdBy")
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
-        name="createdByType", visibility=["read"]
-    )
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="createdByType")
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
-    created_at: Optional[datetime.date] = rest_field(name="createdAt", visibility=["read"])
-    """The type of identity that created the resource."""
-    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy", visibility=["read"])
+    created_at: Optional[datetime.datetime] = rest_field(name="createdAt", format="rfc3339")
+    """The timestamp of resource creation (UTC)."""
+    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy")
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
-        name="lastModifiedByType", visibility=["read"]
-    )
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="lastModifiedByType")
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
-    last_modified_at: Optional[datetime.date] = rest_field(name="lastModifiedAt", visibility=["read"])
+    last_modified_at: Optional[datetime.datetime] = rest_field(name="lastModifiedAt", format="rfc3339")
     """The timestamp of resource last modification (UTC)."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        created_by: Optional[str] = None,
+        created_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
+        created_at: Optional[datetime.datetime] = None,
+        last_modified_by: Optional[str] = None,
+        last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
+        last_modified_at: Optional[datetime.datetime] = None,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)

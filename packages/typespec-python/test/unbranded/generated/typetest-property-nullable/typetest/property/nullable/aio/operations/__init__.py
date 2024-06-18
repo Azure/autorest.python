@@ -12,6 +12,7 @@ from ._operations import DatetimeOperations
 from ._operations import DurationOperations
 from ._operations import CollectionsByteOperations
 from ._operations import CollectionsModelOperations
+from ._operations import CollectionsStringOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -24,6 +25,7 @@ __all__ = [
     "DurationOperations",
     "CollectionsByteOperations",
     "CollectionsModelOperations",
+    "CollectionsStringOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

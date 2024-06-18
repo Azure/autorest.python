@@ -20,13 +20,14 @@ from .operations import (
     BytesOperations,
     CollectionsByteOperations,
     CollectionsModelOperations,
+    CollectionsStringOperations,
     DatetimeOperations,
     DurationOperations,
     StringOperations,
 )
 
 
-class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
+class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates models with nullable properties.
 
     :ivar string: StringOperations operations
@@ -42,6 +43,9 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model:
      typetest.property.nullable.aio.operations.CollectionsModelOperations
+    :ivar collections_string: CollectionsStringOperations operations
+    :vartype collections_string:
+     typetest.property.nullable.aio.operations.CollectionsStringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -80,6 +84,9 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.collections_model = CollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.collections_string = CollectionsStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
