@@ -1,5 +1,12 @@
 # Release
 
+## 6.14.1
+
+### Bug Fixes
+
+- [#2645](https://github.com/Azure/autorest.python/pull/2645) add visibility support to discriminator rest field
+
+
 ## 6.14.0
 
 ### Bug Fixes
