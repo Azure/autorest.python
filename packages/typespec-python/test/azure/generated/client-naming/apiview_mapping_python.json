@@ -12,7 +12,7 @@
         "client.naming.NamingClient.model.language": "Client.Naming.Model.language",
         "client.naming.NamingClient.union_enum.union_enum_name": "Client.Naming.UnionEnum.unionEnumName",
         "client.naming.NamingClient.union_enum.union_enum_member_name": "Client.Naming.UnionEnum.unionEnumMemberName",
-        "client.naming.NamingClient.client_name": "Client.Naming.clientName",
+        "client.naming.NamingClient.client_name": "Client.Naming.operation",
         "client.naming.NamingClient.parameter": "Client.Naming.parameter",
         "client.naming.NamingClient.client": "Client.Naming.Property.client",
         "client.naming.NamingClient.language": "Client.Naming.Property.language",

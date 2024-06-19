@@ -113,6 +113,8 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
+        case "nullable":
+            return getType(context, type.type);
         default:
             throw Error(`Not supported ${type.kind}`);
     }

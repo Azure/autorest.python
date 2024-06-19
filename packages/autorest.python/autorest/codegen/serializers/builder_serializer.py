@@ -189,6 +189,8 @@ def _get_json_response_template_to_status_codes(
 
 
 def _api_version_validation(builder: OperationType) -> str:
+    if builder.is_overload:
+        return ""
     retval: List[str] = []
     if builder.added_on:
         retval.append(f'    method_added_on="{builder.added_on}",')

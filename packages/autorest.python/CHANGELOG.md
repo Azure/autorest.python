@@ -1,5 +1,19 @@
 # Release
 
+## 6.14.0
+
+### Bug Fixes
+
+- [#2634](https://github.com/Azure/autorest.python/pull/2634) do not add api version validation decorator to overload function
+- [#2628](https://github.com/Azure/autorest.python/pull/2628) Fix deserialization error for lro when return type has discriminator and succeed in initial response
+- [#2638](https://github.com/Azure/autorest.python/pull/2638) Do not pad name for enum when generate SDK from Typespec
+- [#2633](https://github.com/Azure/autorest.python/pull/2633) generate sdks without operations
+
+### Features
+
+- [#2621](https://github.com/Azure/autorest.python/pull/2621) remove support for deprecated azure.core.pipeline.transport requests and responses
+
+
 ## 6.13.19
 
 ### Bug Fixes
