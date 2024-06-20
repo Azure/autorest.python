@@ -43,6 +43,7 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
                 self.client_default_value
             )
         return client_default_value_declaration or self.default_template_representation_declaration
+
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type())
