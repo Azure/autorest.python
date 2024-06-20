@@ -158,9 +158,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
         """Template of what this schema would look like as JSON input"""
 

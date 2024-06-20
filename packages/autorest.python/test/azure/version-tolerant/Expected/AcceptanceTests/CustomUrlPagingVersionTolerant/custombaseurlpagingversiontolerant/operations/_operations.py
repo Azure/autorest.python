@@ -120,8 +120,8 @@ class PagingOperations:
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -201,8 +201,8 @@ class PagingOperations:
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """

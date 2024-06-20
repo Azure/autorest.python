@@ -53,7 +53,7 @@ class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

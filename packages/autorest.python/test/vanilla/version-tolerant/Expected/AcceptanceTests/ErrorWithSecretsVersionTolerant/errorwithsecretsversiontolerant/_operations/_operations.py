@@ -82,8 +82,8 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "key": "str",  # The secret key. Required.
-                    "value": "str"  # The secret value. Required.
+                    "key": "str",
+                    "value": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

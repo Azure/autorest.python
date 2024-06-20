@@ -126,16 +126,16 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 product = {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -161,8 +161,8 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -186,16 +186,16 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 product = {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -262,8 +262,8 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """

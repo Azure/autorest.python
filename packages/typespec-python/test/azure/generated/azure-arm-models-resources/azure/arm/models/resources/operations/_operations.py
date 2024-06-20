@@ -421,7 +421,6 @@ class TopLevelTrackedResourcesOperations:
     def get(
         self, resource_group_name: str, top_level_tracked_resource_name: str, **kwargs: Any
     ) -> _models.TopLevelTrackedResource:
-        # pylint: disable=line-too-long
         """Get a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -438,37 +437,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -598,7 +585,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Create a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -622,72 +608,48 @@ class TopLevelTrackedResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -701,7 +663,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Create a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -725,37 +686,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -769,7 +718,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Create a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -793,37 +741,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -835,7 +771,6 @@ class TopLevelTrackedResourcesOperations:
         resource: Union[_models.TopLevelTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Create a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -857,72 +792,48 @@ class TopLevelTrackedResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1049,7 +960,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Update a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1074,46 +984,34 @@ class TopLevelTrackedResourcesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. The description of the resource.
+                        "description": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1127,7 +1025,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Update a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1151,37 +1048,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1195,7 +1080,6 @@ class TopLevelTrackedResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Update a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1219,37 +1103,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1261,7 +1133,6 @@ class TopLevelTrackedResourcesOperations:
         properties: Union[_models.TopLevelTrackedResourceUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> LROPoller[_models.TopLevelTrackedResource]:
-        # pylint: disable=line-too-long
         """Update a TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1285,46 +1156,34 @@ class TopLevelTrackedResourcesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. The description of the resource.
+                        "description": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1484,7 +1343,6 @@ class TopLevelTrackedResourcesOperations:
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
     ) -> Iterable["_models.TopLevelTrackedResource"]:
-        # pylint: disable=line-too-long
         """List TopLevelTrackedResource resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1500,37 +1358,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1602,7 +1448,6 @@ class TopLevelTrackedResourcesOperations:
 
     @distributed_trace
     def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.TopLevelTrackedResource"]:
-        # pylint: disable=line-too-long
         """List TopLevelTrackedResource resources by subscription ID.
 
         :return: An iterator like instance of TopLevelTrackedResource
@@ -1615,37 +1460,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. The description of the resource.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1740,7 +1573,6 @@ class NestedProxyResourcesOperations:
         nexted_proxy_resource_name: str,
         **kwargs: Any
     ) -> _models.NestedProxyResource:
-        # pylint: disable=line-too-long
         """Get a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1759,33 +1591,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1919,7 +1739,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Create a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1944,64 +1763,40 @@ class NestedProxyResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2016,7 +1811,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Create a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2041,33 +1835,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2082,7 +1864,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Create a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2107,33 +1888,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2146,7 +1915,6 @@ class NestedProxyResourcesOperations:
         resource: Union[_models.NestedProxyResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Create a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2169,64 +1937,40 @@ class NestedProxyResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2357,7 +2101,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Update a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2383,39 +2126,27 @@ class NestedProxyResourcesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. Nested resource description.
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2430,7 +2161,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Update a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2455,33 +2185,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2496,7 +2214,6 @@ class NestedProxyResourcesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Update a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2521,33 +2238,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2560,7 +2265,6 @@ class NestedProxyResourcesOperations:
         properties: Union[_models.NestedProxyResourceUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> LROPoller[_models.NestedProxyResource]:
-        # pylint: disable=line-too-long
         """Update a NestedProxyResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2585,39 +2289,27 @@ class NestedProxyResourcesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. Nested resource description.
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2790,7 +2482,6 @@ class NestedProxyResourcesOperations:
     def list_by_top_level_tracked_resource(
         self, resource_group_name: str, top_level_tracked_resource_name: str, **kwargs: Any
     ) -> Iterable["_models.NestedProxyResource"]:
-        # pylint: disable=line-too-long
         """List NestedProxyResource resources by TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2807,33 +2498,21 @@ class NestedProxyResourcesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Nested resource description.
-                        "provisioningState": "str"  # Optional. Provisioning State of the
-                          nested child Resource. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",  # Optional. The timestamp of
-                          resource creation (UTC).
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20 00:00:00",  # Optional. The timestamp
-                          of resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

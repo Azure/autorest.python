@@ -104,15 +104,10 @@ class ConstantType(BaseType):
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
-        # pylint: disable=unused-argument
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
         return self.value_type.get_json_template_representation(
-            optional=optional,
             client_default_value_declaration=self.get_declaration(),
-            description=description,
         )
 
     def _imports_shared(self, **kwargs: Any):

@@ -68,8 +68,8 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "aniType": "str",  # Optional.
-                    "name": "str"  # Optional. Gets the Pet by id.
+                    "aniType": "str",
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -132,7 +132,7 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionResponse": "str"  # Optional. action feedback.
+                    "actionResponse": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

@@ -137,7 +137,6 @@ class QuestionAnsweringProjectsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable[JSON]:
-        # pylint: disable=line-too-long
         """Gets all the QnAs of a project.
 
         Gets all the QnAs of a project.
@@ -163,91 +162,61 @@ class QuestionAnsweringProjectsOperations:
                 response == {
                     "activeLearningSuggestions": [
                         {
-                            "clusterHead": "str",  # Optional. Question chosen as the
-                              head of suggested questions cluster by Active Learning clustering
-                              algorithm.
+                            "clusterHead": "str",
                             "suggestedQuestions": [
                                 {
-                                    "autoSuggestedCount": 0,  # Optional. The
-                                      number of times the question was suggested automatically by the
-                                      Active Learning algorithm.
-                                    "question": "str",  # Optional. Question
-                                      suggested by the Active Learning feature.
-                                    "userSuggestedCount": 0  # Optional. The
-                                      number of times the question was suggested explicitly by the
-                                      user.
+                                    "autoSuggestedCount": 0,
+                                    "question": "str",
+                                    "userSuggestedCount": 0
                                 }
                             ]
                         }
                     ],
-                    "answer": "str",  # Optional. Answer text.
+                    "answer": "str",
                     "dialog": {
-                        "isContextOnly": bool,  # Optional. To mark if a prompt is relevant
-                          only with a previous question or not. If true, do not include this QnA as
-                          answer for queries without context; otherwise, ignores context and includes
-                          this QnA in answers.
+                        "isContextOnly": bool,
                         "prompts": [
                             {
-                                "displayOrder": 0,  # Optional. Index of the prompt.
-                                  It is used for ordering of the prompts.
-                                "displayText": "str",  # Optional. Text displayed to
-                                  represent a follow up question prompt.
+                                "displayOrder": 0,
+                                "displayText": "str",
                                 "qna": {
                                     "activeLearningSuggestions": [
                                         {
-                                            "clusterHead": "str",  #
-                                              Optional. Question chosen as the head of suggested
-                                              questions cluster by Active Learning clustering
-                                              algorithm.
+                                            "clusterHead": "str",
                                             "suggestedQuestions": [
                                                 {
-                "autoSuggestedCount": 0,  # Optional. The number
-                                                      of times the question was suggested automatically
-                                                      by the Active Learning algorithm.
+                "autoSuggestedCount": 0,
                                                     "question":
-                                                      "str",  # Optional. Question suggested by the
-                                                      Active Learning feature.
-                "userSuggestedCount": 0  # Optional. The number
-                                                      of times the question was suggested explicitly by
-                                                      the user.
+                                                      "str",
+                "userSuggestedCount": 0
                                                 }
                                             ]
                                         }
                                     ],
-                                    "answer": "str",  # Optional. Answer text.
+                                    "answer": "str",
                                     "dialog": ...,
-                                    "id": 0,  # Optional. Unique ID for the QnA.
+                                    "id": 0,
                                     "metadata": {
-                                        "str": "str"  # Optional. Metadata
-                                          associated with the answer, useful to categorize or filter
-                                          question answers.
+                                        "str": "str"
                                     },
                                     "questions": [
-                                        "str"  # Optional. List of questions
-                                          associated with the answer.
+                                        "str"
                                     ],
-                                    "source": "str"  # Optional. Source from
-                                      which QnA was indexed e.g.
-                                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs
-                                      .
+                                    "source": "str"
                                 },
-                                "qnaId": 0  # Optional. ID of the QnA corresponding
-                                  to the prompt.
+                                "qnaId": 0
                             }
                         ]
                     },
-                    "id": 0,  # Optional. Unique ID for the QnA.
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",  # Optional. Date-time when the
-                      QnA was last updated.
+                    "id": 0,
+                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
                     "metadata": {
-                        "str": "str"  # Optional. Metadata associated with the answer, useful
-                          to categorize or filter question answers.
+                        "str": "str"
                     },
                     "questions": [
-                        "str"  # Optional. List of questions associated with the answer.
+                        "str"
                     ],
-                    "source": "str"  # Optional. Source from which QnA was indexed e.g.
-                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                    "source": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -388,7 +357,6 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
-        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -410,59 +378,40 @@ class QuestionAnsweringProjectsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = [
                     {
-                        "op": "str",  # Update operation type for assets. Required. Known
-                          values are: "add", "delete", and "replace".
+                        "op": "str",
                         "value": {
                             "activeLearningSuggestions": [
                                 {
-                                    "clusterHead": "str",  # Optional. Question
-                                      chosen as the head of suggested questions cluster by Active
-                                      Learning clustering algorithm.
+                                    "clusterHead": "str",
                                     "suggestedQuestions": [
                                         {
-                                            "autoSuggestedCount": 0,  #
-                                              Optional. The number of times the question was suggested
-                                              automatically by the Active Learning algorithm.
-                                            "question": "str",  #
-                                              Optional. Question suggested by the Active Learning
-                                              feature.
-                                            "userSuggestedCount": 0  #
-                                              Optional. The number of times the question was suggested
-                                              explicitly by the user.
+                                            "autoSuggestedCount": 0,
+                                            "question": "str",
+                                            "userSuggestedCount": 0
                                         }
                                     ]
                                 }
                             ],
-                            "answer": "str",  # Optional. Answer text.
+                            "answer": "str",
                             "dialog": {
-                                "isContextOnly": bool,  # Optional. To mark if a
-                                  prompt is relevant only with a previous question or not. If true, do
-                                  not include this QnA as answer for queries without context;
-                                  otherwise, ignores context and includes this QnA in answers.
+                                "isContextOnly": bool,
                                 "prompts": [
                                     {
-                                        "displayOrder": 0,  # Optional. Index
-                                          of the prompt. It is used for ordering of the prompts.
-                                        "displayText": "str",  # Optional.
-                                          Text displayed to represent a follow up question prompt.
+                                        "displayOrder": 0,
+                                        "displayText": "str",
                                         "qna": ...,
-                                        "qnaId": 0  # Optional. ID of the QnA
-                                          corresponding to the prompt.
+                                        "qnaId": 0
                                     }
                                 ]
                             },
-                            "id": 0,  # Optional. Unique ID for the QnA.
+                            "id": 0,
                             "metadata": {
-                                "str": "str"  # Optional. Metadata associated with
-                                  the answer, useful to categorize or filter question answers.
+                                "str": "str"
                             },
                             "questions": [
-                                "str"  # Optional. List of questions associated with
-                                  the answer.
+                                "str"
                             ],
-                            "source": "str"  # Optional. Source from which QnA was
-                              indexed e.g.
-                              https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                            "source": "str"
                         }
                     }
                 ]
@@ -471,91 +420,61 @@ class QuestionAnsweringProjectsOperations:
                 response == {
                     "activeLearningSuggestions": [
                         {
-                            "clusterHead": "str",  # Optional. Question chosen as the
-                              head of suggested questions cluster by Active Learning clustering
-                              algorithm.
+                            "clusterHead": "str",
                             "suggestedQuestions": [
                                 {
-                                    "autoSuggestedCount": 0,  # Optional. The
-                                      number of times the question was suggested automatically by the
-                                      Active Learning algorithm.
-                                    "question": "str",  # Optional. Question
-                                      suggested by the Active Learning feature.
-                                    "userSuggestedCount": 0  # Optional. The
-                                      number of times the question was suggested explicitly by the
-                                      user.
+                                    "autoSuggestedCount": 0,
+                                    "question": "str",
+                                    "userSuggestedCount": 0
                                 }
                             ]
                         }
                     ],
-                    "answer": "str",  # Optional. Answer text.
+                    "answer": "str",
                     "dialog": {
-                        "isContextOnly": bool,  # Optional. To mark if a prompt is relevant
-                          only with a previous question or not. If true, do not include this QnA as
-                          answer for queries without context; otherwise, ignores context and includes
-                          this QnA in answers.
+                        "isContextOnly": bool,
                         "prompts": [
                             {
-                                "displayOrder": 0,  # Optional. Index of the prompt.
-                                  It is used for ordering of the prompts.
-                                "displayText": "str",  # Optional. Text displayed to
-                                  represent a follow up question prompt.
+                                "displayOrder": 0,
+                                "displayText": "str",
                                 "qna": {
                                     "activeLearningSuggestions": [
                                         {
-                                            "clusterHead": "str",  #
-                                              Optional. Question chosen as the head of suggested
-                                              questions cluster by Active Learning clustering
-                                              algorithm.
+                                            "clusterHead": "str",
                                             "suggestedQuestions": [
                                                 {
-                "autoSuggestedCount": 0,  # Optional. The number
-                                                      of times the question was suggested automatically
-                                                      by the Active Learning algorithm.
+                "autoSuggestedCount": 0,
                                                     "question":
-                                                      "str",  # Optional. Question suggested by the
-                                                      Active Learning feature.
-                "userSuggestedCount": 0  # Optional. The number
-                                                      of times the question was suggested explicitly by
-                                                      the user.
+                                                      "str",
+                "userSuggestedCount": 0
                                                 }
                                             ]
                                         }
                                     ],
-                                    "answer": "str",  # Optional. Answer text.
+                                    "answer": "str",
                                     "dialog": ...,
-                                    "id": 0,  # Optional. Unique ID for the QnA.
+                                    "id": 0,
                                     "metadata": {
-                                        "str": "str"  # Optional. Metadata
-                                          associated with the answer, useful to categorize or filter
-                                          question answers.
+                                        "str": "str"
                                     },
                                     "questions": [
-                                        "str"  # Optional. List of questions
-                                          associated with the answer.
+                                        "str"
                                     ],
-                                    "source": "str"  # Optional. Source from
-                                      which QnA was indexed e.g.
-                                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs
-                                      .
+                                    "source": "str"
                                 },
-                                "qnaId": 0  # Optional. ID of the QnA corresponding
-                                  to the prompt.
+                                "qnaId": 0
                             }
                         ]
                     },
-                    "id": 0,  # Optional. Unique ID for the QnA.
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",  # Optional. Date-time when the
-                      QnA was last updated.
+                    "id": 0,
+                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
                     "metadata": {
-                        "str": "str"  # Optional. Metadata associated with the answer, useful
-                          to categorize or filter question answers.
+                        "str": "str"
                     },
                     "questions": [
-                        "str"  # Optional. List of questions associated with the answer.
+                        "str"
                     ],
-                    "source": "str"  # Optional. Source from which QnA was indexed e.g.
-                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                    "source": "str"
                 }
         """
 
@@ -563,7 +482,6 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
-        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -586,91 +504,61 @@ class QuestionAnsweringProjectsOperations:
                 response == {
                     "activeLearningSuggestions": [
                         {
-                            "clusterHead": "str",  # Optional. Question chosen as the
-                              head of suggested questions cluster by Active Learning clustering
-                              algorithm.
+                            "clusterHead": "str",
                             "suggestedQuestions": [
                                 {
-                                    "autoSuggestedCount": 0,  # Optional. The
-                                      number of times the question was suggested automatically by the
-                                      Active Learning algorithm.
-                                    "question": "str",  # Optional. Question
-                                      suggested by the Active Learning feature.
-                                    "userSuggestedCount": 0  # Optional. The
-                                      number of times the question was suggested explicitly by the
-                                      user.
+                                    "autoSuggestedCount": 0,
+                                    "question": "str",
+                                    "userSuggestedCount": 0
                                 }
                             ]
                         }
                     ],
-                    "answer": "str",  # Optional. Answer text.
+                    "answer": "str",
                     "dialog": {
-                        "isContextOnly": bool,  # Optional. To mark if a prompt is relevant
-                          only with a previous question or not. If true, do not include this QnA as
-                          answer for queries without context; otherwise, ignores context and includes
-                          this QnA in answers.
+                        "isContextOnly": bool,
                         "prompts": [
                             {
-                                "displayOrder": 0,  # Optional. Index of the prompt.
-                                  It is used for ordering of the prompts.
-                                "displayText": "str",  # Optional. Text displayed to
-                                  represent a follow up question prompt.
+                                "displayOrder": 0,
+                                "displayText": "str",
                                 "qna": {
                                     "activeLearningSuggestions": [
                                         {
-                                            "clusterHead": "str",  #
-                                              Optional. Question chosen as the head of suggested
-                                              questions cluster by Active Learning clustering
-                                              algorithm.
+                                            "clusterHead": "str",
                                             "suggestedQuestions": [
                                                 {
-                "autoSuggestedCount": 0,  # Optional. The number
-                                                      of times the question was suggested automatically
-                                                      by the Active Learning algorithm.
+                "autoSuggestedCount": 0,
                                                     "question":
-                                                      "str",  # Optional. Question suggested by the
-                                                      Active Learning feature.
-                "userSuggestedCount": 0  # Optional. The number
-                                                      of times the question was suggested explicitly by
-                                                      the user.
+                                                      "str",
+                "userSuggestedCount": 0
                                                 }
                                             ]
                                         }
                                     ],
-                                    "answer": "str",  # Optional. Answer text.
+                                    "answer": "str",
                                     "dialog": ...,
-                                    "id": 0,  # Optional. Unique ID for the QnA.
+                                    "id": 0,
                                     "metadata": {
-                                        "str": "str"  # Optional. Metadata
-                                          associated with the answer, useful to categorize or filter
-                                          question answers.
+                                        "str": "str"
                                     },
                                     "questions": [
-                                        "str"  # Optional. List of questions
-                                          associated with the answer.
+                                        "str"
                                     ],
-                                    "source": "str"  # Optional. Source from
-                                      which QnA was indexed e.g.
-                                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs
-                                      .
+                                    "source": "str"
                                 },
-                                "qnaId": 0  # Optional. ID of the QnA corresponding
-                                  to the prompt.
+                                "qnaId": 0
                             }
                         ]
                     },
-                    "id": 0,  # Optional. Unique ID for the QnA.
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",  # Optional. Date-time when the
-                      QnA was last updated.
+                    "id": 0,
+                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
                     "metadata": {
-                        "str": "str"  # Optional. Metadata associated with the answer, useful
-                          to categorize or filter question answers.
+                        "str": "str"
                     },
                     "questions": [
-                        "str"  # Optional. List of questions associated with the answer.
+                        "str"
                     ],
-                    "source": "str"  # Optional. Source from which QnA was indexed e.g.
-                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                    "source": "str"
                 }
         """
 
@@ -678,7 +566,6 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
-        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -699,91 +586,61 @@ class QuestionAnsweringProjectsOperations:
                 response == {
                     "activeLearningSuggestions": [
                         {
-                            "clusterHead": "str",  # Optional. Question chosen as the
-                              head of suggested questions cluster by Active Learning clustering
-                              algorithm.
+                            "clusterHead": "str",
                             "suggestedQuestions": [
                                 {
-                                    "autoSuggestedCount": 0,  # Optional. The
-                                      number of times the question was suggested automatically by the
-                                      Active Learning algorithm.
-                                    "question": "str",  # Optional. Question
-                                      suggested by the Active Learning feature.
-                                    "userSuggestedCount": 0  # Optional. The
-                                      number of times the question was suggested explicitly by the
-                                      user.
+                                    "autoSuggestedCount": 0,
+                                    "question": "str",
+                                    "userSuggestedCount": 0
                                 }
                             ]
                         }
                     ],
-                    "answer": "str",  # Optional. Answer text.
+                    "answer": "str",
                     "dialog": {
-                        "isContextOnly": bool,  # Optional. To mark if a prompt is relevant
-                          only with a previous question or not. If true, do not include this QnA as
-                          answer for queries without context; otherwise, ignores context and includes
-                          this QnA in answers.
+                        "isContextOnly": bool,
                         "prompts": [
                             {
-                                "displayOrder": 0,  # Optional. Index of the prompt.
-                                  It is used for ordering of the prompts.
-                                "displayText": "str",  # Optional. Text displayed to
-                                  represent a follow up question prompt.
+                                "displayOrder": 0,
+                                "displayText": "str",
                                 "qna": {
                                     "activeLearningSuggestions": [
                                         {
-                                            "clusterHead": "str",  #
-                                              Optional. Question chosen as the head of suggested
-                                              questions cluster by Active Learning clustering
-                                              algorithm.
+                                            "clusterHead": "str",
                                             "suggestedQuestions": [
                                                 {
-                "autoSuggestedCount": 0,  # Optional. The number
-                                                      of times the question was suggested automatically
-                                                      by the Active Learning algorithm.
+                "autoSuggestedCount": 0,
                                                     "question":
-                                                      "str",  # Optional. Question suggested by the
-                                                      Active Learning feature.
-                "userSuggestedCount": 0  # Optional. The number
-                                                      of times the question was suggested explicitly by
-                                                      the user.
+                                                      "str",
+                "userSuggestedCount": 0
                                                 }
                                             ]
                                         }
                                     ],
-                                    "answer": "str",  # Optional. Answer text.
+                                    "answer": "str",
                                     "dialog": ...,
-                                    "id": 0,  # Optional. Unique ID for the QnA.
+                                    "id": 0,
                                     "metadata": {
-                                        "str": "str"  # Optional. Metadata
-                                          associated with the answer, useful to categorize or filter
-                                          question answers.
+                                        "str": "str"
                                     },
                                     "questions": [
-                                        "str"  # Optional. List of questions
-                                          associated with the answer.
+                                        "str"
                                     ],
-                                    "source": "str"  # Optional. Source from
-                                      which QnA was indexed e.g.
-                                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs
-                                      .
+                                    "source": "str"
                                 },
-                                "qnaId": 0  # Optional. ID of the QnA corresponding
-                                  to the prompt.
+                                "qnaId": 0
                             }
                         ]
                     },
-                    "id": 0,  # Optional. Unique ID for the QnA.
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",  # Optional. Date-time when the
-                      QnA was last updated.
+                    "id": 0,
+                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
                     "metadata": {
-                        "str": "str"  # Optional. Metadata associated with the answer, useful
-                          to categorize or filter question answers.
+                        "str": "str"
                     },
                     "questions": [
-                        "str"  # Optional. List of questions associated with the answer.
+                        "str"
                     ],
-                    "source": "str"  # Optional. Source from which QnA was indexed e.g.
-                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                    "source": "str"
                 }
         """
 

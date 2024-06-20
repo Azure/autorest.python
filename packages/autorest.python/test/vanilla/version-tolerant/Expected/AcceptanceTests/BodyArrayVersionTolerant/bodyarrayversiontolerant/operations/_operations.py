@@ -1088,7 +1088,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1144,7 +1144,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1200,7 +1200,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1263,7 +1263,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -1353,7 +1353,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bool  # Optional.
+                    bool
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1416,7 +1416,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    bool  # Optional.
+                    bool
                 ]
         """
 
@@ -1506,7 +1506,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bool  # Optional.
+                    bool
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1562,7 +1562,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bool  # Optional.
+                    bool
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1618,7 +1618,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1681,7 +1681,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    0  # Optional.
+                    0
                 ]
         """
 
@@ -1771,7 +1771,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1827,7 +1827,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1883,7 +1883,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1946,7 +1946,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    0  # Optional.
+                    0
                 ]
         """
 
@@ -2036,7 +2036,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2092,7 +2092,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0  # Optional.
+                    0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2148,7 +2148,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2211,7 +2211,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
 
@@ -2301,7 +2301,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2357,7 +2357,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2413,7 +2413,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2476,7 +2476,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
 
@@ -2566,7 +2566,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2622,7 +2622,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2678,7 +2678,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2741,7 +2741,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -2831,7 +2831,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2894,7 +2894,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -2984,7 +2984,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3047,7 +3047,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -3137,7 +3137,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3193,7 +3193,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3250,7 +3250,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3314,7 +3314,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -3406,7 +3406,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3462,7 +3462,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20"  # Optional.
+                    "2020-02-20"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3525,7 +3525,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "2020-02-20"  # Optional.
+                    "2020-02-20"
                 ]
         """
 
@@ -3615,7 +3615,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20"  # Optional.
+                    "2020-02-20"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3671,7 +3671,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20"  # Optional.
+                    "2020-02-20"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3728,7 +3728,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3792,7 +3792,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
 
@@ -3884,7 +3884,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3940,7 +3940,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3997,7 +3997,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4061,7 +4061,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "2020-02-20 00:00:00"  # Optional.
+                    "2020-02-20 00:00:00"
                 ]
         """
 
@@ -4153,7 +4153,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    "1 day, 0:00:00"  # Optional.
+                    "1 day, 0:00:00"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4216,7 +4216,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    "1 day, 0:00:00"  # Optional.
+                    "1 day, 0:00:00"
                 ]
         """
 
@@ -4307,7 +4307,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bytes("bytes", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4371,7 +4371,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    bytes("bytes", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")
                 ]
         """
 
@@ -4463,7 +4463,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bytes("bytes", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4520,7 +4520,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == [
-                    bytes("bytes", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4577,8 +4577,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4636,8 +4636,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4696,8 +4696,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4756,8 +4756,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4816,8 +4816,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4883,8 +4883,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
                     {
-                        "integer": 0,  # Optional.
-                        "string": "str"  # Optional.
+                        "integer": 0,
+                        "string": "str"
                     }
                 ]
         """
@@ -4978,7 +4978,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5036,7 +5036,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5094,7 +5094,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5152,7 +5152,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5210,7 +5210,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5275,7 +5275,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
                     [
-                        "str"  # Optional.
+                        "str"
                     ]
                 ]
         """
@@ -5367,7 +5367,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """
@@ -5425,7 +5425,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """
@@ -5484,7 +5484,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """
@@ -5543,7 +5543,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """
@@ -5602,7 +5602,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """
@@ -5668,7 +5668,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
                     {
-                        "str": "str"  # Optional.
+                        "str": "str"
                     }
                 ]
         """

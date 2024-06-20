@@ -1375,7 +1375,7 @@ class HttpRedirectsOperations:
 
                 # response body for status code(s): 300
                 response == [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4111,7 +4111,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4171,7 +4171,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4231,7 +4231,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4291,7 +4291,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4351,7 +4351,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4411,12 +4411,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",  # Optional.
-                    "textStatusCode": "str"  # Optional.
+                    "statusCode": "str",
+                    "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4481,12 +4481,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",  # Optional.
-                    "textStatusCode": "str"  # Optional.
+                    "statusCode": "str",
+                    "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4551,12 +4551,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",  # Optional.
-                    "textStatusCode": "str"  # Optional.
+                    "statusCode": "str",
+                    "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4621,15 +4621,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"  # Optional.
+                    "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"  # Optional.
+                    "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4700,15 +4700,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"  # Optional.
+                    "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"  # Optional.
+                    "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4779,15 +4779,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"  # Optional.
+                    "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"  # Optional.
+                    "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4858,15 +4858,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"  # Optional.
+                    "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"  # Optional.
+                    "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5236,7 +5236,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5292,7 +5292,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5603,7 +5603,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5659,7 +5659,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5715,7 +5715,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5771,7 +5771,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5827,7 +5827,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5883,7 +5883,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5939,7 +5939,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"  # Optional.
+                    "statusCode": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

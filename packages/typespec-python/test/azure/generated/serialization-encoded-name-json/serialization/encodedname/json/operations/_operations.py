@@ -105,7 +105,7 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "wireName": bool  # Pass in true. Required.
+                    "wireName": bool
                 }
         """
 
@@ -158,7 +158,7 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "wireName": bool  # Pass in true. Required.
+                    "wireName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -217,7 +217,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "wireName": bool  # Pass in true. Required.
+                    "wireName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

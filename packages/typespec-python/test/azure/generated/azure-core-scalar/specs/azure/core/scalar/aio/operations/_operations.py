@@ -178,12 +178,12 @@ class AzureLocationScalarOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
         """
 
@@ -207,7 +207,7 @@ class AzureLocationScalarOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
         """
 
@@ -231,7 +231,7 @@ class AzureLocationScalarOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
         """
 
@@ -252,12 +252,12 @@ class AzureLocationScalarOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str"  # Required.
+                    "location": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

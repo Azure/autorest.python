@@ -76,7 +76,7 @@ class AvailabilitySetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 tags = {
                     "tags": {
-                        "str": "str"  # A description about the set of tags. Required.
+                        "str": "str"
                     }
                 }
         """
@@ -129,7 +129,7 @@ class AvailabilitySetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 tags = {
                     "tags": {
-                        "str": "str"  # A description about the set of tags. Required.
+                        "str": "str"
                     }
                 }
         """

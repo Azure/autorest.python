@@ -462,8 +462,8 @@ class StringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -521,8 +521,8 @@ class StringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -587,8 +587,8 @@ class StringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -641,8 +641,8 @@ class StringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -708,8 +708,8 @@ class StringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -762,8 +762,8 @@ class StringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "str",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "str",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -840,8 +840,8 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -899,8 +899,8 @@ class BytesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -965,8 +965,8 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1019,8 +1019,8 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1086,8 +1086,8 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1140,8 +1140,8 @@ class BytesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": bytes("bytes", encoding="utf-8"),
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1218,8 +1218,8 @@ class DatetimeOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1277,8 +1277,8 @@ class DatetimeOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1343,8 +1343,8 @@ class DatetimeOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1397,8 +1397,8 @@ class DatetimeOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1464,8 +1464,8 @@ class DatetimeOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1518,8 +1518,8 @@ class DatetimeOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "2020-02-20 00:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "2020-02-20 00:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1596,8 +1596,8 @@ class DurationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1655,8 +1655,8 @@ class DurationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1721,8 +1721,8 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1775,8 +1775,8 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1842,8 +1842,8 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
 
@@ -1896,8 +1896,8 @@ class DurationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "nullableProperty": "1 day, 0:00:00",  # Property. Required.
-                    "requiredProperty": "str"  # Required property. Required.
+                    "nullableProperty": "1 day, 0:00:00",
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1975,9 +1975,9 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2036,9 +2036,9 @@ class CollectionsByteOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2108,9 +2108,9 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -2164,9 +2164,9 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2237,9 +2237,9 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -2293,9 +2293,9 @@ class CollectionsByteOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")  # Property. Required.
+                        bytes("bytes", encoding="utf-8")
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2375,10 +2375,10 @@ class CollectionsModelOperations:
                 response == {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2439,10 +2439,10 @@ class CollectionsModelOperations:
                 response == {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2513,10 +2513,10 @@ class CollectionsModelOperations:
                 body = {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -2571,10 +2571,10 @@ class CollectionsModelOperations:
                 body = {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2646,10 +2646,10 @@ class CollectionsModelOperations:
                 body = {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -2704,10 +2704,10 @@ class CollectionsModelOperations:
                 body = {
                     "nullableProperty": [
                         {
-                            "property": "str"  # Inner model property. Required.
+                            "property": "str"
                         }
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2786,9 +2786,9 @@ class CollectionsStringOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2848,9 +2848,9 @@ class CollectionsStringOperations:
                 # response body for status code(s): 200
                 response == {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2920,9 +2920,9 @@ class CollectionsStringOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -2977,9 +2977,9 @@ class CollectionsStringOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3050,9 +3050,9 @@ class CollectionsStringOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
 
@@ -3107,9 +3107,9 @@ class CollectionsStringOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "nullableProperty": [
-                        "str"  # Property. Required.
+                        "str"
                     ],
-                    "requiredProperty": "str"  # Required property. Required.
+                    "requiredProperty": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
