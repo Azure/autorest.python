@@ -145,7 +145,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -163,27 +162,21 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -240,7 +233,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -263,53 +255,41 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
 
@@ -323,7 +303,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: str = "application/json",
         **kwargs: Any,
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -346,27 +325,21 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
 
@@ -374,7 +347,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     def validation_of_body(
         self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -394,53 +366,41 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -549,7 +509,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     def post_with_constant_in_body(
         self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
@@ -567,53 +526,41 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
 
@@ -621,7 +568,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     def post_with_constant_in_body(
         self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Default value is None.
@@ -639,33 +585,26 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
 
     @distributed_trace
     def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """post_with_constant_in_body.
 
         :param body: Is either a JSON type or a IO[bytes] type. Default value is None.
@@ -680,53 +619,41 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
+                        "constProperty": "constant",
+                        "count": 0
                     },
                     "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
+                        "constProperty": "constant",
+                        "constProperty2": "constant2"
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
+                    "constInt": 0,
+                    "constString": "constant",
+                    "capacity": 0,
+                    "constStringAsEnum": "constant_string_as_enum",
                     "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
+                        "str"
                     ],
-                    "image": "str"  # Optional. Image URL representing the product.
+                    "image": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

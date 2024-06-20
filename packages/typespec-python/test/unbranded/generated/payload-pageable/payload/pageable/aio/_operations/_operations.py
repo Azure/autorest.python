@@ -52,7 +52,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # User name. Required.
+                    "name": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

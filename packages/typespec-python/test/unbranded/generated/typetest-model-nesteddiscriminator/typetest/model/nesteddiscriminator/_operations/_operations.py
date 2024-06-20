@@ -149,7 +149,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -162,13 +162,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -240,7 +240,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -253,13 +253,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -318,7 +318,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -331,13 +331,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -402,7 +402,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -415,13 +415,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -493,7 +493,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -506,13 +506,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -571,7 +571,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -584,13 +584,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -655,7 +655,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -668,13 +668,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 
@@ -738,7 +738,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "salmon":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "salmon",
                     "friends": [
                         fish
@@ -751,13 +751,13 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "goblin"
                 }
 
                 # JSON input template for discriminator value "saw":
                 fish = {
-                    "age": 0,  # Required.
+                    "age": 0,
                     "kind": "saw"
                 }
 

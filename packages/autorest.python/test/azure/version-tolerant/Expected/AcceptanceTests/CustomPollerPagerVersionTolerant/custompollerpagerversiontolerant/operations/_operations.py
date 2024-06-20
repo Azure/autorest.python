@@ -556,8 +556,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -638,8 +638,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -720,8 +720,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -802,8 +802,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -890,14 +890,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"  # Optional.
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -923,8 +923,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -945,14 +945,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"  # Optional.
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1045,8 +1045,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1135,8 +1135,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1223,8 +1223,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1306,8 +1306,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1389,8 +1389,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1481,8 +1481,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1575,8 +1575,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1661,8 +1661,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1744,8 +1744,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1826,8 +1826,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1908,8 +1908,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1990,8 +1990,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2076,8 +2076,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2162,8 +2162,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2293,8 +2293,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 202
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2417,8 +2417,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2501,8 +2501,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2587,8 +2587,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """

@@ -113,23 +113,16 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,  # pylint: disable=unused-argument
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
         if self.is_multipart_file_input:
             file_type_str = '"filetype"' if self.code_model.for_test else "filetype"
             return f"[{file_type_str}]" if self.type.type == "list" else file_type_str
         if self.client_default_value:
             client_default_value_declaration = self.get_declaration(self.client_default_value)
-        if self.description(is_operation_file=True):
-            description = self.description(is_operation_file=True)
         # make sure there is no \n otherwise the json template will be invalid
-        description = (description or "").replace("\n", " ")
         return self.type.get_json_template_representation(
-            optional=self.optional,
             client_default_value_declaration=client_default_value_declaration,
-            description=description,
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:

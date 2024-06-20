@@ -90,7 +90,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]
@@ -145,7 +145,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]
@@ -206,7 +206,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]

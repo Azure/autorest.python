@@ -134,7 +134,7 @@ class ModelInOperationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -205,7 +205,7 @@ class ModelInOperationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -270,7 +270,7 @@ class ModelInOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -351,14 +351,14 @@ class ModelInOperationOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -399,7 +399,7 @@ class ModelInOperationOperations:
                 # response body for status code(s): 200
                 response == {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -440,7 +440,7 @@ class ModelInOperationOperations:
                 # response body for status code(s): 200
                 response == {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -478,14 +478,14 @@ class ModelInOperationOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "result": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """

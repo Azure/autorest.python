@@ -758,7 +758,7 @@ class DecimalVerifyOperations:
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -884,7 +884,7 @@ class Decimal128VerifyOperations:
 
                 # response body for status code(s): 200
                 response == [
-                    0.0  # Optional.
+                    0.0
                 ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

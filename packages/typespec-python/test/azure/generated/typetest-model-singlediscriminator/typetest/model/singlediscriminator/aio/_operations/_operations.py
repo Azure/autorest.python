@@ -65,7 +65,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -78,19 +78,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # response body for status code(s): 200
@@ -162,7 +162,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -175,19 +175,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -247,7 +247,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -260,19 +260,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -338,7 +338,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -351,19 +351,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # response body for status code(s): 200
@@ -435,7 +435,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -448,19 +448,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -520,7 +520,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -533,19 +533,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -611,7 +611,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -624,19 +624,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # response body for status code(s): 200
@@ -701,7 +701,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "eagle":
                 bird = {
                     "kind": "eagle",
-                    "wingspan": 0,  # Required.
+                    "wingspan": 0,
                     "friends": [
                         bird
                     ],
@@ -714,19 +714,19 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "goose":
                 bird = {
                     "kind": "goose",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "seagull":
                 bird = {
                     "kind": "seagull",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # JSON input template for discriminator value "sparrow":
                 bird = {
                     "kind": "sparrow",
-                    "wingspan": 0  # Required.
+                    "wingspan": 0
                 }
 
                 # response body for status code(s): 200
@@ -791,7 +791,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
                 # JSON input template for discriminator value "t-rex":
                 dinosaur = {
                     "kind": "t-rex",
-                    "size": 0  # Required.
+                    "size": 0
                 }
 
                 # response body for status code(s): 200

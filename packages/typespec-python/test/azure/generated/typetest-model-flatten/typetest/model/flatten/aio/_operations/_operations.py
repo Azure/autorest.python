@@ -63,19 +63,19 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
         """
@@ -100,10 +100,10 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
         """
@@ -128,10 +128,10 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
         """
@@ -153,19 +153,19 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
-                        "age": 0,  # Required.
-                        "description": "str"  # Required.
+                        "age": 0,
+                        "description": "str"
                     }
                 }
         """
@@ -241,25 +241,25 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
         """
@@ -284,13 +284,13 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
         """
@@ -315,13 +315,13 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
         """
@@ -343,25 +343,25 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "properties": {
                         "properties": {
-                            "age": 0,  # Required.
-                            "description": "str"  # Required.
+                            "age": 0,
+                            "description": "str"
                         },
-                        "summary": "str"  # Required.
+                        "summary": "str"
                     }
                 }
         """
