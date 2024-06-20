@@ -36,27 +36,13 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
-        comment = ""
-        if optional:
-            comment = add_to_description(comment, "Optional.")
         if self.client_default_value is not None:
             client_default_value_declaration = client_default_value_declaration or self.get_declaration(
                 self.client_default_value
             )
-        if client_default_value_declaration:
-            comment = add_to_description(comment, f"Default value is {client_default_value_declaration}.")
-        else:
-            client_default_value_declaration = self.default_template_representation_declaration
-        if description:
-            comment = add_to_description(comment, description)
-        if comment:
-            comment = f"# {comment}"
-        return client_default_value_declaration + ("" if self.code_model.for_test else comment)
-
+        return client_default_value_declaration or self.default_template_representation_declaration
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type())

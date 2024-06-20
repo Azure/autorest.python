@@ -75,13 +75,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 # JSON input template you can fill out and use as your body input.
                 resource_array = [
                     {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 ]
         """
@@ -171,7 +171,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[JSON]:
-        # pylint: disable=line-too-long
         """Get External Resource as an Array.
 
         .. seealso::
@@ -187,21 +186,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 # response body for status code(s): 200
                 response == [
                     {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional.
-                            "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 ]
         """
@@ -270,7 +267,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 # JSON input template you can fill out and use as your body input.
                 resource_array = [
                     {
-                        "value": "str"  # Optional. the product value.
+                        "value": "str"
                     }
                 ]
         """
@@ -379,7 +376,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 response == [
                     {
                         "property": {
-                            "value": "str"  # Optional. the product value.
+                            "value": "str"
                         }
                     }
                 ]
@@ -432,7 +429,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put External Resource as a Dictionary.
 
         .. seealso::
@@ -453,21 +449,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 # JSON input template you can fill out and use as your body input.
                 resource_dictionary = {
                     "str": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional.
-                            "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 }
         """
@@ -557,7 +551,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
-        # pylint: disable=line-too-long
         """Get External Resource as a Dictionary.
 
         .. seealso::
@@ -573,21 +566,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 # response body for status code(s): 200
                 response == {
                     "str": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional.
-                            "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 }
         """
@@ -635,7 +626,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
@@ -658,65 +648,52 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 resource_complex_object = {
                     "arrayofresources": [
                         {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional.
-                                "provisioningState": "str",  # Optional.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     ],
                     "dictionaryofresources": {
                         "str": {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
-                                "provisioningState": "str",  # Optional. Dictionary
-                                  of :code:`<FlattenedProduct>`.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     },
                     "productresource": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional. Flattened product.
-                            "provisioningState": "str",  # Optional. Flattened product.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional. Flattened product.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 }
         """
@@ -749,7 +726,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
@@ -769,65 +745,52 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 resource_complex_object = {
                     "arrayofresources": [
                         {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional.
-                                "provisioningState": "str",  # Optional.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     ],
                     "dictionaryofresources": {
                         "str": {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
-                                "provisioningState": "str",  # Optional. Dictionary
-                                  of :code:`<FlattenedProduct>`.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     },
                     "productresource": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional. Flattened product.
-                            "provisioningState": "str",  # Optional. Flattened product.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional. Flattened product.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 }
         """
@@ -881,7 +844,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get External Resource as a ResourceCollection.
 
         .. seealso::
@@ -898,65 +860,52 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                 response == {
                     "arrayofresources": [
                         {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional.
-                                "provisioningState": "str",  # Optional.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     ],
                     "dictionaryofresources": {
                         "str": {
-                            "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Optional. Resource Location.
-                            "name": "str",  # Optional. Resource Name.
+                            "id": "str",
+                            "location": "str",
+                            "name": "str",
                             "properties": {
-                                "p.name": "str",  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
-                                "provisioningState": "str",  # Optional. Dictionary
-                                  of :code:`<FlattenedProduct>`.
-                                "provisioningStateValues": "str",  # Optional. Known
-                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
-                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  and "OK".
-                                "type": "str"  # Optional. Dictionary of
-                                  :code:`<FlattenedProduct>`.
+                                "p.name": "str",
+                                "provisioningState": "str",
+                                "provisioningStateValues": "str",
+                                "type": "str"
                             },
                             "tags": {
-                                "str": "str"  # Optional. Dictionary of
-                                  :code:`<string>`.
+                                "str": "str"
                             },
-                            "type": "str"  # Optional. Resource Type.
+                            "type": "str"
                         }
                     },
                     "productresource": {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Optional. Resource Location.
-                        "name": "str",  # Optional. Resource Name.
+                        "id": "str",
+                        "location": "str",
+                        "name": "str",
                         "properties": {
-                            "p.name": "str",  # Optional. Flattened product.
-                            "provisioningState": "str",  # Optional. Flattened product.
-                            "provisioningStateValues": "str",  # Optional. Known values
-                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-                            "type": "str"  # Optional. Flattened product.
+                            "p.name": "str",
+                            "provisioningState": "str",
+                            "provisioningStateValues": "str",
+                            "type": "str"
                         },
                         "tags": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"
                         },
-                        "type": "str"  # Optional. Resource Type.
+                        "type": "str"
                     }
                 }
         """
@@ -1004,7 +953,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1024,36 +972,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1063,7 +1003,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1083,18 +1022,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1104,7 +1039,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product(
         self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1122,36 +1056,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1215,7 +1141,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1235,36 +1160,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1274,7 +1191,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1294,18 +1210,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1315,7 +1227,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def post_flattened_simple_product(
         self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
@@ -1333,36 +1244,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1431,7 +1334,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1453,36 +1355,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1497,7 +1391,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1519,18 +1412,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
@@ -1540,7 +1429,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     async def put_simple_product_with_grouping(
         self, name: str, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
@@ -1560,36 +1448,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",  # Unique identifier representing a specific
-                      product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles. Required.
-                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",
+                    "base_product_description": "str",
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Required.
-                        "max_product_display_name": "str",  # Display name of product.
-                          Required.
+                        "max_product_capacity": "Large",
+                        "max_product_display_name": "str",
                         "max_product_image": {
-                            "@odata.value": "str",  # Optional. URL value.
-                            "generic_value": "str"  # Optional. Generic URL value.
+                            "@odata.value": "str",
+                            "generic_value": "str"
                         }
                     }
                 }

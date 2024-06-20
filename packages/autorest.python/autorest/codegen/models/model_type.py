@@ -147,9 +147,7 @@ class ModelType(  # pylint: disable=abstract-method
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
@@ -163,9 +161,7 @@ class ModelType(  # pylint: disable=abstract-method
         # additional properties in the template
         representation = {
             f'"{prop.wire_name}"': prop.get_json_template_representation(
-                optional=optional,
                 client_default_value_declaration=client_default_value_declaration,
-                description=description,
             )
             for prop in [
                 p for p in self.properties if not (p.is_discriminator or p.client_name == "additional_properties")

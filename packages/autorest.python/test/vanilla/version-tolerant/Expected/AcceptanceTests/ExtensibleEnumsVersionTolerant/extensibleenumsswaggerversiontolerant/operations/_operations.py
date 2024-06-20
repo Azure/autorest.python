@@ -92,7 +92,6 @@ class PetOperations:
 
     @distributed_trace
     def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """get pet by id.
 
         :param pet_id: Pet id. Required.
@@ -106,11 +105,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -158,7 +155,6 @@ class PetOperations:
     def add_pet(
         self, pet_param: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -175,20 +171,16 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
         """
 
@@ -196,7 +188,6 @@ class PetOperations:
     def add_pet(
         self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -213,17 +204,14 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
         """
 
     @distributed_trace
     def add_pet(self, pet_param: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """add pet.
 
         :param pet_param: pet param. Is either a JSON type or a IO[bytes] type. Default value is None.
@@ -237,20 +225,16 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
-                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                      "Saturday", and "Sunday".
-                    "name": "str"  # Optional. name.
+                    "IntEnum": "str",
+                    "DaysOfWeek": "Friday",
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

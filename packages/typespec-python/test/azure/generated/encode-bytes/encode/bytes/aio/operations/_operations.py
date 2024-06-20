@@ -293,12 +293,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -322,7 +322,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -346,7 +346,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -367,12 +367,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -447,12 +447,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -476,7 +476,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -500,7 +500,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -521,12 +521,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -601,12 +601,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -630,7 +630,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -654,7 +654,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -675,12 +675,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": bytes("bytes", encoding="utf-8")  # Required.
+                    "value": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -757,14 +757,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
         """
@@ -791,7 +791,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
         """
@@ -818,7 +818,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
         """
@@ -843,14 +843,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        bytes("bytes", encoding="utf-8")  # Required.
+                        bytes("bytes", encoding="utf-8")
                     ]
                 }
         """

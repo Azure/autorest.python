@@ -372,7 +372,7 @@ class ParamsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameter = {
-                    "url": "str"  # Required.
+                    "url": "str"
                 }
         """
 
@@ -407,7 +407,7 @@ class ParamsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameter = {
-                    "url": "str"  # Required.
+                    "url": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

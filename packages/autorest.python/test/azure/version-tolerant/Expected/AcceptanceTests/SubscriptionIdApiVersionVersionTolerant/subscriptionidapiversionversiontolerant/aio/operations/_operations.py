@@ -65,8 +65,8 @@ class GroupOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Optional. resource group location 'West US'.
-                    "name": "str"  # Optional. resource group name 'testgroup101'.
+                    "location": "str",
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

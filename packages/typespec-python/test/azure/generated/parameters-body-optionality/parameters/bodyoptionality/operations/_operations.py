@@ -134,7 +134,7 @@ class OptionalExplicitOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -187,7 +187,7 @@ class OptionalExplicitOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -256,7 +256,7 @@ class OptionalExplicitOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -309,7 +309,7 @@ class OptionalExplicitOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -381,7 +381,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -434,7 +434,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -500,7 +500,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -553,7 +553,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

@@ -145,12 +145,12 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prompt": "str"  # Prompt. Required.
+                    "prompt": "str"
                 }
 
                 # response body for status code(s): 202
                 response == {
-                    "data": "str"  # The data. Required.
+                    "data": "str"
                 }
         """
 
@@ -177,7 +177,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
                 # response body for status code(s): 202
                 response == {
-                    "data": "str"  # The data. Required.
+                    "data": "str"
                 }
         """
 
@@ -204,7 +204,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
                 # response body for status code(s): 202
                 response == {
-                    "data": "str"  # The data. Required.
+                    "data": "str"
                 }
         """
 
@@ -228,12 +228,12 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prompt": "str"  # Prompt. Required.
+                    "prompt": "str"
                 }
 
                 # response body for status code(s): 202
                 response == {
-                    "data": "str"  # The data. Required.
+                    "data": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
