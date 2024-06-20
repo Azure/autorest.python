@@ -105,7 +105,7 @@ class RawDeserializer:
             # Remove Byte Order Mark if present in string
             data_as_str = data_as_str.lstrip(_BOM)
 
-        if content_type is None:
+        if content_type is None or content_type == "text/plain":
             return data
 
         if cls.JSON_REGEXP.match(content_type):
