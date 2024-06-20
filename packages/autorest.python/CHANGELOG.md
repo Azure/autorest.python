@@ -1,5 +1,12 @@
 # Release
 
+## 6.14.2
+
+### Bug Fixes
+
+- [#2650](https://github.com/Azure/autorest.python/pull/2650) fix sphinx rendering of json docs by removing comments
+
+
 ## 6.14.1
 
 ### Bug Fixes
