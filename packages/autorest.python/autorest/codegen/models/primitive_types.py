@@ -9,7 +9,6 @@ from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
