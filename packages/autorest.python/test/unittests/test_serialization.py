@@ -45,7 +45,7 @@ from storage_models.serialization import (
     full_restapi_key_transformer,
     rest_key_extractor,
 )
-from storage_models.serialization import Serializer, Deserializer
+from storage_models.serialization import Serializer, Deserializer, RawDeserializer
 
 # from azure.core.exceptions import ValidationError
 from azure.core.exceptions import SerializationError, DeserializationError
@@ -2496,6 +2496,11 @@ class TestUrlEncoding(unittest.TestCase):
         result2 = s.url("resource_id", origin_url, "str")
         self.assertEqual("/database/%7BObject.value%7D", result1)
         self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2)
+
+
+def test_deserialize_text():
+    assert "str" == RawDeserializer.deserialize_from_text("str", content_type="text/plain")
+    assert "str" == RawDeserializer.deserialize_from_text(b"str", content_type="text/plain")
 
 
 if __name__ == "__main__":
