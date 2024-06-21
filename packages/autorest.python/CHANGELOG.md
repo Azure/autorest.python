@@ -1,5 +1,12 @@
 # Release
 
+## 6.14.3
+
+### Bug Fixes
+
+- [#2649](https://github.com/Azure/autorest.python/pull/2649) fix deserialization from vendored msrest code for text plain responses
+
+
 ## 6.14.2
 
 ### Bug Fixes
