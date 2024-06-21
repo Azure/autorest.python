@@ -105,7 +105,7 @@ class RawDeserializer:
             # Remove Byte Order Mark if present in string
             data_as_str = data_as_str.lstrip(_BOM)
 
-        if content_type is None or content_type == "text/plain":
+        if content_type is None:
             return data
 
         if cls.JSON_REGEXP.match(content_type):
@@ -144,6 +144,8 @@ class RawDeserializer:
                 # context otherwise.
                 _LOGGER.critical("Wasn't XML not JSON, failing")
                 raise DeserializationError("XML is invalid") from err
+        elif content_type.startswith("text/"):
+            return data_as_str
         raise DeserializationError("Cannot deserialize content-type: {}".format(content_type))
 
     @classmethod
