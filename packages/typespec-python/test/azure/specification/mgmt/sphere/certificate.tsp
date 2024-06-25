@@ -52,11 +52,7 @@ interface Certificates {
   /**
    * Retrieves cert chain.
    */
-  retrieveCertChain is ArmResourceActionSync<
-    Certificate,
-    void,
-    CertificateChainResponse
-  >;
+  retrieveCertChain is ArmResourceActionSync<Certificate, void, CertificateChainResponse>;
 
   /**
    * Gets the proof of possession nonce.
@@ -68,9 +64,7 @@ interface Certificates {
   >;
 }
 
-@@doc(Certificates.retrieveProofOfPossessionNonce::parameters.body,
-  "Proof of possession nonce request body "
-);
+@@doc(Certificates.retrieveProofOfPossessionNonce::parameters.body, "Proof of possession nonce request body ");
 @@encodedName(Certificates.retrieveProofOfPossessionNonce::parameters.body,
   "application/json",
   "proofOfPossessionNonceRequest"

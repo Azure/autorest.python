@@ -70,29 +70,14 @@ interface DeviceGroups {
   /**
    * Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only.
    */
-  claimDevices is ArmResourceActionNoResponseContentAsync<
-    DeviceGroup,
-    ClaimDevicesRequest
-  >;
+  claimDevices is ArmResourceActionNoResponseContentAsync<DeviceGroup, ClaimDevicesRequest>;
 
   /**
    * Counts devices in device group. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.
    */
-  countDevices is ArmResourceActionSync<
-    DeviceGroup,
-    void,
-    CountDevicesResponse
-  >;
+  countDevices is ArmResourceActionSync<DeviceGroup, void, CountDevicesResponse>;
 }
 
-@@doc(DeviceGroups.claimDevices::parameters.body,
-  "Bulk claim devices request body."
-);
-@@encodedName(DeviceGroups.claimDevices::parameters.body,
-  "application/json",
-  "claimDevicesRequest"
-);
-@@extension(DeviceGroups.claimDevices::parameters.body,
-  "x-ms-client-name",
-  "claimDevicesRequest"
-);
+@@doc(DeviceGroups.claimDevices::parameters.body, "Bulk claim devices request body.");
+@@encodedName(DeviceGroups.claimDevices::parameters.body, "application/json", "claimDevicesRequest");
+@@extension(DeviceGroups.claimDevices::parameters.body, "x-ms-client-name", "claimDevicesRequest");
