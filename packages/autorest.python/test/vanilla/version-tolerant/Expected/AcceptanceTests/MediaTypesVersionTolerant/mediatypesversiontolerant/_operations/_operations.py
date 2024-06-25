@@ -177,7 +177,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
 
@@ -212,7 +212,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -296,7 +296,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
 
@@ -337,7 +337,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

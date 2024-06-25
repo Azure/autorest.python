@@ -97,7 +97,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -158,7 +158,7 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

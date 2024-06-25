@@ -83,7 +83,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -135,7 +135,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -201,7 +201,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -253,7 +253,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -377,7 +377,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -441,7 +441,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -519,7 +519,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required.
+                    "prop": "str"
                 }
         """
 
@@ -583,7 +583,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required.
+                    "prop": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -669,7 +669,7 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -723,7 +723,7 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -798,7 +798,7 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -870,7 +870,7 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -947,12 +947,12 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop1": "str",  # Required.
-                    "prop2": "str",  # Required.
-                    "prop3": "str",  # Required.
-                    "prop4": "str",  # Required.
-                    "prop5": "str",  # Required.
-                    "prop6": "str"  # Required.
+                    "prop1": "str",
+                    "prop2": "str",
+                    "prop3": "str",
+                    "prop4": "str",
+                    "prop5": "str",
+                    "prop6": "str"
                 }
         """
 
@@ -1060,12 +1060,12 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop1": "str",  # Required.
-                    "prop2": "str",  # Required.
-                    "prop3": "str",  # Required.
-                    "prop4": "str",  # Required.
-                    "prop5": "str",  # Required.
-                    "prop6": "str"  # Required.
+                    "prop1": "str",
+                    "prop2": "str",
+                    "prop3": "str",
+                    "prop4": "str",
+                    "prop5": "str",
+                    "prop6": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

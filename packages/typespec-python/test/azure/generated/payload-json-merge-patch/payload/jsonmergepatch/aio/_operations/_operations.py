@@ -64,54 +64,54 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -137,27 +137,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -183,27 +183,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -224,54 +224,54 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -350,51 +350,51 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
                 body = {
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -420,27 +420,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -466,27 +466,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -511,51 +511,51 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
                 body = {
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -638,51 +638,51 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
                 body = {
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -708,27 +708,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -754,27 +754,27 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
@@ -800,51 +800,51 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
                 body = {
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
+                    "name": "str",
                     "array": [
                         {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     ],
-                    "description": "str",  # Optional.
-                    "floatValue": 0.0,  # Optional.
+                    "description": "str",
+                    "floatValue": 0.0,
                     "innerModel": {
-                        "description": "str",  # Optional.
-                        "name": "str"  # Optional.
+                        "description": "str",
+                        "name": "str"
                     },
                     "intArray": [
-                        0  # Optional.
+                        0
                     ],
-                    "intValue": 0,  # Optional.
+                    "intValue": 0,
                     "map": {
                         "str": {
-                            "description": "str",  # Optional.
-                            "name": "str"  # Optional.
+                            "description": "str",
+                            "name": "str"
                         }
                     }
                 }

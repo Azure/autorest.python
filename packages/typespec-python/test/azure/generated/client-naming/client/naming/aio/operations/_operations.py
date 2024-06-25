@@ -87,7 +87,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
 
@@ -140,7 +140,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -206,7 +206,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
 
@@ -259,7 +259,7 @@ class ModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -533,7 +533,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
 
@@ -586,7 +586,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -652,7 +652,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
 
@@ -705,7 +705,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "defaultName": bool  # Pass in true. Required.
+                    "defaultName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -771,7 +771,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "wireName": bool  # Pass in true. Required.
+                    "wireName": bool
                 }
         """
 
@@ -825,7 +825,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "wireName": bool  # Pass in true. Required.
+                    "wireName": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

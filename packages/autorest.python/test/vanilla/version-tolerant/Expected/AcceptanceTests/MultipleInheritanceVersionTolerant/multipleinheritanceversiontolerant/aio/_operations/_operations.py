@@ -63,8 +63,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
-                    "isAShowHorse": bool  # Optional.
+                    "name": "str",
+                    "isAShowHorse": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -125,8 +125,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "name": "str",  # Required.
-                    "isAShowHorse": bool  # Optional.
+                    "name": "str",
+                    "isAShowHorse": bool
                 }
         """
 
@@ -160,8 +160,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "name": "str",  # Required.
-                    "isAShowHorse": bool  # Optional.
+                    "name": "str",
+                    "isAShowHorse": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -229,7 +229,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -290,7 +290,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -323,7 +323,7 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -391,8 +391,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # response body for status code(s): 200
                 response == {
-                    "hisses": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "hisses": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -453,8 +453,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 feline = {
-                    "hisses": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "hisses": bool,
+                    "meows": bool
                 }
         """
 
@@ -488,8 +488,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 feline = {
-                    "hisses": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "hisses": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -557,10 +557,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -622,10 +622,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "name": "str",  # Required.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
 
@@ -660,10 +660,10 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "name": "str",  # Required.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -732,11 +732,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",  # Required.
-                    "eatsMiceYet": bool,  # Optional.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "eatsMiceYet": bool,
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -799,11 +799,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "name": "str",  # Required.
-                    "eatsMiceYet": bool,  # Optional.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "eatsMiceYet": bool,
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
 
@@ -840,11 +840,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "name": "str",  # Required.
-                    "eatsMiceYet": bool,  # Optional.
-                    "hisses": bool,  # Optional.
-                    "likesMilk": bool,  # Optional.
-                    "meows": bool  # Optional.
+                    "name": "str",
+                    "eatsMiceYet": bool,
+                    "hisses": bool,
+                    "likesMilk": bool,
+                    "meows": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

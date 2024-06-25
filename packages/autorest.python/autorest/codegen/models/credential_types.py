@@ -124,9 +124,7 @@ class CredentialType(Generic[CredentialPolicyType], BaseType):  # pylint:disable
     def get_json_template_representation(
         self,
         *,
-        optional: bool = True,
         client_default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
     ) -> Any:
         raise TypeError("You should not try to get a JSON template representation of a CredentialSchema")
 

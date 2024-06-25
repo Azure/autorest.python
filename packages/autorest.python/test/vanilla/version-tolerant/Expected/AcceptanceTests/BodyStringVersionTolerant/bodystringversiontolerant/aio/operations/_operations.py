@@ -939,9 +939,8 @@ class EnumOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description. Required.
-                    "field1": "str"  # Optional. Sample string.
+                    "ColorConstant": "green-color",
+                    "field1": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1004,9 +1003,8 @@ class EnumOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
-                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description. Required.
-                    "field1": "str"  # Optional. Sample string.
+                    "ColorConstant": "green-color",
+                    "field1": "str"
                 }
         """
 
@@ -1043,9 +1041,8 @@ class EnumOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
-                    "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description. Required.
-                    "field1": "str"  # Optional. Sample string.
+                    "ColorConstant": "green-color",
+                    "field1": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

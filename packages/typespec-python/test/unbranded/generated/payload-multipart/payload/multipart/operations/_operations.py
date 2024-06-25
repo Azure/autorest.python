@@ -146,7 +146,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -178,7 +178,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -240,13 +240,13 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype],
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -281,13 +281,13 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype],
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -351,7 +351,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
                     "profileImage": filetype
                 }
@@ -385,7 +385,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
                     "profileImage": filetype
                 }
@@ -447,7 +447,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype]
                 }
         """
@@ -479,7 +479,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype]
                 }
         """
@@ -542,7 +542,7 @@ class FormDataOperations:
                 body = {
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -578,7 +578,7 @@ class FormDataOperations:
                 body = {
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -734,7 +734,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -768,7 +768,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """

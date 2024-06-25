@@ -176,7 +176,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -229,7 +229,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -295,7 +295,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -348,7 +348,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -414,7 +414,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -467,7 +467,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -533,7 +533,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -586,7 +586,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -652,7 +652,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -705,7 +705,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -771,7 +771,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -824,7 +824,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -890,7 +890,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -943,7 +943,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1009,7 +1009,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1062,7 +1062,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1128,7 +1128,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1181,7 +1181,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1247,7 +1247,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1300,7 +1300,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1366,7 +1366,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1419,7 +1419,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1485,7 +1485,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1538,7 +1538,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1604,7 +1604,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1657,7 +1657,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1723,7 +1723,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1776,7 +1776,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1842,7 +1842,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -1895,7 +1895,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1961,7 +1961,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2014,7 +2014,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2080,7 +2080,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2133,7 +2133,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2199,7 +2199,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2252,7 +2252,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2318,7 +2318,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2371,7 +2371,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2437,7 +2437,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2490,7 +2490,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2556,7 +2556,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2609,7 +2609,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2675,7 +2675,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2728,7 +2728,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2794,7 +2794,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2847,7 +2847,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2913,7 +2913,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -2966,7 +2966,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3032,7 +3032,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3085,7 +3085,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3151,7 +3151,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3204,7 +3204,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3270,7 +3270,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3323,7 +3323,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3389,7 +3389,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3442,7 +3442,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3508,7 +3508,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3561,7 +3561,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3627,7 +3627,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3680,7 +3680,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3746,7 +3746,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3799,7 +3799,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3865,7 +3865,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -3918,7 +3918,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3984,7 +3984,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -4037,7 +4037,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4121,7 +4121,7 @@ class ModelPropertiesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "SameAsModel": "str"  # Required.
+                    "SameAsModel": "str"
                 }
         """
 
@@ -4174,7 +4174,7 @@ class ModelPropertiesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "SameAsModel": "str"  # Required.
+                    "SameAsModel": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

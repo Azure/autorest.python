@@ -64,7 +64,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -133,12 +133,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "hello": "str"  # Required.
+                    "hello": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
 
@@ -167,7 +167,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
 
@@ -192,12 +192,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "hello": "str"  # Required.
+                    "hello": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -271,7 +271,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -385,8 +385,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "provisioningState": "str",
+                    "received": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

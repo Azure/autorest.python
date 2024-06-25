@@ -1,5 +1,26 @@
 # Release
 
+## 6.14.3
+
+### Bug Fixes
+
+- [#2649](https://github.com/Azure/autorest.python/pull/2649) fix deserialization from vendored msrest code for text plain responses
+
+
+## 6.14.2
+
+### Bug Fixes
+
+- [#2650](https://github.com/Azure/autorest.python/pull/2650) fix sphinx rendering of json docs by removing comments
+
+
+## 6.14.1
+
+### Bug Fixes
+
+- [#2645](https://github.com/Azure/autorest.python/pull/2645) add visibility support to discriminator rest field
+
+
 ## 6.14.0
 
 ### Bug Fixes

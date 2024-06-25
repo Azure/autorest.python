@@ -4,5 +4,5 @@ colorama==0.4.6
 debugpy==1.8.1
 pytest==8.2.2
 tox==4.15.1
-coverage==7.5.3
+coverage==7.5.4
 black==24.4.2

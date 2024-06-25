@@ -108,7 +108,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
 
@@ -161,7 +161,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -220,7 +220,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -285,12 +285,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
 
@@ -314,7 +314,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
 
@@ -338,7 +338,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
 
@@ -359,12 +359,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "requiredProp": "str"  # Required.
+                    "requiredProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

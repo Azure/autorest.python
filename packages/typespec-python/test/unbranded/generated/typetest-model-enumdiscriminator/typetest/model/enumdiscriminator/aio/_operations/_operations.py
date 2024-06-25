@@ -64,7 +64,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -136,7 +136,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -195,7 +195,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -262,7 +262,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -326,7 +326,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -390,7 +390,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200
@@ -462,7 +462,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -521,7 +521,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -586,7 +586,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200
@@ -650,7 +650,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200

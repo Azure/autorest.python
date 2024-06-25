@@ -78,16 +78,16 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -109,9 +109,9 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -133,9 +133,9 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -154,16 +154,16 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMemberV2"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a float type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

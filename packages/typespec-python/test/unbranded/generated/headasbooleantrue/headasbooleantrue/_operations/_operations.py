@@ -150,30 +150,26 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -199,15 +195,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -233,15 +227,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # response body for status code(s): 200
                 response == {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -263,30 +255,26 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -363,15 +351,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -419,15 +405,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -496,15 +480,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -558,15 +540,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -634,15 +614,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -696,15 +674,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -772,15 +748,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -834,15 +808,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -910,15 +882,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
@@ -972,15 +942,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
                 # JSON input template you can fill out and use as your body input.
                 input = {
                     "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
+                        "str"
                     ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
+                    "deleteProp": bool,
+                    "queryProp": 0,
+                    "readProp": "str",
                     "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
+                        0
                     ]
                 }
         """
