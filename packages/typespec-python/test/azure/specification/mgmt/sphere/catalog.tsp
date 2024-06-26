@@ -136,23 +136,9 @@ interface Catalogs {
   uploadImage is ArmResourceActionNoResponseContentAsync<Catalog, Image>;
 }
 
-@@doc(Catalogs.listDeviceGroups::parameters.body,
-  "List device groups for catalog."
-);
-@@encodedName(Catalogs.listDeviceGroups::parameters.body,
-  "application/json",
-  "listDeviceGroupsRequest"
-);
-@@extension(Catalogs.listDeviceGroups::parameters.body,
-  "x-ms-client-name",
-  "listDeviceGroupsRequest"
-);
+@@doc(Catalogs.listDeviceGroups::parameters.body, "List device groups for catalog.");
+@@encodedName(Catalogs.listDeviceGroups::parameters.body, "application/json", "listDeviceGroupsRequest");
+@@extension(Catalogs.listDeviceGroups::parameters.body, "x-ms-client-name", "listDeviceGroupsRequest");
 @@doc(Catalogs.uploadImage::parameters.body, "Image upload request body.");
-@@encodedName(Catalogs.uploadImage::parameters.body,
-  "application/json",
-  "uploadImageRequest"
-);
-@@extension(Catalogs.uploadImage::parameters.body,
-  "x-ms-client-name",
-  "uploadImageRequest"
-);
+@@encodedName(Catalogs.uploadImage::parameters.body, "application/json", "uploadImageRequest");
+@@extension(Catalogs.uploadImage::parameters.body, "x-ms-client-name", "uploadImageRequest");
